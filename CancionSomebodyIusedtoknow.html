@@ -18,10 +18,9 @@
 
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 md:p-10">
         
-        <!-- Navigation Header -->
         <div class="flex flex-col sm:flex-row justify-between items-center border-b border-slate-100 pb-6 mb-6 gap-4">
             <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Merry Mery English Logo" class="w-16 h-auto">
+                <img src="logo.png" alt="Merry Mery English Logo" class="w-16 h-auto" onerror="this.style.display='none'">
                 <div>
                     <h1 class="text-xl md:text-2xl font-bold text-teal-700">Merry Mery English</h1>
                     <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Song Masterclass & Grammar Lab</p>
@@ -30,7 +29,7 @@
             <div class="flex items-center gap-2">
                 <div class="bg-teal-50 border-2 border-teal-200 px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-inner">
                     <span class="text-xs font-bold text-slate-600 uppercase">Score:</span>
-                    <span id="score-counter" class="text-base font-black text-teal-700">0 / 8</span>
+                    <span id="score-counter" class="text-base font-black text-teal-700">0 / 13</span>
                 </div>
                 <button onclick="toggleSound()" class="p-2 rounded-xl bg-teal-50 border-2 border-teal-200 text-slate-700 hover:bg-teal-100 transition shadow-sm" title="Toggle Sound">
                     <i id="sound-icon" class="fa-solid fa-volume-high text-teal-600"></i>
@@ -44,28 +43,33 @@
             </div>
         </div>
 
-        <!-- Title -->
         <div class="text-center mb-6">
             <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 mb-1">🎶 "Somebody That I Used to Know" – Gotye</h2>
             <p class="text-slate-600 text-sm">Interactive English lesson: Grammar masterclass (Used to / Be used to), British pronunciation, and practice.</p>
         </div>
 
-        <!-- Tab Navigation Buttons -->
         <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-6 justify-center">
             <button onclick="switchTab(event, 'tab-video')" class="tab-btn px-4 py-2 bg-teal-600 text-white font-semibold rounded-xl text-sm transition shadow-sm">🎬 Watch & Listen</button>
-            <button onclick="switchTab(event, 'tab-grammar')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">📐 Grammar (Used to)</button>
-            <button onclick="switchTab(event, 'tab-expressions')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">💡 Key Expressions</button>
+            <button onclick="switchTab(event, 'tab-grammar')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">📐 Grammar</button>
+            <button onclick="switchTab(event, 'tab-expressions')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">💡 Expressions</button>
             <button onclick="switchTab(event, 'tab-practice')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">✍️ Practice</button>
             <button onclick="switchTab(event, 'tab-comprehension')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">❓ Comprehension</button>
+            <button onclick="switchTab(event, 'tab-author')" class="tab-btn px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-sm transition">👤 About the Author</button>
         </div>
 
-        <!-- TAB 1: WATCH & LISTEN -->
         <div id="tab-video" class="tab-content active space-y-6">
             <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-5">
                 <h3 class="text-lg font-bold text-teal-800 mb-2">Music Video & Context</h3>
-                <p class="text-sm text-slate-600 mb-4">Watch the official video below. Pay attention to the storytelling and emotional distance between the former partners.</p>
-                <div class="relative w-full overflow-hidden rounded-xl shadow-md" style="padding-top: 56.25%;">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/8UVNT4wvIGY" title="Gotye - Somebody That I Used to Know" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p class="text-sm text-slate-600 mb-4">Watch the official video below or open it directly on YouTube to enjoy without restrictions.</p>
+                <div class="relative w-full bg-slate-900 rounded-xl shadow-md overflow-hidden flex flex-col items-center justify-center p-8 text-center text-white" style="min-height: 280px;">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg animate-pulse">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Gotye - Somebody That I Used to Know (feat. Kimbra)</h4>
+                    <p class="text-xs text-slate-300 max-w-md mb-6">Enjoy the official music video directly on YouTube without embedding limitations.</p>
+                    <a href="https://www.youtube.com/watch?v=8UVNT4wvIGY" target="_blank" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> Watch Official Video on YouTube ↗
+                    </a>
                 </div>
             </div>
             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
@@ -74,7 +78,6 @@
             </div>
         </div>
 
-        <!-- TAB 2: GRAMMAR MASTERCLASS -->
         <div id="tab-grammar" class="tab-content space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-bold text-teal-800">📐 Grammar Focus: The "Used to" Family</h3>
@@ -111,27 +114,27 @@
                 </div>
             </div>
 
+            <div id="banner-grammar" class="hidden bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl text-center space-y-2">
+                <h4 class="text-emerald-900 font-bold text-base">✨ Great grammar progress! ✨</h4>
+                <p class="text-emerald-700 text-xs">You have reviewed the key concepts of the "Used to" structure. You are ready to continue!</p>
+            </div>
+
             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
                 <a href="https://merymeryenglish-cloud.github.io/English-Exercises/" class="text-teal-600 font-bold hover:underline text-sm">🏠 Back to Home</a>
-                <button onclick="switchTab(null, 'tab-expressions')" class="px-5 py-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition">Next: Key Expressions →</button>
+                <button onclick="completeGrammarTab()" class="px-5 py-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition">Next: Key Expressions →</button>
             </div>
         </div>
 
-        <!-- TAB 3: KEY EXPRESSIONS -->
         <div id="tab-expressions" class="tab-content space-y-4">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-bold text-teal-800">💡 Key Expressions & British Pronunciation (UK)</h3>
-                <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="text-xs text-sky-600 font-bold hover:underline">📖 Dictionary Helper ↗</a>
             </div>
             <p class="text-sm text-slate-600 mb-4">Listen to the native British audio, study the definitions, and review practical examples.</p>
             
             <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4">
                 <div class="flex justify-between items-start gap-2 mb-1">
                     <span class="font-bold text-teal-900 text-base">1. "Somebody that I used to know"</span>
-                    <div class="flex gap-2">
-                        <button onclick="speakText('Somebody that I used to know')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
-                        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/used-to" target="_blank" class="px-3 py-1 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition">📖 Dictionary</a>
-                    </div>
+                    <button onclick="speakText('Somebody that I used to know')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
                 </div>
                 <p class="text-sm text-slate-600 mb-2"><strong>Meaning:</strong> A person you had an intimate relationship with in the past, but now they are a total stranger.</p>
                 <p class="text-xs text-slate-500 italic bg-white p-2 rounded-lg border border-teal-50"><strong>Example:</strong> "We shared an apartment for years, but now we don't speak; she's just somebody that I used to know."</p>
@@ -140,10 +143,7 @@
             <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4">
                 <div class="flex justify-between items-start gap-2 mb-1">
                     <span class="font-bold text-teal-900 text-base">2. "Cut somebody out"</span>
-                    <div class="flex gap-2">
-                        <button onclick="speakText('Cut somebody out')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
-                        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/cut-out" target="_blank" class="px-3 py-1 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition">📖 Dictionary</a>
-                    </div>
+                    <button onclick="speakText('Cut somebody out')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
                 </div>
                 <p class="text-sm text-slate-600 mb-2"><strong>Meaning:</strong> To stop communicating with someone completely or remove them from your life.</p>
                 <p class="text-xs text-slate-500 italic bg-white p-2 rounded-lg border border-teal-50"><strong>Example:</strong> "After constant arguments, he decided to cut her out of his social media and phone contacts."</p>
@@ -152,28 +152,46 @@
             <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4">
                 <div class="flex justify-between items-start gap-2 mb-1">
                     <span class="font-bold text-teal-900 text-base">3. "Treat your data like you had no change"</span>
-                    <div class="flex gap-2">
-                        <button onclick="speakText('Treat your data like you had no change')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
-                        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/treat" target="_blank" class="px-3 py-1 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition">📖 Dictionary</a>
-                    </div>
+                    <button onclick="speakText('Treat your data like you had no change')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
                 </div>
                 <p class="text-sm text-slate-600 mb-2"><strong>Meaning:</strong> Acting coldly, pretending nothing happened, or treating an ex-partner as if they never mattered.</p>
                 <p class="text-xs text-slate-500 italic bg-white p-2 rounded-lg border border-teal-50"><strong>Example:</strong> "I said hello on the street, but she looked right through me and treated me like a total stranger."</p>
             </div>
 
+            <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4">
+                <div class="flex justify-between items-start gap-2 mb-1">
+                    <span class="font-bold text-teal-900 text-base">4. "Stoop low"</span>
+                    <button onclick="speakText('Stoop low')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
+                </div>
+                <p class="text-sm text-slate-600 mb-2"><strong>Meaning:</strong> Behaving in a petty, mean, or ungenerous way that is beneath one's dignity.</p>
+                <p class="text-xs text-slate-500 italic bg-white p-2 rounded-lg border border-teal-50"><strong>Example:</strong> "He didn't need to spread rumors about her friends; it was unnecessary to stoop so low."</p>
+            </div>
+
+            <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4">
+                <div class="flex justify-between items-start gap-2 mb-1">
+                    <span class="font-bold text-teal-900 text-base">5. "Records"</span>
+                    <button onclick="speakText('Records')" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition">🔊 Listen (UK)</button>
+                </div>
+                <p class="text-sm text-slate-600 mb-2"><strong>Meaning:</strong> Vinyl music albums stored in sleeves, representing shared belongings divided up after the breakup.</p>
+                <p class="text-xs text-slate-500 italic bg-white p-2 rounded-lg border border-teal-50"><strong>Example:</strong> "When they moved out, their friends came over and collected all their records."</p>
+            </div>
+
+            <div id="banner-expressions" class="hidden bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl text-center space-y-2">
+                <h4 class="text-emerald-900 font-bold text-base">🌟 Excellent vocabulary mastery! 🌟</h4>
+                <p class="text-emerald-700 text-xs">You have successfully assimilated key vocabulary and British pronunciation!</p>
+            </div>
+
             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
                 <a href="https://merymeryenglish-cloud.github.io/English-Exercises/" class="text-teal-600 font-bold hover:underline text-sm">🏠 Back to Home</a>
-                <button onclick="switchTab(null, 'tab-practice')" class="px-5 py-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition">Next: Practice Exercises →</button>
+                <button onclick="completeExpressionsTab()" class="px-5 py-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition">Next: Practice Exercises →</button>
             </div>
         </div>
 
-        <!-- TAB 4: PRACTICE EXERCISES -->
         <div id="tab-practice" class="tab-content space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-bold text-teal-800">✍️ Practice Exercises (Multiple Choice & Matching)</h3>
                 <div class="flex gap-2">
                     <button onclick="checkPractice()" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl transition shadow-sm">Check Answers</button>
-                    <button onclick="revealPractice()" class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow-sm">Reveal All</button>
                     <button onclick="resetPractice()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl border border-slate-300 transition">Reset</button>
                 </div>
             </div>
@@ -190,7 +208,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="p1" value="c" onchange="autoCheckPractice(1)"> c) To share mutual friends on social media.</label>
                 </div>
                 <div id="hint1" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> Think about isolation and deleting someone completely from your daily circle.
+                    <strong>Hint:</strong> Think about boundaries and physical or digital separation from someone's circle.
                 </div>
                 <div id="feedback-p1" class="hidden"></div>
             </div>
@@ -207,27 +225,32 @@
                     <label class="block cursor-pointer"><input type="radio" name="p2" value="c" onchange="autoCheckPractice(2)"> c) I used wake up early every day.</label>
                 </div>
                 <div id="hint2" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> Remember that "be used to" is followed by a gerund (-ing form).
+                    <strong>Hint:</strong> Pay close attention to what type of verb form or gerund follows auxiliary verbs of habit or familiarity.
                 </div>
                 <div id="feedback-p2" class="hidden"></div>
             </div>
 
-            <!-- Q3 Matching (5 Items, Randomized Dropdowns) -->
+            <!-- Q3 Matching (5 Items) -->
             <div id="box-p3" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm transition space-y-3">
                 <div class="flex justify-between items-center">
                     <p class="font-bold text-slate-800">3. Matching: Connect each concept with its correct definition.</p>
                     <button onclick="toggleHint('hint3')" class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-md font-semibold hover:bg-amber-200 transition">💡 Hint</button>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-                    <div class="space-y-3">
-                        <p><strong>1. Stranger</strong></p>
-                        <p><strong>2. Breakup</strong></p>
-                        <p><strong>3. Get used to</strong></p>
-                        <p><strong>4. Stoop low</strong></p>
-                        <p><strong>5. Records</strong></p>
+                <div class="space-y-3 mt-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-800">1. Stranger</span>
+                        <select id="pmatch1" onchange="autoCheckPractice(3)" class="w-full p-2 border border-slate-300 rounded-lg bg-white">
+                            <option value="">-- Select definition --</option>
+                            <option value="a">Vinyl music albums stored in sleeves</option>
+                            <option value="b">A person you do not know</option>
+                            <option value="c">The process of becoming accustomed</option>
+                            <option value="d">Behaving in a petty or ungenerous way</option>
+                            <option value="e">The end of a romantic relationship</option>
+                        </select>
                     </div>
-                    <div class="space-y-2">
-                        <select id="pmatch1" onchange="autoCheckPractice(3)" class="w-full p-1.5 border border-slate-300 rounded-lg bg-white">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-800">2. Breakup</span>
+                        <select id="pmatch2" onchange="autoCheckPractice(3)" class="w-full p-2 border border-slate-300 rounded-lg bg-white">
                             <option value="">-- Select definition --</option>
                             <option value="a">Vinyl music albums stored in sleeves</option>
                             <option value="b">A person you do not know</option>
@@ -235,7 +258,10 @@
                             <option value="d">Behaving in a petty or ungenerous way</option>
                             <option value="e">The end of a romantic relationship</option>
                         </select>
-                        <select id="pmatch2" onchange="autoCheckPractice(3)" class="w-full p-1.5 border border-slate-300 rounded-lg bg-white">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-800">3. Get used to</span>
+                        <select id="pmatch3" onchange="autoCheckPractice(3)" class="w-full p-2 border border-slate-300 rounded-lg bg-white">
                             <option value="">-- Select definition --</option>
                             <option value="a">Vinyl music albums stored in sleeves</option>
                             <option value="b">A person you do not know</option>
@@ -243,7 +269,10 @@
                             <option value="d">Behaving in a petty or ungenerous way</option>
                             <option value="e">The end of a romantic relationship</option>
                         </select>
-                        <select id="pmatch3" onchange="autoCheckPractice(3)" class="w-full p-1.5 border border-slate-300 rounded-lg bg-white">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-800">4. Stoop low</span>
+                        <select id="pmatch4" onchange="autoCheckPractice(3)" class="w-full p-2 border border-slate-300 rounded-lg bg-white">
                             <option value="">-- Select definition --</option>
                             <option value="a">Vinyl music albums stored in sleeves</option>
                             <option value="b">A person you do not know</option>
@@ -251,15 +280,10 @@
                             <option value="d">Behaving in a petty or ungenerous way</option>
                             <option value="e">The end of a romantic relationship</option>
                         </select>
-                        <select id="pmatch4" onchange="autoCheckPractice(3)" class="w-full p-1.5 border border-slate-300 rounded-lg bg-white">
-                            <option value="">-- Select definition --</option>
-                            <option value="a">Vinyl music albums stored in sleeves</option>
-                            <option value="b">A person you do not know</option>
-                            <option value="c">The process of becoming accustomed</option>
-                            <option value="d">Behaving in a petty or ungenerous way</option>
-                            <option value="e">The end of a romantic relationship</option>
-                        </select>
-                        <select id="pmatch5" onchange="autoCheckPractice(3)" class="w-full p-1.5 border border-slate-300 rounded-lg bg-white">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-800">5. Records</span>
+                        <select id="pmatch5" onchange="autoCheckPractice(3)" class="w-full p-2 border border-slate-300 rounded-lg bg-white">
                             <option value="">-- Select definition --</option>
                             <option value="a">Vinyl music albums stored in sleeves</option>
                             <option value="b">A person you do not know</option>
@@ -270,7 +294,7 @@
                     </div>
                 </div>
                 <div id="hint3" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> Match each term carefully with its exact thematic definition from the song context.
+                    <strong>Hint:</strong> Associate each term carefully with its exact thematic role or definition in the context of the lyrics.
                 </div>
                 <div id="feedback-p3" class="hidden"></div>
             </div>
@@ -286,13 +310,11 @@
             </div>
         </div>
 
-        <!-- TAB 5: COMPREHENSION QUIZ -->
         <div id="tab-comprehension" class="tab-content space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-bold text-teal-800">❓ Comprehension Quiz (5 Questions)</h3>
                 <div class="flex gap-2">
                     <button onclick="checkComprehension()" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl transition shadow-sm">Check Answers</button>
-                    <button onclick="revealComprehension()" class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow-sm">Reveal All</button>
                     <button onclick="resetComprehension()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl border border-slate-300 transition">Reset</button>
                 </div>
             </div>
@@ -309,7 +331,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="cq1" value="c" onchange="autoCheckComprehension(1)"> c) Because they were starting a music store.</label>
                 </div>
                 <div id="chint1" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> When a couple splits up, friends often help pack and collect personal belongings left behind.
+                    <strong>Hint:</strong> Think about logistical actions friends take when a shared living arrangement ends abruptly.
                 </div>
                 <div id="feedback-cq1" class="hidden"></div>
             </div>
@@ -326,7 +348,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="cq2" value="c" onchange="autoCheckComprehension(2)"> c) She didn't remember ever dating him.</label>
                 </div>
                 <div id="chint2" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> Listen to her verse where she mentions feeling sick and tired of feeling so dragged down.
+                    <strong>Hint:</strong> Focus on the emotional weight and exhaustion expressed in her verse.
                 </div>
                 <div id="feedback-cq2" class="hidden"></div>
             </div>
@@ -343,7 +365,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="cq3" value="c" onchange="autoCheckComprehension(3)"> c) He lowered his height intentionally.</label>
                 </div>
                 <div id="chint3" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> "Stoop low" is an idiom meaning behaving in an ungenerous or petty way.
+                    <strong>Hint:</strong> Consider metaphorical expressions related to attitude or behavior rather than physical movement.
                 </div>
                 <div id="feedback-cq3" class="hidden"></div>
             </div>
@@ -360,7 +382,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="cq4" value="c" onchange="autoCheckComprehension(4)"> c) To write a song together about their wedding.</label>
                 </div>
                 <div id="chint4" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> "Told yourself that you were happy for me... but you treat me like a stranger."
+                    <strong>Hint:</strong> Look at the contrast between claiming happiness for each other versus acting like total strangers.
                 </div>
                 <div id="feedback-cq4" class="hidden"></div>
             </div>
@@ -377,7 +399,7 @@
                     <label class="block cursor-pointer"><input type="radio" name="cq5" value="c" onchange="autoCheckComprehension(5)"> c) Anger and revenge.</label>
                 </div>
                 <div id="chint5" class="hidden p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                    <strong>Hint:</strong> Reflect on how sadness and bittersweet memories dominate the music video.
+                    <strong>Hint:</strong> Reflect on the bittersweet mood conveyed by both vocalists and the video's imagery.
                 </div>
                 <div id="feedback-cq5" class="hidden"></div>
             </div>
@@ -392,21 +414,53 @@
             </div>
         </div>
 
-        <!-- Completion Celebration Banner -->
+        <div id="tab-author" class="tab-content space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-teal-50/70 border border-teal-100 p-5 rounded-2xl">
+                <div>
+                    <h3 class="text-lg font-bold text-teal-800">👤 About the Author: Gotye (Wally De Backer)</h3>
+                    <p class="text-xs text-slate-500">Read and listen to the biography of the artist behind the masterpiece.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleAuthorSpeech()" id="author-audio-btn" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl transition shadow-sm flex items-center gap-2">
+                        <i id="author-audio-icon" class="fa-solid fa-volume-high"></i> <span id="author-audio-label">Listen Biography</span>
+                    </button>
+                    <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1">
+                        📖 Dictionary
+                    </a>
+                </div>
+            </div>
+
+            <div id="author-bio-text" class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm text-slate-700 space-y-4 leading-relaxed">
+                <p>
+                    <strong>Wally De Backer</strong>, better known by his stage name <strong>Gotye</strong>, is a Belgian-Australian singer-songwriter and multi-instrumentalist born in Bruges, Belgium, in 1980, before moving to Australia as a child. His artistic name is a phonetic spelling of "Gautier", the French equivalent of his given name, Walter.
+                </p>
+                <p>
+                    Gotye gained worldwide massive acclaim with his 2011 smash hit <strong>"Somebody That I Used to Know"</strong>, featuring New Zealand singer Kimbra. The song topped charts in over 30 countries, became one of the best-selling digital singles of all time, and won two Grammy Awards, including Record of the Year.
+                </p>
+                <p>
+                    Despite unprecedented global success, Gotye chose to step away from mainstream pop stardom. Rather than capitalizing on the fame with a rapid commercial follow-up, he chose to focus on independent music projects, archival art, and playing drums in his band The Basics. His thoughtful approach highlights a rare dedication to artistic integrity over commercial pressure.
+                </p>
+            </div>
+
+            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                <a href="https://merymeryenglish-cloud.github.io/English-Exercises/" class="text-teal-600 font-bold hover:underline text-sm">🏠 Back to Home</a>
+            </div>
+        </div>
+
         <div id="completion-banner" class="hidden mt-8 bg-emerald-50 border-2 border-emerald-400 p-6 md:p-8 rounded-3xl text-center space-y-4 shadow-lg">
             <div class="w-16 h-16 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center mx-auto text-3xl shadow-md border-4 border-white animate-bounce">
                 <i class="fa-solid fa-trophy"></i>
             </div>
-            <h3 id="banner-title" class="text-2xl md:text-3xl font-black text-slate-900">🎉 ¡Excelente Trabajo! 🎉</h3>
+            <h3 id="banner-title" class="text-2xl md:text-3xl font-black text-slate-900">🎉 Lesson Completed! 🎉</h3>
             <p id="banner-subtitle" class="text-emerald-900 text-base max-w-md mx-auto font-bold">
-                ¡Has completado todas las actividades con éxito absoluto!
+                You have completed all activities!
             </p>
             <div class="flex flex-wrap justify-center gap-3 pt-2">
                 <button onclick="triggerCelebration()" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-500 text-slate-900 font-black rounded-2xl shadow-md transition flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-sparkles"></i> ¡Más Confeti!
+                    <i class="fa-solid fa-sparkles"></i> More Confetti!
                 </button>
                 <button onclick="resetAllSections()" class="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-black rounded-2xl shadow-lg transition inline-flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-rotate-right"></i> Intentar de nuevo
+                    <i class="fa-solid fa-rotate-right"></i> Try Again
                 </button>
             </div>
         </div>
@@ -472,6 +526,12 @@
         }
 
         function switchTab(evt, tabId) {
+            if (tabId !== 'tab-author' && authorUtterance && window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                isAuthorSpeaking = false;
+                updateAuthorAudioButton();
+            }
+
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(c => c.classList.remove('active'));
 
@@ -505,22 +565,85 @@
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'en-GB';
                 utterance.rate = 0.9;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const maleUkVoice = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('oliver') || v.name.toLowerCase().includes('uk english male')));
+                if (maleUkVoice) {
+                    utterance.voice = maleUkVoice;
+                }
+
                 window.speechSynthesis.speak(utterance);
-            } else {
-                alert('Text-to-speech is not supported in this browser.');
             }
+        }
+
+        let authorUtterance = null;
+        let isAuthorSpeaking = false;
+
+        function toggleAuthorSpeech() {
+            if (!('speechSynthesis' in window)) return;
+
+            if (isAuthorSpeaking) {
+                window.speechSynthesis.cancel();
+                isAuthorSpeaking = false;
+                updateAuthorAudioButton();
+            } else {
+                window.speechSynthesis.cancel();
+                const bioElement = document.getElementById('author-bio-text');
+                const bioText = bioElement.innerText;
+                
+                authorUtterance = new SpeechSynthesisUtterance(bioText);
+                authorUtterance.lang = 'en-GB';
+                authorUtterance.rate = 0.9;
+
+                const voices = window.speechSynthesis.getVoices();
+                const maleUkVoice = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('oliver') || v.name.toLowerCase().includes('uk english male')));
+                if (maleUkVoice) {
+                    authorUtterance.voice = maleUkVoice;
+                }
+
+                authorUtterance.onend = function() {
+                    isAuthorSpeaking = false;
+                    updateAuthorAudioButton();
+                };
+
+                authorUtterance.onerror = function() {
+                    isAuthorSpeaking = false;
+                    updateAuthorAudioButton();
+                };
+
+                window.speechSynthesis.speak(authorUtterance);
+                isAuthorSpeaking = true;
+                updateAuthorAudioButton();
+            }
+        }
+
+        function updateAuthorAudioButton() {
+            const btnIcon = document.getElementById('author-audio-icon');
+            const btnLabel = document.getElementById('author-audio-label');
+            if (isAuthorSpeaking) {
+                btnIcon.className = 'fa-solid fa-stop';
+                btnLabel.textContent = 'Stop Reading';
+            } else {
+                btnIcon.className = 'fa-solid fa-volume-high';
+                btnLabel.textContent = 'Listen Biography';
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
         }
 
         function updateGlobalScore() {
             let p1Correct = (document.querySelector('input[name="p1"]:checked')?.value === 'b') ? 1 : 0;
             let p2Correct = (document.querySelector('input[name="p2"]:checked')?.value === 'b') ? 1 : 0;
             
-            let m1 = document.getElementById('pmatch1').value === 'b';
-            let m2 = document.getElementById('pmatch2').value === 'e';
-            let m3 = document.getElementById('pmatch3').value === 'c';
-            let m4 = document.getElementById('pmatch4').value === 'a';
-            let m5 = document.getElementById('pmatch5').value === 'd';
-            let p3Correct = (m1 && m2 && m3 && m4 && m5) ? 1 : 0;
+            let m1 = document.getElementById('pmatch1').value === 'b' ? 1 : 0;
+            let m2 = document.getElementById('pmatch2').value === 'e' ? 1 : 0;
+            let m3 = document.getElementById('pmatch3').value === 'c' ? 1 : 0;
+            let m4 = document.getElementById('pmatch4').value === 'd' ? 1 : 0;
+            let m5 = document.getElementById('pmatch5').value === 'a' ? 1 : 0;
+            let p3Total = m1 + m2 + m3 + m4 + m5;
+            let practiceTotal = p1Correct + p2Correct + p3Total;
 
             let cq1 = (document.querySelector('input[name="cq1"]:checked')?.value === 'b') ? 1 : 0;
             let cq2 = (document.querySelector('input[name="cq2"]:checked')?.value === 'b') ? 1 : 0;
@@ -529,8 +652,26 @@
             let cq5 = (document.querySelector('input[name="cq5"]:checked')?.value === 'b') ? 1 : 0;
             let cqTotal = cq1 + cq2 + cq3 + cq4 + cq5;
 
-            let totalScore = p1Correct + p2Correct + p3Correct + cqTotal;
-            document.getElementById('score-counter').textContent = `${totalScore} / 8`;
+            let totalScore = practiceTotal + cqTotal;
+            document.getElementById('score-counter').textContent = `${totalScore} / 13`;
+        }
+
+        function completeGrammarTab() {
+            document.getElementById('banner-grammar').classList.remove('hidden');
+            triggerCelebration();
+            playSound('complete');
+            setTimeout(() => {
+                switchTab(null, 'tab-expressions');
+            }, 1200);
+        }
+
+        function completeExpressionsTab() {
+            document.getElementById('banner-expressions').classList.remove('hidden');
+            triggerCelebration();
+            playSound('complete');
+            setTimeout(() => {
+                switchTab(null, 'tab-practice');
+            }, 1200);
         }
 
         function checkPractice() {
@@ -543,76 +684,86 @@
             const m5 = document.getElementById('pmatch5');
             const feedback = document.getElementById('practice-feedback');
 
-            let score = 0;
+            let practiceScore = 0;
             
             // Box 1
             const box1 = document.getElementById('box-p1');
             const fb1 = document.getElementById('feedback-p1');
             box1.className = "bg-slate-50 border-2 rounded-xl p-4 text-sm transition space-y-3";
             if (p1 && p1.value === 'b') {
-                score++;
+                practiceScore++;
                 box1.classList.add('border-emerald-400', 'bg-emerald-50/30');
                 fb1.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                fb1.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto! "To cut someone out" significa cortar toda comunicación.</span>`;
-            } else {
+                fb1.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct! "To cut someone out" means to cut off all communication.</span>`;
+                fb1.classList.remove('hidden');
+            } else if (p1) {
                 box1.classList.add('border-red-300', 'bg-red-50/20');
                 fb1.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 space-y-1";
-                fb1.innerHTML = `<div class="font-black text-red-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-red-600"></i><span>Incorrecto</span></div><p>Respuesta correcta: <strong>Option (b) To stop communicating and remove someone from your life entirely.</strong></p>`;
+                fb1.innerHTML = `<div class="font-black text-red-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-red-600"></i><span>Incorrect</span></div><p>You can keep trying by selecting another option.</p>`;
+                fb1.classList.remove('hidden');
             }
-            fb1.classList.remove('hidden');
 
             // Box 2
             const box2 = document.getElementById('box-p2');
             const fb2 = document.getElementById('feedback-p2');
             box2.className = "bg-slate-50 border-2 rounded-xl p-4 text-sm transition space-y-3";
             if (p2 && p2.value === 'b') {
-                score++;
+                practiceScore++;
                 box2.classList.add('border-emerald-400', 'bg-emerald-50/30');
                 fb2.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                fb2.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto! "Be used to" requiere un gerundio (-ing).</span>`;
-            } else {
+                fb2.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct! "Be used to" requires a gerund (-ing).</span>`;
+                fb2.classList.remove('hidden');
+            } else if (p2) {
                 box2.classList.add('border-red-300', 'bg-red-50/20');
                 fb2.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 space-y-1";
-                fb2.innerHTML = `<div class="font-black text-red-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-red-600"></i><span>Incorrecto</span></div><p>Respuesta correcta: <strong>Option (b) I am used to waking up early every day.</strong></p>`;
+                fb2.innerHTML = `<div class="font-black text-red-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-red-600"></i><span>Incorrect</span></div><p>You can keep trying by selecting another option.</p>`;
+                fb2.classList.remove('hidden');
             }
-            fb2.classList.remove('hidden');
 
-            // Box 3 Matching
+            // Box 3 Matching (5 Items)
             const box3 = document.getElementById('box-p3');
             const fb3 = document.getElementById('feedback-p3');
             box3.className = "bg-slate-50 border-2 rounded-xl p-4 text-sm transition space-y-3";
             
-            let matchCorrect = true;
-            [m1, m2, m3, m4, m5].forEach(m => m.className = "w-full p-1.5 border rounded-lg bg-white");
+            let matchCount = 0;
+            const targetMatches = { pmatch1: 'b', pmatch2: 'e', pmatch3: 'c', pmatch4: 'd', pmatch5: 'a' };
             
-            if (m1.value === 'b') m1.classList.add('border-emerald-500', 'bg-emerald-50'); else { m1.classList.add('border-red-400', 'bg-red-50'); matchCorrect = false; }
-            if (m2.value === 'e') m2.classList.add('border-emerald-500', 'bg-emerald-50'); else { m2.classList.add('border-red-400', 'bg-red-50'); matchCorrect = false; }
-            if (m3.value === 'c') m3.classList.add('border-emerald-500', 'bg-emerald-50'); else { m3.classList.add('border-red-400', 'bg-red-50'); matchCorrect = false; }
-            if (m4.value === 'a') m4.classList.add('border-emerald-500', 'bg-emerald-50'); else { m4.classList.add('border-red-400', 'bg-red-50'); matchCorrect = false; }
-            if (m5.value === 'd') m5.classList.add('border-emerald-500', 'bg-emerald-50'); else { m5.classList.add('border-red-400', 'bg-red-50'); matchCorrect = false; }
+            [m1, m2, m3, m4, m5].forEach(m => {
+                const id = m.id;
+                m.className = "w-full p-2 border rounded-lg bg-white";
+                if (m.value === targetMatches[id]) {
+                    matchCount++;
+                    m.classList.add('border-emerald-500', 'bg-emerald-50');
+                } else if (m.value !== "") {
+                    m.classList.add('border-red-400', 'bg-red-50');
+                }
+            });
 
-            if (matchCorrect) {
-                score++;
+            practiceScore += matchCount;
+
+            if (matchCount === 5) {
                 box3.classList.add('border-emerald-400', 'bg-emerald-50/30');
                 fb3.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                fb3.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Excelente! Todas las relaciones conceptuales son correctas.</span>`;
-            } else {
-                box3.classList.add('border-red-300', 'bg-red-50/20');
-                fb3.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 space-y-1";
-                fb3.innerHTML = `<div class="font-black text-red-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-red-600"></i><span>Hay errores en las opciones desplegables</span></div><p>Revisa las asociaciones marcadas en rojo.</p>`;
+                fb3.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Excellent! All matching pairs are correct.</span>`;
+                fb3.classList.remove('hidden');
+            } else if ([m1.value, m2.value, m3.value, m4.value, m5.value].some(v => v !== "")) {
+                box3.classList.add('border-amber-300', 'bg-amber-50/20');
+                fb3.className = "p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-950 space-y-1";
+                fb3.innerHTML = `<div class="font-black text-amber-800 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-600"></i><span>Matching progress: ${matchCount}/5 correct</span></div><p>Correct the highlighted selections and try again.</p>`;
+                fb3.classList.remove('hidden');
             }
-            fb3.classList.remove('hidden');
 
             updateGlobalScore();
 
-            if (score === 3) {
+            if (practiceScore >= 8) {
                 feedback.className = "font-semibold text-sm mt-2 text-center text-emerald-600";
-                feedback.textContent = "🎉 ¡Brillante! ¡Obtuviste 3/3 en práctica! ¡Dominio absoluto!";
-                playSound('correct');
+                feedback.textContent = "🎉 Brilliant! You got 8/8 correct in practice! Absolute mastery!";
+                playSound('complete');
                 triggerCelebration();
+                showFinalBanner(scoreSumTotal());
             } else {
                 feedback.className = "font-semibold text-sm mt-2 text-center text-rose-600";
-                feedback.textContent = `⚠️ Tienes ${score}/3 aciertos en práctica. ¡Revisa los detalles marcados en rojo!`;
+                feedback.textContent = `⚠️ You have ${practiceScore}/8 correct. Keep trying and modifying your answers!`;
                 playSound('wrong');
             }
         }
@@ -626,15 +777,16 @@
                 if (p1 && p1.value === 'b') {
                     box1.classList.add('border-emerald-400', 'bg-emerald-50/30');
                     fb1.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                    fb1.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto!</span>`;
+                    fb1.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct!</span>`;
+                    fb1.classList.remove('hidden');
                     playSound('correct');
-                } else {
+                } else if (p1) {
                     box1.classList.add('border-red-300', 'bg-red-50/20');
                     fb1.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 font-bold text-red-800";
-                    fb1.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrecto. La opción correcta es (b).`;
+                    fb1.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrect. You can select another option.`;
+                    fb1.classList.remove('hidden');
                     playSound('wrong');
                 }
-                fb1.classList.remove('hidden');
             } else if (qNum === 2) {
                 const p2 = document.querySelector('input[name="p2"]:checked');
                 const box2 = document.getElementById('box-p2');
@@ -643,15 +795,16 @@
                 if (p2 && p2.value === 'b') {
                     box2.classList.add('border-emerald-400', 'bg-emerald-50/30');
                     fb2.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                    fb2.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto!</span>`;
+                    fb2.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct!</span>`;
+                    fb2.classList.remove('hidden');
                     playSound('correct');
-                } else {
+                } else if (p2) {
                     box2.classList.add('border-red-300', 'bg-red-50/20');
                     fb2.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 font-bold text-red-800";
-                    fb2.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrecto. La opción correcta es (b).`;
+                    fb2.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrect. You can select another option.`;
+                    fb2.classList.remove('hidden');
                     playSound('wrong');
                 }
-                fb2.classList.remove('hidden');
             } else if (qNum === 3) {
                 const m1 = document.getElementById('pmatch1').value;
                 const m2 = document.getElementById('pmatch2').value;
@@ -663,17 +816,6 @@
                 }
             }
             updateGlobalScore();
-        }
-
-        function revealPractice() {
-            document.querySelector('input[name="p1"][value="b"]').checked = true;
-            document.querySelector('input[name="p2"][value="b"]').checked = true;
-            document.getElementById('pmatch1').value = 'b';
-            document.getElementById('pmatch2').value = 'e';
-            document.getElementById('pmatch3').value = 'c';
-            document.getElementById('pmatch4').value = 'a';
-            document.getElementById('pmatch5').value = 'd';
-            checkPractice();
         }
 
         function resetPractice() {
@@ -705,31 +847,33 @@
                     score++;
                     boxEl.classList.add('border-emerald-400', 'bg-emerald-50/30');
                     fbEl.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                    fbEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto! Respuesta acertada.</span>`;
-                } else {
+                    fbEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct! Good answer.</span>`;
+                    fbEl.classList.remove('hidden');
+                } else if (selected) {
                     boxEl.classList.add('border-red-300', 'bg-red-50/20');
                     fbEl.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 font-bold text-red-800";
-                    fbEl.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrecto. La opción correcta es (${q.correct}).`;
+                    fbEl.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrect. You can try another option.`;
+                    fbEl.classList.remove('hidden');
                 }
-                fbEl.classList.remove('hidden');
             });
 
             updateGlobalScore();
             const feedback = document.getElementById('comprehension-feedback');
+            const total = scoreSumTotal();
 
             if (score === 5) {
                 feedback.className = "font-semibold text-sm mt-2 text-center text-emerald-600";
-                feedback.textContent = "🏆 ¡Increíble! ¡5/5 correctos! ¡Comprendiste a la perfección la historia!";
+                feedback.textContent = "🏆 Incredible! 5/5 correct! You understood the story perfectly!";
                 playSound('complete');
                 triggerCelebration();
-                showFinalBanner(score);
+                showFinalBanner(total);
             } else if (score >= 3) {
                 feedback.className = "font-semibold text-sm mt-2 text-center text-amber-600";
-                feedback.textContent = `👍 ¡Muy bien! Obtuviste ${score}/5. ¡Revisa los puntos en rojo!`;
+                feedback.textContent = `👍 Very good! You got ${score}/5. You can keep trying to correct the mistakes!`;
                 playSound('correct');
             } else {
                 feedback.className = "font-semibold text-sm mt-2 text-center text-rose-600";
-                feedback.textContent = `⚠️ Tienes ${score}/5 aciertos. ¡Utiliza las pistas para mejorar!`;
+                feedback.textContent = `⚠️ You have ${score}/5 correct. Use the hints and keep trying!`;
                 playSound('wrong');
             }
         }
@@ -745,36 +889,55 @@
             if (selected && selected.value === correctVals[num]) {
                 boxEl.classList.add('border-emerald-400', 'bg-emerald-50/30');
                 fbEl.className = "p-3 rounded-xl bg-emerald-100/60 border border-emerald-300 text-xs text-emerald-950 flex items-center gap-2 font-bold";
-                fbEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>¡Correcto!</span>`;
+                fbEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i><span>Correct!</span>`;
+                fbEl.classList.remove('hidden');
                 playSound('correct');
-            } else {
+            } else if (selected) {
                 boxEl.classList.add('border-red-300', 'bg-red-50/20');
                 fbEl.className = "p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-950 font-bold text-red-800";
-                fbEl.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrecto. La opción correcta es (${correctVals[num]}).`;
+                fbEl.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> Incorrect. Try another option.`;
+                fbEl.classList.remove('hidden');
                 playSound('wrong');
             }
-            fbEl.classList.remove('hidden');
             updateGlobalScore();
+
+            // Check if all comprehension answers are correct (5/5)
+            const cq1 = (document.querySelector('input[name="cq1"]:checked')?.value === 'b') ? 1 : 0;
+            const cq2 = (document.querySelector('input[name="cq2"]:checked')?.value === 'b') ? 1 : 0;
+            const cq3 = (document.querySelector('input[name="cq3"]:checked')?.value === 'a') ? 1 : 0;
+            const cq4 = (document.querySelector('input[name="cq4"]:checked')?.value === 'b') ? 1 : 0;
+            const cq5 = (document.querySelector('input[name="cq5"]:checked')?.value === 'b') ? 1 : 0;
+            const cqScore = cq1 + cq2 + cq3 + cq4 + cq5;
+
+            if (cqScore === 5) {
+                triggerCelebration();
+                playSound('complete');
+                showFinalBanner(scoreSumTotal());
+            } else if (scoreSumTotal() === 13) {
+                triggerCelebration();
+                playSound('complete');
+                showFinalBanner(13);
+            }
         }
 
-        function revealComprehension() {
-            ['cq1','cq2','cq3','cq4','cq5'].forEach((q, idx) => {
-                const correctVals = { cq1: 'b', cq2: 'b', cq3: 'a', cq4: 'b', cq5: 'b' };
-                document.querySelector(`input[name="${q}"][value="${correctVals[q]}"]`).checked = true;
-            });
-            checkComprehension();
-        }
+        function scoreSumTotal() {
+            let p1Correct = (document.querySelector('input[name="p1"]:checked')?.value === 'b') ? 1 : 0;
+            let p2Correct = (document.querySelector('input[name="p2"]:checked')?.value === 'b') ? 1 : 0;
+            let m1 = document.getElementById('pmatch1').value === 'b' ? 1 : 0;
+            let m2 = document.getElementById('pmatch2').value === 'e' ? 1 : 0;
+            let m3 = document.getElementById('pmatch3').value === 'c' ? 1 : 0;
+            let m4 = document.getElementById('pmatch4').value === 'd' ? 1 : 0;
+            let m5 = document.getElementById('pmatch5').value === 'a' ? 1 : 0;
+            let practiceTotal = p1Correct + p2Correct + m1 + m2 + m3 + m4 + m5;
 
-        function resetComprehension() {
-            ['cq1','cq2','cq3','cq4','cq5'].forEach(q => {
-                document.querySelectorAll(`input[name="${q}"]`).forEach(el => el.checked = false);
-                document.getElementById(`box-${q}`).className = "bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm transition space-y-3";
-                let fb = document.getElementById(`feedback-${q}`);
-                fb.classList.add('hidden');
-                fb.innerHTML = "";
-            });
-            document.getElementById('comprehension-feedback').textContent = "";
-            updateGlobalScore();
+            let cq1 = (document.querySelector('input[name="cq1"]:checked')?.value === 'b') ? 1 : 0;
+            let cq2 = (document.querySelector('input[name="cq2"]:checked')?.value === 'b') ? 1 : 0;
+            let cq3 = (document.querySelector('input[name="cq3"]:checked')?.value === 'a') ? 1 : 0;
+            let cq4 = (document.querySelector('input[name="cq4"]:checked')?.value === 'b') ? 1 : 0;
+            let cq5 = (document.querySelector('input[name="cq5"]:checked')?.value === 'b') ? 1 : 0;
+            let cqTotal = cq1 + cq2 + cq3 + cq4 + cq5;
+
+            return practiceTotal + cqTotal;
         }
 
         function showFinalBanner(score) {
@@ -782,15 +945,15 @@
             const title = document.getElementById('banner-title');
             const subtitle = document.getElementById('banner-subtitle');
 
-            if (score >= 7) {
-                title.textContent = "🎉 ¡Excelente Trabajo! 🎉";
-                subtitle.textContent = "¡Rendimiento sobresaliente! ¡Has dominado por completo la lección de Gotye!";
-            } else if (score >= 5) {
-                title.textContent = "👏 ¡Gran Trabajo! 👏";
-                subtitle.textContent = "¡Muy bien! ¡Comprendiste perfectamente la gramática y el sentido de la canción!";
+            if (score >= 13) {
+                title.textContent = "🎉 Outstanding Work! 🎉";
+                subtitle.textContent = "Outstanding performance! You have fully mastered Gotye's lesson with 13/13!";
+            } else if (score >= 8) {
+                title.textContent = "👏 Great Job! 👏";
+                subtitle.textContent = `Very well done! Score: ${score}/13. You grasped the grammar and song's meaning!`;
             } else {
-                title.textContent = "💪 ¡Buen Trabajo! 💪";
-                subtitle.textContent = "¡Buen esfuerzo! Continúa practicando para perfeccionar tus conocimientos.";
+                title.textContent = "💪 Good Effort! 💪";
+                subtitle.textContent = `Good effort (${score}/13 score)! Keep practicing to perfect your skills.`;
             }
             banner.classList.remove('hidden');
             banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -799,6 +962,8 @@
         function resetAllSections() {
             resetPractice();
             resetComprehension();
+            document.getElementById('banner-grammar').classList.add('hidden');
+            document.getElementById('banner-expressions').classList.add('hidden');
             document.getElementById('completion-banner').classList.add('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
