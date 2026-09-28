@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - Airport & Immigration Masterclass</title>
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --brand-teal: #00bcd4;
+            --brand-navy: #1a237e;
+            --brand-yellow: #ffd54f;
+            --brand-bg: #f4fcfb;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --border-color: #b2dfdb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--brand-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 3px solid var(--brand-teal);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--brand-teal);
+        }
+
+        .brand-title h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--brand-navy);
+        }
+
+        .brand-title p {
+            margin: 0;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .global-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background-color: #e0f2f1;
+            color: var(--brand-navy);
+            border: 1px solid var(--brand-teal);
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--brand-teal);
+            color: white;
+        }
+
+        .tabs-bar {
+            display: flex;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+            justify-content: center;
+            gap: 5px;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .tab-link {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-link:hover {
+            color: var(--brand-teal);
+        }
+
+        .tab-link.active {
+            color: var(--brand-navy);
+            border-bottom: 3px solid var(--brand-navy);
+            background-color: #f9fffe;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px 50px 20px;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--brand-navy);
+            margin-top: 0;
+            border-bottom: 2px solid #e0f2f1;
+            padding-bottom: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .vocab-card {
+            background: #f9fffe;
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .vocab-text strong {
+            color: var(--brand-navy);
+            font-size: 16px;
+        }
+
+        .vocab-text p {
+            margin: 5px 0 0 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .btn-audio {
+            background-color: var(--brand-teal);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .btn-audio:hover {
+            background-color: #00897b;
+        }
+
+        .quiz-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            color: var(--brand-navy);
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .option-btn {
+            background: #fdfdfd;
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #e0f2f1;
+            border-color: var(--brand-teal);
+        }
+
+        .option-btn.correct {
+            background-color: #d4edda !important;
+            color: #155724 !important;
+            border-color: #c3e6cb !important;
+            font-weight: bold;
+        }
+
+        .option-btn.incorrect {
+            background-color: #f8d7da !important;
+            color: #721c24 !important;
+            border-color: #f5c6cb !important;
+        }
+
+        .hint-btn {
+            background-color: var(--brand-yellow);
+            color: #5d4037;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .hint-box {
+            display: none;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            padding: 10px;
+            font-size: 13px;
+            color: #5d4037;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .feedback-msg {
+            margin-top: 8px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .celebration-banner {
+            display: none;
+            text-align: center;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 17px;
+            border: 1px solid #c3e6cb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .section-footer {
+            margin-top: 25px;
+            text-align: right;
+        }
+
+        .next-btn {
+            background-color: var(--brand-navy);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .next-btn:hover {
+            background-color: #0d1b60;
+        }
+
+        .chat-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 250px;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-msg {
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .chat-bot {
+            background: #e0f2f1;
+            color: #004d40;
+            align-self: flex-start;
+        }
+
+        .chat-user {
+            background: #e8eaf6;
+            color: #1a237e;
+            align-self: flex-end;
+        }
+
+        .chat-warning {
+            background: #fffde7;
+            color: #f57f17;
+            align-self: flex-start;
+            border-left: 4px solid #fbc02d;
+        }
+
+        .chat-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-controls input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .chat-controls button {
+            background-color: var(--brand-navy);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <img src="logo_2.png" alt="Merry Mery English Logo" class="brand-logo">
+            <div class="brand-title">
+                <h1>Merry Mery English</h1>
+                <p>Airport & Immigration Masterclass</p>
+            </div>
+        </div>
+        <div class="global-nav">
+            <button class="nav-btn" onclick="switchTab('intro')">🏠 Home</button>
+            <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" class="nav-btn">📖 Dictionary</a>
+        </div>
+    </header>
+
+    <div class="tabs-bar">
+        <button class="tab-link active" onclick="switchTab('intro')">1. Let's Travel & Video</button>
+        <button class="tab-link" onclick="switchTab('vocab')">2. Vocabulary & Phrases (10)</button>
+        <button class="tab-link" onclick="switchTab('quiz')">3. Grammar Challenge (10)</button>
+        <button class="tab-link" onclick="switchTab('bot')">4. Immigration Bot</button>
+    </div>
+
+    <div class="main-container">
+
+        <!-- TAB 1: INTRODUCTION & VIDEO -->
+        <div id="tab-intro" class="tab-content active">
+            <h2>Welcome to Your Travel English Journey!</h2>
+            <p>Before stepping into the airport and passing through immigration, let's watch this authentic conversational guide about airport procedures, check-in, security checks, and boarding. Pay attention to how passengers interact with staff!</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/jiBHZ_rqHB8" title="At the Airport - Easy English" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <p style="font-size: 14px; color: #666; text-align: center;">Video source: Easy English - At the Airport.</p>
+            
+            <div class="section-footer">
+                <button class="next-btn" onclick="switchTab('vocab')">Next: Vocabulary & Phrases ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 2: VOCABULARY & PHRASES -->
+        <div id="tab-vocab" class="tab-content">
+            <h2>Essential Travel & Airport Phrases</h2>
+            <p>Listen to each phrase carefully with British pronunciation and understand how to use them during your trip.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>1. "What is the purpose of your visit?"</strong>
+                        <p>Asked by immigration officers to know if you are traveling for tourism, business, or studies.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('What is the purpose of your visit?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>2. "I am here for tourism / vacation."</strong>
+                        <p>The standard direct response to immigration when visiting for leisure.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('I am here for tourism and vacation.')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>3. "How long are you planning to stay?"</strong>
+                        <p>Question regarding the duration of your stay in the destination country.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('How long are you planning to stay?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>4. "I am staying for two weeks."</strong>
+                        <p>Clear declaration of duration using the present continuous or correct tense structure.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('I am staying for two weeks.')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>5. "Where will you be staying?"</strong>
+                        <p>Inquiry about your accommodation (hotel name, address, or friend's house).</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('Where will you be staying?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>6. "Could I have a window seat, please?"</strong>
+                        <p>Polite request at check-in counter to sit next to the airplane window.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('Could I have a window seat, please?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>7. "Do you have any liquids or electronics in your bag?"</strong>
+                        <p>Security checkpoint question regarding laptops, tablets, and bottled drinks.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('Do you have any liquids or electronics in your bag?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>8. "Do you have anything to declare?"</strong>
+                        <p>Customs question asking if you are carrying goods that require taxation.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('Do you have anything to declare?')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>9. "No, I have nothing to declare."</strong>
+                        <p>Standard response when carrying only personal items within duty-free limits.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('No, I have nothing to declare.')">🔊 Listen</button>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <strong>10. "Where can I pick up my checked baggage?"</strong>
+                        <p>Inquiry asked at arrival to find the luggage carousel or belt.</p>
+                    </div>
+                    <button class="btn-audio" onclick="speakUK('Where can I pick up my checked baggage?')">🔊 Listen</button>
+                </div>
+            </div>
+
+            <div class="section-footer">
+                <button class="next-btn" onclick="switchTab('quiz')">Next: Grammar Challenge ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 3: GRAMMAR CHALLENGE -->
+        <div id="tab-quiz" class="tab-content">
+            <h2>Grammar & Travel Challenge</h2>
+            <p>Test your knowledge with these airport and immigration scenarios. Choose the most natural and grammatically correct option. Use the 💡 Hint button if you need help!</p>
+            
+            <div id="quizContainer">
+                <!-- Questions injected dynamically -->
+            </div>
+
+            <div id="quizSuccessBanner" class="celebration-banner">
+                <!-- Dynamic celebration message injected via JS at the end -->
+            </div>
+
+            <div class="section-footer">
+                <button class="next-btn" onclick="switchTab('bot')">Next: Immigration Bot ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 4: IMMIGRATION BOT -->
+        <div id="tab-bot" class="tab-content">
+            <h2>🛂 Immigration Officer Bot Simulator</h2>
+            <p>Put everything into practice! Answer the officer's questions accurately in English. If your grammar is incorrect or unclear, the officer will ask you to clarify.</p>
+
+            <div class="chat-box" id="chatBox">
+                <div class="chat-msg chat-bot">
+                    Officer: <span id="currentBotQ">Welcome to the country. What is the purpose of your visit?</span>
+                    <button class="btn-audio" style="margin-top: 5px; padding: 4px 8px; font-size: 12px;" onclick="speakUK(document.getElementById('currentBotQ').innerText)">🔊 Listen</button>
+                </div>
+            </div>
+
+            <div class="chat-controls">
+                <input type="text" id="botInput" placeholder="Type your answer in English (e.g. I am here for tourism)..." onkeypress="handleBotKey(event)">
+                <button onclick="submitBotAnswer()">Send & Listen</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('active'));
+            
+            if (tabId === 'intro') {
+                document.getElementById('tab-intro').classList.add('active');
+                document.querySelectorAll('.tab-link')[0].classList.add('active');
+            } else if (tabId === 'vocab') {
+                document.getElementById('tab-vocab').classList.add('active');
+                document.querySelectorAll('.tab-link')[1].classList.add('active');
+            } else if (tabId === 'quiz') {
+                document.getElementById('tab-quiz').classList.add('active');
+                document.querySelectorAll('.tab-link')[2].classList.add('active');
+            } else if (tabId === 'bot') {
+                document.getElementById('tab-bot').classList.add('active');
+                document.querySelectorAll('.tab-link')[3].classList.add('active');
+                speakUK(document.getElementById('currentBotQ').innerText);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function speakUK(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-GB';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        const quizData = [
+            {
+                q: "1. How do you ask politely for a seat next to the window at the check-in desk?",
+                sentenceToSpeak: "Could I have a window seat, please?",
+                options: [
+                    "Can I have an aisle seat, please?",
+                    "Could I have a window seat, please?",
+                    "Where is the baggage drop-off?",
+                    "Is my flight on time?"
+                ],
+                correct: 1,
+                hint: "Think about looking out at the clouds during your first flight!"
+            },
+            {
+                q: "2. The security officer says: 'Please take out your laptop and liquids'. What should you do?",
+                sentenceToSpeak: "Please take out your laptop and liquids from your bag.",
+                options: [
+                    "Keep your laptop and liquids safely inside your main suitcase.",
+                    "Throw all your electronic devices and liquids into the trash bin.",
+                    "Extract your laptop and liquids from your bag and put them in a separate tray.",
+                    "Show your passport and boarding pass immediately."
+                ],
+                correct: 2,
+                hint: "Scanners require electronic items and liquids to be placed in separate bins."
+            },
+            {
+                q: "3. At immigration, the officer asks: 'What is the purpose of your visit?'",
+                sentenceToSpeak: "What is the purpose of your visit?",
+                options: [
+                    "I am here for tourism and vacation.",
+                    "Yes, my luggage is very heavy.",
+                    "Gate number five, please.",
+                    "I have nothing to declare."
+                ],
+                correct: 0,
+                hint: "State your leisure intent clearly using tourism or vacation."
+            },
+            {
+                q: "4. At customs, the officer asks: 'Do you have anything to declare?' (You carry nothing taxable).",
+                sentenceToSpeak: "Do you have anything to declare?",
+                options: [
+                    "Yes, I have valuable commercial goods to declare.",
+                    "No, my boarding pass is right here.",
+                    "Yes, my flight was delayed.",
+                    "No, I have nothing to declare."
+                ],
+                correct: 3,
+                hint: "Use the phrase meaning zero taxable items."
+            },
+            {
+                q: "5. You hear over the speakers: 'Flight 404 to Miami has been delayed by two hours.'",
+                sentenceToSpeak: "Flight 404 to Miami has been delayed by two hours.",
+                options: [
+                    "The flight is completely canceled and you must reschedule for next week.",
+                    "The flight will depart two hours later than originally scheduled.",
+                    "The flight is departing earlier so you must run to the gate.",
+                    "You need to change your boarding gate immediately."
+                ],
+                correct: 1,
+                hint: "'Delayed' means postponement in time."
+            },
+            {
+                q: "6. Correct the duration statement when speaking to immigration:",
+                sentenceToSpeak: "How long are you planning to stay in the country?",
+                options: [
+                    "I will only stayed 7 days.",
+                    "I staying for 7 days.",
+                    "I am staying for 7 days.",
+                    "I stay for stay 7 days."
+                ],
+                correct: 2,
+                hint: "Use present continuous for current temporary accommodation plans."
+            },
+            {
+                q: "7. How do you respond when asked about your accommodation address?",
+                sentenceToSpeak: "Where will you be staying? Do you have a hotel address?",
+                options: [
+                    "At the Hilton Hotel in downtown.",
+                    "Yes, I have my return ticket.",
+                    "It is a very big airplane.",
+                    "At two o'clock in the afternoon."
+                ],
+                correct: 0,
+                hint: "Provide the name or location of your hotel or lodging."
+            },
+            {
+                q: "8. What does baggage claim or carousel mean?",
+                sentenceToSpeak: "Where can I pick up my checked baggage?",
+                options: [
+                    "The place where you buy airplane tickets.",
+                    "The area where you collect your suitcases after landing.",
+                    "The passport control desk.",
+                    "The security scanner queue."
+                ],
+                correct: 1,
+                hint: "Think about where your suitcases arrive after the flight."
+            },
+            {
+                q: "9. How do you confirm you have a return ticket booked?",
+                sentenceToSpeak: "Do you have a return ticket booked?",
+                options: [
+                    "No, I don't plan to go back ever.",
+                    "Yes, here is my return flight confirmation.",
+                    "The coffee shop is over there.",
+                    "My bag is too heavy."
+                ],
+                correct: 1,
+                hint: "Show or confirm your return travel documents."
+            },
+            {
+                q: "10. What should you do if your checked bag is overweight at check-in?",
+                sentenceToSpeak: "Your bag is over our weight requirement. Take something out.",
+                options: [
+                    "Leave all your clothes at the airport counter.",
+                    "Argue loudly with the airline staff.",
+                    "Transfer some items from your checked bag into your carry-on bag.",
+                    "Cancel your holiday trip."
+                ],
+                correct: 2,
+                hint: "Move heavy items into your hand luggage to reduce weight."
+            }
+        ];
+
+        let completedQuestions = 0;
+        let incorrectAttempts = 0;
+        const totalQuizQuestions = quizData.length;
+        const answeredStatus = new Array(totalQuizQuestions).fill(false);
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            let html = '';
+
+            quizData.forEach((item, index) => {
+                html += `
+                    <div class="quiz-item" id="q-block-${index}">
+                        <div class="quiz-question">
+                            <span>${item.q}</span>
+                            <button class="btn-audio" onclick="speakUK('${item.sentenceToSpeak.replace(/'/g, "\\'")}')" style="padding: 4px 8px; font-size: 12px;">🔊 Listen</button>
+                        </div>
+                        <div class="options-grid" id="options-${index}">
+                `;
+
+                item.options.forEach((opt, optIndex) => {
+                    html += `<button class="option-btn" onclick="checkAnswer(${index}, ${optIndex})">${opt}</button>`;
+                });
+
+                html += `
+                        </div>
+                        <div style="margin-top: 8px;">
+                            <button class="hint-btn" onclick="toggleHint(${index})">💡 Hint</button>
+                        </div>
+                        <div class="hint-box" id="hint-${index}">${item.hint}</div>
+                        <div class="feedback-msg" id="feedback-${index}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function toggleHint(index) {
+            const box = document.getElementById(`hint-${index}`);
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkAnswer(qIndex, selectedOpt) {
+            const item = quizData[qIndex];
+            const optionsContainer = document.getElementById(`options-${qIndex}`);
+            const buttons = optionsContainer.getElementsByTagName('button');
+            const feedback = document.getElementById(`feedback-${qIndex}`);
+
+            if (optionsContainer.dataset.locked === "true") return;
+
+            if (selectedOpt === item.correct) {
+                buttons[selectedOpt].classList.add('correct');
+                feedback.style.color = '#155724';
+                feedback.innerHTML = "✓ Correct! Excellent choice.";
+                optionsContainer.dataset.locked = "true";
+
+                for (let btn of buttons) {
+                    btn.disabled = true;
+                }
+
+                if (!answeredStatus[qIndex]) {
+                    answeredStatus[qIndex] = true;
+                    completedQuestions++;
+                }
+
+                if (completedQuestions === totalQuizQuestions) {
+                    showFinalQuizCelebration();
+                }
+            } else {
+                buttons[selectedOpt].classList.add('incorrect');
+                buttons[selectedOpt].disabled = true;
+                feedback.style.color = '#721c24';
+                feedback.innerHTML = "✗ Not quite right. Try another option or check the hint!";
+                incorrectAttempts++;
+            }
+        }
+
+        function showFinalQuizCelebration() {
+            const banner = document.getElementById('quizSuccessBanner');
+            banner.style.display = 'block';
+
+            if (incorrectAttempts === 0) {
+                banner.innerHTML = "🎉 Flawless victory! You answered every question correctly on your first try! ✈️✨";
+            } else {
+                banner.innerHTML = `🌟 Great job completing the challenge! You worked through the exercises with ${incorrectAttempts} total incorrect attempt(s). Keep improving! ✈️✨`;
+            }
+
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.8 }
+            });
+            
+            banner.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const botSteps = [
+            {
+                q: "Welcome to the country. What is the purpose of your visit?",
+                validate: (text) => {
+                    const t = text.toLowerCase();
+                    if (!t.includes("tourism") && !t.includes("vacation") && !t.includes("business") && !t.includes("visit") && !t.includes("holiday") && !t.includes("studying")) {
+                        return "Pardon? I didn't catch a clear purpose. Are you here for tourism or business?";
+                    }
+                    return true;
+                }
+            },
+            {
+                q: "How long are you planning to stay in the country?",
+                validate: (text) => {
+                    const t = text.toLowerCase();
+                    if (t.includes("stayed") || t.includes("will stayed")) {
+                        return "Grammar check! Remember: after auxiliary verbs or present forms, use the base verb or present continuous (e.g., 'I am staying'). Try again!";
+                    }
+                    if (!t.includes("for") && !t.includes("until") && !t.includes("week") && !t.includes("day") && !t.includes("month")) {
+                        return "Excuse me? Could you specify the exact duration (e.g., 'For two weeks')?";
+                    }
+                    return true;
+                }
+            },
+            {
+                q: "Where will you be staying? Do you have a hotel name or address?",
+                validate: (text) => {
+                    const t = text.toLowerCase();
+                    if (!t.includes("hotel") && !t.includes("friend") && !t.includes("family") && !t.includes("airbnb") && !t.includes("street")) {
+                        return "Hmm, that's incomplete. Where is your accommodation located?";
+                    }
+                    return true;
+                }
+            },
+            {
+                q: "Do you have a return ticket booked?",
+                validate: (text) => {
+                    const t = text.toLowerCase();
+                    if (!t.includes("yes") && !t.includes("here") && !t.includes("ticket") && !t.includes("flight")) {
+                        return "Please confirm clearly if you have a return ticket.";
+                    }
+                    return true;
+                }
+            }
+        ];
+
+        let currentBotStep = 0;
+
+        function appendChatMsg(sender, text, type) {
+            const chatBox = document.getElementById('chatBox');
+            const msg = document.createElement('div');
+            msg.className = `chat-msg ${type}`;
+            msg.innerHTML = `${sender}: ${text} <button class="btn-audio" style="margin-left: 5px; padding: 2px 6px; font-size: 11px;" onclick="speakUK(\`${text.replace(/'/g, "\\'")}\`)">🔊</button>`;
+            chatBox.appendChild(msg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function submitBotAnswer() {
+            const inputField = document.getElementById('botInput');
+            const answer = inputField.value.trim();
+            if (!answer) return;
+
+            appendChatMsg("You", answer, "chat-user");
+            inputField.value = "";
+
+            const validationResult = botSteps[currentBotStep].validate(answer);
+
+            setTimeout(() => {
+                if (validationResult !== true) {
+                    appendChatMsg("Officer (Confused)", validationResult, "chat-warning");
+                    speakUK(validationResult);
+                } else {
+                    currentBotStep++;
+                    if (currentBotStep < botSteps.length) {
+                        const nextQ = botSteps[currentBotStep].q;
+                        document.getElementById('currentBotQ').innerText = nextQ;
+                        appendChatMsg("Officer", nextQ, "chat-bot");
+                        speakUK(nextQ);
+                    } else {
+                        const successMsg = "Everything looks great. Your passport is stamped. Welcome! 🛄✨";
+                        document.getElementById('currentBotQ').innerText = successMsg;
+                        appendChatMsg("Officer", successMsg, "chat-bot");
+                        speakUK(successMsg);
+                        document.getElementById('botInput').disabled = true;
+                        confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                    }
+                }
+            }, 800);
+        }
+
+        function handleBotKey(e) {
+            if (e.key === 'Enter') {
+                submitBotAnswer();
+            }
+        }
+
+        window.onload = () => {
+            renderQuiz();
+        };
+    </script>
+</body>
+</html>
