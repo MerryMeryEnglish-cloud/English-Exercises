@@ -151,6 +151,52 @@
             transform: translateY(-2px);
         }
 
+        /* Feature Writing Card with Image Preview */
+        .writing-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .writing-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(13, 148, 136, 0.12);
+            border-color: var(--primary);
+        }
+
+        .writing-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .writing-card-body {
+            padding: 15px;
+            background: white;
+        }
+
+        .writing-card-title {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .writing-card-desc {
+            font-size: 0.82rem;
+            color: #64748b;
+        }
+
         /* Instagram Footer */
         .footer {
             margin-top: 35px;
@@ -200,7 +246,16 @@
     <!-- Section 1: Writing -->
     <div class="section-title">✍️ Writing</div>
     <div class="btn-list">
-        <a href="writing-studio.html" class="btn-item">Interactive Writing Studio (Postcards of San Pedro)</a>
+        <a href="writing_studio.html" class="writing-card">
+            <img src="postalesdesanpedro.jpg" alt="Postcards of San Pedro" onerror="this.style.display='none'">
+            <div class="writing-card-body">
+                <div class="writing-card-title">
+                    <span>Interactive Writing Studio</span>
+                    <span style="font-size: 0.8rem; background: #ccfbf1; color: #0f766e; padding: 2px 8px; border-radius: 6px;">Postcards of San Pedro</span>
+                </div>
+                <div class="writing-card-desc">B2+ Descriptive Writing Studio, listening audio, structure puzzle & AI Feedback.</div>
+            </div>
+        </a>
     </div>
 
     <!-- Section 2: Grammar -->
@@ -236,16 +291,3 @@
         </a>
     </div>
 </div>
-
-<script>
-    function searchCambridge(e) {
-        e.preventDefault();
-        const word = document.getElementById('cambridgeQuery').value.trim();
-        if (word) {
-            window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
-        }
-    }
-</script>
-
-</body>
-</html>
