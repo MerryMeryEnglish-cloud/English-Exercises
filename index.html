@@ -200,7 +200,7 @@
     <!-- Section 1: Writing -->
     <div class="section-title">✍️ Writing</div>
     <div class="btn-list">
-        <a href="#" onclick="openWritingStudio(event)" class="btn-item">Interactive Writing Studio (Postals of San Pedro)</a>
+        <a href="writing-studio.html" class="btn-item">Interactive Writing Studio (Postals of San Pedro)</a>
     </div>
 
     <!-- Section 2: Grammar -->
@@ -236,3 +236,16 @@
         </a>
     </div>
 </div>
+
+<script>
+    function searchCambridge(e) {
+        e.preventDefault();
+        const word = document.getElementById('cambridgeQuery').value.trim();
+        if (word) {
+            window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
+        }
+    }
+</script>
+
+</body>
+</html>
