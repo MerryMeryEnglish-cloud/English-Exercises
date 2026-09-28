@@ -1,235 +1,251 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="PEGA_AQUI_TU_CODIGO_DE_GOOGLE" />
-    <title>Merry Mery English - Interactive English Exercises & Quizzes</title>
-    <meta name="description" content="Plataforma de ejercicios interactivos de inglés, gramática, phrasal verbs y simulaciones de aviación creada por Merry Mery English.">
-    <meta name="keywords" content="Merry Mery English, English exercises, Phrasal Verbs, Reported Speech, Aviation English, Cambridge Dictionary">
-    <meta name="author" content="Merry Mery English">
-    <link rel="canonical" href="https://merymeryenglish-cloud.github.io/English-Exercises/">
-
+    <title>Merry Mery English - Exercises & Quizzes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0d9488;
+            --primary-hover: #0f766e;
+            --bg-color: #f0fdfa;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --accent-blue: #e0f2fe;
+            --btn-blue: #0284c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0fdfa;
-            color: #1e293b;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px 15px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
         }
+
         .container {
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            max-width: 580px;
+            max-width: 680px;
             width: 100%;
-            text-align: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
-        .logo {
-            width: 140px;
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header img.logo {
+            max-width: 180px;
             height: auto;
             margin-bottom: 10px;
-            border-radius: 12px; /* Opcional: suaviza los bordes si es una foto cuadrada */
         }
-        h1 {
-            color: #0d9488;
-            margin-bottom: 25px;
+
+        .header h1 {
+            color: var(--primary);
             font-size: 1.8rem;
+            font-weight: 700;
         }
-        /* Sección del Diccionario */
-        .dictionary-box {
-            background-color: #f0f9ff;
+
+        /* Cambridge Search Box */
+        .dictionary-card {
+            background: var(--accent-blue);
             border: 1px solid #bae6fd;
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 20px;
+            text-align: center;
             margin-bottom: 30px;
         }
-        .dictionary-box h2 {
-            font-size: 1.05rem;
+
+        .dictionary-card h3 {
             color: #0369a1;
-            margin-top: 0;
+            font-size: 1.05rem;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .search-group {
+
+        .search-box {
             display: flex;
             gap: 8px;
             margin-bottom: 10px;
         }
-        .search-input {
+
+        .search-box input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #cbd5e0;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
             font-size: 0.95rem;
             outline: none;
         }
-        .search-input:focus {
-            border-color: #0284c7;
-        }
-        .dict-btn {
-            padding: 10px 16px;
-            background-color: #0284c7;
+
+        .search-box button {
+            background: var(--btn-blue);
             color: white;
             border: none;
+            padding: 10px 18px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background 0.2s;
         }
-        .dict-btn:hover {
-            background-color: #0369a1;
+
+        .search-box button:hover {
+            background: #0369a1;
         }
-        .dict-link {
+
+        .dictionary-link {
             display: inline-block;
-            font-size: 0.85rem;
             color: #0284c7;
             text-decoration: none;
+            font-size: 0.88rem;
             font-weight: 600;
         }
-        .dict-link:hover {
-            text-decoration: underline;
-        }
-        /* Secciones por Categorías */
-        .category-block {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        .category-title {
+
+        /* Section Styling */
+        .section-title {
             font-size: 1.1rem;
-            color: #0f766e;
+            color: var(--primary);
+            margin: 25px 0 12px 0;
+            padding-bottom: 5px;
             border-bottom: 2px solid #ccfbf1;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .exercise-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        .exercise-item {
-            margin-bottom: 10px;
-        }
-        .exercise-link {
+
+        .btn-item {
             display: block;
-            padding: 12px 18px;
-            background-color: #0d9488;
+            background-color: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            padding: 14px 20px;
+            border-radius: 10px;
             font-weight: 600;
-            transition: background-color 0.2s, transform 0.1s;
+            font-size: 0.98rem;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
         }
-        .exercise-link:hover {
-            background-color: #0f766e;
+
+        .btn-item:hover {
+            background-color: var(--primary-hover);
             transform: translateY(-2px);
+        }
+
+        /* Instagram Footer */
+        .footer {
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .insta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: #fff;
+            color: #d62976;
+            border: 1px solid #fbcfe8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background 0.2s;
+        }
+
+        .insta-btn:hover {
+            background: #fdf2f8;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Logo actualizado a postalesdesanpedro.png -->
-        <img src="postalesdesanpedro.png" alt="Postales de San Pedro - Merry Mery English" class="logo">
+
+<div class="container">
+    <!-- Header con el Logo Principal -->
+    <div class="header">
+        <img src="logo.png" alt="Merry Mery English Logo" class="logo">
         <h1>Exercises & Interactive Quizzes</h1>
-
-        <!-- Buscador Diccionario Cambridge Inglés - Español -->
-        <div class="dictionary-box">
-            <h2>📖 Diccionario Cambridge (Inglés - Español)</h2>
-            <div class="search-group">
-                <input type="text" id="wordInput" class="search-input" placeholder="Escribe una palabra en inglés...">
-                <button onclick="searchWord()" class="dict-btn">Buscar</button>
-            </div>
-            <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dict-link">
-                Abrir Cambridge Dictionary ↗
-            </a>
-        </div>
-
-        <!-- Categoría 0: Writing -->
-        <div class="category-block">
-            <h2 class="category-title">✍️ Writing</h2>
-            <ul class="exercise-list">
-                <li class="exercise-item">
-                    <a class="exercise-link" href="merry_merry_english_interactive_writing_studio.html">Interactive Writing Studio</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Categoría 1: Grammar -->
-        <div class="category-block">
-            <h2 class="category-title">📐 Grammar</h2>
-            <ul class="exercise-list">
-                <li class="exercise-item">
-                    <a class="exercise-link" href="merry_mery_english_reported_speech_quiz.html">Reported Speech Quiz</a>
-                </li>
-                <li class="exercise-item">
-                    <a class="exercise-link" href="merry_mery_english_verb_mean_masterclass%20(1).html">Verb Mean Masterclass</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Categoría 2: Vocabulary & Phrasal Verbs -->
-        <div class="category-block">
-            <h2 class="category-title">💬 Vocabulary & Phrasal Verbs</h2>
-            <ul class="exercise-list">
-                <li class="exercise-item">
-                    <a class="exercise-link" href="dynamic_english_phrasal_verbs_master_game%20(1).html">Phrasal Verbs Master Game</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Categoría 3: Reading & Listening Comprehension -->
-        <div class="category-block">
-            <h2 class="category-title">📖 Reading & Listening Comprehension</h2>
-            <ul class="exercise-list">
-                <li class="exercise-item">
-                    <a class="exercise-link" href="merry_mery_english_the_little_prince_reading_comprehension.html">The Little Prince Reading</a>
-                </li>
-                <li class="exercise-item">
-                    <a class="exercise-link" href="CancionSomebodyIusedtoknow.html">🎶 Gotye - Somebody That I Used to Know</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Categoría 4: Real-Life Scenarios -->
-        <div class="category-block">
-            <h2 class="category-title">✈️ Real-Life Scenarios</h2>
-            <ul class="exercise-list">
-                <li class="exercise-item">
-                    <a class="exercise-link" href="flight-attendant.html">Cabin Crew Says (Aviation Simulator)</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Footer / Instagram con Icono -->
-        <div style="margin-top: 35px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
-            <a href="https://www.instagram.com/merrymeryenglish/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #e1306c; text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 8px 16px; border: 1px solid #fbcfe8; border-radius: 20px; background-color: #fdf2f8;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                Follow Merry Mery English on Instagram
-            </a>
-        </div>
     </div>
 
-    <script>
-        function searchWord() {
-            const word = document.getElementById('wordInput').value.trim();
-            if (word) {
-                const url = `https://dictionary.cambridge.org/es/diccionario/ingles-espanol/${encodeURIComponent(word.toLowerCase())}`;
-                window.open(url, '_blank');
-            } else {
-                alert('Por favor escribe una palabra para buscar.');
-            }
+    <!-- Cambridge Dictionary Widget -->
+    <div class="dictionary-card">
+        <h3>📖 Diccionario Cambridge (Inglés - Español)</h3>
+        <form onsubmit="searchCambridge(event)" class="search-box">
+            <input type="text" id="cambridgeQuery" placeholder="Escribe una palabra en inglés..." required>
+            <button type="submit">Buscar</button>
+        </form>
+        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dictionary-link">Abrir Cambridge Dictionary ↗</a>
+    </div>
+
+    <!-- Section 1: Writing -->
+    <div class="section-title">✍️ Writing</div>
+    <div class="btn-list">
+        <a href="merry_mery_english_interactive_writing_studio.html" class="btn-item">Interactive Writing Studio (Postals of San Pedro)</a>
+    </div>
+
+    <!-- Section 2: Grammar -->
+    <div class="section-title">📐 Grammar</div>
+    <div class="btn-list">
+        <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">Reported Speech Quiz</a>
+        <a href="merry_mery_english_verb_mean_masterclass (1).html" class="btn-item">Verb Mean Masterclass</a>
+    </div>
+
+    <!-- Section 3: Vocabulary & Phrasal Verbs -->
+    <div class="section-title">💭 Vocabulary & Phrasal Verbs</div>
+    <div class="btn-list">
+        <a href="dynamic_english_phrasal_verbs_master_game (1).html" class="btn-item">Phrasal Verbs Master Game</a>
+    </div>
+
+    <!-- Section 4: Reading & Listening -->
+    <div class="section-title">📖 Reading & Listening Comprehension</div>
+    <div class="btn-list">
+        <a href="merry_mery_english_the_little_prince_reading_comprehension.html" class="btn-item">The Little Prince Reading</a>
+        <a href="CancionSomebodyusedtoknow.html" class="btn-item">🎵 Gotye - Somebody That I Used to Know</a>
+    </div>
+
+    <!-- Section 5: Real-Life Scenarios -->
+    <div class="section-title">✈️ Real-Life Scenarios</div>
+    <div class="btn-list">
+        <a href="flight-attendant.html" class="btn-item">Cabin Crew Says (Aviation Simulator)</a>
+    </div>
+
+    <!-- Footer Instagram -->
+    <div class="footer">
+        <a href="https://www.instagram.com/" target="_blank" class="insta-btn">
+            📷 Follow Merry Mery English on Instagram
+        </a>
+    </div>
+</div>
+
+<script>
+    function searchCambridge(e) {
+        e.preventDefault();
+        const word = document.getElementById('cambridgeQuery').value.trim();
+        if (word) {
+            window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
         }
-        document.getElementById('wordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') { searchWord(); }
-        });
-    </script>
+    }
+</script>
+
 </body>
 </html>
