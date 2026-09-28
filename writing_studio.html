@@ -29,19 +29,19 @@
             scroll-behavior: smooth;
         }
 
-        /* Tab / View mode behavior */
-        .all-active-mode .tab-content {
-            display: block !important;
-            opacity: 1 !important;
-            transform: none !important;
-        }
-
-        .tabbed-mode .tab-content {
+        /* Tab / View mode behavior: Individual tabs */
+        .tab-content {
             display: none;
         }
 
-        .tabbed-mode .tab-content.active {
+        .tab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -67,13 +67,9 @@
             background-color: #f0fdf4;
             border-color: #0d9488;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between all-active-mode">
+<body class="min-h-screen flex flex-col justify-between">
 
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -96,12 +92,6 @@
             </a>
 
             <div class="flex items-center space-x-2 sm:space-x-3">
-                <!-- Mode Switcher Button -->
-                <button id="view-mode-btn" onclick="toggleViewMode()" class="inline-flex items-center space-x-1.5 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold px-3 py-2 rounded-xl border border-teal-200 shadow-xs transition">
-                    <i id="view-mode-icon" class="fa-solid fa-eye text-teal-600"></i>
-                    <span id="view-mode-label">Modo: Todas Activas</span>
-                </button>
-
                 <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-2 rounded-xl transition shadow-xs">
                     <i class="fa-solid fa-house"></i>
                     <span class="hidden sm:inline">Home</span>
@@ -119,41 +109,41 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
         
-        <!-- Navigation Bar / Jump Links -->
+        <!-- Navigation Bar / Jump Tabs -->
         <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 sticky top-24 z-40">
             <div class="flex items-center justify-between px-3 py-1.5 border-b border-slate-100 mb-1.5">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center">
                     <i class="fa-solid fa-layer-group text-teal-600 mr-1.5"></i> Módulos Interactivos
                 </span>
                 <span id="nav-mode-indicator" class="text-[11px] text-teal-700 font-semibold bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">
-                    Todas las solapas desplegadas
+                    Selecciona una solapa para comenzar
                 </span>
             </div>
             
             <nav class="flex flex-wrap gap-1.5">
-                <button onclick="handleNavClick('theory')" id="btn-theory" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition bg-teal-600 text-white shadow-xs">
+                <button onclick="switchTab('theory')" id="btn-theory" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition bg-teal-600 text-white shadow-xs">
                     <i class="fa-solid fa-graduation-cap mr-1.5"></i>1. Teoría
                 </button>
-                <button onclick="handleNavClick('reading')" id="btn-reading" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                <button onclick="switchTab('reading')" id="btn-reading" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-headphones mr-1.5"></i>2. Texto & Audio
                 </button>
-                <button onclick="handleNavClick('breakdown')" id="btn-breakdown" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                <button onclick="switchTab('breakdown')" id="btn-breakdown" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-puzzle-piece mr-1.5"></i>3. Estructura
                 </button>
-                <button onclick="handleNavClick('dragdrop')" id="btn-dragdrop" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                <button onclick="switchTab('dragdrop')" id="btn-dragdrop" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-arrows-split-up-and-left mr-1.5"></i>4. Desafío Puzzle
                 </button>
-                <button onclick="handleNavClick('vocab')" id="btn-vocab" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                <button onclick="switchTab('vocab')" id="btn-vocab" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-book-open-reader mr-1.5"></i>5. Vocab Lab
                 </button>
-                <button onclick="handleNavClick('writing')" id="btn-writing" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                <button onclick="switchTab('writing')" id="btn-writing" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-pen-nib mr-1.5"></i>6. Redacción & IA
                 </button>
             </nav>
         </div>
 
         <!-- MODULE 1: THEORY -->
-        <section id="tab-theory" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <section id="tab-theory" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                     <div>
@@ -198,11 +188,18 @@
                         <li class="flex items-start"><i class="fa-solid fa-check text-teal-400 mt-1 mr-2 flex-shrink-0"></i><span><strong>Perspectiva Sensorial:</strong> Combina elementos visuales, gastronómicos y culturales para involucrar al lector.</span></li>
                     </ul>
                 </div>
+
+                <div class="flex justify-end pt-2">
+                    <button onclick="switchTab('reading')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Siguiente: Texto & Audio</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
-        <!-- MODULE 2: READ AND LISTEN -->
-        <section id="tab-reading" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <!-- MODULE 2: READ AND LISTEN (Includes Postales de San Pedro Image) -->
+        <section id="tab-reading" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-4">
                     <div>
@@ -260,11 +257,22 @@
                         <i class="fa-solid fa-external-link-alt text-[10px]"></i>
                     </a>
                 </div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('theory')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Anterior</span>
+                    </button>
+                    <button onclick="switchTab('breakdown')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Siguiente: Estructura</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
         <!-- MODULE 3: STRUCTURAL ANALYSIS -->
-        <section id="tab-breakdown" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <section id="tab-breakdown" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="border-b border-slate-100 pb-4">
                     <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Módulo 3</span>
@@ -349,11 +357,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('reading')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Anterior</span>
+                    </button>
+                    <button onclick="switchTab('dragdrop')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Siguiente: Puzzle</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
         <!-- MODULE 4: DRAG & DROP PUZZLE -->
-        <section id="tab-dragdrop" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <section id="tab-dragdrop" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-4">
                     <div>
@@ -436,17 +455,27 @@
                     </button>
                 </div>
 
-                <div class="flex justify-end">
-                    <button onclick="checkPuzzle()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-xl shadow-xs transition text-sm flex items-center space-x-2">
-                        <span>Verificar Estructura</span>
-                        <i class="fa-solid fa-circle-check"></i>
+                <div class="flex items-center justify-between pt-2">
+                    <button onclick="switchTab('breakdown')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Anterior</span>
                     </button>
+                    <div class="flex space-x-3">
+                        <button onclick="checkPuzzle()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-xl shadow-xs transition text-sm flex items-center space-x-2">
+                            <span>Verificar Estructura</span>
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        <button onclick="switchTab('vocab')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                            <span>Siguiente: Vocab Lab</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- MODULE 5: VOCAB LAB -->
-        <section id="tab-vocab" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <section id="tab-vocab" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="border-b border-slate-100 pb-4">
                     <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Módulo 5</span>
@@ -455,11 +484,22 @@
                 </div>
 
                 <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('dragdrop')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Anterior</span>
+                    </button>
+                    <button onclick="switchTab('writing')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Siguiente: Redacción & IA</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
         <!-- MODULE 6: ASSIGNMENT & AI -->
-        <section id="tab-writing" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 scroll-mt-36">
+        <section id="tab-writing" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="border-b border-slate-100 pb-4">
                     <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Módulo 6</span>
@@ -533,7 +573,11 @@
                 </div>
 
                 <div class="flex items-center justify-between pt-4">
-                    <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition text-sm flex items-center space-x-2">
+                    <button onclick="switchTab('vocab')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Anterior</span>
+                    </button>
+                    <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-3 rounded-xl transition text-xs flex items-center space-x-2">
                         <i class="fa-solid fa-house"></i>
                         <span>Volver al Inicio</span>
                     </a>
@@ -554,48 +598,6 @@
     </footer>
 
     <script>
-        let isAllActiveMode = true; // Default view mode: All tabs active and visible continuous
-
-        function toggleViewMode() {
-            isAllActiveMode = !isAllActiveMode;
-            const body = document.body;
-            const label = document.getElementById('view-mode-label');
-            const icon = document.getElementById('view-mode-icon');
-            const indicator = document.getElementById('nav-mode-indicator');
-
-            if (isAllActiveMode) {
-                body.classList.remove('tabbed-mode');
-                body.classList.add('all-active-mode');
-                if (label) label.innerText = "Modo: Todas Activas";
-                if (icon) icon.className = "fa-solid fa-eye text-teal-600";
-                if (indicator) indicator.innerText = "Todas las solapas desplegadas";
-                
-                // Highlight all buttons active in continuous view
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('bg-teal-600', 'text-white', 'shadow-xs');
-                    btn.classList.add('text-slate-700', 'hover:bg-slate-100');
-                });
-            } else {
-                body.classList.remove('all-active-mode');
-                body.classList.add('tabbed-mode');
-                if (label) label.innerText = "Modo: Solapa Individual";
-                if (icon) icon.className = "fa-solid fa-layer-group text-teal-600";
-                if (indicator) indicator.innerText = "Vista por solapa individual";
-                switchTab('theory');
-            }
-        }
-
-        function handleNavClick(tabId) {
-            if (isAllActiveMode) {
-                const target = document.getElementById('tab-' + tabId);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } else {
-                switchTab(tabId);
-            }
-        }
-
         function switchTab(tabId) {
             if (mainSpeechSynth) {
                 mainSpeechSynth.cancel();
@@ -625,13 +627,26 @@
                 activeBtn.classList.remove('text-slate-700', 'hover:bg-slate-100');
             }
 
+            const indicator = document.getElementById('nav-mode-indicator');
+            if (indicator) {
+                const names = {
+                    'theory': 'Módulo 1: Teoría',
+                    'reading': 'Módulo 2: Texto & Audio',
+                    'breakdown': 'Módulo 3: Estructura',
+                    'dragdrop': 'Módulo 4: Desafío Puzzle',
+                    'vocab': 'Módulo 5: Vocab Lab',
+                    'writing': 'Módulo 6: Redacción & IA'
+                };
+                indicator.innerText = names[targetTab] || 'Solapa Activa';
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function handleImageError(imgElement) {
             const svgFallback = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
                 <rect width="1200" height="600" fill="%231e293b"/>
-                <path d="0 0 L1200 0 L1200 600 L0 600 Z" fill="%230f172a" opacity="0.8"/>
+                <path d="M0 0 L1200 0 L1200 600 L0 600 Z" fill="%230f172a" opacity="0.8"/>
                 <line x1="0" y1="150" x2="1200" y2="150" stroke="%23334155" stroke-width="2"/>
                 <line x1="0" y1="300" x2="1200" y2="300" stroke="%23334155" stroke-width="2"/>
                 <line x1="0" y1="450" x2="1200" y2="450" stroke="%23334155" stroke-width="2"/>
@@ -1061,11 +1076,11 @@
             if (correctCount === totalSlots) {
                 feedbackContainer.className = "p-4 rounded-xl border border-teal-200 bg-teal-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3";
                 feedbackEl.className = "text-xs font-bold text-teal-800";
-                feedbackEl.innerText = "🎉 ¡Excelente! ¡Estructura resuelta perfectamente!";
+                feedbackEl.innerText = "🎉 ¡Excelente! ¡Felicitaciones, resolviste la estructura perfectamente!";
                 if (errorResetBtn) errorResetBtn.classList.add('hidden');
                 confetti({
-                    particleCount: 100,
-                    spread: 70,
+                    particleCount: 120,
+                    spread: 80,
                     origin: { y: 0.6 }
                 });
             } else {
