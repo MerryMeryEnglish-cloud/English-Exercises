@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Acronyms & Abbreviations - Merry Mery English</title>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-teal: #00B2B2;
+            --dark-blue: #0F2D59;
+            --yellow-accent: #FFC82C;
+            --light-bg: #F4F9F9;
+            --white: #FFFFFF;
+            --correct-green: #2ECC71;
+            --wrong-red: #E74C3C;
+            --gray-border: #CBD5E1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-blue);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 50%;
+            border: 2px solid var(--primary-teal);
+            box-shadow: 0 3px 8px rgba(0,178,178,0.25);
+            overflow: hidden;
+            padding: 2px;
+        }
+
+        .logo-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo-title-group h1 {
+            font-size: 1.15rem;
+            color: var(--dark-blue);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .logo-title-group span {
+            font-size: 0.78rem;
+            color: var(--primary-teal);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            background-color: var(--primary-teal);
+            color: var(--white);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.97);
+        }
+
+        .nav-btn.secondary {
+            background-color: var(--yellow-accent);
+            color: var(--dark-blue);
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            background-color: var(--white);
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .tab-link {
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #64748B;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-link.active {
+            color: var(--primary-teal);
+            border-bottom-color: var(--primary-teal);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 15px;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 6px;
+            color: var(--dark-blue);
+            text-align: center;
+        }
+
+        p.instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .matching-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 850px) {
+            .matching-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .terms-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .match-row {
+            display: grid;
+            grid-template-columns: 100px 95px 1fr;
+            gap: 10px;
+            align-items: center;
+            background: #F8FAFC;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .term-badge {
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 1rem;
+        }
+
+        .listen-btn {
+            background: var(--yellow-accent);
+            border: none;
+            padding: 6px 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: var(--dark-blue);
+            font-size: 0.8rem;
+            transition: transform 0.1s;
+        }
+
+        .listen-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .drop-zone {
+            background-color: #FFFFFF;
+            border: 2px dashed var(--gray-border);
+            border-radius: 6px;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: all 0.2s;
+        }
+
+        .drop-zone.highlight {
+            border-color: var(--primary-teal);
+            background-color: #EBF8F8;
+        }
+
+        .pool-sticky-container {
+            position: sticky;
+            top: 80px;
+            background: #F1F5F9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #E2E8F0;
+            max-height: calc(100vh - 110px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pool-sticky-container h3 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .definitions-pool {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .draggable-item {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 9px 12px;
+            border-radius: 6px;
+            cursor: grab;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            user-select: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .draggable-item.selected-item {
+            outline: 3px solid var(--yellow-accent);
+            background-color: #1E3A8A;
+        }
+
+        .draggable-item.matched {
+            background-color: var(--correct-green);
+            cursor: default;
+            width: 100%;
+            text-align: center;
+            box-shadow: none;
+        }
+
+        .mc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 15px;
+        }
+
+        .mc-question {
+            padding: 16px;
+            background: #F8FAFC;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            transition: border-color 0.3s;
+        }
+
+        .mc-question.solved {
+            border-color: var(--correct-green);
+            background-color: #F0FDF4;
+        }
+
+        .mc-question strong {
+            color: var(--dark-blue);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .mc-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mc-btn {
+            padding: 10px 12px;
+            border: 1px solid var(--gray-border);
+            background: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+            color: var(--dark-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mc-btn:hover:not(:disabled) {
+            background: #EBF8F8;
+            border-color: var(--primary-teal);
+        }
+
+        .mc-btn.correct {
+            background: var(--correct-green) !important;
+            color: white !important;
+            border-color: var(--correct-green) !important;
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .mc-btn.wrong {
+            background: var(--wrong-red) !important;
+            color: white !important;
+            border-color: var(--wrong-red) !important;
+            opacity: 0.8;
+            cursor: not-allowed;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            50% { transform: translateX(4px); }
+            75% { transform: translateX(-4px); }
+            100% { transform: translateX(0); }
+        }
+
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 45, 89, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .congrats-icon {
+            font-size: 3.5rem;
+            color: var(--yellow-accent);
+            margin-bottom: 10px;
+        }
+
+        .score-card {
+            background: #F1F5F9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .score-item strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--primary-teal);
+        }
+
+        .score-item span {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        .dict-modal-content {
+            width: 90%;
+            max-width: 550px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .dict-header {
+            padding: 16px 20px;
+            background: var(--dark-blue);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dict-body {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .dict-search-box {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .dict-search-box input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--gray-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .dict-search-box input:focus {
+            border-color: var(--primary-teal);
+        }
+
+        .close-modal {
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-badge">
+                <img src="logo.png" alt="Merry Mery English Logo" onerror="this.src='https://placehold.co/100x100/0F2D59/FFC82C?text=MME'">
+            </div>
+            <div class="logo-title-group">
+                <h1>Merry Mery English</h1>
+                <span>Business Acronyms</span>
+            </div>
+        </div>
+        <nav>
+            <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="nav-btn" target="_blank">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <button class="nav-btn secondary" onclick="openDictionary()">
+                <i class="fa-solid fa-book"></i> Dictionary
+            </button>
+            <button class="nav-btn" onclick="resetCurrentTab()">
+                <i class="fa-solid fa-rotate-right"></i> Reset
+            </button>
+        </nav>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-header">
+        <div class="tab-link active" onclick="switchTab(0)">1. Definition Match</div>
+        <div class="tab-link" onclick="switchTab(1)">2. Multiple Choice</div>
+    </div>
+
+    <div class="container">
+
+        <!-- TAB 1: Drag & Drop Matching -->
+        <div class="tab-content active" id="tab-0">
+            <h2>Acronym Definition Match</h2>
+            <p class="instructions">Drag definitions to their matching acronym, or click a definition and then click the target box!</p>
+
+            <div class="matching-layout">
+                <div class="terms-grid" id="terms-list">
+                    <!-- Rows generated via JS -->
+                </div>
+                
+                <div class="pool-sticky-container">
+                    <h3>Definitions Pool <i class="fa-solid fa-hand-pointer"></i></h3>
+                    <div class="definitions-pool" id="definitions-pool">
+                        <!-- Draggables generated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-footer">
+                <div></div>
+                <button class="nav-btn" onclick="switchTab(1)">Next Exercise <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- TAB 2: Multiple Choice Quiz -->
+        <div class="tab-content" id="tab-1">
+            <h2>Acronym Meaning Quiz</h2>
+            <p class="instructions">Choose the correct full name for each acronym. You can try again if you make a mistake!</p>
+
+            <div class="mc-grid" id="mc-container">
+                <!-- Questions generated via JS -->
+            </div>
+
+            <div class="controls-footer">
+                <button class="nav-btn" onclick="switchTab(0)"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                <button class="nav-btn" onclick="finishTab2()">Finish Quiz <i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Cambridge Dictionary Modal -->
+    <div class="modal" id="dict-modal">
+        <div class="dict-modal-content modal-content">
+            <div class="dict-header">
+                <span style="font-weight: 700;"><i class="fa-solid fa-book"></i> Cambridge Dictionary Search</span>
+                <span class="close-modal" onclick="closeDictionary()">&times;</span>
+            </div>
+            <div class="dict-body">
+                <p style="color: var(--dark-blue); font-weight: 600;">Search any business word or acronym in Cambridge Dictionary:</p>
+                
+                <div class="dict-search-box">
+                    <input type="text" id="dict-search-input" placeholder="e.g. ETA, schedule, agreement..." onkeypress="if(event.key==='Enter') searchDictionary()">
+                    <button class="nav-btn" onclick="searchDictionary()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                </div>
+                <p style="font-size: 0.82rem; color: #64748B;">Searches open directly in Cambridge Dictionary for complete definitions and authentic audio pronunciation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Congratulations Modal -->
+    <div class="modal" id="congrats-modal">
+        <div class="modal-content">
+            <div class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h2 id="congrats-title">Fantastic Work!</h2>
+            <p id="congrats-message" style="color: #475569; margin-top: 5px;">You have successfully completed this exercise!</p>
+            
+            <div class="score-card">
+                <div class="score-item">
+                    <strong id="score-accuracy">100%</strong>
+                    <span>Accuracy</span>
+                </div>
+                <div class="score-item">
+                    <strong id="score-tries">0</strong>
+                    <span>Mistakes</span>
+                </div>
+            </div>
+
+            <button class="nav-btn" style="margin: 0 auto;" onclick="closeCongratsModal()">
+                Continue <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const acronymData = [
+            { term: "ASAP", meaning: "as soon as possible", wrong: ["at service application practitioner", "always send all papers"] },
+            { term: "ETA", meaning: "estimated time of arrival", wrong: ["exact time of action", "electronic transfer agreement"] },
+            { term: "FYI", meaning: "for your information", wrong: ["for your inspection", "from your initiative"] },
+            { term: "e.g.", meaning: "exempli gratia (used before an example)", wrong: ["extra explanation given", "exact guidance"] },
+            { term: "i.e.", meaning: "that is to say (id est)", wrong: ["in example", "important element"] },
+            { term: "etc.", meaning: "etcetera (and other similar things)", wrong: ["end of text content", "estimated term calculation"] },
+            { term: "RSVP", meaning: "please reply (répondez s'il vous plaît)", wrong: ["request service via phone", "read status verify plan"] },
+            { term: "EOD", meaning: "end of the day (deadline)", wrong: ["every other day", "end of discussion"] },
+            { term: "TBD", meaning: "to be defined", wrong: ["to be discussed", "time before delivery"] },
+            { term: "NDA", meaning: "non-disclosure agreement", wrong: ["national digital association", "new data analysis"] },
+            { term: "TBA", meaning: "to be arranged / announced", wrong: ["total business assets", "to be approved"] },
+            { term: "RFP", meaning: "request for proposal", wrong: ["ready for production", "required format process"] },
+            { term: "SOP", meaning: "Standard Operating Procedure", wrong: ["System Offline Process", "Systematic Output Plan"] },
+            { term: "TBC", meaning: "to be confirmed", wrong: ["total business cost", "time-based workflow"] },
+            { term: "IO", meaning: "internal only", wrong: ["input output", "initial order"] },
+            { term: "SWOT", meaning: "Strengths, Weaknesses, Opportunities, Threats", wrong: ["Standard Workplace Operating Tactics", "System Wide Operational Testing"] },
+            { term: "OOO", meaning: "out of office", wrong: ["office online option", "organization overview chart"] }
+        ];
+
+        let currentTab = 0;
+        let selectedElementForClick = null;
+        
+        let tab1Errors = 0;
+        let tab2Errors = 0;
+        let tab2SolvedCount = 0;
+
+        function speakBritish(text) {
+            try {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-GB';
+                    window.speechSynthesis.speak(utterance);
+                }
+            } catch (e) {
+                console.log("Speech synthesis error:", e);
+            }
+        }
+
+        function playSound(isCorrect) {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (isCorrect) {
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.25);
+                } else {
+                    osc.frequency.setValueAtTime(200, ctx.currentTime);
+                    osc.frequency.setValueAtTime(140, ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.25);
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        function switchTab(index) {
+            document.querySelectorAll('.tab-link').forEach((btn, i) => btn.classList.toggle('active', i === index));
+            document.querySelectorAll('.tab-content').forEach((content, i) => content.classList.toggle('active', i === index));
+            currentTab = index;
+        }
+
+        function initMatching() {
+            const termsList = document.getElementById('terms-list');
+            const defsPool = document.getElementById('definitions-pool');
+            if (!termsList || !defsPool) return;
+
+            termsList.innerHTML = '';
+            defsPool.innerHTML = '';
+            tab1Errors = 0;
+            selectedElementForClick = null;
+
+            // Shuffle both the terms list and definitions pool to prevent visual memory bias
+            const shuffledTerms = [...acronymData].sort(() => Math.random() - 0.5);
+            const shuffledDefs = [...acronymData].sort(() => Math.random() - 0.5);
+
+            shuffledTerms.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'match-row';
+                row.innerHTML = `
+                    <span class="term-badge">${item.term}</span>
+                    <button class="listen-btn" onclick="speakBritish('${item.term}')">
+                        <i class="fa-solid fa-volume-high"></i> Listen
+                    </button>
+                    <div class="drop-zone" data-term="${item.term}" onclick="handleZoneClick(this)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)"></div>
+                `;
+                termsList.appendChild(row);
+            });
+
+            shuffledDefs.forEach(item => {
+                const dragItem = document.createElement('div');
+                dragItem.className = 'draggable-item';
+                dragItem.draggable = true;
+                dragItem.innerText = item.meaning;
+                dragItem.dataset.term = item.term;
+                dragItem.id = 'drag-' + item.term.replace(/[^a-zA-Z]/g, "");
+
+                dragItem.ondragstart = (e) => e.dataTransfer.setData('text', e.target.id);
+                dragItem.onclick = () => selectItemForMatching(dragItem);
+
+                defsPool.appendChild(dragItem);
+            });
+        }
+
+        function selectItemForMatching(item) {
+            if (item.classList.contains('matched')) return;
+            if (selectedElementForClick) {
+                selectedElementForClick.classList.remove('selected-item');
+            }
+            selectedElementForClick = item;
+            item.classList.add('selected-item');
+        }
+
+        function handleZoneClick(zone) {
+            if (selectedElementForClick && zone.children.length === 0) {
+                processMatch(selectedElementForClick, zone);
+                selectedElementForClick.classList.remove('selected-item');
+                selectedElementForClick = null;
+            }
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('highlight');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const zone = e.currentTarget;
+            zone.classList.remove('highlight');
+            const id = e.dataTransfer.getData('text');
+            const draggedElem = document.getElementById(id);
+
+            if (draggedElem && zone.children.length === 0) {
+                processMatch(draggedElem, zone);
+            }
+        }
+
+        function processMatch(itemElem, targetZone) {
+            if (itemElem.dataset.term === targetZone.dataset.term) {
+                targetZone.appendChild(itemElem);
+                itemElem.classList.add('matched');
+                itemElem.draggable = false;
+                itemElem.onclick = null;
+                playSound(true);
+                checkTab1Completion();
+            } else {
+                tab1Errors++;
+                playSound(false);
+            }
+        }
+
+        function checkTab1Completion() {
+            const matched = document.querySelectorAll('.draggable-item.matched');
+            if (matched.length === acronymData.length) {
+                showCongratsModal("Exercise 1 Complete!", tab1Errors, acronymData.length);
+            }
+        }
+
+        function initMultipleChoice() {
+            const container = document.getElementById('mc-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+            tab2Errors = 0;
+            tab2SolvedCount = 0;
+
+            // Shuffle questions on every load/reset
+            const shuffledQuestions = [...acronymData].sort(() => Math.random() - 0.5);
+
+            shuffledQuestions.forEach((item, index) => {
+                const options = [item.meaning, ...item.wrong].sort(() => Math.random() - 0.5);
+
+                const qDiv = document.createElement('div');
+                qDiv.className = 'mc-question';
+                qDiv.id = `mc-q-${index}`;
+                qDiv.innerHTML = `<strong>${index + 1}. What does "${item.term}" stand for?</strong>`;
+
+                const optContainer = document.createElement('div');
+                optContainer.className = 'mc-options';
+
+                options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'mc-btn';
+                    btn.innerHTML = `<span>${opt}</span><i class="status-icon"></i>`;
+                    btn.onclick = () => handleMCSelection(btn, opt === item.meaning, optContainer, qDiv);
+                    optContainer.appendChild(btn);
+                });
+
+                qDiv.appendChild(optContainer);
+                container.appendChild(qDiv);
+            });
+        }
+
+        function handleMCSelection(btn, isCorrect, optContainer, qDiv) {
+            if (qDiv.classList.contains('solved')) return;
+
+            if (isCorrect) {
+                btn.classList.add('correct');
+                const icon = btn.querySelector('.status-icon');
+                if (icon) icon.className = 'status-icon fa-solid fa-check';
+                qDiv.classList.add('solved');
+                
+                // Disable all options for this question
+                const buttons = optContainer.querySelectorAll('.mc-btn');
+                buttons.forEach(b => b.disabled = true);
+                
+                tab2SolvedCount++;
+                playSound(true);
+
+                if (tab2SolvedCount === acronymData.length) {
+                    showCongratsModal("Quiz Complete!", tab2Errors, acronymData.length);
+                }
+            } else {
+                btn.classList.add('wrong');
+                btn.disabled = true;
+                const icon = btn.querySelector('.status-icon');
+                if (icon) icon.className = 'status-icon fa-solid fa-xmark';
+                tab2Errors++;
+                playSound(false);
+            }
+        }
+
+        function finishTab2() {
+            showCongratsModal("Quiz Overview", tab2Errors, acronymData.length);
+        }
+
+        function showCongratsModal(title, errors, total) {
+            const modal = document.getElementById('congrats-modal');
+            document.getElementById('congrats-title').innerText = title;
+            
+            const accuracy = Math.max(0, Math.round(((total - errors) / total) * 100));
+            document.getElementById('score-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('score-tries').innerText = errors;
+            
+            modal.style.display = 'flex';
+            
+            if (window.confetti && errors < 3) {
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function closeCongratsModal() {
+            document.getElementById('congrats-modal').style.display = 'none';
+        }
+
+        function openDictionary() { 
+            const modal = document.getElementById('dict-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                const input = document.getElementById('dict-search-input');
+                if (input) input.focus();
+            }, 100);
+        }
+
+        function closeDictionary() { 
+            document.getElementById('dict-modal').style.display = 'none'; 
+        }
+
+        function searchDictionary() {
+            const input = document.getElementById('dict-search-input');
+            const term = input ? input.value.trim() : '';
+            if (term) {
+                window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.toLowerCase())}`, '_blank');
+            } else {
+                window.open('https://dictionary.cambridge.org/', '_blank');
+            }
+        }
+
+        function resetCurrentTab() {
+            if (currentTab === 0) initMatching();
+            if (currentTab === 1) initMultipleChoice();
+        }
+
+        function startApp() {
+            initMatching();
+            initMultipleChoice();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startApp);
+        } else {
+            startApp();
+        }
+    </script>
+</body>
+</html>
