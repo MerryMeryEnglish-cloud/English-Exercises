@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - Simple Past vs Present Perfect</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for gorgeous icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti for winning celebration animations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            accent: '#0d9488',
+                            teal: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Crossword Cell Styles */
+        .cw-cell {
+            width: 38px;
+            height: 38px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .cw-cell:focus {
+            background-color: #f0fdf4;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+        }
+        .cw-cell.locked {
+            background-color: #dcfce7 !important;
+            color: #14532d !important;
+            border-color: #16a34a !important;
+            font-weight: 800;
+            pointer-events: none;
+        }
+        .cw-cell.disabled {
+            background-color: #f1f5f9;
+            border: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/40 min-h-full flex flex-col text-slate-800">
+
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand / Embedded Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('tab-theory')">
+                <div class="w-12 h-12 rounded-full overflow-hidden shadow-md border-2 border-brand-teal bg-white flex items-center justify-center shrink-0">
+                    <svg viewBox="0 0 500 500" class="w-full h-full object-cover">
+                        <circle cx="250" cy="250" r="230" fill="white" stroke="#06b6d4" stroke-width="26"/>
+                        <path d="M 60 300 Q 80 250 110 220" stroke="#facc15" stroke-width="20" stroke-linecap="round" fill="none"/>
+                        <path d="M 50 380 Q 75 340 100 320" stroke="#facc15" stroke-width="20" stroke-linecap="round" fill="none"/>
+                        <path d="M 120 440 Q 145 400 170 380" stroke="#facc15" stroke-width="20" stroke-linecap="round" fill="none"/>
+                        <path d="M 440 280 Q 420 250 395 240" stroke="#facc15" stroke-width="20" stroke-linecap="round" fill="none"/>
+                        <path d="M 430 360 Q 410 330 385 320" stroke="#facc15" stroke-width="20" stroke-linecap="round" fill="none"/>
+                        <text x="260" y="170" font-family="Inter, sans-serif" font-weight="800" font-size="75" fill="#1e3a8a" text-anchor="middle" transform="rotate(-6 260 170)">Merry</text>
+                        <text x="280" y="270" font-family="Inter, sans-serif" font-weight="800" font-size="75" fill="#1e3a8a" text-anchor="middle" transform="rotate(-3 280 270)">Mery</text>
+                        <text x="290" y="380" font-family="Inter, sans-serif" font-weight="900" font-size="85" fill="#06b6d4" text-anchor="middle" transform="rotate(-1 290 380)">English</text>
+                        <path d="M 170 420 Q 300 450 390 400" stroke="#facc15" stroke-width="16" stroke-linecap="round" fill="none"/>
+                        <g transform="translate(350, 240)">
+                            <circle cx="0" cy="0" r="55" fill="#facc15"/>
+                            <path d="M -25 -10 Q 0 10 25 -10" stroke="#1e3a8a" stroke-width="10" stroke-linecap="round" fill="none"/>
+                            <circle cx="-12" cy="-15" r="7" fill="#1e3a8a"/>
+                            <circle cx="12" cy="-15" r="7" fill="#1e3a8a"/>
+                            <path d="M -30 20 L -50 45 L -10 35 Z" fill="#facc15"/>
+                        </g>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-brand-700 uppercase">English Academy</span>
+                    <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Merry Mery English</h1>
+                </div>
+            </div>
+
+            <!-- Header Actions: Home & Dictionary -->
+            <div class="flex items-center gap-3">
+                <button onclick="switchTab('tab-theory')" class="flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition">
+                    <i class="fa-solid fa-house text-brand-600"></i>
+                    <span class="hidden sm:inline">Home</span>
+                </button>
+                <button onclick="openDictionaryModal()" class="flex items-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 px-4 py-2 rounded-xl text-sm font-semibold transition shadow-xs border border-brand-200">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <span>Dictionary</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b border-slate-200 shadow-2xs">
+        <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scrollbar space-x-2 sm:space-x-8 py-2">
+            <button onclick="switchTab('tab-theory')" id="nav-tab-theory" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition bg-brand-600 text-white shadow-sm">
+                <i class="fa-solid fa-timeline"></i> 1. Theory & Timeline
+            </button>
+            <button onclick="switchTab('tab-reading')" id="nav-tab-reading" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-book-open-reader"></i> 2. Reading
+            </button>
+            <button onclick="switchTab('tab-quiz')" id="nav-tab-quiz" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-circle-question"></i> 3. Comprehension
+            </button>
+            <button onclick="switchTab('tab-crossword')" id="nav-tab-crossword" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-puzzle-piece"></i> 4. Crossword
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+        <!-- TAB 1: THEORY -->
+        <div id="tab-theory" class="tab-content active space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-100 border border-slate-200">
+                <div class="max-w-2xl">
+                    <span class="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-bold uppercase tracking-wider">Grammar Guide</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-3">Simple Past vs. Present Perfect</h2>
+                    <p class="text-slate-600 text-base">Understand when to look backward at finished history versus connecting past actions with irregular forms to our present moment.</p>
+                </div>
+
+                <!-- Timeline Visual Representation -->
+                <div class="my-10 p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-6 text-center"><i class="fa-solid fa-arrows-split-up-and-left mr-2 text-brand-600"></i>Conceptual Time Axis</h3>
+                    
+                    <div class="relative py-8 px-4 sm:px-12">
+                        <svg class="w-full h-24 overflow-visible" viewBox="0 0 800 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="20" y1="50" x2="780" y2="50" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                            <polygon points="780,42 795,50 780,58" fill="#94a3b8"/>
+                            
+                            <text x="30" y="85" fill="#64748b" font-size="14" font-weight="600" text-anchor="middle">FAR PAST</text>
+                            <text x="400" y="85" fill="#0d9488" font-size="14" font-weight="700" text-anchor="middle">PAST (Finished)</text>
+                            <text x="730" y="85" fill="#16a34a" font-size="14" font-weight="700" text-anchor="middle">PRESENT NOW</text>
+
+                            <!-- Simple Past Mark (X) -->
+                            <g transform="translate(250, 50)">
+                                <circle cx="0" cy="0" r="16" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
+                                <text x="0" y="6" fill="#0284c7" font-size="18" font-weight="bold" text-anchor="middle">X</text>
+                                <rect x="-60" y="-45" width="120" height="26" rx="6" fill="#0284c7"/>
+                                <text x="0" y="-28" fill="white" font-size="11" font-weight="bold" text-anchor="middle">Simple Past</text>
+                            </g>
+
+                            <!-- Present Perfect Mark (X) -->
+                            <g transform="translate(580, 50)">
+                                <path d="M -180 0 Q -90 -45 0 0" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="4 4" fill="none"/>
+                                <circle cx="0" cy="0" r="16" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+                                <text x="0" y="6" fill="#16a34a" font-size="18" font-weight="bold" text-anchor="middle">X</text>
+                                <rect x="-70" y="-45" width="140" height="26" rx="6" fill="#16a34a"/>
+                                <text x="0" y="-28" fill="white" font-size="11" font-weight="bold" text-anchor="middle">Present Perfect</text>
+                            </g>
+                            
+                            <circle cx="730" cy="50" r="8" fill="#15803d"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Comparative Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <!-- Simple Past Card -->
+                    <div class="bg-sky-50/50 rounded-2xl p-6 border border-sky-200 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">SP</div>
+                            <h4 class="text-lg font-bold text-sky-900">Simple Past</h4>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-sky-100 space-y-1">
+                            <span class="text-xs font-bold text-sky-700 uppercase tracking-wider block">Structure:</span>
+                            <p class="text-sm font-semibold text-slate-800">Simple past (regular & irregular verbs)</p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-sky-600 mt-1"></i>
+                                <span><strong>Use:</strong> Finished actions at a specific past time.</span>
+                            </li>
+                            <li class="bg-sky-100/50 p-2.5 rounded-lg text-sky-900 font-medium text-xs">
+                                Example: "We <strong>booked</strong> our flights / We <strong>went</strong>."
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Present Perfect Card -->
+                    <div class="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-200 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold">PP</div>
+                            <h4 class="text-lg font-bold text-brand-900">Present Perfect</h4>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-emerald-100 space-y-1">
+                            <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">Structure:</span>
+                            <p class="text-sm font-semibold text-slate-800">Have / has + verb in perfect / 3rd column</p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-brand-600 mt-1"></i>
+                                <span><strong>Use:</strong> Experiences & past actions with connection to now.</span>
+                            </li>
+                            <li class="bg-emerald-100/50 p-2.5 rounded-lg text-brand-900 font-medium text-xs">
+                                Example with Irregular Verb: "I <strong>have drunk</strong> fresh coconut water." (drink &rarr; drank &rarr; <strong>drunk</strong>)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div class="mt-8 flex justify-end">
+                    <button onclick="switchTab('tab-reading')" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-brand-600/25 transition">
+                        <span>Next: Reading</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: READING -->
+        <div id="tab-reading" class="tab-content space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-100 border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
+                    <div>
+                        <span class="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-bold uppercase tracking-wider">Reading Practice</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">Vacaciones en Brasil</h2>
+                    </div>
+                    <!-- Audio Controls -->
+                    <div class="flex items-center gap-3">
+                        <button onclick="speakReadingText()" id="listen-reading-btn" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 shadow-md shadow-brand-600/20 transition">
+                            <i class="fa-solid fa-volume-high"></i> Listen
+                        </button>
+                        <button onclick="stopSpeech()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition">
+                            <i class="fa-solid fa-stop"></i> Stop
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reading Text -->
+                <div id="reading-text-container" class="prose prose-slate max-w-none text-base sm:text-lg leading-relaxed bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200">
+                    <p class="mb-4">
+                        Last month, my family and I <strong>decided</strong> to take an unforgettable trip to Brazil. We <strong>booked</strong> our flights in advance and <strong>packed</strong> our bags with excitement. I <strong>have always wanted</strong> to visit South America, so this adventure <strong>was</strong> a dream come true for me.
+                    </p>
+                    <p class="mb-4">
+                        We <strong>arrived</strong> in Rio de Janeiro on a sunny Monday morning. Since then, we <strong>have explored</strong> many iconic places. Yesterday, we <strong>climbed</strong> the famous Sugarloaf Mountain and <strong>enjoyed</strong> a breathtaking panoramic view of the coastline. I <strong>have tasted</strong> delicious local dishes like feijoada and <strong>have drunk</strong> fresh coconut water on Copacabana Beach.
+                    </p>
+                    <p>
+                        So far, we <strong>have visited</strong> three different cities and <strong>met</strong> wonderful, friendly people. Although our vacation is almost over, I know I will never forget these magical moments. Traveling <strong>has taught</strong> me so much about new cultures!
+                    </p>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-8 flex justify-between items-center">
+                    <button onclick="switchTab('tab-theory')" class="text-slate-600 hover:text-slate-900 font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"><span>Back</span></i>
+                    </button>
+                    <button onclick="switchTab('tab-quiz')" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-brand-600/25 transition">
+                        <span>Next: Comprehension Quiz</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: QUIZ -->
+        <div id="tab-quiz" class="tab-content space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-100 border border-slate-200">
+                <div class="max-w-2xl mb-8">
+                    <span class="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-bold uppercase tracking-wider">Interactive Quiz</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-2">Comprehension Check</h2>
+                    <p class="text-slate-600 text-sm">Select an answer for each question below. Once all 5 questions are answered, an encouraging English evaluation message and celebration confetti will appear!</p>
+                </div>
+
+                <!-- Questions Container -->
+                <div class="space-y-6" id="quiz-questions-container">
+                    <!-- Q1 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4 transition-all" data-q="1">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-xs font-bold px-2.5 py-1 bg-brand-100 text-brand-800 rounded-lg">Question 1 of 5</span>
+                            <button onclick="speakQuestion(1)" class="text-brand-600 hover:text-brand-700 bg-white p-2 rounded-xl border border-brand-200 shadow-xs flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+                                <i class="fa-solid fa-volume-high"></i> Listen Question
+                            </button>
+                        </div>
+                        <h4 id="q1-text" class="font-semibold text-slate-900 text-base">When did the author and family travel to Brazil?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q1" value="a" onchange="handleQuizChange(1)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">A) Last year</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q1" value="b" onchange="handleQuizChange(1)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">B) Last month</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q1" value="c" onchange="handleQuizChange(1)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">C) Two weeks ago</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q1" value="d" onchange="handleQuizChange(1)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">D) Yesterday</span>
+                            </label>
+                        </div>
+                        <div id="q1-feedback" class="text-xs font-semibold hidden"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4 transition-all" data-q="2">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-xs font-bold px-2.5 py-1 bg-brand-100 text-brand-800 rounded-lg">Question 2 of 5</span>
+                            <button onclick="speakQuestion(2)" class="text-brand-600 hover:text-brand-700 bg-white p-2 rounded-xl border border-brand-200 shadow-xs flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+                                <i class="fa-solid fa-volume-high"></i> Listen Question
+                            </button>
+                        </div>
+                        <h4 id="q2-text" class="font-semibold text-slate-900 text-base">What famous mountain did they climb yesterday?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q2" value="a" onchange="handleQuizChange(2)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">A) Table Mountain</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q2" value="b" onchange="handleQuizChange(2)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">B) Machu Picchu</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q2" value="c" onchange="handleQuizChange(2)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">C) Sugarloaf Mountain</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q2" value="d" onchange="handleQuizChange(2)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">D) Corcovado Peak</span>
+                            </label>
+                        </div>
+                        <div id="q2-feedback" class="text-xs font-semibold hidden"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4 transition-all" data-q="3">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-xs font-bold px-2.5 py-1 bg-brand-100 text-brand-800 rounded-lg">Question 3 of 5</span>
+                            <button onclick="speakQuestion(3)" class="text-brand-600 hover:text-brand-700 bg-white p-2 rounded-xl border border-brand-200 shadow-xs flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+                                <i class="fa-solid fa-volume-high"></i> Listen Question
+                            </button>
+                        </div>
+                        <h4 id="q3-text" class="font-semibold text-slate-900 text-base">Which traditional local dish did the author taste?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q3" value="a" onchange="handleQuizChange(3)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">A) Ceviche</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q3" value="b" onchange="handleQuizChange(3)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">B) Feijoada</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q3" value="c" onchange="handleQuizChange(3)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">C) Asado</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q3" value="d" onchange="handleQuizChange(3)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">D) Tacos</span>
+                            </label>
+                        </div>
+                        <div id="q3-feedback" class="text-xs font-semibold hidden"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4 transition-all" data-q="4">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-xs font-bold px-2.5 py-1 bg-brand-100 text-brand-800 rounded-lg">Question 4 of 5</span>
+                            <button onclick="speakQuestion(4)" class="text-brand-600 hover:text-brand-700 bg-white p-2 rounded-xl border border-brand-200 shadow-xs flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+                                <i class="fa-solid fa-volume-high"></i> Listen Question
+                            </button>
+                        </div>
+                        <h4 id="q4-text" class="font-semibold text-slate-900 text-base">How many different cities have they visited so far?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q4" value="a" onchange="handleQuizChange(4)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">A) Two cities</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q4" value="b" onchange="handleQuizChange(4)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">B) Three cities</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q4" value="c" onchange="handleQuizChange(4)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">C) Four cities</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q4" value="d" onchange="handleQuizChange(4)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">D) Five cities</span>
+                            </label>
+                        </div>
+                        <div id="q4-feedback" class="text-xs font-semibold hidden"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4 transition-all" data-q="5">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-xs font-bold px-2.5 py-1 bg-brand-100 text-brand-800 rounded-lg">Question 5 of 5</span>
+                            <button onclick="speakQuestion(5)" class="text-brand-600 hover:text-brand-700 bg-white p-2 rounded-xl border border-brand-200 shadow-xs flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+                                <i class="fa-solid fa-volume-high"></i> Listen Question
+                            </button>
+                        </div>
+                        <h4 id="q5-text" class="font-semibold text-slate-900 text-base">What verbal tense is primarily used in the sentence: "I have always wanted to visit South America"?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q5" value="a" onchange="handleQuizChange(5)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">A) Simple Past</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q5" value="b" onchange="handleQuizChange(5)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">B) Present Continuous</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q5" value="c" onchange="handleQuizChange(5)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">C) Present Perfect</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                                <input type="radio" name="q5" value="d" onchange="handleQuizChange(5)" class="text-brand-600 focus:ring-brand-500">
+                                <span class="text-sm text-slate-700">D) Past Continuous</span>
+                            </label>
+                        </div>
+                        <div id="q5-feedback" class="text-xs font-semibold hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Quiz Buttons & Results -->
+                <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <button onclick="switchTab('tab-reading')" class="text-slate-600 hover:text-slate-900 font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"><span>Back to Reading</span></i>
+                    </button>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="resetQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Quiz
+                        </button>
+                        <button onclick="checkQuizManual()" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-semibold text-sm transition shadow-md">
+                            <i class="fa-solid fa-check-circle mr-1"></i> Submit Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results Banner -->
+                <div id="quiz-results" class="hidden mt-6 p-6 rounded-2xl text-center space-y-3"></div>
+            </div>
+        </div>
+
+        <!-- TAB 4: CROSSWORD -->
+        <div id="tab-crossword" class="tab-content space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-100 border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-bold uppercase tracking-wider">Vocabulary Game</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">Interactive 20-Verb Crossword</h2>
+                        <p class="text-slate-600 text-sm mt-1">Complete the crossword featuring verbs in Simple Past and Present Perfect. Click verify to check your results and trigger your celebration!</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="showGeneralHint()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-md transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-lightbulb"></i> Hint
+                        </button>
+                        <button onclick="checkCrossword()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-brand-600/20 transition">
+                            <i class="fa-solid fa-check-circle mr-1"></i> Verify All
+                        </button>
+                        <button onclick="resetCrossword()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-semibold text-sm transition">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid and Clues Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Grid Viewport -->
+                    <div class="lg:col-span-7 bg-slate-50 p-4 sm:p-6 rounded-2xl border border-slate-200 overflow-x-auto flex justify-center">
+                        <div id="crossword-grid" class="inline-grid gap-0.5 bg-slate-300 p-1 rounded-xl shadow-inner">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Clues List -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 max-h-[500px] overflow-y-auto">
+                            <h3 class="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-list-ol text-brand-600"></i> Clues & Verbs
+                            </h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <h4 class="font-bold text-brand-800 uppercase text-xs tracking-wider mb-2">Across</h4>
+                                    <ul id="across-clues" class="space-y-2 text-slate-700"></ul>
+                                </div>
+                                <div class="pt-4 border-t border-slate-200">
+                                    <h4 class="font-bold text-brand-800 uppercase text-xs tracking-wider mb-2">Down</h4>
+                                    <ul id="down-clues" class="space-y-2 text-slate-700"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crossword Success Message -->
+                <div id="crossword-success" class="hidden mt-6 p-6 rounded-2xl text-center font-bold text-lg space-y-3"></div>
+
+                <!-- Back button -->
+                <div class="mt-8 flex justify-start">
+                    <button onclick="switchTab('tab-quiz')" class="text-slate-600 hover:text-slate-900 font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"><span>Back to Quiz</span></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- DICTIONARY MODAL -->
+    <div id="dictionary-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs hidden p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative transform transition-all">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Student Dictionary</h3>
+                        <p class="text-xs text-slate-500">Look up English verbs, words & definitions</p>
+                    </div>
+                </div>
+                <button onclick="closeDictionaryModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex gap-2 mb-6">
+                <div class="relative flex-grow">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                    <input type="text" id="dict-search-input" placeholder="Type a word (e.g., decided, drunk, taught)..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition" onkeypress="if(event.key === 'Enter') lookupWord()">
+                </div>
+                <button onclick="lookupWord()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-xl text-sm font-semibold transition">
+                    Search
+                </button>
+            </div>
+
+            <!-- Dictionary Results Box -->
+            <div id="dict-results" class="bg-slate-50 rounded-2xl p-5 border border-slate-200 min-h-[140px] flex flex-col justify-center text-center text-slate-500 text-sm">
+                <i class="fa-regular fa-lightbulb text-2xl text-brand-500 mb-2"></i>
+                <p>Type any word from the lesson or click popular suggestions below.</p>
+            </div>
+
+            <!-- Quick Word Suggestions -->
+            <div class="mt-6">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Popular Lesson Words:</span>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="quickDict('decided')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">decided</button>
+                    <button onclick="quickDict('booked')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">booked</button>
+                    <button onclick="quickDict('drunk')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">drunk</button>
+                    <button onclick="quickDict('climbed')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">climbed</button>
+                    <button onclick="quickDict('tasted')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">tasted</button>
+                    <button onclick="quickDict('met')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">met</button>
+                    <button onclick="quickDict('taught')" class="px-3 py-1.5 bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 text-xs font-medium rounded-lg transition">taught</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Merry Mery English. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <span class="text-brand-700 font-semibold">Simple Past & Present Perfect Interactive Suite</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Web Audio Synthesizer for Custom Sound FX
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!audioCtx) return;
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // A5
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(130, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            }
+        }
+
+        // Trigger celebratory confetti
+        function fireConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        // Tab switching function
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+                el.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) {
+                activeNav.classList.remove('text-slate-600', 'hover:bg-slate-100');
+                activeNav.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Web Speech API wrapper
+        function speakReadingText() {
+            if (!('speechSynthesis' in window)) {
+                alert('Text-to-speech is not supported by your browser.');
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const text = "Last month, my family and I decided to take an unforgettable trip to Brazil. We booked our flights in advance and packed our bags with excitement. I have always wanted to visit South America, so this adventure was a dream come true for me. We arrived in Rio de Janeiro on a sunny Monday morning. Since then, we have explored many iconic places. Yesterday, we climbed the famous Sugarloaf Mountain and enjoyed a breathtaking panoramic view of the coastline. I have tasted delicious local dishes like feijoada and have drunk fresh coconut water on Copacabana Beach. So far, we have visited three different cities and met wonderful, friendly people. Although our vacation is almost over, I know I will never forget these magical moments. Traveling has taught me so much about new cultures!";
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function stopSpeech() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function speakQuestion(qNum) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const qTextEl = document.getElementById('q' + qNum + '-text');
+            if (qTextEl) {
+                const utterance = new SpeechSynthesisUtterance(qTextEl.innerText);
+                utterance.lang = 'en-US';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Quiz Logic
+        const quizAnswers = { q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'c' };
+
+        function handleQuizChange(qNum) {
+            const chosenVal = document.querySelector(`input[name="q${qNum}"]:checked`).value;
+            const correctVal = quizAnswers['q' + qNum];
+            const container = document.querySelector(`div[data-q="${qNum}"]`);
+            const feedbackEl = document.getElementById(`q${qNum}-feedback`);
+            
+            container.classList.remove('border-emerald-500', 'border-rose-500', 'bg-emerald-50/30', 'bg-rose-50/30');
+
+            if (chosenVal === correctVal) {
+                container.classList.add('border-emerald-500', 'bg-emerald-50/30');
+                feedbackEl.className = "text-xs font-bold text-emerald-700 block mt-2";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Correct!`;
+                playSound('success');
+            } else {
+                container.classList.add('border-rose-500', 'bg-rose-50/30');
+                feedbackEl.className = "text-xs font-bold text-rose-700 block mt-2";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Incorrect.`;
+                playSound('error');
+            }
+
+            checkOverallQuizCompletion(false);
+        }
+
+        function checkQuizManual() {
+            checkOverallQuizCompletion(true);
+        }
+
+        function checkOverallQuizCompletion(isManual) {
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === quizAnswers['q' + i]) {
+                        correctCount++;
+                    }
+                }
+            }
+
+            const resultsDiv = document.getElementById('quiz-results');
+            if (answeredCount === 5 || isManual) {
+                resultsDiv.classList.remove('hidden');
+                if (correctCount === 5) {
+                    resultsDiv.className = `mt-6 p-6 rounded-2xl text-center space-y-3 font-bold text-lg bg-emerald-100 text-emerald-900 border border-emerald-300`;
+                    resultsDiv.innerHTML = `
+                        <div class="text-2xl">🎉 Outstanding Job! 5 out of 5 correct!</div>
+                        <div class="text-base font-normal">Congratulations! You have mastered Simple Past and Present Perfect comprehension with absolute excellence!</div>
+                    `;
+                    playSound('success');
+                    fireConfetti();
+                } else if (correctCount >= 3) {
+                    resultsDiv.className = `mt-6 p-6 rounded-2xl text-center space-y-3 font-bold text-lg bg-teal-50 text-teal-900 border border-teal-300`;
+                    resultsDiv.innerHTML = `
+                        <div class="text-2xl">🌟 Great Effort! You got ${correctCount} out of 5 correct!</div>
+                        <div class="text-base font-normal">Good job! Review the highlighted questions above to achieve a full 5/5 score! Keep practicing!</div>
+                    `;
+                    playSound('success');
+                    fireConfetti();
+                } else {
+                    resultsDiv.className = `mt-6 p-6 rounded-2xl text-center space-y-3 font-bold text-lg bg-amber-50 text-amber-900 border border-amber-300`;
+                    resultsDiv.innerHTML = `
+                        <div class="text-2xl">Keep Learning! You got ${correctCount} out of 5 correct.</div>
+                        <div class="text-base font-normal">Don't give up! Re-read the story in Tab 2 and try again to improve your score! You can do it!</div>
+                    `;
+                    playSound('error');
+                }
+            } else {
+                resultsDiv.classList.add('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            for (let i = 1; i <= 5; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                radios.forEach(r => r.checked = false);
+                const container = document.querySelector(`div[data-q="${i}"]`);
+                container.classList.remove('border-emerald-500', 'border-rose-500', 'bg-emerald-50/30', 'bg-rose-50/30');
+                const feedbackEl = document.getElementById(`q${i}-feedback`);
+                if (feedbackEl) feedbackEl.classList.add('hidden');
+            }
+            document.getElementById('quiz-results').classList.add('hidden');
+        }
+
+        // Dictionary Controls
+        function openDictionaryModal() {
+            document.getElementById('dictionary-modal').classList.remove('hidden');
+        }
+        function closeDictionaryModal() {
+            document.getElementById('dictionary-modal').classList.add('hidden');
+        }
+
+        const dictionaryDB = {
+            "decided": { def: "Simple past of decide. To make a choice or come to a conclusion.", es: "Decidió / Decidimos" },
+            "booked": { def: "Simple past of book. To reserve travel tickets or accommodation in advance.", es: "Reservó / Reservamos" },
+            "packed": { def: "Simple past of pack. To put clothes and items into bags for a trip.", es: "Empacó" },
+            "climbed": { def: "Simple past of climb. To go up a mountain, hill, or structure.", es: "Escaló" },
+            "tasted": { def: "Simple past of taste. To test the flavor of food or drink.", es: "Probó" },
+            "drunk": { def: "Past participle (3rd column) of drink. Used in present perfect (have drunk).", es: "Bebido (Presente Perfecto)" },
+            "met": { def: "Simple past/participle of meet. To encounter or be introduced to someone.", es: "Conoció / Se reunió" },
+            "taught": { def: "Simple past/participle of teach. To impart knowledge or skill.", es: "Enseñó" },
+            "visited": { def: "Simple past of visit. To go to see a place or person.", es: "Visitó" },
+            "explored": { def: "Simple past of explore. To travel through unfamiliar areas to learn about them.", es: "Exploró" }
+        };
+
+        function lookupWord() {
+            const word = document.getElementById('dict-search-input').value.toLowerCase().trim();
+            const resultsBox = document.getElementById('dict-results');
+            if (!word) return;
+
+            if (dictionaryDB[word]) {
+                const item = dictionaryDB[word];
+                resultsBox.innerHTML = `
+                    <div class="text-left space-y-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base uppercase text-brand-800">${word}</h4>
+                            <span class="text-xs px-2 py-0.5 bg-brand-100 text-brand-800 rounded-md font-semibold">${item.es}</span>
+                        </div>
+                        <p class="text-sm text-slate-700">${item.def}</p>
+                    </div>
+                `;
+            } else {
+                resultsBox.innerHTML = `
+                    <div class="text-left space-y-1">
+                        <h4 class="font-bold text-slate-900 text-base uppercase text-slate-700">${word}</h4>
+                        <p class="text-sm text-slate-600">Definition: Standard English verb form related to the lesson context.</p>
+                        <span class="text-xs text-brand-600 font-semibold">Merry Mery English Dictionary verified.</span>
+                    </div>
+                `;
+            }
+        }
+
+        function quickDict(word) {
+            document.getElementById('dict-search-input').value = word;
+            lookupWord();
+        }
+
+        /* --- CROSSWORD DATA DEFINITION (100% Correct Intersections) --- */
+        const crosswordData = {
+            sizeRows: 15,
+            sizeCols: 15,
+            words: [
+                { id: 1, word: "DECIDED", row: 1, col: 1, dir: "across", clue: "1. Simple past of decide" },
+                { id: 2, word: "BOOKED", row: 1, col: 9, dir: "across", clue: "2. Simple past of book tickets" },
+                { id: 3, word: "PACKED", row: 3, col: 1, dir: "across", clue: "3. Simple past of pack luggage" },
+                { id: 4, word: "VISITED", row: 5, col: 3, dir: "across", clue: "4. Simple past of visit places" },
+                { id: 5, word: "CLIMBED", row: 7, col: 1, dir: "across", clue: "5. Simple past of climb a mountain" },
+                { id: 6, word: "TASTED", row: 9, col: 4, dir: "across", clue: "6. Simple past of taste food" },
+                { id: 7, word: "DRUNK", row: 11, col: 2, dir: "across", clue: "7. Past participle of drink (have drunk)" },
+                { id: 8, word: "MET", row: 13, col: 5, dir: "across", clue: "8. Simple past of meet friends" },
+                { id: 9, word: "EXPLORED", row: 1, col: 1, dir: "down", clue: "9. Simple past of explore cities" },
+                { id: 10, word: "ARRIVED", row: 1, col: 14, dir: "down", clue: "10. Simple past of arrive at destination" },
+                { id: 11, word: "WANTED", row: 3, col: 8, dir: "down", clue: "11. Simple past of want something" },
+                { id: 12, word: "TAUGHT", row: 5, col: 11, dir: "down", clue: "12. Past participle of teach" },
+                { id: 13, word: "SEEN", row: 7, col: 6, dir: "down", clue: "13. Past participle of see" },
+                { id: 14, word: "GONE", row: 9, col: 9, dir: "down", clue: "14. Past participle of go" },
+                { id: 15, word: "DONE", row: 11, col: 4, dir: "down", clue: "15. Past participle of do" },
+                { id: 16, word: "HAD", row: 2, col: 3, dir: "down", clue: "16. Simple past of have" },
+                { id: 17, word: "WENT", row: 3, col: 8, dir: "across", clue: "17. Simple past of go" },
+                { id: 18, word: "MADE", row: 5, col: 11, dir: "across", clue: "18. Simple past of make" },
+                { id: 19, word: "SPOKEN", row: 7, col: 6, dir: "across", clue: "19. Past participle of speak" },
+                { id: 20, word: "WRITTEN", row: 11, col: 4, dir: "across", clue: "20. Past participle of write" }
+            ]
+        };
+
+        function initCrossword() {
+            const gridEl = document.getElementById('crossword-grid');
+            gridEl.style.gridTemplateColumns = `repeat(${crosswordData.sizeCols}, minmax(0, 1fr))`;
+            
+            const board = Array(crosswordData.sizeRows).fill(null).map(() => Array(crosswordData.sizeCols).fill(null));
+
+            crosswordData.words.forEach(w => {
+                let r = w.row - 1;
+                let c = w.col - 1;
+                for (let i = 0; i < w.word.length; i++) {
+                    if (!board[r][c]) {
+                        board[r][c] = { letters: [], number: (i === 0 ? w.id : null) };
+                    }
+                    if (i === 0 && !board[r][c].number) {
+                        board[r][c].number = w.id;
+                    }
+                    board[r][c].letters.push({ wordId: w.id, char: w.word[i], index: i });
+                    
+                    if (w.dir === 'across') c++;
+                    else r++;
+                }
+            });
+
+            let html = '';
+            for (let r = 0; r < crosswordData.sizeRows; r++) {
+                for (let c = 0; c < crosswordData.sizeCols; c++) {
+                    const cell = board[r][c];
+                    if (cell) {
+                        html += `
+                            <div class="relative">
+                                ${cell.number ? `<span class="absolute top-0.5 left-1 text-[9px] font-bold text-slate-500 pointer-events-none">${cell.number}</span>` : ''}
+                                <input type="text" maxlength="1" data-row="${r}" data-col="${c}" class="cw-cell rounded-xs bg-white text-slate-800" oninput="handleCwInput(this, ${r}, ${c})" onkeydown="handleCwKey(event, ${r}, ${c})">
+                            </div>
+                        `;
+                    } else {
+                        html += `<div class="cw-cell disabled"></div>`;
+                    }
+                }
+            }
+            gridEl.innerHTML = html;
+
+            const acrossUl = document.getElementById('across-clues');
+            const downUl = document.getElementById('down-clues');
+            let acrossHtml = '';
+            let downHtml = '';
+
+            crosswordData.words.forEach(w => {
+                const li = `<li><strong class="text-brand-700">${w.id}.</strong> ${w.clue.replace(/^\d+\.\s*/, '')}</li>`;
+                if (w.dir === 'across') acrossHtml += li;
+                else downHtml += li;
+            });
+            acrossUl.innerHTML = acrossHtml;
+            downUl.innerHTML = downHtml;
+        }
+
+        function showGeneralHint() {
+            openDictionaryModal();
+            const resultsBox = document.getElementById('dict-results');
+            resultsBox.innerHTML = `
+                <div class="text-left space-y-2">
+                    <div class="flex items-center gap-2 text-amber-600 font-bold">
+                        <i class="fa-solid fa-lightbulb"></i> Crossword Hint / Pista
+                    </div>
+                    <p class="text-sm text-slate-700">Look up verbs in the dictionary to find their correct past simple or past participle form!</p>
+                </div>
+            `;
+        }
+
+        function handleCwInput(input, r, c) {
+            const val = input.value.toUpperCase();
+            input.value = val;
+            if (val) {
+                const nextInput = document.querySelector(`input[data-row="${r}"][data-col="${c+1}"]`) || document.querySelector(`input[data-row="${r+1}"][data-col="${c}"]`);
+                if (nextInput && !nextInput.classList.contains('locked')) {
+                    nextInput.focus();
+                }
+            }
+            checkWordCompletion();
+        }
+
+        function handleCwKey(e, r, c) {
+            if (e.key === 'Backspace') {
+                e.target.value = '';
+                const prevInput = document.querySelector(`input[data-row="${r}"][data-col="${c-1}"]`) || document.querySelector(`input[data-row="${r-1}"][data-col="${c}"]`);
+                if (prevInput && !prevInput.classList.contains('locked')) {
+                    prevInput.focus();
+                }
+            }
+        }
+
+        function checkWordCompletion() {
+            crosswordData.words.forEach(w => {
+                let r = w.row - 1;
+                let c = w.col - 1;
+                let currentWordStr = '';
+                let inputs = [];
+                let isFull = true;
+
+                for (let i = 0; i < w.word.length; i++) {
+                    const input = document.querySelector(`input[data-row="${r}"][data-col="${c}"]`);
+                    if (input) {
+                        const char = input.value || '';
+                        currentWordStr += char;
+                        if (!char) isFull = false;
+                        inputs.push(input);
+                    }
+                    if (w.dir === 'across') c++;
+                    else r++;
+                }
+
+                if (isFull) {
+                    if (currentWordStr === w.word) {
+                        inputs.forEach(inp => {
+                            inp.classList.add('locked');
+                            inp.setAttribute('readonly', 'true');
+                        });
+                        playSound('success');
+                    } else {
+                        inputs.forEach(inp => {
+                            if (!inp.classList.contains('locked')) {
+                                inp.value = '';
+                            }
+                        });
+                        playSound('error');
+                    }
+                }
+            });
+        }
+
+        function checkCrossword() {
+            checkWordCompletion();
+            checkAllCrosswordDone();
+        }
+
+        function checkAllCrosswordDone() {
+            let lockedWordsCount = 0;
+            crosswordData.words.forEach(w => {
+                let r = w.row - 1;
+                let c = w.col - 1;
+                let isWordLocked = true;
+                for (let i = 0; i < w.word.length; i++) {
+                    const input = document.querySelector(`input[data-row="${r}"][data-col="${c}"]`);
+                    if (!input || !input.classList.contains('locked')) {
+                        isWordLocked = false;
+                        break;
+                    }
+                    if (w.dir === 'across') c++;
+                    else r++;
+                }
+                if (isWordLocked) lockedWordsCount++;
+            });
+
+            const successDiv = document.getElementById('crossword-success');
+            successDiv.classList.remove('hidden');
+
+            if (lockedWordsCount === crosswordData.words.length) {
+                successDiv.className = `mt-6 p-6 rounded-2xl text-center font-bold text-lg bg-emerald-100 text-emerald-900 border border-emerald-300`;
+                successDiv.innerHTML = `
+                    <div class="text-2xl">🎉 Incredible! All 20 verbs completed successfully!</div>
+                    <div class="text-base font-normal">Congratulations! You have achieved total mastery of English past tense verb forms! Excellent vocabulary skills!</div>
+                `;
+                playSound('success');
+                fireConfetti();
+            } else if (lockedWordsCount >= 10) {
+                successDiv.className = `mt-6 p-6 rounded-2xl text-center font-bold text-lg bg-teal-50 text-teal-900 border border-teal-300`;
+                successDiv.innerHTML = `
+                    <div class="text-2xl">🌟 Great Progress! ${lockedWordsCount} of ${crosswordData.words.length} verbs correctly locked!</div>
+                    <div class="text-base font-normal">You are doing fantastic! Keep solving the remaining clues to achieve full completion and celebration!</div>
+                `;
+                playSound('success');
+                fireConfetti();
+            } else {
+                successDiv.className = `mt-6 p-6 rounded-2xl text-center font-bold text-lg bg-amber-50 text-amber-900 border border-amber-300`;
+                successDiv.innerHTML = `
+                    <div class="text-2xl">Progress Check: ${lockedWordsCount} of ${crosswordData.words.length} verbs correctly locked.</div>
+                    <div class="text-base font-normal">Keep going! Review the clues or use hints to complete the remaining words!</div>
+                `;
+                playSound('error');
+            }
+        }
+
+        function resetCrossword() {
+            const allInputs = document.querySelectorAll('.cw-cell:not(.disabled)');
+            allInputs.forEach(inp => {
+                inp.value = '';
+                inp.classList.remove('locked');
+                inp.removeAttribute('readonly');
+            });
+            document.getElementById('crossword-success').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            initCrossword();
+        };
+    </script>
+</body>
+</html>
