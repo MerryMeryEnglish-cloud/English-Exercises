@@ -1,584 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merry Mery English - Reported Speech Master Quiz</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              teal: '#00BDA8',
-              'teal-dark': '#009686',
-              'teal-light': '#E6F8F6',
-              navy: '#0B2545',
-              'navy-dark': '#06182E',
-              'navy-light': '#183B6B',
-              yellow: '#FFBE1A',
-              'yellow-light': '#FFF8E6',
-              cream: '#F7FBFB'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Speech Mastery - Merry Mery English</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-teal': '#00B2B2',
+                        'brand-dark': '#0F2D59',
+                        'brand-yellow': '#FFC82C',
+                        'brand-light': '#F4F9F9',
+                        'correct-green': '#2ECC71',
+                        'wrong-red': '#E74C3C',
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #F2F7F7;
-      color: #0B2545;
-    }
-    
-    @keyframes pulseCorrect {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-    
-    @keyframes shakeWrong {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
-    }
+    <style>
+        :root {
+            --primary-teal: #00B2B2;
+            --dark-blue: #0F2D59;
+            --yellow-accent: #FFC82C;
+            --light-bg: #F4F9F9;
+            --white: #FFFFFF;
+            --correct-green: #2ECC71;
+            --wrong-red: #E74C3C;
+        }
 
-    .animate-correct {
-      animation: pulseCorrect 0.35s ease-in-out;
-    }
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-blue);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .animate-wrong {
-      animation: shakeWrong 0.35s ease-in-out;
-    }
+        .tab-btn.active {
+            color: var(--primary-teal);
+            border-bottom: 3px solid var(--primary-teal);
+            background-color: #ffffff;
+        }
 
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #e2e8f0;
-      border-radius: 8px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #00BDA8;
-      border-radius: 8px;
-    }
-  </style>
+        .draggable-rule {
+            cursor: grab;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+        .draggable-rule:active {
+            cursor: grabbing;
+        }
+
+        .drop-target {
+            min-height: 48px;
+            border: 2px dashed #CBD5E1;
+            transition: all 0.2s ease;
+        }
+        .drop-target.highlight {
+            border-color: var(--primary-teal);
+            background-color: #EBF8F8;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.35s ease-in-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .pop-in {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body class="bg-brand-light flex flex-col min-h-screen">
 
-  <!-- Top Header with Logo Branding -->
-  <header class="border-b-2 border-brand-teal/20 bg-white sticky top-0 z-50 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
-      
-      <!-- Logo Branding -->
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full border-4 border-brand-teal bg-white flex items-center justify-center shadow-sm relative group">
-          <div class="text-center font-extrabold leading-none text-brand-navy text-[10px] uppercase tracking-tighter">
-            <span class="block text-brand-navy font-black text-xs leading-none">MERRY</span>
-            <span class="block text-brand-teal font-extrabold text-[11px] leading-none">ENGLISH</span>
-          </div>
-          <div class="absolute -top-1 -right-1 w-5 h-5 bg-brand-yellow rounded-full border-2 border-white flex items-center justify-center text-brand-navy text-[10px] shadow-sm">
-            <i class="fa-solid fa-face-smile"></i>
-          </div>
+    <header class="bg-white shadow-md sticky top-0 z-50 px-4 py-3 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full border-2 border-brand-teal flex items-center justify-center overflow-hidden bg-white shadow">
+                    <img src="logo.png" alt="Merry Mery English Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/0F2D59/FFC82C?text=MME'">
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-extrabold text-brand-dark leading-tight">Merry Mery English</h1>
+                    <span class="text-xs md:text-sm font-bold text-brand-teal uppercase tracking-wider">Reported Speech Practice</span>
+                </div>
+            </div>
+
+            <nav class="flex items-center gap-2 md:gap-3 flex-wrap">
+                <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="px-3 py-1.5 md:px-4 md:py-2 bg-brand-teal hover:bg-brand-dark text-white text-xs md:text-sm font-bold rounded-full transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <button onclick="openDictionary()" class="px-3 py-1.5 md:px-4 md:py-2 bg-brand-yellow hover:bg-yellow-400 text-brand-dark text-xs md:text-sm font-bold rounded-full transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-book"></i> Dictionary
+                </button>
+                <button onclick="resetCurrentTab()" class="px-3 py-1.5 md:px-4 md:py-2 bg-brand-teal hover:bg-brand-dark text-white text-xs md:text-sm font-bold rounded-full transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-rotate-right"></i> Reset
+                </button>
+            </nav>
         </div>
+    </header>
 
-        <div>
-          <h1 class="font-black text-xl text-brand-navy leading-none flex items-center gap-2">
-            <span>Merry Mery English</span>
-            <span class="text-brand-yellow text-sm">✨</span>
-          </h1>
-          <p class="text-xs font-semibold text-brand-teal-dark mt-0.5">Grammar Studio • Reported Speech Quiz</p>
+    <div class="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-xs">
+        <div class="max-w-7xl mx-auto flex justify-center flex-wrap">
+            <button onclick="switchTab(0)" class="tab-btn active px-4 py-3 font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-teal transition border-b-3 border-transparent">
+                1. Backshift Rules Match
+            </button>
+            <button onclick="switchTab(1)" class="tab-btn px-4 py-3 font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-teal transition border-b-3 border-transparent">
+                2. Transformation Quiz
+            </button>
+            <button onclick="switchTab(2)" class="tab-btn px-4 py-3 font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-teal transition border-b-3 border-transparent">
+                3. Business Meeting Reporter
+            </button>
         </div>
-      </div>
+    </div>
 
-      <!-- Header Action Buttons -->
-      <div class="flex items-center gap-3">
-        <div class="bg-brand-cream border-2 border-brand-teal/30 px-4 py-2 rounded-2xl flex items-center gap-3 shadow-inner">
-          <span class="text-xs font-bold text-brand-navy-light uppercase tracking-wider">Score:</span>
-          <span id="score-counter" class="text-lg font-black text-brand-teal-dark">0 / 10</span>
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-grow">
+
+        <!-- TAB 1: BACKSHIFT RULES MATCHING -->
+        <section id="tab-0" class="tab-content bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-extrabold text-brand-dark">Reported Speech Tense Shift Matching</h2>
+                <p class="text-gray-600 text-sm mt-1">Match the direct speech tense/time expression on the left with its correct reported speech form on the right.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                <!-- Left column: Match items -->
+                <div id="matching-list" class="lg:col-span-2 space-y-3">
+                    <!-- Dynamic matching rows will be injected here -->
+                </div>
+
+                <!-- Right column: Draggable Pool -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 sticky top-[130px]">
+                    <h3 class="font-bold text-brand-dark text-sm mb-3 flex items-center justify-between">
+                        <span>Reported Forms Pool</span>
+                        <i class="fa-solid fa-hand-pointer text-brand-teal"></i>
+                    </h3>
+                    <div id="pool-container" class="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
+                        <!-- Dynamic draggables injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs font-semibold text-gray-400">Exercise 1 of 3</span>
+                <button onclick="switchTab(1)" class="px-5 py-2.5 bg-brand-teal text-white font-bold text-sm rounded-xl hover:bg-brand-dark transition flex items-center gap-2">
+                    Next Exercise <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 2: SENTENCE TRANSFORMATION QUIZ -->
+        <section id="tab-1" class="tab-content hidden bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-extrabold text-brand-dark">Direct to Reported Speech Quiz</h2>
+                <p class="text-gray-600 text-sm mt-1">Select the correct reported speech version for each spoken sentence.</p>
+            </div>
+
+            <div id="quiz-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamic quiz cards will be injected here -->
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-100 flex justify-between items-center">
+                <button onclick="switchTab(0)" class="px-5 py-2.5 bg-gray-200 text-brand-dark font-bold text-sm rounded-xl hover:bg-gray-300 transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button onclick="switchTab(2)" class="px-5 py-2.5 bg-brand-teal text-white font-bold text-sm rounded-xl hover:bg-brand-dark transition flex items-center gap-2">
+                    Next Exercise <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 3: BUSINESS MEETING SCENARIO -->
+        <section id="tab-2" class="tab-content hidden bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-extrabold text-brand-dark">Business Meeting Scenario</h2>
+                <p class="text-gray-600 text-sm mt-1">Complete the manager's report summarizing what each team member said during the project meeting.</p>
+            </div>
+
+            <div id="scenario-container" class="space-y-6 max-w-3xl mx-auto">
+                <!-- Scenario items injected here -->
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-100 flex justify-between items-center">
+                <button onclick="switchTab(1)" class="px-5 py-2.5 bg-gray-200 text-brand-dark font-bold text-sm rounded-xl hover:bg-gray-300 transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button onclick="checkScenarioComplete()" class="px-6 py-2.5 bg-brand-yellow text-brand-dark font-bold text-sm rounded-xl hover:bg-yellow-400 transition flex items-center gap-2 shadow">
+                    Finish Practice <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- DICTIONARY MODAL -->
+    <div id="dict-modal" class="fixed inset-0 bg-brand-dark/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl pop-in border border-gray-100">
+            <div class="bg-brand-dark px-6 py-4 flex justify-between items-center text-white">
+                <h3 class="font-bold flex items-center gap-2 text-base">
+                    <i class="fa-solid fa-book text-brand-yellow"></i> Cambridge Dictionary
+                </h3>
+                <button onclick="closeDictionary()" class="text-gray-300 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            <div class="p-6 text-center">
+                <p class="text-sm font-semibold text-brand-dark mb-4">Search any word or phrase in Cambridge Dictionary:</p>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" id="dict-input" placeholder="e.g. advise, suggest, announce..." class="flex-1 px-4 py-2.5 border-2 border-gray-200 rounded-xl outline-none focus:border-brand-teal text-sm" onkeypress="if(event.key==='Enter') searchDictionary()">
+                    <button onclick="searchDictionary()" class="px-4 py-2.5 bg-brand-teal hover:bg-brand-dark text-white font-bold rounded-xl text-sm transition">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500">Opens directly on Cambridge Dictionary for precise definitions and audio pronunciations.</p>
+            </div>
         </div>
-        <button id="sound-btn" onclick="toggleSound()" class="p-2.5 rounded-xl bg-brand-cream border-2 border-brand-teal/30 text-brand-navy hover:bg-brand-teal/10 transition shadow-sm" title="Toggle Sound">
-          <i id="sound-icon" class="fa-solid fa-volume-high text-brand-teal"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Workspace -->
-  <main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-6 space-y-6">
-
-    <!-- Instructions & Controls Panel -->
-    <div class="bg-white p-6 rounded-3xl border-2 border-brand-teal/30 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <div>
-        <span class="text-xs font-black uppercase tracking-wider text-brand-navy bg-brand-yellow px-3 py-1 rounded-full border border-brand-yellow/50 inline-flex items-center gap-1 shadow-sm">
-          <i class="fa-solid fa-comments text-brand-navy"></i> Grammar Focus: Reported Speech
-        </span>
-        <h2 class="text-2xl font-black text-brand-navy mt-2">Multiple Choice Challenge</h2>
-        <p class="text-slate-600 text-sm">Choose the correct reported speech transformation for each sentence. Tap the circular options to make your choice!</p>
-      </div>
-
-      <div class="flex items-center gap-2 flex-wrap w-full md:w-auto justify-end">
-        <button onclick="checkAnswers()" class="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal-dark text-white text-sm font-bold rounded-2xl transition shadow-md flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-brand-yellow"></i> Check Answers
-        </button>
-        <button onclick="showAnswers()" class="px-4 py-2.5 bg-brand-navy-light hover:bg-brand-navy text-white text-sm font-bold rounded-2xl transition shadow-md flex items-center gap-2">
-          <i class="fa-solid fa-eye text-brand-yellow"></i> Reveal All
-        </button>
-        <button onclick="resetQuiz()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-brand-navy text-sm font-bold rounded-2xl border-2 border-slate-300 transition shadow-sm flex items-center gap-2">
-          <i class="fa-solid fa-rotate-right text-brand-teal"></i> Reset
-        </button>
-      </div>
     </div>
 
-    <!-- Progress Indicator -->
-    <div class="bg-white p-4 rounded-2xl border border-brand-teal/20 shadow-sm flex items-center gap-4">
-      <span class="text-xs font-black text-brand-navy uppercase tracking-wider shrink-0">Progress:</span>
-      <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden border border-slate-200">
-        <div id="quiz-progress-bar" class="bg-brand-teal h-full transition-all duration-300 w-0"></div>
-      </div>
-      <span id="progress-text" class="text-xs font-black text-brand-teal-dark shrink-0">0/10 Answered</span>
+    <!-- CONGRATULATIONS MODAL -->
+    <div id="congrats-modal" class="fixed inset-0 bg-brand-dark/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 text-center shadow-2xl pop-in border border-gray-100">
+            <div class="w-16 h-16 bg-brand-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3 text-brand-yellow text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 id="modal-title" class="text-2xl font-extrabold text-brand-dark">Excellent Work!</h3>
+            <p id="modal-desc" class="text-sm text-gray-600 mt-1">You have completed the Reported Speech practice module!</p>
+
+            <div class="my-6 bg-gray-50 rounded-xl p-4 flex justify-around border border-gray-100">
+                <div>
+                    <span class="block text-2xl font-black text-brand-teal" id="modal-accuracy">100%</span>
+                    <span class="text-xs font-semibold text-gray-500 uppercase">Accuracy</span>
+                </div>
+                <div class="border-r border-gray-200"></div>
+                <div>
+                    <span class="block text-2xl font-black text-brand-dark" id="modal-errors">0</span>
+                    <span class="text-xs font-semibold text-gray-500 uppercase">Mistakes</span>
+                </div>
+            </div>
+
+            <button onclick="closeCongratsModal()" class="w-full py-3 bg-brand-teal text-white font-bold rounded-xl hover:bg-brand-dark transition shadow-md">
+                Continue Learning
+            </button>
+        </div>
     </div>
 
-    <!-- Quiz Questions List Container -->
-    <div id="questions-list" class="space-y-6">
-      <!-- Dynamic Injection of 10 Question Cards -->
-    </div>
+    <script>
+        /* TENSE & TIME SHIFT DATA FOR TAB 1 */
+        const rulePairs = [
+            { id: "r1", direct: "Present Simple ('I work')", reported: "Past Simple ('he worked')" },
+            { id: "r2", direct: "Present Continuous ('I am working')", reported: "Past Continuous ('he was working')" },
+            { id: "r3", direct: "Present Perfect ('I have worked')", reported: "Past Perfect ('he had worked')" },
+            { id: "r4", direct: "Past Simple ('I worked')", reported: "Past Perfect ('he had worked')" },
+            { id: "r5", direct: "Will ('I will work')", reported: "Would ('he would work')" },
+            { id: "r6", direct: "Can ('I can work')", reported: "Could ('he could work')" },
+            { id: "r7", direct: "Time: 'Now'", reported: "Time: 'Then / At that time'" },
+            { id: "r8", direct: "Time: 'Today'", reported: "Time: 'That day'" },
+            { id: "r9", direct: "Time: 'Tomorrow'", reported: "Time: 'The next day / following day'" },
+            { id: "r10", direct: "Time: 'Yesterday'", reported: "Time: 'The day before / previous day'" }
+        ];
 
-    <!-- Bottom Submit & Action Button Bar -->
-    <div class="flex flex-wrap justify-center items-center gap-3 py-4">
-      <button onclick="checkAnswers()" class="px-6 py-3.5 bg-brand-teal hover:bg-brand-teal-dark text-white text-base font-extrabold rounded-2xl transition shadow-lg flex items-center gap-2.5 transform hover:scale-[1.02] active:scale-[0.98]">
-        <i class="fa-solid fa-paper-plane text-brand-yellow text-lg"></i>
-        <span>Submit Answers</span>
-      </button>
-      <button onclick="showAnswers()" class="px-5 py-3.5 bg-brand-navy-light hover:bg-brand-navy text-white text-sm font-bold rounded-2xl transition shadow-md flex items-center gap-2">
-        <i class="fa-solid fa-eye text-brand-yellow"></i> Reveal All
-      </button>
-      <button onclick="resetQuiz()" class="px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-brand-navy text-sm font-bold rounded-2xl border-2 border-slate-300 transition shadow-sm flex items-center gap-2">
-        <i class="fa-solid fa-rotate-right text-brand-teal"></i> Reset
-      </button>
-    </div>
-
-    <!-- Completion Celebration Banner -->
-    <div id="completion-banner" class="hidden bg-emerald-50 border-2 border-emerald-400 p-6 md:p-8 rounded-3xl text-center space-y-4 animate-correct shadow-lg relative overflow-hidden">
-      <div class="w-16 h-16 bg-brand-yellow text-brand-navy rounded-full flex items-center justify-center mx-auto text-3xl shadow-md border-4 border-white animate-bounce">
-        <i class="fa-solid fa-trophy"></i>
-      </div>
-      <h3 id="banner-title" class="text-3xl font-black text-brand-navy">🎉 Excellent Work! 🎉</h3>
-      <p id="banner-subtitle" class="text-emerald-900 text-base max-w-md mx-auto font-bold">
-        You've completed all 10 Reported Speech questions!
-      </p>
-      <div class="flex flex-wrap justify-center gap-3 pt-2">
-        <button onclick="triggerCelebration()" class="px-5 py-2.5 bg-brand-yellow hover:bg-yellow-400 text-brand-navy font-black rounded-2xl shadow-md transition flex items-center gap-2 text-sm">
-          <i class="fa-solid fa-sparkles"></i> More Confetti!
-        </button>
-        <button onclick="resetQuiz()" class="px-6 py-2.5 bg-brand-teal hover:bg-brand-teal-dark text-white font-black rounded-2xl shadow-lg transition inline-flex items-center gap-2 text-sm">
-          <i class="fa-solid fa-rotate-right"></i> Try Again
-        </button>
-      </div>
-    </div>
-
-  </main>
-
-  <script>
-    // --- REPORTED SPEECH QUIZ DATASET ---
-    const QUIZ_DATA = [
-      {
-        id: 1,
-        question: "She asked him where ............... the car.",
-        options: [
-          { letter: "a", text: "had he parked" },
-          { letter: "b", text: "he had parked" }
-        ],
-        correct: 1, // index 1 is 'b'
-        explanation: "In reported questions, we use statement word order (Subject + Verb), not question word order. Therefore, 'he had parked' is correct."
-      },
-      {
-        id: 2,
-        question: "He told me that he ............... to the party the next day.",
-        options: [
-          { letter: "a", text: "would come" },
-          { letter: "b", text: "will come" }
-        ],
-        correct: 0,
-        explanation: "When reporting future actions with a past reporting verb ('told'), the modal verb 'will' shifts back to 'would'."
-      },
-      {
-        id: 3,
-        question: "They said that they ............... for three hours.",
-        options: [
-          { letter: "a", text: "had been waiting" },
-          { letter: "b", text: "have been waiting" }
-        ],
-        correct: 0,
-        explanation: "Present Perfect Continuous ('have been waiting') backshifts to Past Perfect Continuous ('had been waiting') in reported speech."
-      },
-      {
-        id: 4,
-        question: "Mary asked John if he ............... her new phone.",
-        options: [
-          { letter: "a", text: "had seen" },
-          { letter: "b", text: "has seen" }
-        ],
-        correct: 0,
-        explanation: "Present Perfect tense ('has seen') changes to Past Perfect ('had seen') when reporting a past event."
-      },
-      {
-        id: 5,
-        question: "The teacher told us ............... in the corridor.",
-        options: [
-          { letter: "a", text: "not to run" },
-          { letter: "b", text: "don't run" }
-        ],
-        correct: 0,
-        explanation: "Reported commands and instructions use 'to + infinitive' or 'not to + infinitive' rather than imperative forms."
-      },
-      {
-        id: 6,
-        question: "He said, 'I live in London.' ➔ He said that he ............... in London.",
-        options: [
-          { letter: "a", text: "lived" },
-          { letter: "b", text: "lives" }
-        ],
-        correct: 0,
-        explanation: "The Present Simple tense ('live') shifts back to the Past Simple tense ('lived') when reporting."
-      },
-      {
-        id: 7,
-        question: "She asked me whether I ............... help her with her homework.",
-        options: [
-          { letter: "a", text: "could" },
-          { letter: "b", text: "can" }
-        ],
-        correct: 0,
-        explanation: "The modal verb 'can' shifts back to 'could' in reported speech."
-      },
-      {
-        id: 8,
-        question: "Tom mentioned that he ............... his keys the previous day.",
-        options: [
-          { letter: "a", text: "had lost" },
-          { letter: "b", text: "lost" }
-        ],
-        correct: 0,
-        explanation: "Past Simple ('lost') backshifts to Past Perfect ('had lost') to show an action completed before the reporting time."
-      },
-      {
-        id: 9,
-        question: "My mother asked me what time I ............... back.",
-        options: [
-          { letter: "a", text: "would be" },
-          { letter: "b", text: "will be" }
-        ],
-        correct: 0,
-        explanation: "'Will' changes to 'would', and reported question word order puts the subject ('I') before the verb ('would be')."
-      },
-      {
-        id: 10,
-        question: "Paul said that he ............... that movie twice before.",
-        options: [
-          { letter: "a", text: "had already seen" },
-          { letter: "b", text: "has already seen" }
-        ],
-        correct: 0,
-        explanation: "Present perfect ('has seen') backshifts to Past Perfect ('had seen') in reported statements."
-      }
-    ];
-
-    // State variables
-    let userSelections = new Array(QUIZ_DATA.length).fill(null);
-    let checkedState = new Array(QUIZ_DATA.length).fill(false);
-    let soundEnabled = true;
-
-    function renderQuiz() {
-      const container = document.getElementById('questions-list');
-      container.innerHTML = '';
-
-      QUIZ_DATA.forEach((item, qIdx) => {
-        const isChecked = checkedState[qIdx];
-        const selectedOpt = userSelections[qIdx];
-        const isCorrect = selectedOpt !== null && selectedOpt === item.correct;
-
-        // Card Wrapper
-        const card = document.createElement('div');
-        card.id = `question-card-${qIdx}`;
-        card.className = `bg-white p-6 rounded-3xl border-2 transition-all shadow-sm space-y-4 ${
-          isChecked 
-            ? (isCorrect ? 'border-emerald-400 bg-emerald-50/30' : 'border-red-300 bg-red-50/20')
-            : 'border-brand-teal/20 hover:border-brand-teal/40'
-        }`;
-
-        // Question Title Header
-        const header = document.createElement('div');
-        header.className = "flex items-start justify-between gap-3";
-        header.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-full bg-brand-teal-light text-brand-teal-dark border border-brand-teal/30 font-black text-sm flex items-center justify-center shrink-0">
-              ${qIdx + 1}
-            </span>
-            <h3 class="text-base md:text-lg font-bold text-brand-navy leading-snug">
-              ${item.question}
-            </h3>
-          </div>
-          ${isChecked ? (
-            isCorrect 
-              ? `<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black flex items-center gap-1 border border-emerald-300"><i class="fa-solid fa-circle-check text-emerald-600"></i> Correct</span>`
-              : `<span class="px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-black flex items-center gap-1 border border-red-300"><i class="fa-solid fa-circle-xmark text-red-600"></i> ${selectedOpt === null ? 'Unanswered' : 'Incorrect'}</span>`
-          ) : ''}
-        `;
-        card.appendChild(header);
-
-        // Options Container (A & B circular buttons)
-        const optionsGrid = document.createElement('div');
-        optionsGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-3 pt-1";
-
-        item.options.forEach((opt, oIdx) => {
-          const isSelected = selectedOpt === oIdx;
-          const isThisOptionCorrect = item.correct === oIdx;
-
-          const optBtn = document.createElement('button');
-          optBtn.type = "button";
-          optBtn.onclick = () => selectOption(qIdx, oIdx);
-
-          let btnStyle = "w-full p-4 rounded-2xl border-2 transition flex items-center gap-3 text-left font-bold text-sm shadow-sm ";
-          let circleStyle = "w-9 h-9 rounded-full border-2 flex items-center justify-center font-black text-sm shrink-0 transition-all ";
-
-          if (isChecked) {
-            if (isThisOptionCorrect) {
-              btnStyle += "border-emerald-500 bg-emerald-100 text-emerald-950 font-extrabold cursor-default";
-              circleStyle += "border-emerald-600 bg-emerald-600 text-white";
-            } else if (isSelected && !isCorrect) {
-              btnStyle += "border-red-400 bg-red-100 text-red-950 font-bold cursor-default";
-              circleStyle += "border-red-500 bg-red-500 text-white";
-            } else {
-              btnStyle += "border-slate-200 bg-slate-50 text-slate-400 cursor-default";
-              circleStyle += "border-slate-300 bg-slate-100 text-slate-400";
+        /* MULTIPLE CHOICE DATA FOR TAB 2 */
+        const quizData = [
+            {
+                direct: "Sarah said: 'I am reviewing the financial audit today.'",
+                correct: "Sarah said that she was reviewing the financial audit that day.",
+                options: [
+                    "Sarah said that she was reviewing the financial audit that day.",
+                    "Sarah said that I am reviewing the financial audit today.",
+                    "Sarah said that she is reviewing the financial audit yesterday."
+                ]
+            },
+            {
+                direct: "David said: 'We have finalized the client proposal.'",
+                correct: "David mentioned that they had finalized the client proposal.",
+                options: [
+                    "David mentioned that they have finalized the client proposal.",
+                    "David mentioned that they had finalized the client proposal.",
+                    "David mentioned that we finalized the client proposal."
+                ]
+            },
+            {
+                direct: "Elena said: 'I will submit the budget report tomorrow morning.'",
+                correct: "Elena said she would submit the budget report the next morning.",
+                options: [
+                    "Elena said she will submit the budget report tomorrow morning.",
+                    "Elena said she would submit the budget report the next morning.",
+                    "Elena said she submits the budget report that morning."
+                ]
+            },
+            {
+                direct: "The manager said: 'Can you finish the presentation by EOD?'",
+                correct: "The manager asked if I could finish the presentation by EOD.",
+                options: [
+                    "The manager asked if I can finish the presentation by EOD.",
+                    "The manager asked if I could finish the presentation by EOD.",
+                    "The manager asked that I will finish the presentation by EOD."
+                ]
+            },
+            {
+                direct: "Tom said: 'I sent the signed contract yesterday.'",
+                correct: "Tom stated that he had sent the signed contract the day before.",
+                options: [
+                    "Tom stated that he had sent the signed contract the day before.",
+                    "Tom stated that he sent the signed contract yesterday.",
+                    "Tom stated that he has sent the signed contract that day."
+                ]
+            },
+            {
+                direct: "Maria said: 'We are expanding our marketing campaign now.'",
+                correct: "Maria explained that they were expanding their marketing campaign then.",
+                options: [
+                    "Maria explained that they were expanding their marketing campaign then.",
+                    "Maria explained that we are expanding our marketing campaign now.",
+                    "Maria explained that they have expanded their marketing campaign."
+                ]
             }
-          } else {
-            if (isSelected) {
-              btnStyle += "border-brand-teal bg-brand-teal-light text-brand-navy shadow-md scale-[1.01]";
-              circleStyle += "border-brand-teal bg-brand-teal text-white shadow-sm";
-            } else {
-              btnStyle += "border-brand-teal/20 bg-brand-cream hover:border-brand-teal/60 hover:bg-brand-teal-light/50 text-brand-navy";
-              circleStyle += "border-brand-teal/40 bg-white text-brand-navy group-hover:border-brand-teal";
+        ];
+
+        /* SCENARIO DATA FOR TAB 3 */
+        const scenarioData = [
+            {
+                speaker: "Alex (Product Lead)",
+                avatar: "https://placehold.co/80x80/0F2D59/FFFFFF?text=Alex",
+                direct: "I need more time to test the software feature.",
+                prefix: "Alex explained that he",
+                correct: "needed",
+                options: ["needed", "needs", "has needed"],
+                suffix: "more time to test the software feature."
+            },
+            {
+                speaker: "Brenda (Sales Manager)",
+                avatar: "https://placehold.co/80x80/00B2B2/FFFFFF?text=Brenda",
+                direct: "Our quarterly revenue has increased by 15%.",
+                prefix: "Brenda announced that their quarterly revenue",
+                correct: "had increased",
+                options: ["has increased", "had increased", "increases"],
+                suffix: "by 15%."
+            },
+            {
+                speaker: "Carlos (HR Director)",
+                avatar: "https://placehold.co/80x80/FFC82C/0F2D59?text=Carlos",
+                direct: "We will hire two new developers next month.",
+                prefix: "Carlos mentioned that they",
+                correct: "would hire",
+                options: ["will hire", "would hire", "hired"],
+                suffix: "two new developers the following month."
+            },
+            {
+                speaker: "Diana (IT Operations)",
+                avatar: "https://placehold.co/80x80/2ECC71/FFFFFF?text=Diana",
+                direct: "I cannot access the database server right now.",
+                prefix: "Diana complained that she",
+                correct: "could not",
+                options: ["cannot", "could not", "will not"],
+                suffix: "access the database server at that time."
             }
-          }
+        ];
 
-          optBtn.className = btnStyle;
-          optBtn.innerHTML = `
-            <div class="${circleStyle}">
-              ${opt.letter.toUpperCase()}
-            </div>
-            <span class="flex-1">${opt.text}</span>
-            ${isSelected ? '<i class="fa-solid fa-circle-dot text-brand-teal text-lg"></i>' : '<i class="fa-regular fa-circle text-slate-300 text-lg"></i>'}
-          `;
+        // State tracking variables
+        let currentActiveTab = 0;
+        let selectedElementForMatching = null;
+        let tab1Errors = 0;
+        let tab2Errors = 0;
+        let tab2Solved = 0;
+        let tab3Errors = 0;
 
-          if (isChecked) optBtn.disabled = true;
-
-          optionsGrid.appendChild(optBtn);
-        });
-
-        card.appendChild(optionsGrid);
-
-        // Feedback & Grammar Explanation Box if Checked & Incorrect / Unanswered
-        if (isChecked && !isCorrect) {
-          const expBox = document.createElement('div');
-          expBox.className = "p-4 rounded-2xl bg-red-50 border-2 border-red-200 text-xs md:text-sm text-red-950 space-y-2 animate-wrong mt-2";
-          expBox.innerHTML = `
-            <div class="flex items-center gap-2 font-black text-red-800 text-sm">
-              <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
-              <span>Grammar Explanation${selectedOpt === null ? ' (Unanswered)' : ''}:</span>
-            </div>
-            <p class="font-medium leading-relaxed">${item.explanation}</p>
-            <div class="pt-1 flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-100/70 px-3 py-1.5 rounded-xl border border-emerald-300 w-fit">
-              <i class="fa-solid fa-circle-check text-emerald-600"></i>
-              <span>Correct Answer: <strong>Option (${item.options[item.correct].letter.toUpperCase()}) ${item.options[item.correct].text}</strong></span>
-            </div>
-          `;
-          card.appendChild(expBox);
-        } else if (isChecked && isCorrect) {
-          const expBox = document.createElement('div');
-          expBox.className = "p-3 rounded-2xl bg-emerald-100/60 border border-emerald-300 text-xs md:text-sm text-emerald-950 flex items-center gap-2 animate-correct mt-2 font-bold";
-          expBox.innerHTML = `
-            <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
-            <span>Great job! You picked the correct reported speech form.</span>
-          `;
-          card.appendChild(expBox);
+        function speakText(text) {
+            try {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-GB';
+                    utterance.rate = 0.95;
+                    window.speechSynthesis.speak(utterance);
+                }
+            } catch (e) {
+                console.log("Speech Error:", e);
+            }
         }
 
-        container.appendChild(card);
-      });
+        function playFeedbackSound(isSuccess) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
 
-      updateProgress();
-    }
-
-    function selectOption(qIdx, oIdx) {
-      if (checkedState[qIdx]) return;
-      userSelections[qIdx] = oIdx;
-
-      // Automatically check this specific question upon user selection
-      checkedState[qIdx] = true;
-
-      const isCorrect = userSelections[qIdx] === QUIZ_DATA[qIdx].correct;
-      if (isCorrect) {
-        playSound('correct');
-      } else {
-        playSound('wrong');
-      }
-
-      renderQuiz();
-      checkOverallCompletion();
-    }
-
-    function checkAnswers() {
-      let newlyChecked = false;
-      QUIZ_DATA.forEach((_, idx) => {
-        if (!checkedState[idx]) newlyChecked = true;
-        checkedState[idx] = true;
-      });
-
-      renderQuiz();
-      checkOverallCompletion();
-      
-      if (newlyChecked) playSound('correct');
-    }
-
-    function showAnswers() {
-      QUIZ_DATA.forEach((item, idx) => {
-        userSelections[idx] = item.correct;
-        checkedState[idx] = true;
-      });
-      renderQuiz();
-      checkOverallCompletion();
-      playSound('complete');
-      triggerCelebration();
-    }
-
-    function resetQuiz() {
-      userSelections = new Array(QUIZ_DATA.length).fill(null);
-      checkedState = new Array(QUIZ_DATA.length).fill(false);
-      document.getElementById('completion-banner').classList.add('hidden');
-      renderQuiz();
-    }
-
-    function updateProgress() {
-      const answeredCount = userSelections.filter(s => s !== null).length;
-      let scoreCount = 0;
-
-      userSelections.forEach((sel, idx) => {
-        if (sel !== null && checkedState[idx] && sel === QUIZ_DATA[idx].correct) {
-          scoreCount++;
+                if (isSuccess) {
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.22);
+                } else {
+                    osc.frequency.setValueAtTime(220, ctx.currentTime);
+                    osc.frequency.setValueAtTime(160, ctx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.22);
+                }
+            } catch (e) {
+                console.log("Audio Error:", e);
+            }
         }
-      });
 
-      document.getElementById('score-counter').textContent = `${scoreCount} / ${QUIZ_DATA.length}`;
-      document.getElementById('progress-text').textContent = `${answeredCount}/10 Answered`;
-      
-      const pct = (answeredCount / QUIZ_DATA.length) * 100;
-      document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
-    }
+        function switchTab(index) {
+            currentActiveTab = index;
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.tab-content').forEach((content, i) => {
+                content.classList.toggle('hidden', i !== index);
+            });
+        }
 
-    function checkOverallCompletion() {
-      const allChecked = checkedState.every(c => c === true);
+        /* INITIALIZE TAB 1: MATCHING EXERCISE */
+        function initTab1() {
+            const listContainer = document.getElementById('matching-list');
+            const poolContainer = document.getElementById('pool-container');
+            if (!listContainer || !poolContainer) return;
 
-      if (allChecked) {
-        let score = 0;
-        userSelections.forEach((sel, idx) => {
-          if (sel !== null && sel === QUIZ_DATA[idx].correct) score++;
-        });
+            listContainer.innerHTML = '';
+            poolContainer.innerHTML = '';
+            tab1Errors = 0;
+            selectedElementForMatching = null;
 
-        const banner = document.getElementById('completion-banner');
-        const title = document.getElementById('banner-title');
-        const subtitle = document.getElementById('banner-subtitle');
+            const shuffledDirect = [...rulePairs].sort(() => Math.random() - 0.5);
+            const shuffledReported = [...rulePairs].sort(() => Math.random() - 0.5);
 
-        if (score >= 8) {
-          title.textContent = "🎉 Excellent Work! (" + score + "/10) 🎉";
-          subtitle.textContent = "Outstanding performance! You have demonstrated fantastic knowledge of Reported Speech word order and tenses!";
-        } else if (score === 7 || score === 6) {
-          title.textContent = "👏 Great Job! (" + score + "/10) 👏";
-          subtitle.textContent = "Great Job! You have completely mastered Reported Speech word order and tenses!";
+            shuffledDirect.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "flex items-center justify-between gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200";
+                row.innerHTML = `
+                    <div class="flex items-center gap-2 flex-1 min-w-0">
+                        <span class="font-bold text-xs sm:text-sm text-brand-dark">${item.direct}</span>
+                        <button onclick="speakText('${item.direct.replace(/'/g, "\\'")}')" class="text-gray-400 hover:text-brand-teal text-xs transition p-1">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                    <div class="drop-target flex-1 rounded-lg flex items-center justify-center p-1" 
+                         data-id="${item.id}"
+                         onclick="handleDropTargetClick(this)"
+                         ondragover="handleDragOver(event)"
+                         ondragleave="handleDragLeave(event)"
+                         ondrop="handleDrop(event)">
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            shuffledReported.forEach(item => {
+                const dragItem = document.createElement('div');
+                dragItem.className = "draggable-rule bg-brand-dark text-white text-xs sm:text-sm p-2.5 rounded-lg font-medium border border-transparent hover:border-brand-yellow shadow-xs flex items-center justify-between";
+                dragItem.draggable = true;
+                dragItem.id = `drag-${item.id}`;
+                dragItem.dataset.id = item.id;
+                dragItem.innerHTML = `
+                    <span>${item.reported}</span>
+                    <i class="fa-solid fa-grip-dots-vertical text-gray-400 text-xs ml-2"></i>
+                `;
+
+                dragItem.ondragstart = (e) => e.dataTransfer.setData('text', e.target.id);
+                dragItem.onclick = () => selectItemForClickMatch(dragItem);
+
+                poolContainer.appendChild(dragItem);
+            });
+        }
+
+        function selectItemForClickMatch(elem) {
+            if (elem.dataset.matched === "true") return;
+            if (selectedElementForMatching) {
+                selectedElementForMatching.classList.remove('ring-2', 'ring-brand-yellow');
+            }
+            selectedElementForMatching = elem;
+            elem.classList.add('ring-2', 'ring-brand-yellow');
+        }
+
+        function handleDropTargetClick(target) {
+            if (selectedElementForMatching && target.children.length === 0) {
+                processMatchAttempt(selectedElementForMatching, target);
+                selectedElementForMatching.classList.remove('ring-2', 'ring-brand-yellow');
+                selectedElementForMatching = null;
+            }
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('highlight');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const target = e.currentTarget;
+            target.classList.remove('highlight');
+            const dragId = e.dataTransfer.getData('text');
+            const draggedElem = document.getElementById(dragId);
+
+            if (draggedElem && target.children.length === 0) {
+                processMatchAttempt(draggedElem, target);
+            }
+        }
+
+        function processMatchAttempt(itemElem, targetZone) {
+            if (itemElem.dataset.id === targetZone.dataset.id) {
+                targetZone.appendChild(itemElem);
+                itemElem.classList.remove('bg-brand-dark');
+                itemElem.classList.add('bg-correct-green', 'w-full', 'text-center');
+                itemElem.draggable = false;
+                itemElem.dataset.matched = "true";
+                itemElem.onclick = null;
+                targetZone.classList.remove('drop-target');
+                targetZone.classList.add('border-solid', 'border-correct-green');
+                playFeedbackSound(true);
+                checkTab1Complete();
+            } else {
+                tab1Errors++;
+                playFeedbackSound(false);
+                targetZone.classList.add('animate-shake');
+                setTimeout(() => targetZone.classList.remove('animate-shake'), 400);
+            }
+        }
+
+        function checkTab1Complete() {
+            const matched = document.querySelectorAll('#matching-list [data-matched="true"]');
+            if (matched.length === rulePairs.length) {
+                showCongratsModal("Exercise 1 Complete!", tab1Errors, rulePairs.length);
+            }
+        }
+
+        /* INITIALIZE TAB 2: MULTIPLE CHOICE QUIZ */
+        function initTab2() {
+            const container = document.getElementById('quiz-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+            tab2Errors = 0;
+            tab2Solved = 0;
+
+            const shuffledQuiz = [...quizData].sort(() => Math.random() - 0.5);
+
+            shuffledQuiz.forEach((q, index) => {
+                const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+                const card = document.createElement('div');
+                card.className = "bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col justify-between";
+                card.id = `quiz-card-${index}`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2 mb-3">
+                            <span class="text-xs font-extrabold uppercase bg-brand-dark text-white px-2 py-0.5 rounded">Direct Quote ${index + 1}</span>
+                            <button onclick="speakText('${q.direct.replace(/'/g, "\\'")}')" class="text-brand-teal hover:text-brand-dark text-xs font-bold transition">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                        <p class="text-sm font-bold text-brand-dark mb-4 bg-white p-2.5 rounded-lg border border-gray-200">${q.direct}</p>
+                        <div class="space-y-2 option-list">
+                            ${shuffledOptions.map(opt => `
+                                <button onclick="handleQuizAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${index}')" 
+                                        class="w-full text-left p-2.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-brand-dark hover:border-brand-teal hover:bg-emerald-50/30 transition flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <i class="status-icon"></i>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function handleQuizAnswer(btn, selectedOpt, correctOpt, cardIndex) {
+            const card = document.getElementById(`quiz-card-${cardIndex}`);
+            if (card.dataset.solved === "true") return;
+
+            const icon = btn.querySelector('.status-icon');
+
+            if (selectedOpt === correctOpt) {
+                btn.classList.remove('bg-white', 'border-gray-200');
+                btn.classList.add('bg-correct-green', 'text-white', 'border-correct-green', 'font-bold');
+                if (icon) icon.className = "status-icon fa-solid fa-circle-check text-white ml-2";
+
+                card.dataset.solved = "true";
+                card.querySelectorAll('.option-list button').forEach(b => b.disabled = true);
+                tab2Solved++;
+                playFeedbackSound(true);
+
+                if (tab2Solved === quizData.length) {
+                    showCongratsModal("Quiz Completed!", tab2Errors, quizData.length);
+                }
+            } else {
+                btn.classList.remove('bg-white', 'border-gray-200');
+                btn.classList.add('bg-wrong-red', 'text-white', 'border-wrong-red');
+                btn.disabled = true;
+                if (icon) icon.className = "status-icon fa-solid fa-circle-xmark text-white ml-2";
+
+                tab2Errors++;
+                playFeedbackSound(false);
+            }
+        }
+
+        /* INITIALIZE TAB 3: SCENARIO PRACTICE */
+        function initTab3() {
+            const container = document.getElementById('scenario-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+            tab3Errors = 0;
+
+            scenarioData.forEach((s, idx) => {
+                const block = document.createElement('div');
+                block.className = "bg-gray-50 border border-gray-200 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 items-start";
+                block.id = `scenario-block-${idx}`;
+
+                block.innerHTML = `
+                    <div class="flex items-center gap-3 sm:flex-col sm:items-center text-center w-full sm:w-28 shrink-0">
+                        <img src="${s.avatar}" alt="${s.speaker}" class="w-12 h-12 rounded-full object-cover border-2 border-brand-teal shadow-xs">
+                        <span class="text-xs font-bold text-brand-dark">${s.speaker}</span>
+                    </div>
+
+                    <div class="flex-1 w-full">
+                        <div class="bg-white p-3 rounded-xl border border-gray-200 text-xs sm:text-sm text-gray-700 font-medium mb-3 relative">
+                            <i class="fa-solid fa-quote-left text-brand-teal/40 text-lg mr-1"></i>
+                            "${s.direct}"
+                            <button onclick="speakText('${s.direct.replace(/'/g, "\\'")}')" class="ml-2 text-brand-teal hover:text-brand-dark">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-brand-dark font-bold bg-white p-3 rounded-xl border border-gray-200">
+                            <span>${s.prefix}</span>
+                            <select onchange="handleScenarioSelect(this, '${s.correct}', '${idx}')" 
+                                    class="px-3 py-1.5 bg-gray-50 border-2 border-brand-teal rounded-lg font-extrabold text-brand-dark outline-none focus:ring-2 focus:ring-brand-yellow">
+                                <option value="">-- Choose Tense --</option>
+                                ${s.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                            </select>
+                            <span>${s.suffix}</span>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(block);
+            });
+        }
+
+        function handleScenarioSelect(selectElem, correctVal, idx) {
+            const block = document.getElementById(`scenario-block-${idx}`);
+            const selected = selectElem.value;
+
+            if (selected === correctVal) {
+                selectElem.classList.remove('border-brand-teal', 'border-wrong-red');
+                selectElem.classList.add('border-correct-green', 'bg-emerald-50', 'text-emerald-800');
+                block.dataset.correct = "true";
+                playFeedbackSound(true);
+            } else if (selected !== "") {
+                selectElem.classList.remove('border-brand-teal', 'border-correct-green');
+                selectElem.classList.add('border-wrong-red', 'bg-rose-50', 'text-rose-800');
+                block.dataset.correct = "false";
+                tab3Errors++;
+                playFeedbackSound(false);
+            }
+        }
+
+        function checkScenarioComplete() {
+            const correctCount = document.querySelectorAll('#scenario-container [data-correct="true"]').length;
+            if (correctCount === scenarioData.length) {
+                showCongratsModal("Module Mastered!", tab3Errors, scenarioData.length);
+            } else {
+                showCongratsModal("Scenario Progress", tab3Errors, scenarioData.length);
+            }
+        }
+
+        /* MODALS & DICTIONARY UTILITIES */
+        function showCongratsModal(title, errors, total) {
+            const modal = document.getElementById('congrats-modal');
+            document.getElementById('modal-title').innerText = title;
+
+            const accuracy = Math.max(0, Math.round(((total - errors) / total) * 100));
+            document.getElementById('modal-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('modal-errors').innerText = errors;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            if (window.confetti && errors < 3) {
+                confetti({
+                    particleCount: 90,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function closeCongratsModal() {
+            const modal = document.getElementById('congrats-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function openDictionary() {
+            const modal = document.getElementById('dict-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                document.getElementById('dict-input')?.focus();
+            }, 100);
+        }
+
+        function closeDictionary() {
+            const modal = document.getElementById('dict-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function searchDictionary() {
+            const input = document.getElementById('dict-input');
+            const term = input ? input.value.trim() : '';
+            if (term) {
+                window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.toLowerCase())}`, '_blank');
+            } else {
+                window.open('https://dictionary.cambridge.org/', '_blank');
+            }
+        }
+
+        function resetCurrentTab() {
+            if (currentActiveTab === 0) initTab1();
+            if (currentActiveTab === 1) initTab2();
+            if (currentActiveTab === 2) initTab3();
+        }
+
+        function startApp() {
+            initTab1();
+            initTab2();
+            initTab3();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startApp);
         } else {
-          title.textContent = "💪 Good Work! (" + score + "/10) 💪";
-          subtitle.textContent = "Good Work! continue practicing to master Reported Speech!";
+            startApp();
         }
-
-        banner.classList.remove('hidden');
-        triggerCelebration();
-        playSound('complete');
-
-        setTimeout(() => {
-          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 150);
-      }
-    }
-
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      const icon = document.getElementById('sound-icon');
-      if (soundEnabled) {
-        icon.className = 'fa-solid fa-volume-high text-brand-teal';
-      } else {
-        icon.className = 'fa-solid fa-volume-xmark text-slate-400';
-      }
-    }
-
-    function playSound(type) {
-      if (!soundEnabled) return;
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        if (type === 'correct') {
-          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.15);
-          gain.gain.setValueAtTime(0.12, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.25);
-        } else if (type === 'wrong') {
-          osc.frequency.setValueAtTime(220, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(164.81, ctx.currentTime + 0.2);
-          gain.gain.setValueAtTime(0.18, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.22);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.22);
-        } else if (type === 'complete') {
-          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
-            const o = ctx.createOscillator();
-            const g = ctx.createGain();
-            o.connect(g);
-            g.connect(ctx.destination);
-            o.frequency.value = freq;
-            g.gain.setValueAtTime(0.1, ctx.currentTime + i * 0.08);
-            g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.08 + 0.2);
-            o.start(ctx.currentTime + i * 0.08);
-            o.stop(ctx.currentTime + i * 0.08 + 0.2);
-          });
-        }
-      } catch (e) {}
-    }
-
-    function triggerCelebration() {
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
-    }
-
-    window.onload = function() {
-      renderQuiz();
-    };
-  </script>
+    </script>
 </body>
 </html>
