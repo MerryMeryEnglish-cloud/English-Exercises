@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merry Mery English - Exercises & Quizzes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Librería para voz británica garantizada en celulares -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
+
     <style>
         :root {
             --primary: #0d9488;
@@ -247,6 +251,21 @@
         const word = document.getElementById('cambridgeQuery').value.trim();
         if (word) {
             window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
+        }
+    }
+
+    // Funciones globales para reproducir audio con acento británico en cualquier ejercicio
+    function speakUKFemale(text) {
+        if (window.responsiveVoice) {
+            responsiveVoice.cancel(); // Detiene audios previos si los hay
+            responsiveVoice.speak(text, "UK English Female", { rate: 0.9, pitch: 1 });
+        }
+    }
+
+    function speakUKMale(text) {
+        if (window.responsiveVoice) {
+            responsiveVoice.cancel();
+            responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
         }
     }
 </script>
