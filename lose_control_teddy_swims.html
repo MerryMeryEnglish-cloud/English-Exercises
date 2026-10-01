@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Lose Control Lesson</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #00a896;
+      --secondary-color: #028090;
+      --dark-blue: #05668d;
+      --accent-yellow: #f0a500;
+      --light-bg: #f8f9fa;
+    }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background-color: var(--light-bg); 
+      color: #333; 
+    }
+    .navbar-brand img { 
+      height: 50px; 
+      width: 50px; 
+      border-radius: 50%; 
+      object-fit: cover;
+    }
+    .header-banner { 
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-blue)); 
+      color: white; 
+      padding: 2.5rem 0; 
+      margin-bottom: 2rem; 
+      border-bottom: 5px solid var(--accent-yellow); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .nav-tabs .nav-link { 
+      color: var(--dark-blue); 
+      font-weight: 600; 
+      border: none; 
+      padding: 12px 20px; 
+      margin-right: 5px; 
+      border-radius: 10px 10px 0 0; 
+      transition: all 0.2s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      background-color: #e9ecef;
+    }
+    .nav-tabs .nav-link.active { 
+      background-color: white; 
+      color: var(--primary-color); 
+      border-top: 4px solid var(--primary-color); 
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+    }
+    .tab-content { 
+      background: white; 
+      padding: 30px; 
+      border-radius: 0 0 16px 16px; 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
+      min-height: 420px; 
+    }
+    .phrase-card { 
+      border: 1px solid #e9ecef; 
+      border-left: 5px solid var(--primary-color); 
+      border-radius: 10px; 
+      padding: 20px; 
+      margin-bottom: 20px; 
+      background: #fff; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .phrase-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .game-card { 
+      background: #fdfdfd; 
+      border: 1px solid #e2e8f0; 
+      border-radius: 12px; 
+      padding: 22px; 
+      margin-bottom: 20px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .btn-listen { 
+      background-color: var(--secondary-color); 
+      color: white; 
+      border: none; 
+      padding: 6px 14px; 
+      border-radius: 20px; 
+      font-size: 0.88rem; 
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .btn-listen:hover {
+      background-color: var(--dark-blue);
+      color: white;
+    }
+    .btn-hint { 
+      color: var(--accent-yellow); 
+      background: none; 
+      border: none; 
+      font-size: 1.25rem; 
+      padding: 0 8px;
+    }
+    .hint-text { 
+      display: none; 
+      font-size: 0.88rem; 
+      color: #6c757d; 
+      margin-top: 8px; 
+      font-style: italic; 
+      background: #fff9e6;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-yellow);
+    }
+    .video-container { 
+      position: relative; 
+      padding-bottom: 56.25%; 
+      height: 0; 
+      overflow: hidden; 
+      border-radius: 14px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      background-color: #000;
+    }
+    .video-container iframe { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+    }
+    .artist-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border: 3px solid white;
+    }
+    .tab-nav-buttons {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e9ecef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="https://merrymeryenglish-cloud.github.io/English-Exercises/">
+        <img src="logo.jpg" alt="Merry Mery English Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/100x100/00a896/ffffff?text=MME';">
+        <span class="fw-bold text-dark fs-5">Merry Mery English</span>
+      </a>
+      <div class="d-flex gap-2">
+        <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="btn btn-outline-primary btn-sm px-3 rounded-pill fw-semibold">
+          <i class="bi bi-house-door-fill me-1"></i> Home
+        </a>
+        <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" class="btn btn-outline-secondary btn-sm px-3 rounded-pill fw-semibold">
+          <i class="bi bi-book-fill me-1"></i> Dictionary
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div class="header-banner text-center">
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-2">Lose Control - Teddy Swims</h1>
+      <p class="lead mb-0 text-white-50">Interactive English Song Exercise & Vocabulary Lesson</p>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <ul class="nav nav-tabs border-bottom-0" id="lessonTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="video-tab" data-bs-toggle="tab" data-bs-target="#video-panel" type="button" role="tab">
+          <i class="bi bi-play-btn-fill me-1 text-danger"></i> 1. Video & Warm-up
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="vocab-tab" data-bs-toggle="tab" data-bs-target="#vocab-panel" type="button" role="tab">
+          <i class="bi bi-journal-bookmark-fill me-1 text-primary"></i> 2. Key Phrases
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="game-tab" data-bs-toggle="tab" data-bs-target="#game-panel" type="button" role="tab">
+          <i class="bi bi-controller me-1 text-success"></i> 3. Practice Game
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="sing-tab" data-bs-toggle="tab" data-bs-target="#sing-panel" type="button" role="tab">
+          <i class="bi bi-music-note-beamed me-1 text-warning"></i> 4. Sing Along
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="artist-tab" data-bs-toggle="tab" data-bs-target="#artist-panel" type="button" role="tab">
+          <i class="bi bi-person-badge-fill me-1 text-info"></i> 5. About the Artist
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="lessonTabsContent">
+      
+      <!-- TAB 1: VIDEO & WARM-UP -->
+      <div class="tab-pane fade show active" id="video-panel" role="tabpanel">
+        <h3 class="mb-4 text-primary fw-bold"><i class="bi bi-film me-2"></i> Official Music Video</h3>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="video-container mb-2">
+              <iframe src="https://www.youtube.com/embed/GZ3zL7kT6_c" title="Teddy Swims - Lose Control" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="text-end">
+              <a href="https://www.youtube.com/watch?v=GZ3zL7kT6_c" target="_blank" class="btn btn-sm btn-outline-danger mt-1">
+                <i class="bi bi-youtube me-1"></i> Watch directly on YouTube
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card bg-light border-0 p-3 h-100 shadow-sm">
+              <h5 class="fw-bold text-dark border-bottom pb-2 mb-3"><i class="bi bi-chat-dots-fill text-warning me-2"></i> Warm-up Questions</h5>
+              <p class="small text-muted">Reflect on these questions before or after listening:</p>
+              <ol class="ps-3 mb-0 text-secondary">
+                <li class="mb-3">How would you describe the general mood, intensity, and vocal emotion of this song?</li>
+                <li class="mb-3">What does "losing control" mean in the context of an intense romantic relationship?</li>
+                <li class="mb-0">Have you ever felt overwhelmed by strong emotions? Which idioms in English describe that feeling?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation Buttons -->
+        <div class="tab-nav-buttons">
+          <div></div>
+          <button class="btn btn-primary rounded-pill px-4 fw-semibold" onclick="switchTab('vocab-tab')">
+            Next: Key Phrases <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: KEY PHRASES -->
+      <div class="tab-pane fade" id="vocab-panel" role="tabpanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h3 class="text-primary fw-bold m-0"><i class="bi bi-translate me-2"></i> Key Vocabulary & Expressions</h3>
+            <p class="text-muted small m-0 mt-1">Study these 8 target expressions. Click 'Listen' to hear British English pronunciation.</p>
+          </div>
+        </div>
+        <div id="phrases-container" class="row"></div>
+
+        <!-- Bottom Navigation Buttons -->
+        <div class="tab-nav-buttons">
+          <button class="btn btn-outline-secondary rounded-pill px-4 fw-semibold" onclick="switchTab('video-tab')">
+            <i class="bi bi-arrow-left me-1"></i> Previous: Video
+          </button>
+          <button class="btn btn-primary rounded-pill px-4 fw-semibold" onclick="switchTab('game-tab')">
+            Next: Practice Game <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 3: PRACTICE GAME -->
+      <div class="tab-pane fade" id="game-panel" role="tabpanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h3 class="text-primary fw-bold m-0"><i class="bi bi-puzzle-fill me-2"></i> Fill in the Gaps</h3>
+            <p class="text-muted small m-0 mt-1">Complete the sentences with the missing key phrase. Click the lightbulb for hints!</p>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" onclick="resetAndShuffleGame()">
+            <i class="bi bi-shuffle me-1"></i> Reset & Shuffle
+          </button>
+        </div>
+
+        <form id="game-form">
+          <div id="game-questions-container"></div>
+          <div class="d-flex gap-2 mt-4">
+            <button type="button" class="btn btn-success btn-lg px-4 rounded-pill shadow-sm" onclick="checkAnswers()">
+              <i class="bi bi-check-circle-fill me-1"></i> Check Answers
+            </button>
+          </div>
+        </form>
+
+        <div id="game-result" class="mt-4"></div>
+
+        <!-- Bottom Navigation Buttons -->
+        <div class="tab-nav-buttons">
+          <button class="btn btn-outline-secondary rounded-pill px-4 fw-semibold" onclick="switchTab('vocab-tab')">
+            <i class="bi bi-arrow-left me-1"></i> Previous: Key Phrases
+          </button>
+          <button class="btn btn-primary rounded-pill px-4 fw-semibold" onclick="switchTab('sing-tab')">
+            Next: Sing Along <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 4: SING ALONG -->
+      <div class="tab-pane fade" id="sing-panel" role="tabpanel">
+        <h3 class="mb-4 text-primary fw-bold"><i class="bi bi-mic-fill me-2"></i> Sing Along & Pronunciation</h3>
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div class="video-container mb-2">
+              <iframe src="https://www.youtube.com/embed/XpDEdMu_6O8" title="Teddy Swims - Lose Control Live Sing Along" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="text-end">
+              <a href="https://www.youtube.com/watch?v=XpDEdMu_6O8" target="_blank" class="btn btn-sm btn-outline-danger mt-1">
+                <i class="bi bi-youtube me-1"></i> Watch directly on YouTube
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card border-0 bg-light p-4 h-100 shadow-sm">
+              <h5 class="text-info fw-bold mb-3"><i class="bi bi-lightning-charge-fill me-1"></i> Vocal & Pronunciation Tips</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-3">
+                  <strong class="text-dark">Connected Speech:</strong> Notice how individual words blend smoothly together in fast singing:
+                  <br><span class="text-primary font-monospace">"got a hold of me"</span> &rarr; <em class="text-muted">"got-a-hold-a-me"</em>.
+                </li>
+                <li class="mb-3">
+                  <strong class="text-dark">Emotion & Intonation:</strong> Teddy Swims uses a raspy belt in the chorus. Pay attention to how he projects emotional power on <span class="text-primary font-monospace">"falling apart"</span>.
+                </li>
+                <li class="mb-0">
+                  <strong class="text-dark">Rhythm & Shadowing:</strong> Practice shadowing (singing along simultaneously with the track) to match natural native speech pace and rhythm.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation Buttons -->
+        <div class="tab-nav-buttons">
+          <button class="btn btn-outline-secondary rounded-pill px-4 fw-semibold" onclick="switchTab('game-tab')">
+            <i class="bi bi-arrow-left me-1"></i> Previous: Practice Game
+          </button>
+          <button class="btn btn-primary rounded-pill px-4 fw-semibold" onclick="switchTab('artist-tab')">
+            Next: About the Artist <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 5: ABOUT THE ARTIST -->
+      <div class="tab-pane fade" id="artist-panel" role="tabpanel">
+        <h3 class="mb-4 text-primary fw-bold"><i class="bi bi-person-lines-fill me-2"></i> About Teddy Swims</h3>
+        <div class="row g-4">
+          <div class="col-md-4 text-center">
+            <img src="teddytwins.jpg" alt="Teddy Swims Photo" class="artist-img mb-3" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/05668d/ffffff?text=Teddy+Swims';">
+            <div class="bg-light p-3 rounded-3 shadow-sm border text-start">
+              <p class="m-0 small"><strong>Real Name:</strong> Jaten Dimsdale</p>
+              <p class="m-0 small"><strong>Hometown:</strong> Atlanta, Georgia, USA</p>
+              <p class="m-0 small"><strong>Genres:</strong> Soul, R&B, Country, Pop, Rock</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h4 class="fw-bold text-dark mb-1">Jaten Dimsdale (Teddy Swims)</h4>
+            <p class="text-muted small mb-3">Global Soul & R&B Sensation</p>
+            
+            <p><strong>Teddy Swims</strong> is an American singer-songwriter famous for blending soul, R&B, country, and rock with an intensely emotional, raspy vocal range.</p>
+
+            <h5 class="fw-bold text-dark mt-4 mb-2"><i class="bi bi-star-fill text-warning me-1"></i> Career Milestones & Breakthrough</h5>
+            <ul class="text-secondary">
+              <li class="mb-2"><strong>What does SWIMS mean?</strong> "SWIMS" is an acronym for <em>"Someone Who Isn't Me Sometimes"</em>, representing his philosophy that performing allows him to express parts of himself he otherwise couldn't.</li>
+              <li class="mb-2"><strong>YouTube Beginnings:</strong> He initially gained global attention by posting soulful cover songs from his home studio, covering artists ranging from Shania Twain to Amy Winehouse.</li>
+              <li class="mb-2"><strong>Global Chart-Topper:</strong> His hit single <em>"Lose Control"</em> reached #1 on the <strong>US Billboard Hot 100</strong> and topped music charts across Europe, Australia, and New Zealand.</li>
+              <li class="mb-2"><strong>Debut Album:</strong> The track is the lead single from his debut studio album, <em>I've Tried Everything But Therapy (Part 1)</em>, released in 2023 to critical acclaim.</li>
+            </ul>
+
+            <div class="alert alert-info border-0 rounded-3 mt-4 mb-0">
+              <h6 class="fw-bold m-0 mb-1"><i class="bi bi-question-circle-fill me-1"></i> Discussion Prompt</h6>
+              <p class="small m-0">Why do you think soulful songs about emotional vulnerability resonate so strongly with music listeners around the world?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation Buttons -->
+        <div class="tab-nav-buttons">
+          <button class="btn btn-outline-secondary rounded-pill px-4 fw-semibold" onclick="switchTab('sing-tab')">
+            <i class="bi bi-arrow-left me-1"></i> Previous: Sing Along
+          </button>
+          <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="btn btn-success rounded-pill px-4 fw-semibold">
+            <i class="bi bi-check-lg me-1"></i> Lesson Complete! Return Home
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-muted bg-white border-top mt-5">
+    <div class="container">
+      <p class="mb-1">Merry Mery English &copy; 2026 &bull; Interactive Music & Language Exercises</p>
+      <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="text-decoration-none text-primary small">
+        <i class="bi bi-link-45deg me-1"></i> Visit English Exercises Main Repository
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const phrasesData = [
+      {
+        id: 1,
+        phrase: "To have a hold of (someone)",
+        definition: "To have strong emotional power, influence, or control over someone.",
+        example: "Something's got a hold of me lately."
+      },
+      {
+        id: 2,
+        phrase: "Walls closing in",
+        definition: "Feeling overwhelmed, claustrophobic, or helpless due to stress.",
+        example: "It feels like the walls are all closing in on me."
+      },
+      {
+        id: 3,
+        phrase: "The devil's knocking at my door",
+        definition: "Feeling surrounded by negative thoughts, temptations, or bad habits.",
+        example: "I try to stay strong, but the devil's knocking at my door."
+      },
+      {
+        id: 4,
+        phrase: "Out of my mind",
+        definition: "To be crazy, irrational, or losing control of one's thoughts.",
+        example: "I'm out of my mind thinking about what happened.",
+        culturalNote: "<strong>Cultural Note:</strong> Do not confuse this with the proverb <em>'Out of sight, out of mind'</em> (Ojos que no ven, corazón que no siente), which means you forget about things when you don't see them!"
+      },
+      {
+        id: 5,
+        phrase: "To break (someone's) heart",
+        definition: "To cause deep emotional distress or sorrow to someone.",
+        example: "You're breaking my heart, baby."
+      },
+      {
+        id: 6,
+        phrase: "To make a mess of (someone/something)",
+        definition: "To ruin something or leave someone emotionally disorganized.",
+        example: "You really make a mess of me when you leave."
+      },
+      {
+        id: 7,
+        phrase: "To fall apart",
+        definition: "To suffer an emotional breakdown or lose emotional control.",
+        example: "I'm falling apart right in front of you."
+      },
+      {
+        id: 8,
+        phrase: "Bad habits",
+        definition: "Harmful or negative routines that are difficult to break.",
+        example: "My bad habits are taking over again."
+      }
+    ];
+
+    let gameQuestions = [
+      { sentence: "Something's got a _______ me lately, and I can't shake it off.", answer: "hold of", hint: "It means having emotional power or control over you." },
+      { sentence: "When work gets too stressful, I feel like the walls are all _______. ", answer: "closing in", hint: "Think about feeling overwhelmed or enclosed." },
+      { sentence: "When I am tempted to give up, it feels like the devil's _______ my door.", answer: "knocking at", hint: "Action of hitting a door with your hand." },
+      { sentence: "I must be _______ to forget my key for the third time today!", answer: "out of my mind", hint: "A phrase meaning crazy or irrational." },
+      { sentence: "Leaving without saying goodbye is really _______.", answer: "breaking my heart", hint: "Causing deep emotional sadness." },
+      { sentence: "Arguments always _______ my plans and ruin my day.", answer: "make a mess of", hint: "To disorganize or ruin something completely." },
+      { sentence: "Without support, anyone could end up _______ during tough times.", answer: "falling apart", hint: "To break down emotionally." },
+      { sentence: "Staying up until 4 AM every night is one of my worst _______.", answer: "bad habits", hint: "Negative routines that are hard to break." }
+    ];
+
+    function switchTab(tabId) {
+      const tabTrigger = document.getElementById(tabId);
+      if (tabTrigger) {
+        const tab = new bootstrap.Tab(tabTrigger);
+        tab.show();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function renderPhrases() {
+      const container = document.getElementById('phrases-container');
+      container.innerHTML = phrasesData.map(item => `
+        <div class="col-md-6">
+          <div class="phrase-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="text-dark fw-bold mb-0">${item.phrase}</h5>
+              <button class="btn-listen" onclick="speakText('${item.phrase.replace(/'/g, "\\'")}. ${item.example.replace(/'/g, "\\'")}')">
+                <i class="bi bi-volume-up-fill me-1"></i> Listen
+              </button>
+            </div>
+            <p class="mb-2 text-secondary"><strong>Meaning:</strong> ${item.definition}</p>
+            <p class="mb-2 text-primary"><em>Example: "${item.example}"</em></p>
+            ${item.culturalNote ? `<div class="alert alert-warning py-2 px-3 mt-2 mb-0 small">${item.culturalNote}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-GB';
+        const voices = window.speechSynthesis.getVoices();
+        const ukMale = voices.find(v => v.lang.includes('en-GB') && (v.name.includes('Male') || v.name.includes('George') || v.name.includes('Oliver') || v.name.includes('UK') || v.name.includes('Daniel')));
+        if (ukMale) utterance.voice = ukMale;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function renderGame() {
+      const container = document.getElementById('game-questions-container');
+      container.innerHTML = gameQuestions.map((q, idx) => `
+        <div class="game-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <label class="fw-bold text-dark">Sentence ${idx + 1}:</label>
+            <button type="button" class="btn-hint" onclick="toggleHint(${idx})" title="Click for a hint">
+              <i class="bi bi-lightbulb-fill"></i>
+            </button>
+          </div>
+          <p class="fs-5 mb-2">${q.sentence.replace('_______', `<input type="text" id="input-${idx}" class="form-control d-inline-block w-auto mx-1 shadow-sm" placeholder="type phrase...">`)}</p>
+          <div id="hint-${idx}" class="hint-text">💡 Hint: ${q.hint}</div>
+          <div id="listen-btn-${idx}" class="mt-2" style="display:none;">
+            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill" onclick="speakText('${q.sentence.replace('_______', q.answer).replace(/'/g, "\\'")}')">
+              <i class="bi bi-volume-up-fill me-1"></i> Listen Correct Sentence
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleHint(idx) {
+      const hintEl = document.getElementById(`hint-${idx}`);
+      hintEl.style.display = hintEl.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function checkAnswers() {
+      let score = 0;
+      gameQuestions.forEach((q, idx) => {
+        const input = document.getElementById(`input-${idx}`);
+        const userAns = input.value.trim().toLowerCase();
+        const targetAns = q.answer.toLowerCase();
+        const listenBtn = document.getElementById(`listen-btn-${idx}`);
+
+        if (userAns === targetAns) {
+          input.classList.remove('is-invalid');
+          input.classList.add('is-valid');
+          score++;
+        } else {
+          input.classList.remove('is-valid');
+          input.classList.add('is-invalid');
+        }
+        listenBtn.style.display = 'block';
+      });
+
+      const total = gameQuestions.length;
+      const incorrect = total - score;
+      const percentage = Math.round((score / total) * 100);
+      const resultDiv = document.getElementById('game-result');
+
+      if (score === total) {
+        resultDiv.innerHTML = `
+          <div class="alert alert-success fw-bold p-4 text-center rounded-3 shadow-sm">
+            <h4 class="alert-heading fw-bold mb-1">🎉 Outstanding Perfect Score!</h4>
+            <p class="mb-0 fs-5">${score}/${total} Correct (${percentage}%)</p>
+            <p class="small text-success-emphasis mt-1 mb-0">You have completely mastered all expressions from the song!</p>
+          </div>
+        `;
+        if (typeof confetti === 'function') confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+      } else if (score >= 5) {
+        resultDiv.innerHTML = `
+          <div class="alert alert-info fw-bold p-4 text-center rounded-3 shadow-sm">
+            <h4 class="alert-heading fw-bold mb-1">👏 Great Job!</h4>
+            <p class="mb-0 fs-5">${score} Correct &bull; ${incorrect} Incorrect (${percentage}%)</p>
+            <p class="small text-info-emphasis mt-1 mb-0">Review the highlighted sentences and listen to the audio playback above!</p>
+          </div>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <div class="alert alert-warning fw-bold p-4 text-center rounded-3 shadow-sm">
+            <h4 class="alert-heading fw-bold mb-1">💪 Good Practice Attempt!</h4>
+            <p class="mb-0 fs-5">${score} Correct &bull; ${incorrect} Incorrect (${percentage}%)</p>
+            <p class="small text-warning-emphasis mt-1 mb-0">Check the Key Phrases tab to review definitions, then click 'Reset & Shuffle' to try again!</p>
+          </div>
+        `;
+      }
+    }
+
+    function resetAndShuffleGame() {
+      gameQuestions.sort(() => Math.random() - 0.5);
+      renderGame();
+      document.getElementById('game-result').innerHTML = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPhrases();
+      renderGame();
+      if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    });
+  </script>
+</body>
+</html>
