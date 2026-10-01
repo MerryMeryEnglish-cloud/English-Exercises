@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snow-White and Rose-Red - Interactive Exercise</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .tab-btn.active {
+      border-bottom: 3px solid #0284c7;
+      color: #0284c7;
+      font-weight: 700;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between font-sans">
+
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center space-x-4">
+        <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="inline-flex items-center gap-2 text-sky-600 font-semibold hover:text-sky-800 transition-colors text-sm sm:text-base">
+          <i class="fa-solid fa-house"></i> Home
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-800 transition-colors text-sm sm:text-base">
+          <i class="fa-solid fa-book"></i> Dictionary
+        </a>
+      </div>
+      <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 hidden sm:block">
+        Brothers Grimm Fairy Tales
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-5xl w-full mx-auto p-4 sm:p-6 flex-grow">
+
+    <!-- BRANDING LOGO & MAIN TITLE HEADER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div class="flex items-center gap-5 text-center sm:text-left">
+        <!-- Official Logo image directly loaded from repository -->
+        <img src="logo.png" alt="Merry Mery English Logo" class="h-20 w-20 sm:h-24 sm:w-24 object-contain shrink-0">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">Snow-White and Rose-Red</h1>
+          <p class="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Merry Mery English • Interactive Reading Unit</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex border-b border-slate-200 mb-6 overflow-x-auto text-sm sm:text-base font-medium text-slate-600 no-scrollbar">
+      <button onclick="switchTab('story')" id="tab-story" class="tab-btn active px-4 py-3 whitespace-nowrap hover:text-sky-600 transition-colors">
+        <i class="fa-solid fa-book-open mr-1.5"></i> Story
+      </button>
+      <button onclick="switchTab('vocabulary')" id="tab-vocabulary" class="tab-btn px-4 py-3 whitespace-nowrap hover:text-sky-600 transition-colors">
+        <i class="fa-solid fa-spell-check mr-1.5"></i> Vocabulary
+      </button>
+      <button onclick="switchTab('vocab-practice')" id="tab-vocab-practice" class="tab-btn px-4 py-3 whitespace-nowrap hover:text-sky-600 transition-colors">
+        <i class="fa-solid fa-dumbbell mr-1.5"></i> Vocab Practice
+      </button>
+      <button onclick="switchTab('comprehension')" id="tab-comprehension" class="tab-btn px-4 py-3 whitespace-nowrap hover:text-sky-600 transition-colors">
+        <i class="fa-solid fa-brain mr-1.5"></i> Comprehension
+      </button>
+      <button onclick="switchTab('author')" id="tab-author" class="tab-btn px-4 py-3 whitespace-nowrap hover:text-sky-600 transition-colors">
+        <i class="fa-solid fa-feather-pointed mr-1.5"></i> About the Authors
+      </button>
+    </div>
+
+    <!-- TAB 1: STORY -->
+    <section id="content-story" class="tab-content bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-100">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Story Summary</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Read or listen to the tale (~280 words)</p>
+        </div>
+        <button id="story-audio-btn" onclick="toggleStoryAudio()" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-2.5 rounded-lg inline-flex items-center gap-2 shadow transition-all shrink-0">
+          <i id="story-audio-icon" class="fa-solid fa-volume-high"></i> <span id="story-audio-text">Listen</span>
+        </button>
+      </div>
+      <article class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg space-y-4">
+        <p>A poor widow lived in a cottage with two gentle daughters: quiet Snow-White and lively Rose-Red. Once, after sleeping peacefully near a steep <strong>precipice</strong> in the dark forest, their mother explained that a guardian angel had protected them from falling.</p>
+        <p>During cold winter evenings, Snow-White hung a polished brass kettle on the <strong>hob</strong> while their mother read aloud. One freezing night, a giant bear knocked to <strong>seek shelter</strong>. The kind girls swept the snow off his coat and played playfully, while the bear teased them not to beat their <strong>wooer</strong> dead. The bear stayed all winter but departed in spring to guard his royal treasures from greedy underground dwarfs, who could only dig through the ground when the earth thawed.</p>
+        <p>Later, while collecting firewood, the sisters found an ungrateful dwarf whose beard was stuck in a <strong>crevice</strong> of a <strong>felled tree</strong>. Snow-White used her scissors to free him, but the dwarf responded with <strong>grumble</strong>s and <strong>ingratitude</strong>. Soon after, they saved him twice more: first when an entangled fishing line nearly dragged him into the water with a large fish, and later when a giant eagle seized him on the heath. Each time, cutting his beard or tearing his <strong>odious</strong> coat only provoked his <strong>uncouth</strong> rants.</p>
+        <p>Finally, the sisters caught the dwarf admiring his stolen sparkling jewels. Suddenly, the bear emerged from the forest and struck the wicked creature down. Instantly, the bearskin fell off, revealing a handsome prince! He explained that the dwarf had bewitched him and stolen his treasure. Freed from the spell, the prince married Snow-White and his brother married Rose-Red, living happily ever after with their mother.</p>
+      </article>
+    </section>
+
+    <!-- TAB 2: VOCABULARY -->
+    <section id="content-vocabulary" class="tab-content hidden space-y-4">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-6">
+        <h2 class="text-2xl font-bold text-slate-900">Key Vocabulary & Phrases</h2>
+        <p class="text-slate-600 text-sm mt-1">Study these 10 terms from the text before taking the practice quiz.</p>
+      </div>
+      <div id="vocab-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- TAB 3: VOCAB PRACTICE -->
+    <section id="content-vocab-practice" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Vocabulary Practice</h2>
+          <p class="text-slate-600 text-sm">Select the term that best fits each sentence context.</p>
+        </div>
+        <button onclick="resetVocabPractice()" class="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg inline-flex items-center gap-2 transition-all shadow">
+          <i class="fa-solid fa-rotate-right"></i> Reset & Shuffle
+        </button>
+      </div>
+
+      <div id="vocab-quiz-container" class="space-y-4"></div>
+
+      <div id="vocab-result" class="hidden bg-white p-6 rounded-xl shadow-md border border-slate-200 text-center space-y-3">
+        <h3 id="vocab-result-title" class="text-2xl font-bold"></h3>
+        <p id="vocab-result-text" class="text-slate-600"></p>
+      </div>
+    </section>
+
+    <!-- TAB 4: COMPREHENSION -->
+    <section id="content-comprehension" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Reading Comprehension</h2>
+          <p class="text-slate-600 text-sm">Answer deep analytical questions. Press 💡 Hint for clues.</p>
+        </div>
+        <button onclick="resetCompPractice()" class="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg inline-flex items-center gap-2 transition-all shadow">
+          <i class="fa-solid fa-rotate-right"></i> Reset & Shuffle
+        </button>
+      </div>
+
+      <div id="comp-quiz-container" class="space-y-6"></div>
+
+      <div id="comp-result" class="hidden bg-white p-6 rounded-xl shadow-md border border-slate-200 text-center space-y-3">
+        <h3 id="comp-result-title" class="text-2xl font-bold"></h3>
+        <p id="comp-result-text" class="text-slate-600"></p>
+      </div>
+    </section>
+
+    <!-- TAB 5: ABOUT THE AUTHORS -->
+    <section id="content-author" class="tab-content hidden bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200">
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">About the Authors</h2>
+      <article class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
+        <p><strong>Jacob (1785–1863) and Wilhelm Grimm (1786–1859)</strong> were German scholars, philologists, and cultural researchers born in Hanau, near Frankfurt. Throughout their lives, they remained close friends and brothers, studying law together at Marburg University.</p>
+        <p>While Jacob focused on historic German linguistics, Wilhelm dedicated his work to folk poetry and storytelling. Together, they collaborated on compiling the German dictionary and preserved centuries of traditional European oral folklore. They published their legendary collection, <em>Nursery and Household Tales</em>, in two volumes in 1812 and 1814.</p>
+        <p>Originally compiled as an academic effort to preserve cultural heritage rather than children's books, their stories gained widespread popularity. English translations in the 1820s adapted these fairy tales for younger readers, turning works like <em>Snow-White and Rose-Red</em> into timeless classics.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- FOOTER & NEXT EXERCISE BUTTON -->
+  <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm font-medium text-slate-500">
+        Merry Mery English
+      </div>
+      <div>
+        <button onclick="nextTab()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow inline-flex items-center gap-2 transition-all">
+          Next Exercise <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab Sequences for 'Next Exercise' button navigation
+    const tabSequence = ['story', 'vocabulary', 'vocab-practice', 'comprehension', 'author'];
+    let currentTabIdx = 0;
+
+    // Full Story Text for Audio Engine
+    const storyText = "A poor widow lived in a cottage with two gentle daughters: quiet Snow-White and lively Rose-Red. Once, after sleeping peacefully near a steep precipice in the dark forest, their mother explained that a guardian angel had protected them from falling. During cold winter evenings, Snow-White hung a polished brass kettle on the hob while their mother read aloud. One freezing night, a giant bear knocked to seek shelter. The kind girls swept the snow off his coat and played playfully, while the bear teased them not to beat their wooer dead. The bear stayed all winter but departed in spring to guard his royal treasures from greedy underground dwarfs, who could only dig through the ground when the earth thawed. Later, while collecting firewood, the sisters found an ungrateful dwarf whose beard was stuck in a crevice of a felled tree. Snow-White used her scissors to free him, but the dwarf responded with grumbles and ingratitude. Soon after, they saved him twice more: first when an entangled fishing line nearly dragged him into the water with a large fish, and later when a giant eagle seized him on the heath. Each time, cutting his beard or tearing his odious coat only provoked his uncouth rants. Finally, the sisters caught the dwarf admiring his stolen sparkling jewels. Suddenly, the bear emerged from the forest and struck the wicked creature down. Instantly, the bearskin fell off, revealing a handsome prince! He explained that the dwarf had bewitched him and stolen his treasure. Freed from the spell, the prince married Snow-White and his brother married Rose-Red, living happily ever after with their mother.";
+
+    // 10 Key Vocabulary Items
+    const vocabData = [
+      { id: 1, term: "Precipice", def: "A very steep cliff or dangerous high edge of a rock.", ex: "They slept safely without realizing they were right near a dangerous precipice." },
+      { id: 2, term: "Seek shelter", def: "To look for a safe place to stay protected from weather or harm.", ex: "The traveler knocked on their cottage door to seek shelter from the freezing snowstorm." },
+      { id: 3, term: "Hob", def: "A flat shelf or grate beside a fireplace used for warming pots.", ex: "Snow-White hung the bright brass kettle on the hob to keep the water warm." },
+      { id: 4, term: "Wooer", def: "A person who woos or courts someone with the intention of marriage.", ex: "The friendly bear playfully asked the girls not to beat their wooer dead." },
+      { id: 5, term: "Felled tree", def: "A tree that has been cut or chopped down to the ground.", ex: "The dwarf was jumping around helpless beside a giant felled tree." },
+      { id: 6, term: "Crevice", def: "A narrow opening or crack, especially in rock or wood.", ex: "The end of the dwarf's long white beard was caught firmly in a crevice." },
+      { id: 7, term: "Odious", def: "Extremely unpleasant, offensive, or repulsive.", ex: "The ungrateful dwarf shouted odious insults at the girls who saved him." },
+      { id: 8, term: "Uncouth", def: "Lacking good manners, refinement, or politeness; rude.", ex: "The dwarf grumbled uncouth words without thanking them for their help." },
+      { id: 9, term: "Ingratitude", def: "A lack of thankfulness or appreciation for a kindness received.", ex: "Despite all their kindness, the wicked dwarf showed only rude ingratitude." },
+      { id: 10, term: "Grumble", def: "To complain about something in a low, discontented voice.", ex: "The little man started to grumble as soon as his beard was set free." }
+    ];
+
+    // 10 Deep Comprehension Questions
+    const compData = [
+      {
+        id: 1,
+        q: "Why were the sisters safe after sleeping near the steep precipice in the dark forest?",
+        options: [
+          "A guardian angel watched over them and kept them from falling.",
+          "The bear stayed awake all night to guard their bed.",
+          "The wicked dwarf warned them about the danger.",
+          "Their mother woke them up before they stepped near it."
+        ],
+        correct: 0,
+        hint: "Their mother told them a heavenly guardian keeps good children safe."
+      },
+      {
+        id: 2,
+        q: "Where did Snow-White place the kettle during cold winter evenings?",
+        options: [
+          "On the dining table next to the bread.",
+          "On the hob by the fireplace.",
+          "Outside in the snow to cool down.",
+          "On a high wooden shelf in the kitchen."
+        ],
+        correct: 1,
+        hint: "It was hung on a warm ledge right beside the hearth."
+      },
+      {
+        id: 3,
+        q: "Why did the bear knock on the cottage door during the winter night?",
+        options: [
+          "He wanted to steal the mother's golden book.",
+          "He wanted to seek shelter from the extreme cold.",
+          "He was searching for his brother.",
+          "He was chasing the wicked dwarf."
+        ],
+        correct: 1,
+        hint: "He was half-frozen and only wanted to warm himself beside their fire."
+      },
+      {
+        id: 4,
+        q: "What did the sisters do to make the bear comfortable in their home?",
+        options: [
+          "They built him a wooden house outside.",
+          "They brought a broom and swept the snow out of his fur.",
+          "They fed him berries and fish from the river.",
+          "They locked the door to keep him inside forever."
+        ],
+        correct: 1,
+        hint: "They cleaned his heavy coat so he could lie comfortably by the hearth."
+      },
+      {
+        id: 5,
+        q: "Why could the dwarfs only come out to steal treasures during spring and summer?",
+        options: [
+          "They slept all winter long underground.",
+          "The ground was frozen hard in winter, stopping them from digging out.",
+          "The eagle only hunted them in winter.",
+          "The bear guarded the caves only during the cold months."
+        ],
+        correct: 1,
+        hint: "When the sun thawed the earth, they could break through to the surface."
+      },
+      {
+        id: 6,
+        q: "Where was the dwarf's beard stuck when the sisters first met him in the forest?",
+        options: [
+          "In a crevice of a felled tree.",
+          "In a fishing line in the river.",
+          "In the eagle's sharp talons.",
+          "In the door bolt of the cottage."
+        ],
+        correct: 0,
+        hint: "He was trying to split a chopped tree for firewood when the wood closed on his beard."
+      },
+      {
+        id: 7,
+        q: "How did Snow-White free the dwarf whenever his beard was trapped?",
+        options: [
+          "She pulled hard until it snapped.",
+          "She cut the end of his beard with her scissors.",
+          "She asked the bear to bite the rope.",
+          "She used hot water to melt the knot."
+        ],
+        correct: 1,
+        hint: "She pulled a small cutting tool out of her pocket."
+      },
+      {
+        id: 8,
+        q: "What second danger threatened the dwarf by the brook?",
+        options: [
+          "He was slipping down a precipice.",
+          "An entangled fishing line and a big fish were dragging him into the water.",
+          "A wild bear was chasing him into the forest.",
+          "His sack of pearls fell into deep mud."
+        ],
+        correct: 1,
+        hint: "The wind tangled his beard with his line while fishing, and a big fish bit the hook."
+      },
+      {
+        id: 9,
+        q: "What creature grabbed the dwarf on the heath before the sisters rescued him?",
+        options: [
+          "A wild wolf",
+          "A giant eagle",
+          "A hungry bear",
+          "A big fish"
+        ],
+        correct: 1,
+        hint: "It was a large bird of prey hovering in the sky before swooping down."
+      },
+      {
+        id: 10,
+        q: "How was the prince finally freed from the dwarf's magic curse?",
+        options: [
+          "By drinking water from the forest brook.",
+          "When the bear struck down the evil dwarf.",
+          "When Rose-Red gave him a white rose.",
+          "By finding the lost sack of pearls."
+        ],
+        correct: 1,
+        hint: "The curse ended as soon as the wicked thief met his well-deserved punishment."
+      }
+    ];
+
+    // State Variables
+    let currentVocabQuestions = [];
+    let vocabAnswersState = {};
+    let currentCompQuestions = [];
+    let compAnswersState = {};
+    let isStorySpeaking = false;
+
+    function speakText(text, onEndCallback = null) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.90;  // Measured, clear speed
+      utterance.pitch = 0.82; // Lower pitch to enforce a masculine acoustic timbre
+      utterance.lang = 'en-GB';
+
+      const voices = window.speechSynthesis.getVoices();
+      
+      // Strict search for British Male voice
+      let britishMaleVoice = voices.find(v => {
+        const langMatch = v.lang.includes('en-GB') || v.lang.includes('en_GB') || v.lang.includes('en-UK');
+        const nameLower = v.name.toLowerCase();
+        const isMale = nameLower.includes('male') || nameLower.includes('george') || 
+                       nameLower.includes('oliver') || nameLower.includes('arthur') || 
+                       nameLower.includes('brian') || nameLower.includes('ryan') || 
+                       nameLower.includes('natural') || nameLower.includes('uk english male');
+        return langMatch && isMale;
+      });
+
+      // Fallback 1: Any British English voice
+      if (!britishMaleVoice) {
+        britishMaleVoice = voices.find(v => v.lang.includes('en-GB') || v.lang.includes('en_GB'));
+      }
+
+      // Fallback 2: Any English Male voice
+      if (!britishMaleVoice) {
+        britishMaleVoice = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('male'));
+      }
+
+      if (britishMaleVoice) {
+        utterance.voice = britishMaleVoice;
+      }
+
+      if (onEndCallback) {
+        utterance.onend = onEndCallback;
+        utterance.onerror = onEndCallback;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function toggleStoryAudio() {
+      const btnIcon = document.getElementById('story-audio-icon');
+      const btnText = document.getElementById('story-audio-text');
+      const btn = document.getElementById('story-audio-btn');
+
+      if (isStorySpeaking) {
+        stopSpeech();
+        isStorySpeaking = false;
+        btnIcon.className = "fa-solid fa-volume-high";
+        btnText.textContent = "Listen";
+        btn.className = "bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-2.5 rounded-lg inline-flex items-center gap-2 shadow transition-all shrink-0";
+      } else {
+        isStorySpeaking = true;
+        btnIcon.className = "fa-solid fa-square";
+        btnText.textContent = "Stop";
+        btn.className = "bg-rose-600 hover:bg-rose-700 text-white font-medium px-5 py-2.5 rounded-lg inline-flex items-center gap-2 shadow transition-all shrink-0";
+
+        speakText(storyText, () => {
+          isStorySpeaking = false;
+          btnIcon.className = "fa-solid fa-volume-high";
+          btnText.textContent = "Listen";
+          btn.className = "bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-2.5 rounded-lg inline-flex items-center gap-2 shadow transition-all shrink-0";
+        });
+      }
+    }
+
+    function switchTab(tabKey) {
+      stopSpeech();
+      if (isStorySpeaking) {
+        isStorySpeaking = false;
+        const btnIcon = document.getElementById('story-audio-icon');
+        const btnText = document.getElementById('story-audio-text');
+        const btn = document.getElementById('story-audio-btn');
+        if (btnIcon && btnText && btn) {
+          btnIcon.className = "fa-solid fa-volume-high";
+          btnText.textContent = "Listen";
+          btn.className = "bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-2.5 rounded-lg inline-flex items-center gap-2 shadow transition-all shrink-0";
+        }
+      }
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+
+      document.getElementById(`tab-${tabKey}`).classList.add('active');
+      document.getElementById(`content-${tabKey}`).classList.remove('hidden');
+
+      currentTabIdx = tabSequence.indexOf(tabKey);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextTab() {
+      currentTabIdx = (currentTabIdx + 1) % tabSequence.length;
+      switchTab(tabSequence[currentTabIdx]);
+    }
+
+    function renderVocabList() {
+      const container = document.getElementById('vocab-list');
+      container.innerHTML = vocabData.map(item => `
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-sky-300 transition-all">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-bold text-lg text-slate-800">${item.term}</h3>
+              <button onclick="speakText('${item.term.replace(/'/g, "\\'")}... Example: ${item.ex.replace(/'/g, "\\'")}')" class="bg-sky-100 hover:bg-sky-200 text-sky-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1.5 transition-colors shrink-0">
+                <i class="fa-solid fa-volume-high"></i> Listen
+              </button>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">${item.def}</p>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-lg text-xs text-slate-600 italic border-l-2 border-sky-400">
+            "${item.ex}"
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function initVocabPractice() {
+      currentVocabQuestions = vocabData.map(item => {
+        const distractors = vocabData.filter(v => v.id !== item.id).map(v => v.term);
+        const shuffledDistractors = shuffleArray(distractors).slice(0, 3);
+        const options = shuffleArray([item.term, ...shuffledDistractors]);
+        return {
+          id: item.id,
+          sentence: item.ex.replace(item.term, "_______"),
+          correctTerm: item.term,
+          options: options
+        };
+      });
+      currentVocabQuestions = shuffleArray(currentVocabQuestions);
+      vocabAnswersState = {};
+      renderVocabQuiz();
+    }
+
+    function renderVocabQuiz() {
+      const container = document.getElementById('vocab-quiz-container');
+      document.getElementById('vocab-result').classList.add('hidden');
+
+      container.innerHTML = currentVocabQuestions.map((q, idx) => {
+        const qNum = idx + 1; // Always preserves 1 to 10 sequential numbering
+        const state = vocabAnswersState[q.id] || { attempts: 0, solved: false, selected: null };
+
+        return `
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+            <div class="font-semibold text-slate-800 flex items-start gap-2">
+              <span class="bg-sky-100 text-sky-800 text-xs px-2.5 py-1 rounded-full font-bold mt-0.5">${qNum}</span>
+              <span>${q.sentence}</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              ${q.options.map(opt => {
+                let btnStyle = "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200";
+                if (state.solved && opt === q.correctTerm) {
+                  btnStyle = "bg-emerald-100 border-emerald-500 text-emerald-800 font-bold";
+                } else if (state.selected === opt && !state.solved) {
+                  btnStyle = "bg-rose-100 border-rose-400 text-rose-800";
+                }
+
+                return `
+                  <button 
+                    onclick="handleVocabAnswer(${q.id}, '${opt.replace(/'/g, "\\'")}')" 
+                    ${state.solved ? 'disabled' : ''}
+                    class="p-3 text-left border rounded-lg text-sm transition-all ${btnStyle}">
+                    ${opt}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleVocabAnswer(qId, selectedOpt) {
+      const q = currentVocabQuestions.find(item => item.id === qId);
+      if (!vocabAnswersState[qId]) {
+        vocabAnswersState[qId] = { attempts: 0, solved: false, selected: null };
+      }
+
+      const state = vocabAnswersState[qId];
+      if (state.solved) return;
+
+      state.attempts += 1;
+      state.selected = selectedOpt;
+
+      if (selectedOpt === q.correctTerm) {
+        state.solved = true;
+      }
+
+      renderVocabQuiz();
+      checkVocabCompletion();
+    }
+
+    function checkVocabCompletion() {
+      const allSolved = currentVocabQuestions.every(q => vocabAnswersState[q.id]?.solved);
+      if (allSolved) {
+        let totalAttempts = 0;
+        Object.values(vocabAnswersState).forEach(s => totalAttempts += s.attempts);
+
+        const resultDiv = document.getElementById('vocab-result');
+        const titleEl = document.getElementById('vocab-result-title');
+        const textEl = document.getElementById('vocab-result-text');
+
+        if (totalAttempts === 10) {
+          titleEl.textContent = "🎉 Perfect Score!";
+          titleEl.className = "text-2xl font-bold text-emerald-600";
+          textEl.textContent = "Outstanding work! You solved all 10 vocabulary items on your very first try!";
+        } else if (totalAttempts <= 15) {
+          titleEl.textContent = "🌟 Well Done!";
+          titleEl.className = "text-2xl font-bold text-sky-600";
+          textEl.textContent = `Great job! You completed all 10 terms in ${totalAttempts} total attempts.`;
+        } else {
+          titleEl.textContent = "👍 Practice Completed!";
+          titleEl.className = "text-2xl font-bold text-amber-600";
+          textEl.textContent = "You've selected all correct terms! Click 'Reset & Shuffle' anytime to practice again.";
+        }
+
+        resultDiv.classList.remove('hidden');
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+      }
+    }
+
+    function resetVocabPractice() {
+      initVocabPractice();
+    }
+
+    function initCompPractice() {
+      currentCompQuestions = shuffleArray([...compData]);
+      compAnswersState = {};
+      renderCompQuiz();
+    }
+
+    function renderCompQuiz() {
+      const container = document.getElementById('comp-quiz-container');
+      document.getElementById('comp-result').classList.add('hidden');
+
+      container.innerHTML = currentCompQuestions.map((q, idx) => {
+        const qNum = idx + 1; // Preserves 1 to 10 sequential numbering
+        const state = compAnswersState[q.id] || { attempts: 0, solved: false, selectedIdx: null, showHint: false };
+
+        return `
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="font-semibold text-slate-800 flex items-start gap-2 text-base sm:text-lg">
+                <span class="bg-sky-100 text-sky-800 text-xs px-2.5 py-1 rounded-full font-bold mt-1">${qNum}</span>
+                <span>${q.q}</span>
+              </div>
+              <button 
+                onclick="toggleHint(${q.id})" 
+                class="bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-lg inline-flex items-center gap-1.5 transition-colors shrink-0">
+                <i class="fa-regular fa-lightbulb"></i> Hint
+              </button>
+            </div>
+
+            ${state.showHint ? `
+              <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded text-xs sm:text-sm text-amber-900">
+                <strong>💡 Hint:</strong> ${q.hint}
+              </div>
+            ` : ''}
+
+            <div class="space-y-2">
+              ${q.options.map((opt, optIdx) => {
+                let btnStyle = "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200";
+                if (state.solved && optIdx === q.correct) {
+                  btnStyle = "bg-emerald-100 border-emerald-500 text-emerald-900 font-semibold";
+                } else if (state.selectedIdx === optIdx && !state.solved) {
+                  btnStyle = "bg-rose-100 border-rose-400 text-rose-900";
+                }
+
+                return `
+                  <button 
+                    onclick="handleCompAnswer(${q.id}, ${optIdx})" 
+                    ${state.solved ? 'disabled' : ''}
+                    class="w-full text-left p-3 border rounded-lg text-sm sm:text-base transition-all ${btnStyle}">
+                    ${opt}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleHint(qId) {
+      if (!compAnswersState[qId]) {
+        compAnswersState[qId] = { attempts: 0, solved: false, selectedIdx: null, showHint: true };
+      } else {
+        compAnswersState[qId].showHint = !compAnswersState[qId].showHint;
+      }
+      renderCompQuiz();
+    }
+
+    function handleCompAnswer(qId, selectedIdx) {
+      const q = currentCompQuestions.find(item => item.id === qId);
+      if (!compAnswersState[qId]) {
+        compAnswersState[qId] = { attempts: 0, solved: false, selectedIdx: null, showHint: false };
+      }
+
+      const state = compAnswersState[qId];
+      if (state.solved) return;
+
+      state.attempts += 1;
+      state.selectedIdx = selectedIdx;
+
+      if (selectedIdx === q.correct) {
+        state.solved = true;
+      }
+
+      renderCompQuiz();
+      checkCompCompletion();
+    }
+
+    function checkCompCompletion() {
+      const allSolved = currentCompQuestions.every(q => compAnswersState[q.id]?.solved);
+      if (allSolved) {
+        let totalAttempts = 0;
+        Object.values(compAnswersState).forEach(s => totalAttempts += s.attempts);
+
+        const resultDiv = document.getElementById('comp-result');
+        const titleEl = document.getElementById('comp-result-title');
+        const textEl = document.getElementById('comp-result-text');
+
+        if (totalAttempts === 10) {
+          titleEl.textContent = "🏆 Master Reader! Flawless Score!";
+          titleEl.className = "text-2xl font-bold text-emerald-600";
+          textEl.textContent = "Incredible comprehension skills! You answered all 10 questions correctly on your first attempt!";
+        } else if (totalAttempts <= 16) {
+          titleEl.textContent = "👏 Great Comprehension!";
+          titleEl.className = "text-2xl font-bold text-sky-600";
+          textEl.textContent = `Well done! You answered all questions in ${totalAttempts} total attempts.`;
+        } else {
+          titleEl.textContent = "✨ Quiz Finished!";
+          titleEl.className = "text-2xl font-bold text-amber-600";
+          textEl.textContent = "You've answered all questions! Click 'Reset & Shuffle' anytime to test yourself again.";
+        }
+
+        resultDiv.classList.remove('hidden');
+        confetti({ particleCount: 140, spread: 80, origin: { y: 0.6 } });
+      }
+    }
+
+    function resetCompPractice() {
+      initCompPractice();
+    }
+
+    // Helper: Array Shuffle
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Ensure voices loaded in Web Speech API
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+
+      renderVocabList();
+      initVocabPractice();
+      initCompPractice();
+    });
+  </script>
+</body>
+</html>
