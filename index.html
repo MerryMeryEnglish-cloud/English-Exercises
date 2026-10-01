@@ -156,53 +156,6 @@
             transform: translateY(-2px);
         }
 
-        /* Featured Artist Card */
-        .featured-card {
-            background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .featured-card img {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-        }
-
-        .featured-card-info h4 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .featured-card-info p {
-            font-size: 0.85rem;
-            color: #475569;
-            margin-bottom: 10px;
-        }
-
-        .featured-btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .featured-btn:hover {
-            background: var(--primary-hover);
-        }
-
         /* Instagram Footer */
         .footer {
             margin-top: 35px;
@@ -227,13 +180,6 @@
 
         .insta-btn:hover {
             background: #fdf2f8;
-        }
-
-        @media (max-width: 500px) {
-            .featured-card {
-                flex-direction: column;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -293,16 +239,6 @@
         <a href="attheairport.html" class="btn-item">✈️ At the Airport (Interactive Scenario)</a>
     </div>
 
-    <!-- Featured Lesson Card -->
-    <div class="featured-card">
-        <img src="teddytwins.jpg" alt="Teddy Swims" onerror="this.src='https://via.placeholder.com/90?text=Teddy'">
-        <div class="featured-card-info">
-            <h4>Featured Lesson: Teddy Swims</h4>
-            <p>Master key idioms, practice gap-fills, and sing along to "Lose Control".</p>
-            <a href="lose_control_teddy_swims.html" class="featured-btn">Start Lesson 🎤</a>
-        </div>
-    </div>
-
     <!-- Footer Instagram -->
     <div class="footer">
         <a href="https://www.instagram.com/merrymeryenglish/" target="_blank" class="insta-btn">
@@ -323,7 +259,7 @@
     // Funciones globales para reproducir audio con acento británico en cualquier ejercicio
     function speakUKFemale(text) {
         if (window.responsiveVoice) {
-            responsiveVoice.cancel(); // Detiene audios previos si los hay
+            responsiveVoice.cancel();
             responsiveVoice.speak(text, "UK English Female", { rate: 0.9, pitch: 1 });
         }
     }
