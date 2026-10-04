@@ -196,3 +196,109 @@
     </style>
 </head>
 <body>
+
+<div class="container">
+    <!-- Header con el Logo Principal -->
+    <div class="header">
+        <div class="header-logo-wrapper">
+            <img src="logo.png" alt="Merry Mery English Logo" class="logo">
+        </div>
+        <h1>Exercises & Interactive Quizzes</h1>
+    </div>
+
+    <!-- Cambridge Dictionary Widget -->
+    <div class="dictionary-card">
+        <h3>📖 Diccionario Cambridge (Inglés - Español)</h3>
+        <form onsubmit="searchCambridge(event)" class="search-box">
+            <input type="text" id="cambridgeQuery" placeholder="Escribe una palabra en inglés..." required>
+            <button type="submit">Buscar</button>
+        </form>
+        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dictionary-link">Abrir Cambridge Dictionary ↗</a>
+    </div>
+
+    <!-- Section 1: Writing -->
+    <div class="section-title">✍️ Writing</div>
+    <div class="btn-list">
+        <a href="writing_studio.html" class="btn-item">Interactive Writing Studio (Postcards of San Pedro)</a>
+    </div>
+
+    <!-- Section 2: Grammar -->
+    <div class="section-title">📐 Grammar</div>
+    <div class="btn-list">
+        <a href="conditionals.html" class="btn-item">Conditionals Masterclass (0, 1, 2 & 3)</a>
+        <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">Reported Speech Quiz</a>
+        <a href="simplepastandpresentperfect.html" class="btn-item">Simple Past vs. Present Perfect Quiz</a>
+        <a href="merry_mery_english_verb_mean_masterclass%20(1).html" class="btn-item">Verb Mean Masterclass</a>
+    </div>
+
+    <!-- Section 3: Vocabulary & Phrasal Verbs -->
+    <div class="section-title">💭 Vocabulary & Phrasal Verbs</div>
+    <div class="btn-list">
+        <a href="baking_english_lesson.html" class="btn-item">🧁 Baking & Pastry Masterclass (Red Velvet Special)</a>
+        <a href="dynamic_english_phrasal_verbs_master_game%20(1).html" class="btn-item">Phrasal Verbs Master Game</a>
+        <a href="business_acronyms.html" class="btn-item">💼 Business Acronyms & Abbreviations</a>
+    </div>
+
+    <!-- Section 4: Reading & Listening -->
+    <div class="section-title">📖 Reading & Listening Comprehension</div>
+    <div class="btn-list">
+        <a href="snow-white-and-rose-red.html" class="btn-item">🌹 Snow-White and Rose-Red (Brothers Grimm)</a>
+        <a href="merry_mery_english_the_little_prince_reading_comprehension.html" class="btn-item">The Little Prince Reading</a>
+        <a href="CancionSomebodyusedtoknow.html" class="btn-item">🎵 Gotye - Somebody That I Used to Know</a>
+        <a href="lose_control_teddy_swims.html" class="btn-item">🎵 Teddy Swims - Lose Control (Interactive Lesson)</a>
+    </div>
+
+    <!-- Section 5: Real-Life Scenarios -->
+    <div class="section-title">✈️ Real-Life Scenarios</div>
+    <div class="btn-list">
+        <a href="flight-attendant.html" class="btn-item">Cabin Crew Says (Aviation Simulator)</a>
+        <a href="attheairport.html" class="btn-item">✈️ At the Airport (Interactive Scenario)</a>
+    </div>
+
+    <!-- Footer Instagram -->
+    <div class="footer">
+        <a href="https://www.instagram.com/merrymeryenglish/" target="_blank" class="insta-btn">
+            📷 Follow Merry Mery English on Instagram
+        </a>
+    </div>
+</div>
+
+<script>
+    function searchCambridge(e) {
+        e.preventDefault();
+        const word = document.getElementById('cambridgeQuery').value.trim();
+        if (word) {
+            window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
+        }
+    }
+
+    // Funciones globales para reproducir audio con acento británico en cualquier ejercicio
+    function speakUKFemale(text) {
+        if (window.responsiveVoice) {
+            responsiveVoice.cancel();
+            responsiveVoice.speak(text, "UK English Female", { rate: 0.9, pitch: 1 });
+        }
+    }
+
+    function speakUKMale(text) {
+        if (window.responsiveVoice) {
+            responsiveVoice.cancel();
+            responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
+        }
+    }
+
+    // Corrector automático de URLs con errores tipográficos
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href.includes('Excercises')) {
+                link.href = link.href.replace('Excercises', 'Exercises');
+            }
+            if (link.href.includes('merymeryenglish-cloud')) {
+                link.href = link.href.replace('merymeryenglish-cloud', 'merrymeryenglish-cloud');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
