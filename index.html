@@ -286,6 +286,18 @@
             responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
         }
     }
+
+    // Corrector automático de URLs con errores tipográficos
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href.includes('Excercises')) {
+                link.href = link.href.replace('Excercises', 'Exercises');
+            }
+            if (link.href.includes('merymeryenglish-cloud')) {
+                link.href = link.href.replace('merymeryenglish-cloud', 'merrymeryenglish-cloud');
+            }
+        });
+    });
 </script>
 
 </body>
