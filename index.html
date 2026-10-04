@@ -47,13 +47,25 @@
         .header {
             text-align: center;
             margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-logo-wrapper {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .header img.logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 12px;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
         }
 
         .header h1 {
@@ -188,7 +200,9 @@
 <div class="container">
     <!-- Header con el Logo Principal -->
     <div class="header">
-        <img src="logo.png" alt="Merry Mery English Logo" class="logo">
+        <div class="header-logo-wrapper">
+            <img src="logo.png" alt="Merry Mery English Logo" class="logo">
+        </div>
         <h1>Exercises & Interactive Quizzes</h1>
     </div>
 
@@ -220,6 +234,7 @@
     <!-- Section 3: Vocabulary & Phrasal Verbs -->
     <div class="section-title">💭 Vocabulary & Phrasal Verbs</div>
     <div class="btn-list">
+        <a href="baking_english_lesson.html" class="btn-item">🧁 Baking & Pastry Masterclass (Red Velvet Special)</a>
         <a href="dynamic_english_phrasal_verbs_master_game%20(1).html" class="btn-item">Phrasal Verbs Master Game</a>
         <a href="business_acronyms.html" class="btn-item">💼 Business Acronyms & Abbreviations</a>
     </div>
