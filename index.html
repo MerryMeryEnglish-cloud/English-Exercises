@@ -6,8 +6,8 @@
     <title>Merry Mery English - Exercises & Quizzes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Librería para voz británica garantizada en celulares -->
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
+    <!-- Script diferido para no bloquear la carga de la pantalla -->
+    <script defer src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
 
     <style>
         :root {
@@ -198,10 +198,10 @@
 <body>
 
 <div class="container">
-    <!-- Header con el Logo Principal -->
+    <!-- Header -->
     <div class="header">
         <div class="header-logo-wrapper">
-            <img src="logo.png" alt="Merry Mery English Logo" class="logo">
+            <img src="logo.png" alt="Merry Mery English Logo" class="logo" onerror="this.style.display='none'">
         </div>
         <h1>Exercises & Interactive Quizzes</h1>
     </div>
@@ -228,14 +228,14 @@
         <a href="conditionals.html" class="btn-item">Conditionals Masterclass (0, 1, 2 & 3)</a>
         <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">Reported Speech Quiz</a>
         <a href="simplepastandpresentperfect.html" class="btn-item">Simple Past vs. Present Perfect Quiz</a>
-        <a href="merry_mery_english_verb_mean_masterclass%20(1).html" class="btn-item">Verb Mean Masterclass</a>
+        <a href="merry_mery_english_verb_mean_masterclass.html" class="btn-item">Verb Mean Masterclass</a>
     </div>
 
     <!-- Section 3: Vocabulary & Phrasal Verbs -->
     <div class="section-title">💭 Vocabulary & Phrasal Verbs</div>
     <div class="btn-list">
         <a href="baking_english_lesson.html" class="btn-item">🧁 Baking & Pastry Masterclass (Red Velvet Special)</a>
-        <a href="dynamic_english_phrasal_verbs_master_game%20(1).html" class="btn-item">Phrasal Verbs Master Game</a>
+        <a href="dynamic_english_phrasal_verbs_master_game.html" class="btn-item">Phrasal Verbs Master Game</a>
         <a href="business_acronyms.html" class="btn-item">💼 Business Acronyms & Abbreviations</a>
     </div>
 
@@ -272,7 +272,6 @@
         }
     }
 
-    // Funciones globales para reproducir audio con acento británico en cualquier ejercicio
     function speakUKFemale(text) {
         if (window.responsiveVoice) {
             responsiveVoice.cancel();
@@ -286,18 +285,6 @@
             responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
         }
     }
-
-    // Corrector automático de URLs con errores tipográficos
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll('a').forEach(link => {
-            if (link.href.includes('Excercises')) {
-                link.href = link.href.replace('Excercises', 'Exercises');
-            }
-            if (link.href.includes('merymeryenglish-cloud')) {
-                link.href = link.href.replace('merymeryenglish-cloud', 'merrymeryenglish-cloud');
-            }
-        });
-    });
 </script>
 
 </body>
