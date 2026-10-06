@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verb Get Masterclass - Merry Mery English</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --error: #ef4444;
+      --error-bg: #fef2f2;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      border: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+
+    .brand-title h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand-title p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+    }
+
+    .btn-home {
+      background-color: #f1f5f9;
+      color: #334155;
+    }
+
+    .btn-home:hover {
+      background-color: #e2e8f0;
+    }
+
+    .btn-dict {
+      background-color: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .btn-dict:hover {
+      background-color: #bae6fd;
+    }
+
+    .dict-search-box {
+      width: 100%;
+      margin-top: 12px;
+      display: none;
+      gap: 10px;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .dict-search-box.active {
+      display: flex;
+    }
+
+    .dict-search-box input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .dict-search-box button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: #f1f5f9;
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .theory-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .theory-card h2 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .theory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    .theory-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .theory-box h3 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .example-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .example-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.92rem;
+    }
+
+    .example-item:last-child {
+      border-bottom: none;
+    }
+
+    .grammar-note {
+      font-size: 0.82rem;
+      color: #7c2d12;
+      background: #ffedd5;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-top: 6px;
+      border-left: 3px solid #f97316;
+    }
+
+    .btn-audio {
+      background: #e0e7ff;
+      color: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-audio:hover {
+      background: #c7d2fe;
+      transform: scale(1.1);
+    }
+
+    .btn-audio.locked {
+      display: none;
+    }
+
+    .btn-audio.unlocked {
+      display: inline-flex;
+      animation: popIn 0.3s ease-out;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .exercise-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .exercise-header h3 {
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .question-item {
+      padding: 16px;
+      border: 1px solid #f1f5f9;
+      border-radius: 10px;
+      background: #fafafa;
+      margin-bottom: 15px;
+      transition: all 0.2s;
+    }
+
+    .question-item:hover {
+      border-color: #cbd5e1;
+      background: white;
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .q-number {
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      min-width: 140px;
+      max-width: 200px;
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    input[type="text"].correct {
+      border-color: var(--success);
+      background-color: var(--success-bg);
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    input[type="text"].incorrect {
+      border-color: var(--error);
+      background-color: var(--error-bg);
+      color: #991b1b;
+    }
+
+    .btn-hint {
+      background-color: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-hint:hover {
+      background-color: #fef3c7;
+    }
+
+    .hint-box {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: #92400e;
+      background-color: #fffbeb;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .hint-box.active {
+      display: block;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mc-option {
+      background: white;
+      border: 2px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.92rem;
+      text-align: left;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mc-option:hover {
+      border-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .mc-option.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .mc-option.incorrect {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: #991b1b;
+    }
+
+    .actions-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px dashed #f1f5f9;
+      flex-wrap: wrap;
+    }
+
+    .btn-shuffle {
+      background-color: #f1f5f9;
+      color: #334155;
+    }
+
+    .btn-shuffle:hover {
+      background-color: #e2e8f0;
+    }
+
+    .btn-check {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-check:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: var(--radius);
+      text-align: center;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+      animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-score-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: var(--primary);
+      font-size: 1.8rem;
+      font-weight: 800;
+      padding: 10px 24px;
+      border-radius: 50px;
+      margin: 15px 0;
+      border: 2px solid #c7d2fe;
+    }
+
+    .modal-card h3 {
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .actions-bar {
+        justify-content: center;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">M</div>
+        <div class="brand-title">
+          <h1>Merry Mery English</h1>
+          <p>Verb "Get" Masterclass</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-home">🏠 Home</a>
+        <button class="btn btn-dict" id="toggleDictBtn">📖 Dictionary</button>
+      </div>
+
+      <div class="dict-search-box" id="dictBox">
+        <input type="text" id="dictInput" placeholder="Look up any word in Cambridge Dictionary..." />
+        <button id="searchDictBtn">Search</button>
+      </div>
+    </header>
+
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(event, 'tab-theory')">📘 Theory & Listening</button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-ex1')">✏️ Ex 1: Fill Gaps (10)</button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-ex2')">🎯 Ex 2: Phrasal Verbs (10)</button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-ex3')">❓ Ex 3: Identify Meaning (10)</button>
+    </nav>
+
+    <main>
+      <div class="tab-pane active" id="tab-theory">
+        <div class="theory-card">
+          <h2>Verb "Get" Masterclass & Audio Pronunciation</h2>
+          <p>The verb <strong>get</strong> is one of the most versatile words in English. Click on the speaker icon 🔊 next to any sample sentence to listen to native pronunciation.</p>
+          
+          <div class="theory-grid">
+            <div class="theory-box">
+              <h3>1. Receive / Obtain / Fetch</h3>
+              <ul class="example-list">
+                <li class="example-item">
+                  <span>I <strong>got</strong> an unexpected email from my former manager today.</span>
+                  <button class="btn-audio" onclick="speakText('I got an unexpected email from my former manager today.')" title="Listen">🔊</button>
+                </li>
+                <li class="example-item">
+                  <span>Could you <strong>get</strong> me those financial reports from the printer?</span>
+                  <button class="btn-audio" onclick="speakText('Could you get me those financial reports from the printer?')" title="Listen">🔊</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="theory-box">
+              <h3>2. Become / Change of State</h3>
+              <ul class="example-list">
+                <li class="example-item">
+                  <span>As evening approached, it began to <strong>get</strong> much colder.</span>
+                  <button class="btn-audio" onclick="speakText('As evening approached, it began to get much colder.')" title="Listen">🔊</button>
+                </li>
+                <li class="example-item">
+                  <span>She was thrilled when she <strong>got</strong> promoted last month.</span>
+                  <button class="btn-audio" onclick="speakText('She was thrilled when she got promoted last month.')" title="Listen">🔊</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="theory-box">
+              <h3>3. Arrive / Reach / Transport</h3>
+              <ul class="example-list">
+                <li class="example-item">
+                  <span>What time do you usually <strong>get</strong> to the office in morning traffic?</span>
+                  <button class="btn-audio" onclick="speakText('What time do you usually get to the office in morning traffic?')" title="Listen">🔊</button>
+                </li>
+                <li class="example-item">
+                  <span>We finally <strong>got</strong> home after a long eight-hour flight.</span>
+                  <button class="btn-audio" onclick="speakText('We finally got home after a long eight hour flight.')" title="Listen">🔊</button>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span>Can you <strong>get</strong> me to the train station before 5 PM?</span>
+                    <button class="btn-audio" onclick="speakText('Can you get me to the train station before 5 PM?')" title="Listen">🔊</button>
+                    <div class="grammar-note">💡 <strong>Note:</strong> <em>get someone to a place</em> = llevar/trasladar a alguien a un lugar (ej: "¿Puedes llevarme a la estación de tren?").</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="theory-box">
+              <h3>4. Key Phrasal Verbs</h3>
+              <ul class="example-list">
+                <li class="example-item">
+                  <div>
+                    <span><strong>get through</strong> = communicate by phone / complete a task</span>
+                    <button class="btn-audio" onclick="speakText('I tried calling customer service, but I could not get through.')" title="Listen">🔊</button>
+                    <div class="grammar-note">💡 <strong>Note:</strong> <em>get through</em> = lograr comunicarse por teléfono. En cambio, <strong>put someone through</strong> = transferir/comunicar a otra persona por teléfono (ej: <em>"I will put you through to Mr. Smith."</em>).</div>
+                  </div>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span><strong>get to (someone)</strong> = affect or annoy someone emotionally</span>
+                    <button class="btn-audio" onclick="speakText('Do not let his sarcastic comments get to you.')" title="Listen">🔊</button>
+                  </div>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span><strong>get over</strong> = recover from illness, breakup, or shock</span>
+                    <button class="btn-audio" onclick="speakText('It took her months to get over the shock.')" title="Listen">🔊</button>
+                  </div>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span><strong>get away with</strong> = escape punishment for something</span>
+                    <button class="btn-audio" onclick="speakText('He thought he could get away with cheating.')" title="Listen">🔊</button>
+                  </div>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span><strong>get by</strong> = manage to survive financially or with available resources</span>
+                    <button class="btn-audio" onclick="speakText('We manage to get by on a modest budget.')" title="Listen">🔊</button>
+                  </div>
+                </li>
+                <li class="example-item">
+                  <div>
+                    <span><strong>get down to</strong> = start focusing seriously on a task</span>
+                    <button class="btn-audio" onclick="speakText('Let us get down to business.')" title="Listen">🔊</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-ex1">
+        <div class="exercise-card">
+          <div class="exercise-header">
+            <h3>Exercise 1: Complete the Gaps (10 Sentences)</h3>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Fill in the gaps with the correct form of "get". Correct answers unlock audio listening 🔊!</span>
+          </div>
+
+          <div id="ex1-questions">
+            <!-- Q1 -->
+            <div class="question-item" data-type="gap" data-sentence="If you do not wear a warm coat in this freezing weather, you might get sick.">
+              <div class="question-text">
+                <span class="q-number">1.</span> If you do not wear a warm coat in this freezing weather, you might <input type="text" class="gap-input" data-answer="get" placeholder="type verb..." autocomplete="off" /> sick.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h1')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h1">Meaning: <em>Become ill</em>. Base form of verb.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" data-type="gap" data-sentence="She was thrilled when she finally got accepted into her dream university.">
+              <div class="question-text">
+                <span class="q-number">2.</span> She was thrilled when she finally <input type="text" class="gap-input" data-answer="got" placeholder="type verb..." autocomplete="off" /> accepted into her dream university.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h2')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h2">Meaning: <em>Was accepted (Past Simple)</em>.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" data-type="gap" data-sentence="We usually get to the train station 15 minutes before departure.">
+              <div class="question-text">
+                <span class="q-number">3.</span> We usually <input type="text" class="gap-input" data-answer="get" placeholder="type verb..." autocomplete="off" /> to the train station 15 minutes before departure.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h3')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h3">Meaning: <em>Arrive at a destination</em>. Present Simple base form.</div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" data-type="gap" data-sentence="He was driving way too fast, but somehow he got away with a simple warning.">
+              <div class="question-text">
+                <span class="q-number">4.</span> He was driving way too fast, but somehow he <input type="text" class="gap-input" data-answer="got" placeholder="type verb..." autocomplete="off" /> away with a simple warning.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h4')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h4">Meaning: <em>Escaped serious punishment (Past)</em>.</div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" data-type="gap" data-sentence="It took her nearly six months to get over the loss of her beloved pet.">
+              <div class="question-text">
+                <span class="q-number">5.</span> It took her nearly six months to <input type="text" class="gap-input" data-answer="get" placeholder="type verb..." autocomplete="off" /> over the loss of her beloved pet.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h5')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h5">Meaning: <em>Recover emotionally</em>. Base verb after infinitive 'to'.</div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" data-type="gap" data-sentence="Prices are rising quickly, so it is getting harder to save money every month.">
+              <div class="question-text">
+                <span class="q-number">6.</span> Prices are rising quickly, so it is <input type="text" class="gap-input" data-answer="getting" placeholder="type verb..." autocomplete="off" /> harder to save money every month.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h6')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h6">Meaning: <em>Becoming (Continuous process)</em>. Continuous form with -ing.</div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-item" data-type="gap" data-sentence="Could you get me those financial reports from the printer on your way back?">
+              <div class="question-text">
+                <span class="q-number">7.</span> Could you <input type="text" class="gap-input" data-answer="get" placeholder="type verb..." autocomplete="off" /> me those financial reports from the printer on your way back?
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h7')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h7">Meaning: <em>Fetch / Bring</em>. Base verb after modal 'could'.</div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-item" data-type="gap" data-sentence="They did not have much money while studying, but they managed to get by.">
+              <div class="question-text">
+                <span class="q-number">8.</span> They did not have much money while studying, but they managed to <input type="text" class="gap-input" data-answer="get" placeholder="type verb..." autocomplete="off" /> by on a tight budget.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h8')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h8">Meaning: <em>Survive / Manage financially</em>. Verb paired with 'by'.</div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question-item" data-type="gap" data-sentence="The room was so quiet that everybody heard him when he got up to leave.">
+              <div class="question-text">
+                <span class="q-number">9.</span> The room was so quiet that everybody heard him when he <input type="text" class="gap-input" data-answer="got" placeholder="type verb..." autocomplete="off" /> up from his seat to leave.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h9')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h9">Meaning: <em>Stood up (Past Simple)</em>.</div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question-item" data-type="gap" data-sentence="I tried calling customer service four times before I finally got through.">
+              <div class="question-text">
+                <span class="q-number">10.</span> I tried calling customer service four times before I finally <input type="text" class="gap-input" data-answer="got" placeholder="type verb..." autocomplete="off" /> through to an advisor.
+              </div>
+              <div class="input-row">
+                <button type="button" class="btn-hint" onclick="toggleHint('ex1-h10')">💡 Hint</button>
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+              <div class="hint-box" id="ex1-h10">Meaning: <em>Connected by phone (Past Simple)</em>.</div>
+            </div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn btn-shuffle" onclick="shuffleQuestions('ex1-questions')">🔀 Reset & Shuffle</button>
+            <button type="button" class="btn btn-check" onclick="checkTabScore('ex1-questions')">Check Score</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-ex2">
+        <div class="exercise-card">
+          <div class="exercise-header">
+            <h3>Exercise 2: Phrasal Verbs Challenge (10 Questions)</h3>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Choose the correct phrasal verb. Audio listening 🔊 unlocks when answered correctly!</span>
+          </div>
+
+          <div id="ex2-questions">
+            <!-- Q1 -->
+            <div class="question-item" data-type="mc" data-sentence="The company had to cut expenses, but they managed to get by without firing any employees.">
+              <div class="question-text">
+                <span class="q-number">1.</span> The company had to cut expenses, but they managed to ________ without firing any employees.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">get along</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">get by</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" data-type="mc" data-sentence="She had a terrible cold last week, but luckily she has finally gotten over it.">
+              <div class="question-text">
+                <span class="q-number">2.</span> She had a terrible cold last week, but luckily she has finally ________ it.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">gotten by</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">gotten over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">gotten away with</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">gotten on</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" data-type="mc" data-sentence="He thought he could cheat on the final exam, but he did not get away with it.">
+              <div class="question-text">
+                <span class="q-number">3.</span> He thought he could cheat on the final exam, but he did not ________ it.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">get along with</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">get away with</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get through to</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get down to</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" data-type="mc" data-sentence="We do not share many common interests, but we still get along very well as roommates.">
+              <div class="question-text">
+                <span class="q-number">4.</span> We do not share many common interests, but we still ________ very well as roommates.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">get along</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get by</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" data-type="mc" data-sentence="I have been trying to call the helpdesk all morning, but I just cannot get through.">
+              <div class="question-text">
+                <span class="q-number">5.</span> I have been trying to call the helpdesk all morning, but I just cannot ________.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">get through</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get along</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" data-type="mc" data-sentence="After wasting an hour chatting, it was time to get down to business.">
+              <div class="question-text">
+                <span class="q-number">6.</span> After wasting an hour chatting, it was time to ________ business.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">get down to</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away with</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get by</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-item" data-type="mc" data-sentence="The police chased the burglar, but he managed to get away in a stolen car.">
+              <div class="question-text">
+                <span class="q-number">7.</span> The police chased the burglar, but he managed to ________ in a stolen car.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">get away</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get by</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get through</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-item" data-type="mc" data-sentence="How are you getting on with your new research project?">
+              <div class="question-text">
+                <span class="q-number">8.</span> How are you ________ with your new research project at work?
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">getting on</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">getting away</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">getting over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">getting by</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question-item" data-type="mc" data-sentence="He finds it hard to get across his ideas clearly when speaking in public.">
+              <div class="question-text">
+                <span class="q-number">9.</span> He finds it hard to ________ his complex ideas clearly when speaking in public.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">get across</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away with</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get by</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question-item" data-type="mc" data-sentence="Do not let his sarcastic comments get to you; he is just joking.">
+              <div class="question-text">
+                <span class="q-number">10.</span> Do not let his sarcastic comments ________ you; he is just joking.
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">get to</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get through</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get away</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">get over</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn btn-shuffle" onclick="shuffleQuestions('ex2-questions')">🔀 Reset & Shuffle</button>
+            <button type="button" class="btn btn-check" onclick="checkTabScore('ex2-questions')">Check Score</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-ex3">
+        <div class="exercise-card">
+          <div class="exercise-header">
+            <h3>Exercise 3: Identify the Function of "Get" (10 Questions)</h3>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Determine the exact function of "get" in context. Unlocks audio listening 🔊 when correct!</span>
+          </div>
+
+          <div id="ex3-questions">
+            <!-- Q1 -->
+            <div class="question-item" data-type="mc" data-sentence="She got an unexpected parcel from her grandparents in Canada.">
+              <div class="question-text">
+                <span class="q-number">1.</span> "She <strong>got</strong> an unexpected parcel from her grandparents in Canada."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Receive / Obtain</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch / Bring</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" data-type="mc" data-sentence="It started as a mild disagreement, but then the argument got out of hand.">
+              <div class="question-text">
+                <span class="q-number">2.</span> "It started as a mild disagreement, but then the argument <strong>got</strong> out of hand."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Become (Change of state)</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" data-type="mc" data-sentence="What time do you think we will get to the hotel tonight?">
+              <div class="question-text">
+                <span class="q-number">3.</span> "What time do you think we will <strong>get</strong> to the hotel tonight?"
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Arrive / Reach</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" data-type="mc" data-sentence="Could you get me a pair of scissors from the top drawer?">
+              <div class="question-text">
+                <span class="q-number">4.</span> "Could you <strong>get</strong> me a pair of scissors from the top drawer?"
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Fetch / Bring</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" data-type="mc" data-sentence="He got angry when he noticed that his laptop was damaged.">
+              <div class="question-text">
+                <span class="q-number">5.</span> "He <strong>got</strong> angry when he noticed that his laptop was damaged."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Become (Change of state)</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" data-type="mc" data-sentence="I need to get some cash from the ATM before we board the train.">
+              <div class="question-text">
+                <span class="q-number">6.</span> "I need to <strong>get</strong> some cash from the ATM before we board the train."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">Obtain / Withdraw</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-item" data-type="mc" data-sentence="Did you get the text message I sent you about the venue change?">
+              <div class="question-text">
+                <span class="q-number">7.</span> "Did you <strong>get</strong> the text message I sent you about the venue change?"
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-item" data-type="mc" data-sentence="As evening approached, the temperature began to get much cooler.">
+              <div class="question-text">
+                <span class="q-number">8.</span> "As evening approached, the temperature began to <strong>get</strong> much cooler."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Become (Change of state)</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question-item" data-type="mc" data-sentence="She went downstairs to get a bottle of water for the guests.">
+              <div class="question-text">
+                <span class="q-number">9.</span> "She went downstairs to <strong>get</strong> a bottle of water for the guests."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Arrive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, true)">Fetch / Bring</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question-item" data-type="mc" data-sentence="Call me as soon as you get to the office conference room.">
+              <div class="question-text">
+                <span class="q-number">10.</span> "Call me as soon as you <strong>get</strong> to the office conference room."
+              </div>
+              <div class="options-grid">
+                <button class="mc-option" onclick="selectMCOption(this, true)">Arrive / Reach</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Become</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Receive</button>
+                <button class="mc-option" onclick="selectMCOption(this, false)">Fetch</button>
+              </div>
+              <div class="input-row" style="margin-top: 10px;">
+                <button type="button" class="btn-audio locked" onclick="speakSentence(this)" title="Listen after completing">🔊</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn btn-shuffle" onclick="shuffleQuestions('ex3-questions')">🔀 Reset & Shuffle</button>
+            <button type="button" class="btn btn-check" onclick="checkTabScore('ex3-questions')">Check Score</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="scoreModal">
+    <div class="modal-card">
+      <h3 id="modalTitle">Exercise Evaluation</h3>
+      <div class="modal-score-badge" id="modalScore">0 / 10</div>
+      <p id="modalMessage">Keep practicing to improve the usage of get.</p>
+      <button class="btn btn-check" onclick="closeModal()">Continue Practicing</button>
+    </div>
+  </div>
+
+  <script>
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new AudioContext();
+      }
+    }
+
+    // Play "OK / Correct" Chime Tone
+    function playCorrectSound() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.12); // E5
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.25); // G5
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.4);
+      } catch (e) { console.log('Audio Context error', e); }
+    }
+
+    // Play "Error / Incorrect" Buzz Tone
+    function playErrorSound() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.setValueAtTime(140, now + 0.15);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } catch (e) { console.log('Audio Context error', e); }
+    }
+
+    const toggleDictBtn = document.getElementById('toggleDictBtn');
+    const dictBox = document.getElementById('dictBox');
+    const dictInput = document.getElementById('dictInput');
+    const searchDictBtn = document.getElementById('searchDictBtn');
+
+    toggleDictBtn.addEventListener('click', () => {
+      dictBox.classList.toggle('active');
+      if (dictBox.classList.contains('active')) dictInput.focus();
+    });
+
+    searchDictBtn.addEventListener('click', executeDictSearch);
+    dictInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') executeDictSearch();
+    });
+
+    function executeDictSearch() {
+      const term = dictInput.value.trim();
+      if (term) {
+        window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.toLowerCase())}`, '_blank');
+      }
+    }
+
+    function switchTab(evt, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+      evt.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function speakSentence(btnElement) {
+      const parent = btnElement.closest('.question-item');
+      if (parent) {
+        const sentenceText = parent.getAttribute('data-sentence');
+        if (sentenceText) speakText(sentenceText);
+      }
+    }
+
+    function toggleHint(hintId) {
+      const hintBox = document.getElementById(hintId);
+      if (hintBox) hintBox.classList.toggle('active');
+    }
+
+    document.addEventListener('input', (e) => {
+      if (e.target.classList.contains('gap-input')) {
+        const input = e.target;
+        const answer = input.getAttribute('data-answer').toLowerCase().trim();
+        const userVal = input.value.toLowerCase().trim();
+        const parent = input.closest('.question-item');
+        const audioBtn = parent.querySelector('.btn-audio');
+
+        if (userVal === answer) {
+          if (!input.classList.contains('correct')) {
+            playCorrectSound();
+          }
+          input.classList.remove('incorrect');
+          input.classList.add('correct');
+
+          if (audioBtn) {
+            audioBtn.classList.remove('locked');
+            audioBtn.classList.add('unlocked');
+          }
+        } else {
+          input.classList.remove('correct');
+          if (audioBtn) {
+            audioBtn.classList.remove('unlocked');
+            audioBtn.classList.add('locked');
+          }
+        }
+      }
+    });
+
+    function selectMCOption(btn, isCorrect) {
+      const parentItem = btn.closest('.question-item');
+      const allOptions = parentItem.querySelectorAll('.mc-option');
+      const audioBtn = parentItem.querySelector('.btn-audio');
+
+      allOptions.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.removeAttribute('data-selected');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        btn.setAttribute('data-selected', 'correct');
+        playCorrectSound();
+
+        if (audioBtn) {
+          audioBtn.classList.remove('locked');
+          audioBtn.classList.add('unlocked');
+        }
+      } else {
+        btn.classList.add('incorrect');
+        btn.setAttribute('data-selected', 'incorrect');
+        playErrorSound();
+
+        if (audioBtn) {
+          audioBtn.classList.remove('unlocked');
+          audioBtn.classList.add('locked');
+        }
+      }
+    }
+
+    function shuffleQuestions(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const items = Array.from(container.children);
+
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+
+      items.forEach((item, index) => {
+        container.appendChild(item);
+
+        // Shuffle options inside MC questions
+        const grid = item.querySelector('.options-grid');
+        if (grid) {
+          const options = Array.from(grid.children);
+          for (let k = options.length - 1; k > 0; k--) {
+            const m = Math.floor(Math.random() * (k + 1));
+            [options[k], options[m]] = [options[m], options[k]];
+          }
+          options.forEach(opt => grid.appendChild(opt));
+        }
+
+        // Reset gap inputs
+        const gapInput = item.querySelector('.gap-input');
+        if (gapInput) {
+          gapInput.value = '';
+          gapInput.classList.remove('correct', 'incorrect');
+        }
+
+        // Reset MC options
+        const mcOptions = item.querySelectorAll('.mc-option');
+        mcOptions.forEach(opt => {
+          opt.classList.remove('correct', 'incorrect');
+          opt.removeAttribute('data-selected');
+        });
+
+        // Hide audio button again
+        const audioBtn = item.querySelector('.btn-audio');
+        if (audioBtn && item.getAttribute('data-type')) {
+          audioBtn.classList.remove('unlocked');
+          audioBtn.classList.add('locked');
+        }
+
+        // Reset hints
+        const hintBox = item.querySelector('.hint-box');
+        if (hintBox) hintBox.classList.remove('active');
+
+        // Update Question Number sequentially (1, 2, 3...)
+        const numSpan = item.querySelector('.q-number');
+        if (numSpan) numSpan.textContent = `${index + 1}.`;
+      });
+    }
+
+    function checkTabScore(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const items = container.querySelectorAll('.question-item');
+      let total = items.length;
+      let score = 0;
+
+      items.forEach(item => {
+        const type = item.getAttribute('data-type');
+        if (type === 'gap') {
+          const input = item.querySelector('.gap-input');
+          if (input) {
+            const userVal = input.value.toLowerCase().trim();
+            const answer = input.getAttribute('data-answer').toLowerCase().trim();
+            if (userVal === answer) {
+              score++;
+              input.classList.remove('incorrect');
+              input.classList.add('correct');
+            } else {
+              input.classList.remove('correct');
+              input.classList.add('incorrect');
+            }
+          }
+        } else if (type === 'mc') {
+          const selectedCorrect = item.querySelector('.mc-option[data-selected="correct"]');
+          if (selectedCorrect) {
+            score++;
+          } else {
+            const selectedIncorrect = item.querySelector('.mc-option[data-selected="incorrect"]');
+            if (!selectedIncorrect) {
+              // Highlight unattempted question item or first option
+            }
+          }
+        }
+      });
+
+      showScoreModal(score, total);
+    }
+
+    function showScoreModal(score, total) {
+      const modal = document.getElementById('scoreModal');
+      const scoreBadge = document.getElementById('modalScore');
+      const messageElem = document.getElementById('modalMessage');
+      const titleElem = document.getElementById('modalTitle');
+
+      scoreBadge.textContent = `${score} / ${total}`;
+
+      if (score === total) {
+        titleElem.textContent = "🎉 ¡Perfecto! / Perfect!";
+        messageElem.textContent = "¡Puntaje perfecto! Has respondido todas las preguntas correctamente.";
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        }
+      } else if (score >= 7) {
+        titleElem.textContent = "👍 ¡Buen Intento!";
+        messageElem.textContent = `Obtuviste ${score}/${total} respuestas correctas. Revisa las respuestas marcadas en rojo para corregir los errores e inténtalo de nuevo.`;
+      } else if (score >= 4) {
+        titleElem.textContent = "🙂 ¡Sigue Practicando!";
+        messageElem.textContent = `Obtuviste ${score}/${total}. Revisa los errores marcados en rojo y vuelve a intentar para mejorar tu puntaje.`;
+      } else {
+        titleElem.textContent = "💪 ¡Revisa la Teoría!";
+        messageElem.textContent = `Obtuviste ${score}/${total}. Te recomendamos repasar la pestaña de Teoría y corregir los campos marcados en rojo.`;
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('scoreModal').classList.remove('active');
+    }
+
+    // Shuffle MC option positions on initial page load
+    window.addEventListener('DOMContentLoaded', () => {
+      shuffleQuestions('ex2-questions');
+      shuffleQuestions('ex3-questions');
+    });
+  </script>
+</body>
+</html>
