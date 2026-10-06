@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel English Interactive Exercises</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4; /* soft mint background matching brand vibe */
+        }
+        .section-active {
+            border-bottom: 4px solid #0d9488;
+            color: #0d9488;
+            font-weight: 700;
+        }
+        .animate-pop {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="Logo" class="w-12 h-12 rounded-full shadow object-cover border-2 border-teal-500" onerror="this.onerror=null; this.src='https://placehold.co/120x120/0d9488/ffffff?text=Logo';">
+                <div>
+                    <h1 class="text-xl font-bold text-teal-800">Hotel English Course</h1>
+                    <p class="text-xs text-gray-500">Interactive Practice & Listening</p>
+                </div>
+            </div>
+
+            <!-- Top Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+                </a>
+                <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Dictionary</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section Navigation Bar -->
+        <div class="bg-teal-50 border-t border-teal-100">
+            <div class="max-w-7xl mx-auto px-4 flex space-x-8 overflow-x-auto">
+                <button onclick="switchSection(1)" id="section-btn-1" class="section-active py-3 px-2 text-sm sm:text-base font-semibold flex items-center space-x-2 whitespace-nowrap transition">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Phrasebook & Audio</span>
+                </button>
+                <button onclick="switchSection(2)" id="section-btn-2" class="py-3 px-2 text-sm sm:text-base font-semibold text-gray-600 hover:text-teal-700 whitespace-nowrap transition flex items-center space-x-2">
+                    <i class="fa-solid fa-user-tag"></i>
+                    <span>Who Said It?</span>
+                </button>
+                <button onclick="switchSection(3)" id="section-btn-3" class="py-3 px-2 text-sm sm:text-base font-semibold text-gray-600 hover:text-teal-700 whitespace-nowrap transition flex items-center space-x-2">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                    <span>Logical Matching</span>
+                </button>
+                <button onclick="switchSection(4)" id="section-btn-4" class="py-3 px-2 text-sm sm:text-base font-semibold text-gray-600 hover:text-teal-700 whitespace-nowrap transition flex items-center space-x-2">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Visual Scenario Puzzles</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- ================= SECTION 1: DETAILED PHRASEBOOK ================= -->
+        <div id="section-1" class="space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-100">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Hotel Essential Phrases & Questions</h2>
+                        <p class="text-gray-600 text-sm">Explore hotel dialogues. Click the <span class="text-teal-600 font-semibold"><i class="fa-solid fa-volume-high"></i> Listen</span> button whenever you want to hear each sentence.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Staff Column -->
+                    <div class="bg-blue-50/60 rounded-xl p-4 border border-blue-100">
+                        <h3 class="font-bold text-blue-900 mb-3 flex items-center space-x-2 border-b border-blue-200 pb-2">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>Hotel Staff Phrases</span>
+                        </h3>
+                        <div id="staff-phrases-list" class="space-y-3">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Guest Column -->
+                    <div class="bg-emerald-50/60 rounded-xl p-4 border border-emerald-100">
+                        <h3 class="font-bold text-emerald-900 mb-3 flex items-center space-x-2 border-b border-emerald-200 pb-2">
+                            <i class="fa-solid fa-suitcase-rolling"></i>
+                            <span>Guest / Passenger Phrases</span>
+                        </h3>
+                        <div id="guest-phrases-list" class="space-y-3">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button onclick="switchSection(2)" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center space-x-2">
+                        <span>Next Exercise</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 2: WHO SAID IT? ================= -->
+        <div id="section-2" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-100">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Who Said It? (Hotel Staff vs Guest)</h2>
+                        <p class="text-gray-600 text-sm">Click the audio button to listen, then guess whether the sentence is said by the <strong>Hotel Staff</strong> or the <strong>Guest</strong>.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="resetSec2()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition">
+                            <i class="fa-solid fa-rotate"></i>
+                            <span>Reset & Shuffle</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scoreboard -->
+                <div class="flex justify-between items-center bg-teal-50 px-4 py-3 rounded-xl mb-6 text-sm font-semibold text-teal-900">
+                    <div id="sec2-progress">Question 1 of 10</div>
+                    <div class="flex space-x-4">
+                        <span class="text-emerald-600"><i class="fa-solid fa-check"></i> Correct: <span id="sec2-score">0</span></span>
+                        <span class="text-rose-600"><i class="fa-solid fa-xmark"></i> Errors: <span id="sec2-errors">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Quiz Card Container -->
+                <div id="sec2-card-container" class="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center space-y-6 relative">
+                    <!-- Hint Button (Lightbulb) -->
+                    <button onclick="toggleSec2Hint()" class="absolute top-4 right-4 bg-amber-100 hover:bg-amber-200 text-amber-700 p-2.5 rounded-full shadow transition" title="Show Hint / Sentence">
+                        <i class="fa-solid fa-lightbulb text-lg"></i>
+                    </button>
+
+                    <div class="inline-block bg-teal-100 text-teal-800 font-bold px-4 py-1.5 rounded-full text-sm">
+                        Audio Challenge #<span id="sec2-current-num">1</span>
+                    </div>
+
+                    <!-- Audio Trigger -->
+                    <div>
+                        <button onclick="playSec2CurrentAudio()" class="w-20 h-20 bg-teal-600 hover:bg-teal-700 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-3xl transition transform hover:scale-105" title="Listen">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 font-medium">Click to hear sentence</p>
+                    </div>
+
+                    <!-- Hint Box (Hidden by default) -->
+                    <div id="sec2-hint-box" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-900 text-sm max-w-md mx-auto italic">
+                        <strong>Hint:</strong> <span id="sec2-hint-text">...</span>
+                    </div>
+
+                    <!-- Selection Buttons -->
+                    <div class="grid sm:grid-cols-2 gap-4 max-w-md mx-auto pt-2">
+                        <button onclick="answerSec2('hotel')" class="bg-white hover:bg-blue-50 border-2 border-blue-200 text-blue-800 font-bold py-4 px-6 rounded-xl shadow transition flex items-center justify-center space-x-3">
+                            <i class="fa-solid fa-user-tie text-xl"></i>
+                            <span>Hotel Staff</span>
+                        </button>
+                        <button onclick="answerSec2('guest')" class="bg-white hover:bg-emerald-50 border-2 border-emerald-200 text-emerald-800 font-bold py-4 px-6 rounded-xl shadow transition flex items-center justify-center space-x-3">
+                            <i class="fa-solid fa-suitcase-rolling text-xl"></i>
+                            <span>Guest / Passenger</span>
+                        </button>
+                    </div>
+
+                    <div id="sec2-feedback" class="text-base font-bold min-h-[30px]"></div>
+                </div>
+
+                <!-- Completion banner -->
+                <div id="sec2-completion" class="hidden text-center space-y-4 py-8 animate-pop">
+                    <div class="text-5xl">🎉</div>
+                    <h3 class="text-2xl font-bold text-teal-800">Fantastic Job! Exercise Completed!</h3>
+                    <p id="sec2-final-stats" class="text-gray-600"></p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="resetSec2()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-6 py-2.5 rounded-xl transition">Try Again</button>
+                        <button onclick="switchSection(3)" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-2.5 rounded-xl transition">Next Exercise <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-between">
+                    <button onclick="switchSection(1)" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-5 py-2.5 rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Previous
+                    </button>
+                    <button onclick="switchSection(3)" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2.5 rounded-xl transition">
+                        Next Exercise <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 3: LOGICAL MATCHING GAME ================= -->
+        <div id="section-3" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-100">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Logical Matching Exercise</h2>
+                        <p class="text-gray-600 text-sm">Select a Hotel Question on the left, then click its corresponding logical response on the right (fully shuffled). Correct matches pin neatly to the top!</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="resetSec3()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition">
+                            <i class="fa-solid fa-rotate"></i>
+                            <span>Reset & Shuffle</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scoreboard -->
+                <div class="flex justify-between items-center bg-teal-50 px-4 py-3 rounded-xl mb-6 text-sm font-semibold text-teal-900">
+                    <div id="sec3-progress">Matched: 0 / 10</div>
+                    <div class="flex space-x-4">
+                        <span class="text-emerald-600"><i class="fa-solid fa-check"></i> Correct Pairs: <span id="sec3-score">0</span></span>
+                        <span class="text-rose-600"><i class="fa-solid fa-xmark"></i> Errors: <span id="sec3-errors">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Game Board with parallel columns -->
+                <div id="sec3-game-area" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="font-bold text-teal-800 text-sm uppercase tracking-wider bg-teal-50 p-2 rounded-lg text-center">1. Hotel Questions</div>
+                        <div class="font-bold text-blue-800 text-sm uppercase tracking-wider bg-blue-50 p-2 rounded-lg text-center">2. Shuffled Guest Responses</div>
+                    </div>
+                    <div id="sec3-rows-container" class="space-y-3">
+                        <!-- Populated via JS with synchronized parallel rows -->
+                    </div>
+                </div>
+
+                <!-- Completion banner -->
+                <div id="sec3-completion" class="hidden text-center space-y-4 py-8 animate-pop">
+                    <div class="text-5xl">🏆</div>
+                    <h3 class="text-2xl font-bold text-teal-800">Incredible! All Logical Pairs Matched!</h3>
+                    <p id="sec3-final-stats" class="text-gray-600"></p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="resetSec3()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-6 py-2.5 rounded-xl transition">Play Again</button>
+                        <button onclick="switchSection(4)" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-2.5 rounded-xl transition">Next Exercise <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-between">
+                    <button onclick="switchSection(2)" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-5 py-2.5 rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Previous
+                    </button>
+                    <button onclick="switchSection(4)" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2.5 rounded-xl transition">
+                        Next Exercise <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 4: CREATIVE VISUAL DRAWING PUZZLES ================= -->
+        <div id="section-4" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-100">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Visual Scenario Drawing Puzzles</h2>
+                        <p class="text-gray-600 text-sm">Look at each custom hotel illustration drawing, listen to the audio or click the lightbulb hint, and select the correct phrase that matches the drawing!</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="resetSec4()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition">
+                            <i class="fa-solid fa-rotate"></i>
+                            <span>Reset & Shuffle</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scoreboard -->
+                <div class="flex justify-between items-center bg-teal-50 px-4 py-3 rounded-xl mb-6 text-sm font-semibold text-teal-900">
+                    <div id="sec4-progress">Puzzle 1 of 10</div>
+                    <div class="flex space-x-4">
+                        <span class="text-emerald-600"><i class="fa-solid fa-check"></i> Correct: <span id="sec4-score">0</span></span>
+                        <span class="text-rose-600"><i class="fa-solid fa-xmark"></i> Errors: <span id="sec4-errors">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Visual Puzzle Container -->
+                <div id="sec4-game-area" class="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center space-y-6 relative">
+                    <!-- Hint Button (Lightbulb) -->
+                    <button onclick="toggleSec4Hint()" class="absolute top-4 right-4 bg-amber-100 hover:bg-amber-200 text-amber-700 p-2.5 rounded-full shadow transition" title="Show Hint Text">
+                        <i class="fa-solid fa-lightbulb text-lg"></i>
+                    </button>
+
+                    <div class="inline-block bg-teal-100 text-teal-800 font-bold px-4 py-1.5 rounded-full text-sm">
+                        Visual Drawing Challenge #<span id="sec4-current-num">1</span> of 10
+                    </div>
+
+                    <!-- Custom SVG Drawing Area -->
+                    <div id="sec4-svg-container" class="max-w-xs mx-auto bg-white p-4 rounded-2xl shadow-inner border border-teal-100 flex items-center justify-center">
+                        <!-- SVG injected dynamically -->
+                    </div>
+
+                    <!-- Audio Trigger -->
+                    <div>
+                        <button onclick="playSec4CurrentAudio()" class="w-14 h-14 bg-teal-600 hover:bg-teal-700 text-white rounded-full shadow-md mx-auto flex items-center justify-center text-xl transition transform hover:scale-105" title="Listen">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-1 font-medium">Click to hear phrase</p>
+                    </div>
+
+                    <!-- Hint Box (Hidden by default) -->
+                    <div id="sec4-hint-box" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-900 text-sm max-w-md mx-auto italic">
+                        <strong>Hint:</strong> <span id="sec4-hint-text">...</span>
+                    </div>
+
+                    <!-- Multiple Choice Options -->
+                    <div id="sec4-options-grid" class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto pt-2">
+                        <!-- Populated via JS -->
+                    </div>
+
+                    <div id="sec4-feedback" class="text-base font-bold min-h-[30px]"></div>
+                </div>
+
+                <!-- Completion banner -->
+                <div id="sec4-completion" class="hidden text-center space-y-4 py-8 animate-pop">
+                    <div class="text-5xl">🌟</div>
+                    <h3 class="text-2xl font-bold text-teal-800">Wonderful! Visual Puzzle Completed!</h3>
+                    <p id="sec4-final-stats" class="text-gray-600"></p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="resetSec4()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-6 py-2.5 rounded-xl transition">Play Again</button>
+                        <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-2.5 rounded-xl transition">Back to Home <i class="fa-solid fa-house ml-1"></i></a>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-between">
+                    <button onclick="switchSection(3)" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-5 py-2.5 rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Previous
+                    </button>
+                    <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" target="_blank" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2.5 rounded-xl transition">
+                        Home <i class="fa-solid fa-house ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-4 mt-8 text-center text-xs text-gray-500">
+        <p>Hotel Interactive English Exercises • Web Speech & Tailwind CSS</p>
+    </footer>
+
+    <script>
+        const staffPhrasesData = [
+            { id: 1, text: "Do you have a reservation?", translation: "¿Tiene reserva?" },
+            { id: 2, text: "May I have your name please?", translation: "¿Me da su nombre por favor?" },
+            { id: 3, text: "May I see your passport / ID please?", translation: "¿Puedo ver su pasaporte o documento?" },
+            { id: 4, text: "How long will you be staying?", translation: "¿Cuánto tiempo se va a quedar?" },
+            { id: 5, text: "Could you fill out this form please?", translation: "¿Podría rellenar este formulario por favor?" },
+            { id: 6, text: "Please sign your name here.", translation: "Por favor firme aquí." },
+            { id: 7, text: "Here is your key.", translation: "Aquí tiene su llave." },
+            { id: 8, text: "Your room number is 204.", translation: "Su número de habitación es 204." },
+            { id: 9, text: "Your room is on the second floor.", translation: "Su habitación está en el segundo piso." },
+            { id: 10, text: "Fresh towels are available at the reception.", translation: "Toallas limpias disponibles en recepción." },
+            { id: 11, text: "Breakfast is served from 7am to 10am.", translation: "El desayuno se sirve de 7 a 10." },
+            { id: 12, text: "The dining room is on the first floor.", translation: "El comedor está en el primer piso." },
+            { id: 13, text: "Do you need help with your luggage?", translation: "¿Necesita ayuda con su equipaje?" },
+            { id: 14, text: "Do you need a wake-up call?", translation: "¿Necesita llamada despertador?" },
+            { id: 15, text: "Do you need help with anything else?", translation: "¿Necesita ayuda con algo más?" },
+            { id: 16, text: "Sorry. No pets are allowed in the rooms.", translation: "Disculpe. No se permiten mascotas." }
+        ];
+
+        const guestPhrasesData = [
+            { id: 1, text: "I'd like to reserve a room for tonight.", translation: "Me gustaría reservar una habitación." },
+            { id: 2, text: "Do you have rooms available?", translation: "¿Tiene habitaciones disponibles?" },
+            { id: 3, text: "I'd like a single or double room.", translation: "Quisiera una habitación individual o doble." },
+            { id: 4, text: "Is breakfast included?", translation: "¿Está incluido el desayuno?" },
+            { id: 5, text: "Does the room have air-conditioning?", translation: "¿La habitación tiene aire acondicionado?" },
+            { id: 6, text: "Can I see the room please?", translation: "¿Puedo ver la habitación por favor?" },
+            { id: 7, text: "I'd prefer a quieter room please.", translation: "Preferiría una habitación más silenciosa." },
+            { id: 8, text: "Could someone help me with my bags?", translation: "¿Alguien podría ayudarme con mis maletas?" },
+            { id: 9, text: "Is there a shuttle service to the airport?", translation: "¿Hay servicio de traslado al aeropuerto?" },
+            { id: 10, text: "Is there a swimming pool?", translation: "¿Hay piscina?" },
+            { id: 11, text: "Do you have facilities for children?", translation: "¿Tiene instalaciones para niños?" },
+            { id: 12, text: "Do you have a laundry service?", translation: "¿Tiene servicio de lavandería?" },
+            { id: 13, text: "Can you recommend a good restaurant?", translation: "¿Puede recomendarme un buen restaurante?" },
+            { id: 14, text: "What time do I need to check in or out?", translation: "¿A qué hora debo hacer el check-in/out?" },
+            { id: 15, text: "I'd like to stay for an extra night.", translation: "Me gustaría quedarme una noche más." },
+            { id: 16, text: "I've mislaid my room key.", translation: "He perdido la llave de mi habitación." }
+        ];
+
+        // Perfectly logical question-response pairs with corrected Q1 response
+        const logicalPairsData = [
+            { id: 1, question: "Do you have a reservation?", response: "Yes, I have a reservation under the name Smith." },
+            { id: 2, question: "May I have your name please?", response: "Certainly, my name is Robert Smith." },
+            { id: 3, question: "May I see your passport / ID please?", response: "Here is my passport and reservation details." },
+            { id: 4, question: "How long will you be staying?", response: "I will be staying for three nights until Friday." },
+            { id: 5, question: "Could you fill out this form please?", response: "Of course, I am filling out my personal information now." },
+            { id: 6, question: "Here is your key.", response: "Thank you very much. Which floor is my room on?" },
+            { id: 7, question: "Do you need help with your luggage?", response: "Yes please, could someone help me carry my heavy bags?" },
+            { id: 8, question: "Is breakfast included?", response: "Yes, breakfast is served from 7am to 10am in the dining room." },
+            { id: 9, question: "Do you need a wake-up call?", response: "Yes please, could you ring my room at 7:00 AM?" },
+            { id: 10, question: "Can you recommend a good restaurant?", response: "Certainly, there is a wonderful restaurant two blocks away." }
+        ];
+
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-GB';
+            utterance.rate = 0.95;
+            utterance.pitch = 0.95;
+
+            const voices = window.speechSynthesis.getVoices();
+            const britishMaleVoice = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('oliver') || v.name.toLowerCase().includes('ryan') || v.name.toLowerCase().includes('uk english male') || v.name.toLowerCase().includes('daniel') || v.name.toLowerCase().includes('arthur')));
+            const anyBritishVoice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+            
+            if (britishMaleVoice) {
+                utterance.voice = britishMaleVoice;
+            } else if (anyBritishVoice) {
+                utterance.voice = anyBritishVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+        }
+
+        // --- WEB AUDIO API SOUND EFFECTS ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!audioCtx) return;
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'success') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.1);
+                osc.frequency.setValueAtTime(783.99, now + 0.2);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+                osc.start(now);
+                osc.stop(now + 0.5);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.setValueAtTime(150, now + 0.15);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } else if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, now);
+                gain.gain.setValueAtTime(0.05, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            }
+        }
+
+        function switchSection(secNum) {
+            playSound('click');
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`section-${i}`).classList.add('hidden');
+                document.getElementById(`section-btn-${i}`).className = "py-3 px-2 text-sm sm:text-base font-semibold text-gray-600 hover:text-teal-700 whitespace-nowrap transition flex items-center space-x-2";
+            }
+            document.getElementById(`section-${secNum}`).classList.remove('hidden');
+            document.getElementById(`section-btn-${secNum}`).className = "section-active py-3 px-2 text-sm sm:text-base font-semibold flex items-center space-x-2 whitespace-nowrap transition";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- INITIALIZE SECTION 1 ---
+        function initSection1() {
+            const staffListEl = document.getElementById('staff-phrases-list');
+            const guestListEl = document.getElementById('guest-phrases-list');
+
+            staffListEl.innerHTML = staffPhrasesData.map((item, index) => `
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-blue-100 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold text-blue-600">#${index + 1}</span>
+                        <p class="text-sm font-semibold text-gray-800">${item.text}</p>
+                        <p class="text-xs text-gray-500 italic">${item.translation}</p>
+                    </div>
+                    <button onclick="speakText('${item.text.replace(/'/g, "\\'")}')" class="bg-blue-100 hover:bg-blue-200 text-blue-700 p-2.5 rounded-lg transition shrink-0" title="Listen">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            guestListEl.innerHTML = guestPhrasesData.map((item, index) => `
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-emerald-100 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-600">#${index + 1}</span>
+                        <p class="text-sm font-semibold text-gray-800">${item.text}</p>
+                        <p class="text-xs text-gray-500 italic">${item.translation}</p>
+                    </div>
+                    <button onclick="speakText('${item.text.replace(/'/g, "\\'")}')" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-700 p-2.5 rounded-lg transition shrink-0" title="Listen">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        let sec2Items = [];
+        let sec2Index = 0;
+        let sec2Score = 0;
+        let sec2Errors = 0;
+        let sec2Answered = false;
+
+        function resetSec2() {
+            let combined = [
+                ...staffPhrasesData.slice(0, 5).map(i => ({ ...i, role: 'hotel' })),
+                ...guestPhrasesData.slice(0, 5).map(i => ({ ...i, role: 'guest' }))
+            ].sort(() => Math.random() - 0.5);
+
+            sec2Items = combined;
+            sec2Index = 0;
+            sec2Score = 0;
+            sec2Errors = 0;
+            sec2Answered = false;
+
+            document.getElementById('sec2-card-container').classList.remove('hidden');
+            document.getElementById('sec2-completion').classList.add('hidden');
+            loadSec2Question();
+        }
+
+        function loadSec2Question() {
+            if (sec2Index >= sec2Items.length) {
+                showSec2Completion();
+                return;
+            }
+            sec2Answered = false;
+            document.getElementById('sec2-current-num').innerText = sec2Index + 1;
+            document.getElementById('sec2-progress').innerText = `Question ${sec2Index + 1} of 10`;
+            document.getElementById('sec2-score').innerText = sec2Score;
+            document.getElementById('sec2-errors').innerText = sec2Errors;
+            document.getElementById('sec2-feedback').innerHTML = '';
+            document.getElementById('sec2-hint-box').classList.add('hidden');
+            document.getElementById('sec2-hint-text').innerText = sec2Items[sec2Index].text;
+        }
+
+        function playSec2CurrentAudio() {
+            if (sec2Index < sec2Items.length) {
+                speakText(sec2Items[sec2Index].text);
+            }
+        }
+
+        function toggleSec2Hint() {
+            document.getElementById('sec2-hint-box').classList.toggle('hidden');
+        }
+
+        function answerSec2(selectedRole) {
+            if (sec2Answered) return;
+            const currentItem = sec2Items[sec2Index];
+            const feedbackEl = document.getElementById('sec2-feedback');
+
+            if (selectedRole === currentItem.role) {
+                sec2Answered = true;
+                sec2Score++;
+                playSound('success');
+                feedbackEl.innerHTML = `<span class="text-emerald-600 bg-emerald-50 px-4 py-2 rounded-xl inline-block border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Correct! It was said by the <strong>${currentItem.role === 'hotel' ? 'Hotel Staff' : 'Guest'}</strong> ("${currentItem.text}")</span>`;
+                
+                setTimeout(() => {
+                    sec2Index++;
+                    loadSec2Question();
+                }, 2000);
+            } else {
+                sec2Errors++;
+                playSound('error');
+                feedbackEl.innerHTML = `<span class="text-rose-600 bg-rose-50 px-4 py-2 rounded-xl inline-block border border-rose-200"><i class="fa-solid fa-circle-xmark"></i> Not quite! Try again or click the lightbulb hint.</span>`;
+                document.getElementById('sec2-errors').innerText = sec2Errors;
+            }
+        }
+
+        function showSec2Completion() {
+            document.getElementById('sec2-card-container').classList.add('hidden');
+            document.getElementById('sec2-completion').classList.remove('hidden');
+            document.getElementById('sec2-final-stats').innerText = `You got ${sec2Score} correct answers with ${sec2Errors} errors!`;
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+            playSound('success');
+        }
+
+        let sec3Pairs = [];
+        let sec3Score = 0;
+        let sec3Errors = 0;
+        let selectedLeftId = null;
+        let matchedCount3 = 0;
+        let shuffledRightItems = [];
+
+        function resetSec3() {
+            sec3Pairs = logicalPairsData.map(item => ({ ...item, matched: false }));
+            sec3Score = 0;
+            sec3Errors = 0;
+            matchedCount3 = 0;
+            selectedLeftId = null;
+            // Shuffled right side responses independently so they are not aligned at start
+            shuffledRightItems = [...logicalPairsData].sort(() => Math.random() - 0.5);
+
+            document.getElementById('sec3-game-area').classList.remove('hidden');
+            document.getElementById('sec3-completion').classList.add('hidden');
+            document.getElementById('sec3-score').innerText = '0';
+            document.getElementById('sec3-errors').innerText = '0';
+            document.getElementById('sec3-progress').innerText = 'Matched: 0 / 10';
+
+            renderSec3Board();
+        }
+
+        function renderSec3Board() {
+            const container = document.getElementById('sec3-rows-container');
+
+            let matchedItems = sec3Pairs.filter(p => p.matched);
+            let unmatchedQuestions = sec3Pairs.filter(p => !p.matched);
+            let unmatchedResponses = shuffledRightItems.filter(r => !sec3Pairs.find(p => p.id === r.id && p.matched));
+
+            let html = '';
+
+            // Render matched items at the top
+            matchedItems.forEach((item, idx) => {
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-emerald-50 border border-emerald-300 rounded-xl p-3 items-center opacity-95 shadow-sm">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-200 px-2 py-0.5 rounded">Match #${idx + 1}</span>
+                            <p class="text-sm font-semibold text-emerald-900">${item.question}</p>
+                        </div>
+                        <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-emerald-200">
+                            <p class="text-sm font-medium text-emerald-900">${item.response}</p>
+                            <button onclick="speakText('${item.question.replace(/'/g, "\\'")}. Response: ${item.response.replace(/'/g, "\\'")}')" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-800 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1.5 transition" title="Listen">
+                                <i class="fa-solid fa-volume-high"></i>
+                                <span>Listen</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render remaining unmatched rows in parallel
+            const maxRows = Math.max(unmatchedQuestions.length, unmatchedResponses.length);
+            for (let i = 0; i < maxRows; i++) {
+                let qItem = unmatchedQuestions[i];
+                let rItem = unmatchedResponses[i];
+
+                html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white border border-gray-200 rounded-xl p-3 items-center shadow-sm">`;
+
+                // Left Column (Question)
+                if (qItem) {
+                    let isSelected = selectedLeftId === qItem.id;
+                    html += `
+                        <div class="flex items-center justify-between p-2 rounded-lg ${isSelected ? 'bg-teal-50 border-2 border-teal-500 ring-2 ring-teal-200' : 'bg-gray-50 border border-gray-100'} cursor-pointer transition" onclick="selectSec3Left(${qItem.id})">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600">Question</span>
+                                <p class="text-sm font-semibold text-gray-800">${qItem.question}</p>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <button onclick="event.stopPropagation(); toggleSec3Hint(${qItem.id})" class="text-amber-500 hover:text-amber-600 p-1.5" title="Hint">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </button>
+                                <span class="text-xs bg-teal-100 text-teal-800 font-bold px-2 py-1 rounded">Select</span>
+                            </div>
+                        </div>
+                        <div id="sec3-hint-${qItem.id}" class="hidden col-span-2 bg-amber-50 text-amber-900 text-xs p-2 rounded-lg italic border border-amber-200">
+                            Hint: ${qItem.question}
+                        </div>
+                    `;
+                } else {
+                    html += `<div></div>`;
+                }
+
+                // Right Column (Shuffled Response)
+                if (rItem) {
+                    html += `
+                        <div class="flex items-center justify-between p-2 rounded-lg bg-blue-50/50 border border-blue-100 cursor-pointer hover:bg-blue-100 transition" onclick="selectSec3Right(${rItem.id})">
+                            <div>
+                                <span class="text-xs font-bold text-blue-600">Option</span>
+                                <p class="text-sm font-semibold text-gray-800">${rItem.response}</p>
+                            </div>
+                            <span class="text-xs bg-blue-600 text-white font-bold px-3 py-1 rounded shadow">Match</span>
+                        </div>
+                    `;
+                } else {
+                    html += `<div></div>`;
+                }
+
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function selectSec3Left(id) {
+            playSound('click');
+            selectedLeftId = id;
+            renderSec3Board();
+        }
+
+        function toggleSec3Hint(id) {
+            const hintEl = document.getElementById(`sec3-hint-${id}`);
+            if (hintEl) hintEl.classList.toggle('hidden');
+        }
+
+        function selectSec3Right(rightId) {
+            if (!selectedLeftId) {
+                playSound('error');
+                notificationToast("Please select a Hotel Question on the left first!");
+                return;
+            }
+
+            if (selectedLeftId === rightId) {
+                playSound('success');
+                sec3Score++;
+                matchedCount3++;
+                const matchedItem = sec3Pairs.find(i => i.id === rightId);
+                matchedItem.matched = true;
+                selectedLeftId = null;
+
+                document.getElementById('sec3-score').innerText = sec3Score;
+                document.getElementById('sec3-progress').innerText = `Matched: ${matchedCount3} / 10`;
+
+                renderSec3Board();
+
+                if (matchedCount3 >= 10) {
+                    showSec3Completion();
+                }
+            } else {
+                sec3Errors++;
+                playSound('error');
+                document.getElementById('sec3-errors').innerText = sec3Errors;
+                selectedLeftId = null;
+                renderSec3Board();
+                notificationToast("Incorrect match! Try again or check the hint lightbulb.");
+            }
+        }
+
+        function showSec3Completion() {
+            document.getElementById('sec3-game-area').classList.add('hidden');
+            document.getElementById('sec3-completion').classList.remove('hidden');
+            document.getElementById('sec3-final-stats').innerText = `You matched all 10 logical pairs with ${sec3Errors} errors!`;
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+            playSound('success');
+        }
+
+        const visualPuzzleData = [
+            {
+                id: 1,
+                phrase: "Do you have a reservation?",
+                hint: "Checking in at the front desk desk inquiry.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="10" y="70" width="100" height="40" fill="#0d9488" rx="5"/><rect x="20" y="30" width="80" height="40" fill="#f3f4f6" stroke="#1f2937" stroke-width="2" rx="4"/><circle cx="60" cy="50" r="12" fill="#fbbf24"/><path d="M45 65 Q60 55 75 65" fill="none" stroke="#1f2937" stroke-width="2"/></svg>`
+            },
+            {
+                id: 2,
+                phrase: "May I see your passport / ID please?",
+                hint: "Staff asking for identification papers.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="30" y="20" width="60" height="80" fill="#2563eb" rx="4"/><rect x="40" y="35" width="40" height="50" fill="#ffffff" rx="2"/><circle cx="60" cy="50" r="10" fill="#93c5fd"/><rect x="45" y="70" width="30" height="6" fill="#cbd5e1" rx="2"/></svg>`
+            },
+            {
+                id: 3,
+                phrase: "How long will you be staying?",
+                hint: "Inquiring about duration of stay on calendar.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="20" y="25" width="80" height="75" fill="#ffffff" stroke="#0d9488" stroke-width="4" rx="6"/><rect x="20" y="25" width="80" height="20" fill="#0d9488"/><circle cx="40" cy="65" r="6" fill="#f43f5e"/><circle cx="60" cy="65" r="6" fill="#10b981"/><circle cx="80" cy="65" r="6" fill="#cbd5e1"/></svg>`
+            },
+            {
+                id: 4,
+                phrase: "Could someone help me with my bags?",
+                hint: "Guest asking for bellboy luggage assistance.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="35" y="50" width="50" height="35" fill="#b45309" rx="4"/><path d="M50 50 L50 40 Q60 30 70 40 L70 50" fill="none" stroke="#78350f" stroke-width="4"/><circle cx="45" cy="90" r="8" fill="#1f2937"/><circle cx="75" cy="90" r="8" fill="#1f2937"/></svg>`
+            },
+            {
+                id: 5,
+                phrase: "Is breakfast included?",
+                hint: "Morning coffee and croissant meal inquiry.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><path d="M35 50 C35 75 85 75 85 50 Z" fill="#f59e0b"/><path d="M85 55 Q100 55 95 70 Q90 75 85 70" fill="none" stroke="#f59e0b" stroke-width="4"/><path d="M50 35 Q60 20 55 10" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/><path d="M70 35 Q80 20 75 10" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/></svg>`
+            },
+            {
+                id: 6,
+                phrase: "Does the room have air-conditioning?",
+                hint: "Cool breeze fan or AC climate control.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="20" y="35" width="80" height="30" fill="#3b82f6" rx="6"/><circle cx="60" cy="50" r="8" fill="#ffffff"/><path d="M40 75 Q60 95 80 75" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4,4"/></svg>`
+            },
+            {
+                id: 7,
+                phrase: "Here is your key.",
+                hint: "Handing over room electronic access card.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="30" y="40" width="60" height="40" fill="#e2e8f0" stroke="#0f766e" stroke-width="3" rx="6"/><circle cx="50" cy="60" r="8" fill="#0f766e"/><rect x="65" y="55" width="15" height="10" fill="#fbbf24" rx="2"/></svg>`
+            },
+            {
+                id: 8,
+                phrase: "Is there a swimming pool?",
+                hint: "Relaxing blue water resort pool.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><rect x="15" y="45" width="90" height="50" fill="#38bdf8" rx="10"/><path d="M20 60 Q40 50 60 60 T100 60" fill="none" stroke="#ffffff" stroke-width="3"/><circle cx="60" cy="35" r="10" fill="#f59e0b"/></svg>`
+            },
+            {
+                id: 9,
+                phrase: "Do you need a wake-up call?",
+                hint: "Alarm clock ringing in the morning.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><circle cx="60" cy="65" r="30" fill="#f43f5e"/><circle cx="60" cy="65" r="25" fill="#ffffff"/><path d="M60 45 L60 65 L75 65" fill="none" stroke="#1f2937" stroke-width="3"/><path d="M40 35 L48 45" stroke="#1f2937" stroke-width="3"/><path d="M80 35 L72 45" stroke="#1f2937" stroke-width="3"/></svg>`
+            },
+            {
+                id: 10,
+                phrase: "I've mislaid my room key.",
+                hint: "Guest searching for lost door key item.",
+                svg: `<svg viewBox="0 0 120 120" class="w-28 h-28 mx-auto"><circle cx="55" cy="55" r="22" fill="none" stroke="#64748b" stroke-width="5"/><path d="M72 72 L95 95" stroke="#64748b" stroke-width="6" stroke-linecap="round"/><path d="M45 45 Q55 35 65 45" fill="none" stroke="#f43f5e" stroke-width="3"/><text x="48" y="60" font-size="16" fill="#f43f5e">?</text></svg>`
+            }
+        ];
+
+        let sec4Items = [];
+        let sec4Index = 0;
+        let sec4Score = 0;
+        let sec4Errors = 0;
+        let sec4Answered = false;
+
+        function resetSec4() {
+            sec4Items = [...visualPuzzleData].sort(() => Math.random() - 0.5);
+            sec4Index = 0;
+            sec4Score = 0;
+            sec4Errors = 0;
+            sec4Answered = false;
+
+            document.getElementById('sec4-game-area').classList.remove('hidden');
+            document.getElementById('sec4-completion').classList.add('hidden');
+            loadSec4Puzzle();
+        }
+
+        function loadSec4Puzzle() {
+            if (sec4Index >= sec4Items.length) {
+                showSec4Completion();
+                return;
+            }
+            sec4Answered = false;
+            const current = sec4Items[sec4Index];
+            document.getElementById('sec4-current-num').innerText = sec4Index + 1;
+            document.getElementById('sec4-progress').innerText = `Puzzle ${sec4Index + 1} of 10`;
+            document.getElementById('sec4-score').innerText = sec4Score;
+            document.getElementById('sec4-errors').innerText = sec4Errors;
+            document.getElementById('sec4-feedback').innerHTML = '';
+            document.getElementById('sec4-hint-box').classList.add('hidden');
+            document.getElementById('sec4-hint-text').innerText = current.hint;
+            document.getElementById('sec4-svg-container').innerHTML = current.svg;
+
+            let options = [current.phrase];
+            while (options.length < 4) {
+                let randomPhrase = visualPuzzleData[Math.floor(Math.random() * visualPuzzleData.length)].phrase;
+                if (!options.includes(randomPhrase)) {
+                    options.push(randomPhrase);
+                }
+            }
+            options.sort(() => Math.random() - 0.5);
+
+            const optionsGrid = document.getElementById('sec4-options-grid');
+            optionsGrid.innerHTML = options.map(opt => `
+                <button onclick="answerSec4('${opt.replace(/'/g, "\\'")}')" class="bg-white hover:bg-teal-50 border-2 border-teal-200 text-teal-900 font-semibold py-3 px-4 rounded-xl shadow-sm transition text-sm text-left flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-dot text-teal-500 text-xs"></i>
+                    <span>${opt}</span>
+                </button>
+            `).join('');
+        }
+
+        function playSec4CurrentAudio() {
+            if (sec4Index < sec4Items.length) {
+                speakText(sec4Items[sec4Index].phrase);
+            }
+        }
+
+        function toggleSec4Hint() {
+            document.getElementById('sec4-hint-box').classList.toggle('hidden');
+        }
+
+        function answerSec4(selectedText) {
+            if (sec4Answered) return;
+            const current = sec4Items[sec4Index];
+            const feedbackEl = document.getElementById('sec4-feedback');
+
+            if (selectedText === current.phrase) {
+                sec4Answered = true;
+                sec4Score++;
+                playSound('success');
+                feedbackEl.innerHTML = `<span class="text-emerald-600 bg-emerald-50 px-4 py-2 rounded-xl inline-block border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Correct match! ("${current.phrase}")</span>`;
+                
+                setTimeout(() => {
+                    sec4Index++;
+                    loadSec4Puzzle();
+                }, 2000);
+            } else {
+                sec4Errors++;
+                playSound('error');
+                feedbackEl.innerHTML = `<span class="text-rose-600 bg-rose-50 px-4 py-2 rounded-xl inline-block border border-rose-200"><i class="fa-solid fa-circle-xmark"></i> Not quite! Try another option or check the hint lightbulb.</span>`;
+                document.getElementById('sec4-errors').innerText = sec4Errors;
+            }
+        }
+
+        function showSec4Completion() {
+            document.getElementById('sec4-game-area').classList.add('hidden');
+            document.getElementById('sec4-completion').classList.remove('hidden');
+            document.getElementById('sec4-final-stats').innerText = `You solved all 10 visual puzzles with ${sec4Errors} errors!`;
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+            playSound('success');
+        }
+
+        function notificationToast(msg) {
+            const banner = document.createElement('div');
+            banner.className = "fixed bottom-5 right-5 bg-gray-900 text-white text-sm px-4 py-3 rounded-xl shadow-xl z-50 animate-pop flex items-center space-x-2";
+            banner.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-400"></i><span>${msg}</span>`;
+            document.body.appendChild(banner);
+            setTimeout(() => { banner.remove(); }, 3000);
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            initSection1();
+            resetSec2();
+            resetSec3();
+            resetSec4();
+        };
+    </script>
+</body>
+</html>
