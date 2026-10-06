@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>Merry Mery English - Exercises & Quizzes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Script diferido para no bloquear la carga de la pantalla -->
+    <!-- Script diferido para ResponsiveVoice -->
     <script defer src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
 
     <style>
@@ -250,7 +250,7 @@
     </div>
 
     <!-- Section 5: Real-Life Scenarios -->
-    <div class="section-title">✈️ Real-Life Scenarios</div>
+    <div class="section-title">✈️️ Real-Life Scenarios</div>
     <div class="btn-list">
         <a href="flight-attendant.html" class="btn-item">Cabin Crew Says (Aviation Simulator)</a>
         <a href="attheairport.html" class="btn-item">✈ At the Airport (Interactive Scenario)</a>
@@ -274,24 +274,17 @@
         }
     }
 
+    // Función principal forzada estrictamente a Voz Masculina Británica
     function speakUKMale(text) {
         if (window.responsiveVoice) {
             responsiveVoice.cancel();
             responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
-        } else if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-GB';
-            utterance.rate = 0.9;
-            utterance.pitch = 0.9;
-            
-            const voices = window.speechSynthesis.getVoices();
-            const britishMale = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('daniel') || v.name.toLowerCase().includes('oliver') || v.name.toLowerCase().includes('arthur')));
-            if (britishMale) {
-                utterance.voice = britishMale;
-            }
-            window.speechSynthesis.speak(utterance);
         }
+    }
+
+    // Por compatibilidad si algún componente viejo llama a esta función, la redirigimos al masculino
+    function speakUKFemale(text) {
+        speakUKMale(text);
     }
 </script>
 
