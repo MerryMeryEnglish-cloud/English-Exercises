@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Must-Visit Argentina - Listening & Reading Exercise B2</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            argentina: {
+              sky: '#74ACDF',
+              sun: '#F6B40E',
+              dark: '#1A365D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <header class="bg-gradient-to-r from-argentina-dark via-brand-900 to-argentina-dark text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center gap-3">
+        <img 
+          src="logo.png" 
+          alt="Merry Mery English Logo" 
+          class="w-12 h-12 object-contain bg-white rounded-full p-0.5 shadow-md transform hover:scale-105 transition-transform"
+        >
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-bold text-xl tracking-wide text-white">MERRY MERY</span>
+            <span class="bg-argentina-sky text-slate-900 text-xs font-black px-2 py-0.5 rounded-full uppercase tracking-wider">ENGLISH</span>
+          </div>
+          <p class="text-xs text-sky-200 font-medium">Interactive B2 English Learning Exercises</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="stopAllAudio()" class="bg-red-500/20 hover:bg-red-500/40 text-red-200 border border-red-400/30 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-volume-xmark"></i> Mute Audio
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-slate-900/60 backdrop-blur border-t border-white/10 px-4">
+      <div class="max-w-6xl mx-auto flex overflow-x-auto space-x-1 py-2 no-scrollbar" id="tabNav">
+        <button onclick="switchTab('reading')" id="tabBtn-reading" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition bg-argentina-sky text-slate-950 shadow-sm">
+          <i class="fa-solid fa-book-open"></i> 1. Read & Listen
+        </button>
+        <button onclick="switchTab('vocab')" id="tabBtn-vocab" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-spell-check"></i> 2. Key Vocabulary (B2)
+        </button>
+        <button onclick="switchTab('comprehension')" id="tabBtn-comprehension" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-circle-question"></i> 3. Text Questions (8)
+        </button>
+        <button onclick="switchTab('gapfill')" id="tabBtn-gapfill" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-pen-to-square"></i> 4. Add a Word
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- TAB 1: READ & LISTEN -->
+    <section id="tab-reading" class="tab-content fade-in space-y-6">
+      
+      <!-- Hero Banner & Image Gallery -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+          <div>
+            <span class="inline-block bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Reading & Listening B2</span>
+            <h1 class="font-display text-2xl md:text-3xl font-extrabold text-slate-900">Must-Visit Wonders of Argentina</h1>
+            <p class="text-slate-600 text-sm mt-1">Explore six world-famous Argentine destinations while expanding your vocabulary and listening comprehension.</p>
+          </div>
+        </div>
+
+        <!-- Single Banner Image -->
+        <div class="mb-6">
+          <img src="imagenes_de_argentina.jpg" alt="Wonders of Argentina Destination Grid" class="w-full rounded-2xl shadow-md border border-slate-100">
+        </div>
+
+        <!-- Audio Controls -->
+        <div class="bg-slate-900 text-white rounded-xl p-4 shadow-md flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-argentina-sky/20 flex items-center justify-center text-argentina-sky">
+              <i class="fa-solid fa-headphones text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-100">Audio Passage Controls</h3>
+              <p class="text-xs text-slate-400" id="audioStatus">Status: Ready to play</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="playPassageAudio()" id="btnPlayAudio" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition">
+              <i class="fa-solid fa-play"></i> Play Text
+            </button>
+            <button onclick="pausePassageAudio()" id="btnPauseAudio" class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-pause"></i> Pause
+            </button>
+            <button onclick="stopPassageAudio()" id="btnStopAudio" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-stop"></i> Stop
+            </button>
+            <select id="playbackSpeed" onchange="updateAudioSpeed()" class="bg-slate-800 border border-slate-700 text-xs text-slate-200 rounded-lg px-2 py-2 outline-none">
+              <option value="0.85">0.85x Speed</option>
+              <option value="1" selected>1.0x Normal</option>
+              <option value="1.15">1.15x Fast</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reading Passage Content -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-6 text-slate-700 leading-relaxed" id="readingTextContainer">
+        
+        <!-- Paragraph 1 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-sky-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-sky-100 text-sky-800 text-xs px-2.5 py-1 rounded-md">1</span>
+            The Cosmopolitan Energy of Buenos Aires
+          </h2>
+          <p class="text-sm md:text-base">
+            Serving as the vibrant gateway to the nation, Buenos Aires seamlessly blends European architectural elegance with an unmistakable Latin passion. Often <span onclick="goToVocab('dubbed')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">dubbed</span> the "Paris of South America," visitors can spend days exploring the <span onclick="goToVocab('cobblestone')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">cobblestone</span> alleys of San Telmo, admiring the colorful wooden houses in La Boca, or wandering through the upscale district of Recoleta. The city's cultural soul thrives in its historic coffee houses and underground tango clubs, where passionate dancers perform late into the night. Additionally, the capital <span onclick="goToVocab('boasts')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">boasts</span> world-class contemporary art galleries and an unbeatable gastronomic scene, renowned for traditional steak houses known as <em>parrillas</em>.
+          </p>
+        </article>
+
+        <!-- Paragraph 2 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-cyan-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-cyan-100 text-cyan-800 text-xs px-2.5 py-1 rounded-md">2</span>
+            Thunderous Power at Iguazú Falls
+          </h2>
+          <p class="text-sm md:text-base">
+            Nestled in the subtropical rainforest bordering Brazil, Iguazú Falls is undoubtedly one of the world's most spectacular natural wonders. <span onclick="goToVocab('comprising')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">Comprising</span> over 275 individual waterfalls stretching across nearly three kilometers, the site generates a deafening roar and a perpetual mist. The most awe-inspiring <span onclick="goToVocab('vantage')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">vantage</span> point is the Devil's Throat (<em>Garganta del Diablo</em>), where visitors stand directly above a massive horseshoe-shaped cataract. Surrounding the cascades is a dense national park <span onclick="goToVocab('teeming')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">teeming</span> with exotic wildlife, including colorful toucans, curious coatis, and vibrant butterflies, making it a dream destination for eco-tourists and nature photographers alike.
+          </p>
+        </article>
+
+        <!-- Paragraph 3 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-emerald-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-md">3</span>
+            Alpine Elegance in Bariloche
+          </h2>
+          <p class="text-sm md:text-base">
+            Located in the heart of the Northern Patagonian Lake District, San Carlos de Bariloche captivates travelers with its Swiss-style chalet architecture and breathtaking alpine scenery. Surrounded by snow-capped Andean peaks and <span onclick="goToVocab('pristine')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">pristine
