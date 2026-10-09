@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - Infinitive or Gerund Masterclass</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col antialiased">
+
+    <!-- Header / Navbar Principal -->
+    <header class="bg-gradient-to-r from-teal-700 via-teal-800 to-slate-900 text-white shadow-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center border-2 border-teal-400 overflow-hidden shadow-inner group shrink-0">
+                    <img src="logo_3.png" alt="Merry Mery English Logo" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/100x100/0f766e/ffffff?text=MME'">
+                </a>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight flex items-center gap-2">
+                        Merry Mery English
+                        <span class="text-[10px] bg-teal-500/30 text-teal-200 border border-teal-400/30 px-2 py-0.5 rounded-full font-semibold hidden sm:inline-block">UK English</span>
+                    </h1>
+                    <p class="text-xs text-teal-200 uppercase font-semibold tracking-wider">Infinitive or Gerund Masterclass</p>
+                </div>
+            </div>
+
+            <!-- Header Quick Actions: Home & Dictionary -->
+            <div class="flex items-center gap-2.5">
+                <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition border border-white/20">
+                    <i class="fa-solid fa-house text-amber-300"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" rel="noopener noreferrer" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-100 px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition border border-sky-300/30">
+                    <i class="fa-solid fa-book-bookmark text-sky-300"></i>
+                    <span class="hidden sm:inline">Cambridge Dict</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-sky-300"></i>
+                </a>
+
+                <button onclick="speakIntro()" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow transition active:scale-95">
+                    <i class="fa-solid fa-volume-high"></i> Listen Intro
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs (Solapas) -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[68px] z-20">
+        <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+            <div class="flex space-x-2 py-2.5 min-w-max">
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-teal-600 text-white shadow-sm">
+                    <i class="fa-solid fa-book-open"></i> 1. Verbs & Rules
+                </button>
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-pen-nib"></i> 2. Fill in the Blanks
+                </button>
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-list-check"></i> 3. Structure Mastery
+                </button>
+                <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-book-bookmark"></i> 4. Interactive Story Challenge
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 overflow-y-auto">
+        
+        <!-- TAB 1 CONTENT -->
+        <div id="tab-1" class="tab-content active space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Verbs with Infinitive or Gerund in British English</h2>
+                    <p class="text-slate-600 text-sm mt-1">Master when to use the <code class="bg-slate-100 px-1.5 py-0.5 rounded text-teal-700 font-semibold">-ing</code> form (gerund) vs the <code class="bg-slate-100 px-1.5 py-0.5 rounded text-teal-700 font-semibold">to + infinitive</code>.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" rel="noopener noreferrer" class="bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 px-3.5 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-book-bookmark text-sky-600"></i>
+                        <span>Dictionary</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-sky-500"></i>
+                    </a>
+                    <button onclick="speakOverview()" class="bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 transition">
+                        <i class="fa-solid fa-volume-high"></i> Listen Overview
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rules Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-teal-50 to-white rounded-2xl p-6 border border-teal-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-teal-900 flex items-center gap-2 mb-3">
+                        <i class="fa-solid fa-circle-check text-teal-600"></i> When to use Gerunds (-ing)
+                    </h3>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-teal-600 mt-1"></i><span><strong>After prepositions:</strong> e.g., <em class="text-teal-800">interested in learning</em>.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-teal-600 mt-1"></i><span><strong>As subjects of sentences:</strong> e.g., <em class="text-teal-800">Swimming is healthy</em>.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-teal-600 mt-1"></i><span><strong>After specific verbs:</strong> e.g., <em class="text-teal-800">enjoy, avoid, mind, finish</em>.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-indigo-50 to-white rounded-2xl p-6 border border-indigo-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-indigo-900 flex items-center gap-2 mb-3">
+                        <i class="fa-solid fa-circle-check text-indigo-600"></i> When to use Infinitives (to + verb)
+                    </h3>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i><span><strong>To express purpose/reason:</strong> e.g., <em class="text-indigo-800">I came to help</em>.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i><span><strong>After adjectives:</strong> e.g., <em class="text-indigo-800">happy to meet</em>.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i><span><strong>After specific verbs:</strong> e.g., <em class="text-indigo-800">want, decide, hope, refuse</em>.</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 12 Target Verbs Grid -->
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-4">The 12 Masterclass Target Verbs & Rules</h3>
+                <div id="verbs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2 CONTENT -->
+        <div id="tab-2" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Fill in the Blanks</h2>
+                    <p class="text-slate-600 text-sm mt-1">Type the correct gerund (<code class="bg-slate-100 px-1 py-0.5 rounded text-teal-700">-ing</code>) or infinitive (<code class="bg-slate-100 px-1 py-0.5 rounded text-teal-700">to ...</code>) form.</p>
+                </div>
+                <button onclick="resetFillInBlanks()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 transition">
+                    <i class="fa-solid fa-rotate"></i> Reset & Shuffle
+                </button>
+            </div>
+
+            <div id="fib-container" class="space-y-4"></div>
+        </div>
+
+        <!-- TAB 3 CONTENT -->
+        <div id="tab-3" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Structure Mastery (Multiple Choice)</h2>
+                    <p class="text-slate-600 text-sm mt-1">Select the correct verb form for each British English sentence.</p>
+                </div>
+                <button onclick="resetStructureMastery()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 transition">
+                    <i class="fa-solid fa-rotate"></i> Reset & Shuffle
+                </button>
+            </div>
+
+            <div id="mc-container" class="space-y-4"></div>
+        </div>
+
+        <!-- TAB 4 CONTENT -->
+        <div id="tab-4" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Interactive Story Challenge</h2>
+                    <p class="text-slate-600 text-sm mt-1">Read the extended story and click on the target gerund and infinitive verbs!</p>
+                </div>
+                <div class="flex items-center gap-3 bg-teal-50 px-4 py-2.5 rounded-xl border border-teal-100 flex-wrap">
+                    <div class="text-xs font-semibold text-teal-900">
+                        Found: <span id="story-found-count" class="text-teal-700 font-bold text-sm">0</span> / <span id="story-total-count" class="text-teal-700 font-bold text-sm">0</span>
+                    </div>
+                    <button id="story-listen-btn" onclick="toggleStorySpeech()" class="bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow transition">
+                        <i id="story-listen-icon" class="fa-solid fa-volume-high"></i> <span id="story-listen-label">Listen Story</span>
+                    </button>
+                    <button onclick="resetStoryChallenge()" class="bg-white hover:bg-teal-100 text-teal-800 border border-teal-200 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                        <i class="fa-solid fa-rotate"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="flex items-center justify-between text-xs text-slate-400 border-b pb-2">
+                    <span>Title: A Weekend in Cornwall &amp; Beyond</span>
+                    <span>Tip: Click on gerunds and infinitives to find them!</span>
+                </div>
+                <div id="story-text-container" class="text-base sm:text-lg leading-relaxed text-slate-800 select-none flex flex-wrap gap-x-2 gap-y-3 items-center"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- EVALUATION POPUP MODAL -->
+    <div id="activityModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl text-center space-y-5 border border-slate-100 transform transition-all">
+            <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest text-teal-600" id="modalActivityTag">Activity Completed</span>
+                <h3 class="text-2xl font-extrabold text-slate-900 mt-1" id="modalTitle">Splendid Job!</h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2" id="modalMessage">You have completed all questions in this tab.</p>
+            </div>
+
+            <!-- Stats Box -->
+            <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left">
+                <div class="bg-white p-3 rounded-xl border border-slate-100">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase block">First-Try Success</span>
+                    <p class="text-base font-black text-emerald-600" id="modalFirstTry">4 / 4</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-100">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase block">Total Attempts</span>
+                    <p class="text-base font-black text-slate-800" id="modalAttempts">4 Attempts</p>
+                </div>
+            </div>
+
+            <button id="modalNextBtn" onclick="closeActivityModal()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition text-sm">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <a href="index.html" class="flex items-center gap-2 text-slate-600 hover:text-teal-700 font-semibold">
+                <i class="fa-solid fa-house text-teal-600"></i>
+                <span>Return to Main Index</span>
+            </a>
+            <p>Merry Mery English &copy; 2026. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // WEB AUDIO SYNTHESIZER FOR SOUND FX
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                gainNode.gain.setValueAtTime(0.2, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                osc.start(now);
+                osc.stop(now + 0.4);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.setValueAtTime(150, now + 0.1);
+                gainNode.gain.setValueAtTime(0.2, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'hint') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, now);
+                gainNode.gain.setValueAtTime(0.15, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            }
+        }
+
+        function triggerCelebration() {
+            playSound('success');
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        // SPEECH SYNTHESIS (UK Voice)
+        function speakText(text, onEndCallback) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-GB';
+            utterance.rate = 0.95;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const ukVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Male') || v.name.includes('Oliver') || v.name.includes('UK'))) || voices.find(v => v.lang === 'en-GB');
+            if (ukVoice) utterance.voice = ukVoice;
+            if (onEndCallback) utterance.onend = onEndCallback;
+            
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakIntro() {
+            speakText("Welcome to Merry Mery English Infinitive or Gerund Masterclass.");
+        }
+
+        function speakOverview() {
+            speakText("In British English, choosing between the gerund with ing and the infinitive with to depends on the preceding verb or preposition.");
+        }
+
+        // TAB SWITCHING
+        function switchTab(tabNumber) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+            });
+
+            const activeTab = document.getElementById(`tab-${tabNumber}`);
+            const activeBtn = document.getElementById(`tab-btn-${tabNumber}`);
+
+            if (activeTab) activeTab.classList.add('active');
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-sm');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // DATA TAB 1
+        const verbsData = [
+            { verb: "Enjoy", rule: "Followed by Gerund (-ing)", example: "I enjoy walking in the rain.", translation: "Disfruto caminando bajo la lluvia.", audio: "I enjoy walking in the rain." },
+            { verb: "Want", rule: "Followed by Infinitive (to + verb)", example: "She wants to visit London next week.", translation: "Ella quiere visitar Londres la próxima semana.", audio: "She wants to visit London next week." },
+            { verb: "Finish", rule: "Followed by Gerund (-ing)", example: "Have you finished reading that book?", translation: "¿Has terminado de leer ese libro?", audio: "Have you finished reading that book?" },
+            { verb: "Decide", rule: "Followed by Infinitive (to + verb)", example: "We decided to stay at home tonight.", translation: "Decidimos quedarnos en casa esta noche.", audio: "We decided to stay at home tonight." },
+            { verb: "Mind", rule: "Followed by Gerund (-ing)", example: "Do you mind opening the window?", translation: "¿Te importa abrir la ventana?", audio: "Do you mind opening the window?" },
+            { verb: "Hope", rule: "Followed by Infinitive (to + verb)", example: "He hopes to pass his driving test.", translation: "Él espera aprobar su examen de conducir.", audio: "He hopes to pass his driving test." },
+            { verb: "Avoid", rule: "Followed by Gerund (-ing)", example: "Try to avoid making silly mistakes.", translation: "Intenta evitar cometer errores tontos.", audio: "Try to avoid making silly mistakes." },
+            { verb: "Refuse", rule: "Followed by Infinitive (to + verb)", example: "She refused to answer the question.", translation: "Ella se negó a responder la pregunta.", audio: "She refused to answer the question." },
+            { verb: "Suggest", rule: "Followed by Gerund (-ing)", example: "I suggest taking an umbrella.", translation: "Sugiero llevar un paraguas.", audio: "I suggest taking an umbrella." },
+            { verb: "Promise", rule: "Followed by Infinitive (to + verb)", example: "He promised to phone me later.", translation: "Él prometió llamarme más tarde.", audio: "He promised to phone me later." },
+            { verb: "Practise", rule: "Followed by Gerund (-ing)", example: "You must practise speaking clearly.", translation: "Debes practicar hablar con claridad.", audio: "You must practise speaking clearly." },
+            { verb: "Learn", rule: "Followed by Infinitive (to + verb)", example: "She is learning to play the piano.", translation: "Ella está aprendiendo a tocar el piano.", audio: "She is learning to play the piano." }
+        ];
+
+        function renderVerbs() {
+            const grid = document.getElementById('verbs-grid');
+            grid.innerHTML = verbsData.map((item, idx) => `
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-teal-800">${idx + 1}. ${item.verb}</h4>
+                            <button onclick="speakText('${item.audio}')" class="text-teal-600 hover:text-teal-800 p-1.5 rounded-lg hover:bg-teal-50 transition" title="Listen">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${item.rule.includes('Gerund') ? 'bg-teal-50 text-teal-700 border border-teal-200' : 'bg-indigo-50 text-indigo-700 border border-indigo-200'} mb-3">
+                            ${item.rule}
+                        </span>
+                        <p class="text-slate-800 font-medium text-sm">"${item.example}"</p>
+                        <p class="text-slate-500 text-xs mt-1 italic">${item.translation}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // DATA TAB 2 (FILL IN THE BLANKS WITH ATTEMPTS TRACKING)
+        const fibOriginal = [
+            { id: 1, sentence: "She enjoys _______ (listen) to British pop music.", answer: "listening", hint: "Verb 'enjoy' takes the -ing form." },
+            { id: 2, sentence: "I want _______ (buy) a new cup of tea.", answer: "to buy", hint: "Verb 'want' takes 'to + infinitive'." },
+            { id: 3, sentence: "Would you mind _______ (help) me with this homework?", answer: "helping", hint: "Expression 'Would you mind' requires gerund." },
+            { id: 4, sentence: "They decided _______ (travel) to Scotland in August.", answer: "to travel", hint: "Verb 'decide' takes 'to + infinitive'." },
+            { id: 5, sentence: "He finished _______ (write) his essay late at night.", answer: "writing", hint: "Verb 'finish' takes the -ing form." },
+            { id: 6, sentence: "We hope _______ (meet) the new manager tomorrow.", answer: "to meet", hint: "Verb 'hope' takes 'to + infinitive'." },
+            { id: 7, sentence: "Avoid _______ (touch) the hot kettle in the kitchen.", answer: "touching", hint: "Verb 'avoid' requires the gerund form." },
+            { id: 8, sentence: "She promised _______ (return) the book by Friday.", answer: "to return", hint: "Verb 'promise' takes 'to + infinitive'." }
+        ];
+        let fibQuestions = [...fibOriginal];
+        let fibState = {};
+
+        function renderFillInBlanks() {
+            const container = document.getElementById('fib-container');
+            fibState = {};
+            fibQuestions.forEach(q => fibState[q.id] = { attempts: 0, completed: false, firstTry: false });
+
+            container.innerHTML = fibQuestions.map((q, idx) => {
+                const parts = q.sentence.split('_______');
+                return `
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 w-full sm:w-auto flex-grow">
+                            <span class="w-7 h-7 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs shrink-0">${idx + 1}</span>
+                            <div class="text-slate-800 text-base flex flex-wrap items-center gap-2">
+                                <span>${parts[0]}</span>
+                                <div class="relative inline-block">
+                                    <input type="text" id="fib-input-${q.id}" onchange="checkFIB(${q.id})" placeholder="Type answer..." class="px-3 py-1.5 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 w-36">
+                                    <span id="fib-icon-${q.id}" class="absolute right-2.5 top-2 text-sm"></span>
+                                </div>
+                                <span>${parts[1] || ''}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                            <button onclick="showFIBHint(${q.id})" class="text-amber-600 hover:bg-amber-50 px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-lightbulb"></i> Hint
+                            </button>
+                            <button id="fib-listen-btn-${q.id}" onclick="speakFIB(${q.id})" class="hidden text-teal-600 hover:bg-teal-50 px-2.5 py-1.5 rounded-lg text-xs font-bold items-center gap-1.5 transition border border-teal-200 bg-teal-50">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                    </div>
+                    <div id="fib-hint-box-${q.id}" class="hidden ml-10 text-xs text-amber-800 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                        <i class="fa-solid fa-info-circle"></i> <strong>Clue:</strong> ${q.hint}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function checkFIB(id) {
+            const input = document.getElementById(`fib-input-${id}`);
+            const icon = document.getElementById(`fib-icon-${id}`);
+            const listenBtn = document.getElementById(`fib-listen-btn-${id}`);
+            const q = fibQuestions.find(item => item.id === id);
+            const val = input.value.trim().toLowerCase();
+
+            if (!val) return;
+
+            fibState[id].attempts++;
+
+            if (val === q.answer.toLowerCase()) {
+                if (!fibState[id].completed) {
+                    fibState[id].completed = true;
+                    if (fibState[id].attempts === 1) fibState[id].firstTry = true;
+                }
+                icon.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i>';
+                input.className = "px-3 py-1.5 border border-emerald-400 bg-emerald-50 rounded-xl text-sm focus:outline-none w-36 text-emerald-900 font-semibold";
+                listenBtn.classList.remove('hidden');
+                listenBtn.classList.add('flex');
+                playSound('success');
+                checkAllFIBCompleted();
+            } else {
+                icon.innerHTML = '<i class="fa-solid fa-xmark text-rose-500"></i>';
+                listenBtn.classList.add('hidden');
+                input.className = "px-3 py-1.5 border border-rose-300 bg-rose-50 rounded-xl text-sm focus:outline-none w-36 text-rose-900";
+                playSound('error');
+            }
+        }
+
+        function speakFIB(id) {
+            const q = fibQuestions.find(item => item.id === id);
+            const cleanSentence = q.sentence.replace(/\s*\([^)]*\)/g, '');
+            speakText(cleanSentence.replace('_______', q.answer));
+        }
+
+        function showFIBHint(id) {
+            document.getElementById(`fib-hint-box-${id}`).classList.toggle('hidden');
+            playSound('hint');
+        }
+
+        function checkAllFIBCompleted() {
+            const allDone = fibQuestions.every(q => fibState[q.id] && fibState[q.id].completed);
+            if (allDone) {
+                let firstTryCount = 0;
+                let totalAttempts = 0;
+                fibQuestions.forEach(q => {
+                    if (fibState[q.id].firstTry) firstTryCount++;
+                    totalAttempts += fibState[q.id].attempts;
+                });
+                triggerCelebration();
+                showActivityModal("Activity 2: Fill in the Blanks", firstTryCount, fibQuestions.length, totalAttempts, 3);
+            }
+        }
+
+        function resetFillInBlanks() {
+            fibQuestions = [...fibOriginal].sort(() => Math.random() - 0.5);
+            renderFillInBlanks();
+        }
+
+        // DATA TAB 3 (STRUCTURE MASTERY WITH SOUND AND RETRIES)
+        const mcOriginal = [
+            { id: 1, question: "She suggested _______ by train instead of driving in traffic.", options: ["to travel", "travel", "travelling", "traveled"], answer: 2, hint: "After 'suggest', we use the gerund form." },
+            { id: 2, question: "I forgot _______ the front door before leaving for work.", options: ["locking", "to lock", "lock", "locked"], answer: 1, hint: "Forgetting to do a task requires 'to + infinitive'." },
+            { id: 3, question: "He stopped _______ a cup of coffee at the local cafe.", options: ["having", "have", "to have", "had"], answer: 2, hint: "To express purpose, use infinitive." },
+            { id: 4, question: "Would you consider _______ to London next semester?", options: ["moving", "to move", "move", "moved"], answer: 0, hint: "After 'consider', use the gerund form." },
+            { id: 5, question: "They agreed _______ early to beat the morning rush.", options: ["leaving", "leave", "to leave", "left"], answer: 2, hint: "After 'agree', use 'to + infinitive'." },
+            { id: 6, question: "She is keen on _______ how to bake traditional scones.", options: ["learn", "learning", "to learn", "learned"], answer: 1, hint: "After prepositions like 'on', use the gerund." },
+            { id: 7, question: "He promised not _______ anyone about the surprise party.", options: ["tell", "telling", "to tell", "told"], answer: 2, hint: "After 'promise', use 'to + infinitive'." },
+            { id: 8, question: "I really miss _______ in the countryside on weekends.", options: ["walk", "to walk", "walking", "walked"], answer: 2, hint: "After 'miss', use the gerund form." }
+        ];
+        let mcQuestions = [...mcOriginal];
+        let mcState = {};
+
+        function renderStructureMastery() {
+            const container = document.getElementById('mc-container');
+            mcState = {};
+            mcQuestions.forEach(q => mcState[q.id] = { attempts: 0, completed: false, firstTry: false });
+
+            container.innerHTML = mcQuestions.map((q, idx) => `
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold text-xs shrink-0">${idx + 1}</span>
+                            <h4 class="text-slate-900 font-semibold text-base">${q.question}</h4>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="showMCHint(${q.id})" class="text-amber-600 hover:bg-amber-50 px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-lightbulb"></i> Hint
+                            </button>
+                            <button id="mc-listen-btn-${q.id}" onclick="speakText('${q.question.replace('_______', q.options[q.answer])}')" class="hidden text-indigo-600 hover:bg-indigo-50 px-2.5 py-1.5 rounded-lg text-xs font-bold items-center gap-1.5 transition border border-indigo-200 bg-indigo-50">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 ml-10" id="mc-options-${q.id}">
+                        ${q.options.map((opt, oIdx) => `
+                            <button onclick="selectMCOption(${q.id},${oIdx})" id="mc-btn-${q.id}-${oIdx}" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-teal-50 hover:border-teal-300 transition text-left">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="mc-hint-${q.id}" class="hidden ml-10 text-xs text-amber-800 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                        <i class="fa-solid fa-info-circle"></i> <strong>Clue:</strong> ${q.hint}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectMCOption(qId, selectedIdx) {
+            const q = mcQuestions.find(item => item.id === qId);
+            const btn = document.getElementById(`mc-btn-${qId}-${selectedIdx}`);
+            const listenBtn = document.getElementById(`mc-listen-btn-${qId}`);
+
+            mcState[qId].attempts++;
+
+            if (selectedIdx === q.answer) {
+                if (!mcState[qId].completed) {
+                    mcState[qId].completed = true;
+                    if (mcState[qId].attempts === 1) mcState[qId].firstTry = true;
+                }
+                btn.className = "px-4 py-2.5 rounded-xl border-2 border-emerald-500 text-sm font-bold text-emerald-900 bg-emerald-50 transition text-left flex items-center justify-between";
+                btn.innerHTML = `${q.options[selectedIdx]} <i class="fa-solid fa-check text-emerald-600"></i>`;
+                listenBtn.classList.remove('hidden');
+                listenBtn.classList.add('flex');
+                playSound('success');
+
+                // Disable all buttons in this question once solved
+                for (let i = 0; i < q.options.length; i++) {
+                    const b = document.getElementById(`mc-btn-${qId}-${i}`);
+                    b.disabled = true;
+                }
+
+                checkAllMCCompleted();
+            } else {
+                btn.className = "px-4 py-2.5 rounded-xl border-2 border-rose-300 text-sm font-bold text-rose-900 bg-rose-50 transition text-left flex items-center justify-between";
+                btn.innerHTML = `${q.options[selectedIdx]} <i class="fa-solid fa-xmark text-rose-500"></i>`;
+                playSound('error');
+            }
+        }
+
+        function showMCHint(id) {
+            document.getElementById(`mc-hint-${id}`).classList.toggle('hidden');
+            playSound('hint');
+        }
+
+        function checkAllMCCompleted() {
+            const allDone = mcQuestions.every(q => mcState[q.id] && mcState[q.id].completed);
+            if (allDone) {
+                let firstTryCount = 0;
+                let totalAttempts = 0;
+                mcQuestions.forEach(q => {
+                    if (mcState[q.id].firstTry) firstTryCount++;
+                    totalAttempts += mcState[q.id].attempts;
+                });
+                triggerCelebration();
+                showActivityModal("Activity 3: Structure Mastery", firstTryCount, mcQuestions.length, totalAttempts, 4);
+            }
+        }
+
+        function resetStructureMastery() {
+            mcQuestions = [...mcOriginal].sort(() => Math.random() - 0.5);
+            renderStructureMastery();
+        }
+
+        // DATA TAB 4 (STORY CHALLENGE - TO Y VERBO SEPARADOS EN TOKENS INDEPENDIENTES)
+        const storyTokens = [
+            { text: "Last", isTarget: false }, { text: "weekend,", isTarget: false }, { text: "Oliver", isTarget: false },
+            { text: "decided", isTarget: true }, { text: "to", isTarget: true }, { text: "visit", isTarget: true }, { text: "his", isTarget: false },
+            { text: "grandparents", isTarget: false }, { text: "in", isTarget: false }, { text: "Cornwall.", isTarget: false },
+            { text: "He", isTarget: false }, { text: "enjoys", isTarget: true }, { text: "traveling", isTarget: true },
+            { text: "by", isTarget: false }, { text: "train", isTarget: false }, { text: "because", isTarget: false },
+            { text: "he", isTarget: false }, { text: "likes", isTarget: true }, { text: "watching", isTarget: true },
+            { text: "the", isTarget: false }, { text: "green", isTarget: false }, { text: "hills", isTarget: false },
+            { text: "pass", isTarget: false }, { text: "by.", isTarget: false }, { text: "Upon", isTarget: false },
+            { text: "arriving,", isTarget: false }, { text: "he", isTarget: false }, { text: "wanted", isTarget: true },
+            { text: "to", isTarget: true }, { text: "walk", isTarget: true }, { text: "along", isTarget: false }, { text: "the", isTarget: false },
+            { text: "coastal", isTarget: false }, { text: "path.", isTarget: false }, { text: "His", isTarget: false },
+            { text: "grandfather", isTarget: false }, { text: "suggested", isTarget: true }, { text: "stopping", isTarget: true },
+            { text: "at", isTarget: false }, { text: "a", isTarget: false }, { text: "local", isTarget: false },
+            { text: "tea", isTarget: false }, { text: "room", isTarget: false }, { text: "for", isTarget: false },
+            { text: "some", isTarget: false }, { text: "refreshments.", isTarget: false }, { text: "Oliver", isTarget: false },
+            { text: "agreed", isTarget: true }, { text: "to", isTarget: true }, { text: "join", isTarget: true }, { text: "him", isTarget: false },
+            { text: "immediately.", isTarget: false }, { text: "They", isTarget: false }, { text: "avoided", isTarget: true },
+            { text: "walking", isTarget: true }, { text: "in", isTarget: false }, { text: "the", isTarget: false },
+            { text: "rain", isTarget: false }, { text: "and", isTarget: false }, { text: "finished", isTarget: true },
+            { text: "drinking", isTarget: true }, { text: "just", isTarget: false }, { text: "in", isTarget: false },
+            { text: "time", isTarget: false }, { text: "to", isTarget: true }, { text: "catch", isTarget: true }, { text: "the", isTarget: false },
+            { text: "magnificent", isTarget: false }, { text: "sunset", isTarget: false }, { text: "over", isTarget: false },
+            { text: "the", isTarget: false }, { text: "Atlantic", isTarget: false }, { text: "Ocean.", isTarget: false }
+        ];
+
+        let storyState = [];
+        let isStoryPlaying = false;
+
+        function renderStoryChallenge() {
+            storyState = storyTokens.map((t, idx) => ({ ...t, id: idx, found: false }));
+            const container = document.getElementById('story-text-container');
+            const totalTargets = storyTokens.filter(t => t.isTarget).length;
+            document.getElementById('story-total-count').innerText = totalTargets;
+            document.getElementById('story-found-count').innerText = '0';
+
+            container.innerHTML = storyState.map(token => `
+                <span onclick="clickStoryToken(${token.id})" id="story-token-${token.id}" class="cursor-pointer px-1 py-0.5 rounded transition font-medium hover:bg-teal-100 text-slate-800">
+                    ${token.text}
+                </span>
+            `).join(' ');
+        }
+
+        function clickStoryToken(id) {
+            const token = storyState.find(t => t.id === id);
+            const el = document.getElementById(`story-token-${id}`);
+
+            if (token.found) return;
+
+            if (token.isTarget) {
+                token.found = true;
+                el.className = "px-1.5 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-sm";
+                playSound('success');
+                updateStoryFoundCount();
+            } else {
+                el.className = "px-1.5 py-0.5 rounded font-medium bg-rose-100 text-rose-800 border border-rose-300";
+                playSound('error');
+                setTimeout(() => {
+                    if (!token.found) {
+                        el.className = "cursor-pointer px-1 py-0.5 rounded transition font-medium hover:bg-teal-100 text-slate-800";
+                    }
+                }, 700);
+            }
+        }
+
+        function updateStoryFoundCount() {
+            const foundCount = storyState.filter(t => t.isTarget && t.found).length;
+            const totalTargets = storyState.filter(t => t.isTarget).length;
+            document.getElementById('story-found-count').innerText = foundCount;
+
+            if (foundCount === totalTargets) {
+                triggerCelebration();
+                showActivityModal("Activity 4: Story Challenge", totalTargets, totalTargets, totalTargets, 1);
+            }
+        }
+
+        function toggleStorySpeech() {
+            if (!('speechSynthesis' in window)) return;
+            const btnLabel = document.getElementById('story-listen-label');
+            const btnIcon = document.getElementById('story-listen-icon');
+
+            if (isStoryPlaying) {
+                window.speechSynthesis.cancel();
+                isStoryPlaying = false;
+                btnLabel.innerText = "Listen Story";
+                btnIcon.className = "fa-solid fa-volume-high";
+            } else {
+                const fullStoryText = storyTokens.map(t => t.text).join(' ');
+                speakText(fullStoryText, () => {
+                    isStoryPlaying = false;
+                    btnLabel.innerText = "Listen Story";
+                    btnIcon.className = "fa-solid fa-volume-high";
+                });
+                isStoryPlaying = true;
+                btnLabel.innerText = "Stop Story";
+                btnIcon.className = "fa-solid fa-stop";
+            }
+        }
+
+        function resetStoryChallenge() {
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            isStoryPlaying = false;
+            document.getElementById('story-listen-label').innerText = "Listen Story";
+            document.getElementById('story-listen-icon').className = "fa-solid fa-volume-high";
+            renderStoryChallenge();
+        }
+
+        // POPUP MODAL CONTROL
+        let nextTabAfterModal = 1;
+
+        function showActivityModal(tag, firstTryCount, totalItems, totalAttempts, nextTab) {
+            nextTabAfterModal = nextTab;
+            const modalTag = document.getElementById('modalActivityTag');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMsg = document.getElementById('modalMessage');
+            const modalFirst = document.getElementById('modalFirstTry');
+            const modalAtt = document.getElementById('modalAttempts');
+
+            modalTag.innerText = tag;
+            modalFirst.innerText = `${firstTryCount} / ${totalItems}`;
+            modalAtt.innerText = `${totalAttempts} ${totalAttempts === 1 ? 'Attempt' : 'Attempts'}`;
+
+            if (firstTryCount === totalItems) {
+                modalTitle.innerText = "🌟 Flawless Mastery!";
+                modalMsg.innerText = "Outstanding! You solved every question on your very first try!";
+            } else {
+                modalTitle.innerText = "🎉 Activity Complete!";
+                modalMsg.innerText = "Great job! You reviewed feedback and corrected mistakes until you mastered the section.";
+            }
+
+            document.getElementById('activityModal').classList.remove('hidden');
+        }
+
+        function closeActivityModal() {
+            document.getElementById('activityModal').classList.add('hidden');
+            switchTab(nextTabAfterModal);
+        }
+
+        // INITIALIZATION
+        window.onload = function() {
+            renderVerbs();
+            renderFillInBlanks();
+            renderStructureMastery();
+            renderStoryChallenge();
+        };
+    </script>
+</body>
+</html>
