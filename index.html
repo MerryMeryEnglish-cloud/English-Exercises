@@ -1,297 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merry Mery English - Exercises & Quizzes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Script diferido para ResponsiveVoice -->
-    <script defer src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
+<!-- Script diferido para ResponsiveVoice -->
+<script defer src="https://code.responsivevoice.org/responsivevoice.js?key=FREE_KEY"></script>
 
-    <style>
-        :root {
-            --primary: #0d9488;
-            --primary-hover: #0f766e;
-            --bg-color: #f0fdfa;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --accent-blue: #e0f2fe;
-            --btn-blue: #0284c7;
-        }
+<style>
+    :root {
+        --primary: #0d9488;
+        --primary-hover: #0f766e;
+        --bg-color: #f0fdfa;
+        --card-bg: #ffffff;
+        --text-color: #1e293b;
+        --accent-blue: #e0f2fe;
+        --btn-blue: #0284c7;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 20px 15px;
-            display: flex;
-            justify-content: center;
-        }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        padding: 20px 15px;
+        display: flex;
+        justify-content: center;
+    }
 
-        .container {
-            max-width: 680px;
-            width: 100%;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
+    .container {
+        max-width: 680px;
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 30px 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .header {
+        text-align: center;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .header-logo-wrapper {
-            width: 140px;
-            height: 140px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .header-logo-wrapper {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .header img.logo {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
-        }
+    .header img.logo {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+    }
 
-        .header h1 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+    .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
 
-        /* Cambridge Search Box */
-        .dictionary-card {
-            background: var(--accent-blue);
-            border: 1px solid #bae6fd;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    /* Cambridge Search Box */
+    .dictionary-card {
+        background: var(--accent-blue);
+        border: 1px solid #bae6fd;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-        .dictionary-card h3 {
-            color: #0369a1;
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+    .dictionary-card h3 {
+        color: #0369a1;
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
 
-        .search-box {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+    .search-box {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
 
-        .search-box input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-        }
+    .search-box input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+    }
 
-        .search-box button {
-            background: var(--btn-blue);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+    .search-box button {
+        background: var(--btn-blue);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
 
-        .search-box button:hover {
-            background: #0369a1;
-        }
+    .search-box button:hover {
+        background: #0369a1;
+    }
 
-        .dictionary-link {
-            display: inline-block;
-            color: #0284c7;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-        }
+    .dictionary-link {
+        display: inline-block;
+        color: #0284c7;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 600;
+    }
 
-        /* Section Styling */
-        .section-title {
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin: 25px 0 12px 0;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #ccfbf1;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    /* Section Styling */
+    .section-title {
+        font-size: 1.1rem;
+        color: var(--primary);
+        margin: 25px 0 12px 0;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #ccfbf1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-        .btn-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+    .btn-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
-        .btn-item {
-            display: block;
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.98rem;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
-            cursor: pointer;
-        }
+    .btn-item {
+        display: block;
+        width: 100%;
+        background-color: var(--primary);
+        color: white;
+        text-decoration: none;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.98rem;
+        transition: transform 0.2s, background-color 0.2s;
+        box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
+        cursor: pointer;
+    }
 
-        .btn-item:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
+    .btn-item:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+    }
 
-        /* Instagram Footer */
-        .footer {
-            margin-top: 35px;
-            text-align: center;
-        }
+    /* Instagram Footer */
+    .footer {
+        margin-top: 35px;
+        text-align: center;
+    }
 
-        .insta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: #fff;
-            color: #d62976;
-            border: 1px solid #fbcfe8;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: background 0.2s;
-        }
+    .insta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: #fff;
+        color: #d62976;
+        border: 1px solid #fbcfe8;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: background 0.2s;
+    }
 
-        .insta-btn:hover {
-            background: #fdf2f8;
-        }
-    </style>
-</head>
-<body>
+    .insta-btn:hover {
+        background: #fdf2f8;
+    }
+</style>
 
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <div class="header-logo-wrapper">
-            <img src="logo.png" alt="Merry Mery English Logo" class="logo" onerror="this.style.display='none'">
-        </div>
-        <h1>Exercises & Interactive Quizzes</h1>
-    </div>
 
-    <!-- Cambridge Dictionary Widget -->
-    <div class="dictionary-card">
-        <h3>📖 Diccionario Cambridge (Inglés - Español)</h3>
-        <form onsubmit="searchCambridge(event)" class="search-box">
-            <input type="text" id="cambridgeQuery" placeholder="Escribe una palabra en inglés..." required>
-            <button type="submit">Buscar</button>
-        </form>
-        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dictionary-link">Abrir Cambridge Dictionary ↗</a>
-    </div>
-
-    <!-- Section 1: Writing -->
-    <div class="section-title">✍ Writing</div>
-    <div class="btn-list">
-        <a href="writing_studio.html" class="btn-item">Interactive Writing Studio (Postcards of San Pedro)</a>
-        <a href="balanced_essay.html" class="btn-item">📱 Mobile Phones: A Blessing or a Curse? (Opinion Writing Studio)</a>
-    </div>
-
-    <!-- Section 2: Grammar -->
-    <div class="section-title">📐 Grammar</div>
-    <div class="btn-list">
-        <a href="conditionals.html" class="btn-item">Conditionals Masterclass (0, 1, 2 & 3)</a>
-        <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">Reported Speech Quiz</a>
-        <a href="simplepastandpresentperfect.html" class="btn-item">Simple Past vs. Present Perfect Quiz</a>
-        <a href="verb_get_masterclass.html" class="btn-item">Verb "Get" Masterclass</a>
-        <a href="verb_mean_masterclass.html" class="btn-item">Verb Mean Masterclass</a>
-        <a href="ing_infinitive_exercises.html" class="btn-item">Gerunds & Infinitives Masterclass (-ing vs Infinitive)</a>
-    </div>
-
-    <!-- Section 3: Vocabulary & Phrasal Verbs -->
-    <div class="section-title">💭 Vocabulary & Phrasal Verbs</div>
-    <div class="btn-list">
-        <a href="baking_english_lesson.html" class="btn-item">🧁 Baking & Pastry Masterclass (Red Velvet Special)</a>
-        <a href="dynamic_english_phrasal_verbs_master_game.html" class="btn-item">Phrasal Verbs Master Game</a>
-        <a href="business_acronyms.html" class="btn-item">💼 Business Acronyms & Abbreviations</a>
-    </div>
-
-    <!-- Section 4: Reading & Listening -->
-    <div class="section-title">📖 Reading & Listening Comprehension</div>
-    <div class="btn-list">
-        <a href="must_visit_argentina.html" class="btn-item">Must-Visit Wonders of Argentina</a>
-        <a href="snow-white-and-rose-red.html" class="btn-item">🌹 Snow-White and Rose-Red (Brothers Grimm)</a>
-        <a href="merry_mery_english_the_little_prince_reading_comprehension.html" class="btn-item">The Little Prince Reading</a>
-        <a href="CancionSomebodyusedtoknow.html" class="btn-item">🎵 Gotye - Somebody That I Used to Know</a>
-        <a href="lose_control_teddy_swims.html" class="btn-item">🎵 Teddy Swims - Lose Control (Interactive Lesson)</a>
-    </div>
-
-    <!-- Section 5: Real-Life Scenarios -->
-    <div class="section-title">✈ Real-Life Scenarios</div>
-    <div class="btn-list">
-        <a href="flight-attendant.html" class="btn-item">Cabin Crew Says (Aviation Simulator)</a>
-        <a href="attheairport.html" class="btn-item">✈ At the Airport (Interactive Scenario)</a>
-        <a href="hotel_exercises.html" class="btn-item">🏨 Hotel English Interactive Exercises</a>
-    </div>
-
-    <!-- Footer Instagram -->
-    <div class="footer">
-        <a href="https://www.instagram.com/merrymeryenglish/" target="_blank" class="insta-btn">
-            📷 Follow Merry Mery English on Instagram
-        </a>
-    </div>
+<!-- Cambridge Dictionary Widget -->
+<div class="dictionary-card">
+    <h3>📖 Cambridge Dictionary (English - Spanish)</h3>
+    <form onsubmit="searchCambridge(event)" class="search-box">
+        <input type="text" id="cambridgeQuery" placeholder="Type a word in English..." required>
+        <button type="submit">Search</button>
+    </form>
+    <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dictionary-link">Open Cambridge Dictionary ↗</a>
 </div>
 
-<script>
-    function searchCambridge(e) {
-        e.preventDefault();
-        const word = document.getElementById('cambridgeQuery').value.trim();
-        if (word) {
-            window.open(`https://dictionary.cambridge.org/es/busqueda/ingles-espanol/direct/?q=${encodeURIComponent(word)}`, '_blank');
-        }
-    }
+<!-- Section 1: Writing -->
+<div class="section-title">✍️ Writing Studios</div>
+<div class="btn-list">
+    <a href="writing_studio.html" class="btn-item">📮 Postcards of San Pedro (Interactive Writing Studio)</a>
+    <a href="balanced_essay.html" class="btn-item">📱 Mobile Phones: Blessing or Curse? (Opinion Writing Studio)</a>
+</div>
 
-    // Función principal forzada estrictamente a Voz Masculina Británica
-    function speakUKMale(text) {
-        if (window.responsiveVoice) {
-            responsiveVoice.cancel();
-            responsiveVoice.speak(text, "UK English Male", { rate: 0.9, pitch: 1 });
-        }
-    }
+<!-- Section 2: Grammar -->
+<div class="section-title">📐 Grammar & Structures</div>
+<div class="btn-list">
+    <a href="conditionals.html" class="btn-item">🎯 Conditionals Masterclass (Types 0, 1, 2 & 3)</a>
+    <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">🗣️ Reported Speech Masterclass & Quiz</a>
+    <a href="simplepastandpresentperfect.html" class="btn-item">⏳ Simple Past vs. Present Perfect Masterclass</a>
+    <a href="verb_get_masterclass.html" class="btn-item">💡 Verb "Get" Complete Masterclass</a>
+    <a href="verb_mean_masterclass.html" class="btn-item">🔍 Verb "Mean" Complete Masterclass</a>
+    <a href="ing_infinitive_exercises.html" class="btn-item">🔄 Gerunds & Infinitives Masterclass (-ing vs. to + Verb)</a>
+</div>
 
-    // Por compatibilidad si algún componente viejo llama a esta función, la redirigimos al masculino
-    function speakUKFemale(text) {
-        speakUKMale(text);
-    }
-</script>
+<!-- Section 3: Vocabulary & Acronyms -->
+<div class="section-title">💭 Vocabulary & Acronyms</div>
+<div class="btn-list">
+    <a href="whatsapp_accronyms.html" class="btn-item">💬 WhatsApp & Texting Acronyms (Chat Slang)</a>
+    <a href="business_acronyms.html" class="btn-item">💼 Business Acronyms & Abbreviations</a>
+    <a href="dynamic_english_phrasal_verbs_master_game.html" class="btn-item">🎮 Phrasal Verbs Master Game</a>
+    <a href="baking_english_lesson.html" class="btn-item">🧁 Baking & Pastry Masterclass (Red Velvet Special)</a>
+</div>
 
-</body>
-</html>
+<!-- Section 4: Reading & Listening Comprehension -->
+<div class="section-title">📖 Reading & Listening Comprehension</div>
+<div class="btn-list">
+    <a href="must_visit_argentina.html" class="btn-item">🇦🇷 Wonders of Argentina (Reading & Listening)</a>
+    <a href="snow-white-and-rose-red.html" class="btn-item">🌹 Snow-White and Rose-Red (Brothers Grimm Fairy Tale)</a>
+    <a href="merry_mery_english_the_little_prince_reading_comprehension.html" class="btn-item">👑 The Little Prince (Classic Literature Comprehension)</a>
+    <a href="CancionSomebodyusedtoknow.html" class="btn-item">🎵 Gotye - Somebody That I Used to Know (Song Lesson)</a>
+    <a href="lose_control_teddy_swims.html" class="btn-item">🎵 Teddy Swims - Lose Control (Song Lesson)</a>
+</div>
+
+<!-- Section 5: Real-Life Scenarios -->
+<div class="section-title">✈️ Real-Life Situations & Travel</div>
+<div class="btn-list">
+    <a href="flight-attendant.html" class="btn-item">🎙️ Cabin Crew Says (In-Flight Aviation Simulator)</a>
+    <a href="attheairport.html" class="btn-item">🛫 At the Airport (Interactive Travel Practice)</a>
+    <a href="hotel_exercises.html" class="btn-item">🏨 Hotel English (Hospitality & Check-in Exercises)</a>
+</div>
+
+<!-- Footer Instagram -->
+<div class="footer">
+    <a href="https://www.instagram.com/merrymeryenglish/" target="_blank" class="insta-btn">
+        📷 Follow Merry Mery English on Instagram
+    </a>
+</div>
