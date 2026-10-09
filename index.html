@@ -1,296 +1,402 @@
-<!-- ... existing code ... -->
-        .dictionary-link {
-            display: inline-block;
-            color: #0284c7;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-        }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Interactive Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
 
-        /* Instructions & Study Guide Box */
-        .instructions-card {
-            background: #fffbeb;
-            border: 1px solid #fef3c7;
-            border-left: 5px solid #f59e0b;
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .instructions-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            user-select: none;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        .instructions-title {
-            color: #92400e;
-            font-size: 1.05rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .container {
+      width: 100%;
+      max-width: 860px;
+    }
 
-        .instructions-toggle-btn {
-            font-size: 0.82rem;
-            background: #fde68a;
-            color: #78350f;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
+    /* Brand Header */
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
 
-        .instructions-content {
-            margin-top: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: 0.88rem;
-            color: #78350f;
-            line-height: 1.5;
-        }
+    .brand-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
 
-        .instruction-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
+    .brand-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
 
-        .instruction-step-icon {
-            font-size: 1.15rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
+    /* Dictionary Search Box */
+    .dict-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
 
-        /* Section Guidance Description */
-        .section-desc {
-            font-size: 0.82rem;
-            color: #64748b;
-            margin-top: -6px;
-            margin-bottom: 12px;
-            padding-left: 2px;
-        }
+    .dict-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
 
-        /* Enhanced Exercise Buttons with Badge */
-        .btn-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 13px 18px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.94rem;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
-            cursor: pointer;
-            gap: 10px;
-        }
+    .dict-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-        .btn-text {
-            flex: 1;
-            text-align: left;
-        }
+    .dict-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
 
-        .btn-badge {
-            font-size: 0.73rem;
-            background: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-            padding: 3px 9px;
-            border-radius: 12px;
-            white-space: nowrap;
-            letter-spacing: 0.3px;
-        }
+    .dict-input:focus {
+      border-color: var(--primary);
+    }
 
-        /* Section Styling */
-        .section-title {
-<!-- ... existing code ... -->
-    <!-- Cambridge Dictionary Widget -->
-    <div class="dictionary-card">
-        <h3>📖 Cambridge Dictionary (English - Spanish)</h3>
-        <form onsubmit="searchCambridge(event)" class="search-box">
-            <input type="text" id="cambridgeQuery" placeholder="Type a word in English..." required>
-            <button type="submit">Search</button>
-        </form>
-        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" class="dictionary-link">Open Cambridge Dictionary ↗</a>
+    .dict-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .dict-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .dictionary-link {
+      display: inline-block;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .dictionary-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Instructions & Study Guide Box */
+    .instructions-card {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-left: 5px solid #f59e0b;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+    }
+
+    .instructions-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .instructions-title {
+      color: #92400e;
+      font-size: 1.02rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .instructions-toggle-btn {
+      font-size: 0.82rem;
+      background: #fde68a;
+      color: #78350f;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .instructions-content {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #78350f;
+      line-height: 1.5;
+    }
+
+    .instruction-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .instruction-step-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Section & Hub Grid */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      margin-top: 24px;
+    }
+
+    .section-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-left: 2px;
+    }
+
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    /* Enhanced Exercise Buttons with Badge */
+    .btn-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.94rem;
+      transition: transform 0.2s, background-color 0.2s;
+      box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
+      cursor: pointer;
+      gap: 10px;
+    }
+
+    .btn-item:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .btn-badge {
+      font-size: 0.73rem;
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 12px;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 class="brand-title">Merry Mery English</h1>
+      <p class="brand-subtitle">Interactive Practice Hub & Skills Studio</p>
+    </header>
+
+    <!-- Cambridge Dictionary Integration -->
+    <div class="dict-card">
+      <div class="dict-header">
+        <span>📖</span> Cambridge Dictionary (English - Spanish)
+      </div>
+      <form class="dict-form" onsubmit="searchDict(event)">
+        <input 
+          type="text" 
+          id="dictWord" 
+          class="dict-input" 
+          placeholder="Type a word in English..." 
+          required
+        >
+        <button type="submit" class="dict-btn">Search</button>
+      </form>
+      <a 
+        class="dictionary-link" 
+        href="https://dictionary.cambridge.org/dictionary/english-spanish/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        Open Cambridge Dictionary ↗
+      </a>
     </div>
 
-    <!-- Learning Guide & Instructions Box -->
+    <!-- Instructions & Study Guide Box -->
     <div class="instructions-card">
-        <div class="instructions-header" onclick="toggleInstructions()">
-            <div class="instructions-title">
-                📌 Indicaciones de Aprendizaje & Metodología
-            </div>
-            <span class="instructions-toggle-btn" id="instructionsToggleLabel">Ver Consejos ▾</span>
+      <div class="instructions-header" onclick="toggleInstructions()">
+        <span class="instructions-title">📌 Indicaciones de Aprendizaje & Metodología</span>
+        <span class="instructions-toggle-btn" id="toggleLabel">Ver Consejos ▾</span>
+      </div>
+      <div class="instructions-content" id="instructionsContent" style="display: block;">
+        <div class="instruction-step">
+          <span class="instruction-step-icon">🎧</span>
+          <div><strong>1. Escucha Activa (UK Accent):</strong> En cada ejercicio, reproduce los audios para familiarizarte con la pronunciación y entonación nativa británica.</div>
         </div>
-        <div class="instructions-content" id="instructionsBody">
-            <div class="instruction-step">
-                <span class="instruction-step-icon">🎧</span>
-                <div>
-                    <strong>1. Escucha Activa (UK Accent):</strong> En cada ejercicio, reproduce los botones de audio para familiarizarte con la pronunciación y entonación nativa británica.
-                </div>
-            </div>
-            <div class="instruction-step">
-                <span class="instruction-step-icon">📖</span>
-                <div>
-                    <strong>2. Uso del Diccionario:</strong> Ante cualquier palabra o modismo desconocido, utiliza el buscador de Cambridge superior para revisar definición, ejemplos y fonética.
-                </div>
-            </div>
-            <div class="instruction-step">
-                <span class="instruction-step-icon">✍️</span>
-                <div>
-                    <strong>3. Práctica y Autocorrección:</strong> Resuelve las actividades a tu propio ritmo. Revisa las explicaciones de respuesta ante cualquier error antes de avanzar.
-                </div>
-            </div>
-            <div class="instruction-step">
-                <span class="instruction-step-icon">🔁</span>
-                <div>
-                    <strong>4. Repetición hasta el Dominio:</strong> Puedes reiniciar y repetir cualquier quiz para afianzar vocabulario y estructuras gramaticales al 100%.
-                </div>
-            </div>
+        <div class="instruction-step">
+          <span class="instruction-step-icon">📖</span>
+          <div><strong>2. Uso del Diccionario:</strong> Ante cualquier palabra o modismo desconocido, utiliza el buscador superior de Cambridge para revisar definición, ejemplos y fonética.</div>
         </div>
+        <div class="instruction-step">
+          <span class="instruction-step-icon">✍️</span>
+          <div><strong>3. Práctica y Autocorrección:</strong> Resuelve las actividades a tu propio ritmo. Revisa las explicaciones de respuesta ante cualquier error.</div>
+        </div>
+        <div class="instruction-step">
+          <span class="instruction-step-icon">🔁</span>
+          <div><strong>4. Repetición hasta el Dominio:</strong> Puedes reiniciar y repetir cualquier quiz para afianzar vocabulario y estructuras gramaticales al 100%.</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Section 1: Writing -->
-    <div class="section-title">✍️ Writing Studios</div>
-    <div class="section-desc">Práctica guiada de producción escrita, conectores y coherencia textual.</div>
-    <div class="btn-list">
-        <a href="writing_studio.html" class="btn-item">
-            <span class="btn-text">📮 Postcards of San Pedro (Interactive Writing Studio)</span>
-            <span class="btn-badge">A2-B1 · Writing</span>
-        </a>
-        <a href="balanced_essay.html" class="btn-item">
-            <span class="btn-text">📱 Mobile Phones: Blessing or Curse? (Opinion Writing Studio)</span>
-            <span class="btn-badge">B1-B2 · Essay</span>
-        </a>
+    <!-- Writing Studios -->
+    <h2 class="section-title">Writing Studios</h2>
+    <p class="section-desc">Práctica guiada de redacción, ensayos y desarrollo de ideas.</p>
+    <div class="exercise-grid">
+      <a href="writing-studio.html" class="btn-item">
+        <span class="btn-text">Opinion Writing Studio</span>
+        <span class="btn-badge">Interactive</span>
+      </a>
     </div>
 
-    <!-- Section 2: Grammar -->
-    <div class="section-title">📐 Grammar & Structures</div>
-    <div class="section-desc">Estructuras clave explicadas paso a paso con cuestionarios interactivos.</div>
-    <div class="btn-list">
-        <a href="conditionals.html" class="btn-item">
-            <span class="btn-text">🎯 Conditionals Masterclass (Types 0, 1, 2 & 3)</span>
-            <span class="btn-badge">B1-B2 · Grammar</span>
-        </a>
-        <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">
-            <span class="btn-text">🗣️ Reported Speech Masterclass & Quiz</span>
-            <span class="btn-badge">B1-B2 · Quiz</span>
-        </a>
-        <a href="simplepastandpresentperfect.html" class="btn-item">
-            <span class="btn-text">⏳ Simple Past vs. Present Perfect Masterclass</span>
-            <span class="btn-badge">A2-B1 · Tenses</span>
-        </a>
-        <a href="verb_get_masterclass.html" class="btn-item">
-            <span class="btn-text">💡 Verb "Get" Complete Masterclass</span>
-            <span class="btn-badge">All Levels · Core</span>
-        </a>
-        <a href="verb_mean_masterclass.html" class="btn-item">
-            <span class="btn-text">🔍 Verb "Mean" Complete Masterclass</span>
-            <span class="btn-badge">All Levels · Core</span>
-        </a>
-        <a href="ing_infinitive_exercises.html" class="btn-item">
-            <span class="btn-text">🔄 Gerunds & Infinitives Masterclass (-ing vs. to + Verb)</span>
-            <span class="btn-badge">B1-B2 · Patterns</span>
-        </a>
+    <!-- Grammar Masterclasses -->
+    <h2 class="section-title">Grammar Masterclasses</h2>
+    <p class="section-desc">Estructuras clave, patrones verbales y condicionales con verificación inmediata.</p>
+    <div class="exercise-grid">
+      <a href="verb-patterns.html" class="btn-item">
+        <span class="btn-text">Verb Patterns (Gerund & Infinitive)</span>
+        <span class="btn-badge">Mastery</span>
+      </a>
+      <a href="conditionals.html" class="btn-item">
+        <span class="btn-text">Conditionals Review (0 to 3rd)</span>
+        <span class="btn-badge">Quiz</span>
+      </a>
+      <a href="reported-speech.html" class="btn-item">
+        <span class="btn-text">Reported Speech Practice</span>
+        <span class="btn-badge">Interactive</span>
+      </a>
     </div>
 
-    <!-- Section 3: Vocabulary & Acronyms -->
-    <div class="section-title">💭 Vocabulary & Acronyms</div>
-    <div class="section-desc">Léxico contextualizado, expresiones modernas, abreviaturas y phrasal verbs.</div>
-    <div class="btn-list">
-        <a href="whatsapp_accronyms.html" class="btn-item">
-            <span class="btn-text">💬 WhatsApp & Texting Acronyms (Chat Slang)</span>
-            <span class="btn-badge">Slang · Chat</span>
-        </a>
-        <a href="business_acronyms.html" class="btn-item">
-            <span class="btn-text">💼 Business Acronyms & Abbreviations</span>
-            <span class="btn-badge">B1-C1 · Business</span>
-        </a>
-        <a href="dynamic_english_phrasal_verbs_master_game.html" class="btn-item">
-            <span class="btn-text">🎮 Phrasal Verbs Master Game</span>
-            <span class="btn-badge">Interactive · Game</span>
-        </a>
-        <a href="baking_english_lesson.html" class="btn-item">
-            <span class="btn-text">🧁 Baking & Pastry Masterclass (Red Velvet Special)</span>
-            <span class="btn-badge">Thematic · Vocab</span>
-        </a>
+    <!-- Vocabulary & Scenarios -->
+    <h2 class="section-title">Vocabulary & Real-Life Scenarios</h2>
+    <p class="section-desc">Vocabulario profesional, modismos y aplicaciones prácticas en contexto.</p>
+    <div class="exercise-grid">
+      <a href="phrasal-verbs.html" class="btn-item">
+        <span class="btn-text">Phrasal Verbs in Context</span>
+        <span class="btn-badge">Vocab</span>
+      </a>
+      <a href="aviation-simulator.html" class="btn-item">
+        <span class="btn-text">Aviation Technical Vocabulary</span>
+        <span class="btn-badge">Simulator</span>
+      </a>
+      <a href="whatsapp-acronyms.html" class="btn-item">
+        <span class="btn-text">Digital English & Acronyms</span>
+        <span class="btn-badge">Modern Slang</span>
+      </a>
     </div>
 
-    <!-- Section 4: Reading & Listening Comprehension -->
-    <div class="section-title">📖 Reading & Listening Comprehension</div>
-    <div class="section-desc">Historias, cultura y canciones con audio incorporado y preguntas de comprensión.</div>
-    <div class="btn-list">
-        <a href="must_visit_argentina.html" class="btn-item">
-            <span class="btn-text">🇦🇷 Wonders of Argentina (Reading & Listening)</span>
-            <span class="btn-badge">Culture · Audio</span>
-        </a>
-        <a href="snow-white-and-rose-red.html" class="btn-item">
-            <span class="btn-text">🌹 Snow-White and Rose-Red (Brothers Grimm Fairy Tale)</span>
-            <span class="btn-badge">Story · Audio</span>
-        </a>
-        <a href="merry_mery_english_the_little_prince_reading_comprehension.html" class="btn-item">
-            <span class="btn-text">👑 The Little Prince (Classic Literature Comprehension)</span>
-            <span class="btn-badge">Literature · Audio</span>
-        </a>
-        <a href="CancionSomebodyusedtoknow.html" class="btn-item">
-            <span class="btn-text">🎵 Gotye - Somebody That I Used to Know (Song Lesson)</span>
-            <span class="btn-badge">Song · Lyrics</span>
-        </a>
-        <a href="lose_control_teddy_swims.html" class="btn-item">
-            <span class="btn-text">🎵 Teddy Swims - Lose Control (Song Lesson)</span>
-            <span class="btn-badge">Song · Lyrics</span>
-        </a>
-    </div>
+    <footer>
+      Merry Mery English &copy; 2026 &bull; Interactive Educational Resources
+    </footer>
+  </div>
 
-    <!-- Section 5: Real-Life Scenarios -->
-    <div class="section-title">✈️ Real-Life Situations & Travel</div>
-    <div class="section-desc">Simulaciones situacionales para desenvolverse con confianza en el exterior.</div>
-    <div class="btn-list">
-        <a href="flight-attendant.html" class="btn-item">
-            <span class="btn-text">🎙️ Cabin Crew Says (In-Flight Aviation Simulator)</span>
-            <span class="btn-badge">Aviation · Audio</span>
-        </a>
-        <a href="attheairport.html" class="btn-item">
-            <span class="btn-text">🛫 At the Airport (Interactive Travel Practice)</span>
-            <span class="btn-badge">Travel · Situational</span>
-        </a>
-        <a href="hotel_exercises.html" class="btn-item">
-            <span class="btn-text">🏨 Hotel English (Hospitality & Check-in Exercises)</span>
-            <span class="btn-badge">Travel · Check-in</span>
-        </a>
-    </div>
-
-    <!-- Footer Instagram -->
-<!-- ... existing code ... -->
-    // Por compatibilidad si algún componente viejo llama a esta función, la redirigimos al masculino
-    function speakUKFemale(text) {
-        speakUKMale(text);
+  <script>
+    function searchDict(event) {
+      event.preventDefault();
+      const query = document.getElementById('dictWord').value.trim();
+      if (query) {
+        const url = `https://dictionary.cambridge.org/dictionary/english-spanish/${encodeURIComponent(query)}`;
+        window.open(url, '_blank');
+      }
     }
 
-    // Alternar visibilidad de las indicaciones de aprendizaje
     function toggleInstructions() {
-        const body = document.getElementById('instructionsBody');
-        const label = document.getElementById('instructionsToggleLabel');
-        if (body.style.display === 'none') {
-            body.style.display = 'flex';
-            label.textContent = 'Ocultar ▴';
-        } else {
-            body.style.display = 'none';
-            label.textContent = 'Ver Consejos ▾';
-        }
+      const content = document.getElementById('instructionsContent');
+      const label = document.getElementById('toggleLabel');
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        label.textContent = 'Ocultar ▲';
+      } else {
+        content.style.display = 'none';
+        label.textContent = 'Ver Consejos ▾';
+      }
     }
-</script>
-
+  </script>
 </body>
 </html>
