@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Must-Visit Argentina - Listening & Reading Exercise B2</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            argentina: {
+              sky: '#74ACDF',
+              sun: '#F6B40E',
+              dark: '#1A365D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <header class="bg-gradient-to-r from-argentina-dark via-brand-900 to-argentina-dark text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand Logo & Title -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img 
+          src="logo.png" 
+          alt="Merry Mery English Logo" 
+          class="w-12 h-12 object-contain bg-white rounded-full p-0.5 shadow-md transform group-hover:scale-105 transition-transform"
+          onerror="this.onerror=null; this.src='https://placehold.co/100x100/0284c7/ffffff?text=MME';"
+        >
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-bold text-xl tracking-wide text-white">MERRY MERY</span>
+            <span class="bg-argentina-sky text-slate-900 text-xs font-black px-2 py-0.5 rounded-full uppercase tracking-wider">ENGLISH</span>
+          </div>
+          <p class="text-xs text-sky-200 font-medium">Interactive B2 English Learning Exercises</p>
+        </div>
+      </a>
+
+      <!-- Quick Actions / Audio Controls -->
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/20 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-amber-400"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" rel="noopener noreferrer" class="bg-amber-400/20 hover:bg-amber-400/30 text-amber-200 text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-400/30 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-book-bookmark text-amber-400"></i>
+          <span class="hidden sm:inline">Cambridge Dict</span>
+          <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+        </a>
+
+        <button onclick="stopAllAudio()" class="bg-red-500/20 hover:bg-red-500/40 text-red-200 border border-red-400/30 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-volume-xmark"></i> Mute Audio
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-slate-900/60 backdrop-blur border-t border-white/10 px-4">
+      <div class="max-w-6xl mx-auto flex overflow-x-auto space-x-1 py-2 no-scrollbar" id="tabNav">
+        <button onclick="switchTab('reading')" id="tabBtn-reading" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition bg-argentina-sky text-slate-950 shadow-sm">
+          <i class="fa-solid fa-book-open"></i> 1. Read & Listen
+        </button>
+        <button onclick="switchTab('vocab')" id="tabBtn-vocab" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-spell-check"></i> 2. Key Vocabulary (B2)
+        </button>
+        <button onclick="switchTab('comprehension')" id="tabBtn-comprehension" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-circle-question"></i> 3. Text Questions (8)
+        </button>
+        <button onclick="switchTab('gapfill')" id="tabBtn-gapfill" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition text-slate-300 hover:text-white hover:bg-white/10">
+          <i class="fa-solid fa-pen-to-square"></i> 4. Add a Word
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- TAB 1: READ & LISTEN -->
+    <section id="tab-reading" class="tab-content fade-in space-y-6">
+      
+      <!-- Hero Banner & Image Gallery -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+          <div>
+            <span class="inline-block bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Reading & Listening B2</span>
+            <h1 class="font-display text-2xl md:text-3xl font-extrabold text-slate-900">Must-Visit Wonders of Argentina</h1>
+            <p class="text-slate-600 text-sm mt-1">Explore six world-famous Argentine destinations while expanding your vocabulary and listening comprehension.</p>
+          </div>
+        </div>
+
+        <!-- Single Banner Image -->
+        <div class="mb-6">
+          <img src="imagenes_de_argentina.jpg" alt="Wonders of Argentina Destination Grid" class="w-full rounded-2xl shadow-md border border-slate-100">
+        </div>
+
+        <!-- Audio Controls -->
+        <div class="bg-slate-900 text-white rounded-xl p-4 shadow-md flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-argentina-sky/20 flex items-center justify-center text-argentina-sky">
+              <i class="fa-solid fa-headphones text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-100">Audio Passage Controls</h3>
+              <p class="text-xs text-slate-400" id="audioStatus">Status: Ready to play</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="playPassageAudio()" id="btnPlayAudio" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition">
+              <i class="fa-solid fa-play"></i> Play Text
+            </button>
+            <button onclick="pausePassageAudio()" id="btnPauseAudio" class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-pause"></i> Pause
+            </button>
+            <button onclick="stopPassageAudio()" id="btnStopAudio" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-stop"></i> Stop
+            </button>
+            <select id="playbackSpeed" onchange="updateAudioSpeed()" class="bg-slate-800 border border-slate-700 text-xs text-slate-200 rounded-lg px-2 py-2 outline-none">
+              <option value="0.85">0.85x Speed</option>
+              <option value="1" selected>1.0x Normal</option>
+              <option value="1.15">1.15x Fast</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reading Passage Content -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-6 text-slate-700 leading-relaxed" id="readingTextContainer">
+        
+        <!-- Paragraph 1 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-sky-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-sky-100 text-sky-800 text-xs px-2.5 py-1 rounded-md">1</span>
+            The Cosmopolitan Energy of Buenos Aires
+          </h2>
+          <p class="text-sm md:text-base">
+            Serving as the vibrant gateway to the nation, Buenos Aires seamlessly blends European architectural elegance with an unmistakable Latin passion. Often <span onclick="goToVocab('dubbed')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">dubbed</span> the "Paris of South America," visitors can spend days exploring the <span onclick="goToVocab('cobblestone')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">cobblestone</span> alleys of San Telmo, admiring the colorful wooden houses in La Boca, or wandering through the upscale district of Recoleta. The city's cultural soul thrives in its historic coffee houses and underground tango clubs, where passionate dancers perform late into the night. Additionally, the capital <span onclick="goToVocab('boasts')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">boasts</span> world-class contemporary art galleries and an unbeatable gastronomic scene, renowned for traditional steak houses known as <em>parrillas</em>.
+          </p>
+        </article>
+
+        <!-- Paragraph 2 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-cyan-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-cyan-100 text-cyan-800 text-xs px-2.5 py-1 rounded-md">2</span>
+            Thunderous Power at Iguazú Falls
+          </h2>
+          <p class="text-sm md:text-base">
+            Nestled in the subtropical rainforest bordering Brazil, Iguazú Falls is undoubtedly one of the world's most spectacular natural wonders. <span onclick="goToVocab('comprising')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">Comprising</span> over 275 individual waterfalls stretching across nearly three kilometers, the site generates a deafening roar and a perpetual mist. The most awe-inspiring <span onclick="goToVocab('vantage')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">vantage</span> point is the Devil's Throat (<em>Garganta del Diablo</em>), where visitors stand directly above a massive horseshoe-shaped cataract. Surrounding the cascades is a dense national park <span onclick="goToVocab('teeming')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">teeming</span> with exotic wildlife, including colorful toucans, curious coatis, and vibrant butterflies, making it a dream destination for eco-tourists and nature photographers alike.
+          </p>
+        </article>
+
+        <!-- Paragraph 3 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-emerald-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-md">3</span>
+            Alpine Elegance in Bariloche
+          </h2>
+          <p class="text-sm md:text-base">
+            Located in the heart of the Northern Patagonian Lake District, San Carlos de Bariloche captivates travelers with its Swiss-style chalet architecture and breathtaking alpine scenery. Surrounded by snow-capped Andean peaks and <span onclick="goToVocab('pristine')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">pristine</span> glacial lakes like Nahuel Huapi, the town is a year-round haven for outdoor enthusiasts. During winter, skiers <span onclick="goToVocab('flock')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">flock</span> to Cerro Catedral, one of South America's premier ski resorts, while summer offers world-class hiking and kayaking opportunities. Furthermore, Bariloche has earned an international reputation as Argentina's chocolate capital, lined with artisanal sweet shops offering exquisite handcrafted truffles.
+          </p>
+        </article>
+
+        <!-- Paragraph 4 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-purple-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-purple-100 text-purple-800 text-xs px-2.5 py-1 rounded-md">4</span>
+            High-Altitude Vineyards of Mendoza
+          </h2>
+          <p class="text-sm md:text-base">
+            Situated in the eastern foothills of the Andes Mountains, Mendoza is globally celebrated as the center of Argentina's wine production, particularly famous for its rich Malbec variety. The region features a unique desert landscape transformed by an intricate system of snowmelt irrigation canals into lush, <span onclick="goToVocab('sprawling')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">sprawling</span> vineyards. Travelers can tour historic boutique wineries, enjoy gourmet food <span onclick="goToVocab('pairings')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">pairings</span> under the sun, or explore the countryside on bicycles. Beyond viticulture, the surrounding high-altitude terrain invites thrill-seekers to experience white-water rafting, horseback riding, and mountaineering near Mount Aconcagua, the highest peak outside Asia.
+          </p>
+        </article>
+
+        <!-- Paragraph 5 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-blue-600">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-md">5</span>
+            The Glacial Majesty of Perito Moreno
+          </h2>
+          <p class="text-sm md:text-base">
+            Deep in Southern Patagonia within Los Glaciares National Park lies the monumental Perito Moreno Glacier. Unlike many glaciers worldwide that are rapidly retreating due to climate change, Perito Moreno remains in a remarkable state of equilibrium, continuously advancing across Lake Argentino. Visitors can walk along extensive wooden boardwalks to observe towering ice walls that reach up to 70 meters above the water line. The silence of the remote wilderness is periodically shattered by the dramatic <span onclick="goToVocab('creaking')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">creaking</span> and crashing of massive ice blocks breaking off into the turquoise lake below.
+          </p>
+        </article>
+
+        <!-- Paragraph 6 -->
+        <article class="p-4 rounded-xl hover:bg-sky-50/50 transition border-l-4 border-amber-500">
+          <h2 class="font-display font-bold text-lg text-slate-900 mb-2 flex items-center gap-2">
+            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md">6</span>
+            The Colorful Canyons of Quebrada de Humahuaca
+          </h2>
+          <p class="text-sm md:text-base">
+            In the far northwestern province of Jujuy, the UNESCO-listed Quebrada de Humahuaca valley presents a <span onclick="goToVocab('stark')" class="font-bold underline text-sky-700 hover:text-sky-900 cursor-pointer decoration-sky-400 hover:decoration-2 transition" title="Click to view definition in Vocabulary tab">stark</span>, surreal landscape characterized by dramatic rock formations and multi-colored mountains. Shaped by millions of years of mineral erosion, highlights include the iconic Hill of Seven Colors in Purmamarca. This high-altitude valley is also rich in indigenous culture and history, having served as a vital trade route along the ancient Inca Trail. Visitors can explore ancient stone fortresses, sample traditional Andean cuisine like llama stew, and experience local markets filled with handcrafted woven textiles.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: KEY VOCABULARY (B2 Level) -->
+    <section id="tab-vocab" class="tab-content hidden fade-in space-y-6">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg">
+            🇬🇧
+          </div>
+          <div>
+            <h2 class="font-display text-xl font-bold text-slate-900">Key B2 Vocabulary & Expressions</h2>
+            <p class="text-xs text-slate-500">Definitions and original passage examples. Click <i class="fa-solid fa-volume-high text-sky-600"></i> to listen with English pronunciation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards Grid for Vocab -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="vocabGrid">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 3: COMPREHENSION QUESTIONS (8 items) -->
+    <section id="tab-comprehension" class="tab-content hidden fade-in space-y-6">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-display text-xl font-bold text-slate-900">Text Comprehension Exercises</h2>
+          <p class="text-xs text-slate-500">Answer all 8 questions based on the text. Select your choice to see instant feedback.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="shuffleExercise('comp')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-shuffle"></i> Shuffle
+          </button>
+          <button onclick="resetExercise('comp')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-rotate-right"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Score Bar -->
+      <div class="bg-slate-900 text-white rounded-xl p-4 flex items-center justify-between">
+        <div class="text-xs font-semibold">
+          Progress: <span id="compProgress" class="text-amber-400 font-bold">0 / 8</span> Completed
+        </div>
+        <div class="text-xs font-semibold">
+          Errors: <span id="compErrors" class="text-rose-400 font-bold">0</span>
+        </div>
+      </div>
+
+      <!-- Question List Container -->
+      <div id="compContainer" class="space-y-4">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 4: GAP FILL / ADD A WORD (8 items) -->
+    <section id="tab-gapfill" class="tab-content hidden fade-in space-y-6">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-display text-xl font-bold text-slate-900">Add a Word / Gap-Fill Exercise</h2>
+          <p class="text-xs text-slate-500">Type the missing word from the text. The input checks automatically as you type! Click <strong>Help</strong> to reveal additional letters.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="shuffleExercise('gap')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-shuffle"></i> Shuffle
+          </button>
+          <button onclick="resetExercise('gap')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-rotate-right"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Score Bar -->
+      <div class="bg-slate-900 text-white rounded-xl p-4 flex items-center justify-between">
+        <div class="text-xs font-semibold">
+          Progress: <span id="gapProgress" class="text-amber-400 font-bold">0 / 8</span> Completed
+        </div>
+        <div class="text-xs font-semibold">
+          Errors: <span id="gapErrors" class="text-rose-400 font-bold">0</span>
+        </div>
+      </div>
+
+      <!-- Gap fill List Container -->
+      <div id="gapContainer" class="space-y-4">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CONGRATULATIONS MODAL -->
+  <div id="congratsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl text-center space-y-5 border border-slate-100 transform transition-all fade-in">
+      
+      <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+
+      <div>
+        <span class="text-xs font-black uppercase tracking-widest text-argentina-sky">Section Completed</span>
+        <h3 class="font-display text-2xl font-extrabold text-slate-900 mt-1" id="congratsTitle">Great Job!</h3>
+        <p class="text-slate-600 text-sm mt-2" id="congratsBody">You have successfully completed all questions in this tab.</p>
+      </div>
+
+      <!-- Stats Box -->
+      <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left">
+        <div class="bg-white p-3 rounded-xl border border-slate-100">
+          <span class="text-[10px] font-bold text-slate-400 uppercase">Completed</span>
+          <p class="text-lg font-black text-emerald-600" id="modalScore">8 / 8</p>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-slate-100">
+          <span class="text-[10px] font-bold text-slate-400 uppercase">Total Errors</span>
+          <p class="text-lg font-black text-rose-500" id="modalErrors">0 Errors</p>
+        </div>
+      </div>
+
+      <button onclick="closeCongratsModal()" class="w-full bg-argentina-sky hover:bg-sky-500 text-slate-950 font-bold py-3 px-6 rounded-xl shadow-md transition">
+        Continue Learning
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-3">
+      <p>© Merry Mery English - Interactive B2 English Learning Exercises</p>
+      <div class="flex gap-4">
+        <span class="hover:text-white cursor-pointer transition"><i class="fa-solid fa-graduation-cap"></i> B2 Upper-Intermediate</span>
+        <span class="hover:text-white cursor-pointer transition"><i class="fa-solid fa-flag text-sky-400"></i> Argentina Edition</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    
+    // Key B2 Vocabulary Data
+    const vocabData = [
+      {
+        term: "Dubbed",
+        type: "verb (past participle)",
+        phonetic: "/dʌbd/",
+        def: "Given a specific nickname or descriptive title.",
+        example: "Often dubbed the 'Paris of South America,' Buenos Aires seamlessly blends European architecture with Latin passion."
+      },
+      {
+        term: "Cobblestone",
+        type: "noun / adjective",
+        phonetic: "/ˈkɒb.əl.stəʊn/",
+        def: "A small, rounded stone used in paving traditional old streets.",
+        example: "Visitors can spend days exploring the cobblestone alleys of San Telmo."
+      },
+      {
+        term: "Boasts",
+        type: "verb (3rd person)",
+        phonetic: "/bəʊsts/",
+        def: "Possesses or features something desirable with pride.",
+        example: "Additionally, the capital boasts world-class contemporary art galleries and an unbeatable gastronomic scene."
+      },
+      {
+        term: "Comprising",
+        type: "verb (present participle)",
+        phonetic: "/kəmˈpraɪ.zɪŋ/",
+        def: "Consisting of, made up of, or including several parts.",
+        example: "Comprising over 275 individual waterfalls stretching across nearly three kilometers..."
+      },
+      {
+        term: "Vantage point",
+        type: "noun phrase",
+        phonetic: "/ˈvɑːn.tɪdʒ pɔɪnt/",
+        def: "A position or place giving a good view of a scenery or event.",
+        example: "The most awe-inspiring vantage point is the Devil's Throat."
+      },
+      {
+        term: "Teeming with",
+        type: "adjective / verb phrase",
+        phonetic: "/ˈtiː.mɪŋ wɪð/",
+        def: "Abounding or filled with large numbers of living things.",
+        example: "Surrounding the cascades is a dense national park teeming with exotic wildlife."
+      },
+      {
+        term: "Pristine",
+        type: "adjective",
+        phonetic: "/ˈprɪs.tiːn/",
+        def: "In its original pure condition; unspoiled or spotless.",
+        example: "Surrounded by snow-capped Andean peaks and pristine glacial lakes..."
+      },
+      {
+        term: "Flock",
+        type: "verb",
+        phonetic: "/flɒk/",
+        def: "To gather or move together in large crowds to a popular venue.",
+        example: "During winter, skiers flock to Cerro Catedral, one of South America's premier ski resorts."
+      },
+      {
+        term: "Sprawling",
+        type: "adjective",
+        phonetic: "/ˈsprɔː.lɪŋ/",
+        def: "Spreading out over a large, wide area in an untidy or expansive way.",
+        example: "The unique desert landscape is transformed into lush, sprawling vineyards."
+      },
+      {
+        term: "Pairings",
+        type: "noun (plural)",
+        phonetic: "/ˈpeə.rɪŋz/",
+        def: "Combinations of complementary foods and beverages served together.",
+        example: "Travelers can tour historic boutique wineries and enjoy gourmet food pairings."
+      },
+      {
+        term: "Creaking",
+        type: "noun / adjective",
+        phonetic: "/ˈkriː.kɪŋ/",
+        def: "A harsh high-pitched squeaking or groaning sound caused by friction or pressure.",
+        example: "The silence is periodically shattered by the dramatic creaking and crashing of massive ice blocks."
+      },
+      {
+        term: "Stark",
+        type: "adjective",
+        phonetic: "/stɑːk/",
+        def: "Severely simple, sharp, bare, or striking in appearance.",
+        example: "The UNESCO-listed Quebrada de Humahuaca valley presents a stark, surreal landscape."
+      }
+    ];
+
+    // Comprehension Questions Data (8 Items)
+    const rawCompData = [
+      {
+        id: "c1",
+        question: "1. Why is Buenos Aires frequently described as the 'Paris of South America'?",
+        options: [
+          "Because French is spoken by most local residents",
+          "Because of its blend of European architecture and rich cultural elegance",
+          "Because it was built by French architects during the 19th century",
+          "Because it imports most of its culinary ingredients directly from France"
+        ],
+        correct: 1,
+        hint: "Look at Paragraph 1 where European architectural style and Latin passion are mentioned."
+      },
+      {
+        id: "c2",
+        question: "2. What makes the Devil's Throat (Garganta del Diablo) stand out at Iguazú Falls?",
+        options: [
+          "It is the highest point where visitors can jump into the water",
+          "It is a quiet cave located far behind the cascading water",
+          "It is a massive horseshoe-shaped waterfall providing the most awe-inspiring view",
+          "It is the only section of the falls located entirely inside Brazil"
+        ],
+        correct: 2,
+        hint: "Check Paragraph 2 regarding the horseshoe-shaped cataract and vantage point."
+      },
+      {
+        id: "c3",
+        question: "3. Which seasonal activity makes Bariloche famous during the winter months?",
+        options: [
+          "High-altitude wine tasting in desert valleys",
+          "Skiing and winter sports at Cerro Catedral",
+          "White-water rafting along glacial rivers",
+          "Tango dance festivals in Swiss-style chalets"
+        ],
+        correct: 1,
+        hint: "Review Paragraph 3 for winter outdoor activities at Cerro Catedral."
+      },
+      {
+        id: "c4",
+        question: "4. How is grape cultivation enabled in Mendoza's arid desert environment?",
+        options: [
+          "Through heavy natural subtropical rainfall during summer",
+          "By using underground saltwater desalinization plants",
+          "Through an intricate irrigation system using snowmelt from the Andes",
+          "By growing vines exclusively inside temperature-controlled greenhouses"
+        ],
+        correct: 2,
+        hint: "Refer to Paragraph 4 discussing snowmelt irrigation canals."
+      },
+      {
+        id: "c5",
+        question: "5. How does Perito Moreno Glacier compare to most glaciers worldwide?",
+        options: [
+          "It is shrinking faster than any other glacier in Patagonia",
+          "It remains in balance and continuously advances across Lake Argentino",
+          "It has melted completely into a warm turquoise lake",
+          "It is the only artificial glacier created for tourism in South America"
+        ],
+        correct: 1,
+        hint: "Look at Paragraph 5 regarding state of equilibrium and advancing ice."
+      },
+      {
+        id: "c6",
+        question: "6. What historical role did Quebrada de Humahuaca serve in ancient times?",
+        options: [
+          "It was a major naval port for Spanish trade ships",
+          "It served as a key trade route along the ancient Inca Trail",
+          "It was a secret sanctuary for European gold miners",
+          "It was the primary wine producer for Northern Argentina"
+        ],
+        correct: 1,
+        hint: "See Paragraph 6 for references to indigenous history and the Inca Trail."
+      },
+      {
+        id: "c7",
+        question: "7. What are 'parrillas' as mentioned in the passage about Buenos Aires?",
+        options: [
+          "Traditional Argentine steak houses",
+          "Underground tango dancing halls",
+          "Open-air artisan handicraft markets",
+          "European-style boutique coffee houses"
+        ],
+        correct: 0,
+        hint: "Paragraph 1 mentions traditional steak houses known by this term."
+      },
+      {
+        id: "c8",
+        question: "8. What forces produced the dramatic multi-colored mountains in Purmamarca?",
+        options: [
+          "Volcanic eruptions caused by active mountain ridges",
+          "Millions of years of mineral erosion and geological shaping",
+          "Artificial coloring applied by ancient Incan artists",
+          "Glacial ice crushing colorful granite stones"
+        ],
+        correct: 1,
+        hint: "Paragraph 6 mentions mineral erosion shaping the Hill of Seven Colors."
+      }
+    ];
+
+    // Gap Fill Data (8 Items)
+    const rawGapData = [
+      {
+        id: "g1",
+        sentence: "Buenos Aires is often",
+        answer: "dubbed",
+        fullSentence: "Buenos Aires is often dubbed the 'Paris of South America'.",
+        hint: "Word meaning 'nicknamed' or 'titled' (6 letters, starts with d)"
+      },
+      {
+        id: "g2",
+        sentence: "Visitors love exploring the",
+        answer: "cobblestone",
+        fullSentence: "Visitors love exploring the cobblestone alleys of San Telmo.",
+        hint: "Street pavement made of rounded stones (11 letters, starts with c)"
+      },
+      {
+        id: "g3",
+        sentence: "The capital city proud features or",
+        answer: "boasts",
+        fullSentence: "The capital city boasts world-class contemporary art galleries.",
+        hint: "Verb meaning 'possesses proudly' (6 letters, starts with b)"
+      },
+      {
+        id: "g4",
+        sentence: "Iguazú Falls is a massive site",
+        answer: "comprising",
+        fullSentence: "Iguazú Falls is a massive site comprising over 275 individual waterfalls.",
+        hint: "Verb meaning 'consisting of' or 'including' (10 letters, starts with c)"
+      },
+      {
+        id: "g5",
+        sentence: "The Devil's Throat offers an impressive",
+        answer: "vantage",
+        fullSentence: "The Devil's Throat offers an impressive vantage point.",
+        hint: "Word in the phrase '_____ point' (6 letters, starts with v)"
+      },
+      {
+        id: "g6",
+        sentence: "The dense national park is",
+        answer: "teeming",
+        fullSentence: "The dense national park is teeming with exotic wildlife.",
+        hint: "Word meaning 'overflowing or filled with' (7 letters, starts with t)"
+      },
+      {
+        id: "g7",
+        sentence: "Bariloche is famous for its",
+        answer: "pristine",
+        fullSentence: "Bariloche is famous for its pristine glacial lakes.",
+        hint: "Adjective meaning 'pure and unspoiled' (8 letters, starts with p)"
+      },
+      {
+        id: "g8",
+        sentence: "In winter, thousands of skiers",
+        answer: "flock",
+        fullSentence: "In winter, thousands of skiers flock to Cerro Catedral.",
+        hint: "Verb meaning 'gather or travel in large crowds' (5 letters, starts with f)"
+      }
+    ];
+
+    let currentCompItems = [...rawCompData];
+    let currentGapItems = [...rawGapData];
+
+    let compState = {
+      answered: {},       
+      wrongAttempts: {},  
+      errorsCount: 0
+    };
+
+    let gapState = {
+      answered: {},
+      helpClicks: {}, 
+      errorsCount: 0
+    };
+
+    let speechSynth = window.speechSynthesis;
+    let passageUtterance = null;
+
+    /* AUDIO & TTS CONTROLS */
+    function speakText(text, isUk = false) {
+      if (!speechSynth) return;
+      speechSynth.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = parseFloat(document.getElementById('playbackSpeed')?.value || 1);
+      
+      const voices = speechSynth.getVoices();
+      if (isUk) {
+        const ukVoice = voices.find(v => v.lang.includes('en-GB') || v.name.includes('British') || v.name.includes('UK'));
+        if (ukVoice) utterance.voice = ukVoice;
+      } else {
+        const enVoice = voices.find(v => v.lang.startsWith('en'));
+        if (enVoice) utterance.voice = enVoice;
+      }
+
+      speechSynth.speak(utterance);
+    }
+
+    function playPassageAudio() {
+      if (!speechSynth) return;
+      
+      if (speechSynth.paused) {
+        speechSynth.resume();
+        document.getElementById('audioStatus').innerText = "Status: Playing...";
+        return;
+      }
+
+      speechSynth.cancel();
+      const container = document.getElementById('readingTextContainer');
+      const textToRead = container ? container.innerText : "";
+
+      passageUtterance = new SpeechSynthesisUtterance(textToRead);
+      passageUtterance.rate = parseFloat(document.getElementById('playbackSpeed').value);
+
+      const voices = speechSynth.getVoices();
+      const enVoice = voices.find(v => v.lang.startsWith('en-US') || v.lang.startsWith('en'));
+      if (enVoice) passageUtterance.voice = enVoice;
+
+      passageUtterance.onstart = () => {
+        document.getElementById('audioStatus').innerText = "Status: Playing audio passage...";
+      };
+
+      passageUtterance.onend = () => {
+        document.getElementById('audioStatus').innerText = "Status: Playback finished";
+      };
+
+      speechSynth.speak(passageUtterance);
+    }
+
+    function pausePassageAudio() {
+      if (speechSynth && speechSynth.speaking) {
+        speechSynth.pause();
+        document.getElementById('audioStatus').innerText = "Status: Paused";
+      }
+    }
+
+    function stopPassageAudio() {
+      if (speechSynth) {
+        speechSynth.cancel();
+        document.getElementById('audioStatus').innerText = "Status: Stopped";
+      }
+    }
+
+    function updateAudioSpeed() {
+      if (speechSynth && speechSynth.speaking) {
+        stopPassageAudio();
+        playPassageAudio();
+      }
+    }
+
+    function stopAllAudio() {
+      if (speechSynth) speechSynth.cancel();
+      const status = document.getElementById('audioStatus');
+      if (status) status.innerText = "Status: Muted";
+    }
+
+    /* SOUND EFFECTS (Web Audio API Synthesizer) */
+    function playSuccessSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+        osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.15); // E5
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+      } catch (e) {}
+    }
+
+    function playErrorSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(180, ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(110, ctx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      } catch (e) {}
+    }
+
+    function switchTab(tabId) {
+      stopAllAudio();
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-argentina-sky', 'text-slate-950', 'shadow-sm');
+        btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-white/10');
+      });
+
+      const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-white/10');
+        activeBtn.classList.add('bg-argentina-sky', 'text-slate-950', 'shadow-sm');
+      }
+
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      const activeContent = document.getElementById(`tab-${tabId}`);
+      if (activeContent) {
+        activeContent.classList.remove('hidden');
+      }
+    }
+
+    function goToVocab(term) {
+      switchTab('vocab');
+      setTimeout(() => {
+        const card = document.getElementById(`vocabCard-${term.toLowerCase()}`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('ring-4', 'ring-amber-400', 'bg-amber-50');
+          setTimeout(() => {
+            card.classList.remove('ring-4', 'ring-amber-400', 'bg-amber-50');
+          }, 2500);
+        }
+      }, 100);
+    }
+
+    function renderCompExercise() {
+      const container = document.getElementById('compContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      currentCompItems.forEach((item, index) => {
+        const itemNumber = index + 1;
+        const isCorrect = compState.answered[item.id] !== undefined;
+        const wrongList = compState.wrongAttempts[item.id] || [];
+
+        const card = document.createElement('div');
+        card.className = `bg-white rounded-2xl p-5 shadow-sm border transition-all duration-200 ${
+          isCorrect ? 'border-emerald-400 bg-emerald-50/20' : 'border-slate-200 hover:border-slate-300'
+        }`;
+        card.id = `compCard-${item.id}`;
+
+        let optionsHtml = '';
+        item.options.forEach((opt, optIdx) => {
+          const isSelectedCorrect = isCorrect && compState.answered[item.id].selectedIndex === optIdx;
+          const isWrongAttempt = wrongList.includes(optIdx);
+
+          let btnStyle = "border-slate-200 bg-slate-50 hover:bg-sky-50 hover:border-sky-300 text-slate-700";
+          let isDisabled = isCorrect || isWrongAttempt;
+
+          if (isSelectedCorrect) {
+            btnStyle = "border-emerald-500 bg-emerald-100 text-emerald-900 font-bold";
+          } else if (isWrongAttempt) {
+            btnStyle = "border-rose-300 bg-rose-50 text-rose-700 opacity-70 cursor-not-allowed";
+          } else if (isCorrect) {
+            btnStyle = "border-slate-200 bg-slate-50 opacity-50 text-slate-400 cursor-not-allowed";
+          }
+
+          optionsHtml += `
+            <button 
+              onclick="selectCompOption('${item.id}', ${optIdx})" 
+              ${isDisabled ? 'disabled' : ''}
+              class="w-full text-left p-3 rounded-xl border text-sm transition flex items-center justify-between ${btnStyle}">
+              <span><strong class="mr-2 text-xs opacity-75">${String.fromCharCode(65 + optIdx)}.</strong> ${opt}</span>
+              ${isSelectedCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600"></i>' : ''}
+              ${isWrongAttempt ? '<i class="fa-solid fa-circle-xmark text-rose-500"></i>' : ''}
+            </button>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <h3 class="font-display font-bold text-slate-900 text-sm md:text-base flex items-start gap-2">
+              <span class="bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg shrink-0">${itemNumber}</span>
+              <span>${item.question.replace(/^\d+\.\s*/, '')}</span>
+            </h3>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="speakText('${escapeQuotes(item.question)}')" class="text-sky-600 hover:bg-sky-50 p-2 rounded-lg text-xs font-semibold flex items-center gap-1 transition" title="Listen to question">
+                <i class="fa-solid fa-volume-high"></i> Listen
+              </button>
+              <button onclick="toggleHint('compHint-${item.id}')" class="text-amber-600 hover:bg-amber-50 p-2 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                <i class="fa-solid fa-lightbulb"></i> Hint
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+            ${optionsHtml}
+          </div>
+
+          <div id="compHint-${item.id}" class="hidden mt-3 p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl text-xs text-amber-900">
+            <strong>💡 Hint:</strong> ${item.hint}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateCompStats();
+    }
+
+    function selectCompOption(itemId, selectedIndex) {
+      const item = currentCompItems.find(i => i.id === itemId);
+      if (!item) return;
+
+      if (compState.answered[itemId]) return;
+
+      if (!compState.wrongAttempts[itemId]) {
+        compState.wrongAttempts[itemId] = [];
+      }
+
+      if (compState.wrongAttempts[itemId].includes(selectedIndex)) return;
+
+      const isCorrect = selectedIndex === item.correct;
+
+      if (isCorrect) {
+        playSuccessSound();
+        compState.answered[itemId] = { selectedIndex, isCorrect: true };
+      } else {
+        playErrorSound();
+        compState.errorsCount++;
+        compState.wrongAttempts[itemId].push(selectedIndex);
+      }
+
+      renderCompExercise();
+
+      const totalCorrect = Object.keys(compState.answered).length;
+      if (totalCorrect === currentCompItems.length) {
+        setTimeout(() => {
+          triggerConfetti();
+          showCongratsModal("Comprehension Questions Completed!", totalCorrect, currentCompItems.length, compState.errorsCount);
+        }, 400);
+      }
+    }
+
+    function updateCompStats() {
+      const totalCorrect = Object.keys(compState.answered).length;
+      document.getElementById('compProgress').innerText = `${totalCorrect} / ${currentCompItems.length}`;
+      document.getElementById('compErrors').innerText = compState.errorsCount;
+    }
+
+    function renderGapExercise() {
+      const container = document.getElementById('gapContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      currentGapItems.forEach((item, index) => {
+        const itemNumber = index + 1;
+        const isAnswered = gapState.answered[item.id] !== undefined;
+        const isCorrect = isAnswered && gapState.answered[item.id].isCorrect;
+
+        const card = document.createElement('div');
+        card.className = `bg-white rounded-2xl p-5 shadow-sm border transition-all duration-200 ${
+          isCorrect ? 'border-emerald-400 bg-emerald-50/20' : 'border-slate-200 hover:border-slate-300'
+        }`;
+        card.id = `gapCard-${item.id}`;
+
+        let inputClass = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-100";
+        if (isCorrect) {
+          inputClass = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-emerald-500 bg-emerald-100 text-emerald-900";
+        } else if (isAnswered && !isCorrect) {
+          inputClass = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-rose-400 bg-rose-100 text-rose-900";
+        }
+
+        card.innerHTML = `
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-3">
+            <div class="flex items-start gap-2 text-sm md:text-base font-medium text-slate-800">
+              <span class="bg-slate-900 text-white text-xs font-bold px-2.5 py-1 rounded-lg shrink-0 mt-0.5">${itemNumber}</span>
+              <div>
+                ${item.sentence} 
+                <span class="inline-block mx-1">
+                  <input 
+                    type="text" 
+                    id="gapInput-${item.id}"
+                    value="${gapState.answered[item.id] ? gapState.answered[item.id].userVal : ''}"
+                    ${isCorrect ? 'disabled' : ''}
+                    oninput="handleGapInput('${item.id}')"
+                    placeholder="type word..." 
+                    autocomplete="off"
+                    class="${inputClass}"
+                  />
+                </span>.
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 self-end md:self-center shrink-0">
+              ${!isCorrect ? `
+                <button onclick="provideGapHelp('${item.id}')" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 transition shadow-sm" title="Reveal next letter">
+                  <i class="fa-solid fa-hand-holding-hand"></i> Help
+                </button>
+              ` : ''}
+
+              ${isCorrect ? `
+                <button onclick="speakText('${escapeQuotes(item.fullSentence)}')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 shadow-sm transition animate-bounce">
+                  <i class="fa-solid fa-volume-high"></i> Listen
+                </button>
+              ` : ''}
+
+              <button onclick="toggleHint('gapHint-${item.id}')" class="text-amber-600 hover:bg-amber-50 p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                <i class="fa-solid fa-lightbulb"></i> Hint
+              </button>
+            </div>
+          </div>
+
+          <div id="gapHint-${item.id}" class="hidden mt-2 p-2.5 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl text-xs text-amber-900">
+            <strong>💡 Hint:</strong> ${item.hint}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateGapStats();
+    }
+
+    function handleGapInput(itemId) {
+      const input = document.getElementById(`gapInput-${itemId}`);
+      if (!input) return;
+
+      const userVal = input.value.trim().toLowerCase();
+      const item = currentGapItems.find(i => i.id === itemId);
+      if (!item) return;
+
+      const target = item.answer.toLowerCase();
+
+      if (userVal === target) {
+        playSuccessSound();
+        gapState.answered[itemId] = { userVal: item.answer, isCorrect: true };
+        renderGapExercise();
+
+        const totalCorrect = Object.values(gapState.answered).filter(a => a.isCorrect).length;
+        if (totalCorrect === currentGapItems.length) {
+          setTimeout(() => {
+            triggerConfetti();
+            showCongratsModal("Add a Word Exercise Completed!", totalCorrect, currentGapItems.length, gapState.errorsCount);
+          }, 400);
+        }
+      } else if (userVal.length >= target.length && userVal !== target) {
+        if (!gapState.answered[itemId] || gapState.answered[itemId].userVal !== userVal) {
+          playErrorSound();
+          gapState.errorsCount++;
+        }
+        gapState.answered[itemId] = { userVal, isCorrect: false };
+        input.className = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-rose-400 bg-rose-100 text-rose-900";
+        updateGapStats();
+      } else if (userVal.length > 0 && !target.startsWith(userVal)) {
+        input.className = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-rose-400 bg-rose-50";
+      } else {
+        input.className = "px-3 py-1 text-sm rounded-lg border outline-none font-bold transition-all w-36 border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-100";
+      }
+    }
+
+    function provideGapHelp(itemId) {
+      const item = currentGapItems.find(i => i.id === itemId);
+      if (!item) return;
+
+      if (!gapState.helpClicks[itemId]) {
+        gapState.helpClicks[itemId] = 0;
+      }
+      gapState.helpClicks[itemId]++;
+
+      const clicks = gapState.helpClicks[itemId];
+      const revealedText = item.answer.substring(0, clicks);
+
+      const input = document.getElementById(`gapInput-${itemId}`);
+      if (input) {
+        input.value = revealedText;
+        handleGapInput(itemId);
+        input.focus();
+      }
+    }
+
+    function updateGapStats() {
+      const totalCorrect = Object.values(gapState.answered).filter(a => a.isCorrect).length;
+      document.getElementById('gapProgress').innerText = `${totalCorrect} / ${currentGapItems.length}`;
+      document.getElementById('gapErrors').innerText = gapState.errorsCount;
+    }
+
+    function renderVocabGrid() {
+      const grid = document.getElementById('vocabGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      vocabData.forEach(item => {
+        const card = document.createElement('div');
+        card.id = `vocabCard-${item.term.toLowerCase()}`;
+        card.className = "bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:border-sky-300 transition-all flex flex-col justify-between";
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-display font-bold text-lg text-slate-900">${item.term}</h3>
+                <span class="text-xs font-mono text-slate-400">${item.phonetic} • <span class="italic font-sans text-sky-700">${item.type}</span></span>
+              </div>
+              <button onclick="speakText('${escapeQuotes(item.term + '. ' + item.example)}', true)" class="bg-sky-50 hover:bg-sky-100 text-sky-700 p-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition" title="Listen with British Accent">
+                <i class="fa-solid fa-volume-high text-sm"></i> Listen (UK)
+              </button>
+            </div>
+            <p class="text-sm text-slate-700 mt-2 font-medium">${item.def}</p>
+          </div>
+          <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Example Usage:</span>
+            <p class="text-xs text-slate-600 italic">"${item.example}"</p>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function toggleHint(elementId) {
+      const hint = document.getElementById(elementId);
+      if (hint) {
+        hint.classList.toggle('hidden');
+      }
+    }
+
+    function shuffleExercise(type) {
+      if (type === 'comp') {
+        currentCompItems = currentCompItems.sort(() => Math.random() - 0.5);
+        renderCompExercise();
+      } else if (type === 'gap') {
+        currentGapItems = currentGapItems.sort(() => Math.random() - 0.5);
+        renderGapExercise();
+      }
+    }
+
+    function resetExercise(type) {
+      if (type === 'comp') {
+        compState = { answered: {}, wrongAttempts: {}, errorsCount: 0 };
+        renderCompExercise();
+      } else if (type === 'gap') {
+        gapState = { answered: {}, helpClicks: {}, errorsCount: 0 };
+        renderGapExercise();
+      }
+    }
+
+    function showCongratsModal(title, correct, total, errors) {
+      document.getElementById('congratsTitle').innerText = title;
+      document.getElementById('modalScore').innerText = `${correct} / ${total}`;
+      document.getElementById('modalErrors').innerText = `${errors} ${errors === 1 ? 'Error' : 'Errors'}`;
+      
+      const body = document.getElementById('congratsBody');
+      if (errors === 0) {
+        body.innerText = "🌟 Flawless score! You answered every question correctly without making any mistakes!";
+      } else if (errors <= 3) {
+        body.innerText = "🎉 Fantastic work! You demonstrated strong B2 reading comprehension!";
+      } else {
+        body.innerText = "👍 Great effort completing the exercise! Review your incorrect attempts to reinforce your vocabulary.";
+      }
+
+      document.getElementById('congratsModal').classList.remove('hidden');
+      playSuccessSound();
+    }
+
+    function closeCongratsModal() {
+      document.getElementById('congratsModal').classList.add('hidden');
+    }
+
+    function escapeQuotes(str) {
+      return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+    }
+
+    /* INITIALIZATION */
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCompExercise();
+      renderGapExercise();
+      renderVocabGrid();
+      if (speechSynthesis) {
+        speechSynthesis.getVoices();
+      }
+    });
+  </script>
+</body>
+</html>
