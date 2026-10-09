@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - B2+ Opinion Writing Studio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti for Interactive Rewards -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .drag-item {
+            cursor: grab;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .drag-item:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            min-height: 90px;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            background-color: #f0fdf4;
+            border-color: #0d9488;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="flex items-center space-x-3 group">
+                <img src="logo.png" alt="Merry Mery English Logo" class="h-12 w-12 object-contain rounded-full border-2 border-teal-500 shadow-sm p-0.5 group-hover:scale-105 transition duration-200" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0284c7/ffffff?text=MME';">
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight group-hover:text-teal-600 transition">Merry Mery English</h1>
+                    <p class="text-xs text-teal-600 font-semibold">B2+ Opinion Writing Studio</p>
+                </div>
+            </a>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-2 rounded-xl transition shadow-xs">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden sm:inline">Home</span>
+                </a>
+
+                <a href="https://dictionary.cambridge.org/es/" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center space-x-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-2 rounded-xl border border-amber-200 transition shadow-xs">
+                    <i class="fa-solid fa-book-bookmark text-amber-600"></i>
+                    <span class="hidden md:inline">Cambridge Dict</span>
+                    <i class="fa-solid fa-external-link-alt text-[10px] ml-0.5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+        
+        <!-- Navigation Bar / Jump Tabs -->
+        <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 sticky top-24 z-40">
+            <div class="flex items-center justify-between px-3 py-1.5 border-b border-slate-100 mb-1.5">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center">
+                    <i class="fa-solid fa-layer-group text-teal-600 mr-1.5"></i> Interactive Modules
+                </span>
+                <span id="nav-mode-indicator" class="text-[11px] text-teal-700 font-semibold bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">
+                    Select a tab to get started
+                </span>
+            </div>
+            
+            <nav class="flex flex-wrap gap-1.5">
+                <button onclick="switchTab('theory')" id="btn-theory" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition bg-teal-600 text-white shadow-xs">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i>1. Theory
+                </button>
+                <button onclick="switchTab('reading')" id="btn-reading" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-headphones mr-1.5"></i>2. Text & Audio
+                </button>
+                <button onclick="switchTab('breakdown')" id="btn-breakdown" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-puzzle-piece mr-1.5"></i>3. Structure
+                </button>
+                <button onclick="switchTab('dragdrop')" id="btn-dragdrop" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-arrows-split-up-and-left mr-1.5"></i>4. Puzzle Challenge
+                </button>
+                <button onclick="switchTab('vocab')" id="btn-vocab" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-book-open-reader mr-1.5"></i>5. Vocab Lab
+                </button>
+                <button onclick="switchTab('writing')" id="btn-writing" class="tab-btn flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-pen-nib mr-1.5"></i>6. Writing & AI
+                </button>
+            </nav>
+        </div>
+
+        <!-- MODULE 1: THEORY -->
+        <section id="tab-theory" class="tab-content active bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 1</span>
+                        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Balanced Essay Writing (B2+)</h2>
+                        <p class="text-slate-600 text-sm mt-1">Learn how to present both sides of a debate smoothly before sharing your verdict.</p>
+                    </div>
+                    <span class="hidden sm:flex h-10 w-10 bg-teal-100 text-teal-700 rounded-2xl items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-5 rounded-2xl border border-blue-200 shadow-xs">
+                        <div class="text-blue-700 font-bold text-sm mb-2 flex items-center">
+                            <span class="bg-blue-600 text-white rounded-lg px-2 py-0.5 text-xs mr-2">1</span> Introduction
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Hook the reader with a general statement about smartphones in modern life and clearly introduce both perspectives.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-amber-50 to-white p-5 rounded-2xl border border-amber-200 shadow-xs">
+                        <div class="text-amber-700 font-bold text-sm mb-2 flex items-center">
+                            <span class="bg-amber-600 text-white rounded-lg px-2 py-0.5 text-xs mr-2">2</span> The Arguments
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Analyze the undeniable benefits (instant connection, convenience) alongside the serious drawbacks (addiction, distraction).</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-5 rounded-2xl border border-purple-200 shadow-xs">
+                        <div class="text-purple-700 font-bold text-sm mb-2 flex items-center">
+                            <span class="bg-purple-600 text-white rounded-lg px-2 py-0.5 text-xs mr-2">3</span> Conclusion
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Summarize the main points and offer a balanced opinion or recommendation on how to maintain healthy digital boundaries.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md relative overflow-hidden">
+                    <div class="absolute right-0 top-0 translate-x-4 -translate-y-4 opacity-10 text-9xl font-black text-white pointer-events-none">B2+</div>
+                    <h3 class="font-bold text-amber-400 mb-3 flex items-center text-sm"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Grammar & Discourse Connectors</h3>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-400 mt-1 mr-2 flex-shrink-0"></i><span><strong>Contrasting Linkers:</strong> Use <em>On the one hand... On the other hand</em>, <em>However</em>, <em>Nevertheless</em>, and <em>Despite</em>.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-400 mt-1 mr-2 flex-shrink-0"></i><span><strong>Advanced Vocabulary:</strong> Incorporate terms like <em>indispensable</em>, <em>double-edged sword</em>, <em>detrimental</em>, and <em>digital detox</em>.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-400 mt-1 mr-2 flex-shrink-0"></i><span><strong>Modals for Probability:</strong> Express balanced views using <em>can lead to</em>, <em>might hinder</em>, or <em>ought to establish</em>.</span></li>
+                    </ul>
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button onclick="switchTab('reading')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Next: Text & Audio</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: READ AND LISTEN -->
+        <section id="tab-reading" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 2</span>
+                        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Mobile Phones: A Blessing or a Curse?</h2>
+                        <p class="text-slate-600 text-sm mt-1">Read the 212-word essay or listen with clear British pronunciation.</p>
+                    </div>
+                    <button id="listen-main-btn" onclick="toggleMainSpeech()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-3 rounded-2xl shadow-sm transition flex items-center space-x-2 self-start sm:self-auto">
+                        <i id="listen-icon" class="fa-solid fa-volume-high"></i>
+                        <span id="listen-text">Listen to Text</span>
+                    </button>
+                </div>
+
+                <div id="reading-text-container" class="bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8 space-y-4 text-slate-800 leading-relaxed text-sm sm:text-base shadow-inner">
+                    <p>
+                        In today’s fast-paced world, mobile phones have become an indispensable part of our daily routines. It is virtually impossible to imagine navigating modern life without these compact devices. However, whether smartphones represent a true blessing or a subtle curse remains a fiercely debated topic.
+                    </p>
+                    <p>
+                        On the one hand, smartphones offer undeniable benefits. They allow us to communicate instantly across vast distances, access unlimited information at our fingertips, and handle daily tasks like banking or shopping effortlessly. Furthermore, during emergencies or long trips, having a mobile phone provides invaluable safety and peace of mind.
+                    </p>
+                    <p>
+                        On the other hand, this constant connectivity carries significant drawbacks. Excessive screen time can lead to digital addiction, sleep disruption, and reduced physical activity. Additionally, social media often fosters unrealistic comparisons, negatively impacting mental health. Many people find themselves unable to unwind or enjoy face-to-face conversations because they are perpetually checking notifications.
+                    </p>
+                    <p>
+                        Ultimately, mobile phones are a double-edged sword. While they undeniably empower us and streamline our routines, relying on them excessively can prove detrimental to our overall well-being. To truly benefit from this technology, we must learn to set healthy boundaries and strike a conscious balance between our virtual lives and the real world.
+                    </p>
+                </div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('theory')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button onclick="switchTab('breakdown')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Next: Structure</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: STRUCTURAL ANALYSIS -->
+        <section id="tab-breakdown" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 3</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Text Structural Analysis</h2>
+                    <p class="text-slate-600 text-sm mt-1">Examine the structure of a B2 discussion essay paragraph by paragraph.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-blue-200 bg-blue-50/40 rounded-2xl p-5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-blue-900 text-xs sm:text-sm uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-flag mr-2 text-blue-600"></i>1. Introduction & Hook
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="speakParagraph(0)" class="bg-white hover:bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-200 shadow-xs transition flex items-center space-x-1">
+                                    <i class="fa-solid fa-volume-high text-blue-600"></i>
+                                    <span>Listen</span>
+                                </button>
+                                <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded-lg">Paragraph 1</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">Introduces the ubiquity of smartphones and presents the central debate (blessing vs. curse).</p>
+                        <div id="breakdown-p-0" class="bg-white p-4 rounded-xl border border-blue-100 text-slate-800 text-xs sm:text-sm leading-relaxed shadow-xs">
+                            "In today’s fast-paced world, mobile phones have become an indispensable part of our daily routines. It is virtually impossible to imagine navigating modern life without these compact devices. However, whether smartphones represent a true blessing or a subtle curse remains a fiercely debated topic."
+                        </div>
+                    </div>
+
+                    <div class="border border-amber-200 bg-amber-50/40 rounded-2xl p-5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-amber-900 text-xs sm:text-sm uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-thumbs-up mr-2 text-amber-600"></i>2. Arguments For (The Blessing)
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="speakParagraph(1)" class="bg-white hover:bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-200 shadow-xs transition flex items-center space-x-1">
+                                    <i class="fa-solid fa-volume-high text-amber-600"></i>
+                                    <span>Listen</span>
+                                </button>
+                                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-lg">Paragraph 2</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">Details advantages: instant communication, information access, convenience, and emergency safety.</p>
+                        <div id="breakdown-p-1" class="bg-white p-4 rounded-xl border border-amber-100 text-slate-800 text-xs sm:text-sm leading-relaxed shadow-xs">
+                            "On the one hand, smartphones offer undeniable benefits. They allow us to communicate instantly across vast distances, access unlimited information at our fingertips, and handle daily tasks like banking or shopping effortlessly..."
+                        </div>
+                    </div>
+
+                    <div class="border border-emerald-200 bg-emerald-50/40 rounded-2xl p-5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-emerald-900 text-xs sm:text-sm uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-thumbs-down mr-2 text-emerald-600"></i>3. Arguments Against (The Curse)
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="speakParagraph(2)" class="bg-white hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-emerald-200 shadow-xs transition flex items-center space-x-1">
+                                    <i class="fa-solid fa-volume-high text-emerald-600"></i>
+                                    <span>Listen</span>
+                                </button>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-lg">Paragraph 3</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">Explores disadvantages: addiction, mental health issues, distraction, and loss of real-world connections.</p>
+                        <div id="breakdown-p-2" class="bg-white p-4 rounded-xl border border-emerald-100 text-slate-800 text-xs sm:text-sm leading-relaxed shadow-xs">
+                            "On the other hand, this constant connectivity carries significant drawbacks. Excessive screen time can lead to digital addiction, sleep disruption, and reduced physical activity. Additionally, social media often fosters unrealistic comparisons..."
+                        </div>
+                    </div>
+
+                    <div class="border border-purple-200 bg-purple-50/40 rounded-2xl p-5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-purple-900 text-xs sm:text-sm uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-scale-balanced mr-2 text-purple-600"></i>4. Conclusion & Balanced Opinion
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="speakParagraph(3)" class="bg-white hover:bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-purple-200 shadow-xs transition flex items-center space-x-1">
+                                    <i class="fa-solid fa-volume-high text-purple-600"></i>
+                                    <span>Listen</span>
+                                </button>
+                                <span class="text-xs bg-purple-100 text-purple-800 font-bold px-2.5 py-1 rounded-lg">Paragraph 4</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">Summarizes the 'double-edged sword' metaphor and provides a clear recommendation for healthy digital habits.</p>
+                        <div id="breakdown-p-3" class="bg-white p-4 rounded-xl border border-purple-100 text-slate-800 text-xs sm:text-sm leading-relaxed shadow-xs">
+                            "Ultimately, mobile phones are a double-edged sword. While they undeniably empower us and streamline our routines, relying on them excessively can prove detrimental to our overall well-being..."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('reading')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button onclick="switchTab('dragdrop')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Next: Puzzle</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: DRAG & DROP PUZZLE (Theme: Living Abroad - 151 words) -->
+        <section id="tab-dragdrop" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 4</span>
+                        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Puzzle Challenge: Living Abroad (151 words)</h2>
+                        <p class="text-slate-600 text-sm mt-1">Drag and order the scrambled paragraphs into their correct structural slots!</p>
+                    </div>
+                    <button onclick="resetPuzzle()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl transition self-start">
+                        <i class="fa-solid fa-rotate-right mr-1.5"></i>Reset Puzzle
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Source Pool -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-hand-holding-dots mr-1.5 text-teal-600"></i> Scrambled Paragraphs (Drag)
+                        </h3>
+                        <div id="source-pool" class="space-y-3 min-h-[320px] bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300"></div>
+                    </div>
+
+                    <!-- Target Slots -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-list-check mr-1.5 text-teal-600"></i> Target Essay Structure
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-3.5 drop-zone bg-white relative transition shadow-xs" data-slot="0" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropItem(event, 0)">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-blue-700"><i class="fa-solid fa-plane-departure mr-1"></i>Slot 1: Introduction (Moving abroad)</span>
+                                    <button onclick="showPuzzleSlotHint(0)" class="text-[11px] bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold px-2 py-0.5 rounded-md border border-blue-200 transition">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>Hint
+                                    </button>
+                                </div>
+                                <div class="slot-content text-xs text-slate-400 italic">Drop Introduction here</div>
+                            </div>
+
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-3.5 drop-zone bg-white relative transition shadow-xs" data-slot="1" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropItem(event, 1)">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-amber-700"><i class="fa-solid fa-earth-americas mr-1"></i>Slot 2: Advantages (Personal growth)</span>
+                                    <button onclick="showPuzzleSlotHint(1)" class="text-[11px] bg-amber-50 text-amber-700 hover:bg-amber-100 font-bold px-2 py-0.5 rounded-md border border-amber-200 transition">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>Hint
+                                    </button>
+                                </div>
+                                <div class="slot-content text-xs text-slate-400 italic">Drop Advantages paragraph here</div>
+                            </div>
+
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-3.5 drop-zone bg-white relative transition shadow-xs" data-slot="2" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropItem(event, 2)">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-emerald-700"><i class="fa-solid fa-face-frown mr-1"></i>Slot 3: Challenges (Homesickness & Culture)</span>
+                                    <button onclick="showPuzzleSlotHint(2)" class="text-[11px] bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold px-2 py-0.5 rounded-md border border-emerald-200 transition">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>Hint
+                                    </button>
+                                </div>
+                                <div class="slot-content text-xs text-slate-400 italic">Drop Challenges paragraph here</div>
+                            </div>
+
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-3.5 drop-zone bg-white relative transition shadow-xs" data-slot="3" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropItem(event, 3)">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-purple-700"><i class="fa-solid fa-star mr-1"></i>Slot 4: Conclusion (Final Verdict)</span>
+                                    <button onclick="showPuzzleSlotHint(3)" class="text-[11px] bg-purple-50 text-purple-700 hover:bg-purple-100 font-bold px-2 py-0.5 rounded-md border border-purple-200 transition">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>Hint
+                                    </button>
+                                </div>
+                                <div class="slot-content text-xs text-slate-400 italic">Drop Conclusion here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="puzzle-hint-display" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-900 flex items-start space-x-2">
+                    <i class="fa-solid fa-lightbulb text-amber-600 mt-0.5 text-sm"></i>
+                    <div id="puzzle-hint-text"></div>
+                </div>
+
+                <div id="puzzle-feedback-container" class="hidden p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <span id="puzzle-feedback" class="text-xs sm:text-sm font-medium"></span>
+                    <button id="error-reset-btn" onclick="resetPuzzle()" class="hidden bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-xs font-bold px-4 py-2 rounded-xl transition shadow-xs whitespace-nowrap">
+                        <i class="fa-solid fa-rotate-right mr-1"></i>Reset Puzzle
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <button onclick="switchTab('breakdown')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <div class="flex space-x-3">
+                        <button onclick="checkPuzzle()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-xl shadow-xs transition text-sm flex items-center space-x-2">
+                            <span>Check Structure</span>
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        <button onclick="switchTab('vocab')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                            <span>Next: Vocab Lab</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 5: VOCAB LAB -->
+        <section id="tab-vocab" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 5</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-2">B2+ Vocabulary Lab</h2>
+                    <p class="text-slate-600 text-sm mt-1">Key expressions for balanced essay writing and technology debates.</p>
+                </div>
+
+                <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('dragdrop')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button onclick="switchTab('writing')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-xs transition flex items-center space-x-2">
+                        <span>Next: Writing & AI</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 6: ASSIGNMENT & AI -->
+        <section id="tab-writing" class="tab-content bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">Module 6</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Writing Assignment & AI Feedback Studio</h2>
+                    <p class="text-slate-600 text-sm mt-1">Draft your essay and export it to Gemini for instant B2+ level feedback.</p>
+                </div>
+
+                <div class="bg-teal-50/80 border border-teal-200 rounded-2xl p-5">
+                    <h3 class="font-bold text-teal-900 text-sm mb-1 flex items-center">
+                        <i class="fa-solid fa-pen-nib mr-2 text-teal-600"></i>Writing Task Brief
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Write a 4-paragraph essay (200–220 words) discussing another modern technology topic (e.g., <em>Social Media: Connecting People or Isolating Them?</em> or <em>AI in Education</em>). Use contrasting connectors and at least 2 expressions from the Vocab Lab.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label for="student-essay" class="text-xs font-bold text-slate-700 uppercase tracking-wider">Your Essay Draft</label>
+                        <div class="flex items-center space-x-3">
+                            <span id="word-counter" class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">0 words</span>
+                            <button onclick="getHint()" class="text-xs text-teal-700 hover:text-teal-800 font-bold flex items-center space-x-1">
+                                <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                                <span>Need a hint?</span>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="student-essay" oninput="updateWordCount()" rows="8" class="w-full p-4 rounded-2xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:outline-none text-slate-800 text-sm leading-relaxed custom-scrollbar shadow-inner" placeholder="Write your essay here... (e.g., In recent years, social media platforms have revolutionized...)"></textarea>
+                    
+                    <div id="hint-box" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-900 flex items-start space-x-2">
+                        <i class="fa-solid fa-circle-info text-amber-600 mt-0.5"></i>
+                        <div id="hint-text"></div>
+                    </div>
+                </div>
+
+                <!-- AI Prompt Exporter Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 space-y-4 shadow-md">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-base text-amber-400 flex items-center">
+                            <i class="fa-solid fa-robot mr-2 text-teal-400"></i>Get AI Feedback (Gemini)
+                        </h3>
+                        <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2.5 py-1 rounded-full font-bold border border-teal-500/30">Step by Step</span>
+                    </div>
+
+                    <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <li><strong>Copy your text:</strong> Click on <em>"Copy My Writing"</em>.</li>
+                        <li><strong>Copy AI instructions:</strong> Click on <em>"Copy Prompt for AI"</em>.</li>
+                        <li><strong>Open Gemini:</strong> Go to Gemini chat, paste the content, and receive B2+ teacher feedback!</li>
+                    </ol>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="copyMyWriting()" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 py-2.5 rounded-xl border border-white/20 shadow-xs transition flex items-center space-x-2">
+                            <i class="fa-solid fa-copy text-teal-400"></i>
+                            <span>1. Copy My Writing</span>
+                        </button>
+                        
+                        <button onclick="copyInstructions()" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 py-2.5 rounded-xl border border-white/20 shadow-xs transition flex items-center space-x-2">
+                            <i class="fa-solid fa-clipboard-list text-amber-400"></i>
+                            <span>2. Copy Prompt for AI</span>
+                        </button>
+
+                        <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="bg-teal-500 hover:bg-teal-600 text-slate-900 font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-xs transition flex items-center space-x-2 ml-auto">
+                            <span>3. Open Gemini</span>
+                            <i class="fa-solid fa-external-link-alt text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div id="copy-success-notice" class="hidden text-xs text-teal-300 font-semibold bg-teal-950/80 p-3 rounded-xl border border-teal-500/40">
+                        <i class="fa-solid fa-circle-check mr-1.5 text-teal-400"></i> <span id="copy-notice-text">Successfully copied to clipboard!</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-4">
+                    <button onclick="switchTab('vocab')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-3 rounded-xl transition text-xs flex items-center space-x-2">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>Merry Mery English © 2026 — Designed with care for empowered language learning.</p>
+            <a href="https://merrymeryenglish-cloud.github.io/English-Exercises/" class="text-teal-600 font-semibold hover:underline flex items-center space-x-1">
+                <i class="fa-solid fa-house text-xs"></i>
+                <span>Back to Main Portal</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            if (mainSpeechSynth) {
+                mainSpeechSynth.cancel();
+                isSpeakingMain = false;
+                updateListenButtonState(false);
+            }
+
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white', 'shadow-xs');
+                btn.classList.add('text-slate-700', 'hover:bg-slate-100');
+            });
+
+            let targetTab = tabId;
+            if (tabId === 'vocabulary') targetTab = 'vocab';
+            if (tabId === 'puzzle') targetTab = 'dragdrop';
+            if (tabId === 'assignment') targetTab = 'writing';
+
+            const activeSection = document.getElementById('tab-' + targetTab);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+
+            const activeBtn = document.getElementById('btn-' + targetTab);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-xs');
+                activeBtn.classList.remove('text-slate-700', 'hover:bg-slate-100');
+            }
+
+            const indicator = document.getElementById('nav-mode-indicator');
+            if (indicator) {
+                const names = {
+                    'theory': 'Module 1: Theory',
+                    'reading': 'Module 2: Text & Audio',
+                    'breakdown': 'Module 3: Structure',
+                    'dragdrop': 'Module 4: Puzzle Challenge',
+                    'vocab': 'Module 5: Vocab Lab',
+                    'writing': 'Module 6: Writing & AI'
+                };
+                indicator.innerText = names[targetTab] || 'Active Tab';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateWordCount() {
+            const textarea = document.getElementById('student-essay');
+            const counter = document.getElementById('word-counter');
+            if (!textarea || !counter) return;
+            const text = textarea.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            counter.innerText = `${words} words`;
+        }
+
+        function copyMyWriting() {
+            const textarea = document.getElementById('student-essay');
+            if (!textarea || !textarea.value.trim()) {
+                showCopyNotice("Please write something in your draft first.");
+                return;
+            }
+            
+            const temp = document.createElement('textarea');
+            temp.value = textarea.value;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+
+            showCopyNotice("Your text has been successfully copied!");
+        }
+
+        function copyInstructions() {
+            const textarea = document.getElementById('student-essay');
+            const instructions = `Act as an expert English teacher evaluating a B2+ level opinion essay. Correct the following student draft, fixing grammar, contrasting connectors, and vocabulary choices. Provide the revised text under the header **Revised Version:** and explain 3 main improvements in clear bullet points:\n\n` + (textarea ? textarea.value : '');
+            
+            const temp = document.createElement('textarea');
+            temp.value = instructions;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+
+            showCopyNotice("The prompt for Gemini was successfully copied!");
+        }
+
+        function showCopyNotice(msg) {
+            const notice = document.getElementById('copy-success-notice');
+            const noticeText = document.getElementById('copy-notice-text');
+            if (!notice || !noticeText) return;
+            noticeText.innerText = msg;
+            notice.classList.remove('hidden');
+            setTimeout(() => {
+                notice.classList.add('hidden');
+            }, 3500);
+        }
+
+        /* VOCABULARY LAB DATA (B2+ Essay Vocab) */
+        const vocabList = [
+            {
+                term: "Indispensable",
+                type: "Adjective",
+                def: "Too important or useful to be without.",
+                example: "Smartphones have become indispensable in modern business."
+            },
+            {
+                term: "Double-edged sword",
+                type: "Idiom",
+                def: "Something that has both positive and negative consequences.",
+                example: "Technology is a double-edged sword that requires careful use."
+            },
+            {
+                term: "Fiercely debated",
+                type: "Collocation",
+                def: "Argued with strong feelings, interest, or intensity.",
+                example: "Screen time for young children remains a fiercely debated topic."
+            },
+            {
+                term: "At your fingertips",
+                type: "Idiomatic Phrase",
+                def: "Readily available for immediate use.",
+                example: "With a smartphone, global news is literally at your fingertips."
+            },
+            {
+                term: "Detrimental",
+                type: "Adjective",
+                def: "Tending to cause harm or damage.",
+                example: "Excessive mobile use can be detrimental to mental well-being."
+            },
+            {
+                term: "Virtually impossible",
+                type: "Collocation",
+                def: "Almost completely impossible.",
+                example: "It is virtually impossible to navigate the city without GPS."
+            },
+            {
+                term: "Unwind",
+                type: "Verb",
+                def: "To relax after a period of stress or intense activity.",
+                example: "Many people find it difficult to unwind without checking emails."
+            },
+            {
+                term: "Empower",
+                type: "Verb",
+                def: "To give someone the authority or confidence to do something.",
+                example: "Mobile apps empower users to manage their personal finances."
+            },
+            {
+                term: "On the one hand / On the other hand",
+                type: "Discourse Linkers",
+                def: "Used to compare two contrasting points or arguments.",
+                example: "On the one hand, phones connect us; on the other hand, they distract us."
+            },
+            {
+                term: "Strike a balance",
+                type: "Idiomatic Expression",
+                def: "To achieve a fair compromise between two opposing things.",
+                example: "We must strike a balance between screen time and real life."
+            }
+        ];
+
+        /* PUZZLE DATA: Living Abroad Essay (151 words) */
+        const puzzleParagraphs = [
+            {
+                id: "p0",
+                slot: 0,
+                text: "Relocating to a foreign country is one of the most transformative experiences a person can undertake. While moving abroad offers incredible opportunities, it also presents distinct personal challenges."
+            },
+            {
+                id: "p1",
+                slot: 1,
+                text: "On the positive side, living in a new culture expands your worldview and fosters personal independence. It forces you to step out of your comfort zone, master a foreign language, and build international friendships."
+            },
+            {
+                id: "p2",
+                slot: 2,
+                text: "Conversely, living abroad can feel overwhelming at times. Dealing with language barriers, unfamiliar bureaucracy, and homesickness often creates emotional stress, making expats long for the comfort of their homeland."
+            },
+            {
+                id: "p3",
+                slot: 3,
+                text: "In conclusion, despite the inevitable hurdles, living abroad is a life-enriching journey. It ultimately equips individuals with resilience and a broader perspective on the world."
+            }
+        ];
+
+        const puzzleHints = [
+            "Introduction Hint: Look for the thesis statement introducing the topic of moving to a new country.",
+            "Advantages Hint: Look for words like 'On the positive side', 'fosters independence', and 'expands worldview'.",
+            "Challenges Hint: Look for contrasting linkers like 'Conversely' and downsides like 'homesickness'.",
+            "Conclusion Hint: Look for concluding phrases like 'In conclusion' and 'life-enriching journey'."
+        ];
+
+        let hints = [
+            "Hint 1: Start your essay by stating why mobile technology is prominent today.",
+            "Hint 2: Dedicate Body Paragraph 1 strictly to positive aspects (communication, convenience).",
+            "Hint 3: Use 'On the other hand' to transition into negative aspects (addiction, isolation).",
+            "Hint 4: Conclude by summarizing both perspectives and giving your personal recommendation."
+        ];
+        let currentHintIndex = 0;
+
+        let mainSpeechSynth = window.speechSynthesis;
+        let isSpeakingMain = false;
+        let currentUtterance = null;
+
+        function initVocabLab() {
+            const grid = document.getElementById('vocab-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            vocabList.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between space-y-3 shadow-xs hover:border-teal-300 transition";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-slate-900 text-sm">${item.term}</span>
+                            <span class="text-[11px] bg-teal-50 text-teal-800 font-bold px-2 py-0.5 rounded-md border border-teal-100">${item.type}</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Definition:</strong> ${item.def}</p>
+                        <p class="text-xs text-slate-500 mt-1 italic"><strong>Example:</strong> "${item.example}"</p>
+                    </div>
+                    <div class="flex justify-end pt-1 border-t border-slate-200/80">
+                        <button onclick="speakVocabTerm(${index})" class="text-xs bg-white hover:bg-teal-50 text-teal-700 font-bold px-3 py-1.5 rounded-lg border border-teal-200 shadow-xs transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Listen</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getBritishVoice() {
+            const voices = mainSpeechSynth.getVoices();
+            let ukVoice = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('serena') || v.name.toLowerCase().includes('libby') || v.name.toLowerCase().includes('hazel') || v.name.toLowerCase().includes('uk')));
+            if (!ukVoice) {
+                ukVoice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+            }
+            if (!ukVoice && voices.length > 0) {
+                ukVoice = voices[0];
+            }
+            return ukVoice;
+        }
+
+        function speakVocabTerm(index) {
+            if (!('speechSynthesis' in window)) return;
+            mainSpeechSynth.cancel();
+            const item = vocabList[index];
+            const textToSpeak = `${item.term}. ${item.example}`;
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            utterance.rate = 0.9;
+            const voice = getBritishVoice();
+            if (voice) utterance.voice = voice;
+            mainSpeechSynth.speak(utterance);
+        }
+
+        function speakParagraph(index) {
+            if (!('speechSynthesis' in window)) return;
+            mainSpeechSynth.cancel();
+            const pIds = ['breakdown-p-0', 'breakdown-p-1', 'breakdown-p-2', 'breakdown-p-3'];
+            const el = document.getElementById(pIds[index]);
+            if (!el) return;
+            const text = el.innerText;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9;
+            const voice = getBritishVoice();
+            if (voice) utterance.voice = voice;
+            mainSpeechSynth.speak(utterance);
+        }
+
+        function toggleMainSpeech() {
+            if (!('speechSynthesis' in window)) return;
+
+            if (isSpeakingMain) {
+                mainSpeechSynth.cancel();
+                isSpeakingMain = false;
+                updateListenButtonState(false);
+            } else {
+                const textElement = document.getElementById('reading-text-container');
+                if (!textElement) return;
+                const cleanText = textElement.innerText;
+                
+                currentUtterance = new SpeechSynthesisUtterance(cleanText);
+                currentUtterance.rate = 0.9;
+
+                const voice = getBritishVoice();
+                if (voice) currentUtterance.voice = voice;
+
+                currentUtterance.onend = function() {
+                    isSpeakingMain = false;
+                    updateListenButtonState(false);
+                };
+
+                currentUtterance.onerror = function() {
+                    isSpeakingMain = false;
+                    updateListenButtonState(false);
+                };
+
+                mainSpeechSynth.speak(currentUtterance);
+                isSpeakingMain = true;
+                updateListenButtonState(true);
+            }
+        }
+
+        function updateListenButtonState(isPlaying) {
+            const btnIcon = document.getElementById('listen-icon');
+            const btnText = document.getElementById('listen-text');
+            if (!btnIcon || !btnText) return;
+            if (isPlaying) {
+                btnIcon.className = "fa-solid fa-stop";
+                btnText.innerText = "Stop / Restart";
+            } else {
+                btnIcon.className = "fa-solid fa-volume-high";
+                btnText.innerText = "Listen to Text";
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = function() {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        let shuffledItems = [];
+
+        function initPuzzle() {
+            shuffledItems = [...puzzleParagraphs].sort(() => Math.random() - 0.5);
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                const contentDiv = zone.querySelector('.slot-content');
+                if (contentDiv) {
+                    contentDiv.className = "slot-content text-xs text-slate-400 italic";
+                    contentDiv.innerText = "Drop paragraph here";
+                }
+                delete zone.dataset.itemId;
+            });
+            renderPuzzlePool();
+            const feedbackEl = document.getElementById('puzzle-feedback');
+            const feedbackContainer = document.getElementById('puzzle-feedback-container');
+            const errorResetBtn = document.getElementById('error-reset-btn');
+            const hintDisplay = document.getElementById('puzzle-hint-display');
+            if (feedbackEl) feedbackEl.innerText = "";
+            if (feedbackContainer) feedbackContainer.classList.add('hidden');
+            if (errorResetBtn) errorResetBtn.classList.add('hidden');
+            if (hintDisplay) hintDisplay.classList.add('hidden');
+        }
+
+        function renderPuzzlePool() {
+            const pool = document.getElementById('source-pool');
+            if (!pool) return;
+            pool.innerHTML = '';
+            shuffledItems.forEach(item => {
+                const isPlaced = Array.from(document.querySelectorAll('.drop-zone')).some(z => z.dataset.itemId === item.id);
+                if (!isPlaced) {
+                    const el = document.createElement('div');
+                    el.className = "drag-item bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs text-xs text-slate-800 leading-relaxed font-medium";
+                    el.draggable = true;
+                    el.id = item.id;
+                    el.innerText = item.text;
+                    el.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text/plain', item.id);
+                    });
+                    pool.appendChild(el);
+                }
+            });
+        }
+
+        function allowDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function removeDropStyle(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function dropItem(e, slotIndex) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const itemId = e.dataTransfer.getData('text/plain');
+            const zone = e.currentTarget;
+            zone.dataset.itemId = itemId;
+
+            const paragraphObj = puzzleParagraphs.find(p => p.id === itemId);
+            const contentDiv = zone.querySelector('.slot-content');
+            if (contentDiv && paragraphObj) {
+                contentDiv.className = "slot-content text-xs text-slate-800 bg-slate-50 p-3 rounded-lg border border-slate-200 mt-1 font-medium leading-relaxed";
+                contentDiv.innerText = paragraphObj.text;
+            }
+
+            renderPuzzlePool();
+        }
+
+        function resetPuzzle() {
+            initPuzzle();
+        }
+
+        function showPuzzleSlotHint(slotIndex) {
+            const hintBox = document.getElementById('puzzle-hint-display');
+            const hintText = document.getElementById('puzzle-hint-text');
+            if (hintBox && hintText) {
+                hintText.innerText = puzzleHints[slotIndex];
+                hintBox.classList.remove('hidden');
+            }
+        }
+
+        function checkPuzzle() {
+            let correctCount = 0;
+            let totalSlots = 4;
+            let allFilled = true;
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                const slotIndex = parseInt(zone.dataset.slot);
+                const itemId = zone.dataset.itemId;
+                if (!itemId) {
+                    allFilled = false;
+                } else {
+                    const paragraphObj = puzzleParagraphs.find(p => p.id === itemId);
+                    if (paragraphObj && paragraphObj.slot === slotIndex) {
+                        correctCount++;
+                    }
+                }
+            });
+
+            const feedbackContainer = document.getElementById('puzzle-feedback-container');
+            const feedbackEl = document.getElementById('puzzle-feedback');
+            const errorResetBtn = document.getElementById('error-reset-btn');
+            
+            if (!feedbackContainer || !feedbackEl) return;
+            feedbackContainer.classList.remove('hidden');
+
+            if (!allFilled) {
+                feedbackContainer.className = "p-4 rounded-xl border border-amber-200 bg-amber-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3";
+                feedbackEl.className = "text-xs font-bold text-amber-800";
+                feedbackEl.innerText = "Please place a paragraph in each slot before checking!";
+                if (errorResetBtn) errorResetBtn.classList.add('hidden');
+                return;
+            }
+
+            if (correctCount === totalSlots) {
+                feedbackContainer.className = "p-4 rounded-xl border border-teal-200 bg-teal-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3";
+                feedbackEl.className = "text-xs font-bold text-teal-800";
+                feedbackEl.innerText = "🎉 Excellent! Congratulations, you ordered the essay perfectly!";
+                if (errorResetBtn) errorResetBtn.classList.add('hidden');
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedbackContainer.className = "p-4 rounded-xl border border-rose-200 bg-rose-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3";
+                feedbackEl.className = "text-xs font-bold text-rose-800";
+                feedbackEl.innerText = `You got ${correctCount} out of ${totalSlots} slots correct. Check the hints or reset to try again!`;
+                if (errorResetBtn) errorResetBtn.classList.remove('hidden');
+            }
+        }
+
+        function getHint() {
+            const hintBox = document.getElementById('hint-box');
+            const hintText = document.getElementById('hint-text');
+            if (hintBox && hintText) {
+                hintText.innerText = hints[currentHintIndex];
+                hintBox.classList.remove('hidden');
+                currentHintIndex = (currentHintIndex + 1) % hints.length;
+            }
+        }
+
+        window.onload = function() {
+            initVocabLab();
+            initPuzzle();
+            updateWordCount();
+        }
+    </script>
+</body>
+</html>
