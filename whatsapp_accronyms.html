@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - Acronyms & Textspeak Masterclass</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Fredoka -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .font-heading { font-family: 'Fredoka', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .whatsapp-bg {
+            background-color: #efeae2;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col antialiased">
+
+    <!-- Header Principal con Logo y Accesos Directos -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center border-2 border-teal-400 overflow-hidden shadow-inner group shrink-0">
+                    <img src="logo.png" alt="Merry Mery English Logo" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='logo_3.png';">
+                </a>
+                <div>
+                    <h1 class="text-xl font-heading font-bold tracking-tight text-white flex items-center gap-2">
+                        Merry Mery English
+                        <span class="text-[10px] bg-teal-500/30 text-teal-200 border border-teal-400/30 px-2 py-0.5 rounded-full font-semibold hidden sm:inline-block">UK English</span>
+                    </h1>
+                    <p class="text-xs text-slate-300 font-medium">Textspeak & Chat Acronyms Masterclass</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition border border-white/20">
+                    <i class="fa-solid fa-house text-amber-300"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/" target="_blank" rel="noopener noreferrer" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-100 px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition border border-sky-300/30">
+                    <i class="fa-solid fa-book-bookmark text-sky-300"></i>
+                    <span class="hidden sm:inline">Cambridge Dict</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-sky-300"></i>
+                </a>
+
+                <button onclick="speakText('Welcome to Merry Mery English. Learn popular English chat acronyms and textspeak.')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow transition active:scale-95">
+                    <i class="fa-solid fa-volume-high"></i> Listen Intro
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación por Solapas -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[68px] z-20">
+        <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+            <div class="flex space-x-2 py-2.5 min-w-max">
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-teal-600 text-white shadow-sm">
+                    <i class="fa-solid fa-book-open"></i> 1. Acronyms & Examples
+                </button>
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-list-check"></i> 2. Activity 1: Meaning Quiz
+                </button>
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-pen-nib"></i> 3. Activity 2: Context Fill
+                </button>
+                <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-5 py-2 rounded-full font-semibold text-xs transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    <i class="fa-solid fa-comments"></i> 4. WhatsApp Chat Simulator
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 overflow-y-auto">
+
+        <!-- SOLAPA 1: GUÍA DE ACRÓNIMOS -->
+        <div id="tab-1" class="tab-content active space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-slate-900">Essential Digital English Acronyms</h2>
+                    <p class="text-slate-600 text-sm mt-1">Explore all 50 popular texting acronyms with real contextual sentences. Click <i class="fa-solid fa-volume-high text-teal-600"></i> to listen!</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="acronym-search" oninput="filterAcronyms()" placeholder="Search acronym or meaning..." class="px-3.5 py-2 border border-slate-300 rounded-xl text-xs focus:outline-none focus:border-teal-600 w-48 sm:w-64">
+                </div>
+            </div>
+
+            <div id="acronyms-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- SOLAPA 2: EJERCICIO 1 (MULTIPLE CHOICE - 10 ITEMS) -->
+        <div id="tab-2" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-slate-900">Activity 1: Multiple Choice Acronym Quiz</h2>
+                    <p class="text-slate-600 text-sm mt-1">Select the correct meaning for each acronym. Options and questions shuffle randomly!</p>
+                </div>
+                <button onclick="resetActivity1()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 transition border border-slate-300">
+                    <i class="fa-solid fa-shuffle text-teal-600"></i> Reset & Shuffle
+                </button>
+            </div>
+
+            <div id="mcq-container" class="space-y-4"></div>
+        </div>
+
+        <!-- SOLAPA 3: EJERCICIO 2 (FILL IN THE GAPS CON CORRECCIÓN EN TIEMPO REAL) -->
+        <div id="tab-3" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-slate-900">Activity 2: Fill in the Contextual Acronym</h2>
+                    <p class="text-slate-600 text-sm mt-1">Type the acronym. Real-time audio and visual feedback validates each keystroke!</p>
+                </div>
+                <button onclick="resetActivity2()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 transition border border-slate-300">
+                    <i class="fa-solid fa-shuffle text-teal-600"></i> Reset & Shuffle
+                </button>
+            </div>
+
+            <div id="fill-container" class="space-y-4"></div>
+        </div>
+
+        <!-- SOLAPA 4: CHAT SIMULATOR (WHATSAPP) -->
+        <div id="tab-4" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-heading font-bold text-slate-900">Activity 3: WhatsApp Chat Simulator</h2>
+                <p class="text-slate-600 text-sm mt-1"><strong>Scenario:</strong> Your friend Alex is organizing tonight's party and weekend plans via WhatsApp. Reply using natural textspeak acronyms!</p>
+            </div>
+
+            <div class="max-w-xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-300">
+                <!-- Chat Header -->
+                <div class="bg-teal-800 text-white p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-teal-400 overflow-hidden flex items-center justify-center font-bold text-teal-900">
+                            Alex
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm">Alex (Best Friend)</h3>
+                            <p class="text-[10px] text-teal-200 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> online</p>
+                        </div>
+                    </div>
+                    <button onclick="resetChat()" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-lg transition font-semibold">
+                        <i class="fa-solid fa-rotate mr-1"></i> Restart Chat
+                    </button>
+                </div>
+
+                <!-- Chat Body -->
+                <div id="chat-box" class="whatsapp-bg p-4 h-[420px] overflow-y-auto space-y-3"></div>
+
+                <!-- Chat Controls -->
+                <div id="chat-controls" class="p-4 bg-slate-100 border-t border-slate-200">
+                    <p class="text-xs font-bold text-slate-600 mb-2">Select your response:</p>
+                    <div id="chat-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MODAL POPUP DE FELICITACIONES CON CONFETI -->
+    <div id="activityModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl text-center space-y-5 border border-slate-100 transform transition-all">
+            <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest text-teal-600" id="modalActivityTag">Activity Completed</span>
+                <h3 class="text-2xl font-heading font-bold text-slate-900 mt-1" id="modalTitle">Splendid Job!</h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2" id="modalMessage">You have completed all questions in this tab.</p>
+            </div>
+
+            <!-- Stats Box -->
+            <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left">
+                <div class="bg-white p-3 rounded-xl border border-slate-100">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase block">First-Try Success</span>
+                    <p class="text-base font-black text-emerald-600" id="modalFirstTry">0 / 0</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-100">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase block">Total Attempts</span>
+                    <p class="text-base font-black text-slate-800" id="modalAttempts">0 Attempts</p>
+                </div>
+            </div>
+
+            <button id="modalNextBtn" onclick="closeActivityModal()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition text-sm">
+                Continue Learning
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <a href="index.html" class="flex items-center gap-2 text-slate-600 hover:text-teal-700 font-semibold">
+                <i class="fa-solid fa-house text-teal-600"></i>
+                <span>Return to Main Index</span>
+            </a>
+            <p>Merry Mery English &copy; 2026. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // WEB AUDIO SYNTHESIZER
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            const now = audioCtx.currentTime;
+
+            if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                osc.frequency.setValueAtTime(783.99, now + 0.16);
+                gainNode.gain.setValueAtTime(0.2, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                osc.start(now);
+                osc.stop(now + 0.4);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.setValueAtTime(140, now + 0.1);
+                gainNode.gain.setValueAtTime(0.18, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            } else if (type === 'hint') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, now);
+                gainNode.gain.setValueAtTime(0.15, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            }
+        }
+
+        function triggerCelebration() {
+            playSound('success');
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 110, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        // VOICE SYNTHESIS (UK English)
+        function speakText(text, onEndCallback) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-GB';
+            utterance.rate = 0.95;
+            const voices = window.speechSynthesis.getVoices();
+            const ukVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Male') || v.name.includes('Oliver') || v.name.includes('UK'))) || voices.find(v => v.lang === 'en-GB');
+            if (ukVoice) utterance.voice = ukVoice;
+            if (onEndCallback) utterance.onend = onEndCallback;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // TAB NAVIGATION
+        let currentTabNext = 2;
+        function switchTab(tabNumber) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+            });
+
+            const activeTab = document.getElementById(`tab-${tabNumber}`);
+            const activeBtn = document.getElementById(`tab-btn-${tabNumber}`);
+
+            if (activeTab) activeTab.classList.add('active');
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-sm');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ARRAY DE 50 ACRÓNIMOS
+        const acronymsData = [
+            { code: "AAP", meaning: "Always A Pleasure", example: "It was great talking to you. AAP!" },
+            { code: "AAYF", meaning: "As Always Your Friend", example: "See you next week! AAYF, Sarah." },
+            { code: "AFAIK", meaning: "As Far As I Know", example: "AFAIK, the meeting starts at 9 AM tomorrow." },
+            { code: "ASAP", meaning: "As Soon As Possible", example: "Please send me the report ASAP." },
+            { code: "ATB", meaning: "All The Best", example: "Good luck with your exam! ATB!" },
+            { code: "ATM", meaning: "At The Moment", example: "I am quite busy ATM, can I call you later?" },
+            { code: "B/C", meaning: "Because", example: "I stayed home B/C it was raining heavily." },
+            { code: "BBL", meaning: "Be Back Later", example: "I have to cook dinner now, BBL." },
+            { code: "BC", meaning: "Because", example: "I was late BC traffic was terrible." },
+            { code: "BF", meaning: "Boyfriend", example: "She went to the cinema with her BF." },
+            { code: "BFF", meaning: "Best Friend Forever", example: "Thanks for always helping me, you're my BFF!" },
+            { code: "BRB", meaning: "Be Right Back", example: "Someone is at the door, BRB!" },
+            { code: "BTW", meaning: "By The Way", example: "BTW, did you watch the match last night?" },
+            { code: "CTN", meaning: "Can't Talk Now", example: "I'm in a lecture, CTN." },
+            { code: "CUL8R", meaning: "See You Later", example: "Got to catch my train now. CUL8R!" },
+            { code: "DIY", meaning: "Do It Yourself", example: "He loves DIY furniture projects." },
+            { code: "EOD", meaning: "End Of Discussion", example: "We are not buying a third cat, EOD!" },
+            { code: "EOS", meaning: "End Of Story", example: "I didn't break the vase, EOS!" },
+            { code: "FB", meaning: "Facebook", example: "Send me a request on FB." },
+            { code: "FYEO", meaning: "For Your Eyes Only", example: "This secret document is FYEO." },
+            { code: "FYI", meaning: "For Your Information", example: "FYI, the office will be closed on Friday." },
+            { code: "GF", meaning: "Girlfriend", example: "He brought his GF to the family dinner." },
+            { code: "GR8", meaning: "Great", example: "That sounds like a GR8 idea!" },
+            { code: "GTG", meaning: "Got To Go", example: "My bus is arriving, GTG!" },
+            { code: "HAND", meaning: "Have A Nice Day", example: "Bye for now! HAND!" },
+            { code: "ILY", meaning: "I Love You", example: "Take care and text me when you land. ILY!" },
+            { code: "IMO", meaning: "In My Opinion", example: "IMO, British tea is the best in the world." },
+            { code: "IRL", meaning: "In Real Life", example: "She looks just like her photo IRL." },
+            { code: "JIC", meaning: "Just In Case", example: "Take an umbrella JIC it rains." },
+            { code: "JK", meaning: "Just Kidding", example: "I'm moving to Mars! JK!" },
+            { code: "L8R", meaning: "Later", example: "Catch you L8R!" },
+            { code: "LMK", meaning: "Let Me Know", example: "LMK if you can make it to the party." },
+            { code: "LMS", meaning: "Like My Status", example: "I just posted a new photo, LMS!" },
+            { code: "LOL", meaning: "Laughing Out Loud", example: "That cat video was hilarious! LOL!" },
+            { code: "MTFBWY", meaning: "May The Force Be With You", example: "Good luck with your interview! MTFBWY!" },
+            { code: "NBD", meaning: "No Big Deal", example: "Don't worry about breaking the cup, it's NBD." },
+            { code: "NFM", meaning: "Not For Me", example: "Horror movies are NFM." },
+            { code: "NP", meaning: "No Problem", example: "Thanks for the lift! - NP!" },
+            { code: "NTN", meaning: "No Thanks Needed", example: "Glad I could help you out, NTN!" },
+            { code: "NVM", meaning: "Nevermind", example: "NVM, I found my keys in my bag." },
+            { code: "OMG", meaning: "Oh My God", example: "OMG! Have you seen the news?" },
+            { code: "OMW", meaning: "On My Way", example: "I just left home, OMW!" },
+            { code: "PLZ", meaning: "Please", example: "Can you pass the salt PLZ?" },
+            { code: "RSVP", meaning: "Response Requested", example: "Please RSVP before Wednesday." },
+            { code: "TBH", meaning: "To Be Honest", example: "TBH, I prefer staying home tonight." },
+            { code: "THX", meaning: "Thanks", example: "THX for helping me move the desk!" },
+            { code: "TMI", meaning: "Too Much Information", example: "I don't need all those medical details, TMI!" },
+            { code: "TTYL", meaning: "Talk To You Later", example: "I have a meeting now, TTYL!" },
+            { code: "TTYS", meaning: "Talk To You Soon", example: "Have a safe flight! TTYS!" },
+            { code: "TY", meaning: "Thank You", example: "TY for the lovely birthday gift!" },
+            { code: "WB", meaning: "Welcome Back", example: "WB! How was your holiday in Spain?" }
+        ];
+
+        function renderAcronyms() {
+            const grid = document.getElementById('acronyms-grid');
+            grid.innerHTML = acronymsData.map(item => `
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-teal-400 hover:shadow-md transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-base font-bold font-mono text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">${item.code}</span>
+                            <button onclick="speakText('${item.code}. ${item.meaning}. ${item.example}')" class="text-slate-400 hover:text-teal-600 p-1.5 rounded-lg hover:bg-teal-50 transition" title="Listen">
+                                <i class="fa-solid fa-volume-high text-sm"></i>
+                            </button>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1">${item.meaning}</h4>
+                        <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded-lg border border-slate-100 font-sans font-medium">"${item.example}"</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterAcronyms() {
+            const query = document.getElementById('acronym-search').value.toLowerCase();
+            const filtered = acronymsData.filter(a => a.code.toLowerCase().includes(query) || a.meaning.toLowerCase().includes(query) || a.example.toLowerCase().includes(query));
+            const grid = document.getElementById('acronyms-grid');
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-teal-400 hover:shadow-md transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-base font-bold font-mono text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">${item.code}</span>
+                            <button onclick="speakText('${item.code}. ${item.meaning}. ${item.example}')" class="text-slate-400 hover:text-teal-600 p-1.5 rounded-lg hover:bg-teal-50 transition">
+                                <i class="fa-solid fa-volume-high text-sm"></i>
+                            </button>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1">${item.meaning}</h4>
+                        <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded-lg border border-slate-100">"${item.example}"</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // DATA ACTIVIDAD 1: MULTIPLE CHOICE
+        const mcqOriginal = [
+            { id: 1, acronym: "ASAP", question: "What does ASAP stand for?", options: ["As Soon As Possible", "Always Stay As Patient", "After Some Additional Points", "As Simple As Possible"], correctIndex: 0, hint: "Used when something is required urgently." },
+            { id: 2, acronym: "BTW", question: "What does BTW mean in a chat?", options: ["Bring The Wine", "By The Way", "Back To Work", "Be There Wednesday"], correctIndex: 1, hint: "Used to introduce a new side topic." },
+            { id: 3, acronym: "BRB", question: "If a friend texts BRB, what are they doing?", options: ["Leaving forever", "Buying something", "Be Right Back", "Asking for help"], correctIndex: 2, hint: "Be Right Back." },
+            { id: 4, acronym: "IMO", question: "What does IMO mean?", options: ["In Many Options", "Is More Obvious", "Important Notice Only", "In My Opinion"], correctIndex: 3, hint: "Used before sharing your personal thought." },
+            { id: 5, acronym: "TBH", question: "What does TBH stand for?", options: ["To Be Honest", "To Be Happy", "Take Back Home", "Time Bound Hour"], correctIndex: 0, hint: "Used when expressing frank truth." },
+            { id: 6, acronym: "AFAIK", question: "What does AFAIK signify?", options: ["Always For An Important Reason", "As Far As I Know", "All Friends Are Invited Kitchen", "Away From Any Information Key"], correctIndex: 1, hint: "Expresses knowledge based on present information." },
+            { id: 7, acronym: "HAND", question: "What does HAND mean at the end of a message?", options: ["Hold All New Details", "Help And Need Direction", "Have A Nice Day", "Here And Now Done"], correctIndex: 2, hint: "A friendly polite farewell." },
+            { id: 8, acronym: "EOD", question: "What does EOD mean in a discussion?", options: ["Every Other Day", "Errors On File", "Early On Date", "End Of Discussion"], correctIndex: 3, hint: "Signals that the conversation on a topic is closed." },
+            { id: 9, acronym: "NBD", question: "What does NBD mean if someone makes a mistake?", options: ["No Big Deal", "Never Be Difficult", "New Business Plan", "Next Best Option"], correctIndex: 0, hint: "Reassures someone that something isn't serious." },
+            { id: 10, acronym: "MTFBWY", question: "Which phrase does MTFBWY represent?", options: ["Make The Future Better With You", "May The Force Be With You", "Meet The Family Before Weekend", "More Than Friends Because With You"], correctIndex: 1, hint: "Famous Star Wars iconic blessing." }
+        ];
+
+        let mcqQuestions = [];
+        let mcqState = {};
+
+        function shuffleArray(array) {
+            return array.map(value => ({ value, sort: Math.random() }))
+                        .sort((a, b) => a.sort - b.sort)
+                        .map(({ value }) => value);
+        }
+
+        function renderActivity1() {
+            mcqQuestions = shuffleArray(mcqOriginal).map(q => {
+                const correctAnswerText = q.options[q.correctIndex];
+                const shuffledOptions = shuffleArray(q.options);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                return { ...q, options: shuffledOptions, correctIndex: newCorrectIndex };
+            });
+
+            const container = document.getElementById('mcq-container');
+            mcqState = {};
+            mcqQuestions.forEach(q => mcqState[q.id] = { attempts: 0, completed: false, firstTry: false });
+
+            container.innerHTML = mcqQuestions.map((q, idx) => `
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs shrink-0">${idx + 1}</span>
+                            <h4 class="text-slate-900 font-bold text-base">${q.question}</h4>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleHint('mcq', ${q.id})" class="text-amber-600 hover:bg-amber-50 px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-lightbulb"></i> Hint
+                            </button>
+                            <button id="mcq-listen-${q.id}" onclick="speakText('${q.acronym}. ${q.options[q.correctIndex]}')" class="hidden text-teal-600 hover:bg-teal-50 px-2.5 py-1.5 rounded-lg text-xs font-bold items-center gap-1 transition border border-teal-200 bg-teal-50">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 ml-10" id="mcq-opts-${q.id}">
+                        ${q.options.map((opt, oIdx) => `
+                            <button onclick="checkMCQ(${q.id},${oIdx})" id="mcq-btn-${q.id}-${oIdx}" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50 hover:bg-teal-50 hover:border-teal-300 transition text-left">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="mcq-hint-${q.id}" class="hidden ml-10 text-xs text-amber-800 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                        <i class="fa-solid fa-info-circle mr-1"></i> <strong>Clue:</strong> ${q.hint}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkMCQ(qId, selectedIdx) {
+            const q = mcqQuestions.find(item => item.id === qId);
+            const btn = document.getElementById(`mcq-btn-${qId}-${selectedIdx}`);
+            const listenBtn = document.getElementById(`mcq-listen-${qId}`);
+
+            mcqState[qId].attempts++;
+
+            if (selectedIdx === q.correctIndex) {
+                if (!mcqState[qId].completed) {
+                    mcqState[qId].completed = true;
+                    if (mcqState[qId].attempts === 1) mcqState[qId].firstTry = true;
+                }
+                btn.className = "px-4 py-2.5 rounded-xl border-2 border-emerald-500 text-xs sm:text-sm font-bold text-emerald-900 bg-emerald-50 transition text-left flex items-center justify-between";
+                btn.innerHTML = `${q.options[selectedIdx]} <i class="fa-solid fa-check text-emerald-600"></i>`;
+                listenBtn.classList.remove('hidden');
+                listenBtn.classList.add('flex');
+                playSound('success');
+
+                for (let i = 0; i < q.options.length; i++) {
+                    document.getElementById(`mcq-btn-${qId}-${i}`).disabled = true;
+                }
+                checkAllMCQCompleted();
+            } else {
+                btn.className = "px-4 py-2.5 rounded-xl border-2 border-rose-300 text-xs sm:text-sm font-bold text-rose-900 bg-rose-50 transition text-left flex items-center justify-between";
+                btn.innerHTML = `${q.options[selectedIdx]} <i class="fa-solid fa-xmark text-rose-500"></i>`;
+                playSound('error');
+            }
+        }
+
+        function checkAllMCQCompleted() {
+            const allDone = mcqQuestions.every(q => mcqState[q.id] && mcqState[q.id].completed);
+            if (allDone) {
+                let firstTry = 0, totalAtt = 0;
+                mcqQuestions.forEach(q => {
+                    if (mcqState[q.id].firstTry) firstTry++;
+                    totalAtt += mcqState[q.id].attempts;
+                });
+                triggerCelebration();
+                showActivityModal("Activity 1: Meaning Quiz", firstTry, mcqQuestions.length, totalAtt, 3);
+            }
+        }
+
+        function resetActivity1() {
+            renderActivity1();
+        }
+
+        // DATA ACTIVIDAD 2: FILL IN THE GAPS CON CORRECCIÓN EN TIEMPO REAL
+        const fillOriginal = [
+            { id: 1, sentence: "I just landed at the airport, _______! See you outside in 5 minutes.", answer: "OMW", hint: "On My Way", fullSentence: "I just landed at the airport, OMW! See you outside in 5 minutes." },
+            { id: 2, sentence: "Can you send me the final report _______? The manager needs it now.", answer: "ASAP", hint: "As Soon As Possible", fullSentence: "Can you send me the final report ASAP? The manager needs it now." },
+            { id: 3, sentence: "I cannot talk right now, I'm in class. _______!", answer: "CTN", hint: "Can't Talk Now", fullSentence: "I cannot talk right now, I'm in class. CTN!" },
+            { id: 4, sentence: "Don't worry about spilling the tea, it's _______.", answer: "NBD", hint: "No Big Deal", fullSentence: "Don't worry about spilling the tea, it's NBD." },
+            { id: 5, sentence: "I just posted my new travel photos on Instagram, _______!", answer: "LMS", hint: "Like My Status", fullSentence: "I just posted my new travel photos on Instagram, LMS!" },
+            { id: 6, sentence: "Please let me know if you can attend by Friday, _______.", answer: "RSVP", hint: "Response Requested", fullSentence: "Please let me know if you can attend by Friday, RSVP." },
+            { id: 7, sentence: "I love reading fantasy books, but horror is _______.", answer: "NFM", hint: "Not For Me", fullSentence: "I love reading fantasy books, but horror is NFM." },
+            { id: 8, sentence: "I am really tired today, _______ I should go to bed early.", answer: "IMO", hint: "In My Opinion", fullSentence: "I am really tired today, IMO I should go to bed early." },
+            { id: 9, sentence: "Thanks for helping me fix my bike! - _______!", answer: "NP", hint: "No Problem", fullSentence: "Thanks for helping me fix my bike! - NP!" },
+            { id: 10, sentence: "I have to step away from my laptop for a minute, _______.", answer: "BRB", hint: "Be Right Back", fullSentence: "I have to step away from my laptop for a minute, BRB." }
+        ];
+
+        let fillQuestions = [];
+        let fillState = {};
+
+        function renderActivity2() {
+            fillQuestions = shuffleArray(fillOriginal);
+            const container = document.getElementById('fill-container');
+            fillState = {};
+            fillQuestions.forEach(q => fillState[q.id] = { attempts: 0, completed: false, firstTry: false, lastWasError: false });
+
+            container.innerHTML = fillQuestions.map((q, idx) => {
+                const parts = q.sentence.split('_______');
+                return `
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 w-full sm:w-auto flex-grow">
+                            <span class="w-7 h-7 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs shrink-0">${idx + 1}</span>
+                            <div class="text-slate-800 text-sm sm:text-base flex flex-wrap items-center gap-2">
+                                <span>${parts[0]}</span>
+                                <div class="relative inline-block">
+                                    <input type="text" id="fill-input-${q.id}" oninput="handleFillInput(${q.id})" placeholder="Type..." class="px-3 py-1.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-mono font-bold focus:outline-none focus:border-teal-600 w-32 uppercase transition-colors">
+                                    <span id="fill-icon-${q.id}" class="absolute right-2 top-2 text-xs"></span>
+                                </div>
+                                <span>${parts[1] || ''}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                            <button onclick="toggleHint('fill', ${q.id})" class="text-amber-600 hover:bg-amber-50 px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-lightbulb"></i> Hint
+                            </button>
+                            <button id="fill-listen-${q.id}" onclick="speakText('${q.fullSentence}')" class="hidden text-teal-600 hover:bg-teal-50 px-2.5 py-1.5 rounded-lg text-xs font-bold items-center gap-1 transition border border-teal-200 bg-teal-50">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                    </div>
+                    <div id="fill-hint-${q.id}" class="hidden ml-10 text-xs text-amber-800 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                        <i class="fa-solid fa-info-circle mr-1"></i> <strong>Clue:</strong> Acronym for "${q.hint}"
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // CORRECCIÓN EN TIEMPO REAL AL ESCRIBIR (ONINPUT)
+        function handleFillInput(id) {
+            const input = document.getElementById(`fill-input-${id}`);
+            const icon = document.getElementById(`fill-icon-${id}`);
+            const listenBtn = document.getElementById(`fill-listen-${id}`);
+            const q = fillQuestions.find(item => item.id === id);
+            const val = input.value.trim().toUpperCase();
+
+            if (!val) {
+                input.className = "px-3 py-1.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-mono font-bold focus:outline-none focus:border-teal-600 w-32 uppercase transition-colors";
+                icon.innerHTML = "";
+                fillState[id].lastWasError = false;
+                return;
+            }
+
+            // Comprobar si lo escrito coincide exactamente con el acrónimo
+            if (val === q.answer) {
+                fillState[id].attempts++;
+                if (!fillState[id].completed) {
+                    fillState[id].completed = true;
+                    if (fillState[id].attempts === 1) fillState[id].firstTry = true;
+                }
+                input.value = q.answer;
+                input.disabled = true;
+                icon.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i>';
+                input.className = "px-3 py-1.5 border-2 border-emerald-500 bg-emerald-50 rounded-xl text-xs sm:text-sm font-mono font-bold w-32 text-emerald-900";
+                listenBtn.classList.remove('hidden');
+                listenBtn.classList.add('flex');
+                playSound('success');
+                checkAllFillCompleted();
+            } else if (!q.answer.startsWith(val)) {
+                // Si la letra ingresada rompe la secuencia correcta -> marca error y sonido
+                if (!fillState[id].lastWasError) {
+                    fillState[id].attempts++;
+                    fillState[id].lastWasError = true;
+                    playSound('error');
+                }
+                icon.innerHTML = '<i class="fa-solid fa-xmark text-rose-500"></i>';
+                input.className = "px-3 py-1.5 border-2 border-rose-300 bg-rose-50 rounded-xl text-xs sm:text-sm font-mono font-bold w-32 text-rose-900 transition-colors";
+            } else {
+                // Si va escribiendo bien pero aún no termina
+                fillState[id].lastWasError = false;
+                icon.innerHTML = "";
+                input.className = "px-3 py-1.5 border-2 border-teal-400 bg-teal-50/50 rounded-xl text-xs sm:text-sm font-mono font-bold w-32 text-teal-900 transition-colors";
+            }
+        }
+
+        function checkAllFillCompleted() {
+            const allDone = fillQuestions.every(q => fillState[q.id] && fillState[q.id].completed);
+            if (allDone) {
+                let firstTry = 0, totalAtt = 0;
+                fillQuestions.forEach(q => {
+                    if (fillState[q.id].firstTry) firstTry++;
+                    totalAtt += fillState[q.id].attempts;
+                });
+                triggerCelebration();
+                showActivityModal("Activity 2: Context Fill", firstTry, fillQuestions.length, totalAtt, 4);
+            }
+        }
+
+        function resetActivity2() {
+            renderActivity2();
+        }
+
+        function toggleHint(type, id) {
+            document.getElementById(`${type}-hint-${id}`).classList.toggle('hidden');
+            playSound('hint');
+        }
+
+        // ACTIVIDAD 3: WHATSAPP CHAT SIMULATOR
+        const chatScript = [
+            {
+                step: 0,
+                friendMessage: "Hey! Are you coming to the party tonight at Sam's house?",
+                options: [
+                    { text: "Yeah! OMW!", code: "OMW", correct: true, friendReply: "Awesome! What time do you think you'll arrive?" },
+                    { text: "I don't know yet. EOD.", code: "EOD", correct: false, feedback: "Incorrect: 'EOD' stands for 'End Of Discussion', which doesn't fit in this answer." }
+                ]
+            },
+            {
+                step: 1,
+                friendMessage: "What time do you think you'll arrive?",
+                options: [
+                    { text: "Around 9 PM. BTW, should I bring snacks?", code: "BTW", correct: true, friendReply: "Yes please! Can you bring potato chips?" },
+                    { text: "Around 9 PM. FYEO!", code: "FYEO", correct: false, feedback: "Incorrect: 'FYEO' means 'For Your Eyes Only', used for secrets." }
+                ]
+            },
+            {
+                step: 2,
+                friendMessage: "Yes please! Can you bring potato chips?",
+                options: [
+                    { text: "Sure, NP!", code: "NP", correct: true, friendReply: "Thanks a lot! You are my BFF!" },
+                    { text: "NTN!", code: "NTN", correct: false, feedback: "Incorrect: 'NTN' means 'No Thanks Needed', but 'NP' (No Problem) is much more natural here." }
+                ]
+            },
+            {
+                step: 3,
+                friendMessage: "Thanks a lot! Is your partner coming too?",
+                options: [
+                    { text: "Yes, my BF is coming with me!", code: "BF", correct: true, friendReply: "Great! Tell him to hurry up! GTG now, see you there!" },
+                    { text: "Yes, my BBL is coming with me!", code: "BBL", correct: false, feedback: "Incorrect: 'BBL' means 'Be Back Later'. You should use 'BF' (Boyfriend) or 'GF' (Girlfriend)." }
+                ]
+            },
+            {
+                step: 4,
+                friendMessage: "Great! GTG now, see you there!",
+                options: [
+                    { text: "TTYS!", code: "TTYS", correct: true, friendReply: "Bye! HAND!" },
+                    { text: "EOS!", code: "EOS", correct: false, feedback: "Incorrect: 'EOS' means 'End Of Story'. 'TTYS' means 'Talk To You Soon'." }
+                ]
+            }
+        ];
+
+        let currentChatStep = 0;
+        let chatAttempts = 0;
+        let chatFirstTryCount = 0;
+        let stepFirstTry = true;
+
+        function renderChatStep() {
+            const chatBox = document.getElementById('chat-box');
+            const optionsContainer = document.getElementById('chat-options');
+
+            if (currentChatStep === 0) {
+                chatBox.innerHTML = `
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none max-w-[80%] shadow-xs text-xs text-slate-800 border border-slate-100">
+                        <p class="font-bold text-teal-800 text-[10px] mb-0.5">Alex</p>
+                        <p>${chatScript[0].friendMessage}</p>
+                        <span class="text-[9px] text-slate-400 block text-right mt-1">20:15</span>
+                    </div>
+                `;
+            }
+
+            const stepData = chatScript[currentChatStep];
+            if (!stepData) return;
+
+            stepFirstTry = true;
+            const shuffledChatOpts = shuffleArray(stepData.options);
+
+            optionsContainer.innerHTML = shuffledChatOpts.map((opt) => `
+                <button onclick='selectChatOption(${JSON.stringify(opt).replace(/'/g, "&apos;")})' class="p-3 bg-white hover:bg-teal-50 border border-slate-300 hover:border-teal-400 rounded-xl text-xs text-left font-bold text-slate-800 transition flex items-center justify-between group">
+                    <span>${opt.text}</span>
+                    <i class="fa-solid fa-paper-plane text-slate-300 group-hover:text-teal-600 transition"></i>
+                </button>
+            `).join('');
+        }
+
+        function selectChatOption(selectedOpt) {
+            chatAttempts++;
+            const chatBox = document.getElementById('chat-box');
+
+            if (selectedOpt.correct) {
+                if (stepFirstTry) chatFirstTryCount++;
+                playSound('success');
+
+                chatBox.innerHTML += `
+                    <div class="bg-teal-100 p-3 rounded-2xl rounded-tr-none max-w-[80%] ml-auto shadow-xs text-xs text-slate-900 border border-teal-200 font-medium">
+                        <p>${selectedOpt.text}</p>
+                        <span class="text-[9px] text-teal-700 block text-right mt-1"><i class="fa-solid fa-check-double mr-1"></i> 20:16</span>
+                    </div>
+                `;
+
+                currentChatStep++;
+
+                if (currentChatStep < chatScript.length) {
+                    setTimeout(() => {
+                        const nextStep = chatScript[currentChatStep];
+                        chatBox.innerHTML += `
+                            <div class="bg-white p-3 rounded-2xl rounded-tl-none max-w-[80%] shadow-xs text-xs text-slate-800 border border-slate-100">
+                                <p class="font-bold text-teal-800 text-[10px] mb-0.5">Alex</p>
+                                <p>${nextStep.friendMessage}</p>
+                                <span class="text-[9px] text-slate-400 block text-right mt-1">20:17</span>
+                            </div>
+                        `;
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                        renderChatStep();
+                    }, 600);
+                } else {
+                    setTimeout(() => {
+                        triggerCelebration();
+                        showActivityModal("Activity 3: WhatsApp Simulator", chatFirstTryCount, chatScript.length, chatAttempts, 1);
+                    }, 600);
+                }
+            } else {
+                stepFirstTry = false;
+                playSound('error');
+                alert(selectedOpt.feedback || "Incorrect option. Try another response!");
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function resetChat() {
+            currentChatStep = 0;
+            chatAttempts = 0;
+            chatFirstTryCount = 0;
+            renderChatStep();
+        }
+
+        // MODAL CONTROL
+        function showActivityModal(tag, firstTry, totalItems, attempts, nextTab) {
+            currentTabNext = nextTab;
+            document.getElementById('modalActivityTag').innerText = tag;
+            document.getElementById('modalFirstTry').innerText = `${firstTry} / ${totalItems}`;
+            document.getElementById('modalAttempts').innerText = `${attempts} ${attempts === 1 ? 'Attempt' : 'Attempts'}`;
+
+            if (firstTry === totalItems) {
+                document.getElementById('modalTitle').innerText = "🌟 Flawless Mastery!";
+                document.getElementById('modalMessage').innerText = "Incredible job! You answered every item correctly on your very first try!";
+            } else {
+                document.getElementById('modalTitle').innerText = "🎉 Activity Complete!";
+                document.getElementById('modalMessage').innerText = "Great perseverance! You corrected your errors and completed the activity.";
+            }
+
+            document.getElementById('activityModal').classList.remove('hidden');
+        }
+
+        function closeActivityModal() {
+            document.getElementById('activityModal').classList.add('hidden');
+            switchTab(currentTabNext);
+        }
+
+        // INITIALIZATION
+        window.onload = function() {
+            renderAcronyms();
+            renderActivity1();
+            renderActivity2();
+            renderChatStep();
+        };
+    </script>
+</body>
+</html>
