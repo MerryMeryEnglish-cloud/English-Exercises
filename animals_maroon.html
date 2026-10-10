@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Animals by Maroon 5</title>
+  <!-- Google Fonts & Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandTeal: '#00A896',
+            brandTealDark: '#028090',
+            brandBlue: '#05668D',
+            brandYellow: '#F9A03F',
+            brandLight: '#F0F9F8',
+            correctGreen: '#2ECC71',
+            errorRed: '#E74C3C'
+          },
+          fontFamily: {
+            title: ['Quicksand', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #F4FBFB; }
+    .title-font { font-family: 'Quicksand', sans-serif; }
+    .tab-btn.active {
+      background-color: #00A896;
+      color: white;
+      border-color: #00A896;
+      box-shadow: 0 4px 12px rgba(0, 168, 150, 0.25);
+    }
+    .input-writing:focus {
+      outline: none;
+      border-color: #00A896;
+      box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.2);
+    }
+    canvas#confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    /* Drag & Drop Visual Styles */
+    .word-chip {
+      user-select: none;
+      cursor: grab;
+      touch-action: manipulation;
+    }
+    .word-chip:active {
+      cursor: grabbing;
+    }
+    .word-chip.selected {
+      box-shadow: 0 0 0 3px #F9A03F;
+      transform: scale(1.05);
+    }
+    .drop-slot {
+      min-width: 130px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      border: 2px dashed #94A3B8;
+      border-radius: 8px;
+      background-color: #F8FAFC;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .drop-slot.drag-over {
+      border-color: #00A896;
+      background-color: #E6FFFA;
+      transform: scale(1.03);
+    }
+    .drop-slot.filled-correct {
+      border-style: solid;
+      border-color: #2ECC71;
+      background-color: #ECFDF5;
+      color: #065F46;
+      font-weight: 700;
+      cursor: default;
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col relative pb-16">
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-white border-b border-teal-100 shadow-sm sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Logo + Brand Title -->
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Merry Mery English Logo" class="h-12 w-12 rounded-full border-2 border-brandTeal object-contain bg-white shadow-sm" onerror="this.src='https://placehold.co/120x120/00A896/ffffff?text=MME'">
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold title-font text-brandBlue tracking-tight leading-none">Merry Mery English</h1>
+          <p class="text-xs text-brandTeal font-medium">Interactive Learning • Songs Series</p>
+        </div>
+      </div>
+
+      <!-- Tools & Navigation -->
+      <div class="flex items-center flex-wrap gap-2 text-sm">
+        <!-- Voice Selector (British Male / Female) -->
+        <div class="flex items-center bg-teal-50 border border-teal-200 rounded-lg px-2 py-1 text-xs">
+          <span class="mr-1">🗣️ Voice:</span>
+          <select id="voiceGenderSelect" class="bg-transparent font-medium text-slate-700 outline-none cursor-pointer">
+            <option value="female">British Female</option>
+            <option value="male">British Male</option>
+          </select>
+        </div>
+
+        <!-- Dictionary Button -->
+        <button onclick="openDictionaryModal()" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition font-medium">
+          <span>📖</span>
+          <span>Dictionary</span>
+        </button>
+
+        <!-- Home Button -->
+        <a href="index.html" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-brandTealDark border border-teal-200 transition font-medium">
+          <span>🏠</span>
+          <span>Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="max-w-6xl mx-auto px-4 pt-6 flex-grow w-full">
+    <!-- Song Header Banner -->
+    <div class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white rounded-2xl p-6 mb-6 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="bg-white/20 text-xs uppercase px-2.5 py-1 rounded-full font-semibold tracking-wider">Song Masterclass</span>
+        <h2 class="text-2xl md:text-3xl font-bold title-font mt-2">"Animals" — Maroon 5</h2>
+        <p class="text-teal-100 text-sm mt-1">Listening comprehension, atypical vocabulary, drag & drop, and song quiz.</p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex flex-wrap gap-2 border-b border-teal-200 pb-2 mb-6" aria-label="Tabs">
+      <button onclick="switchTab('tab-video')" id="btn-tab-video" class="tab-btn active px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">🎬 Official Video</button>
+      <button onclick="switchTab('tab-vocab')" id="btn-tab-vocab" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">📚 Vocabulary</button>
+      <button onclick="switchTab('tab-ex1')" id="btn-tab-ex1" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">✍️ Ex 1: Fill in Gaps (Typing)</button>
+      <button onclick="switchTab('tab-ex2')" id="btn-tab-ex2" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">🧩 Ex 2: Drag & Drop (Word Bank)</button>
+      <button onclick="switchTab('tab-ex3')" id="btn-tab-ex3" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">💡 Ex 3: Quiz (Multiple Choice)</button>
+      <button onclick="switchTab('tab-sing')" id="btn-tab-sing" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">🎤 Sing Along</button>
+      <button onclick="switchTab('tab-about')" id="btn-tab-about" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">ℹ️ About Maroon 5</button>
+    </nav>
+
+    <!-- ================= TAB 1: OFFICIAL VIDEO ================= -->
+    <section id="tab-video" class="tab-content block">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <h3 class="text-xl font-bold title-font text-brandBlue mb-2">Music Video: Animals (Official)</h3>
+        <p class="text-sm text-slate-500 mb-4">Watch and listen to the song to notice connected speech, rhythm and natural phrasing.</p>
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-slate-900">
+          <iframe 
+            class="w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/qpgTC9MDx1o?rel=0&modestbranding=1" 
+            title="Maroon 5 - Animals" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="mt-4 p-4 bg-teal-50 rounded-xl text-xs text-teal-800 flex justify-between items-center">
+          <span>💡 Tip: Check the rhythm in expressions like <em>"hunt you down"</em>, <em>"eat you alive"</em>, and <em>"scent you from miles"</em>.</span>
+          <a href="https://www.youtube.com/watch?v=qpgTC9MDx1o" target="_blank" rel="noopener" class="underline font-semibold ml-2 text-brandTealDark hover:text-brandBlue">Direct YouTube Link</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: VOCABULARY ================= -->
+    <section id="tab-vocab" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-teal-100 mb-6 gap-2">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Essential & Atypical Vocabulary</h3>
+            <p class="text-sm text-slate-500">Atypical terms and idiomatic phrases from the song. Listen will pronounce each word along with its example sentence.</p>
+          </div>
+        </div>
+        <div id="vocabGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: EXERCISE 1 (FILL IN THE GAPS / TYPING - 10 ITEMS) ================= -->
+    <section id="tab-ex1" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-teal-100">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Exercise 1: Fill in the Blanks (10 Questions)</h3>
+            <p class="text-sm text-slate-500">Type the missing word from the lyrics. Listen to audio feedback as you type. Use Help (+1 letter) or Hint for guidance.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="ex1ScoreBadge" class="text-xs bg-teal-50 text-brandTealDark border border-teal-200 px-3 py-1.5 rounded-xl font-bold">Progress: 0/10 Correct</span>
+            <button onclick="shuffleAndResetEx1()" class="px-3.5 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm">
+              <span>🔀</span> <span>Reset & Shuffle</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-6 bg-slate-100 rounded-full h-3.5 overflow-hidden p-0.5 border border-slate-200">
+          <div id="ex1Progress" class="bg-gradient-to-r from-teal-500 to-emerald-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <div id="ex1Container" class="space-y-4">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div id="ex1FeedbackBanner" class="hidden mt-6 p-5 rounded-2xl border transition duration-500"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: EXERCISE 2 (DRAG & DROP / WORD BANK - 10 ITEMS) ================= -->
+    <section id="tab-ex2" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-4 border-b border-teal-100">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Exercise 2: Drag & Drop Word Bank (10 Questions)</h3>
+            <p class="text-sm text-slate-500">Drag a word chip from the top bank and drop it into the correct gap (or tap the chip then tap the blank gap!).</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="ex2ScoreBadge" class="text-xs bg-teal-50 text-brandTealDark border border-teal-200 px-3 py-1.5 rounded-xl font-bold">Progress: 0/10 Correct</span>
+            <button onclick="shuffleAndResetEx2()" class="px-3.5 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm">
+              <span>🔀</span> <span>Reset & Shuffle</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sticky / Pinned Word Bank Bar -->
+        <div class="sticky top-20 z-30 bg-teal-50/95 backdrop-blur-sm p-4 rounded-xl border-2 border-teal-200 mb-6 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-800">Available Words Bank:</span>
+            <span class="text-[11px] text-teal-600">Tip: Drag & drop or click chip + click gap</span>
+          </div>
+          <div id="wordBank" class="flex flex-wrap gap-2 min-h-[46px] items-center">
+            <!-- Word chips generated dynamically -->
+          </div>
+        </div>
+
+        <div class="mb-6 bg-slate-100 rounded-full h-3.5 overflow-hidden p-0.5 border border-slate-200">
+          <div id="ex2Progress" class="bg-gradient-to-r from-cyan-500 to-teal-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <div id="ex2Container" class="space-y-4">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div id="ex2FeedbackBanner" class="hidden mt-6 p-5 rounded-2xl border transition duration-500"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: EXERCISE 3 (MULTIPLE CHOICE - 5 QUESTIONS) ================= -->
+    <section id="tab-ex3" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-teal-100">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Exercise 3: Song Quiz & Analysis (5 Questions)</h3>
+            <p class="text-sm text-slate-500">Listen to the question, choose the best answer, and listen to the correct option once verified!</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="ex3ScoreBadge" class="text-xs bg-teal-50 text-brandTealDark border border-teal-200 px-3 py-1.5 rounded-xl font-bold">Progress: 0/5 Correct</span>
+            <button onclick="shuffleAndResetEx3()" class="px-3.5 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm">
+              <span>🔀</span> <span>Reset & Shuffle</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-6 bg-slate-100 rounded-full h-3.5 overflow-hidden p-0.5 border border-slate-200">
+          <div id="ex3Progress" class="bg-gradient-to-r from-amber-500 to-teal-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <div id="ex3Container" class="space-y-5">
+          <!-- Populated by JS -->
+        </div>
+
+        <div id="ex3FeedbackBanner" class="hidden mt-6 p-5 rounded-2xl border transition duration-500"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 6: SING ALONG ================= -->
+    <section id="tab-sing" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <h3 class="text-xl font-bold title-font text-brandBlue mb-2">Sing Along Karaoke / Lyrics Video</h3>
+        <p class="text-sm text-slate-500 mb-4">Sing aloud along with Maroon 5 to practice pacing, intonation, and pronunciation.</p>
+        
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-slate-900">
+          <iframe 
+            class="w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/0GVExpdmoDs?rel=0&modestbranding=1" 
+            title="Maroon 5 - Animals Sing Along / Lyrics" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center bg-teal-50 p-4 rounded-xl text-xs text-teal-900 gap-2">
+          <span>🎧 <strong>Fluency advice:</strong> Sing continuously without pausing. Try to match the singer's vocal transitions!</span>
+          <a href="https://www.youtube.com/watch?v=0GVExpdmoDs" target="_blank" rel="noopener" class="underline font-bold text-brandTealDark hover:text-brandBlue">
+            Open on YouTube if needed
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 7: ABOUT MAROON 5 & ADAM LEVINE SOLO ================= -->
+    <section id="tab-about" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <!-- Band Photo from Wikimedia Commons / Wikipedia with fallback -->
+          <div class="w-full md:w-5/12 flex-shrink-0">
+            <div class="rounded-2xl overflow-hidden shadow-md border-4 border-teal-50 bg-slate-100">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maroon_5_in_2016.jpg/800px-Maroon_5_in_2016.jpg" 
+                alt="Maroon 5 performing live on stage" 
+                class="w-full h-auto object-cover hover:scale-105 transition duration-500"
+                onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/a/a4/Maroon_5_2016.jpg';"
+              >
+            </div>
+            <p class="text-xs text-slate-400 text-center mt-2">Maroon 5 in concert (Source: Wikimedia Commons / Wikipedia)</p>
+          </div>
+
+          <!-- Wikipedia Biography Summary -->
+          <div class="w-full md:w-7/12 space-y-4 text-slate-700 leading-relaxed text-sm md:text-base">
+            <div class="flex items-center justify-between border-b border-teal-100 pb-3">
+              <h3 class="text-2xl font-bold title-font text-brandBlue">About Maroon 5 & Adam Levine</h3>
+              <button onclick="speakText(document.getElementById('bioText').innerText)" class="px-3 py-1 bg-teal-100 hover:bg-teal-200 text-brandTealDark font-semibold text-xs rounded-lg transition flex items-center gap-1">
+                <span>🔊</span> Listen Bio
+              </button>
+            </div>
+
+            <div id="bioText" class="space-y-3">
+              <p>
+                <strong>Maroon 5</strong> is an American pop rock band from Los Angeles, California. The group originated in 1994 as <em>Kara's Flowers</em> while attending high school, consisting of lead vocalist <strong>Adam Levine</strong>, keyboardist Jesse Carmichael, bassist Mickey Madden, and drummer Ryan Dusick.
+              </p>
+              <p>
+                In 2001, guitarist James Valentine joined the group, prompting their official rebirth as <strong>Maroon 5</strong>. Their breakthrough album, <em>Songs About Jane</em> (2002), generated global smash hits like <em>"This Love"</em> and <em>"She Will Be Loved"</em>, earning the band the Grammy Award for Best New Artist. Later albums produced monumental chart records including <em>"Makes Me Wonder"</em>, <em>"Moves Like Jagger"</em>, <em>"One More Night"</em>, <em>"Sugar"</em>, <em>"Girls Like You"</em>, and <em>"Animals"</em>.
+              </p>
+              <p class="bg-teal-50/70 p-3.5 rounded-xl border border-teal-100 text-slate-800">
+                ⭐ <strong>Adam Levine's Solo Career & Collaborations:</strong> Outside of Maroon 5, frontman Adam Levine has established a notable solo musical footprint. He starred in the musical film <em>Begin Again</em> (2013) and performed its Oscar-nominated solo soundtrack single <em>"Lost Stars"</em>. He has also scored major worldwide solo hits collaborating with other prominent artists, including Gym Class Heroes on <em>"Stereo Hearts"</em>, R. City on <em>"Locked Away"</em>, 50 Cent and Eminem on <em>"My Life"</em>, and Jason Derulo on <em>"Lifestyle"</em>. In addition, Levine contributed solo tracks to blockbuster films such as <em>"Good Mood"</em> for <em>PAW Patrol: The Movie</em> and launched his own record imprint, 222 Records.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://en.wikipedia.org/wiki/Maroon_5" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-xs text-brandTeal font-semibold underline hover:text-brandBlue">
+                Read Maroon 5 on Wikipedia ↗
+              </a>
+              <span class="text-slate-300 mx-2">•</span>
+              <a href="https://en.wikipedia.org/wiki/Adam_Levine" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-xs text-brandTeal font-semibold underline hover:text-brandBlue">
+                Read Adam Levine on Wikipedia ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= DICTIONARY MODAL ================= -->
+  <div id="dictModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-teal-100 p-6 relative">
+      <button onclick="closeDictionaryModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-2xl">📖</span>
+        <h4 class="text-lg font-bold title-font text-brandBlue">Cambridge Dictionary Search</h4>
+      </div>
+      <p class="text-xs text-slate-500 mb-4">Type any English term or expression to open its official Cambridge definition with British pronunciation.</p>
+      
+      <div class="flex gap-2">
+        <input type="text" id="dictInput" placeholder="e.g. prey, hunt down, scent, tame..." class="flex-grow border border-teal-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brandTeal" onkeydown="if(event.key==='Enter') searchDictionary()">
+        <button onclick="searchDictionary()" class="px-5 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold rounded-xl text-sm transition">Search</button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-1.5 text-xs text-slate-500">
+        <span>Quick search:</span>
+        <button onclick="quickDict('prey')" class="text-brandTeal underline">prey</button>•
+        <button onclick="quickDict('scent')" class="text-brandTeal underline">scent</button>•
+        <button onclick="quickDict('tame')" class="text-brandTeal underline">tame</button>•
+        <button onclick="quickDict('slither')" class="text-brandTeal underline">slither</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    /* 1. WEB AUDIO API SYNTHESIZER (NO EXTERNAL AUDIO FILES) */
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSuccessTone() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.12);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch(e) { console.warn(e); }
+    }
+
+    function playErrorTone() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(164.81, now + 0.15);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch(e) { console.warn(e); }
+    }
+
+    /* 2. FORCED BRITISH TTS (MALE / FEMALE) */
+    let voices = [];
+    function loadVoices() {
+      voices = window.speechSynthesis.getVoices();
+    }
+    loadVoices();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function getSelectedVoice() {
+      const gender = document.getElementById('voiceGenderSelect').value;
+      const ukVoices = voices.filter(v => v.lang === 'en-GB' || v.lang.replace('_','-') === 'en-GB' || v.lang.includes('en-GB'));
+
+      if (ukVoices.length > 0) {
+        if (gender === 'female') {
+          const female = ukVoices.find(v => /female|hazel|victoria|libby|sonia|susan/i.test(v.name));
+          return female || ukVoices[0];
+        } else {
+          const male = ukVoices.find(v => /male|george|oliver|arthur|ryan/i.test(v.name));
+          return male || ukVoices[ukVoices.length - 1];
+        }
+      }
+      return voices.find(v => v.lang.startsWith('en')) || null;
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/_+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'en-GB';
+      const v = getSelectedVoice();
+      if (v) utterance.voice = v;
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* 3. VOCABULARY DATA */
+    const vocabularyList = [
+      { word: "prey", type: "noun", def: "An animal that is hunted and killed for food; a victim.", eg: "The lion stalked its prey silently across the plain." },
+      { word: "hunt down", type: "phrasal verb", def: "To search for someone or something until they are caught.", eg: "The detective managed to hunt down the suspect." },
+      { word: "eat alive", type: "idiom", def: "To overwhelm or criticize severely; figuratively consume completely.", eg: "Without preparation, inexperienced speakers get eaten alive on stage." },
+      { word: "scent", type: "noun / verb", def: "A distinctive smell, or to detect someone by smell.", eg: "The tracking dogs can scent a fugitive from miles away." },
+      { word: "slither", type: "verb", def: "To move smoothly with a twisting, sliding motion like a snake.", eg: "The viper slithered silently into the tall weeds." },
+      { word: "hound", type: "verb", def: "To pursue relentlessly or harass persistently.", eg: "Reporters continued to hound the politician for answers." },
+      { word: "tame", type: "verb / adj.", def: "To domesticate or bring under control; not wild.", eg: "It takes enormous patience to tame a mustang." },
+      { word: "feed on", type: "phrasal verb", def: "To nourish oneself; figuratively thrive on something.", eg: "Gossip magazines feed on celebrity drama." },
+      { word: "stall", type: "verb", def: "To stop making progress or delay an inevitable action.", eg: "They tried to stall for time during the meeting." },
+      { word: "run around", type: "phrasal verb", def: "To act evasively or be excessively busy.", eg: "Stop running around and give me a direct answer." },
+      { word: "deny", type: "verb", def: "To declare untrue or refuse to admit.", eg: "You cannot deny the evidence right in front of you." },
+      { word: "cut ties", type: "idiom", def: "To end a relationship or contact permanently.", eg: "She decided to cut ties with dishonest colleagues." },
+      { word: "instinct", type: "noun", def: "An innate, unlearned tendency or natural intuition.", eg: "Her natural instinct told her to remain calm." },
+      { word: "suffocate", type: "verb", def: "To feel trapped or unable to breathe comfortably.", eg: "The lack of freedom in that office suffocated him." },
+      { word: "no turning back", type: "phrase", def: "A point of commitment where a decision cannot be reversed.", eg: "Once you board the plane, there is no turning back." }
+    ];
+
+    function renderVocabulary() {
+      const grid = document.getElementById('vocabGrid');
+      grid.innerHTML = vocabularyList.map(item => {
+        const fullAudioSentence = `${item.word}. Example: ${item.eg}`;
+        return `
+          <div class="p-4 rounded-xl border border-teal-100 bg-teal-50/40 hover:bg-teal-50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h4 class="font-bold text-base text-brandBlue capitalize">${item.word}</h4>
+                <span class="text-[10px] bg-teal-200/70 text-teal-900 font-semibold px-2 py-0.5 rounded">${item.type}</span>
+              </div>
+              <p class="text-xs text-slate-600 mb-2">${item.def}</p>
+              <div class="bg-white p-2 rounded-lg border border-teal-100 text-[11px] text-slate-600 italic mb-2">
+                "${item.eg}"
+              </div>
+            </div>
+            <div class="flex items-center justify-end pt-2 border-t border-teal-100/60">
+              <button onclick="speakText('${fullAudioSentence.replace(/'/g, "\\'")}')" class="text-xs px-2.5 py-1 bg-white hover:bg-teal-100 border border-teal-200 text-teal-800 rounded-lg font-medium transition flex items-center gap-1 shadow-sm">
+                <span>🔊</span> Listen Word & Example
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* 4. EXERCISE 1 (FILL IN THE GAPS / TYPING - 10 ITEMS) */
+    const originalEx1Data = [
+      { id: 1, before: "Baby, I'm", target: "preying", after: "on you tonight, hunt you down, eat you alive.", hint: "A verb meaning hunting as a victim (ends with -ing)." },
+      { id: 2, before: "Maybe you think that you can", target: "hide", after: ", I can scent you from miles.", hint: "To conceal oneself from being seen." },
+      { id: 3, before: "Just like", target: "animals", after: ", like animals, like animals-mals.", hint: "Living non-human creatures (title of the song)." },
+      { id: 4, before: "Don't tell no", target: "lie", after: ", lie, lie, you can't deny, ny, ny.", hint: "An untruthful statement." },
+      { id: 5, before: "Yeah, you think that you are good, but I can", target: "scent", after: "you from miles away.", hint: "To detect someone using the sense of smell." },
+      { id: 6, before: "Hunt you down,", target: "eat", after: "you alive.", hint: "To ingest food or chew (used figuratively here)." },
+      { id: 7, before: "So what you trying to do to me? It's like we can't", target: "stop", after: ", we're enemies.", hint: "To cease moving or halt an action." },
+      { id: 8, before: "I get so high when I'm", target: "inside", after: "you, yeah, I can't leave you alone.", hint: "The opposite of outside." },
+      { id: 9, before: "You can", target: "start", after: "over again, but you cannot pretend.", hint: "To begin something from the start." },
+      { id: 10, before: "It's like we can't stop, we're", target: "enemies", after: ", but we do it again.", hint: "Opponents or foes in conflict (plural)." }
+    ];
+
+    let ex1Items = JSON.parse(JSON.stringify(originalEx1Data));
+    let ex1TotalMistakes = 0;
+
+    function renderEx1() {
+      const container = document.getElementById('ex1Container');
+      container.innerHTML = ex1Items.map((item, index) => {
+        const fullSentence = `${item.before} ${item.target} ${item.after}`;
+        return `
+          <div id="ex1-card-${item.id}" class="p-4 bg-slate-50 border border-slate-200 rounded-2xl transition hover:border-teal-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-bold text-teal-800 bg-teal-100 px-2 py-0.5 rounded-full">Question ${index + 1}</span>
+              <div class="flex items-center gap-2">
+                <button onclick="toggleHint('ex1-hint-${item.id}')" class="text-xs font-semibold px-2 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-lg transition flex items-center gap-1">
+                  <span>💡</span> Hint
+                </button>
+                <button onclick="provideHelpEx1(${item.id})" id="ex1-helpbtn-${item.id}" class="text-xs font-semibold px-2 py-1 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 rounded-lg transition flex items-center gap-1">
+                  <span>🆘</span> Help (+1 letter)
+                </button>
+                <button onclick="speakText('${fullSentence.replace(/'/g, "\\'")}')" id="ex1-listen-${item.id}" class="hidden text-xs font-semibold px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-lg transition flex items-center gap-1">
+                  <span>🔊</span> Listen
+                </button>
+              </div>
+            </div>
+
+            <div class="text-base leading-relaxed text-slate-800 flex flex-wrap items-center gap-1.5 font-medium">
+              <span>${item.before}</span>
+              <input 
+                type="text" 
+                id="ex1-input-${item.id}" 
+                placeholder="[type here]" 
+                class="input-writing border-2 border-slate-300 rounded-lg px-2.5 py-1 text-sm font-semibold transition text-center w-36 tracking-wide bg-white"
+                autocomplete="off"
+                oninput="handleEx1Typing(${item.id}, this)"
+              >
+              <span>${item.after}</span>
+            </div>
+
+            <div id="ex1-hint-${item.id}" class="hidden mt-2 p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
+              💡 <em>Clue:</em> ${item.hint}
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateProgressEx1();
+    }
+
+    function handleEx1Typing(id, inputElem) {
+      const item = ex1Items.find(i => i.id === id);
+      const val = inputElem.value.trim().toLowerCase();
+      const target = item.target.toLowerCase();
+
+      if (val === target) {
+        inputElem.value = item.target;
+        inputElem.readOnly = true;
+        inputElem.className = "input-writing border-2 border-correctGreen bg-emerald-50 text-emerald-900 rounded-lg px-2.5 py-1 text-sm font-bold text-center w-36";
+        
+        const helpBtn = document.getElementById(`ex1-helpbtn-${id}`);
+        if (helpBtn) helpBtn.classList.add('hidden');
+
+        const listenBtn = document.getElementById(`ex1-listen-${id}`);
+        if (listenBtn) listenBtn.classList.remove('hidden');
+
+        item.solved = true;
+        playSuccessTone();
+        updateProgressEx1();
+      } else if (val.length >= target.length) {
+        inputElem.className = "input-writing border-2 border-errorRed bg-rose-50 text-rose-900 rounded-lg px-2.5 py-1 text-sm font-semibold text-center w-36";
+        ex1TotalMistakes++;
+        playErrorTone();
+      } else {
+        inputElem.className = "input-writing border-2 border-slate-300 rounded-lg px-2.5 py-1 text-sm font-semibold transition text-center w-36 tracking-wide bg-white";
+      }
+    }
+
+    function provideHelpEx1(id) {
+      const item = ex1Items.find(i => i.id === id);
+      const inputElem = document.getElementById(`ex1-input-${id}`);
+      if (inputElem.readOnly) return;
+
+      item.helpCount = (item.helpCount || 0) + 1;
+      const revealCount = Math.min(item.helpCount, item.target.length);
+      inputElem.value = item.target.substring(0, revealCount);
+      inputElem.focus();
+
+      if (revealCount === item.target.length) {
+        handleEx1Typing(id, inputElem);
+      }
+    }
+
+    function updateProgressEx1() {
+      let correct = 0;
+      ex1Items.forEach(i => {
+        const inp = document.getElementById(`ex1-input-${i.id}`);
+        if (inp && inp.readOnly) correct++;
+      });
+      const pct = (correct / ex1Items.length) * 100;
+      document.getElementById('ex1Progress').style.width = pct + '%';
+      document.getElementById('ex1ScoreBadge').innerText = `Progress: ${correct}/10 Correct`;
+
+      if (correct === ex1Items.length) {
+        finishExercise(1, ex1TotalMistakes, 10);
+      }
+    }
+
+    function shuffleAndResetEx1() {
+      ex1Items.sort(() => Math.random() - 0.5);
+      ex1Items.forEach(i => { i.helpCount = 0; i.solved = false; });
+      ex1TotalMistakes = 0;
+      document.getElementById('ex1FeedbackBanner').classList.add('hidden');
+      renderEx1();
+    }
+
+    /* 5. EXERCISE 2 (DRAG & DROP WORD BANK - 10 ITEMS) */
+    const originalEx2Data = [
+      { id: 201, before: "A wild predator quietly stalks its", word: "prey", after: "before making its decisive move.", hint: "The victim of a hunter." },
+      { id: 202, before: "The bloodhound was able to", word: "scent", after: "the lost hiker through the dense pine woods.", hint: "To track down by natural odor." },
+      { id: 203, before: "It takes months of calm patience to", word: "tame", after: "a frightened feral stallion.", hint: "To domesticate or quiet down." },
+      { id: 204, before: "A quiet garden snake will", word: "slither", after: "through the stones and grass without making noise.", hint: "To slide with wave-like movements." },
+      { id: 205, before: "Paparazzi photographers constantly", word: "hound", after: "celebrities outside of their private residences.", hint: "To pursue relentlessly." },
+      { id: 206, before: "Sensational tabloid websites often", word: "feed on", after: "rumors and sensational Hollywood gossip.", hint: "To nourish oneself or gain energy from." },
+      { id: 207, before: "Police investigators worked all night to", word: "hunt down", after: "the fugitive before he crossed the border.", hint: "To track and capture someone." },
+      { id: 208, before: "The lawyers tried to", word: "stall", after: "for more time before presenting their closing arguments.", hint: "To delay an inevitable action." },
+      { id: 209, before: "Under intense pressure, you cannot", word: "deny", after: "the concrete facts shown on video.", hint: "To declare something untrue." },
+      { id: 210, before: "Once you take the final decision, there is", word: "no turning back", after: "so think carefully.", hint: "A commitment that cannot be undone." }
+    ];
+
+    let ex2Items = JSON.parse(JSON.stringify(originalEx2Data));
+    let ex2TotalMistakes = 0;
+    let selectedWordChip = null;
+
+    function renderEx2() {
+      const bankWords = ex2Items.map(item => item.word).sort(() => Math.random() - 0.5);
+      const bankContainer = document.getElementById('wordBank');
+      bankContainer.innerHTML = bankWords.map((word, idx) => `
+        <span 
+          id="chip-${idx}" 
+          class="word-chip bg-white border-2 border-teal-500 text-teal-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm hover:bg-teal-50 transition inline-block"
+          draggable="true"
+          ondragstart="handleDragStart(event, '${word}', 'chip-${idx}')"
+          onclick="handleChipClick('${word}', 'chip-${idx}')"
+        >
+          ${word}
+        </span>
+      `).join('');
+
+      const container = document.getElementById('ex2Container');
+      container.innerHTML = ex2Items.map((item, index) => {
+        const fullSentence = `${item.before} ${item.word} ${item.after}`;
+        return `
+          <div id="ex2-card-${item.id}" class="p-4 bg-slate-50 border border-slate-200 rounded-2xl transition hover:border-teal-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-bold text-cyan-800 bg-cyan-100 px-2 py-0.5 rounded-full">Question ${index + 1}</span>
+              <div class="flex items-center gap-2">
+                <button onclick="toggleHint('ex2-hint-${item.id}')" class="text-xs font-semibold px-2 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-lg transition flex items-center gap-1">
+                  <span>💡</span> Hint
+                </button>
+                <button onclick="speakText('${fullSentence.replace(/'/g, "\\'")}')" id="ex2-listen-${item.id}" class="hidden text-xs font-semibold px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-lg transition flex items-center gap-1">
+                  <span>🔊</span> Listen
+                </button>
+              </div>
+            </div>
+
+            <div class="text-base leading-relaxed text-slate-800 flex flex-wrap items-center gap-2 font-medium">
+              <span>${item.before}</span>
+              <div 
+                id="slot-${item.id}" 
+                class="drop-slot"
+                ondragover="handleDragOver(event)"
+                ondragleave="handleDragLeave(event)"
+                ondrop="handleDrop(event, ${item.id})"
+                onclick="handleSlotClick(${item.id})"
+              >
+                <span class="text-slate-400 text-xs italic">[Drop word here]</span>
+              </div>
+              <span>${item.after}</span>
+            </div>
+
+            <div id="ex2-hint-${item.id}" class="hidden mt-2 p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
+              💡 <em>Clue:</em> ${item.hint}
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateProgressEx2();
+    }
+
+    let currentDraggedWord = null;
+    let currentDraggedChipId = null;
+
+    function handleDragStart(ev, word, chipId) {
+      currentDraggedWord = word;
+      currentDraggedChipId = chipId;
+      ev.dataTransfer.setData("text/plain", JSON.stringify({ word, chipId }));
+    }
+
+    function handleDragOver(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('drag-over');
+    }
+
+    function handleDragLeave(ev) {
+      ev.currentTarget.classList.remove('drag-over');
+    }
+
+    function handleDrop(ev, itemId) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('drag-over');
+      let data = null;
+      try {
+        data = JSON.parse(ev.dataTransfer.getData("text/plain"));
+      } catch(e) {
+        data = { word: currentDraggedWord, chipId: currentDraggedChipId };
+      }
+      if (data && data.word) {
+        verifyEx2Placement(itemId, data.word, data.chipId);
+      }
+    }
+
+    function handleChipClick(word, chipId) {
+      document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected'));
+      selectedWordChip = { word, chipId };
+      const chipElem = document.getElementById(chipId);
+      if (chipElem) chipElem.classList.add('selected');
+    }
+
+    function handleSlotClick(itemId) {
+      if (!selectedWordChip) return;
+      verifyEx2Placement(itemId, selectedWordChip.word, selectedWordChip.chipId);
+      selectedWordChip = null;
+      document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected'));
+    }
+
+    function verifyEx2Placement(itemId, word, chipId) {
+      const item = ex2Items.find(i => i.id === itemId);
+      const slot = document.getElementById(`slot-${itemId}`);
+      if (slot.classList.contains('filled-correct')) return;
+
+      if (word.trim().toLowerCase() === item.word.trim().toLowerCase()) {
+        slot.className = "drop-slot filled-correct px-3 py-1";
+        slot.innerHTML = `<span>${item.word} ✓</span>`;
+        slot.onclick = null;
+
+        const chip = document.getElementById(chipId);
+        if (chip) chip.style.display = 'none';
+
+        const listenBtn = document.getElementById(`ex2-listen-${itemId}`);
+        if (listenBtn) listenBtn.classList.remove('hidden');
+
+        item.solved = true;
+        playSuccessTone();
+        updateProgressEx2();
+      } else {
+        slot.classList.add('border-errorRed', 'bg-rose-50');
+        ex2TotalMistakes++;
+        playErrorTone();
+        setTimeout(() => {
+          slot.classList.remove('border-errorRed', 'bg-rose-50');
+        }, 600);
+      }
+    }
+
+    function updateProgressEx2() {
+      let correct = 0;
+      ex2Items.forEach(i => {
+        if (i.solved) correct++;
+      });
+      const pct = (correct / ex2Items.length) * 100;
+      document.getElementById('ex2Progress').style.width = pct + '%';
+      document.getElementById('ex2ScoreBadge').innerText = `Progress: ${correct}/10 Correct`;
+
+      if (correct === ex2Items.length) {
+        finishExercise(2, ex2TotalMistakes, 10);
+      }
+    }
+
+    function shuffleAndResetEx2() {
+      ex2Items.sort(() => Math.random() - 0.5);
+      ex2Items.forEach(i => { i.solved = false; });
+      ex2TotalMistakes = 0;
+      selectedWordChip = null;
+      document.getElementById('ex2FeedbackBanner').classList.add('hidden');
+      renderEx2();
+    }
+
+    /* 6. EXERCISE 3 (QUIZ MULTIPLE CHOICE - 5 QUESTIONS) */
+    const originalEx3Data = [
+      {
+        id: 301,
+        question: "What is the central metaphor expressed through the song's title 'Animals'?",
+        options: [
+          "An untamed, predatory romantic pursuit that feels driven by raw biological instinct.",
+          "A scientific documentary soundtrack about wild endangered animals.",
+          "A friendly celebration of pets living peacefully in a suburban family home.",
+          "An environmental protest demanding animal rights and vegan diets."
+        ],
+        correct: 0,
+        hint: "Reflect on lines like 'Baby, I'm preying on you tonight, hunt you down...'"
+      },
+      {
+        id: 302,
+        question: "In the line 'I can scent you from miles', what does the singer imply?",
+        options: [
+          "He bought a strong luxury perfume at the airport duty-free store.",
+          "He has an intense, almost supernatural intuition and awareness of her presence.",
+          "He has allergic reactions to floral fragrances whenever she walks past.",
+          "He is literally training as a police dog handler in Los Angeles."
+        ],
+        correct: 1,
+        hint: "Think about figurative sensory perception rather than literal perfumes."
+      },
+      {
+        id: 303,
+        question: "What conflict does the narrator express in the relationship?",
+        options: [
+          "They cannot stop the passionate connection despite acknowledging they act like 'enemies'.",
+          "They are happily planning a peaceful wedding with zero disagreements.",
+          "They have never spoken to each other and only exchange brief emails.",
+          "They decided to move to different continents to avoid seeing each other."
+        ],
+        correct: 0,
+        hint: "Remember the line: 'It's like we can't stop, we're enemies, but we do it again'."
+      },
+      {
+        id: 304,
+        question: "On which Maroon 5 studio album was the song 'Animals' originally released?",
+        options: [
+          "Songs About Jane (2002)",
+          "It Won't Be Soon Before Long (2007)",
+          "V (2014)",
+          "Overexposed (2012)"
+        ],
+        correct: 2,
+        hint: "It corresponds to Roman numeral five (the 2014 album featuring Sugar and Animals)."
+      },
+      {
+        id: 305,
+        question: "Which hit solo film soundtrack song did Adam Levine perform outside of Maroon 5?",
+        options: [
+          "Lost Stars (from the soundtrack of 'Begin Again')",
+          "Happy (from 'Despicable Me 2')",
+          "My Heart Will Go On (from 'Titanic')",
+          "Can't Stop the Feeling! (from 'Trolls')"
+        ],
+        correct: 0,
+        hint: "He starred in this film alongside Keira Knightley and Mark Ruffalo."
+      }
+    ];
+
+    let ex3Items = JSON.parse(JSON.stringify(originalEx3Data));
+    let ex3TotalMistakes = 0;
+
+    function renderEx3() {
+      const container = document.getElementById('ex3Container');
+      container.innerHTML = ex3Items.map((item, qIndex) => {
+        const correctText = item.options[item.correct];
+        return `
+          <div id="ex3-card-${item.id}" class="p-5 bg-slate-50 border border-slate-200 rounded-2xl transition hover:border-teal-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-bold text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded-full">Question ${qIndex + 1} of 5</span>
+              <div class="flex items-center gap-2">
+                <button onclick="speakText('${item.question.replace(/'/g, "\\'")}')" class="text-xs font-semibold px-2.5 py-1 bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-800 rounded-lg transition flex items-center gap-1">
+                  <span>🔊</span> Listen Question
+                </button>
+                <button onclick="toggleHint('ex3-hint-${item.id}')" class="text-xs font-semibold px-2.5 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-lg transition flex items-center gap-1">
+                  <span>💡</span> Hint
+                </button>
+                <button onclick="speakText('Correct answer: ${correctText.replace(/'/g, "\\'")}')" id="ex3-listen-ans-${item.id}" class="hidden text-xs font-semibold px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 text-emerald-900 rounded-lg transition flex items-center gap-1">
+                  <span>🔊</span> Listen Answer
+                </button>
+              </div>
+            </div>
+
+            <p class="font-bold text-slate-800 text-base mb-3 leading-snug">${item.question}</p>
+
+            <div class="space-y-2">
+              ${item.options.map((opt, optIndex) => `
+                <button 
+                  id="opt-${item.id}-${optIndex}" 
+                  onclick="selectOptionEx3(${item.id},${optIndex})"
+                  class="w-full text-left p-3 rounded-xl border border-slate-200 bg-white hover:bg-teal-50 transition text-sm flex items-start gap-3 text-slate-700"
+                >
+                  <span class="font-bold text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${String.fromCharCode(65 + optIndex)}</span>
+                  <span>${opt}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <div id="ex3-hint-${item.id}" class="hidden mt-3 p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
+              💡 <em>Clue:</em> ${item.hint}
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateProgressEx3();
+    }
+
+    function selectOptionEx3(questionId, selectedIdx) {
+      const item = ex3Items.find(q => q.id === questionId);
+      if (item.solved) return;
+
+      const optBtn = document.getElementById(`opt-${questionId}-${selectedIdx}`);
+
+      if (selectedIdx === item.correct) {
+        optBtn.className = "w-full text-left p-3 rounded-xl border-2 border-correctGreen bg-emerald-50 text-emerald-950 font-bold text-sm flex items-start gap-3";
+        item.solved = true;
+
+        item.options.forEach((_, idx) => {
+          const btn = document.getElementById(`opt-${questionId}-${idx}`);
+          if (idx !== item.correct) {
+            btn.classList.add('opacity-50', 'pointer-events-none');
+          }
+        });
+
+        const listenAnsBtn = document.getElementById(`ex3-listen-ans-${questionId}`);
+        if (listenAnsBtn) listenAnsBtn.classList.remove('hidden');
+
+        playSuccessTone();
+        updateProgressEx3();
+      } else {
+        optBtn.className = "w-full text-left p-3 rounded-xl border-2 border-errorRed bg-rose-50 text-rose-900 text-sm flex items-start gap-3";
+        ex3TotalMistakes++;
+        playErrorTone();
+      }
+    }
+
+    function updateProgressEx3() {
+      let correct = 0;
+      ex3Items.forEach(i => {
+        if (i.solved) correct++;
+      });
+      const pct = (correct / ex3Items.length) * 100;
+      document.getElementById('ex3Progress').style.width = pct + '%';
+      document.getElementById('ex3ScoreBadge').innerText = `Progress: ${correct}/5 Correct`;
+
+      if (correct === ex3Items.length) {
+        finishExercise(3, ex3TotalMistakes, 5);
+      }
+    }
+
+    function shuffleAndResetEx3() {
+      ex3Items.sort(() => Math.random() - 0.5);
+      ex3Items.forEach(i => { i.solved = false; });
+      ex3TotalMistakes = 0;
+      document.getElementById('ex3FeedbackBanner').classList.add('hidden');
+      renderEx3();
+    }
+
+    /* 7. PEDAGOGICAL COMPLETION WITH FOCUS ON ACCOMPLISHMENT & ACCURACY */
+    function finishExercise(exNum, mistakes, totalQuestions) {
+      launchAutoConfetti();
+      const banner = document.getElementById(`ex${exNum}FeedbackBanner`);
+      banner.classList.remove('hidden');
+
+      let nextTabBtn = 'btn-tab-ex2';
+      let nextLabel = 'Next: Exercise 2 (Drag & Drop) 🧩';
+      if (exNum === 2) {
+        nextTabBtn = 'btn-tab-ex3';
+        nextLabel = 'Next: Exercise 3 (Multiple Choice) 💡';
+      } else if (exNum === 3) {
+        nextTabBtn = 'btn-tab-sing';
+        nextLabel = 'Next: Sing Along 🎤';
+      }
+
+      let title = "";
+      let badge = "";
+      let message = "";
+      let cardBorder = "border-emerald-300 bg-emerald-50 text-emerald-950";
+      const errorThreshold = exNum === 3 ? 2 : 4;
+
+      if (mistakes <= 1) {
+        title = `🌟 Outstanding! All ${totalQuestions} of ${totalQuestions} Correct!`;
+        badge = "Flawless Mastery";
+        message = `Incredible precision! You mastered all ${totalQuestions} questions with pinpoint accuracy (${totalQuestions}/${totalQuestions} correct) and only ${mistakes} slip along the way!`;
+      } else if (mistakes <= errorThreshold) {
+        title = `🎉 Fantastic Job! ${totalQuestions}/${totalQuestions} Successfully Completed!`;
+        badge = "High Achiever";
+        message = `Great triumph! You achieved 100% completion across all ${totalQuestions} items, swiftly self-correcting and overcoming ${mistakes} mistakes along your way!`;
+      } else {
+        title = `💪 Outstanding Perseverance! All ${totalQuestions} Items Conquered!`;
+        badge = "Goal Achieved!";
+        cardBorder = "border-teal-300 bg-teal-50 text-teal-950";
+        message = `Bravo! You reached 100% completion by conquering all ${totalQuestions} items through dedication and practice, working through ${mistakes} mistakes. Now that you know every answer, click <strong>Reset & Shuffle</strong> to challenge yourself to a flawless run!`;
+      }
+
+      banner.className = `mt-6 p-6 rounded-2xl border-2 ${cardBorder} shadow-lg flex flex-col md:flex-row items-center justify-between gap-4 animate-bounce-once`;
+      banner.innerHTML = `
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-2xl">🏆</span>
+            <h4 class="text-lg font-bold title-font">${title}</h4>
+            <span class="bg-white/90 border border-teal-200 text-teal-800 text-xs px-2.5 py-0.5 rounded-full font-bold">${badge}</span>
+            <span class="text-xs font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full">Score: ${totalQuestions}/${totalQuestions} (100%)</span>
+            <span class="text-xs font-semibold px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded-full">Mistakes overcome: ${mistakes}</span>
+          </div>
+          <p class="text-xs md:text-sm leading-relaxed">${message}</p>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <button onclick="shuffleAndResetEx${exNum}()" class="px-3.5 py-2.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-bold text-xs rounded-xl transition shadow-sm">
+            ↺ Try Again
+          </button>
+          <button onclick="document.getElementById('${nextTabBtn}').click()" class="px-4 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold text-xs rounded-xl transition shadow-md whitespace-nowrap">
+            ${nextLabel}
+          </button>
+        </div>
+      `;
+
+      speakText("Fantastic job! You completed all questions with 100% success!");
+    }
+
+    /* 8. CONFETTI ANIMATION */
+    function launchAutoConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#00A896', '#028090', '#F9A03F', '#F4D35E', '#EE964B', '#2ECC71'];
+
+      for (let i = 0; i < 110; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          r: Math.random() * 6 + 4,
+          dx: (Math.random() - 0.5) * 14,
+          dy: (Math.random() - 0.7) * 16,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          tilt: Math.random() * 10 - 5,
+          tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+          tiltAngle: 0
+        });
+      }
+
+      let animationFrames = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        particles.forEach(p => {
+          p.x += p.dx;
+          p.y += p.dy;
+          p.dy += 0.28;
+          p.tiltAngle += p.tiltAngleIncremental;
+          p.tilt = Math.sin(p.tiltAngle) * 12;
+
+          if (p.y < canvas.height + 20) {
+            active = true;
+            ctx.beginPath();
+            ctx.lineWidth = p.r / 2;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r, p.y);
+            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+            ctx.stroke();
+          }
+        });
+
+        animationFrames++;
+        if (active && animationFrames < 220) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      animate();
+    }
+
+    /* 9. TABS, HINTS & DICTIONARY */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      const btn = document.getElementById('btn-' + tabId);
+      if (btn) btn.classList.add('active');
+    }
+
+    function toggleHint(hintId) {
+      const hint = document.getElementById(hintId);
+      if (hint) {
+        hint.classList.toggle('hidden');
+      }
+    }
+
+    function openDictionaryModal() {
+      document.getElementById('dictModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('dictInput').focus(), 100);
+    }
+
+    function closeDictionaryModal() {
+      document.getElementById('dictModal').classList.add('hidden');
+    }
+
+    function searchDictionary() {
+      const term = document.getElementById('dictInput').value.trim();
+      if (!term) return;
+      window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term)}`, '_blank');
+      closeDictionaryModal();
+    }
+
+    function quickDict(word) {
+      document.getElementById('dictInput').value = word;
+      searchDictionary();
+    }
+
+    // App Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      renderVocabulary();
+      renderEx1();
+      renderEx2();
+      renderEx3();
+    });
+  </script>
+</body>
+</html>
