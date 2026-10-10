@@ -39,7 +39,7 @@
 
     .container {
       width: 100%;
-      max-width: 860px;
+      max-width: 900px;
     }
 
     /* Header */
@@ -48,8 +48,15 @@
       margin-bottom: 24px;
     }
 
+    .brand-logo {
+      max-width: 110px;
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 50%;
+    }
+
     .brand-title {
-      font-size: 1.85rem;
+      font-size: 1.9rem;
       font-weight: 700;
       color: var(--primary-dark);
       letter-spacing: -0.5px;
@@ -61,7 +68,7 @@
       margin-top: 4px;
     }
 
-    /* Dictionary Search Box */
+    /* Cambridge Dictionary Card */
     .dict-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -132,7 +139,7 @@
       text-decoration: underline;
     }
 
-    /* Simple Instructions Card */
+    /* Basic English Instructions Card */
     .instructions-card {
       background: #fffbeb;
       border: 1px solid #fef3c7;
@@ -194,13 +201,13 @@
       margin-top: 1px;
     }
 
-    /* Sections */
+    /* Section Styling */
     .section-title {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 4px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .section-desc {
@@ -212,11 +219,11 @@
 
     .exercise-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 12px;
     }
 
-    /* Buttons */
+    /* Exercise Buttons */
     .btn-item {
       display: flex;
       justify-content: space-between;
@@ -228,9 +235,9 @@
       padding: 13px 18px;
       border-radius: 10px;
       font-weight: 600;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       transition: transform 0.2s, background-color 0.2s;
-      box-shadow: 0 3px 6px rgba(2, 132, 199, 0.2);
+      box-shadow: 0 3px 6px rgba(2, 132, 199, 0.18);
       cursor: pointer;
       gap: 10px;
     }
@@ -246,7 +253,7 @@
     }
 
     .btn-badge {
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       background: rgba(255, 255, 255, 0.22);
       color: #ffffff;
       padding: 3px 9px;
@@ -256,12 +263,12 @@
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 45px;
       text-align: center;
       font-size: 0.85rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border);
-      padding-top: 16px;
+      padding-top: 18px;
       width: 100%;
     }
   </style>
@@ -270,8 +277,9 @@
 
   <div class="container">
     <header>
+      <img src="logo.png" alt="Merry Mery English Logo" class="brand-logo" onerror="this.style.display='none'">
       <h1 class="brand-title">Merry Mery English</h1>
-      <p class="brand-subtitle">Interactive Practice Hub &amp; Skills Studio</p>
+      <p class="brand-subtitle">Interactive Practice Hub &amp; Learning Studio</p>
     </header>
 
     <!-- Cambridge Dictionary Integration -->
@@ -299,75 +307,145 @@
       </a>
     </div>
 
-    <!-- Instructions & Tips (Basic English) -->
+    <!-- Basic Instructions Card -->
     <div class="instructions-card">
       <div class="instructions-header" onclick="toggleInstructions()">
-        <span class="instructions-title">📌 How to Practice</span>
+        <span class="instructions-title">📌 Simple Study Guide</span>
         <span class="instructions-toggle-btn" id="toggleLabel">Hide ▲</span>
       </div>
       <div class="instructions-content" id="instructionsContent" style="display: block;">
         <div class="instruction-step">
           <span class="instruction-step-icon">🎧</span>
-          <div><strong>1. Listen:</strong> Click the audio buttons to hear native British pronunciation.</div>
+          <div><strong>1. Listen:</strong> Click the audio button to hear clear British pronunciation.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">📖</span>
-          <div><strong>2. Dictionary:</strong> Search any new word in the dictionary box above.</div>
+          <div><strong>2. Dictionary:</strong> Search any difficult word in the search box above.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">✍️</span>
-          <div><strong>3. Try &amp; Check:</strong> Type your answer and click check. You can try again if you make a mistake.</div>
+          <div><strong>3. Practice:</strong> Write your answers and click Check. Try again if you make a mistake.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">🔁</span>
-          <div><strong>4. Practice:</strong> Restart any exercise anytime to get 100% mastery.</div>
+          <div><strong>4. Repeat:</strong> Reset and repeat any activity until you get 100%.</div>
         </div>
       </div>
     </div>
 
-    <!-- Writing Studios -->
-    <h2 class="section-title">Writing Studios</h2>
-    <p class="section-desc">Guided writing, essays, and idea organization.</p>
-    <div class="exercise-grid">
-      <a href="writing-studio.html" class="btn-item">
-        <span class="btn-text">Opinion Writing Studio</span>
-        <span class="btn-badge">Interactive</span>
-      </a>
-    </div>
-
-    <!-- Grammar Masterclasses -->
+    <!-- 1. Grammar Masterclasses -->
     <h2 class="section-title">Grammar Masterclasses</h2>
-    <p class="section-desc">Key grammar patterns and rules with instant feedback.</p>
+    <p class="section-desc">Key grammar rules, verb tenses, and sentence structures.</p>
     <div class="exercise-grid">
-      <a href="verb-patterns.html" class="btn-item">
-        <span class="btn-text">Verb Patterns (Gerund &amp; Infinitive)</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
       <a href="conditionals.html" class="btn-item">
         <span class="btn-text">Conditionals Review (0 to 3rd)</span>
+        <span class="btn-badge">Grammar</span>
+      </a>
+      <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">
+        <span class="btn-text">Reported Speech Practice</span>
         <span class="btn-badge">Quiz</span>
       </a>
-      <a href="reported-speech.html" class="btn-item">
-        <span class="btn-text">Reported Speech Practice</span>
-        <span class="btn-badge">Interactive</span>
+      <a href="simplepastandpresentperfect.html" class="btn-item">
+        <span class="btn-text">Simple Past vs Present Perfect</span>
+        <span class="btn-badge">Practice</span>
+      </a>
+      <a href="ing_infinitive_exercises.html" class="btn-item">
+        <span class="btn-text">Gerund (-ing) vs Infinitive</span>
+        <span class="btn-badge">Mastery</span>
+      </a>
+      <a href="verb_get_masterclass.html" class="btn-item">
+        <span class="btn-text">Verb 'Get' Masterclass</span>
+        <span class="btn-badge">Mastery</span>
+      </a>
+      <a href="verb_mean_masterclass.html" class="btn-item">
+        <span class="btn-text">Verb 'Mean' Masterclass</span>
+        <span class="btn-badge">Mastery</span>
       </a>
     </div>
 
-    <!-- Vocabulary & Scenarios -->
-    <h2 class="section-title">Vocabulary &amp; Real-Life Scenarios</h2>
-    <p class="section-desc">Professional vocabulary, phrasal verbs, and everyday English.</p>
+    <!-- 2. Vocabulary & Expressions -->
+    <h2 class="section-title">Vocabulary &amp; Phrasal Verbs</h2>
+    <p class="section-desc">Essential words, phrasal verbs, idioms, and modern digital terms.</p>
     <div class="exercise-grid">
-      <a href="phrasal-verbs.html" class="btn-item">
-        <span class="btn-text">Phrasal Verbs in Context</span>
-        <span class="btn-badge">Vocab</span>
+      <a href="dynamic_english_phrasal_verbs_master_game.html" class="btn-item">
+        <span class="btn-text">Phrasal Verbs Master Game</span>
+        <span class="btn-badge">Game</span>
       </a>
-      <a href="aviation-simulator.html" class="btn-item">
-        <span class="btn-text">Aviation Technical Vocabulary</span>
-        <span class="btn-badge">Simulator</span>
+      <a href="business_acronyms.html" class="btn-item">
+        <span class="btn-text">Business English Acronyms</span>
+        <span class="btn-badge">Business</span>
       </a>
-      <a href="whatsapp-acronyms.html" class="btn-item">
-        <span class="btn-text">Digital English &amp; Acronyms</span>
-        <span class="btn-badge">Modern Slang</span>
+      <a href="whatsapp_accronyms.html" class="btn-item">
+        <span class="btn-text">WhatsApp &amp; Digital Slang</span>
+        <span class="btn-badge">Slang</span>
+      </a>
+      <a href="baking_english_lesson.html" class="btn-item">
+        <span class="btn-text">Baking &amp; Cooking Vocabulary</span>
+        <span class="btn-badge">Vocabulary</span>
+      </a>
+    </div>
+
+    <!-- 3. Writing Studios -->
+    <h2 class="section-title">Writing Studios</h2>
+    <p class="section-desc">Organize arguments, write essays, and practice sentence building.</p>
+    <div class="exercise-grid">
+      <a href="writing_studio.html" class="btn-item">
+        <span class="btn-text">Opinion Writing Studio</span>
+        <span class="btn-badge">Studio</span>
+      </a>
+      <a href="Balanced_Essay.html" class="btn-item">
+        <span class="btn-text">Balanced Essay Builder</span>
+        <span class="btn-badge">Essay</span>
+      </a>
+    </div>
+
+    <!-- 4. Real-Life Scenarios -->
+    <h2 class="section-title">Real-Life Scenarios &amp; Travel</h2>
+    <p class="section-desc">Practical English for travel, airports, flights, and hotels.</p>
+    <div class="exercise-grid">
+      <a href="attheairport.html" class="btn-item">
+        <span class="btn-text">At the Airport Simulator</span>
+        <span class="btn-badge">Travel</span>
+      </a>
+      <a href="flight-attendant.html" class="btn-item">
+        <span class="btn-text">Flight Attendant Dialogues</span>
+        <span class="btn-badge">Aviation</span>
+      </a>
+      <a href="hotel_exercises.html" class="btn-item">
+        <span class="btn-text">Hotel Check-in &amp; Requests</span>
+        <span class="btn-badge">Hospitality</span>
+      </a>
+      <a href="must_visit_argentina.html" class="btn-item">
+        <span class="btn-text">Must-Visit Argentina Guide</span>
+        <span class="btn-badge">Culture</span>
+      </a>
+    </div>
+
+    <!-- 5. Reading Comprehension -->
+    <h2 class="section-title">Reading Comprehension</h2>
+    <p class="section-desc">Short stories and classic literature with comprehension questions.</p>
+    <div class="exercise-grid">
+      <a href="merry_mery_english_the_little_prince_reading_comp.html" class="btn-item">
+        <span class="btn-text">The Little Prince</span>
+        <span class="btn-badge">Literature</span>
+      </a>
+      <a href="snow-white-and-rose-red.html" class="btn-item">
+        <span class="btn-text">Snow-White and Rose-Red</span>
+        <span class="btn-badge">Story</span>
+      </a>
+    </div>
+
+    <!-- 6. Music & Songs -->
+    <h2 class="section-title">Music &amp; Listening</h2>
+    <p class="section-desc">Train your ear with popular music and fill-in-the-gap lyrics.</p>
+    <div class="exercise-grid">
+      <a href="CancionSomebodyusedtoknow.html" class="btn-item">
+        <span class="btn-text">Somebody That I Used to Know</span>
+        <span class="btn-badge">Song</span>
+      </a>
+      <a href="lose_control_teddy_swims.html" class="btn-item">
+        <span class="btn-text">Lose Control - Teddy Swims</span>
+        <span class="btn-badge">Song</span>
       </a>
     </div>
 
