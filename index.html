@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
       max-width: 860px;
     }
 
-    /* Brand Header */
+    /* Header */
     header {
       text-align: center;
       margin-bottom: 24px;
@@ -132,7 +132,7 @@
       text-decoration: underline;
     }
 
-    /* Instructions & Study Guide Box */
+    /* Simple Instructions Card */
     .instructions-card {
       background: #fffbeb;
       border: 1px solid #fef3c7;
@@ -194,7 +194,7 @@
       margin-top: 1px;
     }
 
-    /* Section & Hub Grid */
+    /* Sections */
     .section-title {
       font-size: 1.25rem;
       font-weight: 700;
@@ -216,7 +216,7 @@
       gap: 12px;
     }
 
-    /* Enhanced Exercise Buttons with Badge */
+    /* Buttons */
     .btn-item {
       display: flex;
       justify-content: space-between;
@@ -230,7 +230,7 @@
       font-weight: 600;
       font-size: 0.94rem;
       transition: transform 0.2s, background-color 0.2s;
-      box-shadow: 0 3px 6px rgba(13, 148, 136, 0.15);
+      box-shadow: 0 3px 6px rgba(2, 132, 199, 0.2);
       cursor: pointer;
       gap: 10px;
     }
@@ -271,7 +271,7 @@
   <div class="container">
     <header>
       <h1 class="brand-title">Merry Mery English</h1>
-      <p class="brand-subtitle">Interactive Practice Hub & Skills Studio</p>
+      <p class="brand-subtitle">Interactive Practice Hub &amp; Skills Studio</p>
     </header>
 
     <!-- Cambridge Dictionary Integration -->
@@ -299,35 +299,35 @@
       </a>
     </div>
 
-    <!-- Instructions & Study Guide Box -->
+    <!-- Instructions & Tips (Basic English) -->
     <div class="instructions-card">
       <div class="instructions-header" onclick="toggleInstructions()">
-        <span class="instructions-title">📌 Indicaciones de Aprendizaje & Metodología</span>
-        <span class="instructions-toggle-btn" id="toggleLabel">Ver Consejos ▾</span>
+        <span class="instructions-title">📌 How to Practice</span>
+        <span class="instructions-toggle-btn" id="toggleLabel">Hide ▲</span>
       </div>
       <div class="instructions-content" id="instructionsContent" style="display: block;">
         <div class="instruction-step">
           <span class="instruction-step-icon">🎧</span>
-          <div><strong>1. Escucha Activa (UK Accent):</strong> En cada ejercicio, reproduce los audios para familiarizarte con la pronunciación y entonación nativa británica.</div>
+          <div><strong>1. Listen:</strong> Click the audio buttons to hear native British pronunciation.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">📖</span>
-          <div><strong>2. Uso del Diccionario:</strong> Ante cualquier palabra o modismo desconocido, utiliza el buscador superior de Cambridge para revisar definición, ejemplos y fonética.</div>
+          <div><strong>2. Dictionary:</strong> Search any new word in the dictionary box above.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">✍️</span>
-          <div><strong>3. Práctica y Autocorrección:</strong> Resuelve las actividades a tu propio ritmo. Revisa las explicaciones de respuesta ante cualquier error.</div>
+          <div><strong>3. Try &amp; Check:</strong> Type your answer and click check. You can try again if you make a mistake.</div>
         </div>
         <div class="instruction-step">
           <span class="instruction-step-icon">🔁</span>
-          <div><strong>4. Repetición hasta el Dominio:</strong> Puedes reiniciar y repetir cualquier quiz para afianzar vocabulario y estructuras gramaticales al 100%.</div>
+          <div><strong>4. Practice:</strong> Restart any exercise anytime to get 100% mastery.</div>
         </div>
       </div>
     </div>
 
     <!-- Writing Studios -->
     <h2 class="section-title">Writing Studios</h2>
-    <p class="section-desc">Práctica guiada de redacción, ensayos y desarrollo de ideas.</p>
+    <p class="section-desc">Guided writing, essays, and idea organization.</p>
     <div class="exercise-grid">
       <a href="writing-studio.html" class="btn-item">
         <span class="btn-text">Opinion Writing Studio</span>
@@ -337,10 +337,10 @@
 
     <!-- Grammar Masterclasses -->
     <h2 class="section-title">Grammar Masterclasses</h2>
-    <p class="section-desc">Estructuras clave, patrones verbales y condicionales con verificación inmediata.</p>
+    <p class="section-desc">Key grammar patterns and rules with instant feedback.</p>
     <div class="exercise-grid">
       <a href="verb-patterns.html" class="btn-item">
-        <span class="btn-text">Verb Patterns (Gerund & Infinitive)</span>
+        <span class="btn-text">Verb Patterns (Gerund &amp; Infinitive)</span>
         <span class="btn-badge">Mastery</span>
       </a>
       <a href="conditionals.html" class="btn-item">
@@ -354,8 +354,8 @@
     </div>
 
     <!-- Vocabulary & Scenarios -->
-    <h2 class="section-title">Vocabulary & Real-Life Scenarios</h2>
-    <p class="section-desc">Vocabulario profesional, modismos y aplicaciones prácticas en contexto.</p>
+    <h2 class="section-title">Vocabulary &amp; Real-Life Scenarios</h2>
+    <p class="section-desc">Professional vocabulary, phrasal verbs, and everyday English.</p>
     <div class="exercise-grid">
       <a href="phrasal-verbs.html" class="btn-item">
         <span class="btn-text">Phrasal Verbs in Context</span>
@@ -366,22 +366,23 @@
         <span class="btn-badge">Simulator</span>
       </a>
       <a href="whatsapp-acronyms.html" class="btn-item">
-        <span class="btn-text">Digital English & Acronyms</span>
+        <span class="btn-text">Digital English &amp; Acronyms</span>
         <span class="btn-badge">Modern Slang</span>
       </a>
     </div>
 
     <footer>
-      Merry Mery English &copy; 2026 &bull; Interactive Educational Resources
+      Merry Mery English &copy; Interactive Educational Resources
     </footer>
   </div>
 
   <script>
     function searchDict(event) {
       event.preventDefault();
-      const query = document.getElementById('dictWord').value.trim();
+      const input = document.getElementById('dictWord');
+      const query = input.value.trim();
       if (query) {
-        const url = `https://dictionary.cambridge.org/dictionary/english-spanish/${encodeURIComponent(query)}`;
+        const url = 'https://dictionary.cambridge.org/dictionary/english-spanish/' + encodeURIComponent(query);
         window.open(url, '_blank');
       }
     }
@@ -389,12 +390,12 @@
     function toggleInstructions() {
       const content = document.getElementById('instructionsContent');
       const label = document.getElementById('toggleLabel');
-      if (content.style.display === 'none' || content.style.display === '') {
+      if (content.style.display === 'none') {
         content.style.display = 'block';
-        label.textContent = 'Ocultar ▲';
+        label.textContent = 'Hide ▲';
       } else {
         content.style.display = 'none';
-        label.textContent = 'Ver Consejos ▾';
+        label.textContent = 'Show Tips ▾';
       }
     }
   </script>
