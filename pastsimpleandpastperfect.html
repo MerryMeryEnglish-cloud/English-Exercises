@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2 Past Simple vs Past Perfect | Merry Mery English</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent-yellow: #fef08a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .btn-nav {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    /* TOP DIVIDED TABS */
+    .top-tabs-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 57px;
+      z-index: 15;
+    }
+
+    .tabs-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      padding: 0 1rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 960px;
+      width: 100%;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+    }
+
+    /* THEORY SECTION & INSTRUCTIONS */
+    .theory-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .theory-section h2 {
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .instructions-callout {
+      background: #eef2ff;
+      border-left: 4px solid var(--primary);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.2rem;
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .theory-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .theory-grid { grid-template-columns: 1fr; }
+    }
+
+    .theory-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .theory-card h3 {
+      font-size: 1.05rem;
+      color: #334155;
+      margin-bottom: 0.5rem;
+    }
+
+    .theory-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 0.85rem;
+    }
+
+    .example-box {
+      background: white;
+      border-left: 3px solid var(--primary);
+      padding: 0.65rem 0.8rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    /* INSTRUCTION BANNER ON EXERCISE TABS */
+    .instruction-banner {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .instruction-banner h3 {
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .instruction-banner p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .badge-error {
+      color: var(--danger);
+      background: #fee2e2;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .badge-success {
+      color: var(--success);
+      background: #dcfce7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* EXERCISE CARDS */
+    .ex-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      transition: all 0.2s;
+    }
+
+    .ex-card.resolved {
+      border-color: var(--success);
+      background: #fbfdfc;
+    }
+
+    .ex-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* WORD TOKEN (SPOT & FIX) */
+    .word-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      line-height: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .word-token {
+      padding: 0.15rem 0.5rem;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: #f1f5f9;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.05rem;
+      transition: all 0.15s ease;
+    }
+
+    .word-token:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .word-token.wrong-click {
+      border-color: var(--danger);
+      background: #fee2e2;
+      color: var(--danger);
+      animation: wiggle 0.3s ease;
+    }
+
+    .word-token.spotted {
+      background: var(--accent-yellow);
+      border-color: #ca8a04;
+      color: #854d0e;
+      font-weight: bold;
+    }
+
+    .word-token.fixed {
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 700;
+      border-color: #86efac;
+    }
+
+    .word-token.removed {
+      display: none;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    /* FILL IN THE BLANK & OPTIONS */
+    .sentence-block {
+      font-size: 1.05rem;
+      line-height: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .inline-input {
+      padding: 0.35rem 0.65rem;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 190px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .inline-input:focus {
+      border-color: var(--primary);
+    }
+
+    .inline-input.wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .inline-input.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+      font-weight: 600;
+      color: #166534;
+    }
+
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .btn-option {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-option:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .btn-option.wrong-opt {
+      background: #fee2e2;
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .btn-option.correct-opt {
+      background: #dcfce7;
+      border-color: var(--success);
+      color: #166534;
+      font-weight: 700;
+    }
+
+    .input-box {
+      display: none;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-hover);
+    }
+
+    /* FOOTER & AUDIO */
+    .ex-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .btn-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-icon:hover {
+      color: var(--primary);
+    }
+
+    .listen-btn {
+      color: var(--success);
+      font-weight: 700;
+      display: none; /* Appears only after correct response */
+    }
+
+    .hint-container {
+      display: none;
+      font-size: 0.85rem;
+      background: #fffbeb;
+      color: #92400e;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      border-left: 3px solid #f59e0b;
+    }
+
+    /* NEXT TAB NAVIGATION BUTTON */
+    .next-tab-wrapper {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-next-tab {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-next-tab:hover {
+      background: var(--primary-hover);
+      transform: translateX(3px);
+    }
+
+    /* MODAL POP-UP */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 2.2rem;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-stats {
+      margin: 1.25rem 0;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .modal-card p.feedback-msg {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English" class="logo-img">
+      <span class="brand-name">Merry Mery English</span>
+    </div>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-nav">🏠 Home</a>
+      <button class="btn-nav" onclick="openDictionary()">📖 Dictionary</button>
+      <button class="btn-nav" onclick="resetAll()">🔄 Reset</button>
+    </div>
+  </header>
+
+  <!-- TOP DIVIDED TABS (No Tab 1, Tab 2 labels) -->
+  <nav class="top-tabs-bar">
+    <div class="tabs-wrapper">
+      <button class="tab-btn active" onclick="switchTab(0)">Grammar Review</button>
+      <button class="tab-btn" onclick="switchTab(1)">Spot & Fix (10)</button>
+      <button class="tab-btn" onclick="switchTab(2)">Fill in the Blank (10)</button>
+      <button class="tab-btn" onclick="switchTab(3)">Narrative Challenge (5)</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <!-- SOLAPA 1: PANTALLA INICIAL - GRAMMAR SUMMARY (SOLO VISIBLE AQUÍ) -->
+    <div class="tab-pane active" id="pane-0">
+      <section class="theory-section">
+        <h2>📘 B2 Grammar Summary: Past Simple vs. Past Perfect</h2>
+        <p style="color:var(--text-muted); font-size: 0.95rem;">
+          Master the chronological sequence of events without ambiguity.
+        </p>
+
+        <div class="instructions-callout">
+          💡 <strong>Answering tip:</strong> Contractions are fully accepted (e.g., <em>hadn't</em> or <em>had not</em>, <em>'d left</em> or <em>had left</em>). When an auxiliary verb is unnecessary or redundant in Spot & Fix, you can simply type a hyphen (<strong>-</strong>) to remove it.
+        </div>
+
+        <div class="theory-grid">
+          <div class="theory-card">
+            <h3>Past Simple (V2 / didn't + V1)</h3>
+            <p>Single completed actions, chronological narratives, or immediate consecutive events. Notice invariant verbs like <em>hit, cut, set, cost</em> do not change form in past simple.</p>
+            <div class="example-box">
+              <span>"The car <strong>hit</strong> the barrier and came to an immediate stop."</span>
+              <button class="btn-icon" onclick="speakText('The car hit the barrier and came to an immediate stop.')">🔊 Listen</button>
+            </div>
+            <div class="example-box">
+              <span>"She <strong>shut</strong> the door quietly and <strong>left</strong> the keys behind."</span>
+              <button class="btn-icon" onclick="speakText('She shut the door quietly and left the keys behind.')">🔊 Listen</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h3>Past Perfect (had + V3)</h3>
+            <p>Actions completed <em>before</em> another past event or point in time (the earlier past). Watch for irregular participles and invariant verbs (<em>had hit, had torn, had frozen</em>).</p>
+            <div class="example-box">
+              <span>"By the time help arrived, the storm <strong>had torn</strong> the roof off."</span>
+              <button class="btn-icon" onclick="speakText('By the time help arrived, the storm had torn the roof off.')">🔊 Listen</button>
+            </div>
+            <div class="example-box">
+              <span>"The pipe burst because the water inside <strong>had frozen</strong> overnight."</span>
+              <button class="btn-icon" onclick="speakText('The pipe burst because the water inside had frozen overnight.')">🔊 Listen</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="next-tab-wrapper">
+          <button class="btn-next-tab" onclick="switchTab(1)">Go to Spot & Fix ➔</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- SOLAPA 2: SPOT & FIX -->
+    <div class="tab-pane" id="pane-1">
+      <div class="instruction-banner">
+        <h3>🔍 Spot & Fix Dynamic</h3>
+        <p>Each sentence contains <strong>one tense mistake</strong> involving irregular or invariant verbs. Click on the word you believe is incorrect. If you are correct, type the right form in the input box (or type a hyphen <strong>-</strong> to delete a redundant auxiliary). Listen to the sentence once corrected.</p>
+      </div>
+
+      <div class="stats-bar">
+        <span>Completed: <strong id="progress-1">0</strong> / <strong>10</strong></span>
+        <div>
+          <span class="badge-error">Attempts / Mistakes: <span id="error-1">0</span></span>
+          <span class="badge-success" style="margin-left: 0.5rem;">Accuracy: <span id="acc-1">100%</span></span>
+        </div>
+      </div>
+
+      <div id="container-spot"></div>
+
+      <div class="next-tab-wrapper">
+        <button class="btn-next-tab" onclick="switchTab(2)">Go to Fill in the Blank ➔</button>
+      </div>
+    </div>
+
+    <!-- SOLAPA 3: FILL IN THE BLANK -->
+    <div class="tab-pane" id="pane-2">
+      <div class="instruction-banner">
+        <h3>✍️ Fill in the Blank Dynamic</h3>
+        <p>Complete each sentence with the correct past form of the irregular verb in brackets. Contractions are accepted (e.g. <em>hadn't hit</em>, <em>'d set</em>). Press <strong>Check</strong> to verify. Listen to the native pronunciation once you get it right.</p>
+      </div>
+
+      <div class="stats-bar">
+        <span>Completed: <strong id="progress-2">0</strong> / <strong>10</strong></span>
+        <div>
+          <span class="badge-error">Attempts / Mistakes: <span id="error-2">0</span></span>
+          <span class="badge-success" style="margin-left: 0.5rem;">Accuracy: <span id="acc-2">100%</span></span>
+        </div>
+      </div>
+
+      <div id="container-blank"></div>
+
+      <div class="next-tab-wrapper">
+        <button class="btn-next-tab" onclick="switchTab(3)">Go to Narrative Challenge ➔</button>
+      </div>
+    </div>
+
+    <!-- SOLAPA 4: NARRATIVE CHALLENGE -->
+    <div class="tab-pane" id="pane-3">
+      <div class="instruction-banner">
+        <h3>📖 Narrative Integration Challenge</h3>
+        <p>Read the suspenseful story of the lost explorers and choose the exact grammatical form that maintains correct past tense sequence. Pay close attention to irregular verb forms!</p>
+      </div>
+
+      <div class="stats-bar">
+        <span>Completed: <strong id="progress-3">0</strong> / <strong>5</strong></span>
+        <div>
+          <span class="badge-error">Attempts / Mistakes: <span id="error-3">0</span></span>
+          <span class="badge-success" style="margin-left: 0.5rem;">Accuracy: <span id="acc-3">100%</span></span>
+        </div>
+      </div>
+
+      <div id="container-narrative"></div>
+    </div>
+  </main>
+
+  <!-- MODAL POP-UP -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-card">
+      <h2 id="modalTitle">🎉 Exercise Completed!</h2>
+      <div class="modal-stats">
+        <div>Total correct answers: <strong id="modalCorrect">0</strong></div>
+        <div>Total incorrect attempts: <strong id="modalErrors">0</strong></div>
+        <div>Error Rate: <strong id="modalErrorRate">0%</strong></div>
+      </div>
+      <p class="feedback-msg" id="modalMessage"></p>
+      <button class="btn-action" onclick="closeModal()">Continue / Review</button>
+    </div>
+  </div>
+
+  <script>
+    // WEB AUDIO API
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playBeep(success) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (success) {
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.18);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.18);
+      } else {
+        osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(185, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.18);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.18);
+      }
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-GB';
+        utter.rate = 0.9;
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    function openDictionary() {
+      const w = prompt("Search word in Cambridge Dictionary:");
+      if (w && w.trim()) {
+        window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(w.trim().toLowerCase())}`, '_blank');
+      }
+    }
+
+    // STATE TRACKING
+    let currentTab = 0;
+    let mistakes = [0, 0, 0, 0];
+    let completed = [0, 0, 0, 0];
+
+    // DATA FOR SPOT & FIX (Focused on irregular and invariant verbs: hit, hurt, cut, tear, steal, freeze, etc.)
+    const spotData = [
+      {
+        id: 1,
+        // Invariant verb: hit (had hit vs hit)
+        words: ["By", "the", "time", "the", "driver", "braked,", "the", "car", "already", "hit", "the", "tree."],
+        errIndex: 9,
+        answers: ["had already hit", "had hit", "'d already hit", "'d hit"],
+        fixedText: "had already hit",
+        full: "By the time the driver braked, the car had already hit the tree.",
+        hint: "The car impact occurred before the driver stepped on the brakes. Notice that 'hit' does not change form."
+      },
+      {
+        id: 2,
+        // Irregular: tear / tore / torn
+        words: ["He", "noticed", "that", "he", "tore", "his", "jacket", "during", "the", "climb."],
+        errIndex: 4,
+        answers: ["had torn", "'d torn"],
+        fixedText: "had torn",
+        full: "He noticed that he had torn his jacket during the climb.",
+        hint: "The jacket was torn prior to him noticing it."
+      },
+      {
+        id: 3,
+        // Redundant had before invariant verb 'cut'
+        words: ["She", "had", "cut", "the", "rope", "and", "dropped", "it", "to", "safety."],
+        errIndex: 1,
+        isDeletion: true,
+        answers: ["-", "cut"],
+        fixedText: "",
+        full: "She cut the rope and dropped it to safety.",
+        hint: "Two rapid chronological past actions take Past Simple. 'Cut' remains 'cut'."
+      },
+      {
+        id: 4,
+        // Invariant verb: hurt (hurt / hurt / hurt)
+        words: ["Tom", "was", "limping", "because", "he", "hurt", "his", "knee", "earlier", "that", "morning."],
+        errIndex: 5,
+        answers: ["had hurt", "'d hurt"],
+        fixedText: "had hurt",
+        full: "Tom was limping because he had hurt his knee earlier that morning.",
+        hint: "The knee injury happened earlier than his limping state."
+      },
+      {
+        id: 5,
+        // Irregular: steal / stole / stolen
+        words: ["When", "she", "returned", "to", "her", "hotel", "room,", "someone", "stole", "her", "passport."],
+        errIndex: 8,
+        answers: ["had stolen", "'d stolen"],
+        fixedText: "had stolen",
+        full: "When she returned to her hotel room, someone had stolen her passport.",
+        hint: "The theft took place prior to her return."
+      },
+      {
+        id: 6,
+        // Invariant verb: cost (cost / cost / cost)
+        words: ["They", "were", "shocked", "because", "the", "repairs", "cost", "more", "than", "they", "expected."],
+        errIndex: 6,
+        answers: ["had cost", "'d cost"],
+        fixedText: "had cost",
+        full: "They were shocked because the repairs had cost more than they expected.",
+        hint: "The expense was calculated and finalized before their reaction."
+      },
+      {
+        id: 7,
+        // Redundant had before invariant verb 'shut'
+        words: ["The", "guard", "had", "shut", "the", "gate", "and", "locked", "it", "with", "a", "chain."],
+        errIndex: 2,
+        isDeletion: true,
+        answers: ["-", "shut"],
+        fixedText: "",
+        full: "The guard shut the gate and locked it with a chain.",
+        hint: "Sequential narrative actions both use Past Simple."
+      },
+      {
+        id: 8,
+        // Irregular: freeze / froze / frozen
+        words: ["The", "pipes", "cracked", "because", "the", "water", "froze", "inside", "them."],
+        errIndex: 6,
+        answers: ["had frozen", "'d frozen"],
+        fixedText: "had frozen",
+        full: "The pipes cracked because the water had frozen inside them.",
+        hint: "The water froze first, which caused the pipes to crack later."
+      },
+      {
+        id: 9,
+        // Invariant verb: split (split / split / split)
+        words: ["The", "wooden", "beam", "collapsed", "after", "it", "split", "down", "the", "middle."],
+        errIndex: 6,
+        answers: ["had split", "'d split"],
+        fixedText: "had split",
+        full: "The wooden beam collapsed after it had split down the middle.",
+        hint: "The splitting occurred earlier than the final collapse."
+      },
+      {
+        id: 10,
+        // Redundant had with invariant verb 'put'
+        words: ["He", "had", "put", "on", "his", "boots", "and", "ran", "into", "the", "rain."],
+        errIndex: 1,
+        isDeletion: true,
+        answers: ["-", "put"],
+        fixedText: "",
+        full: "He put on his boots and ran into the rain.",
+        hint: "Two consecutive past actions both use Past Simple."
+      }
+    ];
+
+    // DATA FOR FILL IN THE BLANK (Irregular & Invariant Verbs)
+    const blankData = [
+      {
+        id: 201,
+        prompt: "The boxer was dizzy because his opponent (hit) him with an unexpected punch.",
+        correct: ["had hit", "'d hit"],
+        full: "The boxer was dizzy because his opponent had hit him with an unexpected punch.",
+        hint: "Earlier blow in the past. Invariant verb: hit."
+      },
+      {
+        id: 202,
+        prompt: "When the clock struck midnight, the staff (shut) all the entrances.",
+        correct: ["shut"],
+        full: "When the clock struck midnight, the staff shut all the entrances.",
+        hint: "Chronological point in time. Invariant verb: shut."
+      },
+      {
+        id: 203,
+        prompt: "We couldn't buy tickets because the event (already / cost) twice our budget.",
+        correct: ["had already cost", "'d already cost"],
+        full: "We couldn't buy tickets because the event had already cost twice our budget.",
+        hint: "Prior financial calculation. Invariant verb: cost."
+      },
+      {
+        id: 204,
+        prompt: "As soon as the judge spoke, the room (become) completely silent.",
+        correct: ["became"],
+        full: "As soon as the judge spoke, the room became completely silent.",
+        hint: "Immediate consecutive action. Irregular: become -> became."
+      },
+      {
+        id: 205,
+        prompt: "By the time the rescue team arrived, the hikers (already / set) up camp.",
+        correct: ["had already set", "'d already set"],
+        full: "By the time the rescue team arrived, the hikers had already set up camp.",
+        hint: "Action completed before arrival. Invariant verb: set."
+      },
+      {
+        id: 206,
+        prompt: "She couldn't sew the dress because she (misplace) her sharp scissors.",
+        correct: ["had misplaced", "'d misplaced"],
+        full: "She couldn't sew the dress because she had misplaced her sharp scissors.",
+        hint: "Past cause explaining inability."
+      },
+      {
+        id: 207,
+        prompt: "The ship sank rapidly after it (hit) an underwater reef.",
+        correct: ["had hit", "'d hit"],
+        full: "The ship sank rapidly after it had hit an underwater reef.",
+        hint: "The reef impact happened before the sinking."
+      },
+      {
+        id: 208,
+        prompt: "He pulled out a handkerchief and (wipe) the sweat off his forehead.",
+        correct: ["wiped"],
+        full: "He pulled out a handkerchief and wiped the sweat off his forehead.",
+        hint: "Second action in a chronological narrative."
+      },
+      {
+        id: 209,
+        prompt: "I didn't recognize Mark because he (grow) a thick beard since I last saw him.",
+        correct: ["had grown", "'d grown"],
+        full: "I didn't recognize Mark because he had grown a thick beard since I last saw him.",
+        hint: "Growth happened over the earlier past period. Irregular: grow -> had grown."
+      },
+      {
+        id: 210,
+        prompt: "They decided to rest because they (run) nearly twenty miles without stopping.",
+        correct: ["had run", "'d run"],
+        full: "They decided to rest because they had run nearly twenty miles without stopping.",
+        hint: "Earlier distance covered. Irregular: run -> had run."
+      }
+    ];
+
+    // DATA FOR NARRATIVE CHALLENGE
+    const narrativeData = [
+      {
+        id: 301,
+        text: "1. The expedition team was exhausted because cold rain ... their clothes for hours.",
+        options: ["had soaked", "soaked", "soaks"],
+        correct: "had soaked",
+        full: "The expedition team was exhausted because cold rain had soaked their clothes for hours.",
+        hint: "The rain had been falling prior to their feeling exhausted."
+      },
+      {
+        id: 302,
+        text: "2. Suddenly, a falling boulder ... the main trail, blocking their retreat.",
+        options: ["hit", "had hit", "hits"],
+        correct: "hit",
+        full: "Suddenly, a falling boulder hit the main trail, blocking their retreat.",
+        hint: "Direct event in the narrative chain. Invariant verb: hit."
+      },
+      {
+        id: 303,
+        text: "3. The guide realized that their radio ... into the canyon during the scramble.",
+        options: ["fell", "had fallen", "has fallen"],
+        correct: "had fallen",
+        full: "The guide realized that their radio had fallen into the canyon during the scramble.",
+        hint: "The loss of the radio happened before the guide realized it."
+      },
+      {
+        id: 304,
+        text: "4. Fortunately, the scout ... a small cave earlier that afternoon.",
+        options: ["found", "had found", "finds"],
+        correct: "had found",
+        full: "Fortunately, the scout had found a small cave earlier that afternoon.",
+        hint: "Action that took place earlier in the afternoon."
+      },
+      {
+        id: 305,
+        text: "5. They reached the shelter, lit a fire, and ... the wet firewood to dry.",
+        options: ["set", "had set", "sets"],
+        correct: "set",
+        full: "They reached the shelter, lit a fire, and set the wet firewood to dry.",
+        hint: "Final sequential action of the evening. Invariant verb: set."
+      }
+    ];
+
+    // TAB SWITCHER
+    function switchTab(idx) {
+      currentTab = idx;
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+      document.querySelectorAll('.tab-pane').forEach((p, i) => p.classList.toggle('active', i === idx));
+      updateTabStats(idx);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateTabStats(idx) {
+      if (idx === 0) return;
+      const totals = [0, spotData.length, blankData.length, narrativeData.length];
+      const c = completed[idx];
+      const m = mistakes[idx];
+      const acc = (c === 0 && m === 0) ? 100 : Math.max(0, Math.round((c / (c + m)) * 100));
+
+      const progEl = document.getElementById(`progress-${idx}`);
+      const errEl = document.getElementById(`error-${idx}`);
+      const accEl = document.getElementById(`acc-${idx}`);
+
+      if (progEl) progEl.textContent = c;
+      if (errEl) errEl.textContent = m;
+      if (accEl) accEl.textContent = `${acc}%`;
+    }
+
+    // RENDER SPOT & FIX
+    function renderSpot() {
+      const c = document.getElementById('container-spot');
+      c.innerHTML = '';
+
+      spotData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'ex-card';
+        card.id = `spot-card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="ex-header">
+            <span>Question ${idx + 1} of ${spotData.length}</span>
+            <span id="spot-status-${item.id}">Spot the tense error</span>
+          </div>
+          <div class="word-cloud" id="spot-words-${item.id}"></div>
+          <div class="input-box" id="spot-box-${item.id}">
+            <label style="font-size:0.88rem; font-weight:600;">Correction (or '-' to remove):</label>
+            <input type="text" class="inline-input" id="spot-in-${item.id}" placeholder="Type correction..." autocomplete="off">
+            <button class="btn-action" onclick="checkSpotInput(${item.id})">Verify</button>
+          </div>
+          <div class="hint-container" id="spot-hint-${item.id}">💡 Hint: ${item.hint}</div>
+          <div class="ex-footer">
+            <button class="btn-icon" onclick="toggleHint('spot-hint-${item.id}')">💡 Hint</button>
+            <button class="btn-icon listen-btn" id="spot-listen-${item.id}" onclick="speakText('${item.full.replace(/'/g, "\\'")}')">🔊 Listen</button>
+          </div>
+        `;
+        c.appendChild(card);
+
+        const wordsDiv = card.querySelector(`#spot-words-${item.id}`);
+        item.words.forEach((w, wIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'word-token';
+          btn.textContent = w;
+          btn.onclick = () => handleSpotClick(item.id, wIdx);
+          wordsDiv.appendChild(btn);
+        });
+      });
+    }
+
+    function handleSpotClick(id, wIdx) {
+      const item = spotData.find(x => x.id === id);
+      const card = document.getElementById(`spot-card-${id}`);
+      const btns = card.querySelectorAll('.word-token');
+      const clicked = btns[wIdx];
+
+      if (wIdx === item.errIndex) {
+        playBeep(true);
+        clicked.classList.add('spotted');
+        btns.forEach(b => b.disabled = true);
+        const box = document.getElementById(`spot-box-${id}`);
+        box.style.display = 'flex';
+        document.getElementById(`spot-in-${id}`).focus();
+      } else {
+        playBeep(false);
+        mistakes[1]++;
+        updateTabStats(1);
+        clicked.classList.add('wrong-click');
+        setTimeout(() => clicked.classList.remove('wrong-click'), 400);
+      }
+    }
+
+    function checkSpotInput(id) {
+      const item = spotData.find(x => x.id === id);
+      const input = document.getElementById(`spot-in-${id}`);
+      const val = input.value.trim().toLowerCase().replace(/[.,]/g, '');
+
+      const ok = item.answers.some(a => a.toLowerCase() === val);
+      if (ok) {
+        playBeep(true);
+        const card = document.getElementById(`spot-card-${id}`);
+        card.classList.add('resolved');
+        const errBtn = card.querySelectorAll('.word-token')[item.errIndex];
+
+        if (item.isDeletion && (val === '-' || val === item.answers[1])) {
+          errBtn.classList.add('removed');
+        } else {
+          errBtn.className = 'word-token fixed';
+          errBtn.textContent = item.fixedText;
+        }
+
+        document.getElementById(`spot-box-${id}`).style.display = 'none';
+        document.getElementById(`spot-status-${id}`).textContent = "✓ Corrected";
+        document.getElementById(`spot-status-${id}`).style.color = "var(--success)";
+        document.getElementById(`spot-listen-${id}`).style.display = 'inline-flex';
+
+        completed[1]++;
+        updateTabStats(1);
+        checkCompletion(1, spotData.length);
+      } else {
+        playBeep(false);
+        mistakes[1]++;
+        updateTabStats(1);
+        input.classList.add('wrong');
+        setTimeout(() => input.classList.remove('wrong'), 500);
+      }
+    }
+
+    // RENDER BLANK
+    function renderBlank() {
+      const c = document.getElementById('container-blank');
+      c.innerHTML = '';
+
+      blankData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'ex-card';
+        card.id = `blank-card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="ex-header">
+            <span>Question ${idx + 1} of ${blankData.length}</span>
+            <span id="blank-status-${item.id}">Fill the correct form</span>
+          </div>
+          <div class="sentence-block">
+            ${item.prompt.replace(/\(([^)]+)\)/, `<input type="text" class="inline-input" id="blank-in-${item.id}" placeholder="$1" autocomplete="off">`)}
+            <button class="btn-action" style="margin-left:0.4rem;" onclick="checkBlankInput(${item.id})">Check</button>
+          </div>
+          <div class="hint-container" id="blank-hint-${item.id}">💡 Hint: ${item.hint}</div>
+          <div class="ex-footer">
+            <button class="btn-icon" onclick="toggleHint('blank-hint-${item.id}')">💡 Hint</button>
+            <button class="btn-icon listen-btn" id="blank-listen-${item.id}" onclick="speakText('${item.full.replace(/'/g, "\\'")}')">🔊 Listen</button>
+          </div>
+        `;
+        c.appendChild(card);
+      });
+    }
+
+    function checkBlankInput(id) {
+      const item = blankData.find(x => x.id === id);
+      const input = document.getElementById(`blank-in-${id}`);
+      if (input.disabled) return;
+
+      const val = input.value.trim().toLowerCase();
+      const match = item.correct.some(c => c.toLowerCase() === val);
+
+      if (match) {
+        playBeep(true);
+        input.disabled = true;
+        input.classList.add('correct');
+        const card = document.getElementById(`blank-card-${id}`);
+        card.classList.add('resolved');
+        document.getElementById(`blank-status-${id}`).textContent = "✓ Completed";
+        document.getElementById(`blank-status-${id}`).style.color = "var(--success)";
+        document.getElementById(`blank-listen-${id}`).style.display = 'inline-flex';
+
+        completed[2]++;
+        updateTabStats(2);
+        checkCompletion(2, blankData.length);
+      } else {
+        playBeep(false);
+        mistakes[2]++;
+        updateTabStats(2);
+        input.classList.add('wrong');
+        setTimeout(() => input.classList.remove('wrong'), 500);
+      }
+    }
+
+    // RENDER NARRATIVE
+    function renderNarrative() {
+      const c = document.getElementById('container-narrative');
+      c.innerHTML = '';
+
+      narrativeData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'ex-card';
+        card.id = `nar-card-${item.id}`;
+
+        let optsHtml = '';
+        item.options.forEach(opt => {
+          optsHtml += `<button class="btn-option" onclick="checkNarrativeOption(${item.id}, '${opt}', this)">${opt}</button>`;
+        });
+
+        card.innerHTML = `
+          <div class="sentence-block" style="font-weight:500;">${item.text}</div>
+          <div class="options-row" id="nar-opts-${item.id}">${optsHtml}</div>
+          <div class="hint-container" id="nar-hint-${item.id}">💡 Hint: ${item.hint}</div>
+          <div class="ex-footer">
+            <button class="btn-icon" onclick="toggleHint('nar-hint-${item.id}')">💡 Hint</button>
+            <button class="btn-icon listen-btn" id="nar-listen-${item.id}" onclick="speakText('${item.full.replace(/'/g, "\\'")}')">🔊 Listen</button>
+          </div>
+        `;
+        c.appendChild(card);
+      });
+    }
+
+    function checkNarrativeOption(id, selected, btn) {
+      const item = narrativeData.find(x => x.id === id);
+      const card = document.getElementById(`nar-card-${id}`);
+      if (card.classList.contains('resolved')) return;
+
+      if (selected === item.correct) {
+        playBeep(true);
+        btn.classList.add('correct-opt');
+        card.classList.add('resolved');
+        card.querySelectorAll('.btn-option').forEach(b => b.disabled = true);
+        document.getElementById(`nar-listen-${id}`).style.display = 'inline-flex';
+
+        completed[3]++;
+        updateTabStats(3);
+        checkCompletion(3, narrativeData.length);
+      } else {
+        playBeep(false);
+        mistakes[3]++;
+        updateTabStats(3);
+        btn.classList.add('wrong-opt');
+        setTimeout(() => btn.classList.remove('wrong-opt'), 500);
+      }
+    }
+
+    function toggleHint(elementId) {
+      const el = document.getElementById(elementId);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // COMPLETION MODAL & CONFETTI
+    function checkCompletion(tabIdx, total) {
+      if (completed[tabIdx] === total) {
+        setTimeout(() => triggerCompletionModal(tabIdx), 350);
+      }
+    }
+
+    function triggerCompletionModal(tabIdx) {
+      const cor = completed[tabIdx];
+      const err = mistakes[tabIdx];
+      const totalAttempts = cor + err;
+      const errorPct = totalAttempts > 0 ? Math.round((err / totalAttempts) * 100) : 0;
+
+      document.getElementById('modalCorrect').textContent = cor;
+      document.getElementById('modalErrors').textContent = err;
+      document.getElementById('modalErrorRate').textContent = `${errorPct}%`;
+
+      const msgEl = document.getElementById('modalMessage');
+      const titleEl = document.getElementById('modalTitle');
+
+      if (errorPct === 0) {
+        titleEl.textContent = "🏆 Flawless Mastery!";
+        msgEl.textContent = "Outstanding precision! You solved all exercises without a single mistake.";
+        msgEl.style.color = "var(--success)";
+      } else if (errorPct <= 20) {
+        titleEl.textContent = "🎉 Excellent Performance!";
+        msgEl.textContent = "Great command of irregular and invariant past tenses! Very few missteps.";
+        msgEl.style.color = "var(--primary)";
+      } else {
+        titleEl.textContent = "👏 Good Perseverance!";
+        msgEl.textContent = "You reached 100% through consistent effort! Review your notes and try once more for under 10% errors.";
+        msgEl.style.color = "#d97706";
+      }
+
+      confetti({
+        particleCount: errorPct === 0 ? 150 : 85,
+        spread: 75,
+        origin: { y: 0.6 }
+      });
+
+      document.getElementById('feedbackModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').style.display = 'none';
+    }
+
+    function resetAll() {
+      mistakes = [0, 0, 0, 0];
+      completed = [0, 0, 0, 0];
+      closeModal();
+      renderSpot();
+      renderBlank();
+      renderNarrative();
+      switchTab(currentTab);
+    }
+
+    window.onload = () => {
+      renderSpot();
+      renderBlank();
+      renderNarrative();
+      updateTabStats(1);
+      updateTabStats(2);
+      updateTabStats(3);
+    };
+  </script>
+</body>
+</html>
