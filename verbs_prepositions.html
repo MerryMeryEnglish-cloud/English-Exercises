@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Dependent Prepositions</title>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #4cc9f0;
+      --accent: #f72585;
+      --success: #2ec4b6;
+      --danger: #e63946;
+      --warning: #ffb703;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #2b2d42;
+      --text-muted: #6c757d;
+      --border-color: #e9ecef;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(149, 157, 165, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 15px 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 48px;
+      max-width: 180px;
+      object-fit: contain;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: #eef2ff;
+      color: var(--primary);
+      border: 1px solid #c7d2fe;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* TABS NAVIGATION */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      background: var(--card-bg);
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+    }
+
+    /* CARD / CONTENT */
+    .tab-panel {
+      display: none;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-intro {
+      background: #f0f4ff;
+      border-left: 5px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+      color: #1e293b;
+    }
+
+    /* GRAMMAR REVIEW CARDS */
+    .preposition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .prep-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: #fafbfe;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .prep-card-header {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 14px;
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 6px;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .bg-with { background-color: #d90429; }
+    .bg-for { background-color: #028090; }
+    .bg-in { background-color: #f77f00; }
+    .bg-on { background-color: #e5a910; }
+    .bg-to { background-color: #7209b7; }
+    .bg-of { background-color: #38b000; }
+    .bg-about { background-color: #8338ec; }
+    .bg-between { background-color: #ff006e; }
+
+    .example-list {
+      list-style: none;
+    }
+
+    .example-item {
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .example-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .example-text {
+      flex: 1;
+    }
+
+    .example-text strong {
+      color: #1e293b;
+    }
+
+    .btn-audio {
+      background: #e2e8f0;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-audio:hover {
+      background: #cbd5e1;
+      transform: scale(1.05);
+    }
+
+    /* EXERCISE ITEMS */
+    .exercise-item {
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      background: #ffffff;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .exercise-item.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .exercise-item.incorrect {
+      border-color: var(--danger);
+      background: #fff5f5;
+    }
+
+    .sentence-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 1.05rem;
+    }
+
+    .item-num {
+      font-weight: 700;
+      color: var(--primary);
+      margin-right: 2px;
+    }
+
+    .text-input {
+      padding: 6px 12px;
+      font-size: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      outline: none;
+      width: 140px;
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .text-input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-check-item {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-check-item:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-hint {
+      background: #fef08a;
+      color: #854d0e;
+      border: 1px solid #fde047;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hint-box {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      background: #fef9c3;
+      color: #713f12;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 4px solid #eab308;
+    }
+
+    /* MC OPTIONS */
+    .mc-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mc-option {
+      padding: 8px 18px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .mc-option:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #f0f4ff;
+    }
+
+    .mc-option.selected-correct {
+      background: var(--success) !important;
+      color: white !important;
+      border-color: var(--success) !important;
+    }
+
+    .mc-option.selected-wrong {
+      background: var(--danger) !important;
+      color: white !important;
+      border-color: var(--danger) !important;
+    }
+
+    /* MATCHING LAYOUT (PAIRED FIXED ON TOP) */
+    .matched-zone-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #matched-pairs-container {
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .matched-pair-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #dcfce7;
+      border: 2px solid #86efac;
+      color: #166534;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .matched-pair-card .pair-audio {
+      background: #bbf7d0;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .matching-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .match-card {
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+    }
+
+    .match-card:hover {
+      border-color: var(--primary);
+    }
+
+    .match-card.selected {
+      border-color: var(--primary);
+      background: #eef2ff;
+      box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+    }
+
+    .next-tab-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .btn-next-tab {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-next-tab:hover {
+      background: var(--primary-dark);
+    }
+
+    /* MODAL CELEBRATION */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 35px 25px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-icon {
+      font-size: 50px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .modal-msg {
+      font-size: 1rem;
+      color: #4b5563;
+      margin-bottom: 25px;
+    }
+
+    .modal-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 650px) {
+      .matching-container {
+        grid-template-columns: 1fr;
+      }
+      .sentence-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .text-input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Merry Mery English" class="logo-img">
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="btn-action">🏠 Home</a>
+      <button onclick="openDictionary()" class="btn-action">📖 Dictionary</button>
+      <button onclick="resetAndShuffleAll()" class="btn-action">🔄 Reset & Shuffle</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">Grammar Overview</button>
+    <button class="tab-btn" onclick="switchTab(1)">Fill in the Blanks</button>
+    <button class="tab-btn" onclick="switchTab(2)">Multiple Choice Challenge</button>
+    <button class="tab-btn" onclick="switchTab(3)">Match the Definitions</button>
+  </nav>
+
+  <!-- TAB 0: GRAMMAR OVERVIEW -->
+  <section class="tab-panel active" id="panel-0">
+    <div class="section-intro">
+      <strong>Complete Grammar Overview:</strong> Explore all 56 noun-preposition collocations categorized by preposition. Click 🔊 to listen to authentic pronunciation and context.
+    </div>
+
+    <div class="preposition-grid">
+
+      <!-- WITH (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-with">WITH</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>appointment with:</strong> She booked an appointment with the doctor.</div>
+            <button class="btn-audio" onclick="playSpeech('She booked an appointment with the doctor.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>argument with*:</strong> He had an argument with his colleague.</div>
+            <button class="btn-audio" onclick="playSpeech('He had an argument with his colleague.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>contact with:</strong> I recently lost contact with an old friend.</div>
+            <button class="btn-audio" onclick="playSpeech('I recently lost contact with an old friend.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>difficulty with:</strong> She had difficulty with the software.</div>
+            <button class="btn-audio" onclick="playSpeech('She had difficulty with the software.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>matter with:</strong> What is the matter with this machine?</div>
+            <button class="btn-audio" onclick="playSpeech('What is the matter with this machine?')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>relationship with:</strong> He maintains a great relationship with clients.</div>
+            <button class="btn-audio" onclick="playSpeech('He maintains a great relationship with clients.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>trouble with:</strong> We ran into unexpected trouble with the engine.</div>
+            <button class="btn-audio" onclick="playSpeech('We ran into unexpected trouble with the engine.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FOR (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-for">FOR</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>cure for:</strong> Scientists seek a cure for the illness.</div>
+            <button class="btn-audio" onclick="playSpeech('Scientists seek a cure for the illness.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>demand for:</strong> There is high demand for skilled technicians.</div>
+            <button class="btn-audio" onclick="playSpeech('There is high demand for skilled technicians.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>need for:</strong> There is a clear need for swift action.</div>
+            <button class="btn-audio" onclick="playSpeech('There is a clear need for swift action.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>recipe for:</strong> Good sleep is a recipe for high focus.</div>
+            <button class="btn-audio" onclick="playSpeech('Good sleep is a recipe for high focus.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>respect for:</strong> Students showed respect for their teacher.</div>
+            <button class="btn-audio" onclick="playSpeech('Students showed respect for their teacher.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>room for:</strong> There is always room for improvement.</div>
+            <button class="btn-audio" onclick="playSpeech('There is always room for improvement.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>use for:</strong> I have no further use for this old manual.</div>
+            <button class="btn-audio" onclick="playSpeech('I have no further use for this old manual.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- IN (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-in">IN</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>belief in:</strong> Her belief in justice never wavered.</div>
+            <button class="btn-audio" onclick="playSpeech('Her belief in justice never wavered.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>change in:</strong> We noticed a sudden change in temperature.</div>
+            <button class="btn-audio" onclick="playSpeech('We noticed a sudden change in temperature.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>decrease in:</strong> There was a sharp decrease in complaints.</div>
+            <button class="btn-audio" onclick="playSpeech('There was a sharp decrease in complaints.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>increase in:</strong> The firm recorded an increase in profits.</div>
+            <button class="btn-audio" onclick="playSpeech('The firm recorded an increase in profits.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>interest in:</strong> She developed an interest in astrophysics.</div>
+            <button class="btn-audio" onclick="playSpeech('She developed an interest in astrophysics.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>rise in:</strong> We observed a steady rise in fuel costs.</div>
+            <button class="btn-audio" onclick="playSpeech('We observed a steady rise in fuel costs.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>success in:</strong> His dedication brought success in his career.</div>
+            <button class="btn-audio" onclick="playSpeech('His dedication brought success in his career.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ON (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-on">ON</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>agreement on:</strong> Both ministers signed an agreement on trade.</div>
+            <button class="btn-audio" onclick="playSpeech('Both ministers signed an agreement on trade.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>article on*:</strong> Did you read her article on AI?</div>
+            <button class="btn-audio" onclick="playSpeech('Did you read her article on AI?')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>ban on:</strong> The city council placed a ban on plastic bags.</div>
+            <button class="btn-audio" onclick="playSpeech('The city council placed a ban on plastic bags.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>debate on:</strong> They initiated a debate on educational reforms.</div>
+            <button class="btn-audio" onclick="playSpeech('They initiated a debate on educational reforms.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>decision on:</strong> We will announce our decision on the merger.</div>
+            <button class="btn-audio" onclick="playSpeech('We will announce our decision on the merger.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>information on:</strong> Please send me more information on this trip.</div>
+            <button class="btn-audio" onclick="playSpeech('Please send me more information on this trip.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>report on:</strong> I drafted an extensive report on productivity.</div>
+            <button class="btn-audio" onclick="playSpeech('I drafted an extensive report on productivity.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TO (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-to">TO</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>addiction to:</strong> Overcoming an addiction to sugar is tough.</div>
+            <button class="btn-audio" onclick="playSpeech('Overcoming an addiction to sugar is tough.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>attention to:</strong> Pay close attention to subtle details.</div>
+            <button class="btn-audio" onclick="playSpeech('Pay close attention to subtle details.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>invitation to:</strong> We received a formal invitation to the ball.</div>
+            <button class="btn-audio" onclick="playSpeech('We received a formal invitation to the ball.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>promise to:</strong> Keep your promise to help the community.</div>
+            <button class="btn-audio" onclick="playSpeech('Keep your promise to help the community.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>reaction to:</strong> His reaction to the test result was pure relief.</div>
+            <button class="btn-audio" onclick="playSpeech('His reaction to the test result was pure relief.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>solution to:</strong> They formulated a solution to the crisis.</div>
+            <button class="btn-audio" onclick="playSpeech('They formulated a solution to the crisis.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>threat to:</strong> Wildfires pose an immense threat to forests.</div>
+            <button class="btn-audio" onclick="playSpeech('Wildfires pose an immense threat to forests.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- OF (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-of">OF</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>advantage of:</strong> Take advantage of these learning resources.</div>
+            <button class="btn-audio" onclick="playSpeech('Take advantage of these learning resources.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>cause of:</strong> What was the real cause of the outage?</div>
+            <button class="btn-audio" onclick="playSpeech('What was the real cause of the outage?')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>chance of:</strong> Is there any chance of rain tonight?</div>
+            <button class="btn-audio" onclick="playSpeech('Is there any chance of rain tonight?')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>cost of:</strong> The cost of living varies by country.</div>
+            <button class="btn-audio" onclick="playSpeech('The cost of living varies by country.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>lack of:</strong> The project stalled due to lack of time.</div>
+            <button class="btn-audio" onclick="playSpeech('The project stalled due to lack of time.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>possibility of:</strong> There is a strong possibility of success.</div>
+            <button class="btn-audio" onclick="playSpeech('There is a strong possibility of success.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>photo of:</strong> She framed a scenic photo of the mountains.</div>
+            <button class="btn-audio" onclick="playSpeech('She framed a scenic photo of the mountains.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ABOUT (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-about">ABOUT</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>argument about*:</strong> They had an argument about money.</div>
+            <button class="btn-audio" onclick="playSpeech('They had an argument about money.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>article about*:</strong> An informative article about wildlife.</div>
+            <button class="btn-audio" onclick="playSpeech('An informative article about wildlife.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>concern about:</strong> Residents expressed concern about traffic.</div>
+            <button class="btn-audio" onclick="playSpeech('Residents expressed concern about traffic.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>confusion about:</strong> Clear instructions reduce confusion about rules.</div>
+            <button class="btn-audio" onclick="playSpeech('Clear instructions reduce confusion about rules.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>conversation about:</strong> We engaged in a conversation about books.</div>
+            <button class="btn-audio" onclick="playSpeech('We engaged in a conversation about books.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>discussion about:</strong> We wrapped up our discussion about goals.</div>
+            <button class="btn-audio" onclick="playSpeech('We wrapped up our discussion about goals.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>story about:</strong> Grandfather told us a vivid story about his youth.</div>
+            <button class="btn-audio" onclick="playSpeech('Grandfather told us a vivid story about his youth.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- BETWEEN (7) -->
+      <div class="prep-card">
+        <div class="prep-card-header bg-between">BETWEEN</div>
+        <ul class="example-list">
+          <li class="example-item">
+            <div class="example-text"><strong>bond between:</strong> A deep bond between siblings.</div>
+            <button class="btn-audio" onclick="playSpeech('A deep bond between siblings.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>connection between:</strong> A proven connection between diet and sleep.</div>
+            <button class="btn-audio" onclick="playSpeech('A proven connection between diet and sleep.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>difference between:</strong> Spot the subtle difference between these icons.</div>
+            <button class="btn-audio" onclick="playSpeech('Spot the subtle difference between these icons.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>distance between:</strong> What is the exact distance between both towns?</div>
+            <button class="btn-audio" onclick="playSpeech('What is the exact distance between both towns?')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>gap between:</strong> Bridging the gap between theory and practice.</div>
+            <button class="btn-audio" onclick="playSpeech('Bridging the gap between theory and practice.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>link between:</strong> Researchers identified a link between stress and headaches.</div>
+            <button class="btn-audio" onclick="playSpeech('Researchers identified a link between stress and headaches.')">🔊</button>
+          </li>
+          <li class="example-item">
+            <div class="example-text"><strong>relationship between:</strong> The close relationship between price and demand.</div>
+            <button class="btn-audio" onclick="playSpeech('The close relationship between price and demand.')">🔊</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="next-tab-footer">
+      <button class="btn-next-tab" onclick="switchTab(1)">Go to Fill in the Blanks ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 1: FILL IN THE BLANKS -->
+  <section class="tab-panel" id="panel-1">
+    <div class="section-intro">
+      <strong>Task Instructions:</strong> Read the 10 sentences below and type the missing dependent preposition. Every time you reset & shuffle, sentences get reordered! Once you get it right, the audio icon 🔊 will unlock.
+    </div>
+
+    <div id="fib-container"></div>
+
+    <div class="next-tab-footer">
+      <button class="btn-next-tab" onclick="switchTab(2)">Go to Multiple Choice Challenge ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 2: MULTIPLE CHOICE -->
+  <section class="tab-panel" id="panel-2">
+    <div class="section-intro">
+      <strong>Task Instructions:</strong> Choose the appropriate preposition for each sentence. The position of the correct answer is randomized across the buttons!
+    </div>
+
+    <div id="mc-container"></div>
+
+    <div class="next-tab-footer">
+      <button class="btn-next-tab" onclick="switchTab(3)">Go to Match the Definitions ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 3: MATCHING -->
+  <section class="tab-panel" id="panel-3">
+    <div class="section-intro">
+      <strong>Task Instructions:</strong> Match the 10 expressions with their definitions. Select one item from the left and its definition on the right. Once matched correctly, they will automatically pin to the top!
+    </div>
+
+    <!-- Pinned matched pairs appear here -->
+    <div id="matched-zone" style="display:none;">
+      <div class="matched-zone-title">✅ Completed Matches (Fixed at Top):</div>
+      <div id="matched-pairs-container"></div>
+    </div>
+
+    <!-- Remaining items -->
+    <div class="matching-container">
+      <div class="match-col" id="match-left"></div>
+      <div class="match-col" id="match-right"></div>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL FELICITACIONES -->
+<div class="modal-overlay" id="celebration-modal">
+  <div class="modal-content">
+    <div class="modal-icon" id="modal-icon">🎉</div>
+    <h2 class="modal-title" id="modal-title">Well Done!</h2>
+    <p class="modal-msg" id="modal-msg">You have successfully mastered this section.</p>
+    <button class="modal-btn" onclick="closeCelebration()">Keep Practicing</button>
+  </div>
+</div>
+
+<script>
+  /* ---------------- SOUND EFFECTS (WEB AUDIO API) ---------------- */
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioCtx;
+  }
+
+  function playSound(type) {
+    try {
+      const ctx = getAudioContext();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'correct') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.18);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(260, ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(140, ctx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      }
+    } catch(e) {}
+  }
+
+  /* ---------------- SPEECH SYNTHESIS ---------------- */
+  function playSpeech(text) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  /* ---------------- SHUFFLE UTILITY (FISHER-YATES) ---------------- */
+  function shuffleArray(arr) {
+    const clone = [...arr];
+    for (let i = clone.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+    return clone;
+  }
+
+  /* ---------------- NAVIGATION ---------------- */
+  function switchTab(index) {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach((t, i) => t.classList.toggle('active', i === index));
+    panels.forEach((p, i) => p.classList.toggle('active', i === index));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openDictionary() {
+    const query = prompt('Enter a word to look up in Cambridge Dictionary:');
+    if (query && query.trim() !== '') {
+      window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(query.trim())}`, '_blank');
+    }
+  }
+
+  /* ---------------- MASTER EXERCISE DATA (10 items each) ---------------- */
+  const masterFIBData = [
+    {
+      id: 1,
+      before: "She scheduled an urgent appointment",
+      answer: "with",
+      after: "the orthopedic specialist.",
+      hint: "Collocation: appointment ___ someone. Expresses an interaction or meeting."
+    },
+    {
+      id: 2,
+      before: "The research laboratory is tirelessly seeking a cure",
+      answer: "for",
+      after: "Alzheimer's disease.",
+      hint: "Collocation: cure ___ a disease. Expresses the intended purpose or remedy."
+    },
+    {
+      id: 3,
+      before: "Despite severe hardships, his strong belief",
+      answer: "in",
+      after: "human kindness remains unshaken.",
+      hint: "Collocation: belief ___ something/someone. Expresses holding faith inside."
+    },
+    {
+      id: 4,
+      before: "The city council voted for a strict ban",
+      answer: "on",
+      after: "single-use plastics.",
+      hint: "Collocation: ban ___ an activity or commodity."
+    },
+    {
+      id: 5,
+      before: "Engineers finally engineered an effective solution",
+      answer: "to",
+      after: "the regional water shortage.",
+      hint: "Collocation: solution ___ a crisis/problem. Points toward resolving it."
+    },
+    {
+      id: 6,
+      before: "One prime advantage",
+      answer: "of",
+      after: "remote work is flexible scheduling.",
+      hint: "Collocation: advantage ___ a circumstance. Expresses possession/quality."
+    },
+    {
+      id: 7,
+      before: "The delegates held an extensive discussion",
+      answer: "about",
+      after: "international trade agreements.",
+      hint: "Collocation: discussion ___ a topic. Expresses the subject matter."
+    },
+    {
+      id: 8,
+      before: "There is still a notable gap",
+      answer: "between",
+      after: "academic theory and workplace reality.",
+      hint: "Collocation: gap ___ two contrasting points or concepts."
+    },
+    {
+      id: 9,
+      before: "Over the last quarter, we registered a marked rise",
+      answer: "in",
+      after: "consumer spending.",
+      hint: "Collocation: rise / increase / decrease ___ an economic metric or indicator."
+    },
+    {
+      id: 10,
+      before: "The tenant got into an aggressive argument",
+      answer: "with",
+      after: "the landlord over lease terms.",
+      hint: "Collocation: argument ___ another person (with whom you argue)."
+    }
+  ];
+
+  const masterMCData = [
+    {
+      id: 1,
+      sentence: "The municipality recorded an unexpected decrease ___ water consumption.",
+      options: ["in", "on", "for", "with"],
+      correct: "in",
+      hint: "Think about fluctuations: rise, increase, and decrease all take this preposition."
+    },
+    {
+      id: 2,
+      sentence: "The committee has not yet reached a final decision ___ the proposed site.",
+      options: ["on", "with", "between", "to"],
+      correct: "on",
+      hint: "Agreements, bans, and decisions regarding a subject use this preposition."
+    },
+    {
+      id: 3,
+      sentence: "The scientists received a prestigious invitation ___ lecture at Oxford.",
+      options: ["to", "for", "of", "about"],
+      correct: "to",
+      hint: "Invitations are directed toward an event or action."
+    },
+    {
+      id: 4,
+      sentence: "The delays were primarily caused by a severe lack ___ skilled personnel.",
+      options: ["of", "in", "with", "for"],
+      correct: "of",
+      hint: "Denotes insufficiency: a lack ___ something."
+    },
+    {
+      id: 5,
+      sentence: "Detectives found an undeniable link ___ the suspect and the vehicle.",
+      options: ["between", "about", "for", "to"],
+      correct: "between",
+      hint: "Denotes connection joining two distinct entities or parties."
+    },
+    {
+      id: 6,
+      sentence: "Local residents voiced deep concern ___ the proposed chemical plant.",
+      options: ["about", "to", "between", "of"],
+      correct: "about",
+      hint: "Used when expressing anxiety or preoccupation regarding a matter."
+    },
+    {
+      id: 7,
+      sentence: "The team showed immense respect ___ their former mentor.",
+      options: ["for", "in", "on", "with"],
+      correct: "for",
+      hint: "Respect, regard, or room is held or made 'for' someone."
+    },
+    {
+      id: 8,
+      sentence: "The apprentice experienced serious difficulty ___ handling the power tools.",
+      options: ["with", "for", "to", "between"],
+      correct: "with",
+      hint: "Having trouble, matter, or difficulty ___ an instrument or person."
+    },
+    {
+      id: 9,
+      sentence: "Rising global temperatures pose a real threat ___ biodiversity.",
+      options: ["to", "of", "about", "with"],
+      correct: "to",
+      hint: "Threats, reactions, and solutions are directed 'to' a target."
+    },
+    {
+      id: 10,
+      sentence: "Did you manage to review her latest report ___ renewable energies?",
+      options: ["on", "in", "between", "with"],
+      correct: "on",
+      hint: "Written works: a report ___, an article ___, or information ___ a topic."
+    }
+  ];
+
+  const masterMatchData = [
+    { id: 1, term: "cure for", def: "A medicine or treatment that restores health" },
+    { id: 2, term: "solution to", def: "An effective answer that resolves an issue" },
+    { id: 3, term: "belief in", def: "Deep trust, faith, or confidence in something" },
+    { id: 4, term: "trouble with", def: "Experiencing problems or friction with something" },
+    { id: 5, term: "ban on", def: "An official prohibition placed upon an activity" },
+    { id: 6, term: "lack of", def: "The state of being insufficient or nonexistent" },
+    { id: 7, term: "concern about", def: "A state of anxiety or worry regarding a matter" },
+    { id: 8, term: "difference between", def: "A distinction separating two concepts or things" },
+    { id: 9, term: "demand for", def: "A strong need or consumer desire for products" },
+    { id: 10, term: "reaction to", def: "A responsive action triggered by an event" }
+  ];
+
+  /* ---------------- ACTIVE WORKING DATA ---------------- */
+  let activeFIB = [];
+  let activeMC = [];
+  let remainingMatchLeft = [];
+  let remainingMatchRight = [];
+  let selectedLeftMatch = null;
+
+  /* ---------------- STATS TRACKING ---------------- */
+  const stats = {
+    fib: { correct: 0, errors: 0, total: 10, completed: false },
+    mc: { correct: 0, errors: 0, total: 10, completed: false },
+    match: { correct: 0, errors: 0, total: 10, completed: false }
+  };
+
+  /* ---------------- RENDER FILL IN THE BLANKS (WITH SHUFFLE) ---------------- */
+  function renderFIB() {
+    const container = document.getElementById('fib-container');
+    container.innerHTML = '';
+
+    activeFIB.forEach((item, index) => {
+      const displayNum = index + 1;
+      const div = document.createElement('div');
+      div.className = 'exercise-item';
+      div.id = `fib-item-${item.id}`;
+
+      div.innerHTML = `
+        <div class="sentence-row">
+          <span class="item-num">${displayNum}.</span>
+          <span>${item.before}</span>
+          <input type="text" class="text-input" id="fib-input-${item.id}" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="preposition">
+          <span>${item.after}</span>
+          <button class="btn-check-item" onclick="checkFIB(${item.id})">Check</button>
+          <button class="btn-hint" onclick="toggleHint('fib-hint-${item.id}')">Hint</button>
+          <button class="btn-audio" id="fib-audio-${item.id}" style="display:none;" onclick="playSpeech('${item.before} ${item.answer} ${item.after}')">🔊</button>
+        </div>
+        <div class="hint-box" id="fib-hint-${item.id}">${item.hint}</div>
+      `;
+
+      container.appendChild(div);
+
+      const input = div.querySelector(`#fib-input-${item.id}`);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkFIB(item.id);
+      });
+    });
+  }
+
+  function checkFIB(id) {
+    const item = activeFIB.find(x => x.id === id);
+    const input = document.getElementById(`fib-input-${id}`);
+    const card = document.getElementById(`fib-item-${id}`);
+    const audioBtn = document.getElementById(`fib-audio-${id}`);
+    const val = input.value.trim().toLowerCase();
+
+    if (val === item.answer.toLowerCase()) {
+      if (!card.classList.contains('correct')) {
+        card.classList.add('correct');
+        card.classList.remove('incorrect');
+        input.disabled = true;
+        audioBtn.style.display = 'inline-flex';
+        playSound('correct');
+        stats.fib.correct++;
+        checkCompletion('fib');
+      }
+    } else {
+      card.classList.add('incorrect');
+      playSound('wrong');
+      stats.fib.errors++;
+    }
+  }
+
+  /* ---------------- RENDER MULTIPLE CHOICE (SHUFFLE QUESTIONS & RANDOMIZED OPTIONS) ---------------- */
+  function renderMC() {
+    const container = document.getElementById('mc-container');
+    container.innerHTML = '';
+
+    activeMC.forEach((item, index) => {
+      const displayNum = index + 1;
+      const div = document.createElement('div');
+      div.className = 'exercise-item';
+      div.id = `mc-item-${item.id}`;
+
+      // Randomize option positions so correct answer is NOT always in the same spot
+      const randomizedOptions = shuffleArray(item.options);
+
+      let optionsHtml = randomizedOptions.map(opt => `
+        <button class="mc-option" onclick="checkMC(${item.id}, '${opt}', this)">${opt}</button>
+      `).join('');
+
+      div.innerHTML = `
+        <div class="sentence-row">
+          <span class="item-num">${displayNum}.</span>
+          <span>${item.sentence}</span>
+          <button class="btn-hint" onclick="toggleHint('mc-hint-${item.id}')">Hint</button>
+          <button class="btn-audio" id="mc-audio-${item.id}" style="display:none;" onclick="playSpeech('${item.sentence.replace('___', item.correct)}')">🔊</button>
+        </div>
+        <div class="hint-box" id="mc-hint-${item.id}">${item.hint}</div>
+        <div class="mc-options">${optionsHtml}</div>
+      `;
+
+      container.appendChild(div);
+    });
+  }
+
+  function checkMC(id, chosen, btn) {
+    const item = activeMC.find(x => x.id === id);
+    const card = document.getElementById(`mc-item-${id}`);
+    const audioBtn = document.getElementById(`mc-audio-${id}`);
+    const parent = btn.parentElement;
+
+    if (chosen === item.correct) {
+      if (!card.classList.contains('correct')) {
+        btn.classList.add('selected-correct');
+        card.classList.add('correct');
+        card.classList.remove('incorrect');
+        Array.from(parent.children).forEach(b => {
+          b.disabled = true;
+          b.style.pointerEvents = 'none';
+        });
+        audioBtn.style.display = 'inline-flex';
+        playSound('correct');
+        stats.mc.correct++;
+        checkCompletion('mc');
+      }
+    } else {
+      btn.classList.add('selected-wrong');
+      card.classList.add('incorrect');
+      playSound('wrong');
+      stats.mc.errors++;
+    }
+  }
+
+  /* ---------------- RENDER MATCHING (FIX MATCHED PAIRS ON TOP) ---------------- */
+  function renderMatchingColumns() {
+    const leftCol = document.getElementById('match-left');
+    const rightCol = document.getElementById('match-right');
+    leftCol.innerHTML = '';
+    rightCol.innerHTML = '';
+
+    remainingMatchLeft.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'match-card';
+      div.id = `match-l-${item.id}`;
+      div.innerText = item.term;
+      if (selectedLeftMatch === item.id) div.classList.add('selected');
+      div.onclick = () => selectLeftMatch(item.id, div);
+      leftCol.appendChild(div);
+    });
+
+    remainingMatchRight.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'match-card';
+      div.id = `match-r-${item.id}`;
+      div.innerText = item.def;
+      div.onclick = () => selectRightMatch(item.id, div);
+      rightCol.appendChild(div);
+    });
+  }
+
+  function selectLeftMatch(id, element) {
+    document.querySelectorAll('#match-left .match-card').forEach(c => c.classList.remove('selected'));
+    element.classList.add('selected');
+    selectedLeftMatch = id;
+  }
+
+  function selectRightMatch(id, element) {
+    if (!selectedLeftMatch) return;
+
+    if (selectedLeftMatch === id) {
+      // MATCH FOUND!
+      playSound('correct');
+      const matchedItem = masterMatchData.find(m => m.id === id);
+
+      // Pin matched pair to top container
+      pinMatchedPair(matchedItem);
+
+      // Remove from pending lists
+      remainingMatchLeft = remainingMatchLeft.filter(m => m.id !== id);
+      remainingMatchRight = remainingMatchRight.filter(m => m.id !== id);
+      selectedLeftMatch = null;
+
+      // Re-render remaining items below
+      renderMatchingColumns();
+
+      stats.match.correct++;
+      checkCompletion('match');
+    } else {
+      // WRONG MATCH
+      playSound('wrong');
+      stats.match.errors++;
+      element.style.borderColor = 'var(--danger)';
+      setTimeout(() => {
+        element.style.borderColor = '#e2e8f0';
+      }, 500);
+    }
+  }
+
+  function pinMatchedPair(item) {
+    const zone = document.getElementById('matched-zone');
+    const container = document.getElementById('matched-pairs-container');
+    zone.style.display = 'block';
+
+    const card = document.createElement('div');
+    card.className = 'matched-pair-card';
+    card.innerHTML = `
+      <div>
+        <strong>${item.term}</strong> ➔ <span>${item.def}</span>
+      </div>
+      <button class="pair-audio" onclick="playSpeech('${item.term}: ${item.def}')">🔊</button>
+    `;
+    container.appendChild(card);
+  }
+
+  /* ---------------- HINT TOGGLE ---------------- */
+  function toggleHint(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  }
+
+  /* ---------------- COMPLETION & CONFETTI ---------------- */
+  function checkCompletion(sectionKey) {
+    const current = stats[sectionKey];
+    if (current.correct === current.total && !current.completed) {
+      current.completed = true;
+      triggerCelebration(current.errors);
+    }
+  }
+
+  function triggerCelebration(errors) {
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 120,
+        spread: 75,
+        origin: { y: 0.6 }
+      });
+    }
+
+    const modal = document.getElementById('celebration-modal');
+    const title = document.getElementById('modal-title');
+    const msg = document.getElementById('modal-msg');
+    const icon = document.getElementById('modal-icon');
+
+    if (errors === 0) {
+      icon.innerText = '🏆';
+      title.innerText = 'Outstanding Perfection!';
+      msg.innerText = 'Flawless execution! You got 100% correct without a single mistake!';
+    } else if (errors <= 3) {
+      icon.innerText = '🌟';
+      title.innerText = 'Excellent Performance!';
+      msg.innerText = `Terrific job! You finished with high accuracy and only ${errors} minor mistake(s).`;
+    } else {
+      icon.innerText = '💪';
+      title.innerText = 'Great Perseverance!';
+      msg.innerText = `You completed the challenge through dedication! We suggest reviewing the Grammar Overview tab to consolidate these collocations.`;
+    }
+
+    modal.classList.add('show');
+  }
+
+  function closeCelebration() {
+    document.getElementById('celebration-modal').classList.remove('show');
+  }
+
+  /* ---------------- RESET & SHUFFLE ALL ---------------- */
+  function resetAndShuffleAll() {
+    // Reset stats
+    stats.fib = { correct: 0, errors: 0, total: 10, completed: false };
+    stats.mc = { correct: 0, errors: 0, total: 10, completed: false };
+    stats.match = { correct: 0, errors: 0, total: 10, completed: false };
+
+    // Reset and shuffle FIB questions
+    activeFIB = shuffleArray(masterFIBData);
+    renderFIB();
+
+    // Reset and shuffle MC questions
+    activeMC = shuffleArray(masterMCData);
+    renderMC();
+
+    // Reset matching lists and clear pinned zone
+    remainingMatchLeft = shuffleArray(masterMatchData);
+    remainingMatchRight = shuffleArray(masterMatchData);
+    selectedLeftMatch = null;
+    document.getElementById('matched-pairs-container').innerHTML = '';
+    document.getElementById('matched-zone').style.display = 'none';
+    renderMatchingColumns();
+  }
+
+  /* ---------------- INITIAL LOAD ---------------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    resetAndShuffleAll();
+  });
+</script>
+</body>
+</html>
