@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Verbs & Perception Mastery</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandTeal: '#00A896',
+            brandTealDark: '#028090',
+            brandBlue: '#05668D',
+            brandYellow: '#F9A03F',
+            brandLight: '#F0F9F8',
+            correctGreen: '#2ECC71',
+            errorRed: '#E74C3C'
+          },
+          fontFamily: {
+            title: ['Quicksand', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #F4FBFB; }
+    .title-font { font-family: 'Quicksand', sans-serif; }
+    .tab-btn.active {
+      background-color: #00A896;
+      color: white;
+      border-color: #00A896;
+      box-shadow: 0 4px 12px rgba(0, 168, 150, 0.25);
+    }
+    canvas#confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9998;
+    }
+    
+    /* Crossword grid styles */
+    .cw-grid-container {
+      display: grid;
+      gap: 2px;
+      background-color: #CBD5E1;
+      padding: 4px;
+      border-radius: 8px;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    .cw-cell-wrapper {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      background-color: #1E293B;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .cw-cell-wrapper.active {
+      background-color: #FFFFFF;
+    }
+    .crossword-cell {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      outline: none;
+      border: none;
+      background: transparent;
+      color: #1E293B;
+      transition: all 0.2s;
+    }
+    .crossword-cell:focus {
+      background-color: #E6FFFA;
+      box-shadow: inset 0 0 0 2px #00A896;
+    }
+    .crossword-cell.correct-cell {
+      background-color: #ECFDF5;
+      color: #065F46 !important;
+      font-weight: 800;
+      cursor: default;
+    }
+    
+    /* Animation for error */
+    .error-pulse {
+      background-color: #FEE2E2 !important;
+      color: #DC2626 !important;
+      animation: shake 0.3s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    .cw-number {
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      font-size: 0.55rem;
+      font-weight: bold;
+      color: #64748B;
+      z-index: 10;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col relative pb-16">
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Generic Congrats Modal (Popup) -->
+  <div id="congratsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full rounded-2xl shadow-2xl p-6 text-center transform transition-all scale-100 animate-bounce-once">
+      <span class="text-5xl block mb-4">🏆</span>
+      <h2 id="congratsTitle" class="text-2xl font-bold title-font text-brandBlue mb-2"></h2>
+      <p id="congratsMessage" class="text-slate-600 mb-6 text-sm"></p>
+      <div class="flex justify-center gap-3">
+        <button onclick="closeCongratsModal()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition shadow-sm text-sm">Close</button>
+        <button id="congratsNextBtn" class="px-5 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold rounded-xl transition shadow-md text-sm">Next Exercise ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-white border-b border-teal-100 shadow-sm sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Logo + Brand Title -->
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Merry Mery English Logo" class="h-12 w-12 rounded-full border-2 border-brandTeal object-contain bg-white shadow-sm" onerror="this.src='https://placehold.co/120x120/00A896/ffffff?text=MME'">
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold title-font text-brandBlue tracking-tight leading-none">Merry Mery English</h1>
+          <p class="text-xs text-brandTeal font-medium">Interactive Learning • Verbs & Confusing Forms</p>
+        </div>
+      </div>
+
+      <div class="flex items-center flex-wrap gap-2 text-sm">
+        <div class="flex items-center bg-teal-50 border border-teal-200 rounded-lg px-2 py-1 text-xs">
+          <span class="mr-1">🗣️ Voice:</span>
+          <select id="voiceGenderSelect" class="bg-transparent font-medium text-slate-700 outline-none cursor-pointer">
+            <option value="female">British Female</option>
+            <option value="male">British Male</option>
+          </select>
+        </div>
+        <button onclick="openDictionaryModal()" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition font-medium">
+          <span>📖</span><span>Dictionary</span>
+        </button>
+        <a href="#" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-brandTealDark border border-teal-200 transition font-medium">
+          <span>🏠</span><span>Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="max-w-6xl mx-auto px-4 pt-6 flex-grow w-full">
+    <div class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white rounded-2xl p-6 mb-6 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="bg-white/20 text-xs uppercase px-2.5 py-1 rounded-full font-semibold tracking-wider">Grammar Masterclass</span>
+        <h2 class="text-2xl md:text-3xl font-bold title-font mt-2">Verbs of Perception & Confusing Forms</h2>
+        <p class="text-teal-100 text-sm mt-1">Explore see, watch, look, hear, listen, say, tell, speak, talk, make, do, borrow, and lend.</p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex flex-wrap gap-2 border-b border-teal-200 pb-2 mb-6" aria-label="Tabs">
+      <button onclick="switchTab('tab-theory')" id="btn-tab-theory" class="tab-btn active px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">📚 Grammar Summary</button>
+      <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">💡 Multiple Choice Challenge</button>
+      <button onclick="switchTab('tab-crossword')" id="btn-tab-crossword" class="tab-btn px-4 py-2 rounded-xl border border-teal-200 text-slate-600 font-semibold text-sm transition">🧩 Interactive Crossword</button>
+    </nav>
+
+    <!-- ================= SOLAPA 1: GRAMMAR SUMMARY ================= -->
+    <section id="tab-theory" class="tab-content block">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-teal-100 mb-6 gap-2">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Essential Verbs of Perception & Confusing Pairs</h3>
+            <p class="text-sm text-slate-500">Comprehensive guide with British audio pronunciation for every term and example sentence.</p>
+          </div>
+          <button onclick="speakText(document.getElementById('theoryIntroText').innerText)" class="px-3.5 py-1.5 bg-teal-100 hover:bg-teal-200 text-brandTealDark font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm self-start">
+            <span>🔊</span> Listen Overview
+          </button>
+        </div>
+
+        <div id="theoryIntroText" class="hidden">
+          Welcome to the grammar summary of perception verbs and confusing English terms. Here we explore see, watch, look, hear, listen, say, tell, speak, talk, make, do, borrow, and lend.
+        </div>
+
+        <div id="theoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-teal-100 flex justify-end">
+          <button onclick="switchTab('tab-quiz')" class="px-5 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold text-sm rounded-xl transition shadow-md flex items-center gap-2">
+            <span>Next: Multiple Choice Challenge (10 Qs) ➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOLAPA 2: MULTIPLE CHOICE CHALLENGE ================= -->
+    <section id="tab-quiz" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-teal-100">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Multiple Choice Challenge: Confusing Verbs</h3>
+            <p class="text-sm text-slate-500">Choose the best option for each sentence. The sentence audio will unlock once correct.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="quizScoreBadge" class="text-xs bg-teal-50 text-brandTealDark border border-teal-200 px-3 py-1.5 rounded-xl font-bold">Progress: 0/10 Correct</span>
+            <button onclick="shuffleAndResetQuiz()" class="px-3.5 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm">
+              <span>🔀</span> <span>Reset & Shuffle</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-6 bg-slate-100 rounded-full h-3.5 overflow-hidden p-0.5 border border-slate-200">
+          <div id="quizProgress" class="bg-gradient-to-r from-teal-500 to-emerald-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <div id="quizContainer" class="space-y-5">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-teal-100 flex justify-between">
+          <button onclick="switchTab('tab-theory')" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+            ⬅️ Back to Grammar Summary
+          </button>
+          <button onclick="switchTab('tab-crossword')" class="px-5 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold text-sm rounded-xl transition shadow-md flex items-center gap-2">
+            <span>Next: Interactive Crossword ➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOLAPA 3: INTERACTIVE CROSSWORD ================= -->
+    <section id="tab-crossword" class="tab-content hidden">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-teal-100">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-teal-100">
+          <div>
+            <h3 class="text-xl font-bold title-font text-brandBlue">Interactive Crossword Puzzle</h3>
+            <p class="text-sm text-slate-500">Type dynamically to solve the grid. Letters validate instantly with sounds!</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="initCrossword()" class="px-3.5 py-2 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 font-semibold text-xs rounded-xl transition flex items-center gap-1 shadow-sm">
+              <span>🔀</span> <span>Reset & Shuffle Grid</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 flex flex-col justify-center bg-slate-50 p-6 rounded-2xl border border-slate-200 overflow-x-auto shadow-inner">
+            <div id="crosswordGrid" class="cw-grid-container">
+              <!-- Rendered dynamically via JS -->
+            </div>
+            <p class="text-center text-xs text-slate-500 mt-4 italic">Tip: The cursor advances automatically. Click an intersecting cell to swap writing direction.</p>
+          </div>
+
+          <div class="lg:col-span-5 space-y-4 text-sm max-h-[500px] overflow-y-auto pr-2">
+            <div class="p-4 bg-teal-50/70 rounded-xl border border-teal-100 shadow-sm">
+              <h4 class="font-bold text-brandBlue mb-2 flex items-center gap-1.5"><span>➡️</span> Across</h4>
+              <ul id="acrossClues" class="space-y-3 text-xs text-slate-700"></ul>
+            </div>
+
+            <div class="p-4 bg-cyan-50/70 rounded-xl border border-cyan-100 shadow-sm">
+              <h4 class="font-bold text-brandBlue mb-2 flex items-center gap-1.5"><span>⬇️</span> Down</h4>
+              <ul id="downClues" class="space-y-3 text-xs text-slate-700"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-teal-100 flex justify-start">
+          <button onclick="switchTab('tab-quiz')" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+            ⬅️ Back to Multiple Choice Challenge
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= DICTIONARY MODAL ================= -->
+  <div id="dictModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-teal-100 p-6 relative">
+      <button onclick="closeDictionaryModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-2xl">📖</span>
+        <h4 class="text-lg font-bold title-font text-brandBlue">Cambridge Dictionary Search</h4>
+      </div>
+      <p class="text-xs text-slate-500 mb-4">Type any English term or expression to open its official Cambridge definition.</p>
+      
+      <div class="flex gap-2">
+        <input type="text" id="dictInput" placeholder="e.g. see, watch, hear, listen..." class="flex-grow border border-teal-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brandTeal" onkeydown="if(event.key==='Enter') searchDictionary()">
+        <button onclick="searchDictionary()" class="px-5 py-2.5 bg-brandTeal hover:bg-brandTealDark text-white font-bold rounded-xl text-sm transition">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    /* 1. WEB AUDIO API SYNTHESIZER */
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+      return audioCtx;
+    }
+
+    // Long tones for completing an exercise
+    function playSuccessTone() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.12);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.3);
+      } catch(e) {}
+    }
+
+    // Short tones for individual characters in Crossword
+    function playShortSuccessTone() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.1);
+      } catch(e) {}
+    }
+
+    function playShortErrorTone() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.1);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.15);
+      } catch(e) {}
+    }
+
+    /* 2. BRITISH TTS */
+    let voices = [];
+    function loadVoices() {
+      voices = window.speechSynthesis.getVoices();
+    }
+    loadVoices();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function getSelectedVoice() {
+      const gender = document.getElementById('voiceGenderSelect').value;
+      const ukVoices = voices.filter(v => v.lang === 'en-GB' || v.lang.replace('_','-') === 'en-GB' || v.lang.includes('en-GB'));
+      if (ukVoices.length > 0) {
+        if (gender === 'female') {
+          return ukVoices.find(v => /female|hazel|victoria|libby|sonia|susan|serena|kate|amy|emma|chloe|martha/i.test(v.name)) || ukVoices.find(v => !/male|george|oliver|arthur|ryan|daniel|brian|james/i.test(v.name)) || ukVoices[0];
+        } else {
+          return ukVoices.find(v => /male|george|oliver|arthur|ryan|daniel|brian|james/i.test(v.name)) || ukVoices[ukVoices.length - 1];
+        }
+      }
+      return voices.find(v => v.lang.startsWith('en')) || null;
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/_+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'en-GB';
+      const v = getSelectedVoice();
+      if (v) utterance.voice = v;
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function showCongratsModal(title, msg, nextFn) {
+      document.getElementById('congratsTitle').innerText = title;
+      document.getElementById('congratsMessage').innerText = msg;
+      const nextBtn = document.getElementById('congratsNextBtn');
+      if (nextFn) {
+        nextBtn.style.display = 'block';
+        nextBtn.onclick = () => { closeCongratsModal(); nextFn(); };
+      } else {
+        nextBtn.style.display = 'none';
+      }
+      document.getElementById('congratsModal').classList.remove('hidden');
+    }
+    
+    function closeCongratsModal() {
+      document.getElementById('congratsModal').classList.add('hidden');
+    }
+
+    function launchAutoConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const particles = [];
+      const colors = ['#00A896', '#028090', '#F9A03F', '#F4D35E', '#EE964B', '#2ECC71'];
+
+      for (let i = 0; i < 110; i++) {
+        particles.push({
+          x: canvas.width / 2, y: canvas.height / 2,
+          r: Math.random() * 6 + 4,
+          dx: (Math.random() - 0.5) * 14, dy: (Math.random() - 0.7) * 16,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          tilt: Math.random() * 10 - 5,
+          tiltAngleIncremental: (Math.random() * 0.07) + 0.05, tiltAngle: 0
+        });
+      }
+
+      let animationFrames = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+        particles.forEach(p => {
+          p.x += p.dx; p.y += p.dy; p.dy += 0.28;
+          p.tiltAngle += p.tiltAngleIncremental; p.tilt = Math.sin(p.tiltAngle) * 12;
+          if (p.y < canvas.height + 20) {
+            active = true;
+            ctx.beginPath(); ctx.lineWidth = p.r / 2; ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r, p.y); ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+            ctx.stroke();
+          }
+        });
+        animationFrames++;
+        if (active && animationFrames < 220) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      animate();
+    }
+
+    /* 3. THEORY DATA */
+    const theoryList = [
+      { word: "see", type: "verb (perception)", def: "To perceive with the eyes; an involuntary physiological ability.", eg: "I can see the mountains clearly from my window." },
+      { word: "watch", type: "verb (perception)", def: "To look at something attentively over a period of time, usually moving.", eg: "We like to watch football matches on weekends." },
+      { word: "look", type: "verb / instruction", def: "To direct your eyes in a specific direction intentionally.", eg: "Look at the blackboard, please." },
+      { word: "hear", type: "verb (perception)", def: "To perceive sounds involuntarily with the ears.", eg: "Did you hear that strange noise outside?" },
+      { word: "listen", type: "verb (attention)", def: "To give attention to a sound deliberately (often used with 'to').", eg: "Please listen carefully to the instructions." },
+      { word: "say / tell", type: "confusing verbs", def: "Say focuses on the words spoken; tell focuses on the recipient/listener.", eg: "She said hello. / She told me a secret." },
+      { word: "speak / talk", type: "confusing verbs", def: "Speak is often more formal or one-way; talk emphasizes conversation/dialogue.", eg: "He speaks three languages. / Let's talk about your project." },
+      { word: "make / do", type: "confusing verbs", def: "Make is used for creating or producing; do is used for general activities or tasks.", eg: "Make a cake. / Do your homework." },
+      { word: "borrow / lend", type: "confusing verbs", def: "Borrow is to take something temporarily; lend is to give something temporarily.", eg: "Can I borrow your pen? / Please lend me your car." }
+    ];
+
+    function renderTheory() {
+      const grid = document.getElementById('theoryGrid');
+      grid.innerHTML = theoryList.map(item => {
+        const fullAudio = `${item.word}. Definition: ${item.def}. Example: ${item.eg}`;
+        return `
+          <div class="p-4 rounded-xl border border-teal-100 bg-teal-50/40 hover:bg-teal-50 transition flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-base text-brandBlue capitalize">${item.word}</h4>
+                <span class="text-[10px] bg-teal-200/70 text-teal-900 font-semibold px-2 py-0.5 rounded">${item.type}</span>
+              </div>
+              <p class="text-xs text-slate-600 mb-2 leading-relaxed">${item.def}</p>
+              <div class="bg-white p-2 rounded-lg border border-teal-100 text-[11px] text-slate-700 italic mb-3 shadow-inner">
+                "${item.eg}"
+              </div>
+            </div>
+            <div class="flex items-center justify-end pt-2 border-t border-teal-100/60">
+              <button onclick="speakText('${fullAudio.replace(/'/g, "\\'")}')" class="text-xs px-2.5 py-1.5 bg-white hover:bg-teal-100 border border-teal-200 text-teal-800 rounded-lg font-semibold transition flex items-center gap-1 shadow-sm">
+                <span>🔊</span> Listen Word & Example
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* 4. MULTIPLE CHOICE CHALLENGE */
+    const originalQuizData = [
+      { id: 1, question: "Choose the correct verb: 'I tried to _____ to the radio news, but the static was too loud.'", options: ["listen", "hear", "sound", "attend"], correct: 0, hint: "We use this verb when we pay intentional, deliberate attention to a sound source." },
+      { id: 2, question: "Select the right form: 'Can you _____ me what time the meeting starts?'", options: ["say", "tell", "speak", "talk"], correct: 1, hint: "When there is a direct object pronoun representing the listener (like 'me', 'you', 'him'), we use this specific verb." },
+      { id: 3, question: "Which verb fits best? 'We sat on the sofa to _____ a wonderful documentary about wildlife.'", options: ["see", "watch", "look", "stare"], correct: 1, hint: "We use this verb specifically when observing moving images, sports, or events attentively over time." },
+      { id: 4, question: "Complete correctly: 'Could you please _____ me your laptop for the afternoon?'", options: ["borrow", "lend", "rent", "give"], correct: 0, hint: "The speaker is the one receiving or taking the item temporarily from someone else. Opposite of giving." },
+      { id: 5, question: "Identify the correct verb: 'I didn't _____ the doorbell ring because I was wearing headphones.'", options: ["listen", "hear", "sound", "audition"], correct: 1, hint: "This represents perceiving a sound involuntarily, without intentionally trying to concentrate on it." },
+      { id: 6, question: "Choose the appropriate collocation: 'It's time to _____ a decision about our summer vacation.'", options: ["do", "make", "take", "have"], correct: 1, hint: "For decisions, plans, or creating something entirely new, English speakers use this constructive verb." },
+      { id: 7, question: "Select the correct option: 'She didn't _____ a single word during the entire conference presentation.'", options: ["say", "tell", "speak", "talk"], correct: 0, hint: "When focusing strictly on the words uttered without mentioning a direct listener object, use this verb." },
+      { id: 8, question: "Fill in the blank: 'If you want to pass the exam, you need to _____ attention to detail.'", options: ["do", "make", "pay", "have"], correct: 2, hint: "This is a fixed collocation (set phrase) meaning to concentrate or be careful. It relates to 'spending' focus." },
+      { id: 9, question: "Choose the correct form: 'He promised to _____ me 50 dollars until next Friday.'", options: ["borrow", "lend", "owe", "keep"], correct: 1, hint: "The person acting as the subject is giving money to someone else temporarily. Opposite of taking." },
+      { id: 10, question: "Select the right verb: 'We need to _____ about our marketing strategy before finalizing the contract.'", options: ["speak", "talk", "say", "tell"], correct: 1, hint: "This emphasizes a two-way informal discussion or conversation between people, often followed by 'about'." }
+    ];
+
+    let quizItems = JSON.parse(JSON.stringify(originalQuizData));
+    let quizTotalMistakes = 0;
+
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = quizItems.map((item, index) => {
+        const shuffledOpts = item.shuffledOpts || shuffleOptionsWithCorrect(item.options, item.correct);
+        item.shuffledOpts = shuffledOpts;
+        const correctText = item.options[item.correct];
+        const fullSentence = item.question.replace(/_{2,}/g, correctText);
+
+        return `
+          <div id="quiz-card-${item.id}" class="p-5 bg-slate-50 border border-slate-200 rounded-2xl transition hover:border-teal-200 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-bold text-teal-900 bg-teal-100 px-2.5 py-0.5 rounded-full">Question ${index + 1} of 10</span>
+              <div class="flex items-center gap-2">
+                <button onclick="toggleElement('quiz-hint-${item.id}')" class="text-xs font-semibold px-2.5 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-lg transition flex items-center gap-1 shadow-sm">
+                  <span>💡</span> Hint
+                </button>
+                <button onclick="speakText('${fullSentence.replace(/'/g, "\\'")}')" id="quiz-listen-ans-${item.id}" class="hidden text-xs font-semibold px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 text-emerald-900 rounded-lg transition flex items-center gap-1 shadow-sm">
+                  <span>🔊</span> Listen Sentence
+                </button>
+              </div>
+            </div>
+
+            <p class="font-bold text-slate-800 text-base mb-3 leading-snug">${item.question}</p>
+
+            <div class="space-y-2">
+              ${shuffledOpts.map((optObj, optIndex) => `
+                <button 
+                  id="quiz-opt-${item.id}-${optIndex}" 
+                  onclick="selectQuizOption(${item.id}, ${optObj.originalIdx}, ${optIndex})"
+                  class="w-full text-left p-3 rounded-xl border border-slate-200 bg-white hover:bg-teal-50 transition text-sm flex items-start gap-3 text-slate-700 shadow-sm"
+                >
+                  <span class="font-bold text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${String.fromCharCode(65 + optIndex)}</span>
+                  <span>${optObj.text}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <div id="quiz-hint-${item.id}" class="hidden mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900">
+              💡 <em>Clue:</em> ${item.hint}
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateQuizProgress();
+    }
+
+    function shuffleOptionsWithCorrect(options, correctIdx) {
+      let mapped = options.map((text, idx) => ({ text, originalIdx: idx }));
+      for (let i = mapped.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [mapped[i], mapped[j]] = [mapped[j], mapped[i]];
+      }
+      return mapped;
+    }
+
+    function selectQuizOption(questionId, originalIdx, displayIdx) {
+      const item = quizItems.find(q => q.id === questionId);
+      if (item.solved) return;
+
+      const optBtn = document.getElementById(`quiz-opt-${questionId}-${displayIdx}`);
+
+      if (originalIdx === item.correct) {
+        optBtn.className = "w-full text-left p-3 rounded-xl border-2 border-correctGreen bg-emerald-50 text-emerald-950 font-bold text-sm flex items-start gap-3 shadow-sm";
+        item.solved = true;
+
+        item.shuffledOpts.forEach((_, idx) => {
+          const btn = document.getElementById(`quiz-opt-${questionId}-${idx}`);
+          if (idx !== displayIdx) { btn.classList.add('opacity-50', 'pointer-events-none'); }
+        });
+
+        const listenAnsBtn = document.getElementById(`quiz-listen-ans-${questionId}`);
+        if (listenAnsBtn) listenAnsBtn.classList.remove('hidden');
+
+        playShortSuccessTone();
+        updateQuizProgress();
+      } else {
+        optBtn.className = "w-full text-left p-3 rounded-xl border-2 border-errorRed bg-rose-50 text-rose-900 text-sm flex items-start gap-3 shadow-sm error-pulse";
+        quizTotalMistakes++;
+        playShortErrorTone();
+      }
+    }
+
+    function updateQuizProgress() {
+      let correct = 0;
+      quizItems.forEach(i => { if (i.solved) correct++; });
+      const pct = (correct / quizItems.length) * 100;
+      document.getElementById('quizProgress').style.width = pct + '%';
+      document.getElementById('quizScoreBadge').innerText = `Progress: ${correct}/10 Correct`;
+
+      if (correct === quizItems.length && quizItems.length > 0) { 
+        launchAutoConfetti();
+        playSuccessTone();
+        showCongratsModal(
+          "🏆 Quiz Mastered!", 
+          `Fantastic! You completed all 10 questions successfully, overcoming ${quizTotalMistakes} mistakes along the way.`,
+          () => switchTab('tab-crossword')
+        );
+      }
+    }
+
+    function shuffleAndResetQuiz() {
+      quizItems.forEach(i => {
+        i.solved = false;
+        i.shuffledOpts = shuffleOptionsWithCorrect(i.options, i.correct);
+      });
+      quizTotalMistakes = 0;
+      renderQuiz();
+    }
+
+    /* 5. INTERACTIVE CROSSWORD SETUP */
+    const crosswordWordsBank = [
+      { word: "HEAR", clue: "To perceive sounds involuntarily.", help: "It's an involuntary action performed by your ears. Synonym: catch a sound." },
+      { word: "SAY", clue: "To utter words to convey information.", help: "Focuses on the words spoken rather than the listener. Example: 'Please ___ hello'." },
+      { word: "SEE", clue: "To perceive with the eyes involuntarily.", help: "An involuntary physiological ability of your eyes. Synonym: catch sight of." },
+      { word: "LOOK", clue: "To direct your eyes intentionally.", help: "Directing your gaze deliberately in a specific direction. Often followed by 'at'." },
+      { word: "BORROW", clue: "To take something temporarily.", help: "Receiving something that you promise to return later. Opposite of lend." },
+      { word: "WATCH", clue: "To observe moving images attentively.", help: "Used when observing moving images, games, or events over a period of time." },
+      { word: "TALK", clue: "To converse informally with someone.", help: "Emphasizes a two-way informal exchange of ideas. Often followed by 'to' or 'with'." },
+      { word: "LISTEN", clue: "To give deliberate attention to sound.", help: "Paying intentional attention to a sound source. Often followed by 'to'." },
+      { word: "SPEAK", clue: "To converse formally or one-way.", help: "More formal than talk. Also used for communicating in a language." },
+      { word: "TELL", clue: "To communicate information to a person.", help: "Requires a direct person receiving the information. Example: 'Please ___ me a secret'." },
+      { word: "LEND", clue: "To give something temporarily.", help: "Giving something to someone temporarily. Opposite of borrow." },
+      { word: "MAKE", clue: "To create or produce something.", help: "Used for creating, constructing, or building something new from scratch." },
+      { word: "DO", clue: "To perform a general activity or task.", help: "Used for routine tasks, chores, or general actions without creating a physical object." }
+    ];
+
+    let currentCwDir = 'across';
+
+    // Generates a dynamic layout using a greedy placement algorithm
+    function generateDynamicLayout() {
+      const words = [...crosswordWordsBank].sort(() => Math.random() - 0.5);
+      const limit = 20; // 20x20 temp grid
+      let grid = Array(limit).fill(null).map(() => Array(limit).fill(null)); 
+      
+      let w0 = words[0];
+      let startR = 10, startC = Math.max(0, 10 - Math.floor(w0.word.length/2));
+      let placed = [{ ...w0, r: startR, c: startC, dir: 'across' }];
+      for(let i=0; i<w0.word.length; i++) grid[startR][startC+i] = w0.word[i];
+
+      function canPlace(wordStr, tr, tc, dir) {
+        let len = wordStr.length;
+        if (dir === 'across') {
+          if (tc + len > limit) return false;
+          if (tc > 0 && grid[tr][tc-1] !== null) return false;
+          if (tc + len < limit && grid[tr][tc+len] !== null) return false;
+          for (let i = 0; i < len; i++) {
+            let cell = grid[tr][tc+i];
+            if (cell !== null && cell !== wordStr[i]) return false;
+            if (cell === null) {
+              if (tr > 0 && grid[tr-1][tc+i] !== null) return false;
+              if (tr < limit-1 && grid[tr+1][tc+i] !== null) return false;
+            }
+          }
+        } else {
+          if (tr + len > limit) return false;
+          if (tr > 0 && grid[tr-1][tc] !== null) return false;
+          if (tr + len < limit && grid[tr+len][tc] !== null) return false;
+          for (let i = 0; i < len; i++) {
+            let cell = grid[tr+i][tc];
+            if (cell !== null && cell !== wordStr[i]) return false;
+            if (cell === null) {
+              if (tc > 0 && grid[tr+i][tc-1] !== null) return false;
+              if (tc < limit-1 && grid[tr+i][tc+1] !== null) return false;
+            }
+          }
+        }
+        return true;
+      }
+
+      for (let i = 1; i < words.length; i++) {
+        let curr = words[i];
+        let bestPlaces = [];
+        let maxInters = -1;
+        for (let tr = 0; tr < limit; tr++) {
+          for (let tc = 0; tc < limit; tc++) {
+            for (let dir of ['across', 'down']) {
+              if (canPlace(curr.word, tr, tc, dir)) {
+                let inters = 0;
+                for (let k = 0; k < curr.word.length; k++) {
+                  if (grid[tr + (dir==='down'?k:0)][tc + (dir==='across'?k:0)] !== null) inters++;
+                }
+                if (inters > 0) {
+                  if (inters > maxInters) {
+                    maxInters = inters;
+                    bestPlaces = [{ r: tr, c: tc, dir }];
+                  } else if (inters === maxInters) {
+                    bestPlaces.push({ r: tr, c: tc, dir });
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (bestPlaces.length > 0) {
+          let best = bestPlaces[Math.floor(Math.random() * bestPlaces.length)];
+          placed.push({ ...curr, r: best.r, c: best.c, dir: best.dir });
+          for(let k=0; k<curr.word.length; k++) {
+            grid[best.r + (best.dir==='down'?k:0)][best.c + (best.dir==='across'?k:0)] = curr.word[k];
+          }
+        } else return false; // Failed placement
+      }
+
+      // Crop grid
+      let minR = limit, maxR = -1, minC = limit, maxC = -1;
+      placed.forEach(w => {
+        if(w.r < minR) minR = w.r;
+        if(w.c < minC) minC = w.c;
+        let endR = w.r + (w.dir === 'down' ? w.word.length - 1 : 0);
+        let endC = w.c + (w.dir === 'across' ? w.word.length - 1 : 0);
+        if(endR > maxR) maxR = endR;
+        if(endC > maxC) maxC = endC;
+      });
+      
+      placed.forEach(w => { w.r -= minR; w.c -= minC; });
+      return { placed, rows: maxR - minR + 1, cols: maxC - minC + 1 };
+    }
+
+    function initCrossword() {
+      let layoutData = null;
+      // Try to generate dynamic layout up to 50 times
+      for(let i=0; i<50; i++) {
+        let res = generateDynamicLayout();
+        if (res && res.placed.length === crosswordWordsBank.length) {
+          layoutData = res;
+          break;
+        }
+      }
+
+      // Fallback Layout if dynamic fails (highly unlikely but safe)
+      if (!layoutData) {
+        let fallback = [
+          { id: 1, word: "HEAR", r: 0, c: 3, dir: "down" },
+          { id: 2, word: "SAY", r: 0, c: 10, dir: "down" },
+          { id: 3, word: "SEE", r: 1, c: 1, dir: "across" },
+          { id: 4, word: "LOOK", r: 2, c: 8, dir: "down" },
+          { id: 5, word: "BORROW", r: 3, c: 0, dir: "across" },
+          { id: 6, word: "WATCH", r: 3, c: 5, dir: "down" },
+          { id: 7, word: "TALK", r: 5, c: 5, dir: "across" },
+          { id: 8, word: "LISTEN", r: 5, c: 7, dir: "down" },
+          { id: 9, word: "SPEAK", r: 7, c: 3, dir: "down" },
+          { id: 10, word: "TELL", r: 8, c: 7, dir: "across" },
+          { id: 11, word: "LEND", r: 8, c: 10, dir: "down" },
+          { id: 12, word: "MAKE", r: 10, c: 2, dir: "across" },
+          { id: 13, word: "DO", r: 11, c: 10, dir: "across" }
+        ];
+        let mapped = fallback.map(fw => {
+          let original = crosswordWordsBank.find(w => w.word === fw.word);
+          return { ...original, r: fw.r, c: fw.c, dir: fw.dir };
+        });
+        layoutData = { placed: mapped, rows: 12, cols: 12 };
+      }
+
+      renderCrossword(layoutData.placed, layoutData.rows, layoutData.cols);
+    }
+
+    function renderCrossword(placedWords, rows, cols) {
+      const gridContainer = document.getElementById('crosswordGrid');
+      gridContainer.innerHTML = '';
+      gridContainer.style.gridTemplateColumns = `repeat(${cols}, 36px)`;
+      gridContainer.style.gridTemplateRows = `repeat(${rows}, 36px)`;
+
+      // Map numbers and cell data
+      let num = 1;
+      let gridMatrix = Array(rows).fill(null).map(() => Array(cols).fill(null));
+
+      // Order words by position (top-left to bottom-right) to assign standard crossword numbers
+      placedWords.sort((a, b) => {
+        if (a.r !== b.r) return a.r - b.r;
+        return a.c - b.c;
+      });
+
+      placedWords.forEach(w => {
+        // If cell already has a number from an intersecting word starting at same cell, reuse it
+        if (!gridMatrix[w.r][w.c] || !gridMatrix[w.r][w.c].num) {
+          w.cwNum = num++;
+        } else {
+          w.cwNum = gridMatrix[w.r][w.c].num;
+        }
+
+        for (let i = 0; i < w.word.length; i++) {
+          let currR = w.r + (w.dir === 'down' ? i : 0);
+          let currC = w.c + (w.dir === 'across' ? i : 0);
+          
+          if (!gridMatrix[currR][currC]) {
+            gridMatrix[currR][currC] = { letter: w.word[i], across: false, down: false, num: null };
+          }
+          if (i === 0 && !gridMatrix[currR][currC].num) {
+            gridMatrix[currR][currC].num = w.cwNum;
+          }
+          if (w.dir === 'across') gridMatrix[currR][currC].across = true;
+          if (w.dir === 'down') gridMatrix[currR][currC].down = true;
+        }
+      });
+
+      // Build DOM Cells
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          let cellData = gridMatrix[r][c];
+          let wrapper = document.createElement('div');
+          wrapper.className = `cw-cell-wrapper ${cellData ? 'active' : ''}`;
+          
+          if (cellData) {
+            if (cellData.num) {
+              wrapper.innerHTML += `<span class="cw-number">${cellData.num}</span>`;
+            }
+            wrapper.innerHTML += `
+              <input type="text" maxlength="1" id="cell-${r}-${c}" 
+                class="crossword-cell" 
+                data-answer="${cellData.letter}" 
+                data-across="${cellData.across}" 
+                data-down="${cellData.down}"
+                onfocus="handleCwFocus(${r}, ${c})"
+                oninput="handleCwInput(${r}, ${c})"
+                autocomplete="off">
+            `;
+          }
+          gridContainer.appendChild(wrapper);
+        }
+      }
+
+      // Render Clues
+      const renderClue = w => `
+        <li>
+          <div class="flex items-start gap-1">
+            <strong>${w.cwNum}.</strong> 
+            <span class="flex-grow leading-tight">${w.clue} <span class="text-slate-400 font-normal">(${w.word.length})</span></span>
+            <button onclick="toggleElement('cw-help-${w.cwNum}')" class="flex-shrink-0 text-[10px] font-bold bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-1 rounded transition border border-amber-200">💡 Help</button>
+          </div>
+          <div id="cw-help-${w.cwNum}" class="hidden mt-1.5 p-2 bg-amber-50 text-amber-900 text-xs italic rounded-md border border-amber-200 shadow-inner">
+            ${w.help}
+          </div>
+        </li>
+      `;
+
+      document.getElementById('acrossClues').innerHTML = placedWords.filter(w => w.dir === 'across').map(renderClue).join('');
+      document.getElementById('downClues').innerHTML = placedWords.filter(w => w.dir === 'down').map(renderClue).join('');
+    }
+
+    function handleCwFocus(r, c) {
+      const cell = document.getElementById(`cell-${r}-${c}`);
+      if (!cell) return;
+      const isAcross = cell.dataset.across === 'true';
+      const isDown = cell.dataset.down === 'true';
+      
+      // Smart direction toggle: respects user intent if cell belongs to one word
+      if (isAcross && !isDown) currentCwDir = 'across';
+      else if (!isAcross && isDown) currentCwDir = 'down';
+      // If it's an intersection, it keeps currentCwDir. User can click again to toggle in future, but keeping it simple.
+    }
+
+    function handleCwInput(r, c) {
+      const cell = document.getElementById(`cell-${r}-${c}`);
+      const val = cell.value.toUpperCase();
+      cell.value = val;
+      if (!val) return;
+
+      if (val === cell.dataset.answer) {
+        cell.classList.add('correct-cell');
+        cell.readOnly = true;
+        playShortSuccessTone();
+
+        // Auto Advance
+        let nr = r, nc = c;
+        if (currentCwDir === 'across' && cell.dataset.across === 'true') nc++;
+        else if (currentCwDir === 'down' && cell.dataset.down === 'true') nr++;
+        else if (cell.dataset.across === 'true') { nc++; currentCwDir = 'across'; } // fallback intersection correction
+        else if (cell.dataset.down === 'true') { nr++; currentCwDir = 'down'; }
+
+        focusNextAvailableCell(nr, nc);
+        checkCrosswordCompletion();
+      } else {
+        playShortErrorTone();
+        cell.classList.add('error-pulse');
+        setTimeout(() => { 
+          cell.value = ''; 
+          cell.classList.remove('error-pulse'); 
+        }, 300);
+      }
+    }
+
+    function focusNextAvailableCell(r, c) {
+      let lookR = r, lookC = c;
+      let limit = 20; // safety breakout
+      while(limit > 0) {
+        const next = document.getElementById(`cell-${lookR}-${lookC}`);
+        if (!next) break; 
+        if (!next.readOnly) {
+          next.focus();
+          break;
+        }
+        if (currentCwDir === 'across') lookC++;
+        else lookR++;
+        limit--;
+      }
+    }
+
+    function checkCrosswordCompletion() {
+      const cells = document.querySelectorAll('.crossword-cell[data-answer]');
+      let done = true;
+      cells.forEach(c => { if (!c.readOnly) done = false; });
+      
+      if (done && cells.length > 0) {
+        setTimeout(() => {
+          launchAutoConfetti();
+          playSuccessTone();
+          showCongratsModal(
+            "🧩 Crossword Completed!", 
+            "Brilliant! You've successfully solved the grid and mastered all the perception verbs. Excellent spelling and vocabulary skills!",
+            null
+          );
+        }, 300);
+      }
+    }
+
+    function toggleElement(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+      const btn = document.getElementById('btn-' + tabId);
+      if (btn) btn.classList.add('active');
+    }
+
+    function openDictionaryModal() {
+      document.getElementById('dictModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('dictInput').focus(), 100);
+    }
+
+    function closeDictionaryModal() {
+      document.getElementById('dictModal').classList.add('hidden');
+    }
+
+    function searchDictionary() {
+      const term = document.getElementById('dictInput').value.trim();
+      if (!term) return;
+      window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term)}`, '_blank');
+      closeDictionaryModal();
+    }
+
+    // Initialize components on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTheory();
+      renderQuiz();
+      initCrossword();
+    });
+  </script>
+</body>
+</html>
