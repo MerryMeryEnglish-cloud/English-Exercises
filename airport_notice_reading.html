@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Reading Comprehension: Airport Notice (A2)</title>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary-teal: #0eb5b0;
+      --dark-teal: #087f7b;
+      --navy: #0d2b52;
+      --yellow: #fdb813;
+      --yellow-light: #fff3d4;
+      --light-bg: #f4f8fb;
+      --white: #ffffff;
+      --gray-border: #d7e2ea;
+      --text-dark: #203040;
+      --text-muted: #5e7388;
+      --correct: #27ae60;
+      --incorrect: #e74c3c;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(13, 43, 82, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* HEADER & NAV */
+    header {
+      background-color: var(--white);
+      border-bottom: 3px solid var(--primary-teal);
+      padding: 14px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-img {
+      height: 52px;
+      width: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid var(--primary-teal);
+      background-color: var(--white);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      color: var(--navy);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .brand-text p {
+      font-size: 0.82rem;
+      color: var(--primary-teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--white);
+      color: var(--navy);
+      border: 1.5px solid var(--gray-border);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--light-bg);
+      border-color: var(--primary-teal);
+      color: var(--dark-teal);
+      transform: translateY(-1px);
+    }
+
+    .btn-reset {
+      background: var(--yellow-light);
+      border-color: var(--yellow);
+      color: #925f00;
+    }
+
+    .btn-reset:hover {
+      background: #ffe6aa;
+      color: #744b00;
+    }
+
+    /* MAIN CONTAINER */
+    .main-wrap {
+      max-width: 1050px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    /* TABS NAV */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--gray-border);
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .tab-btn:hover {
+      color: var(--navy);
+      background: rgba(14, 181, 176, 0.08);
+    }
+
+    .tab-btn.active {
+      color: var(--navy);
+      border-bottom: 3.5px solid var(--primary-teal);
+      background: var(--white);
+    }
+
+    /* TAB CONTENT PANELS */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARD STYLES */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-border);
+    }
+
+    .section-intro {
+      background: #eef8f8;
+      border-left: 4px solid var(--primary-teal);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+
+    .section-intro strong {
+      color: var(--dark-teal);
+    }
+
+    /* NOTICE BOARD */
+    .notice-card {
+      background: #fffdf5;
+      border: 2px dashed var(--yellow);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .notice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1.5px solid #f2dfa9;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .notice-title {
+      font-size: 1.25rem;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .badge-a2 {
+      background: var(--navy);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .notice-text p {
+      margin-bottom: 14px;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #2b3a4a;
+    }
+
+    .notice-rules {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 14px 18px;
+      border: 1px solid #ebd9a2;
+      margin-top: 12px;
+    }
+
+    .notice-rules li {
+      margin-left: 20px;
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+    }
+
+    /* VOCABULARY GRID */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .vocab-item {
+      background: var(--light-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 10px;
+      padding: 14px;
+      transition: transform 0.15s ease;
+    }
+
+    .vocab-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary-teal);
+    }
+
+    .vocab-word-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .vocab-term {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .vocab-ipa {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .vocab-def {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .vocab-ex {
+      font-size: 0.84rem;
+      color: #3b5066;
+      border-left: 2.5px solid var(--primary-teal);
+      padding-left: 8px;
+      font-style: italic;
+    }
+
+    /* MATCHING COMPONENT */
+    .matching-completed {
+      background: #e8f8f0;
+      border: 2px solid var(--correct);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .matching-completed.has-items {
+      display: block;
+    }
+
+    .matching-completed h4 {
+      color: #1b6d3b;
+      margin-bottom: 12px;
+      font-size: 0.98rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .completed-pairs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+    }
+
+    .completed-pair-tag {
+      background: var(--white);
+      border: 1.5px solid var(--correct);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--navy);
+      animation: popIn 0.25s ease-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .matching-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 650px) {
+      .matching-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .matching-card {
+      background: var(--light-bg);
+      border: 2px solid var(--gray-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .matching-card:hover {
+      border-color: var(--primary-teal);
+      background: #eefcfb;
+    }
+
+    .matching-card.selected {
+      border-color: var(--navy);
+      background: #e2f0fc;
+      box-shadow: 0 0 0 3px rgba(13, 43, 82, 0.15);
+      font-weight: 700;
+    }
+
+    .matching-card.wrong {
+      border-color: var(--incorrect);
+      background: #fdeaea;
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    /* MULTIPLE CHOICE & QUESTIONS LIST */
+    .exercise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .question-card {
+      background: var(--white);
+      border: 1.5px solid var(--gray-border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .question-card.answered-correct {
+      border-color: var(--correct);
+      background: #fafdfb;
+    }
+
+    .question-prompt {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .q-number {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.8rem;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .mc-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .mc-option {
+      background: var(--light-bg);
+      border: 1.5px solid var(--gray-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      transition: all 0.15s ease;
+    }
+
+    .mc-option:hover:not(:disabled) {
+      border-color: var(--primary-teal);
+      background: #eefcfb;
+    }
+
+    .mc-option.correct {
+      background: #d4edda !important;
+      border-color: var(--correct) !important;
+      color: #155724 !important;
+      font-weight: 700;
+    }
+
+    .mc-option.wrong {
+      background: #f8d7da !important;
+      border-color: var(--incorrect) !important;
+      color: #721c24 !important;
+    }
+
+    /* FILL IN THE BLANKS */
+    .word-bank-box {
+      background: #f0f7fb;
+      border: 2px solid #8ac1e2;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      position: sticky;
+      top: 88px; /* Fijo debajo del header */
+      z-index: 50;
+      box-shadow: 0 6px 18px rgba(13, 43, 82, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .bank-chip {
+      background: var(--white);
+      border: 1.5px solid #a8cce4;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .bank-chip:hover {
+      background: var(--primary-teal);
+      color: var(--white);
+      border-color: var(--dark-teal);
+      transform: translateY(-2px);
+    }
+
+    .word-bank-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-right: 6px;
+    }
+
+    
+
+    .fill-sentence-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.02rem;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .fill-input {
+      border: 2px solid var(--gray-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 140px;
+      max-width: 220px;
+      transition: border-color 0.2s;
+    }
+
+    .fill-input:focus {
+      outline: none;
+      border-color: var(--primary-teal);
+      background: #f7feff;
+    }
+
+    .fill-input.is-correct {
+      border-color: var(--correct);
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .fill-input.is-wrong {
+      border-color: var(--incorrect);
+      background: #fdeaea;
+    }
+
+    /* ACTION BAR INSIDE QUESTIONS */
+    .q-action-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-dark);
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--light-bg);
+      border-color: var(--primary-teal);
+    }
+
+    .btn-check-item {
+      background: var(--primary-teal);
+      color: var(--white);
+      border: none;
+    }
+
+    .btn-check-item:hover {
+      background: var(--dark-teal);
+    }
+
+    .btn-hint {
+      color: #925f00;
+      background: #fff8e8;
+      border-color: #f7d688;
+    }
+
+    .btn-hint:hover {
+      background: #ffefc6;
+    }
+
+    /* DEFERRED AUDIO BUTTON */
+    .btn-listen-deferred {
+      background: #eef8f8;
+      border: 1.5px solid var(--primary-teal);
+      color: var(--dark-teal);
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: none; /* hidden until solved */
+      align-items: center;
+      gap: 6px;
+      animation: popIn 0.25s ease-out;
+    }
+
+    .btn-listen-deferred.visible {
+      display: inline-flex;
+    }
+
+    .hint-box {
+      font-size: 0.86rem;
+      color: #7d5203;
+      background: #fff9e6;
+      border: 1px dashed #fcd579;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 8px;
+      display: none;
+      width: 100%;
+    }
+
+    .hint-box.show {
+      display: block;
+    }
+
+    /* BOTTOM NAVIGATION BETWEEN TABS */
+    .tab-footer-nav {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1.5px solid var(--gray-border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-next-tab {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 24px;
+      padding: 12px 24px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(13, 43, 82, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-next-tab:hover {
+      background: var(--dark-teal);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(13, 43, 82, 0.25);
+    }
+
+    /* MODAL POPUP (CONGRATULATIONS & DICTIONARY) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(13, 43, 82, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+      position: relative;
+      animation: modalPop 0.25s ease-out;
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.45rem;
+      color: var(--navy);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .modal-msg {
+      font-size: 0.98rem;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .modal-stats {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--navy);
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .modal-btn {
+      background: var(--primary-teal);
+      color: var(--white);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .modal-btn:hover {
+      background: var(--dark-teal);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="brand-section">
+        <img src="logo.png" alt="Merry Mery English" class="logo-img">
+        <div class="brand-text">
+          <h1>Merry Mery English</h1>
+          <p>Reading Comprehension (Level A2)</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a href="index.html" class="nav-btn">🏠 Home</a>
+        <button class="nav-btn" onclick="openDictionaryModal()">📖 Dictionary</button>
+        <button class="nav-btn btn-reset" onclick="resetAndShuffleCurrent()">🔄 Reset & Shuffle</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- TABS NAVIGATION (Sin Tab 1, Tab 2) -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('overview')">Airport Notice & Vocabulary</button>
+      <button class="tab-btn" onclick="switchTab('definitions')">Match the Definitions</button>
+      <button class="tab-btn" onclick="switchTab('multiple-choice')">Multiple Choice Challenge</button>
+      <button class="tab-btn" onclick="switchTab('fill-blanks')">Fill in the Blanks</button>
+    </nav>
+
+    <!-- TAB 1: READING & VOCABULARY OVERVIEW -->
+    <section id="panel-overview" class="tab-panel active">
+      <div class="card">
+        <div class="section-intro">
+          <strong>✈️ Welcome to today's reading practice!</strong> Carefully read the cabin luggage rules displayed at Metro International Airport. Listen to the clear English pronunciation and study the 10 key vocabulary terms before starting the interactive tasks.
+        </div>
+
+        <div class="notice-card">
+          <div class="notice-header">
+            <h2 class="notice-title">🛫 Metro Airport: Hand Luggage & Cabin Rules</h2>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="badge-a2">Level A2 • Travel</span>
+              <button class="nav-btn" onclick="playText(document.getElementById('full-notice-content').innerText)" style="padding:4px 10px; font-size:0.8rem;">
+                🔊 Listen to Notice
+              </button>
+            </div>
+          </div>
+          <div id="full-notice-content" class="notice-text">
+            <p><strong>What items can passengers take on board as hand luggage?</strong></p>
+            <p>Please remember that each passenger is allowed to carry <strong>ONE cabin suitcase</strong> into the aircraft. This suitcase must not exceed the dimensions of <strong>55cm x 22cm x 35cm</strong> and must not weigh more than <strong>10kg</strong>.</p>
+            <p>You can also carry <strong>one small personal accessory</strong>, such as a laptop bag, small rucksack, or handbag, which must fit easily under the seat in front of you. If you bring both a suitcase and a handbag, their <strong>combined total weight cannot exceed 10kg</strong>.</p>
+            <p>If your luggage is too bulky or exceeds the weight limit, you will not be permitted to take it into the cabin. Airline staff will transfer your bag into <strong>the hold</strong> (the aircraft luggage compartment), and an extra handling fee will be charged.</p>
+            <div class="notice-rules">
+              <p style="margin-bottom:6px; font-weight:700; color:var(--navy);">⚠️ Essential Security Regulations:</p>
+              <ul>
+                <li><strong>Electronic Devices:</strong> Make sure your mobile phones, laptops, and tablets are <strong>fully charged</strong> before reaching the checkpoint so that security staff can turn them on and inspect them.</li>
+                <li><strong>Liquids & Gels:</strong> Liquids brought from home in containers larger than 100ml are strictly forbidden. However, bottles over 100ml are <strong>allowed on board</strong> if they are bought at airport shops <em>after passing security screening</em>.</li>
+              </ul>
+            </div>
+            <p style="margin-top:14px; font-weight:600; color:var(--dark-teal);">Have a safe journey and enjoy your flight!</p>
+          </div>
+        </div>
+
+        <!-- KEY VOCABULARY -->
+        <h3 style="color:var(--navy); font-size:1.15rem; margin-bottom:12px;">📚 Key Vocabulary (10 Essential Words)</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:16px;">Listen to each word and read the simple definition and sample sentence.</p>
+
+        <div class="vocab-grid" id="vocab-grid-container">
+          <!-- Injected via JS -->
+        </div>
+
+        <div class="tab-footer-nav">
+          <button class="btn-next-tab" onclick="switchTab('definitions')">
+            Go to Match the Definitions ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: MATCH THE DEFINITIONS -->
+    <section id="panel-definitions" class="tab-panel">
+      <div class="card">
+        <div class="section-intro">
+          <strong>🧩 Exercise Instructions:</strong> Match each vocabulary term on the left with its correct definition on the right. When you find a match, the pair will lock at the top with an audio button!
+        </div>
+
+        <!-- Container for locked pairs -->
+        <div id="matching-completed-box" class="matching-completed">
+          <h4>✅ Matched Vocabulary Pairs (<span id="matched-count">0</span>/10):</h4>
+          <div id="completed-pairs-container" class="completed-pairs-list"></div>
+        </div>
+
+        <div class="matching-columns">
+          <div>
+            <h4 style="color:var(--navy); margin-bottom:10px; font-size:0.95rem;">Select a Term:</h4>
+            <div id="terms-column"></div>
+          </div>
+          <div>
+            <h4 style="color:var(--navy); margin-bottom:10px; font-size:0.95rem;">Select the Matching Definition:</h4>
+            <div id="defs-column"></div>
+          </div>
+        </div>
+
+        <div class="tab-footer-nav">
+          <button class="btn-next-tab" onclick="switchTab('multiple-choice')">
+            Go to Multiple Choice Challenge ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MULTIPLE CHOICE CHALLENGE -->
+    <section id="panel-multiple-choice" class="tab-panel">
+      <div class="card">
+        <div class="section-intro">
+          <strong>🎯 Exercise Instructions:</strong> Read each question about the airport notice and select the best answer. The options are shuffled automatically. Once you answer correctly, the audio button will appear so you can listen!
+        </div>
+
+        <div id="mc-list" class="exercise-list">
+          <!-- Generated via JS -->
+        </div>
+
+        <div class="tab-footer-nav">
+          <button class="btn-next-tab" onclick="switchTab('fill-blanks')">
+            Go to Fill in the Blanks ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: FILL IN THE BLANKS -->
+    <section id="panel-fill-blanks" class="tab-panel">
+      <div class="card">
+        <div class="section-intro">
+          <strong>✍️ Exercise Instructions:</strong> Complete the sentences based on the airport guidelines using the vocabulary bank provided. Type your answer and click <em>Check</em> or press Enter. You can ask for a hint if needed!
+        </div>
+
+        <div class="word-bank-box" id="sticky-word-bank">
+          <span class="word-bank-title">📌 Word Bank (Always Visible):</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('passengers')">passengers</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('weigh')">weigh</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('hold')">hold</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('security staff')">security staff</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('fully charged')">fully charged</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('allowed')">allowed</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('liquids')">liquids</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('on board')">on board</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('devices')">devices</span>
+          <span class="bank-chip" onclick="insertWordToActiveInput('hand luggage')">hand luggage</span>
+        </div>
+
+        <div id="fib-list" class="exercise-list">
+          <!-- Generated via JS -->
+        </div>
+
+        <div class="tab-footer-nav">
+          <button class="btn-next-tab" onclick="switchTab('overview')">
+            Back to Airport Notice & Vocabulary ↺
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL FOR CONGRATULATIONS -->
+  <div id="congrats-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon" id="modal-icon">🎉</div>
+      <h3 class="modal-title" id="modal-title">Outstanding Achievement!</h3>
+      <p class="modal-msg" id="modal-message">You have completed all items in this section successfully!</p>
+      <div class="modal-stats" id="modal-stats">
+        <span>Correct: <b id="stat-correct">10</b></span>
+        <span>Retries / Errors: <b id="stat-errors">0</b></span>
+        <span>Accuracy: <b id="stat-accuracy">100%</b></span>
+      </div>
+      <button class="modal-btn" onclick="closeModal('congrats-modal')">Continue Learning 🚀</button>
+    </div>
+  </div>
+
+  <!-- MODAL FOR DICTIONARY -->
+  <div id="dictionary-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon">📖</div>
+      <h3 class="modal-title">Cambridge Dictionary Quick Search</h3>
+      <p class="modal-msg">Type any English word from the reading to look up its definition, pronunciation, and examples.</p>
+      <input type="text" id="dict-search-input" class="fill-input" placeholder="e.g., luggage, checkpoint..." style="width:100%; max-width:100%; margin-bottom:14px; text-align:center;">
+      <div style="display:flex; justify-content:center; gap:10px;">
+        <button class="modal-btn" onclick="executeDictSearch()">Search in Cambridge</button>
+        <button class="nav-btn" onclick="closeModal('dictionary-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       AUDIO SYNTHESIS & SOUND EFFECTS (Web Audio API)
+       ========================================================== */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playTone(freq, type, duration) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function soundCorrect() {
+      playTone(587.33, 'triangle', 0.12); // D5
+      setTimeout(() => playTone(880, 'triangle', 0.25), 110); // A5
+    }
+
+    function soundError() {
+      playTone(260, 'sawtooth', 0.18);
+      setTimeout(() => playTone(200, 'sawtooth', 0.22), 120);
+    }
+
+    function playText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-GB';
+        utter.rate = 0.9;
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    /* ==========================================================
+       VOCABULARY DATA (10 Terms)
+       ========================================================== */
+    const vocabData = [
+      { id: 1, term: "to weigh", ipa: "/weɪ/", def: "To measure how heavy someone or something is.", ex: "Please weigh your suitcase on the luggage scales before boarding." },
+      { id: 2, term: "a device", ipa: "/dɪˈvaɪs/", def: "An electronic machine such as a smartphone, tablet, or laptop.", ex: "All electronic devices must be removed from your bag for inspection." },
+      { id: 3, term: "fully charged", ipa: "/ˈfʊli tʃɑːdʒd/", def: "Having 100% electrical power in the battery.", ex: "Ensure your phone is fully charged so staff can verify it works." },
+      { id: 4, term: "security staff", ipa: "/sɪˈkjʊərəti stɑːf/", def: "Airport officers who check passengers to prevent any danger.", ex: "The security staff will examine your carry-on luggage." },
+      { id: 5, term: "a liquid", ipa: "/ˈlɪkwɪd/", def: "A substance that flows freely, like water, perfume, or juice.", ex: "Liquids over 100ml are not allowed through security screening." },
+      { id: 6, term: "to be allowed", ipa: "/tuː biː əˈlaʊd/", def: "To have permission to do or possess something.", ex: "Passengers are allowed to bring one small handbag into the cabin." },
+      { id: 7, term: "on board", ipa: "/ɒn bɔːd/", def: "Inside an aeroplane, train, or ship.", ex: "You can keep your valuables with you on board the plane." },
+      { id: 8, term: "the hold", ipa: "/ðə həʊld/", def: "The cargo compartment under the aircraft where heavy bags travel.", ex: "Large suitcases must go in the hold under the cabin floor." },
+      { id: 9, term: "hand luggage", ipa: "/hænd ˈlʌɡɪdʒ/", def: "Small bags that passengers take inside the cabin with them.", ex: "Place your hand luggage securely in the overhead compartment." },
+      { id: 10, term: "passengers", ipa: "/ˈpæsɪndʒəz/", def: "People who travel in a vehicle, train, or plane without driving it.", ex: "All passengers must present their boarding pass at gate 4." }
+    ];
+
+    /* ==========================================================
+       TAB 1: RENDER VOCABULARY OVERVIEW
+       ========================================================== */
+    function renderVocabGrid() {
+      const container = document.getElementById('vocab-grid-container');
+      container.innerHTML = vocabData.map(v => `
+        <div class="vocab-item">
+          <div class="vocab-word-row">
+            <span class="vocab-term">${v.term}</span>
+            <button class="nav-btn" onclick="playText('${v.term}. ${v.ex.replace(/'/g, "\'")}')" style="padding:3px 8px; font-size:0.75rem;">
+              🔊 Listen
+            </button>
+          </div>
+          <div class="vocab-ipa">${v.ipa}</div>
+          <p class="vocab-def">${v.def}</p>
+          <div class="vocab-ex">"${v.ex}"</div>
+        </div>
+      `).join('');
+    }
+
+    /* ==========================================================
+       TAB 2: MATCH THE DEFINITIONS (Fix-pair-at-top mechanism)
+       ========================================================== */
+    let matchTerms = [];
+    let matchDefs = [];
+    let selectedTermId = null;
+    let selectedDefId = null;
+    let matchCorrectCount = 0;
+    let matchMistakeCount = 0;
+
+    function initMatching() {
+      matchTerms = [...vocabData];
+      matchDefs = [...vocabData];
+      // Fisher-Yates shuffle
+      shuffleArray(matchTerms);
+      shuffleArray(matchDefs);
+      selectedTermId = null;
+      selectedDefId = null;
+      matchCorrectCount = 0;
+      matchMistakeCount = 0;
+
+      document.getElementById('completed-pairs-container').innerHTML = '';
+      document.getElementById('matching-completed-box').classList.remove('has-items');
+      document.getElementById('matched-count').innerText = '0';
+
+      renderMatchingColumns();
+    }
+
+    function renderMatchingColumns() {
+      const termCol = document.getElementById('terms-column');
+      const defCol = document.getElementById('defs-column');
+
+      termCol.innerHTML = matchTerms.map(t => `
+        <div class="matching-card ${selectedTermId === t.id ? 'selected' : ''}" 
+             id="term-card-${t.id}" 
+             onclick="selectMatchTerm(${t.id})">
+          <span>${t.term}</span>
+          <span style="font-size:0.75rem; color:var(--text-muted);">👉</span>
+        </div>
+      `).join('');
+
+      defCol.innerHTML = matchDefs.map(d => `
+        <div class="matching-card ${selectedDefId === d.id ? 'selected' : ''}" 
+             id="def-card-${d.id}" 
+             onclick="selectMatchDef(${d.id})">
+          <span>${d.def}</span>
+          <span style="font-size:0.75rem; color:var(--text-muted);">👈</span>
+        </div>
+      `).join('');
+    }
+
+    function selectMatchTerm(id) {
+      selectedTermId = id;
+      renderMatchingColumns();
+      checkPair();
+    }
+
+    function selectMatchDef(id) {
+      selectedDefId = id;
+      renderMatchingColumns();
+      checkPair();
+    }
+
+    function checkPair() {
+      if (selectedTermId !== null && selectedDefId !== null) {
+        if (selectedTermId === selectedDefId) {
+          // CORRECT MATCH
+          soundCorrect();
+          matchCorrectCount++;
+          const found = vocabData.find(v => v.id === selectedTermId);
+
+          // Remove from active columns
+          matchTerms = matchTerms.filter(t => t.id !== selectedTermId);
+          matchDefs = matchDefs.filter(d => d.id !== selectedDefId);
+
+          // Add to fixed top container
+          const box = document.getElementById('matching-completed-box');
+          box.classList.add('has-items');
+          document.getElementById('matched-count').innerText = matchCorrectCount;
+
+          const tag = document.createElement('div');
+          tag.className = 'completed-pair-tag';
+          tag.innerHTML = `
+            <span><strong>${found.term}</strong>: ${found.def}</span>
+            <button class="nav-btn" onclick="playText('${found.term}. ${found.def}')" style="padding:2px 8px; font-size:0.75rem; margin-left:8px;">
+              🔊
+            </button>
+          `;
+          document.getElementById('completed-pairs-container').appendChild(tag);
+
+          selectedTermId = null;
+          selectedDefId = null;
+          renderMatchingColumns();
+
+          if (matchTerms.length === 0) {
+            triggerCompletionModal("Match the Definitions", matchCorrectCount, matchMistakeCount);
+          }
+        } else {
+          // WRONG MATCH
+          soundError();
+          matchMistakeCount++;
+          const termEl = document.getElementById(`term-card-${selectedTermId}`);
+          const defEl = document.getElementById(`def-card-${selectedDefId}`);
+          if (termEl) termEl.classList.add('wrong');
+          if (defEl) defEl.classList.add('wrong');
+
+          setTimeout(() => {
+            selectedTermId = null;
+            selectedDefId = null;
+            renderMatchingColumns();
+          }, 450);
+        }
+      }
+    }
+
+    /* ==========================================================
+       TAB 3: MULTIPLE CHOICE CHALLENGE (10 items, shuffled options)
+       ========================================================== */
+    const rawQuestions = [
+      {
+        id: 1,
+        question: "How many main cabin suitcases can each passenger bring onto the aircraft?",
+        options: [
+          { text: "Only one suitcase", isCorrect: true },
+          { text: "Up to two large suitcases", isCorrect: false },
+          { text: "Three suitcases if they are light", isCorrect: false }
+        ],
+        hint: "Review the first paragraph: 'passengers can only carry ONE cabin suitcase onto the aircraft.'"
+      },
+      {
+        id: 2,
+        question: "What is the maximum weight allowed for a passenger's cabin suitcase?",
+        options: [
+          { text: "No more than 10 kilograms", isCorrect: true },
+          { text: "Up to 15 kilograms", isCorrect: false },
+          { text: "Exactly 22 kilograms", isCorrect: false }
+        ],
+        hint: "Check the notice dimensions: 55cm x 22cm x 35cm and up to 10kg."
+      },
+      {
+        id: 3,
+        question: "Which of the following combinations is NOT allowed in the cabin?",
+        options: [
+          { text: "A suitcase, a rucksack, and a handbag that weigh 10kg in total", isCorrect: true },
+          { text: "One suitcase and one small laptop bag weighing 10kg in total", isCorrect: false },
+          { text: "One cabin suitcase weighing 8kg and a handbag weighing 2kg", isCorrect: false }
+        ],
+        hint: "Passengers may only bring ONE suitcase plus ONE small personal accessory (max two items)."
+      },
+      {
+        id: 4,
+        question: "Where should passengers place their small accessory bag (laptop or handbag)?",
+        options: [
+          { text: "Under the seat directly in front of them", isCorrect: true },
+          { text: "Inside the aircraft toilet compartment", isCorrect: false },
+          { text: "In the airplane hold with large cargo", isCorrect: false }
+        ],
+        hint: "The text mentions small personal bags must fit under the seat in front of you."
+      },
+      {
+        id: 5,
+        question: "What happens if your cabin bag is too heavy or too big for the overhead bins?",
+        options: [
+          { text: "It must go into the hold and you will pay an extra fee", isCorrect: true },
+          { text: "You must leave it behind at the airport forever", isCorrect: false },
+          { text: "You can keep it on your lap during takeoff", isCorrect: false }
+        ],
+        hint: "Look for the sentence: 'Staff will put it in the hold for you and you will have to pay extra.'"
+      },
+      {
+        id: 6,
+        question: "Why must smartphones, laptops, and tablets be fully charged before security?",
+        options: [
+          { text: "So security personnel can turn them on and inspect them", isCorrect: true },
+          { text: "So passengers can listen to music during takeoff", isCorrect: false },
+          { text: "Because airplane seats do not have charging plugs", isCorrect: false }
+        ],
+        hint: "Security officers need to check that electronic devices are authentic and functioning."
+      },
+      {
+        id: 7,
+        question: "Which of these liquid items is strictly PROHIBITED in your hand luggage?",
+        options: [
+          { text: "A 250ml bottle of perfume brought directly from home", isCorrect: true },
+          { text: "A 500ml water bottle purchased in the airport shop after security", isCorrect: false },
+          { text: "A small 50ml hand sanitiser tube from home", isCorrect: false }
+        ],
+        hint: "Liquids brought from home cannot exceed 100ml per container."
+      },
+      {
+        id: 8,
+        question: "Can passengers bring bottles larger than 100ml on board the aircraft?",
+        options: [
+          { text: "Yes, only if they are purchased at airport shops after security", isCorrect: true },
+          { text: "No, drinks are never permitted on any flight", isCorrect: false },
+          { text: "Yes, any bottle size from home is completely acceptable", isCorrect: false }
+        ],
+        hint: "Check the rule about airport duty-free and terminal shops after the checkpoint."
+      },
+      {
+        id: 9,
+        question: "What does the word 'hold' mean in this airport announcement?",
+        options: [
+          { text: "The storage compartment underneath the aircraft cabin", isCorrect: true },
+          { text: "The pilot's cockpit control room", isCorrect: false },
+          { text: "The waiting lounge near boarding gate 12", isCorrect: false }
+        ],
+        hint: "In aviation, the luggage hold is where checked suitcases travel under the plane."
+      },
+      {
+        id: 10,
+        question: "If your two cabin items together weigh 12kg, what will the airline staff do?",
+        options: [
+          { text: "Transfer your baggage to the hold and charge an additional fee", isCorrect: true },
+          { text: "Allow you to board immediately without any questions", isCorrect: false },
+          { text: "Cancel your boarding pass and flight booking", isCorrect: false }
+        ],
+        hint: "12kg exceeds the 10kg total limit, so standard excess luggage procedures apply."
+      }
+    ];
+
+    let currentMCQuestions = [];
+    let mcCorrectCount = 0;
+    let mcMistakesCount = 0;
+
+    function initMultipleChoice() {
+      currentMCQuestions = JSON.parse(JSON.stringify(rawQuestions));
+      shuffleArray(currentMCQuestions);
+      currentMCQuestions.forEach(q => shuffleArray(q.options));
+      mcCorrectCount = 0;
+      mcMistakesCount = 0;
+
+      const container = document.getElementById('mc-list');
+      container.innerHTML = currentMCQuestions.map((q, idx) => `
+        <div class="question-card" id="mc-card-${q.id}">
+          <div class="question-prompt">
+            <span class="q-number">${idx + 1}</span>
+            <span>${q.question}</span>
+          </div>
+          <div class="mc-options">
+            ${q.options.map(opt => `
+              <button class="mc-option" onclick="selectMCOption(${q.id}, this, ${opt.isCorrect})">
+                ${opt.text}
+              </button>
+            `).join('')}
+          </div>
+          <div class="q-action-bar">
+            <button class="btn-action btn-hint" onclick="toggleHint('hint-mc-${q.id}')">💡 Hint</button>
+            <button class="btn-listen-deferred" id="listen-mc-${q.id}" onclick="playText('${q.question.replace(/'/g, "\'")}')">
+              🔊 Listen
+            </button>
+          </div>
+          <div class="hint-box" id="hint-mc-${q.id}">${q.hint}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectMCOption(qId, btnEl, isCorrect) {
+      const card = document.getElementById(`mc-card-${qId}`);
+      if (card.classList.contains('answered-correct')) return;
+
+      if (isCorrect) {
+        soundCorrect();
+        mcCorrectCount++;
+        card.classList.add('answered-correct');
+        btnEl.classList.add('correct');
+        
+        // Disable other buttons in this question
+        card.querySelectorAll('.mc-option').forEach(b => b.disabled = true);
+
+        // Show deferred listen button
+        const listenBtn = document.getElementById(`listen-mc-${qId}`);
+        if (listenBtn) listenBtn.classList.add('visible');
+
+        if (mcCorrectCount === currentMCQuestions.length) {
+          triggerCompletionModal("Multiple Choice Challenge", mcCorrectCount, mcMistakesCount);
+        }
+      } else {
+        soundError();
+        mcMistakesCount++;
+        btnEl.classList.add('wrong');
+        setTimeout(() => {
+          btnEl.classList.remove('wrong');
+        }, 600);
+      }
+    }
+
+    /* ==========================================================
+       TAB 4: FILL IN THE BLANKS (10 items, tolerance to contractions)
+       ========================================================== */
+    const rawFIB = [
+      {
+        id: 1,
+        before: "All",
+        after: "must show their boarding pass before entering the plane.",
+        accepted: ["passengers"],
+        hint: "People travelling on an aircraft."
+      },
+      {
+        id: 2,
+        before: "Ten kilograms is the maximum your hand luggage can",
+        after: "in total.",
+        accepted: ["weigh"],
+        hint: "Verb meaning to measure heavy an item is."
+      },
+      {
+        id: 3,
+        before: "Airport",
+        after: "might ask you to turn on your laptop at the checkpoint.",
+        accepted: ["security staff", "security"],
+        hint: "Officers responsible for passenger safety."
+      },
+      {
+        id: 4,
+        before: "Make sure all your mobile phones and tablets are",
+        after: "before you travel.",
+        accepted: ["fully charged", "charged"],
+        hint: "Having 100% battery power."
+      },
+      {
+        id: 5,
+        before: "Passengers are not",
+        after: "to bring liquid containers over 100ml from home.",
+        accepted: ["allowed", "permitted"],
+        hint: "Given permission to do something (past participle)."
+      },
+      {
+        id: 6,
+        before: "Suitcases that are too heavy must be placed in the",
+        after: "under the aircraft cabin.",
+        accepted: ["hold"],
+        hint: "The lower baggage storage compartment."
+      },
+      {
+        id: 7,
+        before: "Shampoo, perfume, and drinking water are all examples of",
+        after: ".",
+        accepted: ["liquids", "a liquid"],
+        hint: "Substances that flow like water."
+      },
+      {
+        id: 8,
+        before: "Drinks bought in airport shops after security are permitted",
+        after: "the flight.",
+        accepted: ["on board"],
+        hint: "Prepositional phrase meaning inside the plane."
+      },
+      {
+        id: 9,
+        before: "Laptops, smartphones, and tablets are electronic",
+        after: ".",
+        accepted: ["devices"],
+        hint: "Plural noun for gadgets and electronic machines."
+      },
+      {
+        id: 10,
+        before: "Small bags that passengers take inside the cabin are called",
+        after: ".",
+        accepted: ["hand luggage", "cabin baggage", "carry-on"],
+        hint: "Bags you carry with your hands into the cabin."
+      }
+    ];
+
+    let currentFIB = [];
+    let fibCorrectCount = 0;
+    let fibMistakesCount = 0;
+
+    function initFillBlanks() {
+      currentFIB = JSON.parse(JSON.stringify(rawFIB));
+      shuffleArray(currentFIB);
+      fibCorrectCount = 0;
+      fibMistakesCount = 0;
+
+      const container = document.getElementById('fib-list');
+      container.innerHTML = currentFIB.map((item, idx) => `
+        <div class="question-card" id="fib-card-${item.id}">
+          <div class="question-prompt">
+            <span class="q-number">${idx + 1}</span>
+            <div class="fill-sentence-row">
+              <span>${item.before}</span>
+              <input type="text" class="fill-input" id="fib-input-${item.id}" 
+                     placeholder="Type answer..." onfocus="trackFIBFocus(this)" 
+                     onkeydown="if(event.key==='Enter') checkFIBItem(${item.id})">
+              <span>${item.after}</span>
+            </div>
+          </div>
+          <div class="q-action-bar">
+            <button class="btn-action btn-check-item" onclick="checkFIBItem(${item.id})">Check</button>
+            <button class="btn-action btn-hint" onclick="toggleHint('hint-fib-${item.id}')">💡 Hint</button>
+            <button class="btn-listen-deferred" id="listen-fib-${item.id}" onclick="playFullFIBSentence(${item.id})">
+              🔊 Listen
+            </button>
+          </div>
+          <div class="hint-box" id="hint-fib-${item.id}">${item.hint}</div>
+        </div>
+      `).join('');
+    }
+
+    
+    let lastActiveFIBInput = null;
+
+    function trackFIBFocus(inputEl) {
+      lastActiveFIBInput = inputEl;
+    }
+
+    function insertWordToActiveInput(word) {
+      if (lastActiveFIBInput && !lastActiveFIBInput.disabled) {
+        lastActiveFIBInput.value = word;
+        lastActiveFIBInput.focus();
+      } else {
+        // Encontrar el primer input no respondido
+        const firstEmpty = Array.from(document.querySelectorAll('.fill-input')).find(inp => !inp.disabled);
+        if (firstEmpty) {
+          firstEmpty.value = word;
+          firstEmpty.focus();
+          lastActiveFIBInput = firstEmpty;
+        }
+      }
+    }
+
+    function normalizeText(str) {
+      return str.trim().toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ');
+    }
+
+    function checkFIBItem(id) {
+      const card = document.getElementById(`fib-card-${id}`);
+      if (card.classList.contains('answered-correct')) return;
+
+      const input = document.getElementById(`fib-input-${id}`);
+      const val = normalizeText(input.value);
+      const item = currentFIB.find(i => i.id === id);
+
+      const isMatch = item.accepted.some(acc => normalizeText(acc) === val);
+
+      if (isMatch) {
+        soundCorrect();
+        fibCorrectCount++;
+        card.classList.add('answered-correct');
+        input.classList.remove('is-wrong');
+        input.classList.add('is-correct');
+        input.disabled = true;
+
+        // Reveal deferred listen button
+        const listenBtn = document.getElementById(`listen-fib-${id}`);
+        if (listenBtn) listenBtn.classList.add('visible');
+
+        if (fibCorrectCount === currentFIB.length) {
+          triggerCompletionModal("Fill in the Blanks", fibCorrectCount, fibMistakesCount);
+        }
+      } else {
+        soundError();
+        fibMistakesCount++;
+        input.classList.add('is-wrong');
+        setTimeout(() => input.classList.remove('is-wrong'), 700);
+      }
+    }
+
+    function playFullFIBSentence(id) {
+      const item = currentFIB.find(i => i.id === id);
+      const full = `${item.before} ${item.accepted[0]} ${item.after}`;
+      playText(full);
+    }
+
+    /* ==========================================================
+       HELPERS: NAVIGATION, SHUFFLE, HINTS & MODALS
+       ========================================================== */
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => 
+        b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabKey)
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const panel = document.getElementById(`panel-${tabKey}`);
+      if (panel) panel.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetAndShuffleCurrent() {
+      // Find active panel
+      const activePanel = document.querySelector('.tab-panel.active');
+      if (!activePanel) return;
+
+      if (activePanel.id === 'panel-definitions') {
+        initMatching();
+      } else if (activePanel.id === 'panel-multiple-choice') {
+        initMultipleChoice();
+      } else if (activePanel.id === 'panel-fill-blanks') {
+        initFillBlanks();
+      } else {
+        // Overview tab reset: re-render
+        renderVocabGrid();
+      }
+    }
+
+    function toggleHint(boxId) {
+      const box = document.getElementById(boxId);
+      if (box) box.classList.toggle('show');
+    }
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    /* ==========================================================
+       CONGRATULATIONS MODAL & CONFETTI
+       ========================================================== */
+    function triggerCompletionModal(sectionName, correct, mistakes) {
+      const totalAttempts = correct + mistakes;
+      const errorRate = totalAttempts > 0 ? (mistakes / totalAttempts) * 100 : 0;
+      const accuracy = totalAttempts > 0 ? Math.round((correct / totalAttempts) * 100) : 100;
+
+      let title = "Outstanding Mastery! 🏆";
+      let msg = `You completed all 10 items in "${sectionName}" without making a single mistake! Perfect comprehension!`;
+      let icon = "🌟";
+
+      if (errorRate > 0 && errorRate <= 20) {
+        title = "Great Job! 🎉";
+        msg = `Excellent work in "${sectionName}"! You solved all exercises with high accuracy.`;
+        icon = "👏";
+      } else if (errorRate > 20) {
+        title = "Well Done for Persevering! 💪";
+        msg = `You finished "${sectionName}" through practice and persistence! Review the hints and notice rules to sharpen your score next time.`;
+        icon = "✈️";
+      }
+
+      document.getElementById('modal-icon').innerText = icon;
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-message').innerText = msg;
+      document.getElementById('stat-correct').innerText = correct;
+      document.getElementById('stat-errors').innerText = mistakes;
+      document.getElementById('stat-accuracy').innerText = `${accuracy}%`;
+
+      document.getElementById('congrats-modal').classList.add('active');
+
+      // Trigger Confetti
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    /* ==========================================================
+       DICTIONARY SEARCH
+       ========================================================== */
+    function openDictionaryModal() {
+      document.getElementById('dictionary-modal').classList.add('active');
+      setTimeout(() => document.getElementById('dict-search-input').focus(), 150);
+    }
+
+    function executeDictSearch() {
+      const word = document.getElementById('dict-search-input').value.trim();
+      if (word) {
+        const url = `https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(word)}`;
+        window.open(url, '_blank');
+        closeModal('dictionary-modal');
+      }
+    }
+
+    // Auto Init on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderVocabGrid();
+      initMatching();
+      initMultipleChoice();
+      initFillBlanks();
+    });
+  </script>
+</body>
+</html>
