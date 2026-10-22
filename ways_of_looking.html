@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ways of Looking - Merry Mery English</title>
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      /* Paleta original (Índigo / Azul) */
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-light: #e0e7ff;
+      --secondary: #0ea5e9;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 14px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      
+      /* Retro Comic Colors for SVGs */
+      --comic-yellow: #FFE800;
+      --comic-cyan: #00E5FF;
+      --comic-magenta: #FF007F;
+      --comic-stroke: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* HEADER */
+    header {
+      background: white;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 55px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .voice-select-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .voice-select-box select {
+      border: none;
+      background: transparent;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn-nav {
+      background: white;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-reset {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #b91c1c;
+    }
+
+    .btn-reset:hover {
+      background: #fee2e2;
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    /* MAIN CONTAINER & TABS */
+    .main-container {
+      max-width: 1240px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: rgba(79, 70, 229, 0.05);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      background: white;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION INTRO */
+    .section-intro {
+      background: white;
+      border-left: 5px solid var(--primary);
+      padding: 18px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+    .section-intro h2 { font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 6px; }
+    .section-intro p { color: var(--text-muted); font-size: 0.98rem; }
+
+    /* INFOGRAPHIC: LOOK vs SEE vs WATCH */
+    .infographic-banner {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+    .info-header { text-align: center; margin-bottom: 22px; }
+    .info-title { font-size: 1.8rem; font-weight: 900; color: var(--primary-dark); letter-spacing: -0.5px; }
+    .info-title span.look { color: var(--success); }
+    .info-title span.see { color: var(--secondary); }
+    .info-title span.watch { color: var(--accent); }
+    
+    .infographic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 860px) { .infographic-grid { grid-template-columns: 1fr; } }
+    
+    .info-col { border-radius: 12px; border: 2px solid var(--border); background: #f8fafc; display: flex; flex-direction: column; overflow: hidden; }
+    .info-col.look-col { border-top: 6px solid var(--success); }
+    .info-col.see-col { border-top: 6px solid var(--secondary); }
+    .info-col.watch-col { border-top: 6px solid var(--accent); }
+    
+    .info-col-header { padding: 10px; text-align: center; font-size: 1.2rem; font-weight: 800; color: white; }
+    .look-col .info-col-header { background: var(--success); }
+    .see-col .info-col-header { background: var(--secondary); }
+    .watch-col .info-col-header { background: var(--accent); }
+    
+    .info-col-body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+    .info-def-pill { background: white; border-radius: 8px; padding: 10px; font-size: 0.92rem; font-weight: 600; border-left: 4px solid; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
+    .look-col .info-def-pill { border-left-color: var(--success); color: #065f46; }
+    .see-col .info-def-pill { border-left-color: var(--secondary); color: #0369a1; }
+    .watch-col .info-def-pill { border-left-color: var(--accent); color: #92400e; }
+    
+    .info-examples-list { list-style: none; margin-bottom: 14px; }
+    .info-examples-list li { position: relative; padding-left: 18px; font-size: 0.88rem; margin-bottom: 6px; color: #334155; }
+    .info-examples-list li::before { content: "•"; position: absolute; left: 4px; font-weight: bold; }
+    .look-col .info-examples-list li::before { color: var(--success); }
+    .see-col .info-examples-list li::before { color: var(--secondary); }
+    .watch-col .info-examples-list li::before { color: var(--accent); }
+
+    /* CLUSTERS & VOCABULARY */
+    .cluster-section {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+    
+    .cluster-header {
+      display: flex;
+      align-items: center;
+      background: var(--primary-dark);
+      color: white;
+      padding: 16px 24px;
+      gap: 20px;
+    }
+    
+    .cluster-svg-box {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+    
+    .cluster-title h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; color: var(--comic-yellow); text-transform: uppercase; letter-spacing: 0.5px;}
+    .cluster-title p { font-size: 0.95rem; opacity: 0.9; }
+    
+    .cluster-verbs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      background: var(--card-bg);
+    }
+    
+    .vocab-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .vocab-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .vocab-term { font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); }
+    .vocab-def { font-size: 0.9rem; color: #334155; margin-bottom: 10px; }
+    .vocab-example {
+      background: #e0e7ff;
+      border-left: 3px solid var(--primary);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #3730a3;
+      margin-top: auto;
+    }
+
+    .btn-audio {
+      background: white;
+      border: 1.5px solid var(--primary-light);
+      color: var(--primary);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-audio:hover { background: var(--primary); color: white; transform: scale(1.1); }
+
+    /* SOLAPA 2: MULTIPLE CHOICE */
+    .mc-list { display: flex; flex-direction: column; gap: 20px; }
+    .mc-card { background: white; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .mc-card.solved { border-left: 6px solid var(--success); }
+    .mc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .mc-num { background: var(--primary-light); color: var(--primary-dark); font-weight: 700; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; }
+    .mc-prompt { font-size: 1.1rem; font-weight: 600; color: #1e293b; margin-bottom: 16px; }
+    .mc-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .mc-opt-btn {
+      background: #f8fafc; border: 1.5px solid var(--border); padding: 12px 16px; border-radius: 10px; text-align: left;
+      font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all 0.2s;
+    }
+    .mc-opt-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+    .mc-opt-btn.correct { background: #dcfce7 !important; border-color: var(--success) !important; color: #15803d !important; }
+    .mc-opt-btn.wrong { background: #fee2e2 !important; border-color: var(--danger) !important; color: #b91c1c !important; animation: shake 0.3s; }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+
+    .mc-feedback-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+    .btn-hint { background: #fef3c7; border: 1px solid #fde68a; color: #92400e; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+    .hint-text { font-size: 0.88rem; color: #92400e; background: #fffbeb; padding: 8px 12px; border-radius: 6px; margin-top: 8px; display: none; }
+    
+    .listen-btn-deferred { display: none; background: var(--success); color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; align-items: center; gap: 6px; }
+    .listen-btn-deferred.visible { display: inline-flex; }
+
+    /* SOLAPA 3: CROSSWORD */
+    .crossword-container { display: grid; grid-template-columns: 1fr 340px; gap: 25px; background: white; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    @media (max-width: 900px) { .crossword-container { grid-template-columns: 1fr; } }
+    .crossword-grid-wrapper { display: flex; justify-content: center; align-items: center; overflow-x: auto; padding: 10px; }
+    .crossword-grid { display: grid; gap: 2px; background: #cbd5e1; padding: 2px; border-radius: 8px; }
+    .cw-cell { position: relative; width: 38px; height: 38px; background: #f8fafc; }
+    .cw-cell.block { background: #1e293b; }
+    .cw-cell input { width: 100%; height: 100%; border: none; text-align: center; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; background: transparent; outline: none; color: #0f172a; }
+    .cw-cell input:focus { background: #e0e7ff; }
+    .cw-cell.correct-cell input { background: #dcfce7; color: #166534; }
+    .cw-num { position: absolute; top: 2px; left: 3px; font-size: 0.65rem; font-weight: 700; color: #64748b; pointer-events: none; }
+    .cw-clues-wrapper { display: flex; flex-direction: column; gap: 15px; max-height: 520px; overflow-y: auto; padding-right: 8px; }
+    .cw-clue-group h3 { font-size: 1.05rem; color: var(--primary-dark); border-bottom: 2px solid var(--primary-light); padding-bottom: 4px; margin-bottom: 10px; }
+    .cw-clue-item { font-size: 0.9rem; margin-bottom: 8px; padding: 6px 10px; background: #f8fafc; border-radius: 6px; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; }
+    .cw-clue-item:hover { background: var(--primary-light); border-left-color: var(--primary); }
+
+    /* SOLAPA 4: MEMORY MATCH GAME */
+    .memory-dashboard { display: flex; justify-content: space-between; align-items: center; background: white; padding: 14px 20px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .memory-stats { display: flex; gap: 20px; font-weight: 700; }
+    .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; perspective: 1000px; }
+    @media (max-width: 800px) { .memory-grid { grid-template-columns: repeat(2, 1fr); } }
+    
+    .memory-card { height: 160px; position: relative; cursor: pointer; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-radius: var(--radius); }
+    .memory-card.flipped, .memory-card.matched { transform: rotateY(180deg); }
+    .memory-card.matched { cursor: default; }
+    
+    .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: var(--radius); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; padding: 12px; text-align: center; border: 2px solid var(--border); overflow: hidden; }
+    .card-front { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; font-size: 2.2rem; font-weight: 700; user-select: none; }
+    .card-front::after { content: "👁️"; opacity: 0.85; }
+    .card-back { background: white; transform: rotateY(180deg); flex-direction: column; justify-content: center; }
+    .memory-card.matched .card-back { border-color: var(--success); background: #f0fdf4; }
+    .card-back svg { width: 85px; height: 85px; }
+    .card-back .card-text { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); text-transform: capitalize; margin: 0; }
+
+    /* FOOTER OF TABS */
+    .tab-footer { margin-top: 35px; display: flex; justify-content: flex-end; }
+    .btn-next-tab { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); transition: all 0.2s; }
+    .btn-next-tab:hover { background: var(--primary-dark); transform: translateX(4px); }
+
+    /* MODALS */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+    .modal-box { background: white; padding: 28px; border-radius: var(--radius); max-width: 480px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); text-align: center; position: relative; }
+    .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+    
+    .dict-form { display: flex; gap: 10px; margin-top: 15px; }
+    .dict-form input { flex-grow: 1; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; }
+    .dict-form button { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+    .celebrate-score-pill { display: inline-block; background: var(--primary-light); color: var(--primary-dark); font-size: 1.15rem; font-weight: 800; padding: 8px 18px; border-radius: 30px; margin: 12px 0 16px; border: 1.5px solid var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <!-- Logo cargado estáticamente tal como se solicitó -->
+        <img src="logo.png" alt="Merry Mery English" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'46\' fill=\'%234f46e5\'/><text x=\'50\' y=\'58\' font-size=\'36\' font-family=\'sans-serif\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>M</text></svg>'">
+        <span class="brand-title">Merry Mery English</span>
+      </a>
+
+      <div class="header-actions">
+        <div class="voice-select-box">
+          <span>🗣️ Voice:</span>
+          <select id="voiceGender" onchange="updateVoiceSelection()">
+            <option value="female-uk" selected>Female (UK)</option>
+            <option value="male-uk">Male (UK)</option>
+            <option value="female-us">Female (US)</option>
+            <option value="male-us">Male (US)</option>
+          </select>
+        </div>
+
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+        <button class="btn-nav" onclick="openDictionaryModal()">📖 Dictionary</button>
+        <button class="btn-nav btn-reset" onclick="resetActiveActivity()">🔄 Reset & Shuffle</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-container">
+
+    <!-- TABS NAVIGATION -->
+    <nav class="tabs-nav" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('overview')">📚 Vocabulary Clusters</button>
+      <button class="tab-btn" onclick="switchTab('multiple-choice')">🎯 Multiple Choice Challenge</button>
+      <button class="tab-btn" onclick="switchTab('crossword')">🧩 Crossword Puzzle</button>
+      <button class="tab-btn" onclick="switchTab('memory-game')">🃏 Memory Match Game</button>
+    </nav>
+
+    <!-- SOLAPA 1: OVERVIEW & CLUSTERS -->
+    <section id="overview" class="tab-content active">
+      <div class="section-intro">
+        <h2>34 Ways of Looking | Thematic Clusters</h2>
+        <p>To avoid feeling overwhelmed, we have grouped the verbs into visual families based on their intention (speed, hostility, wonder). Review the infographic and then explore the clusters.</p>
+      </div>
+
+      <!-- INFOGRAFÍA: LOOK vs SEE vs WATCH -->
+      <div class="infographic-banner">
+        <div class="info-header">
+          <h2 class="info-title"><span class="look">LOOK</span> vs <span class="see">SEE</span> vs <span class="watch">WATCH</span></h2>
+          <p style="color: var(--text-muted); font-weight: 600;">The foundation of visual verbs</p>
+        </div>
+
+        <div class="infographic-grid">
+          <div class="info-col look-col">
+            <div class="info-col-header">LOOK</div>
+            <div class="info-col-body">
+              <div class="info-def-pill">👁️ <strong>To direct your eyes.</strong><br><em>Intentional & conscious action.</em></div>
+              <ul class="info-examples-list">
+                <li>Look at that cute bird!</li>
+                <li>Look both ways before crossing.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="info-col see-col">
+            <div class="info-col-header">SEE</div>
+            <div class="info-col-body">
+              <div class="info-def-pill">💡 <strong>To perceive naturally.</strong><br><em>Happens without conscious effort.</em></div>
+              <ul class="info-examples-list">
+                <li>I see a car outside.</li>
+                <li>Did you see him at the party?</li>
+              </ul>
+            </div>
+          </div>
+          <div class="info-col watch-col">
+            <div class="info-col-header">WATCH</div>
+            <div class="info-col-body">
+              <div class="info-def-pill">⏱️ <strong>To observe over time.</strong><br><em>Focused on movement or activity.</em></div>
+              <ul class="info-examples-list">
+                <li>We watched a movie last night.</li>
+                <li>He is watching his little brother.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR DE CLUSTERS -->
+      <div id="clustersContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-next-tab" onclick="switchTab('multiple-choice')">Go to Multiple Choice Challenge ➔</button>
+      </div>
+    </section>
+
+    <!-- SOLAPA 2: MULTIPLE CHOICE -->
+    <section id="multiple-choice" class="tab-content">
+      <div class="section-intro">
+        <h2>Multiple Choice Challenge</h2>
+        <p>Apply what you learned in the clusters. Click <strong>Need a Hint?</strong> for a clue. The <strong>Listen</strong> button activates upon correct answers.</p>
+      </div>
+      <div class="mc-list" id="mcList"></div>
+      <div class="tab-footer">
+        <button class="btn-next-tab" onclick="switchTab('crossword')">Go to Crossword Puzzle ➔</button>
+      </div>
+    </section>
+
+    <!-- SOLAPA 3: CROSSWORD PUZZLE -->
+    <section id="crossword" class="tab-content">
+      <div class="section-intro">
+        <h2>Crossword Puzzle</h2>
+        <p>Recall the precise verbs from their definitions to fill out the grid.</p>
+      </div>
+      <div class="crossword-container">
+        <div class="crossword-grid-wrapper">
+          <div class="crossword-grid" id="crosswordGrid" style="grid-template-columns: repeat(10, 38px); grid-template-rows: repeat(10, 38px);"></div>
+        </div>
+        <div class="cw-clues-wrapper">
+          <div class="cw-clue-group">
+            <h3>Across</h3>
+            <div id="acrossClues"></div>
+          </div>
+          <div class="cw-clue-group">
+            <h3>Down</h3>
+            <div id="downClues"></div>
+          </div>
+          <div style="margin-top: 15px;">
+            <button class="btn-nav" style="width: 100%; justify-content: center; background: var(--primary); color: white;" onclick="checkCrossword()">✔ Check Crossword</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-footer">
+        <button class="btn-next-tab" onclick="switchTab('memory-game')">Go to Memory Match Game ➔</button>
+      </div>
+    </section>
+
+    <!-- SOLAPA 4: MEMORY MATCH GAME -->
+    <section id="memory-game" class="tab-content">
+      <div class="section-intro">
+        <h2>Memory Match Game</h2>
+        <p>Match the retro comic icons to their precise verbs. No illustrations are duplicated.</p>
+      </div>
+      <div class="memory-dashboard">
+        <div class="memory-stats">
+          <span>Pairs Matched: <span id="memoryMatches" style="color: var(--success);">0</span> / 8</span>
+          <span>Attempts: <span id="memoryAttempts" style="color: var(--primary-dark);">0</span></span>
+        </div>
+        <button class="btn-nav btn-reset" onclick="initMemoryGame()">🔄 Shuffle & Restart Cards</button>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="tab-footer">
+        <button class="btn-next-tab" onclick="switchTab('overview')">Back to Vocabulary Clusters ➔</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL CAMBRIDGE DICTIONARY -->
+  <div class="modal-overlay" id="dictModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeDictionaryModal()">×</button>
+      <h3 style="color: var(--primary-dark); margin-bottom: 8px;">Cambridge Dictionary Lookup</h3>
+      <p style="color: var(--text-muted); font-size: 0.93rem;">Search any word or phrasal verb to open its official definition:</p>
+      <form class="dict-form" onsubmit="searchCambridge(event)">
+        <input type="text" id="dictQuery" placeholder="e.g., scrutinize, glare, peek..." required>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL CELEBRACIÓN -->
+  <div class="modal-overlay" id="celebrateModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeCelebrateModal()">×</button>
+      <div style="font-size: 3.2rem; margin-bottom: 8px;">🎉</div>
+      <h3 id="celebrateTitle" style="font-size: 1.8rem; color: var(--primary-dark);">Outstanding!</h3>
+      <div class="celebrate-score-pill" id="celebrateScore">10/10 correct in 10 attempts!</div>
+      <p id="celebrateMsg" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Flawless performance!</p>
+      <button class="btn-next-tab" style="margin: 0 auto;" onclick="closeCelebrateModal()">Continue</button>
+    </div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       WEB AUDIO API & SPEECH SYNTHESIS
+       ===================================================================== */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let availableVoices = [];
+
+    function populateVoices() {
+      if ('speechSynthesis' in window) availableVoices = window.speechSynthesis.getVoices();
+    }
+    populateVoices();
+    if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = populateVoices;
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'correct') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); 
+        osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); 
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+      } else if (type === 'error') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(160, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+      } else if (type === 'flip') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(850, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.08);
+      }
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voiceOption = document.getElementById('voiceGender').value;
+      let lang = voiceOption.includes('uk') ? 'en-GB' : 'en-US';
+      utterance.lang = lang;
+
+      const isFemale = voiceOption.includes('female');
+      const matchedVoice = availableVoices.find(v => {
+        const matchesLang = v.lang.replace('_', '-').startsWith(lang.substring(0, 2));
+        const name = v.name.toLowerCase();
+        if (isFemale) return matchesLang && (name.includes('female') || name.includes('zira') || name.includes('samantha') || name.includes('susan'));
+        else return matchesLang && (name.includes('male') || name.includes('david') || name.includes('george') || name.includes('daniel'));
+      });
+      if (matchedVoice) utterance.voice = matchedVoice;
+      utterance.rate = 0.93;
+      window.speechSynthesis.speak(utterance);
+    }
+    function updateVoiceSelection() { speakText("Voice selected"); }
+
+    /* =====================================================================
+       SVG ASSETS (RETRO COMIC STYLE - 100% UNIQUE)
+       ===================================================================== */
+    const svgs = {
+      intense: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><path d="M20,40 L45,55 L30,65" stroke="var(--comic-magenta)" stroke-width="6" stroke-linecap="round"/><path d="M80,40 L55,55 L70,65" stroke="var(--comic-magenta)" stroke-width="6" stroke-linecap="round"/><circle cx="35" cy="55" r="10" fill="white"/><circle cx="65" cy="55" r="10" fill="white"/><circle cx="35" cy="55" r="4" fill="black"/><circle cx="65" cy="55" r="4" fill="black"/><path d="M40,20 L50,40 L60,20" fill="var(--comic-yellow)" stroke-linejoin="round"/></svg>`,
+      quick: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><circle cx="50" cy="55" r="35" fill="var(--comic-cyan)"/><path d="M50,55 L50,30" stroke-linecap="round"/><path d="M50,55 L70,65" stroke-linecap="round"/><path d="M40,10 L60,10" stroke-width="6"/><path d="M20,30 L10,20 M80,30 L90,20" stroke="var(--comic-magenta)" stroke-linecap="round"/></svg>`,
+      secret: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><rect x="25" y="15" width="50" height="70" fill="var(--comic-yellow)" rx="5"/><circle cx="50" cy="45" r="12" fill="white"/><path d="M44,55 L56,55 L60,75 L40,75 Z" fill="white"/><circle cx="50" cy="45" r="5" fill="var(--comic-cyan)"/></svg>`,
+      wonder: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><circle cx="30" cy="40" r="18" fill="white"/><circle cx="70" cy="40" r="18" fill="white"/><path d="M25,40 L35,40 M30,35 L30,45" stroke="var(--comic-magenta)" stroke-width="5"/><path d="M65,40 L75,40 M70,35 L70,45" stroke="var(--comic-magenta)" stroke-width="5"/><ellipse cx="50" cy="75" rx="12" ry="15" fill="var(--comic-cyan)"/></svg>`,
+      focus: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><circle cx="45" cy="45" r="30" fill="white"/><line x1="45" y1="15" x2="45" y2="30"/><line x1="45" y1="60" x2="45" y2="75"/><line x1="15" y1="45" x2="30" y2="45"/><line x1="60" y1="45" x2="75" y2="45"/><path d="M66,66 L90,90" stroke-width="8" stroke-linecap="round" stroke="var(--comic-magenta)"/><circle cx="45" cy="45" r="8" fill="var(--comic-yellow)"/></svg>`,
+      signal: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><circle cx="30" cy="50" r="15" fill="white"/><circle cx="30" cy="50" r="6" fill="black"/><path d="M60,50 Q75,65 90,50" stroke-width="6" stroke-linecap="round"/><path d="M70,30 L75,40 M85,35 L80,45" stroke="var(--comic-cyan)" stroke-linecap="round"/></svg>`,
+      discovery: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><path d="M20,30 L45,45 L45,80 L20,70 Z" fill="var(--comic-yellow)"/><path d="M80,30 L55,45 L55,80 L80,70 Z" fill="var(--comic-cyan)"/><path d="M45,55 L55,55 M45,65 L55,65" stroke-width="6"/><ellipse cx="20" cy="50" rx="10" ry="20" fill="white"/><ellipse cx="80" cy="50" rx="10" ry="20" fill="white"/></svg>`,
+      fixedStare: `<svg viewBox="0 0 100 100" fill="none" stroke="var(--comic-stroke)" stroke-width="4"><circle cx="50" cy="50" r="40" fill="white"/><circle cx="50" cy="50" r="15" fill="var(--comic-magenta)"/><circle cx="50" cy="50" r="6" fill="black"/><line x1="10" y1="50" x2="25" y2="50" stroke-width="5"/><line x1="90" y1="50" x2="75" y2="50" stroke-width="5"/><line x1="50" y1="10" x2="50" y2="25" stroke-width="5"/><line x1="50" y1="90" x2="50" y2="75" stroke-width="5"/></svg>`
+    };
+
+    /* =====================================================================
+       DATA: CLUSTERS OF VERBS
+       ===================================================================== */
+    const clustersData = [
+      {
+        id: "intense", title: "Intense & Hostile Looks", desc: "Expressions of anger or severe confrontation.", svg: svgs.intense,
+        verbs: [
+          { term: "glare", trans: "mirar con furia", def: "Stare with intense anger or hostility.", example: "She glared angrily at the intruder." },
+          { term: "glower", trans: "mirar con odio", def: "Look very angry, annoyed, or threatening.", example: "The coach glowered at the referee." },
+          { term: "scowl", trans: "poner mala cara", def: "Frown deeply showing explicit anger.", example: "He scowled furiously at his brother." }
+        ]
+      },
+      {
+        id: "quick", title: "Quick & Casual", desc: "Brief, passing, or relaxed ways of seeing.", svg: svgs.quick,
+        verbs: [
+          { term: "glance", trans: "echar un vistazo", def: "Take a very quick, momentary look.", example: "She glanced at her watch." },
+          { term: "scan", trans: "escanear", def: "Look quickly over text to pick out details.", example: "He scanned the newspaper over breakfast." },
+          { term: "browse", trans: "ojear", def: "Look casually through pages or goods.", example: "Sheila spent the afternoon browsing boutiques." }
+        ]
+      },
+      {
+        id: "secret", title: "Secretive & Straining", desc: "Looking cautiously, privately, or with physical effort.", svg: svgs.secret,
+        verbs: [
+          { term: "peep", trans: "mirar por rendija", def: "Look quickly and cautiously through a small hole.", example: "He was caught peeping through the keyhole." },
+          { term: "peer", trans: "esforzar la vista", def: "Look very carefully, as if straining to see well.", example: "The professor peered at me over his glasses." },
+          { term: "squint", trans: "entrecerrar los ojos", def: "Look with eyes half shut due to bright light.", example: "She squinted through the bright sunlight." }
+        ]
+      },
+      {
+        id: "wonder", title: "Wonder, Shock & Awe", desc: "Expressions related to surprise or being speechless.", svg: svgs.wonder,
+        verbs: [
+          { term: "gaze", trans: "contemplar", def: "Look steadily for a long time in admiration.", example: "She gazed at him in disbelief." },
+          { term: "gape", trans: "mirar boquiabierto", def: "Look with mouth open in shock or surprise.", example: "She gaped at the magician in astonishment." }
+        ]
+      },
+      {
+        id: "focus", title: "Fixated & Detailed Focus", desc: "Continuous, analytical, or intense observation.", svg: svgs.focus,
+        verbs: [
+          { term: "stare", trans: "mirar fijamente", def: "Look for a long time with wide open eyes.", example: "She was staring into space." },
+          { term: "scrutinize", trans: "examinar minuciosamente", def: "Inspect with deep, critical, and thorough care.", example: "The officer scrutinized every passport." }
+        ]
+      },
+      {
+        id: "signal", title: "Signals & Unwelcome Looks", desc: "Physical eye gestures or inappropriate staring.", svg: svgs.signal,
+        verbs: [
+          { term: "wink", trans: "guiñar el ojo", def: "Close one eye briefly as a deliberate signal.", example: "He winked warmly at me." },
+          { term: "blink", trans: "parpadear", def: "Shut and open both eyelids quickly.", example: "How long can you stare without blinking?" }
+        ]
+      },
+      {
+        id: "discovery", title: "Discovery & Formal", desc: "Spotting items or viewing them in a formal/literary context.", svg: svgs.discovery,
+        verbs: [
+          { term: "spot", trans: "detectar", def: "Recognize someone suddenly among others.", example: "The officer spotted the fugitive." },
+          { term: "sight", trans: "avistar", def: "See or visually discover something for the first time.", example: "The sailors finally sighted land." }
+        ]
+      }
+    ];
+
+    function renderClusters() {
+      const container = document.getElementById('clustersContainer');
+      let html = '';
+      
+      clustersData.forEach(cluster => {
+        let verbsHtml = cluster.verbs.map(v => `
+          <div class="vocab-item">
+            <div class="vocab-header">
+              <span class="vocab-term">${v.term}</span>
+              <button class="btn-audio" onclick="speakText('${v.term}')">🔊</button>
+            </div>
+            <p class="vocab-def">${v.def} <em>(${v.trans})</em></p>
+            <div class="vocab-example">
+              "${v.example}"
+              <button class="btn-audio" style="width:22px;height:22px;font-size:0.7rem;margin-left:5px;border:none;" onclick="speakText('${v.example.replace(/'/g,"\\'")}')">🔊</button>
+            </div>
+          </div>
+        `).join('');
+
+        html += `
+          <div class="cluster-section">
+            <div class="cluster-header">
+              <div class="cluster-svg-box">${cluster.svg}</div>
+              <div class="cluster-title">
+                <h3>${cluster.title}</h3>
+                <p>${cluster.desc}</p>
+              </div>
+            </div>
+            <div class="cluster-verbs-grid">
+              ${verbsHtml}
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    /* =====================================================================
+       TABS NAVIGATION
+       ===================================================================== */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      const matchingBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+      if (matchingBtn) matchingBtn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* =====================================================================
+       MULTIPLE CHOICE (10 Questions & Attempt Tracker)
+       ===================================================================== */
+    const mcOriginalQuestions = [
+      { sentence: "He _______ at me angrily without saying a word.", options: ["glared", "winked", "browsed", "blinked"], answer: "glared", hint: "Intense hostility and fury.", fullAudio: "He glared at me angrily without saying a word." },
+      { sentence: "She _______ at her watch and realized she was late.", options: ["glanced", "beheld", "ogled", "glowered"], answer: "glanced", hint: "A very quick check of the time.", fullAudio: "She glanced at her watch and realized she was late." },
+      { sentence: "The dazzling sun forced everyone to _______.", options: ["squint", "stare", "gape", "spot"], answer: "squint", hint: "Eyes half-closed due to light.", fullAudio: "The dazzling sun forced everyone to squint." },
+      { sentence: "He was caught _______ through the keyhole.", options: ["peeping", "gazing", "beholding", "viewing"], answer: "peeping", hint: "Looking secretly through a small gap.", fullAudio: "He was caught peeping through the keyhole." },
+      { sentence: "The tourists _______ in pure wonder at the sunset.", options: ["gazed", "scowled", "winked", "blinked"], answer: "gazed", hint: "Looking for a long time in admiration.", fullAudio: "The tourists gazed in pure wonder at the sunset." },
+      { sentence: "Could you _______ an eye over my presentation?", options: ["cast", "put", "throw", "take"], answer: "cast", hint: "Collocation: '... an eye over' something.", fullAudio: "Could you cast an eye over my presentation?" },
+      { sentence: "The detective carefully _______ the fingerprints.", options: ["scrutinized", "gawked", "winked", "glimpsed"], answer: "scrutinized", hint: "Examine with meticulous precision.", fullAudio: "The detective carefully scrutinized the fingerprints." },
+      { sentence: "He _______ playfully at his friend across the room.", options: ["winked", "glowered", "squinted", "peered"], answer: "winked", hint: "Closing one eye as a signal.", fullAudio: "He winked playfully at his friend across the room." },
+      { sentence: "The crowd _______ in total shock with mouths open.", options: ["gaped", "browsed", "scanned", "sighted"], answer: "gaped", hint: "Mouth hanging open in shock.", fullAudio: "The crowd gaped in total shock with mouths open." },
+      { sentence: "We spent Sunday morning _______ through old books.", options: ["browsing", "peeping", "glaring", "ogling"], answer: "browsing", hint: "Casually checking through goods.", fullAudio: "We spent Sunday morning browsing through old books." }
+    ];
+
+    let mcQuestions = [], mcSolvedCount = 0, mcTotalAttempts = 0;
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function initMultipleChoice() {
+      mcQuestions = shuffleArray(mcOriginalQuestions).map(q => ({ ...q, shuffledOptions: shuffleArray(q.options) }));
+      mcSolvedCount = 0; mcTotalAttempts = 0;
+      const container = document.getElementById('mcList');
+      container.innerHTML = '';
+      mcQuestions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'mc-card'; card.id = `mc-card-${idx}`;
+        const optsHtml = q.shuffledOptions.map(opt => `<button class="mc-opt-btn" onclick="checkMCOption(${idx}, '${opt}', this)">${opt}</button>`).join('');
+        card.innerHTML = `
+          <div class="mc-header">
+            <span class="mc-num">Question ${idx + 1} of ${mcQuestions.length}</span>
+            <button class="listen-btn-deferred" id="mc-listen-${idx}" onclick="speakText('${q.fullAudio.replace(/'/g, "\\'")}')">🔊 Listen</button>
+          </div>
+          <p class="mc-prompt">${q.sentence.replace('_______', '<span style="border-bottom: 2px dashed var(--primary); padding: 0 14px; color: var(--primary);">______</span>')}</p>
+          <div class="mc-options">${optsHtml}</div>
+          <div class="mc-feedback-row">
+            <button class="btn-hint" onclick="toggleHint(${idx})">💡 Hint</button>
+            <div class="hint-text" id="mc-hint-${idx}">${q.hint}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkMCOption(qIdx, selectedOpt, btnElem) {
+      const q = mcQuestions[qIdx];
+      const card = document.getElementById(`mc-card-${qIdx}`);
+      if (card.classList.contains('solved')) return;
+      mcTotalAttempts++;
+      if (selectedOpt === q.answer) {
+        playSound('correct');
+        btnElem.classList.add('correct'); card.classList.add('solved');
+        card.querySelectorAll('.mc-opt-btn').forEach(btn => btn.disabled = true);
+        card.querySelector('.mc-prompt').innerHTML = q.sentence.replace('_______', `<span style="color:var(--success); font-weight:700; text-decoration: underline;">${q.answer}</span>`);
+        document.getElementById(`mc-listen-${qIdx}`).classList.add('visible');
+        mcSolvedCount++;
+        if (mcSolvedCount === mcQuestions.length) triggerCelebrationPopup(mcSolvedCount, mcTotalAttempts);
+      } else {
+        playSound('error');
+        btnElem.classList.add('wrong');
+        setTimeout(() => btnElem.classList.remove('wrong'), 750);
+      }
+    }
+    function toggleHint(idx) {
+      const hint = document.getElementById(`mc-hint-${idx}`);
+      hint.style.display = (hint.style.display === 'block') ? 'none' : 'block';
+    }
+
+    /* =====================================================================
+       CROSSWORD PUZZLE
+       ===================================================================== */
+    const cwLayout = {
+      size: 10,
+      words: [
+        { id: 1, num: 1, dir: 'A', word: "GLARE", row: 0, col: 0, clue: "Stare fiercely and angrily." },
+        { id: 2, num: 1, dir: 'D', word: "GAZE", row: 0, col: 0, clue: "Look for a long time in admiration." },
+        { id: 3, num: 2, dir: 'D', word: "LOOK", row: 0, col: 1, clue: "Turn your eyes toward a direction." },
+        { id: 4, num: 3, dir: 'A', word: "SQUINT", row: 2, col: 2, clue: "Look with eyes half-closed in bright light." },
+        { id: 5, num: 4, dir: 'D', word: "PEEP", row: 2, col: 4, clue: "Look cautiously through a small gap." },
+        { id: 6, num: 5, dir: 'A', word: "STARE", row: 4, col: 0, clue: "Look steadily with wide-open eyes." },
+        { id: 7, num: 6, dir: 'A', word: "BLINK", row: 6, col: 2, clue: "Shut and open both eyelids quickly." },
+        { id: 8, num: 7, dir: 'D', word: "BROWSE", row: 4, col: 4, clue: "Inspect items or pages at leisure." },
+        { id: 9, num: 8, dir: 'A', word: "PEER", row: 8, col: 3, clue: "Look closely, straining to see clearly." },
+        { id: 10, num: 9, dir: 'D', word: "FROWN", row: 1, col: 7, clue: "Furrow the brow in worry." }
+      ]
+    };
+
+    function initCrossword() {
+      const gridElem = document.getElementById('crosswordGrid'); gridElem.innerHTML = '';
+      const matrix = Array(cwLayout.size).fill(null).map(() => Array(cwLayout.size).fill(null));
+      cwLayout.words.forEach(w => {
+        for (let i = 0; i < w.word.length; i++) {
+          const r = w.dir === 'A' ? w.row : w.row + i, c = w.dir === 'A' ? w.col + i : w.col;
+          if (!matrix[r][c]) matrix[r][c] = { letter: w.word[i], num: (i === 0 ? w.num : null) };
+          else if (i === 0 && !matrix[r][c].num) matrix[r][c].num = w.num;
+        }
+      });
+      for (let r = 0; r < cwLayout.size; r++) {
+        for (let c = 0; c < cwLayout.size; c++) {
+          const cellDiv = document.createElement('div'); cellDiv.className = 'cw-cell';
+          const info = matrix[r][c];
+          if (!info) cellDiv.classList.add('block');
+          else {
+            if (info.num) { const numSpan = document.createElement('span'); numSpan.className = 'cw-num'; numSpan.innerText = info.num; cellDiv.appendChild(numSpan); }
+            const input = document.createElement('input'); input.maxLength = 1; input.dataset.row = r; input.dataset.col = c; input.dataset.answer = info.letter;
+            input.addEventListener('input', handleCWInput); input.addEventListener('keydown', handleCWKey); cellDiv.appendChild(input);
+          }
+          gridElem.appendChild(cellDiv);
+        }
+      }
+      const acrossContainer = document.getElementById('acrossClues'), downContainer = document.getElementById('downClues');
+      acrossContainer.innerHTML = ''; downContainer.innerHTML = '';
+      cwLayout.words.forEach(w => {
+        const clueItem = document.createElement('div'); clueItem.className = 'cw-clue-item';
+        clueItem.innerHTML = `<strong>${w.num}.</strong> ${w.clue} <em style="color:#64748b">(${w.word.length} letters)</em>`;
+        clueItem.onclick = () => highlightWord(w);
+        if (w.dir === 'A') acrossContainer.appendChild(clueItem); else downContainer.appendChild(clueItem);
+      });
+    }
+
+    function handleCWInput(e) {
+      e.target.value = e.target.value.toUpperCase();
+      if (e.target.value.length === 1) {
+        const all = Array.from(document.querySelectorAll('.cw-cell input'));
+        if (all[all.indexOf(e.target) + 1]) all[all.indexOf(e.target) + 1].focus();
+      }
+    }
+    function handleCWKey(e) {
+      if (e.key === 'Backspace' && !e.target.value) {
+        const all = Array.from(document.querySelectorAll('.cw-cell input'));
+        if (all[all.indexOf(e.target) - 1]) all[all.indexOf(e.target) - 1].focus();
+      }
+    }
+    function highlightWord(w) {
+      document.querySelectorAll('.cw-cell input').forEach(inp => inp.style.background = '');
+      for (let i = 0; i < w.word.length; i++) {
+        const r = w.dir === 'A' ? w.row : w.row + i, c = w.dir === 'A' ? w.col + i : w.col;
+        const inp = document.querySelector(`.cw-cell input[data-row="${r}"][data-col="${c}"]`);
+        if (inp) inp.style.background = 'var(--primary-light)';
+      }
+      const first = document.querySelector(`.cw-cell input[data-row="${w.row}"][data-col="${w.col}"]`);
+      if (first) first.focus();
+    }
+    function checkCrossword() {
+      const inputs = document.querySelectorAll('.cw-cell input');
+      let allCorrect = true, filled = 0;
+      inputs.forEach(inp => {
+        const val = inp.value.trim().toUpperCase();
+        if (val) filled++;
+        if (val === inp.dataset.answer) inp.parentElement.classList.add('correct-cell');
+        else { allCorrect = false; inp.parentElement.classList.remove('correct-cell'); }
+      });
+      if (filled === inputs.length && allCorrect) { playSound('correct'); triggerCelebrationPopup(10, 10); }
+      else if (allCorrect && filled > 0) playSound('correct');
+      else playSound('error');
+    }
+
+    /* =====================================================================
+       MEMORY MATCH GAME (NO DUPLICATES, TEXT/ILLUSTRATION REMOVED)
+       ===================================================================== */
+    const memorySourcePairs = [
+      { id: 'm1', term: 'glare', svg: svgs.intense },
+      { id: 'm2', term: 'glance', svg: svgs.quick },
+      { id: 'm3', term: 'peep', svg: svgs.secret },
+      { id: 'm4', term: 'gaze', svg: svgs.wonder },
+      { id: 'm5', term: 'scrutinize', svg: svgs.focus },
+      { id: 'm6', term: 'stare', svg: svgs.fixedStare }, 
+      { id: 'm7', term: 'spot', svg: svgs.discovery },
+      { id: 'm8', term: 'wink', svg: svgs.signal }
+    ];
+
+    let flippedCards = [], matchedPairs = 0, memoryAttempts = 0, lockMemoryBoard = false;
+
+    function initMemoryGame() {
+      const grid = document.getElementById('memoryGrid'); grid.innerHTML = '';
+      flippedCards = []; matchedPairs = 0; memoryAttempts = 0; lockMemoryBoard = false;
+      document.getElementById('memoryMatches').innerText = '0';
+      document.getElementById('memoryAttempts').innerText = '0';
+      
+      let cards = [];
+      memorySourcePairs.forEach(item => {
+        cards.push({ id: item.id, type: 'image', content: item.svg, term: item.term });
+        cards.push({ id: item.id, type: 'text', content: item.term, term: item.term });
+      });
+      cards = shuffleArray(cards);
+      
+      cards.forEach((c) => {
+        const cardElem = document.createElement('div'); cardElem.className = 'memory-card'; cardElem.dataset.pairId = c.id;
+        
+        // Remove 'Illustration' and '(Verb)' wording completely
+        const backContent = c.type === 'image' 
+          ? `${c.content}` 
+          : `<span class="card-text">${c.content}</span>`;
+          
+        cardElem.innerHTML = `<div class="card-face card-front"></div><div class="card-face card-back">${backContent}</div>`;
+        cardElem.addEventListener('click', () => handleCardFlip(cardElem));
+        grid.appendChild(cardElem);
+      });
+    }
+
+    function handleCardFlip(cardElem) {
+      if (lockMemoryBoard || cardElem.classList.contains('flipped') || cardElem.classList.contains('matched')) return;
+      playSound('flip');
+      cardElem.classList.add('flipped'); flippedCards.push(cardElem);
+      if (flippedCards.length === 2) {
+        memoryAttempts++; document.getElementById('memoryAttempts').innerText = memoryAttempts;
+        const [c1, c2] = flippedCards;
+        if (c1.dataset.pairId === c2.dataset.pairId) {
+          playSound('correct'); c1.classList.add('matched'); c2.classList.add('matched');
+          matchedPairs++; document.getElementById('memoryMatches').innerText = matchedPairs;
+          const item = memorySourcePairs.find(p => p.id === c1.dataset.pairId);
+          if (item) speakText(item.term);
+          flippedCards = [];
+          if (matchedPairs === memorySourcePairs.length) triggerCelebrationPopup(matchedPairs, memoryAttempts);
+        } else {
+          playSound('error'); lockMemoryBoard = true;
+          setTimeout(() => { c1.classList.remove('flipped'); c2.classList.remove('flipped'); flippedCards = []; lockMemoryBoard = false; }, 1100);
+        }
+      }
+    }
+
+    /* =====================================================================
+       GLOBAL RESET & DICTIONARY & CELEBRATION
+       ===================================================================== */
+    function resetActiveActivity() {
+      const act = document.querySelector('.tab-content.active').id;
+      if (act === 'multiple-choice') initMultipleChoice();
+      else if (act === 'crossword') initCrossword();
+      else if (act === 'memory-game') initMemoryGame();
+    }
+
+    function openDictionaryModal() { document.getElementById('dictModal').style.display = 'flex'; setTimeout(() => document.getElementById('dictQuery').focus(), 100); }
+    function closeDictionaryModal() { document.getElementById('dictModal').style.display = 'none'; }
+    function searchCambridge(e) {
+      e.preventDefault();
+      const term = document.getElementById('dictQuery').value.trim().toLowerCase();
+      if (term) { window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term)}`, '_blank'); closeDictionaryModal(); }
+    }
+
+    function triggerCelebrationPopup(correctCount, totalAttempts) {
+      // Elevado el z-index de confetti (10000) por encima del modal-overlay (1000)
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 10000 });
+      }
+      
+      const modal = document.getElementById('celebrateModal');
+      document.getElementById('celebrateScore').innerText = `${correctCount}/${correctCount} correct in ${totalAttempts} attempt${totalAttempts > 1 ? 's' : ''}!`;
+      
+      let spokenWord = "";
+
+      if (totalAttempts === correctCount) {
+        document.getElementById('celebrateTitle').innerText = "Outstanding! 🏆";
+        document.getElementById('celebrateMsg').innerText = "Flawless score! 100% precision on your first try.";
+        spokenWord = "Outstanding";
+      } else if (totalAttempts <= correctCount + 3) {
+        document.getElementById('celebrateTitle').innerText = "Excellent! ⭐";
+        document.getElementById('celebrateMsg').innerText = "Terrific work! Completed with remarkable accuracy.";
+        spokenWord = "Excellent";
+      } else {
+        document.getElementById('celebrateTitle').innerText = "Good Effort! 💡";
+        document.getElementById('celebrateMsg').innerText = "Great perseverance! Keep practicing.";
+        spokenWord = "Good effort";
+      }
+      
+      modal.style.display = 'flex';
+      
+      // La voz pronuncia automáticamente solo la palabra correspondiente
+      setTimeout(() => speakText(spokenWord), 300);
+    }
+
+    function closeCelebrateModal() { document.getElementById('celebrateModal').style.display = 'none'; }
+    
+    window.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('dictModal')) closeDictionaryModal();
+      if (e.target === document.getElementById('celebrateModal')) closeCelebrateModal();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderClusters();
+      initMultipleChoice();
+      initCrossword();
+      initMemoryGame();
+    });
+  </script>
+</body>
+</html>

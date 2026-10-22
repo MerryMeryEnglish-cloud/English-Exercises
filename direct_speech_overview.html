@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Direct Speech Mastery (B2+)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #00a4b4;
+      --primary-dark: #007f8c;
+      --primary-light: #e6f7f9;
+      --navy: #15325b;
+      --navy-light: #204579;
+      --accent-yellow: #f8b825;
+      --accent-yellow-light: #fef7e6;
+      --success: #20bf6b;
+      --success-light: #eafaf1;
+      --error: #eb3b5a;
+      --error-light: #fdebed;
+      --bg-body: #f4f8fb;
+      --surface: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #64748b;
+      --border-color: #dbe4ee;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 6px rgba(21, 50, 91, 0.05);
+      --shadow-md: 0 8px 24px rgba(21, 50, 91, 0.08);
+      --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 70px;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 54px;
+      width: 54px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(0, 164, 180, 0.2);
+      transition: var(--transition);
+    }
+
+    .logo-img:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title span {
+      color: var(--primary);
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-yellow);
+      background: var(--navy);
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-header {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--surface);
+      color: var(--navy);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-header:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-header.btn-reset {
+      background: var(--accent-yellow-light);
+      color: #925800;
+      border-color: #ffd978;
+    }
+
+    .btn-header.btn-reset:hover {
+      background: var(--accent-yellow);
+      color: #000;
+    }
+
+    /* MAIN CONTAINER */
+    .app-container {
+      max-width: 1040px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+    }
+
+    /* NAVIGATION TABS */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 22px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+
+    .tab-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--primary);
+      background: var(--surface);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+
+    .tab-btn .badge {
+      font-size: 0.75rem;
+      background: var(--border-color);
+      color: var(--text-muted);
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .tab-btn.active .badge {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* PANELS */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION INTROS */
+    .section-intro {
+      background: var(--surface);
+      border-left: 5px solid var(--primary);
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .section-intro h2 {
+      font-size: 1.35rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-intro p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    /* CARDS & THEORY */
+    .rule-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .rule-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .rule-title .pill {
+      font-size: 0.75rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .rule-content {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .rule-content ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .rule-content li {
+      margin-bottom: 6px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .example-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+
+    .example-text .highlight {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .example-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Poppins', sans-serif;
+      margin-top: 3px;
+    }
+
+    /* LISTEN BUTTON (SPEECH SYNTHESIS) */
+    .btn-listen {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid rgba(0, 164, 180, 0.3);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-listen:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* EXERCISE ITEMS */
+    .exercise-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .exercise-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .exercise-card.correct {
+      border-color: var(--success);
+      background: #fbfdfc;
+    }
+
+    .exercise-card.incorrect {
+      border-color: var(--error);
+      background: #fffbfa;
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    .q-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .q-prompt {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      flex: 1;
+    }
+
+    .q-context {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    /* MULTIPLE CHOICE OPTIONS */
+    .mc-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .mc-option {
+      background: #f8fafc;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.94rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .mc-option:hover:not(.locked) {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .mc-option.selected-correct {
+      background: var(--success-light);
+      border-color: var(--success);
+      color: #0e623b;
+      font-weight: 600;
+    }
+
+    .mc-option.selected-wrong {
+      background: var(--error-light);
+      border-color: var(--error);
+      color: #921729;
+    }
+
+    .mc-option.locked {
+      cursor: default;
+    }
+
+    .mc-bullet {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      background: var(--surface);
+      color: var(--text-muted);
+    }
+
+    .mc-option.selected-correct .mc-bullet {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .mc-option.selected-wrong .mc-bullet {
+      background: var(--error);
+      border-color: var(--error);
+      color: white;
+    }
+
+    /* FILL IN THE BLANKS & WORD BANK */
+    .word-bank-sticky {
+      position: sticky;
+      top: 85px;
+      z-index: 90;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      border: 1.5px solid var(--primary);
+      margin-bottom: 22px;
+    }
+
+    .word-bank-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .word-bank-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .word-bank-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-chip {
+      background: var(--surface);
+      color: var(--navy);
+      border: 1.5px solid #cbd5e1;
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .word-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .word-chip.used {
+      opacity: 0.45;
+      text-decoration: line-through;
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .blank-sentence {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .input-blank {
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border: 2px dashed #94a3b8;
+      border-radius: 6px;
+      color: var(--navy);
+      background: #f8fafc;
+      outline: none;
+      min-width: 150px;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .input-blank:focus {
+      border-style: solid;
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(0, 164, 180, 0.15);
+    }
+
+    .input-blank.correct {
+      border-style: solid;
+      border-color: var(--success);
+      background: var(--success-light);
+      color: #0e623b;
+    }
+
+    .input-blank.incorrect {
+      border-style: solid;
+      border-color: var(--error);
+      background: var(--error-light);
+      color: #921729;
+    }
+
+    /* ACTION BUTTONS & FEEDBACK ROW */
+    .q-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--surface);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      color: var(--navy);
+    }
+
+    .btn-action:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-check {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn-check:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: white;
+    }
+
+    .btn-hint {
+      color: #b45309;
+      border-color: #fde68a;
+      background: #fefce8;
+    }
+
+    .btn-hint:hover {
+      background: #fef08a;
+      border-color: #f59e0b;
+      color: #78350f;
+    }
+
+    /* HINT COLLAPSIBLE BOX */
+    .hint-box {
+      display: none;
+      margin-top: 10px;
+      background: #fffbeb;
+      border-left: 4px solid var(--accent-yellow);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #78350f;
+      line-height: 1.5;
+    }
+
+    .hint-box.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .feedback-msg {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feedback-msg.correct {
+      color: var(--success);
+    }
+
+    .feedback-msg.incorrect {
+      color: var(--error);
+    }
+
+    /* FOOTER NEXT TAB NAV */
+    .tab-footer-nav {
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 2px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-next-tab {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 12px 26px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(21, 50, 91, 0.2);
+      transition: var(--transition);
+    }
+
+    .btn-next-tab:hover {
+      background: var(--primary);
+      transform: translateX(4px);
+      box-shadow: 0 4px 16px rgba(0, 164, 180, 0.3);
+    }
+
+    /* MODAL: DICTIONARY */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--surface);
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .dict-input-wrap {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .dict-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .dict-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* COMPLETION MODAL & STATS */
+    .stats-card {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .stats-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .stats-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .stats-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .score-badge {
+      display: inline-block;
+      padding: 8px 18px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 30px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .header-actions {
+        justify-content: space-between;
+      }
+      .word-bank-sticky {
+        top: 70px;
+      }
+      .q-action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-group {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand-group" title="Return to Dashboard">
+        <img src="logo.png" alt="Merry Mery English" class="logo-img">
+        <div>
+          <div class="brand-title">Merry Mery <span>English</span></div>
+          <div class="brand-tag">B2+ Advanced Direct Speech</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <a href="index.html" class="btn-header">
+          <span>🏠</span> Home
+        </a>
+        <button class="btn-header" onclick="openDictionaryModal()">
+          <span>📖</span> Dictionary
+        </button>
+        <button class="btn-header btn-reset" onclick="resetAndShuffleCurrent()">
+          <span>🔄</span> Reset & Shuffle
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="app-container">
+
+    <!-- TABS NAVIGATION -->
+    <nav class="tab-bar" aria-label="Exercise Sections">
+      <button class="tab-btn active" onclick="switchTab('grammar-overview', this)">
+        <span>📚</span> Direct Speech Overview <span class="badge">Rules</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('mc-challenge', this)">
+        <span>🎯</span> Punctuation & Reporting Verbs <span class="badge" id="badge-mc">0/10</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('fill-blanks', this)">
+        <span>✍️</span> Fill in the Blanks <span class="badge" id="badge-blanks">0/10</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: GRAMMAR OVERVIEW -->
+    <section id="grammar-overview" class="tab-panel active">
+      <div class="section-intro">
+        <h2><span>📖</span> Mastering Direct Speech at B2+ Level</h2>
+        <p>Direct speech records the exact words spoken by a speaker inside quotation marks. In academic and professional English, flawless punctuation and sophisticated reporting verbs are required.</p>
+      </div>
+
+      <!-- RULE 1 -->
+      <article class="rule-card">
+        <div class="rule-title">
+          <span>1. Quotation Marks & Capitalization</span>
+          <span class="pill">Fundamental Syntax</span>
+        </div>
+        <div class="rule-content">
+          <p>Enclose the exact spoken utterance in quotation marks (either single <code>'...'</code> in British English or double <code>"..."</code> in American/international publishing). Always capitalize the first word of a complete spoken sentence:</p>
+          <ul>
+            <li><strong>Opening speech:</strong> The spoken statement begins with a capital letter even if it follows a reporting clause.</li>
+            <li><strong>Sentence integration:</strong> A comma separates the introductory reporting verb from the direct quote.</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div>
+            <div class="example-text">Dr. Peterson noted, <span class="highlight">"The</span> protocol requires absolute adherence."</div>
+            <div class="example-note">Comma precedes the quotation; 'The' is capitalized.</div>
+          </div>
+          <button class="btn-listen" onclick="speakText('Dr. Peterson noted, The protocol requires absolute adherence.')">
+            <span>🔊</span> Listen
+          </button>
+        </div>
+      </article>
+
+      <!-- RULE 2 -->
+      <article class="rule-card">
+        <div class="rule-title">
+          <span>2. Comma and Period Placement</span>
+          <span class="pill">Punctuation Standard</span>
+        </div>
+        <div class="rule-content">
+          <p>When the reporting clause comes <em>after</em> the quote, standard publication rules dictate that the comma sits <strong>inside</strong> the quotation marks before the closing quotation symbol:</p>
+          <ul>
+            <li>If the spoken clause is an affirmative statement, replace the period with a comma before closing quotes.</li>
+            <li>The reporting clause begins in lowercase (e.g., <em>she admitted</em>) unless it begins with a proper noun.</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div>
+            <div class="example-text">"We must review the laboratory specimens immediately<span class="highlight">,"</span> the lead researcher insisted.</div>
+            <div class="example-note">Comma placed inside quotes; reporting verb remains lowercase.</div>
+          </div>
+          <button class="btn-listen" onclick="speakText('We must review the laboratory specimens immediately, the lead researcher insisted.')">
+            <span>🔊</span> Listen
+          </button>
+        </div>
+      </article>
+
+      <!-- RULE 3 -->
+      <article class="rule-card">
+        <div class="rule-title">
+          <span>3. Question Marks & Exclamation Points</span>
+          <span class="pill">Punctuation Shifts</span>
+        </div>
+        <div class="rule-content">
+          <p>If the spoken sentence is a question or an exclamation, place the question mark (<code>?</code>) or exclamation mark (<code>!</code>) inside the quotation marks. <strong>Never</strong> add an extra comma:</p>
+          <ul>
+            <li><strong>Correct:</strong> "Have you completed the clinical trial yet?" the director inquired.</li>
+            <li><strong>Incorrect:</strong> *"Have you completed the clinical trial yet?", the director inquired.</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div>
+            <div class="example-text">"Why were the parameters altered without consent<span class="highlight">?"</span> inquired the auditor.</div>
+            <div class="example-note">No auxiliary comma after the question mark.</div>
+          </div>
+          <button class="btn-listen" onclick="speakText('Why were the parameters altered without consent? inquired the auditor.')">
+            <span>🔊</span> Listen
+          </button>
+        </div>
+      </article>
+
+      <!-- RULE 4 -->
+      <article class="rule-card">
+        <div class="rule-title">
+          <span>4. Split / Interrupted Direct Quotes</span>
+          <span class="pill">Advanced Structure</span>
+        </div>
+        <div class="rule-content">
+          <p>When a reporting clause is placed in the middle of a single spoken sentence:</p>
+          <ul>
+            <li>Close the first segment with a comma inside quotes: <code>"...,"</code></li>
+            <li>Follow with the reporting verb and another comma: <code>rejoined the professor,</code></li>
+            <li>Reopen quotes with a lowercase letter for the continuation: <code>"and ..."</code></li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div>
+            <div class="example-text">"The initial prognosis is favorable," cautioned the oncologist, <span class="highlight">"yet</span> ongoing surveillance remains vital."</div>
+            <div class="example-note">'yet' continues the initial sentence and stays in lowercase.</div>
+          </div>
+          <button class="btn-listen" onclick="speakText('The initial prognosis is favorable, cautioned the oncologist, yet ongoing surveillance remains vital.')">
+            <span>🔊</span> Listen
+          </button>
+        </div>
+      </article>
+
+      <!-- RULE 5 -->
+      <article class="rule-card">
+        <div class="rule-title">
+          <span>5. Advanced B2+ Reporting Verbs (Say/Tell vs. Descriptive Verbs)</span>
+          <span class="pill">Lexical Precision</span>
+        </div>
+        <div class="rule-content">
+          <p>At B2+ and C1 level, avoid repetitive use of <em>said</em>. Select precise reporting verbs that convey mood, attitude, and rhetorical force:</p>
+          <ul>
+            <li><strong>Admitting / Disclosing:</strong> <em>admitted, acknowledged, confessed, conceded</em>.</li>
+            <li><strong>Insisting / Claiming:</strong> <em>maintained, asserted, declared, argued, emphasized</em>.</li>
+            <li><strong>Questioning / Probing:</strong> <em>inquired, questioned, queried, challenged</em>.</li>
+            <li><strong>Expressing hesitation or grievance:</strong> <em>muttered, lamented, warned, muttered</em>.</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div>
+            <div class="example-text">"I inadvertently miscalculated the dosage," the intern <span class="highlight">conceded</span> with genuine remorse.</div>
+            <div class="example-note">'Conceded' conveys formal admission of a fault.</div>
+          </div>
+          <button class="btn-listen" onclick="speakText('I inadvertently miscalculated the dosage, the intern conceded with genuine remorse.')">
+            <span>🔊</span> Listen
+          </button>
+        </div>
+      </article>
+
+      <div class="tab-footer-nav">
+        <button class="btn-next-tab" onclick="switchTab('mc-challenge')">
+          Go to Punctuation & Reporting Verbs ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: MULTIPLE CHOICE CHALLENGE -->
+    <section id="mc-challenge" class="tab-panel">
+      <div class="section-intro">
+        <h2><span>🎯</span> Exercise 1: Punctuation & Reporting Verbs</h2>
+        <p>Read each context and choose the option that demonstrates flawless B2+ direct speech punctuation, capitalization, and reporting verb selection. Click 'Hint' if you need guidance.</p>
+      </div>
+
+      <div id="mc-container">
+        <!-- Rendered dynamically with shuffling -->
+      </div>
+
+      <div class="tab-footer-nav">
+        <button class="btn-next-tab" onclick="switchTab('fill-blanks')">
+          Go to Fill in the Blanks ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 3: FILL IN THE BLANKS -->
+    <section id="fill-blanks" class="tab-panel">
+      <div class="section-intro">
+        <h2><span>✍️</span> Exercise 2: Fill in the Blanks with Reporting Verbs</h2>
+        <p>Complete each direct speech statement by selecting the most appropriate advanced reporting verb from the sticky bank below. Click any word chip to insert it directly into the active field, or type it manually.</p>
+      </div>
+
+      <!-- STICKY WORD BANK -->
+      <div class="word-bank-sticky">
+        <div class="word-bank-header">
+          <div class="word-bank-title">
+            <span>🏷️</span> Word Bank (Click chip to insert)
+          </div>
+          <div class="word-bank-subtitle">Advanced B2+ Reporting Verbs</div>
+        </div>
+        <div class="chips-grid" id="chips-container">
+          <!-- Dynamic word chips -->
+        </div>
+      </div>
+
+      <div id="blanks-container">
+        <!-- Rendered dynamically with shuffling -->
+      </div>
+
+      <div class="tab-footer-nav">
+        <button class="btn-next-tab" onclick="switchTab('grammar-overview')">
+          Review Grammar Overview ➔
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dict-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">📖 Cambridge Dictionary Lookup</div>
+        <button class="modal-close" onclick="closeDictionaryModal()">&times;</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">
+        Type an English word or reporting verb to consult the official Cambridge Learner's definition and pronunciation in a new tab:
+      </p>
+      <div class="dict-input-wrap">
+        <input type="text" id="dict-query" class="dict-input" placeholder="e.g. conceded, asserted, lamented..." onkeydown="if(event.key==='Enter') searchDictionary()">
+        <button class="btn-action btn-check" onclick="searchDictionary()">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETION MODAL -->
+  <div class="modal-overlay" id="completion-modal">
+    <div class="modal-card stats-card">
+      <div class="stats-icon" id="comp-icon">🎉</div>
+      <div class="stats-title" id="comp-title">Outstanding Performance!</div>
+      <div class="stats-desc" id="comp-desc">You have successfully completed this interactive section.</div>
+      <div class="score-badge" id="comp-score">Accuracy: 100%</div>
+      <div>
+        <button class="btn-next-tab" style="margin: 0 auto;" onclick="closeCompletionModal()">Continue Learning</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       AUDIO (WEB AUDIO API & SPEECH SYNTHESIS)
+       ===================================================================== */
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playBeep(type) {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.18); // G5
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now); // A3
+          osc.frequency.setValueAtTime(180, now + 0.1);
+          gain.gain.setValueAtTime(0.22, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {
+        console.warn('Audio feedback blocked or not supported');
+      }
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-GB';
+        utterance.rate = 0.92;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    /* =====================================================================
+       EXERCISE DATA (B2+ DIRECT SPEECH - WITHOUT INVERSION)
+       ===================================================================== */
+    const mcDataOriginal = [
+      {
+        id: "mc1",
+        context: "The lead physician explains the laboratory results to the team.",
+        prompt: "Which sentence displays the correct punctuation for opening direct speech?",
+        options: [
+          'Dr. Vance remarked, "The culture samples confirm our hypothesis."',
+          'Dr. Vance remarked "The culture samples confirm our hypothesis."',
+          'Dr. Vance remarked, "the culture samples confirm our hypothesis."',
+          'Dr. Vance remarked: "The culture samples confirm our hypothesis."'
+        ],
+        correctIndex: 0,
+        hint: "A comma must precede the opening speech mark, and the first word of the spoken utterance requires a capital letter.",
+        fullAudioText: 'Dr. Vance remarked, "The culture samples confirm our hypothesis."'
+      },
+      {
+        id: "mc2",
+        context: "The project coordinator reminds everyone of the deadline at the end of her remark.",
+        prompt: "Choose the sentence with correct comma placement when the reporting clause follows:",
+        options: [
+          '"All grant proposals must be finalized tonight," the coordinator announced.',
+          '"All grant proposals must be finalized tonight", the coordinator announced.',
+          '"All grant proposals must be finalized tonight." the coordinator announced.',
+          '"All grant proposals must be finalized tonight", The coordinator announced.'
+        ],
+        correctIndex: 0,
+        hint: "Standard English places the comma inside the closing quotation mark, followed by a lowercase reporting clause.",
+        fullAudioText: '"All grant proposals must be finalized tonight," the coordinator announced.'
+      },
+      {
+        id: "mc3",
+        context: "An investigator raises a question regarding clinical trial participants.",
+        prompt: "Identify the properly punctuated direct speech question:",
+        options: [
+          '"Were the participants informed of potential side effects?" the auditor inquired.',
+          '"Were the participants informed of potential side effects?", the auditor inquired.',
+          '"Were the participants informed of potential side effects"? the auditor inquired.',
+          '"Were the participants informed of potential side effects?" The auditor inquired.'
+        ],
+        correctIndex: 0,
+        hint: "The question mark is placed inside quotes. Do not insert an additional comma after a question mark.",
+        fullAudioText: '"Were the participants informed of potential side effects?" the auditor inquired.'
+      },
+      {
+        id: "mc4",
+        context: "A scientist is interrupted midway through a single continuous sentence.",
+        prompt: "Which option correctly punctuates a split direct quotation?",
+        options: [
+          '"The new compound is remarkably stable," she observed, "yet requires further testing."',
+          '"The new compound is remarkably stable," she observed, "Yet requires further testing."',
+          '"The new compound is remarkably stable" she observed, "yet requires further testing."',
+          '"The new compound is remarkably stable," she observed "yet requires further testing."'
+        ],
+        correctIndex: 0,
+        hint: "The second part of the quotation continues the sentence, so it starts with a lowercase letter.",
+        fullAudioText: '"The new compound is remarkably stable," she observed, "yet requires further testing."'
+      },
+      {
+        id: "mc5",
+        context: "The supervisor delivers an urgent warning in the operating theatre.",
+        prompt: "Select the sentence punctuated accurately with an exclamation mark:",
+        options: [
+          '"Sterilize those surgical clamps immediately!" the chief surgeon ordered.',
+          '"Sterilize those surgical clamps immediately!", the chief surgeon ordered.',
+          '"Sterilize those surgical clamps immediately"! the chief surgeon ordered.',
+          '"Sterilize those surgical clamps immediately!," the chief surgeon ordered.'
+        ],
+        correctIndex: 0,
+        hint: "The exclamation mark stands alone inside the quotation marks; never add a superfluous comma.",
+        fullAudioText: '"Sterilize those surgical clamps immediately!" the chief surgeon ordered.'
+      },
+      {
+        id: "mc6",
+        context: "A team member admits a procedural oversight after an internal audit.",
+        prompt: "Select the most sophisticated reporting verb indicating an admission of fault:",
+        options: [
+          '"I failed to verify the calibration logs," the engineer conceded with regret.',
+          '"I failed to verify the calibration logs," the engineer said with regret.',
+          '"I failed to verify the calibration logs," the engineer spoke with regret.',
+          '"I failed to verify the calibration logs," the engineer told with regret.'
+        ],
+        correctIndex: 0,
+        hint: "Look for a verb that formally conveys admitting a mistake or acknowledging the truth of an allegation.",
+        fullAudioText: '"I failed to verify the calibration logs," the engineer conceded with regret.'
+      },
+      {
+        id: "mc7",
+        context: "A senior editor responds to a colleague with two distinct consecutive sentences in one turn.",
+        prompt: "How should two complete consecutive spoken sentences be punctuated?",
+        options: [
+          '"We cannot accept the manuscript in its current state," the editor declared. "The methodology section needs complete revision."',
+          '"We cannot accept the manuscript in its current state," the editor declared, "The methodology section needs complete revision."',
+          '"We cannot accept the manuscript in its current state." The editor declared, "the methodology section needs complete revision."',
+          '"We cannot accept the manuscript in its current state" the editor declared. "The methodology section needs complete revision."'
+        ],
+        correctIndex: 0,
+        hint: "After the reporting clause, use a full stop (period). The second spoken sentence starts with a capital letter inside fresh quotation marks.",
+        fullAudioText: '"We cannot accept the manuscript in its current state," the editor declared. "The methodology section needs complete revision."'
+      },
+      {
+        id: "mc8",
+        context: "The chairperson opens an international seminar.",
+        prompt: "Which sentence features proper syntax with a formal reporting clause placed first?",
+        options: [
+          'The chairperson proclaimed, "We are gathered here today to revolutionize renewable energy storage."',
+          'The chairperson proclaimed "We are gathered here today to revolutionize renewable energy storage."',
+          'The chairperson proclaimed, "we are gathered here today to revolutionize renewable energy storage."',
+          'The chairperson proclaimed; "We are gathered here today to revolutionize renewable energy storage."'
+        ],
+        correctIndex: 0,
+        hint: "Direct speech introduced by a reporting clause requires a comma before the opening quotes and a capitalized opening letter.",
+        fullAudioText: 'The chairperson proclaimed, "We are gathered here today to revolutionize renewable energy storage."'
+      },
+      {
+        id: "mc9",
+        context: "A witness expresses strong doubt during a cross-examination.",
+        prompt: "Choose the sentence using a suitable B2+ reporting verb and accurate quotation marks:",
+        options: [
+          '"His testimony does not correlate with the forensic evidence," the prosecutor contended.',
+          '"His testimony does not correlate with the forensic evidence", the prosecutor contended.',
+          '"His testimony does not correlate with the forensic evidence," The prosecutor contended.',
+          '"His testimony does not correlate with the forensic evidence." the prosecutor contended.'
+        ],
+        correctIndex: 0,
+        hint: "Ensure the comma is inside the quotes, and the reporting subject begins with lowercase.",
+        fullAudioText: '"His testimony does not correlate with the forensic evidence," the prosecutor contended.'
+      },
+      {
+        id: "mc10",
+        context: "A clinician raises an emphatic inquiry regarding patient consent.",
+        prompt: "Identify the correct direct speech sentence conveying a formal query:",
+        options: [
+          '"Did the patient give written consent before surgery?" the ethics officer queried.',
+          '"Did the patient give written consent before surgery?," the ethics officer queried.',
+          '"Did the patient give written consent before surgery", the ethics officer queried?',
+          '"Did the patient give written consent before surgery"? the ethics officer queried.'
+        ],
+        correctIndex: 0,
+        hint: "The question mark stays inside quotes without any trailing comma.",
+        fullAudioText: '"Did the patient give written consent before surgery?" the ethics officer queried.'
+      }
+    ];
+
+    const blanksDataOriginal = [
+      {
+        id: "b1",
+        pre: '"I must acknowledge that our initial data was slightly skewed," the statistician ',
+        post: ' honestly during the panel.',
+        correct: "conceded",
+        hint: "Meaning: to admit or agree that something is true, often after first denying it or reluctantly.",
+        fullAudioText: '"I must acknowledge that our initial data was slightly skewed," the statistician conceded honestly during the panel.'
+      },
+      {
+        id: "b2",
+        pre: '"The hypothesis remains robust despite today\'s unexpected variance," the lead physicist ',
+        post: ' firmly.',
+        correct: "asserted",
+        hint: "Meaning: to state a fact or belief forcefully and with confidence.",
+        fullAudioText: '"The hypothesis remains robust despite today\'s unexpected variance," the lead physicist asserted firmly.'
+      },
+      {
+        id: "b3",
+        pre: '"Could you clarify how the control group was selected?" the external examiner ',
+        post: ' with keen interest.',
+        correct: "inquired",
+        hint: "Meaning: asked for information in a formal or investigative context.",
+        fullAudioText: '"Could you clarify how the control group was selected?" the external examiner inquired with keen interest.'
+      },
+      {
+        id: "b4",
+        pre: '"Do not handle the corrosive reagent without protective gloves," the laboratory supervisor ',
+        post: ' sharply.',
+        correct: "cautioned",
+        hint: "Meaning: warned or advised someone about danger or possible problems.",
+        fullAudioText: '"Do not handle the corrosive reagent without protective gloves," the laboratory supervisor cautioned sharply.'
+      },
+      {
+        id: "b5",
+        pre: '"It is unfortunate that our research funding has been drastically reduced," the department head ',
+        post: ' with visible sadness.',
+        correct: "lamented",
+        hint: "Meaning: expressed sorrow, regret, or disappointment about an unfavorable reality.",
+        fullAudioText: '"It is unfortunate that our research funding has been drastically reduced," the department head lamented with visible sadness.'
+      },
+      {
+        id: "b6",
+        pre: '"The board will allocate additional resources to clinical genetics next quarter," the chief executive ',
+        post: ' before the assembly.',
+        correct: "announced",
+        hint: "Meaning: officially and publicly stated a planned decision or development.",
+        fullAudioText: '"The board will allocate additional resources to clinical genetics next quarter," the chief executive announced before the assembly.'
+      },
+      {
+        id: "b7",
+        pre: '"This diagnostic procedure is completely harmless and painless," the pediatric nurse ',
+        post: ' the anxious parents.',
+        correct: "reassured",
+        hint: "Meaning: spoke in a comforting manner to free someone from anxiety or fear.",
+        fullAudioText: '"This diagnostic procedure is completely harmless and painless," the pediatric nurse reassured the anxious parents.'
+      },
+      {
+        id: "b8",
+        pre: '"We demand an independent review of these clinical trial records," the committee member ',
+        post: ' with urgency.',
+        correct: "insisted",
+        hint: "Meaning: demanded persistently or demanded not to be refused.",
+        fullAudioText: '"We demand an independent review of these clinical trial records," the committee member insisted with urgency.'
+      },
+      {
+        id: "b9",
+        pre: '"I can barely decipher these handwritten surgeon\'s notes," the resident ',
+        post: ' under his breath.',
+        correct: "muttered",
+        hint: "Meaning: spoke in a low, quiet, and indistinct tone, often in irritation.",
+        fullAudioText: '"I can barely decipher these handwritten surgeon\'s notes," the resident muttered under his breath.'
+      },
+      {
+        id: "b10",
+        pre: '"Our clinical study conclusively proves the efficacy of the new antibiotic," the team ',
+        post: ' in their published report.',
+        correct: "maintained",
+        hint: "Meaning: defended or persistently affirmed a point of view over time.",
+        fullAudioText: '"Our clinical study conclusively proves the efficacy of the new antibiotic," the team maintained in their published report.'
+      }
+    ];
+
+    /* =====================================================================
+       STATE MANAGEMENT & FISHER-YATES SHUFFLE
+       ===================================================================== */
+    let currentMC = [];
+    let currentBlanks = [];
+    let activeBlankInput = null;
+
+    let mcStats = { correct: 0, attempts: 0 };
+    let blanksStats = { correct: 0, attempts: 0 };
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initExercises() {
+      // Multiple choice: shuffle question order and shuffle options per question
+      currentMC = shuffleArray(mcDataOriginal).map(item => {
+        const correctText = item.options[item.correctIndex];
+        const shuffledOptions = shuffleArray(item.options);
+        return {
+          ...item,
+          options: shuffledOptions,
+          correctIndex: shuffledOptions.indexOf(correctText),
+          answered: false,
+          isCorrect: false
+        };
+      });
+
+      // Blanks: shuffle sentence order
+      currentBlanks = shuffleArray(blanksDataOriginal).map(item => ({
+        ...item,
+        answered: false,
+        isCorrect: false,
+        userValue: ""
+      }));
+
+      mcStats = { correct: 0, attempts: 0 };
+      blanksStats = { correct: 0, attempts: 0 };
+
+      renderMC();
+      renderBlanks();
+      renderChips();
+      updateBadges();
+    }
+
+    /* =====================================================================
+       RENDER: MULTIPLE CHOICE
+       ===================================================================== */
+    function renderMC() {
+      const container = document.getElementById('mc-container');
+      container.innerHTML = '';
+
+      currentMC.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = `exercise-card ${item.answered ? (item.isCorrect ? 'correct' : 'incorrect') : ''}`;
+        card.id = `mc-card-${item.id}`;
+
+        const letters = ['A', 'B', 'C', 'D'];
+
+        card.innerHTML = `
+          <div class="q-header">
+            <span class="q-num">${index + 1}. Direct Speech Item</span>
+            <div class="q-prompt">${item.prompt}</div>
+          </div>
+          <div class="q-context">Context: ${item.context}</div>
+
+          <div class="mc-options" id="opts-${item.id}">
+            ${item.options.map((opt, oIdx) => `
+              <div class="mc-option ${item.answered ? 'locked' : ''} ${item.answered && oIdx === item.correctIndex ? 'selected-correct' : ''}" 
+                   onclick="selectMCOption('${item.id}', ${oIdx})">
+                <span class="mc-bullet">${letters[oIdx]}</span>
+                <span>${escapeHtml(opt)}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="q-action-bar">
+            <div class="btn-group">
+              <button class="btn-action btn-hint" onclick="toggleHint('hint-${item.id}')">
+                <span>💡</span> Hint
+              </button>
+              <div id="audio-wrap-${item.id}">
+                ${item.isCorrect ? `
+                  <button class="btn-listen" onclick="speakText('${escapeQuotes(item.fullAudioText)}')">
+                    <span>🔊</span> Listen
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+            <div class="feedback-msg" id="fb-${item.id}">
+              ${item.answered ? (item.isCorrect ? '<span class="feedback-msg correct">✓ Perfectly punctuated!</span>' : '<span class="feedback-msg incorrect">✗ Incorrect punctuation. Review the rules or retry.</span>') : ''}
+            </div>
+          </div>
+
+          <div class="hint-box" id="hint-${item.id}">
+            <strong>Pedagogical Hint:</strong> ${item.hint}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function selectMCOption(itemId, selectedIdx) {
+      const item = currentMC.find(q => q.id === itemId);
+      if (!item) return;
+
+      mcStats.attempts++;
+      const isCorrect = selectedIdx === item.correctIndex;
+      item.answered = true;
+      item.isCorrect = isCorrect;
+
+      if (isCorrect) {
+        mcStats.correct++;
+        playBeep('correct');
+      } else {
+        playBeep('error');
+      }
+
+      renderMC();
+      updateBadges();
+
+      // Check section completion
+      checkSectionCompletion('mc');
+    }
+
+    /* =====================================================================
+       RENDER: FILL IN THE BLANKS & WORD BANK
+       ===================================================================== */
+    function renderChips() {
+      const container = document.getElementById('chips-container');
+      container.innerHTML = '';
+
+      // Collect all verbs sorted alphabetically
+      const allVerbs = blanksDataOriginal.map(b => b.correct).sort();
+
+      allVerbs.forEach(verb => {
+        const isUsed = currentBlanks.some(b => b.isCorrect && b.userValue.toLowerCase().trim() === verb.toLowerCase());
+        const chip = document.createElement('button');
+        chip.className = `word-chip ${isUsed ? 'used' : ''}`;
+        chip.textContent = verb;
+        chip.onclick = () => insertChipWord(verb);
+        container.appendChild(chip);
+      });
+    }
+
+    function insertChipWord(word) {
+      if (activeBlankInput && !activeBlankInput.disabled) {
+        activeBlankInput.value = word;
+        activeBlankInput.dispatchEvent(new Event('input'));
+        activeBlankInput.focus();
+        return;
+      }
+
+      // If no active input is focused, insert into first empty field
+      const emptyInput = Array.from(document.querySelectorAll('.input-blank')).find(inp => !inp.disabled && !inp.value.trim());
+      if (emptyInput) {
+        emptyInput.value = word;
+        emptyInput.dispatchEvent(new Event('input'));
+        emptyInput.focus();
+      }
+    }
+
+    function renderBlanks() {
+      const container = document.getElementById('blanks-container');
+      container.innerHTML = '';
+
+      currentBlanks.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = `exercise-card ${item.answered ? (item.isCorrect ? 'correct' : 'incorrect') : ''}`;
+        card.id = `blank-card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="q-header">
+            <span class="q-num">${index + 1}. Fill in the Reporting Verb</span>
+          </div>
+
+          <div class="blank-sentence">
+            ${item.pre}
+            <input type="text" 
+                   id="input-${item.id}" 
+                   class="input-blank ${item.answered ? (item.isCorrect ? 'correct' : 'incorrect') : ''}" 
+                   value="${escapeHtml(item.userValue)}" 
+                   placeholder="type or click verb..."
+                   autocomplete="off"
+                   ${item.isCorrect ? 'disabled' : ''}
+                   onfocus="setActiveBlank(this)"
+                   onkeydown="if(event.key==='Enter') checkBlank('${item.id}')">
+            ${item.post}
+          </div>
+
+          <div class="q-action-bar">
+            <div class="btn-group">
+              ${!item.isCorrect ? `
+                <button class="btn-action btn-check" onclick="checkBlank('${item.id}')">
+                  <span>✓</span> Check
+                </button>
+              ` : ''}
+              <button class="btn-action btn-hint" onclick="toggleHint('hint-${item.id}')">
+                <span>💡</span> Hint
+              </button>
+              <div id="audio-wrap-blank-${item.id}">
+                ${item.isCorrect ? `
+                  <button class="btn-listen" onclick="speakText('${escapeQuotes(item.fullAudioText)}')">
+                    <span>🔊</span> Listen
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+            <div class="feedback-msg" id="fb-blank-${item.id}">
+              ${item.answered ? (item.isCorrect ? '<span class="feedback-msg correct">✓ Correct reporting verb!</span>' : '<span class="feedback-msg incorrect">✗ Not quite. Check the meaning or click Hint.</span>') : ''}
+            </div>
+          </div>
+
+          <div class="hint-box" id="hint-${item.id}">
+            <strong>Pedagogical Hint:</strong> ${item.hint}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function setActiveBlank(inputElem) {
+      activeBlankInput = inputElem;
+    }
+
+    function checkBlank(itemId) {
+      const item = currentBlanks.find(b => b.id === itemId);
+      const inputElem = document.getElementById(`input-${itemId}`);
+      if (!item || !inputElem) return;
+
+      const userVal = inputElem.value.trim().toLowerCase();
+      if (!userVal) {
+        inputElem.focus();
+        return;
+      }
+
+      blanksStats.attempts++;
+      item.userValue = inputElem.value.trim();
+      item.answered = true;
+
+      // Normalization: tolerant to trailing punctuation or casing
+      const cleanTarget = item.correct.toLowerCase().trim();
+      const isCorrect = userVal === cleanTarget;
+      item.isCorrect = isCorrect;
+
+      if (isCorrect) {
+        blanksStats.correct++;
+        playBeep('correct');
+      } else {
+        playBeep('error');
+      }
+
+      renderBlanks();
+      renderChips();
+      updateBadges();
+
+      checkSectionCompletion('blanks');
+    }
+
+    /* =====================================================================
+       HINTS, BADGES & RESET/SHUFFLE
+       ===================================================================== */
+    function toggleHint(hintId) {
+      const box = document.getElementById(hintId);
+      if (box) {
+        box.classList.toggle('active');
+      }
+    }
+
+    function updateBadges() {
+      const mcCorrectCount = currentMC.filter(q => q.isCorrect).length;
+      document.getElementById('badge-mc').textContent = `${mcCorrectCount}/10`;
+
+      const blanksCorrectCount = currentBlanks.filter(b => b.isCorrect).length;
+      document.getElementById('badge-blanks').textContent = `${blanksCorrectCount}/10`;
+    }
+
+    function resetAndShuffleCurrent() {
+      initExercises();
+      showToast('🔄 Exercises re-shuffled and reset!');
+    }
+
+    function switchTab(tabId, btnElem) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      const targetPanel = document.getElementById(tabId);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+
+      if (btnElem) {
+        btnElem.classList.add('active');
+      } else {
+        const correspondingBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick')?.includes(tabId));
+        if (correspondingBtn) correspondingBtn.classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* =====================================================================
+       COMPLETION CELEBRATION & CONFETTI
+       ===================================================================== */
+    function checkSectionCompletion(sectionType) {
+      let isComplete = false;
+      let totalItems = 10;
+      let correctCount = 0;
+      let attempts = 0;
+
+      if (sectionType === 'mc') {
+        correctCount = currentMC.filter(q => q.isCorrect).length;
+        attempts = mcStats.attempts;
+        isComplete = correctCount === totalItems;
+      } else if (sectionType === 'blanks') {
+        correctCount = currentBlanks.filter(b => b.isCorrect).length;
+        attempts = blanksStats.attempts;
+        isComplete = correctCount === totalItems;
+      }
+
+      if (isComplete) {
+        const errorRate = attempts > totalItems ? ((attempts - totalItems) / attempts) * 100 : 0;
+        triggerCelebration(errorRate, sectionType);
+      }
+    }
+
+    function triggerCelebration(errorRate, sectionType) {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+
+      const iconElem = document.getElementById('comp-icon');
+      const titleElem = document.getElementById('comp-title');
+      const descElem = document.getElementById('comp-desc');
+      const scoreElem = document.getElementById('comp-score');
+
+      if (errorRate === 0) {
+        iconElem.textContent = '🏆';
+        titleElem.textContent = 'Flawless Mastery!';
+        descElem.textContent = 'Perfect score! You completed all 10 items without a single error.';
+        scoreElem.textContent = 'Accuracy: 100% (Zero Mistakes)';
+      } else if (errorRate <= 25) {
+        iconElem.textContent = '🌟';
+        titleElem.textContent = 'Excellent Achievement!';
+        descElem.textContent = 'Great work! You demonstrated solid command of advanced B2+ direct speech mechanics.';
+        scoreElem.textContent = `Accuracy: ${Math.round(100 - errorRate)}%`;
+      } else {
+        iconElem.textContent = '💪';
+        titleElem.textContent = 'Perseverance & Growth!';
+        descElem.textContent = 'You completed all items! Consider reviewing the Grammar Overview rules before retrying.';
+        scoreElem.textContent = `Completed with practice retries`;
+      }
+
+      document.getElementById('completion-modal').classList.add('active');
+    }
+
+    function closeCompletionModal() {
+      document.getElementById('completion-modal').classList.remove('active');
+    }
+
+    /* =====================================================================
+       DICTIONARY MODAL
+       ===================================================================== */
+    function openDictionaryModal() {
+      document.getElementById('dict-modal').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('dict-query')?.focus();
+      }, 100);
+    }
+
+    function closeDictionaryModal() {
+      document.getElementById('dict-modal').classList.remove('active');
+    }
+
+    function searchDictionary() {
+      const q = document.getElementById('dict-query').value.trim();
+      if (q) {
+        window.open(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(q)}`, '_blank');
+        closeDictionaryModal();
+      }
+    }
+
+    /* =====================================================================
+       HELPERS
+       ===================================================================== */
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function escapeQuotes(text) {
+      return text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.textContent = msg;
+      toast.style.position = 'fixed';
+      toast.style.bottom = '24px';
+      toast.style.right = '24px';
+      toast.style.background = '#15325b';
+      toast.style.color = '#fff';
+      toast.style.padding = '10px 18px';
+      toast.style.borderRadius = '8px';
+      toast.style.fontSize = '0.9rem';
+      toast.style.fontWeight = '600';
+      toast.style.boxShadow = '0 6px 18px rgba(0,0,0,0.2)';
+      toast.style.zIndex = '300';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2500);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initExercises();
+    });
+  </script>
+</body>
+</html>
