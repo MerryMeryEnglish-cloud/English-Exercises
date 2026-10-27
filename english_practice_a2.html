@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Mery English - A2 Practice Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandTeal: '#00a8a8',
+                        brandTealHover: '#008f8f',
+                        brandNavy: '#1e293b',
+                        brandYellow: '#fbbf24',
+                        brandYellowHover: '#f59e0b',
+                        brandBg: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full bg-brandBg font-sans text-brandNavy flex flex-col antialiased selection:bg-brandYellow selection:text-brandNavy">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('overview')">
+                <img src="logo.png" alt="Merry Mery English Logo" class="h-12 w-12 rounded-full object-cover border-2 border-brandTeal shadow-sm" onerror="this.src='https://placehold.co/100x100/00a8a8/ffffff?text=MME'">
+                <div>
+                    <h1 class="text-xl font-extrabold text-brandNavy tracking-tight">Merry Mery <span class="text-brandTeal">English</span></h1>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">A2 Level Practice Hub</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openDictionary()" class="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-brandNavy transition-all shadow-xs border border-slate-200">
+                    <i class="fa-solid fa-book text-brandTeal"></i>
+                    <span class="hidden sm:inline">Dictionary</span>
+                </button>
+                <button onclick="resetAllExercises()" title="Reset & Shuffle Exercises" class="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brandTeal/10 hover:bg-brandTeal/20 text-brandTeal transition-all shadow-xs border border-brandTeal/30">
+                    <span>🔄 Reset & Shuffle</span>
+                </button>
+                <a href="index.html" class="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brandNavy text-white hover:bg-slate-800 transition-all shadow-xs">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden sm:inline">Home</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 shadow-xs sticky top-20 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-2 sm:space-x-8 overflow-x-auto">
+            <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn py-4 px-3 border-b-2 font-bold text-sm sm:text-base flex items-center space-x-2 transition-all whitespace-nowrap border-brandTeal text-brandTeal">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Overview & Tips</span>
+            </button>
+            <button onclick="switchTab('mistakes')" id="tab-btn-mistakes" class="tab-btn py-4 px-3 border-b-2 font-medium text-sm sm:text-base flex items-center space-x-2 transition-all whitespace-nowrap border-transparent text-slate-500 hover:text-brandNavy hover:border-slate-300">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Spot the Mistake (Spanglish)</span>
+                <span id="badge-mistakes" class="ml-1.5 px-2 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600 font-semibold">0/10</span>
+            </button>
+            <button onclick="switchTab('travelling')" id="tab-btn-travelling" class="tab-btn py-4 px-3 border-b-2 font-medium text-sm sm:text-base flex items-center space-x-2 transition-all whitespace-nowrap border-transparent text-slate-500 hover:text-brandNavy hover:border-slate-300">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>Travelling Sentences</span>
+                <span id="badge-travelling" class="ml-1.5 px-2 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600 font-semibold">0/10</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION: OVERVIEW -->
+        <section id="tab-content-overview" class="tab-content space-y-6">
+            <div class="bg-gradient-to-br from-brandTeal to-teal-700 rounded-3xl p-6 sm:p-10 text-white shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl">
+                    <span class="bg-brandYellow text-brandNavy text-xs font-extrabold uppercase px-3 py-1 rounded-full mb-4 inline-block">A2 Mastery Level</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">Welcome to your English Practice!</h2>
+                    <p class="text-teal-50 text-base sm:text-lg leading-relaxed mb-6">
+                        Designed for A2 learners by Merry Mery English. Tap any word in Spanglish sentences to type the correction or reveal the answer, build travel sentences by clicking words in correct order, and practice with native audio.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs mt-6">
+                <h3 class="text-2xl font-bold text-brandNavy mb-6"><i class="fa-solid fa-book-open text-brandTeal mr-2"></i>Key Vocabulary & Expressions</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Money -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">make / earn / win / spend money</p>
+                            <p class="text-xs text-slate-500 mt-1">We make/earn a salary, win a prize, and spend money.</p>
+                        </div>
+                        <button onclick="speakText('make, earn, win, spend money')" class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center hover:bg-teal-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Duration -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">have been (for/since) / have known</p>
+                            <p class="text-xs text-slate-500 mt-1">They've been together for years. Known him since 2020.</p>
+                        </div>
+                        <button onclick="speakText('have been for or since, have known')" class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center hover:bg-teal-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Past Habits -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">didn't use to / used to</p>
+                            <p class="text-xs text-slate-500 mt-1">I didn't use to wear a watch, but I used to wear rings.</p>
+                        </div>
+                        <button onclick="speakText('didn\'t use to, used to')" class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center hover:bg-teal-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Prepositions -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">depends on / worry about / agree on</p>
+                            <p class="text-xs text-slate-500 mt-1">It depends on the time. Don't worry about it.</p>
+                        </div>
+                        <button onclick="speakText('depends on, worry about, agree on')" class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center hover:bg-teal-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Tickets -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">one-way / round-trip / return ticket</p>
+                            <p class="text-xs text-slate-500 mt-1">I'd like a return ticket. Do you have direct flights?</p>
+                        </div>
+                        <button onclick="speakText('one-way ticket, round-trip ticket, return ticket')" class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center hover:bg-amber-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Airport -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">departure / arrival / boarding time</p>
+                            <p class="text-xs text-slate-500 mt-1">What is the departure time? When are we boarding?</p>
+                        </div>
+                        <button onclick="speakText('departure time, arrival time, boarding time')" class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center hover:bg-amber-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Hotel -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">reservation / book a room / check-out</p>
+                            <p class="text-xs text-slate-500 mt-1">I have a reservation. What time is check-out?</p>
+                        </div>
+                        <button onclick="speakText('reservation, book a room, check out')" class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center hover:bg-amber-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <!-- Restaurant -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-brandNavy">ask for the bill / pay in cash / tip</p>
+                            <p class="text-xs text-slate-500 mt-1">Could we have the bill? Can I pay by card?</p>
+                        </div>
+                        <button onclick="speakText('ask for the bill, pay in cash, tip')" class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center hover:bg-amber-200 transition-all shadow-sm"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-end">
+                <button onclick="switchTab('mistakes')" class="px-6 py-4 bg-brandNavy hover:bg-slate-800 text-white font-bold rounded-2xl shadow-md transition-all flex items-center space-x-3">
+                    <span class="text-lg">Go to Spot the Mistake (Spanglish) ➔</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION: SPOT THE MISTAKE -->
+        <section id="tab-content-mistakes" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-6 border-b border-slate-100 gap-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-brandTeal bg-teal-50 px-3 py-1 rounded-full">Exercise 1</span>
+                        <h2 class="text-2xl font-extrabold text-brandNavy mt-2">Spot & Correct Spanglish Mistakes</h2>
+                        <p class="text-slate-500 text-sm mt-1">Tap any word in the sentence to select it, type the correction in the box below, or click Show Answer.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                        <button onclick="resetAllExercises()" class="px-4 py-2.5 rounded-xl text-sm font-bold bg-brandTeal/10 hover:bg-brandTeal/20 text-brandTeal transition-all border border-brandTeal/30 flex items-center space-x-1.5">
+                            <span>🔄 Reset & Shuffle</span>
+                        </button>
+                        <div class="flex items-center space-x-3 bg-slate-50 px-4 py-2.5 rounded-2xl border border-slate-200">
+                            <div class="text-xs font-semibold text-slate-500">Progress:</div>
+                            <div class="text-sm font-extrabold text-brandTeal" id="mistakes-score">0 / 10</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mistakes-container" class="space-y-6">
+                    <!-- Dynamically populated via JS -->
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <button onclick="resetAllExercises()" class="px-5 py-3 rounded-xl text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all flex items-center space-x-2 w-full sm:w-auto justify-center">
+                        <span>🔄 Reset & Shuffle</span>
+                    </button>
+                    <button onclick="switchTab('travelling')" class="px-6 py-4 bg-brandNavy hover:bg-slate-800 text-white font-bold rounded-2xl shadow-md transition-all flex items-center space-x-3 w-full sm:w-auto justify-center">
+                        <span class="text-lg">Go to Travelling Sentences ➔</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TRAVELLING SENTENCES -->
+        <section id="tab-content-travelling" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-6 border-b border-slate-100 gap-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">Exercise 2</span>
+                        <h2 class="text-2xl font-extrabold text-brandNavy mt-2">Travelling Sentences</h2>
+                        <p class="text-slate-500 text-sm mt-1">Click a word from the bank to place it into your sentence in the correct order.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                        <button onclick="resetAllExercises()" class="px-4 py-2.5 rounded-xl text-sm font-bold bg-amber-100 hover:bg-amber-200 text-amber-800 transition-all border border-amber-300 flex items-center space-x-1.5">
+                            <span>🔄 Reset & Shuffle</span>
+                        </button>
+                        <div class="flex items-center space-x-3 bg-slate-50 px-4 py-2.5 rounded-2xl border border-slate-200">
+                            <div class="text-xs font-semibold text-slate-500">Progress:</div>
+                            <div class="text-sm font-extrabold text-amber-600" id="travelling-score">0 / 10</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="travelling-container" class="space-y-6">
+                    <!-- Dynamically populated via JS -->
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <button onclick="resetAllExercises()" class="px-5 py-3 rounded-xl text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all flex items-center space-x-2 w-full sm:w-auto justify-center">
+                        <span>🔄 Reset & Shuffle</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modals and Toasts (same as original, mostly) -->
+    <div id="dictionary-modal" class="fixed inset-0 bg-brandNavy/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-xl bg-teal-50 text-brandTeal flex items-center justify-center">
+                        <i class="fa-solid fa-book-bookmark text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brandNavy">Quick A2 Dictionary & Tips</h3>
+                </div>
+                <button onclick="closeDictionary()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-4">Search or review common tricky terms for Spanish speakers learning English:</p>
+            <div class="mb-4">
+                <input type="text" id="dict-search" oninput="filterDictionary()" placeholder="Search word (e.g. depend, dream, win)..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brandTeal text-sm">
+            </div>
+            <div id="dict-list" class="space-y-3 max-h-72 overflow-y-auto pr-1">
+            </div>
+        </div>
+    </div>
+
+    <div id="celebration-modal" class="fixed inset-0 bg-brandNavy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-200 text-center relative animate-in">
+            <div class="w-20 h-20 bg-amber-100 text-brandYellowHover rounded-3xl mx-auto flex items-center justify-center text-4xl mb-6 shadow-sm">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 id="celebration-title" class="text-2xl font-extrabold text-brandNavy mb-2">Fantastic Job!</h3>
+            <p id="celebration-text" class="text-slate-600 text-sm mb-6 leading-relaxed">You successfully completed all sentences with 100% accuracy. Your English is shining!</p>
+            <div class="flex space-x-3 justify-center">
+                <button onclick="closeCelebration()" class="px-6 py-3 bg-brandTeal hover:bg-brandTealHover text-white font-bold rounded-2xl shadow-md transition-all">
+                    Continue Practice
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full bg-white rounded-2xl shadow-xl border border-slate-200 p-4 flex items-center space-x-3">
+        <div id="toast-icon" class="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"></div>
+        <div class="flex-1">
+            <h4 id="toast-title" class="text-sm font-bold text-brandNavy"></h4>
+            <p id="toast-message" class="text-xs text-slate-500"></p>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+        <p>Merry Mery English • A2 Learning Platform • Made with care for language learners.</p>
+    </footer>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'incorrect') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(160, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } else if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            }
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        const mistakesDataOriginal = [
+            { id: 1, words: ["I", "don't", "know", "how", "much", "money", "my", "coworkers", "win."], targetWordIndex: 8, acceptedAnswers: ["make", "earn"], fullCorrectSentence: "I don’t know how much money my coworkers make.", hint: "We earn or make money, we do not win salary.", explanation: "Correct word: 'make' or 'earn'. We use 'win' for competitions or games." },
+            { id: 2, words: ["Stacy", "and", "Carl", "have", "three", "years", "together."], targetWordIndex: 3, acceptedAnswers: ["have been together for", "have been for", "are together for", "have been"], fullCorrectSentence: "Stacy and Carl have been together for three years.", hint: "Use present time phrases or 'have been... for' with time duration.", explanation: "Correct phrase: 'have been together for 3 years'." },
+            { id: 3, words: ["When", "I", "was", "a", "kid,", "I", "liked", "Christmas", "more", "than", "Thanksgiving."], targetWordIndex: 8, acceptedAnswers: ["liked Christmas more", "enjoyed more"], fullCorrectSentence: "When I was a kid, I liked Christmas more than Thanksgiving.", hint: "In English comparative structures with verbs, place 'more' after the noun object ('liked Christmas more than').", explanation: "Correct word order: 'liked Christmas more than'." },
+            { id: 4, words: ["I", "have", "six", "years", "knowing", "him."], targetWordIndex: 1, acceptedAnswers: ["have known him for", "have known for", "have known"], fullCorrectSentence: "I have known him for six years.", hint: "Use present perfect with 'for' when stating a time period.", explanation: "Correct phrase: 'I have known him for six years'." },
+            { id: 5, words: ["I", "don't", "use", "to", "wear", "a", "watch."], targetWordIndex: 2, acceptedAnswers: ["didn't use", "did not use"], fullCorrectSentence: "I didn't use to wear a watch.", hint: "For past habits, use the auxiliary did with use to.", explanation: "Correct form: 'I didn't use to'." },
+            { id: 6, words: ["It", "depends", "of", "the", "time."], targetWordIndex: 2, acceptedAnswers: ["on"], fullCorrectSentence: "It depends on the time.", hint: "The verb depend is always followed by this specific preposition.", explanation: "Correct preposition: 'on'." },
+            { id: 7, words: ["Mozart", "had", "four", "years", "old", "when", "he", "started", "music."], targetWordIndex: 1, acceptedAnswers: ["was"], fullCorrectSentence: "Mozart was four years old when he started music.", hint: "When talking about age in English, we use the verb to be.", explanation: "Correct verb: 'was'." },
+            { id: 8, words: ["My", "sister", "and", "I", "visit", "our", "grandparents", "every", "Sunday", "morning."], targetWordIndex: 7, acceptedAnswers: ["each", "every"], fullCorrectSentence: "My sister and I visit our grandparents every Sunday morning.", hint: "Use 'every' or 'each' for recurring days.", explanation: "Correct word: 'every' or 'each'." },
+            { id: 9, words: ["Worrying", "for", "money", "is", "very", "common."], targetWordIndex: 1, acceptedAnswers: ["about"], fullCorrectSentence: "Worrying about money is very common.", hint: "What preposition follows the verb or noun worry?", explanation: "Correct preposition: 'about'." },
+            { id: 10, words: ["I", "practice", "basketball", "with", "my", "friends", "in", "Sunday", "mornings."], targetWordIndex: 6, acceptedAnswers: ["on"], fullCorrectSentence: "I practice basketball with my friends on Sunday mornings.", hint: "What preposition do we use for specific days and mornings?", explanation: "Correct preposition: 'on'." }
+        ];
+
+        const travellingDataOriginal = [
+            { id: 't1', scenario: "Asking for a one-way ticket to London:", scrambled: ["ticket", "one-way", "to", "London,", "please.", "a", "I'd", "like"], correct: "I'd like a one-way ticket to London, please." },
+            { id: 't2', scenario: "Asking about flight departure time:", scrambled: ["time", "does", "flight", "What", "the", "leave?", "to", "Paris"], correct: "What time does the flight to Paris leave?" },
+            { id: 't3', scenario: "At the hotel check-in desk:", scrambled: ["reservation", "have", "a", "name.", "under", "my", "I"], correct: "I have a reservation under my name." },
+            { id: 't4', scenario: "Asking for the Wi-Fi password at a hotel:", scrambled: ["password", "is", "the", "What", "Wi-Fi", "hotel?", "for", "the"], correct: "What is the Wi-Fi password for the hotel?" },
+            { id: 't5', scenario: "Asking for directions to the nearest train station:", scrambled: ["Where", "nearest", "is", "the", "station?", "train"], correct: "Where is the nearest train station?" },
+            { id: 't6', scenario: "At a restaurant abroad, asking for the bill:", scrambled: ["have", "Could", "please?", "we", "the", "bill,", "have"], correct: "Could we have the bill, please?" },
+            { id: 't7', scenario: "Asking for a table for two at a cafe:", scrambled: ["table", "please?", "for", "two,", "Could", "we", "have", "a"], correct: "Could we have a table for two, please?" },
+            { id: 't8', scenario: "Asking if breakfast is included:", scrambled: ["breakfast", "included", "Is", "the", "in", "price?"], correct: "Is breakfast included in the price?" },
+            { id: 't9', scenario: "Saying that you need a taxi:", scrambled: ["need", "a", "taxi,", "please.", "We"], correct: "We need a taxi, please." },
+            { id: 't10', scenario: "Asking for the key to your room:", scrambled: ["room", "Could", "my", "key,", "please?", "I", "have"], correct: "Could I have my room key, please?" }
+        ];
+
+        const dictionaryData = [
+            { term: "Depend on", def: "To rely on or be determined by (e.g., It depends on the weather)." },
+            { term: "Dream about", def: "To experience images/thoughts during sleep or daydreaming about something." },
+            { term: "Make money", def: "To earn income through work. (Don't use 'win money' for salaries)." },
+            { term: "Have been (together)", def: "Present perfect for states continuing from the past to the present." },
+            { term: "Check-in", def: "The process of registering at an airport or hotel." },
+            { term: "Boarding pass", def: "A document provided by an airline granting permission to enter an airplane." },
+            { term: "Luggage / Baggage", def: "Bags and suitcases packed for traveling." },
+            { term: "Book a room", def: "To reserve a hotel room in advance." }
+        ];
+
+        let mistakesList = [];
+        let travellingList = [];
+        let mistakesProgress = {};
+        let travellingProgress = {};
+
+        function initApp() {
+            resetAllExercises();
+            populateDictionary();
+        }
+
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function resetAllExercises() {
+            playSound('click');
+            mistakesList = JSON.parse(JSON.stringify(mistakesDataOriginal));
+            shuffleArray(mistakesList);
+            mistakesProgress = {};
+
+            travellingList = JSON.parse(JSON.stringify(travellingDataOriginal));
+            shuffleArray(travellingList);
+            travellingProgress = {};
+
+            renderMistakes();
+            renderTravelling();
+            updateBadges();
+            showToast("Reset & Shuffle", "Exercises have been shuffled and reset!", "bg-brandTeal");
+        }
+
+        function switchTab(tabName) {
+            playSound('click');
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-brandTeal', 'text-brandTeal');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.classList.remove('border-transparent', 'text-slate-500');
+            activeBtn.classList.add('border-brandTeal', 'text-brandTeal');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderMistakes() {
+            const container = document.getElementById('mistakes-container');
+            container.innerHTML = '';
+
+            mistakesList.forEach((item, index) => {
+                const isCompleted = mistakesProgress[item.id]?.correct;
+                const selectedWordIdx = mistakesProgress[item.id]?.selectedWordIndex;
+                const hasSelected = selectedWordIdx !== undefined && selectedWordIdx !== null;
+
+                const card = document.createElement('div');
+                card.className = `p-6 rounded-2xl border transition-all ${isCompleted ? 'bg-teal-50/50 border-teal-200' : 'bg-slate-50/50 border-slate-200'}`;
+                
+                const wordsHtml = item.words.map((word, wIdx) => {
+                    const isSelected = selectedWordIdx === wIdx;
+                    let wordClass = "px-3.5 py-2 mx-1.5 my-1.5 rounded-xl cursor-pointer transition-all inline-block font-bold text-brandNavy bg-white border border-slate-200 hover:bg-teal-100 hover:border-brandTeal text-base sm:text-lg";
+                    if (isSelected) {
+                        wordClass = "px-3.5 py-2 mx-1.5 my-1.5 rounded-xl inline-block font-extrabold text-white bg-brandTeal border border-teal-600 shadow-xs text-base sm:text-lg";
+                    }
+                    if (isCompleted && wIdx === item.targetWordIndex) {
+                        wordClass = "px-3.5 py-2 mx-1.5 my-1.5 rounded-xl inline-block font-extrabold text-teal-900 bg-teal-200 border border-teal-300 text-base sm:text-lg";
+                    }
+                    return `<span onclick="${isCompleted ? '' : `selectMistakeWord(${item.id}, ${wIdx})`}" class="${wordClass}">${word}</span>`;
+                }).join('');
+
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Sentence ${index + 1} of ${mistakesList.length}</span>
+                        ${isCompleted ? '<span class="text-xs font-bold text-teal-600 bg-teal-100 px-2.5 py-1 rounded-full flex items-center space-x-1"><i class="fa-solid fa-check"></i><span>Correct</span></span>' : ''}
+                    </div>
+                    <p class="text-sm text-slate-500 mb-2">Tap any word in the sentence to select it:</p>
+                    <div class="text-lg sm:text-xl mb-4 leading-loose">${wordsHtml}</div>
+                    
+                    ${hasSelected && !isCompleted ? `
+                        <div class="p-4 bg-teal-50 rounded-2xl border border-teal-200 space-y-3 animate-in mb-3">
+                            <p class="text-xs font-bold text-brandNavy">You selected: <span class="text-brandTeal underline">${item.words[selectedWordIdx]}</span>. Type the correct word/correction below:</p>
+                            <div class="flex gap-2">
+                                <input type="text" id="mistake-input-${item.id}" oninput="checkMistakeInput(${item.id})" placeholder="Type correction..." class="flex-1 px-4 py-2.5 bg-white rounded-xl border border-teal-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandTeal">
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button onclick="toggleHint('mistake-hint-${item.id}')" class="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all">
+                                <i class="fa-solid fa-lightbulb text-amber-500"></i> Hint
+                            </button>
+                            ${!isCompleted ? `
+                                <button onclick="showMistakeAnswer(${item.id})" class="px-3.5 py-2 bg-teal-100 hover:bg-teal-200 text-teal-800 rounded-xl text-xs font-bold transition-all">
+                                    <i class="fa-solid fa-eye text-brandTeal"></i> Show Answer
+                                </button>
+                            ` : ''}
+                        </div>
+                        <div id="mistake-hint-${item.id}" class="hidden text-xs text-amber-800 bg-amber-50 p-3 rounded-xl border border-amber-200">
+                            <strong>Hint:</strong> ${item.hint}
+                        </div>
+                        <div id="mistake-feedback-${item.id}" class="text-xs font-medium mt-2">
+                            ${isCompleted ? `<span class="text-teal-700 font-semibold">${item.explanation}</span>` : ''}
+                        </div>
+                        ${isCompleted ? `
+                            <div class="mt-3 pt-3 border-t border-teal-200/60 flex items-center justify-between">
+                                <span class="text-xs text-teal-800 font-medium">Pronunciation practice:</span>
+                                <button onclick="speakText('${item.words.join(' ').replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-white border border-teal-200 hover:bg-teal-100 text-teal-800 rounded-lg text-xs font-bold flex items-center space-x-1.5 transition-all shadow-xs">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span>Listen</span>
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectMistakeWord(itemId, wordIdx) {
+            playSound('click');
+            if (!mistakesProgress[itemId]) mistakesProgress[itemId] = {};
+            mistakesProgress[itemId].selectedWordIndex = wordIdx;
+            
+            const item = mistakesList.find(i => i.id === itemId);
+            if (wordIdx === item.targetWordIndex) {
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            renderMistakes();
+        }
+
+        function checkMistakeInput(itemId) {
+            const item = mistakesList.find(i => i.id === itemId);
+            const inputEl = document.getElementById(`mistake-input-${itemId}`);
+            const feedbackEl = document.getElementById(`mistake-feedback-${itemId}`);
+            if (!inputEl) return;
+
+            const val = inputEl.value.trim().toLowerCase();
+            if (val === '') {
+                feedbackEl.innerHTML = '';
+                return;
+            }
+
+            const selectedIdx = mistakesProgress[itemId]?.selectedWordIndex;
+            const isWordCorrect = (selectedIdx === item.targetWordIndex);
+            const isTextCorrect = item.acceptedAnswers.some(ans => ans.toLowerCase() === val);
+
+            if (isWordCorrect && isTextCorrect) {
+                playSound('correct');
+                mistakesProgress[itemId].correct = true;
+                renderMistakes();
+                updateBadges();
+                showToast("Correct!", "You successfully corrected the Spanglish mistake!", "bg-brandTeal");
+                checkCompletion('mistakes');
+            } else if (isWordCorrect && !isTextCorrect) {
+                feedbackEl.innerHTML = `<span class="text-amber-600 font-semibold">Right word selected! Keep typing or checking your spelling...</span>`;
+            } else {
+                feedbackEl.innerHTML = `<span class="text-rose-600 font-semibold"><i class="fa-solid fa-circle-xmark"></i> That is not the Spanglish word. Try selecting another word!</span>`;
+            }
+        }
+
+        function showMistakeAnswer(itemId) {
+            playSound('click');
+            const item = mistakesList.find(i => i.id === itemId);
+            mistakesProgress[itemId] = { selectedWordIndex: item.targetWordIndex, correct: true };
+            renderMistakes();
+            updateBadges();
+            showToast("Answer Revealed", `Correct sentence: ${item.fullCorrectSentence}`, "bg-brandTeal");
+            checkCompletion('mistakes');
+        }
+
+        function renderTravelling() {
+            const container = document.getElementById('travelling-container');
+            container.innerHTML = '';
+
+            travellingList.forEach((item, index) => {
+                const isCompleted = travellingProgress[item.id]?.correct;
+
+                const card = document.createElement('div');
+                card.className = `p-6 sm:p-8 rounded-2xl border transition-all ${isCompleted ? 'bg-amber-50/50 border-amber-200' : 'bg-slate-50/50 border-slate-200'}`;
+                
+                if (!item.shuffledWords) {
+                    item.shuffledWords = item.scrambled.map((word, idx) => ({ word: word, id: idx }));
+                    shuffleArray(item.shuffledWords);
+                }
+
+                const userWords = travellingProgress[item.id]?.userWords || [];
+                const userWordIds = userWords.map(uw => uw.id);
+                const availableWords = item.shuffledWords.filter(w => !userWordIds.includes(w.id));
+
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Sentence ${index + 1} of ${travellingList.length}</span>
+                        ${isCompleted ? '<span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full flex items-center space-x-1"><i class="fa-solid fa-check"></i><span>Correct</span></span>' : ''}
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-brandNavy mb-3">${item.scenario}</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="min-h-[72px] p-4 bg-white border-2 border-dashed ${isCompleted ? 'border-amber-300 bg-amber-50/30' : 'border-slate-300'} rounded-2xl flex flex-wrap items-center gap-2.5 shadow-inner">
+                            ${userWords.length === 0 ? '<span class="text-sm text-slate-400 italic px-2">Click words from the bank below to build your sentence...</span>' : ''}
+                            ${userWords.map((uw, wIdx) => `
+                                <span onclick="${isCompleted ? '' : `removeTravelWord('${item.id}', ${wIdx})`}" class="px-4 py-2.5 bg-brandNavy text-white rounded-xl text-base sm:text-lg font-bold shadow-xs hover:bg-slate-800 transition-all flex items-center space-x-2 cursor-pointer">
+                                    <span>${uw.word}</span>
+                                    ${!isCompleted ? '<i class="fa-solid fa-xmark text-xs ml-1"></i>' : ''}
+                                </span>
+                            `).join('')}
+                        </div>
+
+                        ${!isCompleted ? `
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                ${availableWords.map((aw) => `
+                                    <button onclick="clickWordBank('${item.id}', ${aw.id}, '${aw.word.replace(/'/g, "\\'")}')"
+                                         class="px-5 py-3.5 bg-white hover:bg-amber-50 border-2 border-slate-200 hover:border-amber-400 text-brandNavy rounded-xl text-lg sm:text-xl font-bold shadow-sm transition-all cursor-pointer">
+                                        ${aw.word}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                            <div class="flex space-x-2">
+                                ${!isCompleted ? `
+                                    <button onclick="resetTravellingItem('${item.id}')" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all">
+                                        Reset Sentence
+                                    </button>
+                                ` : ''}
+                                <button onclick="toggleHint('travel-hint-${item.id}')" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-bold transition-all">
+                                    <i class="fa-solid fa-lightbulb text-amber-500"></i> Hint
+                                </button>
+                            </div>
+                            ${isCompleted ? `
+                                <button onclick="speakText('${item.correct.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 rounded-lg text-xs font-bold flex items-center space-x-1.5 transition-all shadow-xs">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span>Listen</span>
+                                </button>
+                            ` : ''}
+                        </div>
+
+                        <div id="travel-hint-${item.id}" class="hidden text-xs text-amber-800 bg-amber-50 p-3 rounded-xl border border-amber-200">
+                            <strong>Hint:</strong> Start the sentence correctly and follow natural English word order.
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function clickWordBank(itemId, wordId, wordText) {
+            const item = travellingList.find(i => i.id === itemId);
+            if (!travellingProgress[itemId]) {
+                travellingProgress[itemId] = { userWords: [], correct: false };
+            }
+
+            const currentWords = travellingProgress[itemId].userWords;
+            const nextIdx = currentWords.length;
+            
+            const correctWordsClean = item.correct.split(' ');
+            const clickedClean = wordText.replace(/[.,?!]/g, '').toLowerCase();
+            const expectedClean = correctWordsClean[nextIdx] ? correctWordsClean[nextIdx].replace(/[.,?!]/g, '').toLowerCase() : '';
+
+            if (clickedClean === expectedClean) {
+                playSound('correct');
+                currentWords.push({ id: wordId, word: wordText });
+                
+                if (currentWords.length === item.scrambled.length) {
+                    travellingProgress[itemId].correct = true;
+                    showToast("Sentence Completed!", "Wonderful job putting the travel phrase together!", "bg-amber-500");
+                    checkCompletion('travelling');
+                }
+            } else {
+                playSound('incorrect');
+                currentWords.push({ id: wordId, word: wordText });
+                showToast("Not quite right", "That word doesn't go there. Click the 'x' on the word to remove it.", "bg-rose-500");
+            }
+
+            renderTravelling();
+            updateBadges();
+        }
+
+        function removeTravelWord(itemId, wordIdx) {
+            playSound('click');
+            if (travellingProgress[itemId] && travellingProgress[itemId].userWords) {
+                travellingProgress[itemId].userWords.splice(wordIdx, 1);
+                travellingProgress[itemId].correct = false;
+                renderTravelling();
+                updateBadges();
+            }
+        }
+
+        function resetTravellingItem(itemId) {
+            playSound('click');
+            if (travellingProgress[itemId]) {
+                travellingProgress[itemId].userWords = [];
+                travellingProgress[itemId].correct = false;
+            }
+            renderTravelling();
+            updateBadges();
+        }
+
+        function updateBadges() {
+            const mistakesCompleted = Object.values(mistakesProgress).filter(p => p.correct).length;
+            const travellingCompleted = Object.values(travellingProgress).filter(p => p.correct).length;
+
+            document.getElementById('badge-mistakes').innerText = `${mistakesCompleted}/10`;
+            document.getElementById('mistakes-score').innerText = `${mistakesCompleted} / 10`;
+
+            document.getElementById('badge-travelling').innerText = `${travellingCompleted}/10`;
+            document.getElementById('travelling-score').innerText = `${travellingCompleted} / 10`;
+        }
+
+        function checkCompletion(section) {
+            if (section === 'mistakes') {
+                const completed = Object.values(mistakesProgress).filter(p => p.correct).length;
+                if (completed === mistakesList.length) {
+                    triggerCelebration("Total Mastery! 100% Accuracy!", "You successfully found and corrected all Spanglish mistakes! Amazing A2 progress!");
+                }
+            } else if (section === 'travelling') {
+                const completed = Object.values(travellingProgress).filter(p => p.correct).length;
+                if (completed === travellingList.length) {
+                    triggerCelebration("Total Mastery! 100% Accuracy!", "You are fully prepared for your next trip abroad with stellar English skills!");
+                }
+            }
+        }
+
+        function toggleHint(elementId) {
+            playSound('click');
+            const el = document.getElementById(elementId);
+            el.classList.toggle('hidden');
+        }
+
+        function openDictionary() {
+            playSound('click');
+            document.getElementById('dictionary-modal').classList.remove('hidden');
+        }
+
+        function closeDictionary() {
+            playSound('click');
+            document.getElementById('dictionary-modal').classList.add('hidden');
+        }
+
+        function populateDictionary(filter = '') {
+            const listEl = document.getElementById('dict-list');
+            listEl.innerHTML = '';
+
+            const filtered = dictionaryData.filter(d => d.term.toLowerCase().includes(filter.toLowerCase()) || d.def.toLowerCase().includes(filter.toLowerCase()));
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">No matching terms found.</p>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200';
+                div.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="text-sm font-bold text-brandNavy">${item.term}</h4>
+                        <button onclick="speakText('${item.term}')" class="text-brandTeal hover:text-brandTealHover text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <p class="text-xs text-slate-600">${item.def}</p>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        function filterDictionary() {
+            const val = document.getElementById('dict-search').value;
+            populateDictionary(val);
+        }
+
+        function triggerCelebration(title, text) {
+            document.getElementById('celebration-title').innerText = title;
+            document.getElementById('celebration-text').innerText = text;
+            document.getElementById('celebration-modal').classList.remove('hidden');
+
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function closeCelebration() {
+            playSound('click');
+            document.getElementById('celebration-modal').classList.add('hidden');
+        }
+
+        function showToast(title, message, colorClass) {
+            const toast = document.getElementById('toast');
+            const toastIcon = document.getElementById('toast-icon');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-message').innerText = message;
+
+            toastIcon.className = `w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 ${colorClass}`;
+            toastIcon.innerHTML = `<i class="fa-solid fa-bell"></i>`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        window.onload = function() {
+            initApp();
+        };
+    </script>
+</body>
+</html>
