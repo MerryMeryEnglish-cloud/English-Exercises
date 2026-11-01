@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence & Word Formation (B2/B2+) - Merry Mery English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #e0e7ff;
+      --secondary: #0284c7;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: white;
+      padding: 18px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      border-radius: 8px;
+      background: white;
+      padding: 3px;
+    }
+
+    .header-title h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .header-title p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.18);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .voice-select-box {
+      background: white;
+      border-radius: 8px;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .voice-select-box label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .voice-select-box select {
+      border: none;
+      outline: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .tabs-container-sticky {
+      position: sticky;
+      top: 84px;
+      background: var(--bg);
+      padding: 10px 0 14px 0;
+      z-index: 950;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      background: var(--card-bg);
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .card-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .instruction-banner {
+      background: #eff6ff;
+      border-left: 4px solid var(--secondary);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 22px;
+      font-size: 0.9rem;
+      color: #1e3a8a;
+    }
+
+    .exercise-item {
+      background: #fafafa;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.25s;
+    }
+
+    .exercise-item.correct {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .exercise-item.incorrect {
+      background: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .sentence-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 12px;
+    }
+
+    .sentence-text {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .option-btn {
+      background: white;
+      border: 1.5px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--primary);
+      background: #f5f3ff;
+      transform: translateY(-1px);
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-hover);
+      font-weight: 600;
+    }
+
+    .input-inline {
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      min-width: 170px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: white;
+    }
+
+    .input-inline:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-controls-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-hint-tag {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-hint-tag:hover { background: #fde68a; }
+
+    .btn-help-tag {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-help-tag:hover { background: #fecaca; }
+
+    .hint-box {
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #fffbeb;
+      border-left: 3px solid var(--warning);
+      border-radius: 6px;
+      font-size: 0.86rem;
+      color: #92400e;
+      display: none;
+    }
+
+    .feedback-msg {
+      margin-top: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .audio-btn {
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .audio-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .word-bank-sticky {
+      position: sticky;
+      top: 154px;
+      background: white;
+      border: 2px dashed var(--primary);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      z-index: 900;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .word-bank-header {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-chip {
+      background: #eef2ff;
+      color: var(--primary);
+      border: 1.5px solid #c7d2fe;
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+    }
+
+    .word-chip:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .word-chip.used {
+      opacity: 0.35;
+      pointer-events: none;
+      text-decoration: line-through;
+    }
+
+    .drop-slot {
+      display: inline-block;
+      min-width: 170px;
+      min-height: 38px;
+      border: 2px dashed var(--primary);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 4px 14px;
+      vertical-align: middle;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin: 0 4px;
+    }
+
+    .drop-slot.active-slot {
+      background: #ede9fe;
+      border-color: #6366f1;
+      border-style: solid;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .drop-slot.filled {
+      background: #eef2ff;
+      border-style: solid;
+    }
+
+    .scramble-drop-area {
+      min-height: 52px;
+      border: 2px dashed #94a3b8;
+      border-radius: 10px;
+      background: white;
+      padding: 8px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .scramble-drop-area.correct-border {
+      border-color: var(--success);
+      border-style: solid;
+      background: #f0fdf4;
+    }
+
+    .scramble-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      min-height: 48px;
+    }
+
+    .scramble-chip {
+      background: white;
+      border: 1.5px solid #cbd5e1;
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+    }
+
+    .scramble-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .scramble-chip.in-target {
+      background: #e0e7ff;
+      border-color: #818cf8;
+      color: #3730a3;
+    }
+
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 38px 32px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.3);
+      animation: scaleUp 0.3s ease;
+      position: relative;
+      z-index: 2010;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .modal-card h2 {
+      font-size: 1.7rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .dict-modal {
+      background: white;
+      padding: 26px;
+      border-radius: 18px;
+      max-width: 540px;
+      width: 92%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      z-index: 2010;
+    }
+
+    .close-dict {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .dict-search-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    .dict-search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .dict-results-list {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .dict-entry {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .theory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .theory-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .theory-card h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .theory-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .theory-example {
+      background: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-style: italic;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (Sin Reset & Shuffle All) -->
+  <header>
+    <div class="header-left">
+      <img src="logo.png" alt="Merry Mery English" class="logo-img" onerror="this.style.display='none'">
+      <div class="header-title">
+        <h1>Merry Mery English</h1>
+        <p>Advanced B2/B2+ Grammar &amp; Word Formation Studio</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="voice-select-box">
+        <label for="voiceSelect">🗣️ Voice:</label>
+        <select id="voiceSelect" onchange="testVoice()">
+          <option value="en-GB_Female">Female (UK)</option>
+          <option value="en-GB_Male">Male (UK)</option>
+          <option value="en-US_Female">Female (US)</option>
+          <option value="en-US_Male">Male (US)</option>
+        </select>
+      </div>
+      <a href="index.html" class="btn-action">🏠 Home</a>
+      <button class="btn-action" onclick="openDictionary()">📖 Dictionary</button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- STICKY TABS NAVIGATION -->
+    <div class="tabs-container-sticky">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(0)">Overview &amp; Theory</button>
+        <button class="tab-btn" onclick="switchTab(1)">Part 1: Multiple Choice</button>
+        <button class="tab-btn" onclick="switchTab(2)">Part 2: Context Gap Fill</button>
+        <button class="tab-btn" onclick="switchTab(3)">Part 3: Sentence Builder</button>
+        <button class="tab-btn" onclick="switchTab(4)">Part 4: Word Formation</button>
+      </div>
+    </div>
+
+    <!-- TAB 0: OVERVIEW & THEORY -->
+    <div class="tab-content active" id="tab-0">
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-title">📚 Overview &amp; Master Grammar Summary (B2/B2+)</div>
+        </div>
+
+        <p style="margin-bottom: 16px; color: var(--text);">
+          Welcome to the <strong>Sentence &amp; Word Formation Masterclass</strong>. This module trains your grammatical precision across key Cambridge B2 First (FCE) and B2+ syllabus areas: complex mixed and third conditionals, reported speech verb structures, passive voice tenses, habit structures (<em>used to / be used to / get used to</em>), question tags, compound adjectives, prepositions, phrasal verbs, and derivational word formation.
+        </p>
+
+        <div class="theory-grid">
+          <div class="theory-card">
+            <h4>1. Conditionals (Mixed &amp; 3rd)</h4>
+            <p>Combine past unreal conditions with present consequences, or explore hypothetical past scenarios.</p>
+            <div class="theory-example">
+              <span>"If you had taken that post, would you be living in London today?"</span>
+              <button class="audio-btn" onclick="speakText('If you had taken that post, would you be living in London today?', this)">🔊</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h4>2. Passive Voice in Complex Tenses</h4>
+            <p>Continuous passives (<em>is being restored</em>) and modal perfect passives (<em>should have been delivered</em>).</p>
+            <div class="theory-example">
+              <span>"The historical manuscript is currently being restored by specialists."</span>
+              <button class="audio-btn" onclick="speakText('The historical manuscript is currently being restored by specialists.', this)">🔊</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h4>3. Habits: Used to vs Be/Get used to</h4>
+            <p><em>Used to + base verb</em> (past habits) vs <em>be/get used to + -ing</em> (accustomed to a routine).</p>
+            <div class="theory-example">
+              <span>"Did it take you long to get used to commuting by train every morning?"</span>
+              <button class="audio-btn" onclick="speakText('Did it take you long to get used to commuting by train every morning?', this)">🔊</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h4>4. Reported Speech &amp; Advanced Verbs</h4>
+            <p>Reporting verbs with specific patterns (<em>admit + -ing</em>, <em>persuade someone + to-infinitive</em>, <em>apologize for + -ing</em>).</p>
+            <div class="theory-example">
+              <span>"The manager persuaded her to reconsider her sudden resignation."</span>
+              <button class="audio-btn" onclick="speakText('The manager persuaded her to reconsider her sudden resignation.', this)">🔊</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h4>5. Question Tags &amp; Phrasal Verbs</h4>
+            <p>Subtle question tags (<em>Let's &rarr; shall we?</em>, negative adverbs) and multi-word phrasal verbs.</p>
+            <div class="theory-example">
+              <span>"You could hardly hear the audio from the back row, could you?"</span>
+              <button class="audio-btn" onclick="speakText('You could hardly hear the audio from the back row, could you?', this)">🔊</button>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <h4>6. Derivational Word Formation</h4>
+            <p>Transforming root words into nouns (-ship, -ence, -ity), adjectives (-able, -ive), negative forms (un-, dis-), or verbs (en-, -ize).</p>
+            <div class="theory-example">
+              <span>"LEAD &rarr; Her exceptional leadership skills inspired the entire research department."</span>
+              <button class="audio-btn" onclick="speakText('Her exceptional leadership skills inspired the entire research department.', this)">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-bar" style="justify-content: flex-end;">
+          <button class="btn-primary" onclick="switchTab(1)">Go to Part 1: Multiple Choice ➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: MULTIPLE CHOICE -->
+    <div class="tab-content" id="tab-1">
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-title">🎯 Part 1: B2/B2+ Structural Multiple Choice</div>
+        </div>
+        <div class="instruction-banner">
+          Select the correct option for each sentence or question. Evaluation and sound feedback are instant upon selection.
+        </div>
+
+        <div id="exercises-1"></div>
+
+        <div class="action-bar">
+          <button class="btn-secondary" onclick="initTab(1)">🔄 Reset &amp; Shuffle</button>
+          <button class="btn-primary" onclick="switchTab(2)">Go to Part 2: Context Gap Fill ➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CONTEXT GAP FILL WITH STICKY WORD BANK -->
+    <div class="tab-content" id="tab-2">
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-title">🧩 Part 2: Context Gap Fill &amp; Word Bank</div>
+        </div>
+        <div class="instruction-banner">
+          Click any target gap below, then click the matching phrase from the sticky bank. Evaluation is automatic upon placing the phrase.
+        </div>
+
+        <!-- Sticky Word Bank -->
+        <div class="word-bank-sticky">
+          <div class="word-bank-header">
+            <span>Sticky Word Bank (Click gap below, then click phrase)</span>
+            <span id="bankSlotIndicator" style="font-weight: 600; color: #b45309; text-transform: none;">Slot selected: None</span>
+          </div>
+          <div class="chips-container" id="bank-chips-2"></div>
+        </div>
+
+        <div id="exercises-2"></div>
+
+        <div class="action-bar">
+          <button class="btn-secondary" onclick="initTab(2)">🔄 Reset &amp; Shuffle</button>
+          <button class="btn-primary" onclick="switchTab(3)">Go to Part 3: Sentence Builder ➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: SCRAMBLED SENTENCES (SENTENCE BUILDER) -->
+    <div class="tab-content" id="tab-3">
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-title">🏗️ Part 3: Sentence &amp; Question Builder</div>
+        </div>
+        <div class="instruction-banner">
+          Build the correct B2+ sentence or question by tapping the word chips in sequence. Once all words are placed, it evaluates automatically with sound feedback.
+        </div>
+
+        <div id="exercises-3"></div>
+
+        <div class="action-bar">
+          <button class="btn-secondary" onclick="initTab(3)">🔄 Reset &amp; Shuffle</button>
+          <button class="btn-primary" onclick="switchTab(4)">Go to Part 4: Word Formation ➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: WORD FORMATION TRANSFORMATION -->
+    <div class="tab-content" id="tab-4">
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-title">✍️ Part 4: Word Formation &amp; Derivation</div>
+        </div>
+        <div class="instruction-banner">
+          Type the transformed form of the word in brackets. The answer will be validated automatically as soon as you type the correct form.
+        </div>
+
+        <div id="exercises-4"></div>
+
+        <div class="action-bar">
+          <button class="btn-secondary" onclick="initTab(4)">🔄 Reset &amp; Shuffle</button>
+          <button class="btn-primary" onclick="switchTab(0)">🎉 Complete Overview</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONGRATULATIONS MODAL -->
+  <div class="modal-overlay" id="congratsModal">
+    <div class="modal-card">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <h2 id="modalTitle">Total Mastery!</h2>
+      <p id="modalText">Incredible performance! You completed this section with 100% accuracy.</p>
+      <button class="btn-primary" style="margin: 0 auto;" onclick="closeModal()">Continue Practice</button>
+    </div>
+  </div>
+
+  <!-- QUICK DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dictModal">
+    <div class="dict-modal">
+      <button class="close-dict" onclick="closeDictionary()">&times;</button>
+      <h2 style="color: var(--primary); margin-bottom: 12px; font-size: 1.35rem;">📖 Cambridge Quick Dictionary</h2>
+      <input type="text" class="dict-search-input" id="dictSearchInput" placeholder="Search a word or expression..." oninput="filterDictionary()">
+      <div class="dict-results-list" id="dictResultsList"></div>
+    </div>
+  </div>
+
+  <script>
+    /* AUDIO SYNTHESIZER (NATIVE WEB AUDIO API - NO EXTERNAL MP3 DEPENDENCIES) */
+    const AudioFeedback = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      playSuccess() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          
+          // Arpeggiated cheerful chime (C5 -> E5)
+          const osc1 = this.ctx.createOscillator();
+          const osc2 = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc1.type = 'triangle';
+          osc1.frequency.setValueAtTime(523.25, now); // C5
+          osc1.frequency.setValueAtTime(659.25, now + 0.08); // E5
+
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(1046.50, now + 0.08); // C6 overtone
+
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc1.start(now);
+          osc2.start(now + 0.08);
+          osc1.stop(now + 0.35);
+          osc2.stop(now + 0.35);
+        } catch(e) {}
+      },
+      playError() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.exponentialRampToValueAtTime(120, now + 0.22); // downward subtle buzz
+
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } catch(e) {}
+      }
+    };
+
+    /* MASTER DATA FOR B2/B2+ EXERCISES (NO INVERSION) */
+    const dictionaryData = [
+      { term: "congratulate on", pos: "verb phrase", def: "praise someone for an achievement (+ gerund).", ex: "She congratulated him on winning the scholarship." },
+      { term: "used to", pos: "modal phrase", def: "accustomed to something through regular experience (+ -ing).", ex: "Are you used to waking up early?" },
+      { term: "put up with", pos: "phrasal verb", def: "tolerate or endure an unpleasant situation.", ex: "I refuse to put up with such delays." },
+      { term: "turn down", pos: "phrasal verb", def: "reject or decline an offer, request or proposal.", ex: "He turned down the job offer in Paris." },
+      { term: "apologize for", pos: "verb phrase", def: "express regret for something wrong (+ gerund).", ex: "He apologized for arriving late." },
+      { term: "persuade", pos: "verb", def: "convince someone to do something (+ object + to-infinitive).", ex: "She persuaded him to reconsider." },
+      { term: "resilience", pos: "noun", def: "the capacity to recover quickly from difficulties.", ex: "Her resilience helped her overcome the crisis." },
+      { term: "untraceable", pos: "adjective", def: "not able to be found, identified, or tracked.", ex: "The source of the funds remained untraceable." }
+    ];
+
+    /* PART 1: MULTIPLE CHOICE */
+    const dataTab1 = [
+      {
+        question: "Would you still ___ here today if you had taken that overseas post last year?",
+        options: ["be working", "have worked", "work", "were working"],
+        answer: "be working",
+        fullSentence: "Would you still be working here today if you had taken that overseas post last year?",
+        hint: "Mixed conditional question: past hypothesis (if you had taken) with present hypothetical result (would you still be working)."
+      },
+      {
+        question: "The project leader congratulated everyone ___ the complex prototype ahead of schedule.",
+        options: ["on completing", "for to complete", "to have completed", "about completing"],
+        answer: "on completing",
+        fullSentence: "The project leader congratulated everyone on completing the complex prototype ahead of schedule.",
+        hint: "Dependent preposition pattern: congratulate + someone + on + gerund (-ing)."
+      },
+      {
+        question: "The confidential parcel ___ by courier before the close of business yesterday.",
+        options: ["should have been delivered", "should be delivering", "must deliver", "ought to deliver"],
+        answer: "should have been delivered",
+        fullSentence: "The confidential parcel should have been delivered by courier before the close of business yesterday.",
+        hint: "Passive modal perfect: should have been + past participle (an obligation unfulfilled in the past)."
+      },
+      {
+        question: "Is your new colleague finally ___ such long distances on the motorway every morning?",
+        options: ["used to commuting", "used to commute", "use to commute", "get used to commute"],
+        answer: "used to commuting",
+        fullSentence: "Is your new colleague finally used to commuting such long distances on the motorway every morning?",
+        hint: "Be used to + verb-ing: describes the state of being accustomed to a routine."
+      },
+      {
+        question: "You could hardly hear what the keynote speaker was saying, ___?",
+        options: ["could you", "couldn't you", "can you", "did you"],
+        answer: "could you",
+        fullSentence: "You could hardly hear what the keynote speaker was saying, could you?",
+        hint: "'Hardly' makes the sentence semi-negative, requiring an affirmative question tag."
+      },
+      {
+        question: "This time tomorrow afternoon, our research delegation ___ over the Atlantic.",
+        options: ["will be flying", "will have flown", "is flying", "flies"],
+        answer: "will be flying",
+        fullSentence: "This time tomorrow afternoon, our research delegation will be flying over the Atlantic.",
+        hint: "Future Continuous: expresses an action that will be in progress at a specific moment in the future."
+      },
+      {
+        question: "The international symposium will begin ___ 9 a.m. ___ Monday morning.",
+        options: ["at / on", "in / at", "on / in", "at / in"],
+        answer: "at / on",
+        fullSentence: "The international symposium will begin at 9 a.m. on Monday morning.",
+        hint: "Prepositions of time: 'at' for specific clock times (9 a.m.) and 'on' for days/dates (Monday morning)."
+      },
+      {
+        question: "She admitted that she was really looking forward ___ the specialized training workshop.",
+        options: ["to attending", "to attend", "attending", "for attending"],
+        answer: "to attending",
+        fullSentence: "She admitted that she was really looking forward to attending the specialized training workshop.",
+        hint: "Phrasal verb structure: 'look forward to' requires a preposition 'to' followed by a gerund (-ing)."
+      },
+      {
+        question: "The museum director proudly unveiled a ___ necklace from the late fourteenth century.",
+        options: ["beautiful antique gold", "antique beautiful gold", "gold beautiful antique", "beautiful gold antique"],
+        answer: "beautiful antique gold",
+        fullSentence: "The museum director proudly unveiled a beautiful antique gold necklace from the late fourteenth century.",
+        hint: "Royal order of adjectives: Opinion (beautiful) &rarr; Age (antique) &rarr; Material (gold)."
+      },
+      {
+        question: "We sincerely regret ___ all registered participants that the lecture has been rescheduled.",
+        options: ["to inform", "informing", "inform", "to informing"],
+        answer: "to inform",
+        fullSentence: "We sincerely regret to inform all registered participants that the lecture has been rescheduled.",
+        hint: "'Regret to inform' is used to announce bad news politely. (Compare with 'regret doing' for past remorse)."
+      }
+    ];
+
+    /* PART 2: CONTEXT GAP FILL WITH DETAILED PHRASES */
+    const dataTab2 = [
+      {
+        beforeText: "The fragile historical manuscript is currently ",
+        afterText: " by senior archival conservators.",
+        answer: "being restored",
+        fullSentence: "The fragile historical manuscript is currently being restored by senior archival conservators.",
+        hint: "Present Continuous Passive: is currently being + past participle."
+      },
+      {
+        beforeText: "The senior manager successfully ",
+        afterText: " her sudden resignation before making a final decision.",
+        answer: "persuaded her to reconsider",
+        fullSentence: "The senior manager successfully persuaded her to reconsider her sudden resignation before making a final decision.",
+        hint: "Reporting verb structure: persuade + object + to-infinitive."
+      },
+      {
+        beforeText: "If the rescue team had arrived fifteen minutes earlier, they ",
+        afterText: " the stranded mountain climbers.",
+        answer: "would have saved",
+        fullSentence: "If the rescue team had arrived fifteen minutes earlier, they would have saved the stranded mountain climbers.",
+        hint: "Third conditional consequence: would have + past participle."
+      },
+      {
+        beforeText: "How long did it take you to ",
+        afterText: " in such a chaotic and noisy city?",
+        answer: "get used to living",
+        fullSentence: "How long did it take you to get used to living in such a chaotic and noisy city?",
+        hint: "Process of becoming accustomed: get used to + gerund (-ing)."
+      },
+      {
+        beforeText: "I simply refuse to ",
+        afterText: " such insolent behaviour from junior committee members.",
+        answer: "put up with",
+        fullSentence: "I simply refuse to put up with such insolent behaviour from junior committee members.",
+        hint: "Three-word phrasal verb meaning to tolerate or endure."
+      },
+      {
+        beforeText: "By the time the lease expires in December, the company ",
+        afterText: " modern corporate premises.",
+        answer: "will have purchased",
+        fullSentence: "By the time the lease expires in December, the company will have purchased modern corporate premises.",
+        hint: "Future Perfect active: action completed before a future time limit (will have + past participle)."
+      },
+      {
+        beforeText: "Conducting this intricate clinical trial will require ",
+        afterText: " patience and meticulous attention.",
+        answer: "a great deal of",
+        fullSentence: "Conducting this intricate clinical trial will require a great deal of patience and meticulous attention.",
+        hint: "Quantifier specifically used with uncountable abstract nouns (patience)."
+      },
+      {
+        beforeText: "Judging by the completely deserted shelves, the store ",
+        afterText: " with eager bargain hunters earlier.",
+        answer: "must have been packed",
+        fullSentence: "Judging by the completely deserted shelves, the store must have been packed with eager bargain hunters earlier.",
+        hint: "Modal deduction in the past (passive): must have been + past participle."
+      },
+      {
+        beforeText: "Let's review the statistical findings once more before publishing, ",
+        afterText: "?",
+        answer: "shall we",
+        fullSentence: "Let's review the statistical findings once more before publishing, shall we?",
+        hint: "Standard question tag for first-person plural proposals starting with 'Let's'."
+      },
+      {
+        beforeText: "The foreign diplomat formally ",
+        afterText: " the unforeseen delay during bilateral talks.",
+        answer: "apologized for causing",
+        fullSentence: "The foreign diplomat formally apologized for causing the unforeseen delay during bilateral talks.",
+        hint: "Reporting verb with preposition: apologize for + gerund (-ing)."
+      }
+    ];
+
+    /* PART 3: SCRAMBLED WORDS (CONCISE: 7 TO 8 WORDS PER SENTENCE) */
+    const dataTab3 = [
+      {
+        correctWords: ["Would", "you", "be", "happier", "if", "you", "had", "accepted?"],
+        fullSentence: "Would you be happier if you had accepted?",
+        hint: "Mixed conditional question: Would you be happier if...?"
+      },
+      {
+        correctWords: ["The", "urgent", "report", "is", "being", "analyzed", "by", "detectives."],
+        fullSentence: "The urgent report is being analyzed by detectives.",
+        hint: "Present continuous passive: Subject + is being analyzed..."
+      },
+      {
+        correctWords: ["Did", "she", "use", "to", "live", "in", "central", "London?"],
+        fullSentence: "Did she use to live in central London?",
+        hint: "Past habit question: Did she use to live in...?"
+      },
+      {
+        correctWords: ["He", "admitted", "making", "an", "unforgivable", "mistake", "yesterday."],
+        fullSentence: "He admitted making an unforgivable mistake yesterday.",
+        hint: "Reporting verb: Subject + admitted making an unforgivable mistake..."
+      },
+      {
+        correctWords: ["You", "haven't", "told", "anyone", "about", "this,", "have", "you?"],
+        fullSentence: "You haven't told anyone about this, have you?",
+        hint: "Question tag: You haven't told anyone... have you?"
+      },
+      {
+        correctWords: ["If", "they", "had", "phoned,", "we", "would", "have", "helped."],
+        fullSentence: "If they had phoned, we would have helped.",
+        hint: "Third conditional: If they had phoned, we would have helped."
+      },
+      {
+        correctWords: ["She", "must", "have", "forgotten", "our", "scheduled", "meeting", "today."],
+        fullSentence: "She must have forgotten our scheduled meeting today.",
+        hint: "Past deduction: She must have forgotten our scheduled meeting..."
+      },
+      {
+        correctWords: ["Why", "did", "you", "turn", "down", "their", "job", "offer?"],
+        fullSentence: "Why did you turn down their job offer?",
+        hint: "Question with phrasal verb: Why did you turn down their job offer?"
+      },
+      {
+        correctWords: ["By", "next", "Friday,", "they", "will", "have", "finished", "everything."],
+        fullSentence: "By next Friday, they will have finished everything.",
+        hint: "Future perfect: By next Friday, they will have finished..."
+      },
+      {
+        correctWords: ["Working", "abroad", "requires", "adapting", "to", "different", "cultural", "norms."],
+        fullSentence: "Working abroad requires adapting to different cultural norms.",
+        hint: "Gerund subject: Working abroad requires adapting to..."
+      }
+    ];
+
+    /* PART 4: WORD FORMATION & DERIVATION */
+    const dataTab4 = [
+      {
+        beforeText: "The committee commended the candidate for her exceptional ",
+        rootWord: "LEAD",
+        afterText: " skills during the company restructuring.",
+        answer: "leadership",
+        fullSentence: "The committee commended the candidate for her exceptional leadership skills during the company restructuring.",
+        partOfSpeech: "Noun (Quality/Skill)",
+        hint: "Add the suffix -ship to form an abstract noun indicating leadership qualities."
+      },
+      {
+        beforeText: "Despite extensive searches, the missing documents remained completely ",
+        rootWord: "TRACE",
+        afterText: " for several months.",
+        answer: "untraceable",
+        fullSentence: "Despite extensive searches, the missing documents remained completely untraceable for several months.",
+        partOfSpeech: "Negative Adjective",
+        hint: "Add the negative prefix un- and the adjective suffix -able."
+      },
+      {
+        beforeText: "The government took the urgent decision to ",
+        rootWord: "STABLE",
+        afterText: " the national currency through monetary intervention.",
+        answer: "stabilize",
+        altAnswer: "stabilise",
+        fullSentence: "The government took the urgent decision to stabilize the national currency through monetary intervention.",
+        partOfSpeech: "Verb (Infinitive)",
+        hint: "Transform the adjective into a verb ending in -ize or -ise."
+      },
+      {
+        beforeText: "The lead investigator spoke ",
+        rootWord: "CRITIC",
+        afterText: " about the lack of safety measures in the factory.",
+        answer: "critically",
+        fullSentence: "The lead investigator spoke critically about the lack of safety measures in the factory.",
+        partOfSpeech: "Adverb",
+        hint: "Convert 'critic' into an adverb modifying the verb 'spoke' (-ally)."
+      },
+      {
+        beforeText: "The architect pointed out the remarkable ",
+        rootWord: "SIMILAR",
+        afterText: " between the two cathedral blueprints.",
+        answer: "similarity",
+        altAnswer: "similarities",
+        fullSentence: "The architect pointed out the remarkable similarity between the two cathedral blueprints.",
+        partOfSpeech: "Noun",
+        hint: "Form a noun with the suffix -ity."
+      },
+      {
+        beforeText: "The sharp drop in temperature was completely ",
+        rootWord: "EXPECT",
+        afterText: ", leaving hikers unprepared for snow.",
+        answer: "unexpected",
+        fullSentence: "The sharp drop in temperature was completely unexpected, leaving hikers unprepared for snow.",
+        partOfSpeech: "Negative Adjective",
+        hint: "Negative adjective with prefix un- and past participle ending -ed."
+      },
+      {
+        beforeText: "Local residents expressed strong ",
+        rootWord: "APPROVE",
+        afterText: " regarding the proposed highway through the forest.",
+        answer: "disapproval",
+        fullSentence: "Local residents expressed strong disapproval regarding the proposed highway through the forest.",
+        partOfSpeech: "Negative Noun",
+        hint: "Negative noun with prefix dis- and suffix -al."
+      },
+      {
+        beforeText: "She has demonstrated extraordinary ",
+        rootWord: "RESILIENT",
+        afterText: " throughout this demanding research project.",
+        answer: "resilience",
+        fullSentence: "She has demonstrated extraordinary resilience throughout this demanding research project.",
+        partOfSpeech: "Abstract Noun",
+        hint: "Change the adjective ending -ent into the noun ending -ence."
+      },
+      {
+        beforeText: "The developers managed to ",
+        rootWord: "LARGE",
+        afterText: " the storage capacity of the device significantly.",
+        answer: "enlarge",
+        fullSentence: "The developers managed to enlarge the storage capacity of the device significantly.",
+        partOfSpeech: "Verb (Infinitive)",
+        hint: "Prefix en- added to an adjective creates a verb meaning 'make larger'."
+      },
+      {
+        beforeText: "The research team provided ",
+        rootWord: "DENY",
+        afterText: " evidence that the ocean temperatures were rising.",
+        answer: "undeniable",
+        fullSentence: "The research team provided undeniable proof that the ocean temperatures were rising.",
+        partOfSpeech: "Negative Adjective",
+        hint: "Prefix un- + root (change y to i) + suffix -able."
+      }
+    ];
+
+    /* APPLICATION STATE */
+    let appState = {
+      parts: {
+        1: { items: [], solved: 0, errors: 0 },
+        2: { items: [], solved: 0, errors: 0, activeSlotIdx: null },
+        3: { items: [], solved: 0, errors: 0, userChains: {} },
+        4: { items: [], solved: 0, errors: 0, helpCount: {} }
+      }
+    };
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function speakText(text, btn) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        const selVal = document.getElementById('voiceSelect').value;
+        const [langCode, gender] = selVal.split('_');
+
+        utterance.lang = langCode === 'en-GB' ? 'en-GB' : 'en-US';
+
+        const voices = window.speechSynthesis.getVoices();
+        const match = voices.find(v => {
+          const matchLang = v.lang.replace('_', '-').toLowerCase().includes(utterance.lang.toLowerCase());
+          const nameLower = v.name.toLowerCase();
+          const isFemale = nameLower.includes('female') || nameLower.includes('zira') || nameLower.includes('susan') || nameLower.includes('hazel') || nameLower.includes('catherine');
+          const isMale = nameLower.includes('male') || nameLower.includes('david') || nameLower.includes('george') || nameLower.includes('daniel');
+          if (gender === 'Female') return matchLang && isFemale;
+          if (gender === 'Male') return matchLang && isMale;
+          return matchLang;
+        });
+
+        if (match) utterance.voice = match;
+
+        window.speechSynthesis.speak(utterance);
+
+        if (btn) {
+          btn.style.transform = 'scale(1.18)';
+          setTimeout(() => btn.style.transform = 'scale(1)', 220);
+        }
+      }
+    }
+
+    function testVoice() {
+      speakText("Voice accent updated successfully.", null);
+    }
+
+    function switchTab(idx) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.tab-content').forEach((content, i) => {
+        content.classList.toggle('active', i === idx);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initTab(partNum) {
+      appState.parts[partNum].errors = 0;
+      appState.parts[partNum].solved = 0;
+
+      if (partNum === 1) {
+        appState.parts[1].items = shuffleArray(dataTab1);
+        renderTab1();
+      } else if (partNum === 2) {
+        appState.parts[2].items = shuffleArray(dataTab2);
+        appState.parts[2].activeSlotIdx = null;
+        renderTab2();
+      } else if (partNum === 3) {
+        appState.parts[3].items = shuffleArray(dataTab3);
+        appState.parts[3].userChains = {};
+        renderTab3();
+      } else if (partNum === 4) {
+        appState.parts[4].items = shuffleArray(dataTab4);
+        appState.parts[4].helpCount = {};
+        renderTab4();
+      }
+    }
+
+    /* TAB 1: MULTIPLE CHOICE */
+    function renderTab1() {
+      const container = document.getElementById('exercises-1');
+      const items = appState.parts[1].items;
+
+      container.innerHTML = items.map((item, idx) => {
+        const shuffledOpts = shuffleArray(item.options);
+        const isQuestion = item.question.trim().endsWith('?');
+        const label = isQuestion ? `Question ${idx + 1} of ${items.length}` : `Sentence ${idx + 1} of ${items.length}`;
+
+        return `
+          <div class="exercise-item" id="ex-1-${idx}">
+            <span class="sentence-tag">${label}</span>
+            <div class="sentence-text">${item.question.replace('___', '<strong style="color:var(--primary); text-decoration: underline;">[ ? ]</strong>')}</div>
+            <div class="options-grid">
+              ${shuffledOpts.map((opt, optIdx) => `
+                <button class="option-btn" id="opt-1-${idx}-${optIdx}" onclick="chooseOption1(${idx}, ${optIdx})">${opt}</button>
+              `).join('')}
+            </div>
+            <div class="btn-controls-row">
+              <button class="btn-hint-tag" onclick="toggleHint(1, ${idx})">💡 Hint</button>
+            </div>
+            <div class="hint-box" id="hint-1-${idx}">${item.hint}</div>
+            <div class="feedback-msg" id="feedback-1-${idx}"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function chooseOption1(idx, optIdx) {
+      const item = appState.parts[1].items[idx];
+      const box = document.getElementById(`ex-1-${idx}`);
+      const feedback = document.getElementById(`feedback-1-${idx}`);
+      const btn = document.getElementById(`opt-1-${idx}-${optIdx}`);
+      const chosenOpt = btn.textContent.trim();
+
+      item.options.forEach((_, i) => {
+        const b = document.getElementById(`opt-1-${idx}-${i}`);
+        if (b) b.classList.remove('selected');
+      });
+      btn.classList.add('selected');
+
+      if (chosenOpt === item.answer) {
+        AudioFeedback.playSuccess();
+        box.classList.remove('incorrect');
+        box.classList.add('correct');
+        feedback.style.color = 'var(--success)';
+        feedback.innerHTML = `✅ Correct! Excellent grammar precision. <button class="audio-btn" onclick="speakText('${item.fullSentence.replace(/'/g, "\\'")}', this)">🔊 Listen</button>`;
+
+        item.options.forEach((_, i) => {
+          const b = document.getElementById(`opt-1-${idx}-${i}`);
+          if (b) b.disabled = true;
+        });
+
+        appState.parts[1].solved++;
+        checkCompletion(1);
+      } else {
+        AudioFeedback.playError();
+        appState.parts[1].errors++;
+        box.classList.add('incorrect');
+        feedback.style.color = 'var(--error)';
+        feedback.innerHTML = `❌ Not quite right. Analyze the tense agreement and try again!`;
+      }
+    }
+
+    /* TAB 2: CONTEXT GAP FILL */
+    function renderTab2() {
+      renderTab2Bank();
+      renderTab2Sentences();
+      updateSlotIndicator();
+    }
+
+    function renderTab2Bank() {
+      const bank = document.getElementById('bank-chips-2');
+      const items = appState.parts[2].items;
+      const allAnswers = shuffleArray(items.map(i => i.answer));
+
+      bank.innerHTML = allAnswers.map((ans, bankIdx) => `
+        <div class="word-chip" id="chip-2-${bankIdx}" data-word="${ans}" onclick="clickBankWord2(${bankIdx})" draggable="true" ondragstart="dragStart2(event, ${bankIdx})">${ans}</div>
+      `).join('');
+    }
+
+    function renderTab2Sentences() {
+      const container = document.getElementById('exercises-2');
+      const items = appState.parts[2].items;
+
+      container.innerHTML = items.map((item, idx) => {
+        const isQuestion = (item.beforeText + item.afterText).trim().endsWith('?');
+        const label = isQuestion ? `Question ${idx + 1} of ${items.length}` : `Sentence ${idx + 1} of ${items.length}`;
+
+        return `
+          <div class="exercise-item" id="ex-2-${idx}">
+            <span class="sentence-tag">${label}</span>
+            <div class="sentence-text">
+              ${item.beforeText}
+              <span class="drop-slot" id="slot-2-${idx}" onclick="selectSlot2(${idx})" ondragover="allowDrop(event)" ondragleave="leaveDrop(event)" ondrop="handleDrop2(event, ${idx})">[ Click to select gap ]</span>
+              ${item.afterText}
+            </div>
+            <div class="btn-controls-row">
+              <button class="btn-hint-tag" onclick="toggleHint(2, ${idx})">💡 Hint</button>
+              <button class="btn-secondary" style="font-size:0.8rem; padding: 5px 12px;" onclick="clearSlot2(${idx})">🔄 Clear Gap</button>
+            </div>
+            <div class="hint-box" id="hint-2-${idx}">${item.hint}</div>
+            <div class="feedback-msg" id="feedback-2-${idx}"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectSlot2(idx) {
+      const slot = document.getElementById(`slot-2-${idx}`);
+      if (slot.classList.contains('filled')) return;
+
+      document.querySelectorAll('.drop-slot').forEach(s => s.classList.remove('active-slot'));
+      appState.parts[2].activeSlotIdx = idx;
+      slot.classList.add('active-slot');
+      updateSlotIndicator();
+    }
+
+    function updateSlotIndicator() {
+      const ind = document.getElementById('bankSlotIndicator');
+      const idx = appState.parts[2].activeSlotIdx;
+      if (idx !== null) {
+        ind.textContent = `Target: Item ${idx + 1} selected`;
+        ind.style.color = '#10b981';
+      } else {
+        ind.textContent = 'Slot selected: None (Click a bracketed gap below)';
+        ind.style.color = '#b45309';
+      }
+    }
+
+    function clickBankWord2(bankIdx) {
+      const chip = document.getElementById(`chip-2-${bankIdx}`);
+      if (!chip || chip.classList.contains('used')) return;
+      const word = chip.getAttribute('data-word');
+
+      let targetIdx = appState.parts[2].activeSlotIdx;
+      if (targetIdx === null) {
+        for (let i = 0; i < appState.parts[2].items.length; i++) {
+          const el = document.getElementById(`slot-2-${i}`);
+          if (!el.classList.contains('filled')) {
+            targetIdx = i;
+            break;
+          }
+        }
+      }
+
+      if (targetIdx !== null) {
+        applyWordToSlot2(targetIdx, word, bankIdx);
+      }
+    }
+
+    function dragStart2(ev, bankIdx) {
+      ev.dataTransfer.setData("text/plain", bankIdx.toString());
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('active-slot');
+    }
+
+    function leaveDrop(ev) {
+      ev.currentTarget.classList.remove('active-slot');
+    }
+
+    function handleDrop2(ev, idx) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('active-slot');
+      const bankIdxStr = ev.dataTransfer.getData("text/plain");
+      if (bankIdxStr !== "") {
+        const bankIdx = parseInt(bankIdxStr, 10);
+        const chip = document.getElementById(`chip-2-${bankIdx}`);
+        if (chip) {
+          applyWordToSlot2(idx, chip.getAttribute('data-word'), bankIdx);
+        }
+      }
+    }
+
+    function applyWordToSlot2(idx, word, bankIdx) {
+      const slot = document.getElementById(`slot-2-${idx}`);
+      if (slot.classList.contains('filled')) return;
+
+      const item = appState.parts[2].items[idx];
+      const box = document.getElementById(`ex-2-${idx}`);
+      const feedback = document.getElementById(`feedback-2-${idx}`);
+
+      slot.textContent = word;
+
+      if (word.trim().toLowerCase() === item.answer.trim().toLowerCase()) {
+        AudioFeedback.playSuccess();
+        slot.classList.remove('active-slot');
+        slot.classList.add('filled');
+        slot.style.pointerEvents = 'none';
+
+        box.classList.remove('incorrect');
+        box.classList.add('correct');
+        feedback.style.color = 'var(--success)';
+        feedback.innerHTML = `✅ Perfect! <button class="audio-btn" onclick="speakText('${item.fullSentence.replace(/'/g, "\\'")}', this)">🔊 Listen</button>`;
+
+        const chip = document.getElementById(`chip-2-${bankIdx}`);
+        if (chip) chip.classList.add('used');
+
+        appState.parts[2].solved++;
+        appState.parts[2].activeSlotIdx = null;
+        updateSlotIndicator();
+        checkCompletion(2);
+      } else {
+        AudioFeedback.playError();
+        appState.parts[2].errors++;
+        box.classList.add('incorrect');
+        feedback.style.color = 'var(--error)';
+        feedback.innerHTML = `❌ Incorrect match. Check dependent prepositions and verb patterns!`;
+      }
+    }
+
+    function clearSlot2(idx) {
+      const slot = document.getElementById(`slot-2-${idx}`);
+      const currentVal = slot.textContent;
+
+      if (slot.classList.contains('filled')) {
+        appState.parts[2].solved = Math.max(0, appState.parts[2].solved - 1);
+        document.querySelectorAll('#bank-chips-2 .word-chip').forEach(c => {
+          if (c.getAttribute('data-word') === currentVal) {
+            c.classList.remove('used');
+          }
+        });
+      }
+
+      slot.textContent = "[ Click to select gap ]";
+      slot.classList.remove('filled', 'active-slot');
+      slot.style.pointerEvents = 'auto';
+
+      document.getElementById(`ex-2-${idx}`).classList.remove('correct', 'incorrect');
+      document.getElementById(`feedback-2-${idx}`).innerHTML = '';
+
+      appState.parts[2].activeSlotIdx = idx;
+      slot.classList.add('active-slot');
+      updateSlotIndicator();
+    }
+
+    /* TAB 3: SCRAMBLED WORDS */
+    function renderTab3() {
+      const container = document.getElementById('exercises-3');
+      const items = appState.parts[3].items;
+
+      container.innerHTML = items.map((item, idx) => {
+        const isQuestion = item.fullSentence.trim().endsWith('?');
+        const label = isQuestion ? `Question ${idx + 1} of ${items.length}` : `Sentence ${idx + 1} of ${items.length}`;
+
+        const wordObjects = item.correctWords.map((w, origIdx) => ({ word: w, origIdx: origIdx }));
+        const shuffledChips = shuffleArray(wordObjects);
+
+        appState.parts[3].userChains[idx] = [];
+
+        return `
+          <div class="exercise-item" id="ex-3-${idx}">
+            <span class="sentence-tag">${label}</span>
+            <div style="font-size:0.88rem; color:var(--text-muted); margin-bottom:8px;">
+              Tap words below to arrange them into the correct sequence (${item.correctWords.length} words):
+            </div>
+            
+            <div class="scramble-drop-area" id="scramble-target-${idx}">
+              <span id="placeholder-3-${idx}" style="color:#94a3b8; font-size:0.9rem; font-style:italic;">Tap words below to build the sentence...</span>
+            </div>
+
+            <div class="scramble-pool" id="scramble-pool-${idx}">
+              ${shuffledChips.map(c => `
+                <div class="scramble-chip" id="chip-3-${idx}-${c.origIdx}" onclick="toggleScrambleWord(${idx}, ${c.origIdx}, '${c.word.replace(/'/g, "\\'")}')">${c.word}</div>
+              `).join('')}
+            </div>
+
+            <div class="btn-controls-row">
+              <button class="btn-secondary" onclick="resetSingleScramble(${idx})">🔄 Reset Words</button>
+              <button class="btn-hint-tag" onclick="toggleHint(3, ${idx})">💡 Hint</button>
+            </div>
+            <div class="hint-box" id="hint-3-${idx}">${item.hint}</div>
+            <div class="feedback-msg" id="feedback-3-${idx}"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleScrambleWord(idx, origIdx, word) {
+      const targetArea = document.getElementById(`scramble-target-${idx}`);
+      const placeholder = document.getElementById(`placeholder-3-${idx}`);
+      const chipEl = document.getElementById(`chip-3-${idx}-${origIdx}`);
+      const currentChain = appState.parts[3].userChains[idx];
+
+      const existingPos = currentChain.findIndex(item => item.origIdx === origIdx);
+
+      if (existingPos === -1) {
+        currentChain.push({ origIdx, word });
+        chipEl.style.display = 'none';
+
+        if (placeholder) placeholder.style.display = 'none';
+
+        const addedChip = document.createElement('div');
+        addedChip.className = 'scramble-chip in-target';
+        addedChip.id = `target-chip-3-${idx}-${origIdx}`;
+        addedChip.textContent = word;
+        addedChip.onclick = () => toggleScrambleWord(idx, origIdx, word);
+        targetArea.appendChild(addedChip);
+
+        // Auto-check when all words are in
+        const item = appState.parts[3].items[idx];
+        if (currentChain.length === item.correctWords.length) {
+          evaluateScramble(idx);
+        }
+      } else {
+        currentChain.splice(existingPos, 1);
+        const addedChip = document.getElementById(`target-chip-3-${idx}-${origIdx}`);
+        if (addedChip) addedChip.remove();
+        chipEl.style.display = 'inline-block';
+
+        if (currentChain.length === 0 && placeholder) {
+          placeholder.style.display = 'inline';
+        }
+      }
+    }
+
+    function evaluateScramble(idx) {
+      const item = appState.parts[3].items[idx];
+      const currentChain = appState.parts[3].userChains[idx];
+      const box = document.getElementById(`ex-3-${idx}`);
+      const targetArea = document.getElementById(`scramble-target-${idx}`);
+      const feedback = document.getElementById(`feedback-3-${idx}`);
+
+      const userSentence = currentChain.map(c => c.word).join(' ');
+      const correctSentence = item.correctWords.join(' ');
+
+      if (userSentence === correctSentence) {
+        AudioFeedback.playSuccess();
+        box.classList.remove('incorrect');
+        box.classList.add('correct');
+        targetArea.classList.add('correct-border');
+        feedback.style.color = 'var(--success)';
+        feedback.innerHTML = `✅ Perfectly arranged! <button class="audio-btn" onclick="speakText('${item.fullSentence.replace(/'/g, "\\'")}', this)">🔊 Listen</button>`;
+
+        targetArea.querySelectorAll('.scramble-chip').forEach(c => c.style.pointerEvents = 'none');
+
+        appState.parts[3].solved++;
+        checkCompletion(3);
+      } else {
+        AudioFeedback.playError();
+        appState.parts[3].errors++;
+        box.classList.add('incorrect');
+        feedback.style.color = 'var(--error)';
+        feedback.innerHTML = `❌ Word order is incorrect. Check grammar patterns and punctuation!`;
+      }
+    }
+
+    function resetSingleScramble(idx) {
+      appState.parts[3].userChains[idx] = [];
+
+      const targetArea = document.getElementById(`scramble-target-${idx}`);
+      targetArea.innerHTML = `<span id="placeholder-3-${idx}" style="color:#94a3b8; font-size:0.9rem; font-style:italic;">Tap words below to build the sentence...</span>`;
+      targetArea.classList.remove('correct-border');
+
+      const pool = document.getElementById(`scramble-pool-${idx}`);
+      pool.querySelectorAll('.scramble-chip').forEach(c => c.style.display = 'inline-block');
+
+      document.getElementById(`ex-3-${idx}`).classList.remove('correct', 'incorrect');
+      document.getElementById(`feedback-3-${idx}`).innerHTML = '';
+    }
+
+    /* TAB 4: WORD FORMATION & DERIVATION */
+    function renderTab4() {
+      const container = document.getElementById('exercises-4');
+      const items = appState.parts[4].items;
+
+      container.innerHTML = items.map((item, idx) => {
+        const isQuestion = (item.beforeText + item.afterText).trim().endsWith('?');
+        const label = isQuestion ? `Question ${idx + 1} of ${items.length}` : `Sentence ${idx + 1} of ${items.length}`;
+
+        return `
+          <div class="exercise-item" id="ex-4-${idx}">
+            <span class="sentence-tag">${label}</span>
+            <div class="sentence-text">
+              ${item.beforeText}
+              <input type="text" class="input-inline" id="input-4-${idx}" placeholder="[${item.rootWord}]" oninput="autoCheckWordFormation(${idx})" autocomplete="off" autocapitalize="none">
+              ${item.afterText}
+            </div>
+            <div class="btn-controls-row">
+              <button class="btn-hint-tag" onclick="toggleHint(4, ${idx})">💡 Hint</button>
+              <button class="btn-help-tag" onclick="revealHelpLetter4(${idx})">🆘 Help (+1 letter)</button>
+            </div>
+            <div class="hint-box" id="hint-4-${idx}">
+              <strong>Target Form:</strong> ${item.partOfSpeech || 'Derived form'}<br>
+              <strong>Guidance:</strong> ${item.hint}
+            </div>
+            <div class="feedback-msg" id="feedback-4-${idx}"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function autoCheckWordFormation(idx) {
+      const input = document.getElementById(`input-4-${idx}`);
+      if (!input || input.disabled) return;
+
+      const userVal = input.value.trim().toLowerCase();
+      const item = appState.parts[4].items[idx];
+      const correctVal = item.answer.trim().toLowerCase();
+      const altVal = item.altAnswer ? item.altAnswer.trim().toLowerCase() : null;
+
+      const box = document.getElementById(`ex-4-${idx}`);
+      const feedback = document.getElementById(`feedback-4-${idx}`);
+
+      if (!userVal) {
+        box.classList.remove('incorrect', 'correct');
+        feedback.innerHTML = '';
+        return;
+      }
+
+      if (userVal === correctVal || (altVal && userVal === altVal)) {
+        AudioFeedback.playSuccess();
+        box.classList.remove('incorrect');
+        box.classList.add('correct');
+        feedback.style.color = 'var(--success)';
+        feedback.innerHTML = `✅ Correct transformation! Outstanding! <button class="audio-btn" onclick="speakText('${item.fullSentence.replace(/'/g, "\\'")}', this)">🔊 Listen</button>`;
+
+        input.disabled = true;
+        appState.parts[4].solved++;
+        checkCompletion(4);
+      } else {
+        // If the user reached or exceeded the length of the expected word and it doesn't match
+        if (userVal.length >= correctVal.length) {
+          AudioFeedback.playError();
+          box.classList.add('incorrect');
+          feedback.style.color = 'var(--error)';
+          feedback.innerHTML = `❌ Check spelling, prefixes (un-, dis-) or suffixes (-ship, -ence, -able)!`;
+        } else {
+          box.classList.remove('incorrect');
+          feedback.innerHTML = '';
+        }
+      }
+    }
+
+    function revealHelpLetter4(idx) {
+      if (!appState.parts[4].helpCount[idx]) {
+        appState.parts[4].helpCount[idx] = 0;
+      }
+      const item = appState.parts[4].items[idx];
+      const correctVal = item.answer;
+      let count = appState.parts[4].helpCount[idx];
+
+      if (count < correctVal.length) {
+        count++;
+        appState.parts[4].helpCount[idx] = count;
+        const revealed = correctVal.substring(0, count);
+        const input = document.getElementById(`input-4-${idx}`);
+        input.value = revealed;
+
+        const feedback = document.getElementById(`feedback-4-${idx}`);
+        feedback.style.color = '#b45309';
+        feedback.innerHTML = `ℹ️ Help: Revealed ${count} of ${correctVal.length} letters.`;
+        
+        autoCheckWordFormation(idx);
+      } else {
+        const feedback = document.getElementById(`feedback-4-${idx}`);
+        feedback.style.color = '#b45309';
+        feedback.innerHTML = `ℹ️ Full word revealed: <strong>${correctVal}</strong>`;
+      }
+    }
+
+    function toggleHint(partNum, idx) {
+      const box = document.getElementById(`hint-${partNum}-${idx}`);
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function checkCompletion(partNum) {
+      const total = appState.parts[partNum].items.length;
+      if (appState.parts[partNum].solved >= total) {
+        showCongratsModal(partNum);
+      }
+    }
+
+    function fireCelebrationConfetti() {
+      if (typeof confetti !== 'function') return;
+
+      const count = 220;
+      const defaults = {
+        origin: { y: 0.65 },
+        zIndex: 99999
+      };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, {
+        spread: 35,
+        startVelocity: 55,
+        origin: { x: 0.5, y: 0.55 }
+      });
+
+      fire(0.2, {
+        spread: 60,
+        origin: { x: 0.15, y: 0.5 }
+      });
+
+      fire(0.2, {
+        spread: 60,
+        origin: { x: 0.85, y: 0.5 }
+      });
+
+      fire(0.35, {
+        spread: 100,
+        decay: 0.91,
+        scalar: 1.1,
+        origin: { x: 0.5, y: 0.4 }
+      });
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 90,
+          angle: 60,
+          spread: 75,
+          origin: { x: 0.05, y: 0.6 },
+          zIndex: 99999
+        });
+        confetti({
+          particleCount: 90,
+          angle: 120,
+          spread: 75,
+          origin: { x: 0.95, y: 0.6 },
+          zIndex: 99999
+        });
+      }, 250);
+    }
+
+    function showCongratsModal(partNum) {
+      const errors = appState.parts[partNum].errors;
+      const emoji = document.getElementById('modalEmoji');
+      const title = document.getElementById('modalTitle');
+      const text = document.getElementById('modalText');
+
+      if (errors === 0) {
+        emoji.textContent = "🎉";
+        title.textContent = "Total Mastery! 100% Accuracy!";
+        text.textContent = `Outstanding work! You completed Part ${partNum} with zero errors. Your B2+ syntax and word formation accuracy is top tier!`;
+      } else if (errors <= 2) {
+        emoji.textContent = "🌟";
+        title.textContent = "Excellent Work!";
+        text.textContent = `Great job on Part ${partNum}! You solved all 10 items with only ${errors} minor mistake(s). Keep up the fantastic progress!`;
+      } else {
+        emoji.textContent = "💪";
+        title.textContent = "Great Perseverance!";
+        text.textContent = `You finished Part ${partNum}! With ${errors} recorded mistakes, feel free to use 'Reset & Shuffle' to practice and master these complex structures!`;
+      }
+
+      document.getElementById('congratsModal').style.display = 'flex';
+      fireCelebrationConfetti();
+    }
+
+    function closeModal() {
+      document.getElementById('congratsModal').style.display = 'none';
+    }
+
+    function openDictionary() {
+      document.getElementById('dictModal').style.display = 'flex';
+      renderDictionaryResults(dictionaryData);
+    }
+
+    function closeDictionary() {
+      document.getElementById('dictModal').style.display = 'none';
+    }
+
+    function renderDictionaryResults(list) {
+      const container = document.getElementById('dictResultsList');
+      if (list.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:18px; color:var(--text-muted);">No matching entry found.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="dict-entry">
+          <div>
+            <strong>${item.term}</strong> <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">(${item.pos})</span><br>
+            <span style="font-size:0.85rem; color:var(--text-muted);">${item.def}</span><br>
+            <em style="font-size:0.8rem; color:var(--text); font-style:italic;">"${item.ex}"</em>
+          </div>
+          <button class="audio-btn" onclick="speakText('${item.term}', this)">🔊</button>
+        </div>
+      `).join('');
+    }
+
+    function filterDictionary() {
+      const q = document.getElementById('dictSearchInput').value.trim().toLowerCase();
+      const filtered = dictionaryData.filter(d => 
+        d.term.toLowerCase().includes(q) || 
+        d.def.toLowerCase().includes(q) ||
+        d.pos.toLowerCase().includes(q)
+      );
+      renderDictionaryResults(filtered);
+    }
+
+    window.onload = function() {
+      initTab(1);
+      initTab(2);
+      initTab(3);
+      initTab(4);
+    };
+  </script>
+</body>
+</html>
