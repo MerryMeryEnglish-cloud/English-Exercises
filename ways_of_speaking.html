@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ways of Speaking - Merry Mery English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --success: #10b981;
+            --error: #ef4444;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+            background: white;
+            padding: 3px;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .voice-select-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .voice-select-container label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .voice-select-container select {
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tabs-container-sticky {
+            position: sticky;
+            top: 85px;
+            background: var(--bg-color);
+            padding-top: 10px;
+            padding-bottom: 15px;
+            z-index: 950;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            overflow-x: auto;
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .card-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .vocab-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            transition: transform 0.2s;
+        }
+
+        .vocab-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .vocab-term {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .vocab-def {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .vocab-example {
+            font-size: 0.85rem;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            font-style: italic;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .audio-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .audio-btn:hover {
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .exercise-item {
+            background: #faf5ff;
+            border: 1px solid #e9d5ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .exercise-item.correct {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .exercise-item.incorrect {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .sentence-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .sentence-text {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .input-inline {
+            padding: 8px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-width: 170px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: white;
+        }
+
+        .input-inline:focus {
+            border-color: var(--primary);
+        }
+
+        .option-btn {
+            background: white;
+            border: 1.5px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f5f3ff;
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        .feedback-msg {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hint-box {
+            font-size: 0.85rem;
+            color: #d97706;
+            background: #fef3c7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .btn-hint-tag {
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+        }
+        .btn-hint-tag:hover { background: #fde68a; }
+
+        .btn-help-tag {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+        }
+        .btn-help-tag:hover { background: #fecaca; }
+
+        .word-bank-container {
+            position: sticky;
+            top: 155px;
+            background: white;
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            z-index: 900;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .word-bank-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .word-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .word-chip {
+            background: #eef2ff;
+            color: var(--primary);
+            border: 1px solid #c7d2fe;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .word-chip:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .word-chip.used {
+            opacity: 0.4;
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        .drop-zone {
+            display: inline-block;
+            min-width: 150px;
+            min-height: 38px;
+            border: 2px dashed var(--primary);
+            background: #ffffff;
+            border-radius: 8px;
+            vertical-align: middle;
+            text-align: center;
+            padding: 4px 12px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .drop-zone.active-target {
+            background: #e0e7ff;
+            border-style: solid;
+        }
+
+        .drop-zone.filled {
+            background: #eef2ff;
+            border-style: solid;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            animation: scaleUp 0.3s ease;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .modal-card p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .dict-modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-dict {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .dict-search-box {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .dict-search-box:focus {
+            border-color: var(--primary);
+        }
+
+        .dict-results {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="logo.png" alt="Merry Mery English" class="logo-img" onerror="this.style.display='none'">
+            <div class="header-title">
+                <h1>Merry Mery English</h1>
+                <p>Advanced Vocabulary: 23 Ways of Speaking</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="voice-select-container">
+                <label for="voiceSelect">🗣️ Voice:</label>
+                <select id="voiceSelect" onchange="updateSelectedVoice()">
+                    <option value="en-GB_Female">Female (UK)</option>
+                    <option value="en-GB_Male">Male (UK)</option>
+                    <option value="en-US_Female">Female (US)</option>
+                    <option value="en-US_Male">Male (US)</option>
+                </select>
+            </div>
+            <a href="index.html" class="btn-action">🏠 Home</a>
+            <button class="btn-action" onclick="openDictionary()">📖 Dictionary</button>
+            <button class="btn-action" onclick="resetAllExercises()">🔄 Reset & Shuffle All</button>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="tabs-container-sticky">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab(0)">Overview & Vocabulary</button>
+                <button class="tab-btn" onclick="switchTab(1)">Part 1: Soft & Nuanced Voices</button>
+                <button class="tab-btn" onclick="switchTab(2)">Part 2: Contextual Match</button>
+                <button class="tab-btn" onclick="switchTab(3)">Part 3: Listen & Fill Gaps</button>
+                <button class="tab-btn" onclick="switchTab(4)">Part 4: Fill in the Blanks</button>
+            </div>
+        </div>
+
+        <!-- TAB 0: OVERVIEW -->
+        <div class="tab-content active" id="tab-0">
+            <div class="card">
+                <div class="card-header-bar">
+                    <div class="card-title">📚 Complete Guide: 23 Ways of Speaking</div>
+                    <button class="btn-secondary" onclick="resetAllExercises()">🔄 Reset & Shuffle All</button>
+                </div>
+                <p>Welcome to this targeted vocabulary workshop on <strong>Ways of Speaking</strong>. Mastering these 23 descriptive verbs will allow you to replace general words like <em>speak</em>, <em>talk</em>, or <em>shout</em> with precise nuances in your conversations and writing.</p>
+                
+                <div class="vocab-grid" id="fullVocabGrid"></div>
+
+                <div style="margin-top: 30px; text-align: right;">
+                    <button class="btn-primary" onclick="switchTab(1)">Go to Part 1: Soft & Nuanced Voices ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: PART 1 -->
+        <div class="tab-content" id="tab-1">
+            <div class="card">
+                <div class="card-header-bar">
+                    <div class="card-title">🗣️ Part 1: Soft, Informal & Hesitant Voices</div>
+                    <button class="btn-secondary" onclick="resetTab(1)">🔄 Reset & Shuffle</button>
+                </div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Choose or type the correct verb matching the contextual definition for each sentence.</p>
+
+                <div id="exercises-1"></div>
+
+                <div class="action-bar">
+                    <button class="btn-secondary" onclick="resetTab(1)">🔄 Reset & Shuffle</button>
+                    <button class="btn-primary" onclick="switchTab(2)">Go to Part 2: Contextual Match ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PART 2 -->
+        <div class="tab-content" id="tab-2">
+            <div class="card">
+                <div class="card-header-bar">
+                    <div class="card-title">🖱️ Part 2: Contextual Match & Word Bank</div>
+                    <button class="btn-secondary" onclick="resetTab(2)">🔄 Reset & Shuffle</button>
+                </div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Click a slot below, then click the matching verb from the floating word bank to complete the sentence.</p>
+
+                <div class="word-bank-container">
+                    <div class="word-bank-title">
+                        <span>Word Bank (Click slot, then click verb)</span>
+                        <span id="activeSlotIndicator" style="font-size:0.8rem; color:#d97706; font-weight:normal;">Target slot: none</span>
+                    </div>
+                    <div class="word-chips" id="bank-2"></div>
+                </div>
+
+                <div id="exercises-2"></div>
+
+                <div class="action-bar">
+                    <button class="btn-secondary" onclick="resetTab(2)">🔄 Reset & Shuffle</button>
+                    <button class="btn-primary" onclick="switchTab(3)">Go to Part 3: Listen & Fill Gaps ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: PART 3 -->
+        <div class="tab-content" id="tab-3">
+            <div class="card">
+                <div class="card-header-bar">
+                    <div class="card-title">🎧 Part 3: Listen & Fill in the Gaps</div>
+                    <button class="btn-secondary" onclick="resetTab(3)">🔄 Reset & Shuffle</button>
+                </div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Click 🔊 Listen Audio to hear the sentence. Type the missing verb in the gap and click Check Answer.</p>
+
+                <div id="exercises-3"></div>
+
+                <div class="action-bar">
+                    <button class="btn-secondary" onclick="resetTab(3)">🔄 Reset & Shuffle</button>
+                    <button class="btn-primary" onclick="switchTab(4)">Go to Part 4: Fill in the Blanks ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: PART 4 -->
+        <div class="tab-content" id="tab-4">
+            <div class="card">
+                <div class="card-header-bar">
+                    <div class="card-title">✍️ Part 4: Fill in the Blanks</div>
+                    <button class="btn-secondary" onclick="resetTab(4)">🔄 Reset & Shuffle</button>
+                </div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Type the missing word according to the context. Use Help (+1 letter) or Hint if you need guidance.</p>
+
+                <div id="exercises-4"></div>
+
+                <div class="action-bar">
+                    <button class="btn-secondary" onclick="resetTab(4)">🔄 Reset & Shuffle</button>
+                    <button class="btn-primary" onclick="switchTab(0)">🎉 Return to Overview</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL FELICITACIONES -->
+    <div class="modal-overlay" id="congratsModal">
+        <div class="modal-card">
+            <div id="modalEmoji" style="font-size: 3.5rem; margin-bottom: 10px;">🎉</div>
+            <h2 id="modalTitle">Total Mastery!</h2>
+            <p id="modalText">You completed this section with fantastic precision.</p>
+            <button class="btn-primary" style="margin: 0 auto;" onclick="closeModal()">Continue Learning</button>
+        </div>
+    </div>
+
+    <!-- MODAL DICCIONARIO -->
+    <div class="modal-overlay" id="dictModal">
+        <div class="dict-modal">
+            <button class="close-dict" onclick="closeDictionary()">&times;</button>
+            <h2 style="color: var(--primary); margin-bottom: 15px;">📖 Quick Vocabulary Dictionary</h2>
+            <input type="text" class="dict-search-box" id="dictSearch" placeholder="Type a verb (e.g. whisper, murmur, gossip)..." oninput="filterDictionary()">
+            <div class="dict-results" id="dictResults"></div>
+        </div>
+    </div>
+
+    <script>
+        const verbsData = [
+            { term: "speak", trans: "hablar", def: "make use of words in a normal voice.", ex: "May I speak to George, please?" },
+            { term: "talk", trans: "hablar, conversar", def: "speak to give information, say things.", ex: "What are they talking about on the phone?" },
+            { term: "hesitate", trans: "titubear, vacilar", def: "be slow to speak because one is uncertain or unwilling.", ex: "He hesitated before answering my question." },
+            { term: "whisper", trans: "susurrar", def: "speak softly, without vibrating vocal cords, privately.", ex: "She whispered the secret word in my ear." },
+            { term: "hiss", trans: "decir entre dientes / sisear", def: "say something in an angry, intense whisper.", ex: "'Get out!' she hissed at me furiously." },
+            { term: "mumble", trans: "balbucear, mascullar", def: "speak unclearly with low projection, hard to catch.", ex: "He mumbled something unclearly which I didn't catch." },
+            { term: "mutter", trans: "murmurar, refunfuñar", def: "speak in a low complaining voice, hard to hear.", ex: "She was muttering complaints as she went out." },
+            { term: "murmur", trans: "murmurar con suavidad", def: "speak in a soft, quiet, gentle voice.", ex: "The students murmured quietly during the exam." },
+            { term: "babble", trans: "barbotear, balbucear", def: "talk foolishly or rapidly in a way difficult to understand.", ex: "Her high fever made her babble incoherently." },
+            { term: "gabble", trans: "parlotear apresuradamente", def: "talk rapidly, excitedly and indistinctly.", ex: "He gabbled excitedly when telling the story." },
+            { term: "ramble", trans: "divagar, irse por las ramas", def: "talk continuously in a rambling or confused way.", ex: "Stop rambling and get to the main point!" },
+            { term: "chat", trans: "conversar informalmente", def: "have a friendly, relaxed informal conversation.", ex: "They chatted happily over a warm cup of coffee." },
+            { term: "chatter", trans: "parlotear sin parar", def: "talk quickly and continuously about unimportant things.", ex: "The kids chattered throughout the entire bus ride." },
+            { term: "gossip", trans: "chismear", def: "talk about the personal affairs of other people.", ex: "She was gossiping about her neighbours again." },
+            { term: "call", trans: "llamar, gritar para avisar", def: "speak in a loud clear voice or summon someone.", ex: "They called out for immediate assistance." },
+            { term: "shout", trans: "gritar", def: "speak in a loud powerful voice in anger or urgency.", ex: "He had to shout because of the loud music." },
+            { term: "whoop", trans: "gritar de alegría", def: "shout loudly and enthusiastically in celebration.", ex: "The team whooped with delight when they won." },
+            { term: "cry (out)", trans: "pegar un grito, chillar", def: "make a sharp exclamation in fear, surprise or pain.", ex: "She cried out in shock when the glass broke." },
+            { term: "yell", trans: "pegar voces, vociferar", def: "cry out loudly in anger, fear or excitement.", ex: "The fans yelled with intense excitement." },
+            { term: "scream", trans: "gritar con tono agudo", def: "cry out very loudly on a high pitch.", ex: "The passengers screamed during the turbulence." },
+            { term: "whine", trans: "quejarse, lloriquear", def: "complain in an annoying, high, sad tone.", ex: "'I don't want to do homework,' whined Peter." },
+            { term: "bark (out)", trans: "espetar, ladrar órdenes", def: "say something sharply and commandingly in a harsh tone.", ex: "The sergeant barked out commands across the field." },
+            { term: "croak", trans: "graznar, hablar ronco", def: "speak with a deep, rough, hoarse voice.", ex: "She had such a cold that she could only croak." }
+        ];
+
+        const exerciseParts = {
+            1: [
+                {
+                    type: "fill",
+                    question: "May I ___ to George, please? (Make use of words in a normal voice)",
+                    answer: "speak",
+                    fullSentence: "May I speak to George, please?",
+                    hint: "Use words in a normal conversational voice.",
+                    options: ["speak", "whisper", "mumble", "shout"]
+                },
+                {
+                    type: "fill",
+                    question: "What are they ___ about on the phone? (Give information, converse)",
+                    answer: "talking",
+                    fullSentence: "What are they talking about on the phone?",
+                    hint: "Conversing or giving information (continuous form).",
+                    options: ["talking", "whispering", "barking", "shouting"]
+                },
+                {
+                    type: "fill",
+                    question: "He ___ before answering my difficult question, uncertain what to say.",
+                    answer: "hesitated",
+                    fullSentence: "He hesitated before answering my difficult question, uncertain what to say.",
+                    hint: "Be slow to speak due to hesitation or uncertainty.",
+                    options: ["hesitated", "yelled", "screamed", "chatted"]
+                },
+                {
+                    type: "fill",
+                    question: "She ___ the secret word softly in my ear so nobody else could hear.",
+                    answer: "whispered",
+                    fullSentence: "She whispered the secret word softly in my ear so nobody else could hear.",
+                    hint: "Speak softly without vocal cord vibration.",
+                    options: ["whispered", "screamed", "barked", "yelled"]
+                },
+                {
+                    type: "fill",
+                    question: "'Get out right now!' she ___ at me furiously in a sharp hiss.",
+                    answer: "hissed",
+                    fullSentence: "'Get out right now!' she hissed at me furiously in a sharp hiss.",
+                    hint: "Say something venomously like a snake.",
+                    options: ["hissed", "croaked", "chatted", "murmured"]
+                },
+                {
+                    type: "fill",
+                    question: "The students ___ quietly among themselves while waiting for the test.",
+                    answer: "murmured",
+                    fullSentence: "The students murmured quietly among themselves while waiting for the test.",
+                    hint: "Speak softly and gently in low tones.",
+                    options: ["murmured", "screamed", "yelled", "called"]
+                },
+                {
+                    type: "fill",
+                    question: "He ___ something unclear under his breath that nobody could comprehend.",
+                    answer: "mumbled",
+                    fullSentence: "He mumbled something unclear under his breath that nobody could comprehend.",
+                    hint: "Speak indistinctly with poor articulation.",
+                    options: ["mumbled", "chatted", "yelled", "whooped"]
+                },
+                {
+                    type: "fill",
+                    question: "She was ___ discontented remarks to herself as she walked away.",
+                    answer: "muttering",
+                    fullSentence: "She was muttering discontented remarks to herself as she walked away.",
+                    hint: "Speak in a low, complaining voice.",
+                    options: ["muttering", "shouting", "whooping", "croaking"]
+                },
+                {
+                    type: "fill",
+                    question: "They ___ happily over coffee, enjoying a friendly and informal conversation.",
+                    answer: "chatted",
+                    fullSentence: "They chatted happily over coffee, enjoying a friendly and informal conversation.",
+                    hint: "Friendly, informal conversation.",
+                    options: ["chatted", "screamed", "croaked", "barked"]
+                },
+                {
+                    type: "fill",
+                    question: "The kids ___ all afternoon about video games and cartoon shows.",
+                    answer: "chattered",
+                    fullSentence: "The kids chattered all afternoon about video games and cartoon shows.",
+                    hint: "Talk continuously and rapidly about light topics.",
+                    options: ["chattered", "hesitated", "yelled", "cried"]
+                }
+            ],
+            2: [
+                {
+                    questionText: "He ",
+                    questionTextAfter: " before answering my question because he felt completely unsure.",
+                    answer: "hesitated",
+                    fullSentence: "He hesitated before answering my question because he felt completely unsure.",
+                    hint: "Past tense: paused due to uncertainty."
+                },
+                {
+                    questionText: "She ",
+                    questionTextAfter: " the password softly in my ear so no one could overhear.",
+                    answer: "whispered",
+                    fullSentence: "She whispered the password softly in my ear so no one could overhear.",
+                    hint: "Past tense: spoken without vibrating vocal cords."
+                },
+                {
+                    questionText: "The angry customer ",
+                    questionTextAfter: " loudly across the room to demand a manager.",
+                    answer: "shouted",
+                    fullSentence: "The angry customer shouted loudly across the room to demand a manager.",
+                    hint: "Past tense: raised voice forcefully."
+                },
+                {
+                    questionText: "He ",
+                    questionTextAfter: " an unclear excuse under his breath when confronted.",
+                    answer: "mumbled",
+                    fullSentence: "He mumbled an unclear excuse under his breath when confronted.",
+                    hint: "Past tense: articulated indistinctly."
+                },
+                {
+                    questionText: "The team members ",
+                    questionTextAfter: " with joy when they heard they won first prize.",
+                    answer: "whooped",
+                    fullSentence: "The team members whooped with joy when they heard they won first prize.",
+                    hint: "Past tense: gave loud joyful shouts."
+                },
+                {
+                    questionText: "The drill sergeant ",
+                    questionTextAfter: " out instructions to the new recruits on the field.",
+                    answer: "barked",
+                    fullSentence: "The drill sergeant barked out instructions to the new recruits on the field.",
+                    hint: "Past tense: spoke sharply and harshly."
+                },
+                {
+                    questionText: "Stop ",
+                    questionTextAfter: " about other people's private lives and mind your own business!",
+                    answer: "gossiping",
+                    fullSentence: "Stop gossiping about other people's private lives and mind your own business!",
+                    hint: "-ing form: talking about personal affairs of others."
+                },
+                {
+                    questionText: "'Watch out!' she ",
+                    questionTextAfter: " out in terror as the bicycle approached.",
+                    answer: "cried",
+                    fullSentence: "'Watch out!' she cried out in terror as the bicycle approached.",
+                    hint: "Past tense: sharp exclamation in sudden alarm."
+                },
+                {
+                    questionText: "Please stop ",
+                    questionTextAfter: " and explain the situation clearly from the beginning.",
+                    answer: "rambling",
+                    fullSentence: "Please stop rambling and explain the situation clearly from the beginning.",
+                    hint: "-ing form: talking confusedly without getting to the point."
+                },
+                {
+                    questionText: "She had a severe sore throat and could only ",
+                    questionTextAfter: " a few hoarse words.",
+                    answer: "croak",
+                    fullSentence: "She had a severe sore throat and could only croak a few hoarse words.",
+                    hint: "Base form: speak hoarsely like a frog."
+                }
+            ],
+            3: [
+                {
+                    beforeText: "She ",
+                    afterText: " the secret word in my ear.",
+                    answer: "whispered",
+                    fullSentence: "She whispered the secret word in my ear.",
+                    hint: "Spoken softly in a secret manner."
+                },
+                {
+                    beforeText: "He ",
+                    afterText: " before answering the difficult question.",
+                    answer: "hesitated",
+                    fullSentence: "He hesitated before answering the difficult question.",
+                    hint: "Paused due to uncertainty."
+                },
+                {
+                    beforeText: "The drill instructor ",
+                    afterText: " out orders across the field.",
+                    answer: "barked",
+                    fullSentence: "The drill instructor barked out orders across the field.",
+                    hint: "Commanded harshly and sharply."
+                },
+                {
+                    beforeText: "Stop ",
+                    afterText: " and get straight to the point!",
+                    answer: "rambling",
+                    fullSentence: "Stop rambling and get straight to the point!",
+                    hint: "Talking without focus (-ing form)."
+                },
+                {
+                    beforeText: "The excited fans ",
+                    afterText: " with delight after the final goal.",
+                    answer: "whooped",
+                    fullSentence: "The excited fans whooped with delight after the final goal.",
+                    hint: "Shouted enthusiastically in joy."
+                },
+                {
+                    beforeText: "What are you two ",
+                    afterText: " about on the phone?",
+                    answer: "talking",
+                    fullSentence: "What are you two talking about on the phone?",
+                    hint: "Conversing (-ing form)."
+                },
+                {
+                    beforeText: "The scared child ",
+                    afterText: " out in fear when the lights went out.",
+                    answer: "screamed",
+                    fullSentence: "The scared child screamed out in fear when the lights went out.",
+                    hint: "Cried loudly in a high pitch."
+                },
+                {
+                    beforeText: "He ",
+                    afterText: " an inaudible reply that no one heard.",
+                    answer: "mumbled",
+                    fullSentence: "He mumbled an inaudible reply that no one heard.",
+                    hint: "Spoke unclearly in low volume."
+                },
+                {
+                    beforeText: "They ",
+                    afterText: " away pleasantly over a cup of tea.",
+                    answer: "chatted",
+                    fullSentence: "They chatted away pleasantly over a cup of tea.",
+                    hint: "Had a casual conversation."
+                },
+                {
+                    beforeText: "Don't ",
+                    afterText: " about other people's private lives.",
+                    answer: "gossip",
+                    fullSentence: "Don't gossip about other people's private lives.",
+                    hint: "Talk about other people's business."
+                }
+            ],
+            4: [
+                {
+                    beforeText: "She ",
+                    afterText: " the secret code softly in my ear.",
+                    answer: "whispered",
+                    fullSentence: "She whispered the secret code softly in my ear.",
+                    hint: "Past tense of whisper."
+                },
+                {
+                    beforeText: "He ",
+                    afterText: " before answering my question, unsure of what to say.",
+                    answer: "hesitated",
+                    fullSentence: "He hesitated before answering my question, unsure of what to say.",
+                    hint: "Paused due to doubt or uncertainty."
+                },
+                {
+                    beforeText: "The officer ",
+                    afterText: " out orders sternly to the soldiers.",
+                    answer: "barked",
+                    fullSentence: "The officer barked out orders sternly to the soldiers.",
+                    hint: "Spoke sharply and commandingly."
+                },
+                {
+                    beforeText: "Stop ",
+                    afterText: " and tell us what actually happened!",
+                    answer: "rambling",
+                    fullSentence: "Stop rambling and tell us what actually happened!",
+                    hint: "Talking in an unfocused continuous way (-ing)."
+                },
+                {
+                    beforeText: "The fans ",
+                    afterText: " with excitement when their team scored.",
+                    answer: "whooped",
+                    fullSentence: "The fans whooped with excitement when their team scored.",
+                    hint: "Joyful celebratory shouting in the past."
+                },
+                {
+                    beforeText: "What are they ",
+                    afterText: " about during the meeting?",
+                    answer: "talking",
+                    fullSentence: "What are they talking about during the meeting?",
+                    hint: "Conversing (-ing form)."
+                },
+                {
+                    beforeText: "The passenger ",
+                    afterText: " when the roller coaster suddenly dropped.",
+                    answer: "screamed",
+                    fullSentence: "The passenger screamed when the roller coaster suddenly dropped.",
+                    hint: "High-pitched loud exclamation in past tense."
+                },
+                {
+                    beforeText: "He ",
+                    afterText: " something quietly that nobody could understand.",
+                    answer: "mumbled",
+                    fullSentence: "He mumbled something quietly that nobody could understand.",
+                    hint: "Spoke unclearly with indistinct sounds."
+                },
+                {
+                    beforeText: "They ",
+                    afterText: " warmly about their school memories.",
+                    answer: "chatted",
+                    fullSentence: "They chatted warmly about their school memories.",
+                    hint: "Conversing casually in past tense."
+                },
+                {
+                    beforeText: "You shouldn't ",
+                    afterText: " about your colleagues behind their backs.",
+                    answer: "gossip",
+                    fullSentence: "You shouldn't gossip about your colleagues behind their backs.",
+                    hint: "Base verb: talk about other people's affairs."
+                }
+            ]
+        };
+
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        let state = {
+            parts: {
+                1: { items: [], solved: 0, errors: 0 },
+                2: { items: [], solved: 0, errors: 0, activeTargetIdx: null },
+                3: { items: [], solved: 0, errors: 0, helpCount: {} },
+                4: { items: [], solved: 0, errors: 0, helpCount: {} }
+            }
+        };
+
+        function speakText(text, btn) {
+            if('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                const selectedVoiceKey = document.getElementById('voiceSelect').value;
+                const [langCode, gender] = selectedVoiceKey.split('_');
+                
+                utterance.lang = langCode === 'en-GB' ? 'en-GB' : 'en-US';
+                
+                const voices = window.speechSynthesis.getVoices();
+                const matchingVoice = voices.find(v => {
+                    const matchesLang = v.lang.replace('_', '-').toLowerCase().includes(utterance.lang.toLowerCase());
+                    const nameLower = v.name.toLowerCase();
+                    const isFemale = nameLower.includes('female') || nameLower.includes('zira') || nameLower.includes('susan') || nameLower.includes('hazel') || nameLower.includes('catherine') || nameLower.includes('fiona') || nameLower.includes('victoria') || nameLower.includes('karen');
+                    const isMale = nameLower.includes('male') || nameLower.includes('david') || nameLower.includes('george') || nameLower.includes('daniel') || nameLower.includes('oliver') || nameLower.includes('ryan') || nameLower.includes('mark');
+                    
+                    if(gender === 'Female') return matchesLang && isFemale;
+                    if(gender === 'Male') return matchesLang && isMale;
+                    return matchesLang;
+                });
+
+                if(matchingVoice) {
+                    utterance.voice = matchingVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+                
+                if(btn) {
+                    btn.style.transform = 'scale(1.25)';
+                    setTimeout(() => btn.style.transform = 'scale(1)', 200);
+                }
+            }
+        }
+
+        function updateSelectedVoice() {
+            speakText("Voice setting updated.", null);
+        }
+
+        function renderVocabulary() {
+            const grid = document.getElementById('fullVocabGrid');
+            grid.innerHTML = verbsData.map((v) => `
+                <div class="vocab-item">
+                    <div class="vocab-term">
+                        <span>${v.term}</span>
+                        <button class="audio-btn" onclick="speakText('${v.term}', this)" title="Listen Pronunciation">🔊</button>
+                    </div>
+                    <div class="vocab-def"><strong>[${v.trans}]</strong> ${v.def}</div>
+                    <div class="vocab-example">
+                        <span>"${v.ex}"</span>
+                        <button class="audio-btn" onclick="speakText('${v.ex.replace(/'/g, "\'")}', this)" title="Listen Sentence">🔊</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initPart(partNum) {
+            state.parts[partNum].items = shuffleArray(exerciseParts[partNum]);
+            state.parts[partNum].solved = 0;
+            state.parts[partNum].errors = 0;
+
+            if(partNum === 2) {
+                state.parts[2].activeTargetIdx = null;
+                renderPart2();
+            } else if(partNum === 3) {
+                state.parts[3].helpCount = {};
+                renderPart3();
+            } else if(partNum === 4) {
+                state.parts[4].helpCount = {};
+                renderPart4();
+            } else {
+                renderPart1();
+            }
+        }
+
+        /* PART 1 */
+        function renderPart1() {
+            const container = document.getElementById('exercises-1');
+            const items = state.parts[1].items;
+
+            container.innerHTML = items.map((item, idx) => {
+                const shuffledOptions = shuffleArray(item.options);
+                return `
+                    <div class="exercise-item" id="ex-1-${idx}">
+                        <span class="sentence-tag">Sentence ${idx + 1} of ${items.length}</span>
+                        <div class="sentence-text">
+                            ${item.question.replace('___', '<input type="text" class="input-inline" id="input-1-' + idx + '" placeholder="[type or select]" onchange="checkAnswer(1, ' + idx + ')" autocomplete="off">')}
+                        </div>
+                        <div class="options-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px;">
+                            ${shuffledOptions.map(opt => `
+                                <button class="option-btn" id="opt-1-${idx}-${opt}" onclick="selectOption(1, ${idx}, '${opt}')">${opt}</button>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                            <button class="btn-primary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="checkAnswer(1, ${idx})">Check Answer</button>
+                            <button class="btn-hint-tag" onclick="toggleHint(1, ${idx})">💡 Hint</button>
+                        </div>
+                        <div id="hint-1-${idx}" style="display:none;" class="hint-box">${item.hint}</div>
+                        <div id="feedback-1-${idx}" class="feedback-msg"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectOption(partNum, idx, opt) {
+            const inputField = document.getElementById(`input-${partNum}-${idx}`);
+            if(inputField.disabled) return;
+            inputField.value = opt;
+            const item = state.parts[partNum].items[idx];
+            item.options.forEach(o => {
+                const btn = document.getElementById(`opt-${partNum}-${idx}-${o}`);
+                if(btn) btn.classList.remove('selected');
+            });
+            const selectedBtn = document.getElementById(`opt-${partNum}-${idx}-${opt}`);
+            if(selectedBtn) selectedBtn.classList.add('selected');
+
+            checkAnswer(partNum, idx);
+        }
+
+        function checkAnswer(partNum, idx) {
+            const inputField = document.getElementById(`input-${partNum}-${idx}`);
+            if(!inputField || inputField.disabled) return;
+
+            const userVal = inputField.value.trim().toLowerCase();
+            const correctVal = state.parts[partNum].items[idx].answer.toLowerCase();
+            const exerciseBox = document.getElementById(`ex-${partNum}-${idx}`);
+            const feedbackBox = document.getElementById(`feedback-${partNum}-${idx}`);
+
+            if(!userVal) return;
+
+            if(userVal === correctVal) {
+                exerciseBox.classList.remove('incorrect');
+                exerciseBox.classList.add('correct');
+                const fullSentence = state.parts[partNum].items[idx].fullSentence;
+                feedbackBox.style.color = 'var(--success)';
+                feedbackBox.innerHTML = `✅ Correct! Well done! <button class="audio-btn" onclick="speakText('${fullSentence.replace(/'/g, "\'")}', this)">🔊 Listen</button>`;
+                
+                inputField.disabled = true;
+                if(state.parts[partNum].items[idx].options) {
+                    state.parts[partNum].items[idx].options.forEach(o => {
+                        const btn = document.getElementById(`opt-${partNum}-${idx}-${o}`);
+                        if(btn) btn.disabled = true;
+                    });
+                }
+                state.parts[partNum].solved++;
+                checkSectionCompletion(partNum);
+            } else {
+                state.parts[partNum].errors++;
+                exerciseBox.classList.add('incorrect');
+                feedbackBox.style.color = 'var(--error)';
+                feedbackBox.innerHTML = `❌ Not quite right. Try again!`;
+            }
+        }
+
+        /* PART 2: WORD BANK CLICK INSERTION & DRAG DROP */
+        function renderPart2() {
+            renderPart2Bank();
+            renderPart2Exercises();
+            updateSlotIndicator();
+        }
+
+        function renderPart2Bank() {
+            const bankContainer = document.getElementById('bank-2');
+            const items = state.parts[2].items;
+            const uniqueAnswers = shuffleArray([...new Set(items.map(i => i.answer))]);
+
+            bankContainer.innerHTML = uniqueAnswers.map(ans => `
+                <div class="word-chip" id="chip-2-${ans}" onclick="clickBankWord('${ans}')" draggable="true" ondragstart="drag(event, '${ans}')">${ans}</div>
+            `).join('');
+        }
+
+        function renderPart2Exercises() {
+            const container = document.getElementById('exercises-2');
+            const items = state.parts[2].items;
+
+            container.innerHTML = items.map((item, idx) => `
+                <div class="exercise-item" id="ex-2-${idx}">
+                    <span class="sentence-tag">Sentence ${idx + 1} of ${items.length}</span>
+                    <div class="sentence-text">
+                        ${item.questionText}
+                        <span class="drop-zone" id="drop-2-${idx}" onclick="selectTargetSlot(${idx})" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="handleDrop(event, ${idx})">[ Click to select slot ]</span>
+                        ${item.questionTextAfter}
+                    </div>
+                    <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <button class="btn-hint-tag" onclick="toggleHint(2, ${idx})">💡 Hint</button>
+                        <button class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="resetSlot2(${idx})">🔄 Clear Slot</button>
+                    </div>
+                    <div id="hint-2-${idx}" style="display:none;" class="hint-box">${item.hint}</div>
+                    <div id="feedback-2-${idx}" class="feedback-msg"></div>
+                </div>
+            `).join('');
+        }
+
+        function selectTargetSlot(idx) {
+            const dropEl = document.getElementById(`drop-2-${idx}`);
+            if(dropEl.classList.contains('filled')) return;
+
+            document.querySelectorAll('.drop-zone').forEach(el => el.classList.remove('active-target'));
+            state.parts[2].activeTargetIdx = idx;
+            dropEl.classList.add('active-target');
+            updateSlotIndicator();
+        }
+
+        function updateSlotIndicator() {
+            const ind = document.getElementById('activeSlotIndicator');
+            if(state.parts[2].activeTargetIdx !== null) {
+                ind.innerText = `Target slot: Sentence ${state.parts[2].activeTargetIdx + 1}`;
+                ind.style.color = '#10b981';
+            } else {
+                ind.innerText = 'Target slot: None (click a slot below)';
+                ind.style.color = '#d97706';
+            }
+        }
+
+        function clickBankWord(word) {
+            let targetIdx = state.parts[2].activeTargetIdx;
+            if(targetIdx === null) {
+                // Find first unfilled slot
+                for(let i = 0; i < state.parts[2].items.length; i++) {
+                    const el = document.getElementById(`drop-2-${i}`);
+                    if(!el.classList.contains('filled')) {
+                        targetIdx = i;
+                        break;
+                    }
+                }
+            }
+
+            if(targetIdx !== null) {
+                applyWordToSlot2(targetIdx, word);
+            }
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('active-target');
+        }
+
+        function removeDropStyle(ev) {
+            ev.currentTarget.classList.remove('active-target');
+        }
+
+        function drag(ev, word) {
+            ev.dataTransfer.setData("text", word);
+        }
+
+        function handleDrop(ev, idx) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('active-target');
+            const word = ev.dataTransfer.getData("text");
+            applyWordToSlot2(idx, word);
+        }
+
+        function applyWordToSlot2(idx, word) {
+            const dropEl = document.getElementById(`drop-2-${idx}`);
+            if(dropEl.classList.contains('filled')) return;
+
+            const correctVal = state.parts[2].items[idx].answer.toLowerCase();
+            const exerciseBox = document.getElementById(`ex-2-${idx}`);
+            const feedbackBox = document.getElementById(`feedback-2-${idx}`);
+
+            dropEl.innerText = word;
+
+            if(word.toLowerCase() === correctVal) {
+                dropEl.classList.remove('active-target');
+                dropEl.classList.add('filled');
+                dropEl.style.pointerEvents = 'none';
+                exerciseBox.classList.remove('incorrect');
+                exerciseBox.classList.add('correct');
+
+                const fullSentence = state.parts[2].items[idx].fullSentence;
+                feedbackBox.style.color = 'var(--success)';
+                feedbackBox.innerHTML = `✅ Correct! <button class="audio-btn" onclick="speakText('${fullSentence.replace(/'/g, "\'")}', this)">🔊 Listen</button>`;
+
+                state.parts[2].solved++;
+                state.parts[2].activeTargetIdx = null;
+                updateSlotIndicator();
+                checkSectionCompletion(2);
+            } else {
+                state.parts[2].errors++;
+                exerciseBox.classList.add('incorrect');
+                feedbackBox.style.color = 'var(--error)';
+                feedbackBox.innerHTML = `❌ Not the right verb form for this sentence. Click "Clear Slot" or select another!`;
+            }
+        }
+
+        function resetSlot2(idx) {
+            const dropEl = document.getElementById(`drop-2-${idx}`);
+            if(dropEl.classList.contains('filled')) {
+                state.parts[2].solved = Math.max(0, state.parts[2].solved - 1);
+            }
+            dropEl.innerText = "[ Click to select slot ]";
+            dropEl.classList.remove('filled', 'active-target');
+            dropEl.style.pointerEvents = 'auto';
+
+            const exerciseBox = document.getElementById(`ex-2-${idx}`);
+            exerciseBox.classList.remove('correct', 'incorrect');
+            document.getElementById(`feedback-2-${idx}`).innerHTML = "";
+            state.parts[2].activeTargetIdx = idx;
+            dropEl.classList.add('active-target');
+            updateSlotIndicator();
+        }
+
+        /* PART 3: LISTEN & FILL */
+        function renderPart3() {
+            const container = document.getElementById('exercises-3');
+            const items = state.parts[3].items;
+
+            container.innerHTML = items.map((item, idx) => `
+                <div class="exercise-item" id="ex-3-${idx}">
+                    <span class="sentence-tag">Sentence ${idx + 1} of ${items.length}</span>
+                    <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="speakText('${item.fullSentence.replace(/'/g, "\'")}', this)">🔊 Listen Audio</button>
+                    </div>
+                    <div class="sentence-text">
+                        ${item.beforeText}
+                        <input type="text" class="input-inline" id="input-3-${idx}" placeholder="[type here]" onchange="checkListenAnswer(${idx})" autocomplete="off">
+                        ${item.afterText}
+                    </div>
+                    <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <button class="btn-primary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="checkListenAnswer(${idx})">Check Answer</button>
+                        <button class="btn-hint-tag" onclick="toggleHint(3, ${idx})">💡 Hint</button>
+                        <button class="btn-help-tag" onclick="revealHelpLetter(3, ${idx})">🆘 Help (+1 letter)</button>
+                    </div>
+                    <div id="hint-3-${idx}" style="display:none;" class="hint-box">${item.hint}</div>
+                    <div id="feedback-3-${idx}" class="feedback-msg"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkListenAnswer(idx) {
+            const inputField = document.getElementById(`input-3-${idx}`);
+            if(!inputField || inputField.disabled) return;
+
+            const userVal = inputField.value.trim().toLowerCase();
+            const correctVal = state.parts[3].items[idx].answer.toLowerCase();
+            const exerciseBox = document.getElementById(`ex-3-${idx}`);
+            const feedbackBox = document.getElementById(`feedback-3-${idx}`);
+
+            if(!userVal) return;
+
+            if(userVal === correctVal) {
+                exerciseBox.classList.remove('incorrect');
+                exerciseBox.classList.add('correct');
+                const fullSentence = state.parts[3].items[idx].fullSentence;
+                feedbackBox.style.color = 'var(--success)';
+                feedbackBox.innerHTML = `✅ Correct! <button class="audio-btn" onclick="speakText('${fullSentence.replace(/'/g, "\'")}', this)">🔊 Listen</button>`;
+                
+                inputField.disabled = true;
+                state.parts[3].solved++;
+                checkSectionCompletion(3);
+            } else {
+                state.parts[3].errors++;
+                exerciseBox.classList.add('incorrect');
+                feedbackBox.style.color = 'var(--error)';
+                feedbackBox.innerHTML = `❌ Not quite right. Listen again and retry!`;
+            }
+        }
+
+        /* PART 4: FILL IN THE BLANKS */
+        function renderPart4() {
+            const container = document.getElementById('exercises-4');
+            const items = state.parts[4].items;
+
+            container.innerHTML = items.map((item, idx) => `
+                <div class="exercise-item" id="ex-4-${idx}">
+                    <span class="sentence-tag">Sentence ${idx + 1} of ${items.length}</span>
+                    <div class="sentence-text">
+                        ${item.beforeText}
+                        <input type="text" class="input-inline" id="input-4-${idx}" placeholder="[type here]" onchange="checkBlankAnswer(${idx})" autocomplete="off">
+                        ${item.afterText}
+                    </div>
+                    <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <button class="btn-primary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="checkBlankAnswer(${idx})">Check Answer</button>
+                        <button class="btn-hint-tag" onclick="toggleHint(4, ${idx})">💡 Hint</button>
+                        <button class="btn-help-tag" onclick="revealHelpLetter(4, ${idx})">🆘 Help (+1 letter)</button>
+                    </div>
+                    <div id="hint-4-${idx}" style="display:none;" class="hint-box">${item.hint}</div>
+                    <div id="feedback-4-${idx}" class="feedback-msg"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkBlankAnswer(idx) {
+            const inputField = document.getElementById(`input-4-${idx}`);
+            if(!inputField || inputField.disabled) return;
+
+            const userVal = inputField.value.trim().toLowerCase();
+            const correctVal = state.parts[4].items[idx].answer.toLowerCase();
+            const exerciseBox = document.getElementById(`ex-4-${idx}`);
+            const feedbackBox = document.getElementById(`feedback-4-${idx}`);
+
+            if(!userVal) return;
+
+            if(userVal === correctVal) {
+                exerciseBox.classList.remove('incorrect');
+                exerciseBox.classList.add('correct');
+                const fullSentence = state.parts[4].items[idx].fullSentence;
+                feedbackBox.style.color = 'var(--success)';
+                feedbackBox.innerHTML = `✅ Correct! <button class="audio-btn" onclick="speakText('${fullSentence.replace(/'/g, "\'")}', this)">🔊 Listen</button>`;
+                
+                inputField.disabled = true;
+                state.parts[4].solved++;
+                checkSectionCompletion(4);
+            } else {
+                state.parts[4].errors++;
+                exerciseBox.classList.add('incorrect');
+                feedbackBox.style.color = 'var(--error)';
+                feedbackBox.innerHTML = `❌ Not quite right. Try again!`;
+            }
+        }
+
+        function revealHelpLetter(partNum, idx) {
+            if(!state.parts[partNum].helpCount[idx]) {
+                state.parts[partNum].helpCount[idx] = 0;
+            }
+            const correctVal = state.parts[partNum].items[idx].answer;
+            const count = state.parts[partNum].helpCount[idx];
+            
+            if(count < correctVal.length) {
+                state.parts[partNum].helpCount[idx]++;
+                const revealed = correctVal.substring(0, state.parts[partNum].helpCount[idx]);
+                const inputField = document.getElementById(`input-${partNum}-${idx}`);
+                inputField.value = revealed;
+                
+                const feedbackBox = document.getElementById(`feedback-${partNum}-${idx}`);
+                feedbackBox.style.color = '#d97706';
+                feedbackBox.innerHTML = `ℹ️ Help: Revealed ${state.parts[partNum].helpCount[idx]} of ${correctVal.length} letters.`;
+            } else {
+                const feedbackBox = document.getElementById(`feedback-${partNum}-${idx}`);
+                feedbackBox.style.color = '#d97706';
+                feedbackBox.innerHTML = `ℹ️ All letters revealed: ${correctVal}`;
+            }
+        }
+
+        function toggleHint(partNum, idx) {
+            const hintBox = document.getElementById(`hint-${partNum}-${idx}`);
+            hintBox.style.display = hintBox.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function checkSectionCompletion(partNum) {
+            const totalItems = state.parts[partNum].items.length;
+            if(state.parts[partNum].solved >= totalItems) {
+                showCongratsModal(partNum);
+            }
+        }
+
+        function showCongratsModal(partNum) {
+            const errors = state.parts[partNum].errors;
+            const emoji = document.getElementById('modalEmoji');
+            const title = document.getElementById('modalTitle');
+            const text = document.getElementById('modalText');
+
+            if(errors === 0) {
+                emoji.innerText = "🎉";
+                title.innerText = "Total Mastery! 100% Accuracy!";
+                text.innerText = `Incredible work! You completed Part ${partNum} with zero errors. Exceptional vocabulary precision!`;
+            } else if(errors <= 2) {
+                emoji.innerText = "🌟";
+                title.innerText = "Excellent Work!";
+                text.innerText = `Great job on Part ${partNum}! You finished with only ${errors} minor mistake(s). You are mastering these speaking verbs!`;
+            } else {
+                emoji.innerText = "💪";
+                title.innerText = "Great Perseverance!";
+                text.innerText = `You finished Part ${partNum}! With ${errors} errors recorded, feel free to use 'Reset & Shuffle' to practice again and master them completely.`;
+            }
+
+            document.getElementById('congratsModal').style.display = 'flex';
+            if(typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('congratsModal').style.display = 'none';
+        }
+
+        function switchTab(tabIndex) {
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                if(idx === tabIndex) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-content').forEach((content, idx) => {
+                if(idx === tabIndex) content.classList.add('active');
+                else content.classList.remove('active');
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetTab(partNum) {
+            initPart(partNum);
+        }
+
+        function resetAllExercises() {
+            initPart(1);
+            initPart(2);
+            initPart(3);
+            initPart(4);
+            switchTab(0);
+        }
+
+        function openDictionary() {
+            document.getElementById('dictModal').style.display = 'flex';
+            renderDictionaryResults(verbsData);
+        }
+
+        function closeDictionary() {
+            document.getElementById('dictModal').style.display = 'none';
+        }
+
+        function renderDictionaryResults(list) {
+            const results = document.getElementById('dictResults');
+            if(list.length === 0) {
+                results.innerHTML = `<p style="color: var(--text-muted); text-align: center; padding: 20px;">No matching verb found.</p>`;
+                return;
+            }
+            results.innerHTML = list.map(v => `
+                <div style="padding: 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>${v.term}</strong> <span style="color: var(--primary);">[${v.trans}]</span><br>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">${v.def}</span>
+                    </div>
+                    <button class="audio-btn" onclick="speakText('${v.term}', this)">🔊</button>
+                </div>
+            `).join('');
+        }
+
+        function filterDictionary() {
+            const query = document.getElementById('dictSearch').value.trim().toLowerCase();
+            const filtered = verbsData.filter(v => v.term.toLowerCase().includes(query) || v.trans.toLowerCase().includes(query) || v.def.toLowerCase().includes(query));
+            renderDictionaryResults(filtered);
+        }
+
+        window.onload = function() {
+            renderVocabulary();
+            initPart(1);
+            initPart(2);
+            initPart(3);
+            initPart(4);
+        };
+    </script>
+</body>
+</html>
