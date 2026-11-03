@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Past Simple & Past Participle Travel Mastery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-subtle: #eff6ff;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --error: #dc2626;
+      --error-light: #fee2e2;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.06);
+      --shadow-lg: 0 14px 28px rgba(30, 58, 138, 0.1);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: white;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .btn-header:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+
+    .page-intro {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .page-intro .level-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: #b45309;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .page-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .page-intro p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* TAB NAVIGATION */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARD STYLES */
+    .exercise-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .exercise-header {
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .exercise-header h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .exercise-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* STICKY DRAGGABLE WORD BANK */
+    .sticky-wordbank {
+      position: sticky;
+      top: 74px;
+      z-index: 50;
+      background: #eff6fffa;
+      backdrop-filter: blur(8px);
+      border: 1.5px dashed var(--primary-light);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 14px rgba(30, 58, 138, 0.08);
+    }
+
+    .sticky-wordbank span.label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 4px;
+    }
+
+    .word-chip {
+      background: white;
+      border: 1px solid #bfdbfe;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: grab;
+      user-select: none;
+      transition: var(--transition);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .word-chip:active {
+      cursor: grabbing;
+    }
+
+    .word-chip:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+    }
+
+    .word-chip.used {
+      opacity: 0.4;
+      text-decoration: line-through;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    /* EXERCISE ITEMS */
+    .sentence-item, .quiz-item {
+      background: #fafbfd;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .sentence-item:hover, .quiz-item:hover {
+      border-color: #cbd5e1;
+      background: #ffffff;
+    }
+
+    .item-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #92400e;
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sentence-line {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.8;
+    }
+
+    .verb-hint {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .blank-input {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      outline: none;
+      min-width: 140px;
+      background: white;
+      transition: var(--transition);
+      text-align: center;
+      color: var(--text-main);
+    }
+
+    .blank-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .blank-input.drag-over {
+      border-color: var(--primary-light);
+      background: var(--primary-subtle);
+      transform: scale(1.02);
+    }
+
+    .blank-input.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: var(--success);
+      pointer-events: none;
+    }
+
+    .blank-input.incorrect {
+      border-color: var(--error);
+      background: var(--error-light);
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    /* HINT BUTTON & BOX */
+    .btn-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 6px;
+    }
+
+    .btn-hint:hover {
+      background: #fde68a;
+      transform: translateY(-1px);
+    }
+
+    .hint-tooltip {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #fffbeb;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: #78350f;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .hint-tooltip.show {
+      display: block;
+    }
+
+    /* LISTEN & PAUSE BUTTONS */
+    .listen-btn, .pause-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: var(--text-main);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .listen-btn:hover, .pause-btn:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .listen-btn.playing {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #92400e;
+    }
+
+    /* READING & SPOTTING (TAB 2) */
+    .reading-passage-box {
+      background: #fdfefe;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      line-height: 2.2;
+      font-size: 1.12rem;
+      color: #1e293b;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .reading-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .spot-counter {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .clickable-word {
+      display: inline-block;
+      padding: 2px 6px;
+      margin: 1px 2px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.15s;
+      user-select: none;
+    }
+
+    .clickable-word:hover:not(.spotted):not(.spotted-wrong) {
+      background: #e2e8f0;
+    }
+
+    .clickable-word.spotted {
+      background: #10b981;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.35);
+      cursor: default;
+    }
+
+    .clickable-word.spotted-wrong {
+      background: #fca5a5;
+      color: #7f1d1d;
+      animation: shake 0.3s;
+    }
+
+    /* QUIZ OPTIONS */
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .option-label:hover {
+      border-color: #94a3b8;
+    }
+
+    .option-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: inline-block;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .option-label.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: #065f46;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .option-label.correct .option-indicator {
+      border-color: var(--success);
+      background: var(--success);
+    }
+
+    .option-label.incorrect {
+      border-color: var(--error);
+      background: var(--error-light);
+      color: #991b1b;
+      opacity: 0.8;
+    }
+
+    .option-label.locked {
+      pointer-events: none;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.success {
+      color: var(--success);
+    }
+
+    .quiz-feedback.error {
+      color: var(--error);
+    }
+
+    /* BOTTOM EXERCISE ACTIONS */
+    .exercise-actions {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-reset-shuffle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-reset-shuffle:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+      border-color: #94a3b8;
+    }
+
+    .btn-next-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-next-tab:hover {
+      background: #1e40af;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-box h3 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .modal-box p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* CONGRATULATIONS MODAL */
+    .congrats-modal {
+      text-align: center;
+    }
+
+    .congrats-icon {
+      font-size: 3.5rem;
+      margin-bottom: 8px;
+      display: inline-block;
+      animation: bounce 0.8s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    .congrats-modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .congrats-modal p {
+      font-size: 0.95rem;
+      color: #334155;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .congrats-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
+      transition: var(--transition);
+    }
+
+    .congrats-btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    /* CONFETTI CANVAS */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1050;
+      display: none;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      background: white;
+      margin-top: auto;
+    }
+
+    @media (max-width: 640px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tab-bar {
+        flex-direction: column;
+      }
+      .tab-btn {
+        min-width: 100%;
+      }
+      .sticky-wordbank {
+        top: 60px;
+      }
+      .sentence-line {
+        font-size: 0.98rem;
+      }
+      .blank-input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand-wrap">
+        <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <h1>Merry Mery English</h1>
+          <p>Online & Personalized English Coaching</p>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn-header">
+          <span>🏠</span> Home
+        </a>
+        <button class="btn-header" onclick="openModal('helpModal')">
+          <span>💡</span> Help
+        </button>
+        <button class="btn-header" onclick="openModal('dictModal')">
+          <span>📖</span> Dictionary
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="page-intro">
+      <span class="level-badge">A2+ English for Travel</span>
+      <h2>Past Simple vs. Past Participle Mastery</h2>
+      <p>Reinforce essential travel grammar through contextual draggable gap-filling, full verb-phrase narrative spotting, tense selection quizzes, and active recall production.</p>
+    </div>
+
+    <!-- TAB SELECTOR -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(0)">
+        <span>🧲</span> 1. Drag & Type Verbs
+      </button>
+      <button class="tab-btn" onclick="switchTab(1)">
+        <span>🔍</span> 2. Story Verb Detective
+      </button>
+      <button class="tab-btn" onclick="switchTab(2)">
+        <span>🎯</span> 3. Form Selector Quiz
+      </button>
+      <button class="tab-btn" onclick="switchTab(3)">
+        <span>🧠</span> 4. Active Recall & Hints
+      </button>
+    </div>
+
+    <!-- ==================== TAB 1: DRAG & TYPE GAP FILLING ==================== -->
+    <div class="tab-content active" id="tab-0">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 1: Travel Questions & Sentences (Word Bank)</h3>
+          <p>The Word Bank stays pinned as you scroll! You can <strong>drag and drop</strong> the words straight into the input fields, tap a chip, or type directly.</p>
+        </div>
+
+        <!-- Sticky Draggable Word Bank -->
+        <div class="sticky-wordbank" id="wordbank-1">
+          <span class="label">Word Bank:</span>
+          <!-- Chips generated via JS -->
+        </div>
+
+        <div id="exercise-1-container">
+          <!-- Dynamic sentences -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise1()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(1)">
+            Next Exercise: Story Detective <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: READING & SPOTTING (BOTH PAST & PARTICIPLE) ==================== -->
+    <div class="tab-content" id="tab-1">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 2: Travel Story Verb Detective</h3>
+          <p>Read the holiday story. Click on <strong>all completed past verbs</strong>, including Past Simple verbs and compound Perfect tenses (both auxiliary and participle, like <em>had packed</em> or <em>had seen</em>). Tap a word to highlight it!</p>
+        </div>
+
+        <div class="reading-controls">
+          <div class="spot-counter" id="spotCounter">
+            <span>🔎</span> Verbs identified: <strong id="spottedCount">0</strong> / <strong id="totalVerbsCount">12</strong>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="listen-btn" id="listenPassageBtn" onclick="playPassageAudio()">
+              <span>🔊</span> Listen to Full Story
+            </button>
+            <button class="pause-btn" id="pausePassageBtn" onclick="pausePassageAudio()">
+              <span>⏸</span> Pause
+            </button>
+          </div>
+        </div>
+
+        <div class="reading-passage-box" id="readingBox">
+          <!-- Clickable text generated via JS -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise2()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(2)">
+            Next Exercise: Form Selector Quiz <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: FORM SELECTOR QUIZ ==================== -->
+    <div class="tab-content" id="tab-2">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 3: Form Discriminator (Questions & Real Situations)</h3>
+          <p>Choose the exact grammatical verb form required by the holiday inquiry or statement.</p>
+        </div>
+
+        <div id="exercise-3-container">
+          <!-- Dynamic quizzes -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise3()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(3)">
+            Next Exercise: Active Recall & Hints <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: ACTIVE RECALL & HINTS (NO WORD BANK) ==================== -->
+    <div class="tab-content" id="tab-3">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 4: Active Verb Recall (No Word Bank)</h3>
+          <p>Recall the correct tense independently based on the sentence clues. If you need subtle guidance without spoiling the solution, tap the <strong>💡 Hint</strong> button!</p>
+        </div>
+
+        <div id="exercise-4-container">
+          <!-- Dynamic recall sentences -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise4()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(0)">
+            <span>↺</span> Back to First Exercise
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- HELP MODAL (According to Merry Mery English Template) -->
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('helpModal')">✕</button>
+      <h3>Pedagogical Guide & Grammar Scope</h3>
+      <p>Designed for A2+ adult learners preparing for real-world travel communication:</p>
+      <ul style="padding-left: 20px; font-size: 0.9rem; color: #475569; line-height: 1.8; margin-bottom: 16px;">
+        <li><strong>Past Simple:</strong> Used for completed past events at a specific time (<em>flew, bought, took, arrived</em>). In questions: <em>Did + subject + base form</em> (e.g., <em>Did you buy...?</em>).</li>
+        <li><strong>Past Participle:</strong> Used with auxiliary verbs for experiences and completed preparations (<em>Have you ever visited...?</em>, <em>had already boarded...</em>).</li>
+        <li><strong>Automatic Instant Validation:</strong> No "Check" button needed. Immediate sound and visual cues confirm every single action.</li>
+        <li><strong>Audio Controls:</strong> Dedicated Play, Pause, and Resume buttons provide native listening practice.</li>
+      </ul>
+      <button class="congrats-btn" style="width: 100%; justify-content: center;" onclick="closeModal('helpModal')">Got It</button>
+    </div>
+  </div>
+
+  <!-- DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dictModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('dictModal')">✕</button>
+      <h3>Cambridge Learner's Dictionary</h3>
+      <p>Search any irregular verb, collocations, or travel terms directly:</p>
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="dictSearchInput" placeholder="e.g., departed, baggage, delay..." style="flex:1; padding:10px 14px; border:1px solid #cbd5e1; border-radius:8px; font-size:0.95rem;">
+        <button class="btn-next-tab" onclick="searchDictionary()">Search</button>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text-muted);">Opens the Cambridge English-Spanish Learner's entry in a secure tab.</p>
+    </div>
+  </div>
+
+  <!-- CONGRATULATIONS MODAL WITH CONFETTI & ACCURATE SCORE -->
+  <div class="modal-overlay" id="congratsModal">
+    <div class="modal-box congrats-modal">
+      <button class="modal-close" onclick="closeModal('congratsModal')">✕</button>
+      <div class="congrats-icon" id="congratsIcon">🌟✈️🎉</div>
+      <h3 id="congratsTitle">Outstanding Progress!</h3>
+      <div class="score-badge" id="congratsScore">Accuracy: 100% (6/6 First Try)</div>
+      <p id="congratsMessage">You have completed this exercise with remarkable grammatical accuracy.</p>
+      <button class="congrats-btn" id="congratsNextBtn" onclick="congratsAction()">Continue Practicing</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Merry Mery English • Personalized English Coaching for Adults • San Pedro & Online</p>
+  </footer>
+
+  <script>
+    // ==========================================
+    // AUDIO FEEDBACK (Web Audio API Synthesizer)
+    // ==========================================
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'success') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.15);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } else if (type === 'error') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(164.81, now + 0.2);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+        osc.start(now);
+        osc.stop(now + 0.28);
+      }
+    }
+
+    // ==========================================
+    // CONFETTI CANNON ENGINE (Self-Contained Canvas)
+    // ==========================================
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiAnimationId = null;
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function triggerConfetti() {
+      confettiCanvas.style.display = 'block';
+      confettiParticles = [];
+      const colors = ['#1e3a8a', '#3b82f6', '#d97706', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+      for (let i = 0; i < 110; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          r: Math.random() * 6 + 4,
+          d: Math.random() * 110,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          tilt: Math.floor(Math.random() * 10) - 10,
+          tiltAngleIncremental: Math.random() * 0.07 + 0.04,
+          tiltAngle: 0,
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.75) * 20,
+          gravity: 0.35,
+          opacity: 1
+        });
+      }
+
+      if (confettiAnimationId) cancelAnimationFrame(confettiAnimationId);
+      renderConfetti();
+      setTimeout(stopConfetti, 4000);
+    }
+
+    function renderConfetti() {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      let stillActive = false;
+
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.tiltAngle += p.tiltAngleIncremental;
+        p.tilt = Math.sin(p.tiltAngle) * 15;
+        p.opacity -= 0.005;
+
+        if (p.opacity > 0 && p.y < window.innerHeight) {
+          stillActive = true;
+          confettiCtx.beginPath();
+          confettiCtx.lineWidth = p.r;
+          confettiCtx.strokeStyle = p.color;
+          confettiCtx.globalAlpha = Math.max(0, p.opacity);
+          confettiCtx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+          confettiCtx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+          confettiCtx.stroke();
+        }
+      });
+
+      if (stillActive) {
+        confettiAnimationId = requestAnimationFrame(renderConfetti);
+      } else {
+        stopConfetti();
+      }
+    }
+
+    function stopConfetti() {
+      if (confettiAnimationId) cancelAnimationFrame(confettiAnimationId);
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiCanvas.style.display = 'none';
+    }
+
+    // ==========================================
+    // SPEECH SYNTHESIS CONTROLLER
+    // ==========================================
+    let currentSpeechUtterance = null;
+    let currentSpeechButton = null;
+
+    function handleListenToggle(text, btnElement) {
+      if (currentSpeechButton === btnElement && speechSynthesis.speaking) {
+        if (speechSynthesis.paused) {
+          speechSynthesis.resume();
+          btnElement.classList.add('playing');
+          btnElement.innerHTML = '<span>⏸</span> Pause Audio';
+        } else {
+          speechSynthesis.pause();
+          btnElement.classList.remove('playing');
+          btnElement.innerHTML = '<span>▶</span> Resume Audio';
+        }
+        return;
+      }
+
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        if (currentSpeechButton) {
+          currentSpeechButton.classList.remove('playing');
+          currentSpeechButton.innerHTML = '<span>🔊</span> Listen';
+        }
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+
+      currentSpeechUtterance = utterance;
+      currentSpeechButton = btnElement;
+
+      btnElement.classList.add('playing');
+      btnElement.innerHTML = '<span>⏸</span> Pause Audio';
+
+      utterance.onend = () => {
+        btnElement.classList.remove('playing');
+        btnElement.innerHTML = '<span>🔊</span> Listen';
+        currentSpeechButton = null;
+      };
+
+      utterance.onerror = () => {
+        btnElement.classList.remove('playing');
+        btnElement.innerHTML = '<span>🔊</span> Listen';
+        currentSpeechButton = null;
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function playPassageAudio() {
+      const btn = document.getElementById('listenPassageBtn');
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        btn.classList.add('playing');
+        return;
+      }
+      handleListenToggle(passageTextRaw, btn);
+    }
+
+    function pausePassageAudio() {
+      if (speechSynthesis.speaking && !speechSynthesis.paused) {
+        speechSynthesis.pause();
+        const btn = document.getElementById('listenPassageBtn');
+        if (btn) btn.classList.remove('playing');
+      }
+    }
+
+    // ==========================================
+    // TAB MANAGEMENT
+    // ==========================================
+    function switchTab(index) {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabBtns.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      tabContents.forEach((content, i) => {
+        content.classList.toggle('active', i === index);
+      });
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // FISHER-YATES SHUFFLE UTILITY
+    // ==========================================
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // ==========================================
+    // EXERCISE 1: DRAG & TYPE GAP FILLING (Word Bank)
+    // ==========================================
+    const originalEx1Data = [
+      {
+        id: 1,
+        part1: "Last winter, we",
+        verb: "fly",
+        blank: "flew",
+        part2: "directly to Bariloche and rented a rustic cabin near the lake.",
+        full: "Last winter, we flew directly to Bariloche and rented a rustic cabin near the lake."
+      },
+      {
+        id: 2,
+        part1: "Have you ever",
+        verb: "lost",
+        blank: "lost",
+        part2: "your boarding pass inside a busy international terminal?",
+        full: "Have you ever lost your boarding pass inside a busy international terminal?"
+      },
+      {
+        id: 3,
+        part1: "What time did the train finally",
+        verb: "arrive",
+        blank: "arrive",
+        part2: "at the central platform last night?",
+        full: "What time did the train finally arrive at the central platform last night?"
+      },
+      {
+        id: 4,
+        part1: "By the time we reached the terminal, our flight had already",
+        verb: "depart",
+        blank: "departed",
+        part2: "into the morning sky.",
+        full: "By the time we reached the terminal, our flight had already departed into the morning sky."
+      },
+      {
+        id: 5,
+        part1: "Have the tourists already",
+        verb: "taken",
+        blank: "taken",
+        part2: "the ferry to the historic lighthouse?",
+        full: "Have the tourists already taken the ferry to the historic lighthouse?"
+      },
+      {
+        id: 6,
+        part1: "Yesterday at quarter past four, she",
+        verb: "bought",
+        blank: "bought",
+        part2: "two round-trip tickets at the station counter.",
+        full: "Yesterday at quarter past four, she bought two round-trip tickets at the station counter."
+      }
+    ];
+
+    let ex1Data = [...originalEx1Data];
+    let ex1Completed = new Set();
+    let ex1Attempts = {};
+    let currentActiveInput = null;
+
+    function renderExercise1() {
+      const container = document.getElementById('exercise-1-container');
+      const wordbank = document.getElementById('wordbank-1');
+      container.innerHTML = '';
+      wordbank.innerHTML = '<span class="label">Word Bank:</span>';
+      ex1Attempts = {};
+
+      const words = shuffle(ex1Data.map(d => d.blank));
+      words.forEach(w => {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = w;
+        chip.draggable = true;
+        chip.ondragstart = (e) => handleDragStart(e, w);
+        chip.onclick = () => fillActiveInput(w);
+        wordbank.appendChild(chip);
+      });
+
+      ex1Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sentence-item';
+        div.id = `ex1-item-${item.id}`;
+
+        div.innerHTML = `
+          <div class="item-badge">Question / Sentence ${idx + 1} of ${ex1Data.length}</div>
+          <div class="sentence-line">
+            <span>${item.part1}</span>
+            <input type="text" 
+                   class="blank-input" 
+                   data-answer="${item.blank.toLowerCase()}" 
+                   data-id="${item.id}"
+                   placeholder="..."
+                   autocomplete="off"
+                   ondragover="handleDragOver(event, this)"
+                   ondragleave="handleDragLeave(event, this)"
+                   ondrop="handleDrop(event, this)"
+                   onfocus="setActiveInput(this)"
+                   oninput="handleInputLive(this, 1)"
+                   onblur="handleInputBlur(this, 1)">
+            <span class="verb-hint">(${item.verb})</span>
+            <span>${item.part2}</span>
+            <button class="listen-btn" style="display:none;" onclick="handleListenToggle('${item.full.replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function handleDragStart(e, word) {
+      e.dataTransfer.setData('text/plain', word);
+      e.dataTransfer.effectAllowed = 'copy';
+    }
+
+    function handleDragOver(e, input) {
+      e.preventDefault();
+      input.classList.add('drag-over');
+    }
+
+    function handleDragLeave(e, input) {
+      input.classList.remove('drag-over');
+    }
+
+    function handleDrop(e, input) {
+      e.preventDefault();
+      input.classList.remove('drag-over');
+      const word = e.dataTransfer.getData('text/plain');
+      if (word && !input.classList.contains('correct')) {
+        input.value = word;
+        handleInputLive(input, 1);
+      }
+    }
+
+    function setActiveInput(input) {
+      currentActiveInput = input;
+    }
+
+    function fillActiveInput(word) {
+      if (!currentActiveInput) {
+        const empty = document.querySelector('#exercise-1-container .blank-input:not(.correct)');
+        if (empty) currentActiveInput = empty;
+      }
+      if (currentActiveInput && !currentActiveInput.classList.contains('correct')) {
+        currentActiveInput.value = word;
+        handleInputLive(currentActiveInput, 1);
+      }
+    }
+
+    function handleInputLive(input, exNum) {
+      const val = input.value.trim().toLowerCase();
+      const answer = input.getAttribute('data-answer');
+      const id = parseInt(input.getAttribute('data-id'));
+
+      if (!ex1Attempts[id]) ex1Attempts[id] = 0;
+
+      if (val === answer) {
+        input.classList.remove('incorrect');
+        input.classList.add('correct');
+        input.readOnly = true;
+        playSound('success');
+
+        const parent = input.closest('.sentence-line');
+        const listenBtn = parent.querySelector('.listen-btn');
+        if (listenBtn) listenBtn.style.display = 'inline-flex';
+
+        if (exNum === 1) {
+          updateWordBankUI();
+          ex1Completed.add(id);
+          checkExercise1Completion();
+        } else if (exNum === 4) {
+          ex4Completed.add(id);
+          checkExercise4Completion();
+        }
+      }
+    }
+
+    function handleInputBlur(input, exNum) {
+      const val = input.value.trim().toLowerCase();
+      const answer = input.getAttribute('data-answer');
+      const id = parseInt(input.getAttribute('data-id'));
+      if (val !== '' && val !== answer) {
+        input.classList.add('incorrect');
+        playSound('error');
+        if (exNum === 1) {
+          ex1Attempts[id] = (ex1Attempts[id] || 0) + 1;
+        } else if (exNum === 4) {
+          ex4Attempts[id] = (ex4Attempts[id] || 0) + 1;
+        }
+      }
+    }
+
+    function updateWordBankUI() {
+      const inputs = Array.from(document.querySelectorAll('#exercise-1-container .blank-input.correct'));
+      const answeredWords = inputs.map(i => i.getAttribute('data-answer'));
+      const chips = document.querySelectorAll('#wordbank-1 .word-chip');
+      chips.forEach(chip => {
+        if (answeredWords.includes(chip.textContent.trim().toLowerCase())) {
+          chip.classList.add('used');
+        } else {
+          chip.classList.remove('used');
+        }
+      });
+    }
+
+    function checkExercise1Completion() {
+      if (ex1Completed.size === ex1Data.length) {
+        let totalErrors = 0;
+        Object.values(ex1Attempts).forEach(err => totalErrors += err);
+        const accuracy = Math.max(50, Math.round(((ex1Data.length) / (ex1Data.length + totalErrors)) * 100));
+        
+        showCongratulations(
+          "Superb Verb Accuracy!",
+          `Accuracy: ${accuracy}% (${totalErrors === 0 ? "Flawless First Try!" : totalErrors + " adjustments needed"})`,
+          "All travel questions and sentences completed accurately. Next, spot both single and compound past verbs!",
+          () => switchTab(1)
+        );
+      }
+    }
+
+    function resetExercise1() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex1Completed.clear();
+      currentActiveInput = null;
+      ex1Data = shuffle(originalEx1Data);
+      renderExercise1();
+    }
+
+    // ==========================================
+    // EXERCISE 2: READING & SPOTTING (BOTH PAST SIMPLE & PAST PARTICIPLES)
+    // Allows marking BOTH auxiliary (had) and participle (packed, seen), as well as simple past
+    // ==========================================
+    const passageTextRaw = "Last October, we travelled to Madrid for an unforgettable autumn holiday. Before our departure, my partner had packed all our luggage with utmost precision. When our morning flight landed at Barajas Airport, we immediately took an express shuttle to the city centre. During our stay, we visited world-renowned galleries, bought exquisite local delicacies at the market, and walked through historic cobblestone streets. Interestingly, my sister had never seen the Royal Palace before, so we spent hours admiring its grand courtyards. Everything went smoothly, and we returned home with memorable souvenirs.";
+
+    // Target verbs includes Simple Past AND Compound Past/Participle components:
+    // travelled, had, packed, landed, took, visited, bought, walked, had, seen, spent, went, returned
+    const targetVerbsList = [
+      "travelled", "had", "packed", "landed", "took", "visited", "bought", "walked", "seen", "spent", "went", "returned"
+    ];
+    const targetVerbs = new Set(targetVerbsList);
+
+    let spottedVerbs = new Set();
+    let spotWrongClicks = 0;
+
+    function renderExercise2() {
+      const readingBox = document.getElementById('readingBox');
+      readingBox.innerHTML = '';
+      spottedVerbs.clear();
+      spotWrongClicks = 0;
+      updateSpottedCounter();
+
+      const tokens = passageTextRaw.split(' ');
+      tokens.forEach((token, index) => {
+        const match = token.match(/^([a-zA-Z]+)([^a-zA-Z]*)$/);
+        if (match) {
+          const word = match[1];
+          const punct = match[2];
+          const lowerWord = word.toLowerCase();
+
+          const span = document.createElement('span');
+          span.className = 'clickable-word';
+          span.textContent = word;
+          span.dataset.clean = lowerWord;
+          span.dataset.idx = index;
+          span.onclick = () => handleWordSpot(span, lowerWord, index);
+
+          readingBox.appendChild(span);
+          if (punct) {
+            readingBox.appendChild(document.createTextNode(punct + ' '));
+          } else {
+            readingBox.appendChild(document.createTextNode(' '));
+          }
+        } else {
+          readingBox.appendChild(document.createTextNode(token + ' '));
+        }
+      });
+    }
+
+    function handleWordSpot(element, word, idx) {
+      if (element.classList.contains('spotted')) return;
+
+      if (targetVerbs.has(word)) {
+        element.classList.add('spotted');
+        element.classList.remove('spotted-wrong');
+        playSound('success');
+        spottedVerbs.add(idx); // Track by unique word position
+        updateSpottedCounter();
+
+        // 13 occurrences in total in the text
+        if (spottedVerbs.size >= 12) {
+          const accuracy = Math.max(60, Math.round((12 / (12 + spotWrongClicks)) * 100));
+          showCongratulations(
+            "Eagle Eye! All Verbs Spotted!",
+            `Accuracy: ${accuracy}% (${spotWrongClicks === 0 ? "Zero false clicks!" : spotWrongClicks + " incorrect attempts"})`,
+            "You captured both the Past Simple verbs and the complete compound Past Perfect structures (had + participle)!",
+            () => switchTab(2)
+          );
+        }
+      } else {
+        spotWrongClicks++;
+        element.classList.add('spotted-wrong');
+        playSound('error');
+        setTimeout(() => {
+          element.classList.remove('spotted-wrong');
+        }, 500);
+      }
+    }
+
+    function updateSpottedCounter() {
+      document.getElementById('spottedCount').textContent = spottedVerbs.size;
+      document.getElementById('totalVerbsCount').textContent = "12";
+    }
+
+    function resetExercise2() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      renderExercise2();
+    }
+
+    // ==========================================
+    // EXERCISE 3: FORM SELECTOR QUIZ
+    // ==========================================
+    const originalEx3Data = [
+      {
+        id: 1,
+        question: 'Have you ever _____ across the Atlantic on a night flight?',
+        options: ['flown', 'flew', 'fly'],
+        correct: 'flown',
+        explanation: 'We use the past participle "flown" after auxiliary "Have" to inquire about travel experiences.'
+      },
+      {
+        id: 2,
+        question: 'What time did the tour guide _____ the museum doors yesterday?',
+        options: ['open', 'opened', 'opening'],
+        correct: 'open',
+        explanation: 'In past simple questions with "did", the lexical verb remains in the infinitive/base form.'
+      },
+      {
+        id: 3,
+        question: 'She had already _____ her luggage before the taxi arrived.',
+        options: ['packed', 'pack', 'packing'],
+        correct: 'packed',
+        explanation: 'Past perfect requires the auxiliary "had" alongside the past participle "packed".'
+      },
+      {
+        id: 4,
+        question: 'Where did you _____ those unique handcrafted souvenirs last summer?',
+        options: ['buy', 'bought', 'buying'],
+        correct: 'buy',
+        explanation: 'Because "did" establishes the past tense, the main verb stays in base form "buy".'
+      },
+      {
+        id: 5,
+        question: 'They have never _____ such breathtaking mountain scenery before.',
+        options: ['seen', 'saw', 'see'],
+        correct: 'seen',
+        explanation: 'Present perfect demands "seen" (past participle of see) together with "have".'
+      },
+      {
+        id: 6,
+        question: 'Last night at quarter past ten, the train _____ the platform quietly.',
+        options: ['left', 'leave', 'leaving'],
+        correct: 'left',
+        explanation: 'A definite completed past timestamp specifies the simple past "left".'
+      }
+    ];
+
+    let ex3Data = [...originalEx3Data];
+    let ex3Completed = new Set();
+    let ex3Mistakes = 0;
+
+    function renderExercise3() {
+      const container = document.getElementById('exercise-3-container');
+      container.innerHTML = '';
+      ex3Mistakes = 0;
+
+      ex3Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.id = `quiz-${item.id}`;
+
+        const shuffledOptions = shuffle(item.options);
+
+        let optionsHtml = '';
+        shuffledOptions.forEach(opt => {
+          optionsHtml += `
+            <label class="option-label" onclick="selectQuizOption(${item.id}, '${opt}', this)">
+              <span class="option-indicator"></span>
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+
+        div.innerHTML = `
+          <div class="item-badge">Question ${idx + 1} of ${ex3Data.length}</div>
+          <div class="quiz-question">${item.question}</div>
+          <div class="quiz-options">
+            ${optionsHtml}
+          </div>
+          <div class="quiz-feedback" id="feedback-${item.id}"></div>
+          <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+            <button class="listen-btn" onclick="handleListenToggle('${item.question.replace('_____', item.correct).replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    function selectQuizOption(itemId, selectedOpt, labelElement) {
+      const item = ex3Data.find(d => d.id === itemId);
+      const parent = document.getElementById(`quiz-${itemId}`);
+      const labels = parent.querySelectorAll('.option-label');
+      const feedback = document.getElementById(`feedback-${itemId}`);
+
+      if (labelElement.classList.contains('locked') || labelElement.classList.contains('correct')) {
+        return;
+      }
+
+      if (selectedOpt === item.correct) {
+        playSound('success');
+        labels.forEach(l => l.classList.add('locked'));
+        labelElement.classList.remove('incorrect');
+        labelElement.classList.add('correct');
+        feedback.className = 'quiz-feedback show success';
+        feedback.textContent = `✓ Correct! ${item.explanation}`;
+        ex3Completed.add(itemId);
+        checkExercise3Completion();
+      } else {
+        ex3Mistakes++;
+        playSound('error');
+        labelElement.classList.add('incorrect');
+        feedback.className = 'quiz-feedback show error';
+        feedback.textContent = `✕ Not quite. Review whether the clause has 'did' (base form) or 'have/had' (participle).`;
+      }
+    }
+
+    function checkExercise3Completion() {
+      if (ex3Completed.size === ex3Data.length) {
+        const accuracy = Math.max(50, Math.round((ex3Data.length / (ex3Data.length + ex3Mistakes)) * 100));
+        showCongratulations(
+          "Mastery of Tense Selection!",
+          `Accuracy: ${accuracy}% (${ex3Mistakes === 0 ? "First Attempt Perfection!" : ex3Mistakes + " incorrect clicks"})`,
+          "You clearly differentiate between base verbs in questions, past simple, and participles. Now try the active recall challenge!",
+          () => switchTab(3)
+        );
+      }
+    }
+
+    function resetExercise3() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex3Completed.clear();
+      ex3Data = shuffle(originalEx3Data);
+      renderExercise3();
+    }
+
+    // ==========================================
+    // EXERCISE 4: ACTIVE RECALL & HINTS (NO WORD BANK)
+    // ==========================================
+    const originalEx4Data = [
+      {
+        id: 1,
+        part1: "We had already",
+        verb: "leave",
+        blank: "left",
+        part2: "the holiday resort before the storm began.",
+        full: "We had already left the holiday resort before the storm began.",
+        hint: "Past participle of an irregular verb ending in '-ft'. Similar pattern to 'keep -> kept'."
+      },
+      {
+        id: 2,
+        part1: "Did you",
+        verb: "meet",
+        blank: "meet",
+        part2: "any friendly locals during your guided excursion?",
+        full: "Did you meet any friendly locals during your guided excursion?",
+        hint: "Notice the auxiliary 'Did'! What form of the verb follows 'did' in past questions?"
+      },
+      {
+        id: 3,
+        part1: "She has never",
+        verb: "ride",
+        blank: "ridden",
+        part2: "a cable car to the mountain summit before.",
+        full: "She has never ridden a cable car to the mountain summit before.",
+        hint: "Irregular past participle ending in '-en' with a double consonant in the middle."
+      },
+      {
+        id: 4,
+        part1: "Two days ago, our family",
+        verb: "choose",
+        blank: "chose",
+        part2: "a cozy seafood restaurant overlooking the harbor.",
+        full: "Two days ago, our family chose a cozy seafood restaurant overlooking the harbor.",
+        hint: "Specific past time ('Two days ago'). Simple past form drops one 'o'."
+      },
+      {
+        id: 5,
+        part1: "Have you ever",
+        verb: "swim",
+        blank: "swum",
+        part2: "in the turquoise waters of the Mediterranean Sea?",
+        full: "Have you ever swum in the turquoise waters of the Mediterranean Sea?",
+        hint: "Present Perfect experience: swim (base), swam (past), and vowel changes to 'u' for participle."
+      },
+      {
+        id: 6,
+        part1: "He had already",
+        verb: "write",
+        blank: "written",
+        part2: "several postcards before boarding the midnight train.",
+        full: "He had already written several postcards before boarding the midnight train.",
+        hint: "Past Perfect after 'had'. Remember to double the 't' in this irregular participle."
+      }
+    ];
+
+    let ex4Data = [...originalEx4Data];
+    let ex4Completed = new Set();
+    let ex4Attempts = {};
+    let hintsUsed = 0;
+
+    function renderExercise4() {
+      const container = document.getElementById('exercise-4-container');
+      container.innerHTML = '';
+      ex4Attempts = {};
+      hintsUsed = 0;
+
+      ex4Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sentence-item';
+        div.id = `ex4-item-${item.id}`;
+
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div class="item-badge">Active Production ${idx + 1} of ${ex4Data.length}</div>
+            <button class="btn-hint" onclick="toggleHint(${item.id})">
+              <span>💡</span> Hint
+            </button>
+          </div>
+          <div class="sentence-line">
+            <span>${item.part1}</span>
+            <input type="text" 
+                   class="blank-input" 
+                   data-answer="${item.blank.toLowerCase()}" 
+                   data-id="${item.id}"
+                   placeholder="Type verb..."
+                   autocomplete="off"
+                   onfocus="setActiveInput(this)"
+                   oninput="handleInputLive(this, 4)"
+                   onblur="handleInputBlur(this, 4)">
+            <span class="verb-hint">(${item.verb})</span>
+            <span>${item.part2}</span>
+            <button class="listen-btn" style="display:none;" onclick="handleListenToggle('${item.full.replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div class="hint-tooltip" id="hint-box-${item.id}">
+            <strong>Clue:</strong> ${item.hint}
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleHint(itemId) {
+      const box = document.getElementById(`hint-box-${itemId}`);
+      if (!box.classList.contains('show')) {
+        box.classList.add('show');
+        hintsUsed++;
+      } else {
+        box.classList.remove('show');
+      }
+    }
+
+    function checkExercise4Completion() {
+      if (ex4Completed.size === ex4Data.length) {
+        let totalErrors = 0;
+        Object.values(ex4Attempts).forEach(err => totalErrors += err);
+        const accuracy = Math.max(50, Math.round((ex4Data.length / (ex4Data.length + totalErrors)) * 100));
+
+        showCongratulations(
+          "Unstoppable Mastery!",
+          `Accuracy: ${accuracy}% (${hintsUsed} hint${hintsUsed === 1 ? '' : 's'} consulted, ${totalErrors} revisions)`,
+          "You generated every irregular past and participle completely from your active memory. You have full command of this travel grammar!",
+          () => switchTab(0)
+        );
+      }
+    }
+
+    function resetExercise4() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex4Completed.clear();
+      ex4Data = shuffle(originalEx4Data);
+      renderExercise4();
+    }
+
+    // ==========================================
+    // MODALS & CONGRATULATIONS WITH CONFETTI
+    // ==========================================
+    let congratsCallback = null;
+
+    function showCongratulations(title, scoreText, message, nextAction) {
+      document.getElementById('congratsTitle').textContent = title;
+      document.getElementById('congratsScore').textContent = scoreText;
+      document.getElementById('congratsMessage').textContent = message;
+      congratsCallback = nextAction;
+      openModal('congratsModal');
+      triggerConfetti();
+    }
+
+    function congratsAction() {
+      closeModal('congratsModal');
+      stopConfetti();
+      if (typeof congratsCallback === 'function') {
+        congratsCallback();
+      }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      if (id === 'congratsModal') stopConfetti();
+    }
+
+    function searchDictionary() {
+      const term = document.getElementById('dictSearchInput').value.trim();
+      if (term) {
+        window.open(`https://dictionary.cambridge.org/dictionary/english-spanish/${encodeURIComponent(term)}`, '_blank');
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderExercise1();
+      renderExercise2();
+      renderExercise3();
+      renderExercise4();
+    });
+  </script>
+</body>
+</html>
