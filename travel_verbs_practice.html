@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Mery English - Travel Verbs Interactive Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-subtle: #eff6ff;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --error: #dc2626;
+      --error-light: #fee2e2;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.06);
+      --shadow-lg: 0 14px 28px rgba(30, 58, 138, 0.1);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: white;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .btn-header:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+
+    .page-intro {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .page-intro .level-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: #b45309;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .page-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .page-intro p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* TAB NAVIGATION */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: 16px;
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARD STYLES */
+    .exercise-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .exercise-header {
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .exercise-header h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .exercise-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* STICKY WORD BANK */
+    .sticky-wordbank {
+      background: var(--primary-subtle);
+      border: 1px dashed var(--primary-light);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sticky-wordbank span.label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 4px;
+    }
+
+    .word-chip {
+      background: white;
+      border: 1px solid #bfdbfe;
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .word-chip:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .word-chip.used {
+      opacity: 0.45;
+      text-decoration: line-through;
+      pointer-events: none;
+    }
+
+    /* EXERCISE ITEMS */
+    .sentence-item, .quiz-item, .unscramble-item {
+      background: #fafbfd;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .sentence-item:hover, .quiz-item:hover, .unscramble-item:hover {
+      border-color: #cbd5e1;
+      background: #ffffff;
+    }
+
+    .item-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #92400e;
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sentence-line {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.8;
+    }
+
+    .blank-input {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      outline: none;
+      min-width: 140px;
+      background: white;
+      transition: var(--transition);
+      text-align: center;
+      color: var(--text-main);
+    }
+
+    .blank-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .blank-input.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: var(--success);
+      pointer-events: none;
+    }
+
+    .blank-input.incorrect {
+      border-color: var(--error);
+      background: var(--error-light);
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    /* LISTEN BUTTON (Play/Pause/Resume) */
+    .listen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: var(--text-main);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-left: auto;
+      transition: var(--transition);
+    }
+
+    .listen-btn:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .listen-btn.playing {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #92400e;
+    }
+
+    /* QUIZ OPTIONS */
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .option-label:hover {
+      border-color: #94a3b8;
+    }
+
+    .option-label input[type="radio"] {
+      display: none;
+    }
+
+    .option-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: inline-block;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .option-label.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: #065f46;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .option-label.correct .option-indicator {
+      border-color: var(--success);
+      background: var(--success);
+    }
+
+    .option-label.incorrect {
+      border-color: var(--error);
+      background: var(--error-light);
+      color: #991b1b;
+      opacity: 0.8;
+    }
+
+    .option-label.locked {
+      pointer-events: none;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.success {
+      color: var(--success);
+    }
+
+    .quiz-feedback.error {
+      color: var(--error);
+    }
+
+    /* WORD ORDER TILES */
+    .word-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px 0;
+      min-height: 42px;
+      padding: 8px;
+      background: #f1f5f9;
+      border-radius: var(--radius-sm);
+    }
+
+    .target-slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 46px;
+      padding: 8px;
+      background: white;
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-sm);
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .target-slots.correct {
+      border-style: solid;
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .tile {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: var(--transition);
+    }
+
+    .tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+      border-color: var(--primary-light);
+    }
+
+    .target-slots .tile {
+      background: var(--primary-subtle);
+      border-color: #bfdbfe;
+      color: var(--primary);
+    }
+
+    .target-slots.correct .tile {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* BOTTOM EXERCISE ACTIONS */
+    .exercise-actions {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-reset-shuffle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-reset-shuffle:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+      border-color: #94a3b8;
+    }
+
+    .btn-next-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-next-tab:hover {
+      background: #1e40af;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-box h3 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .modal-box p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* CONGRATULATIONS MODAL */
+    .congrats-modal {
+      text-align: center;
+    }
+
+    .congrats-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      display: inline-block;
+      animation: bounce 0.8s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    .congrats-modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .congrats-modal p {
+      font-size: 0.98rem;
+      color: #334155;
+      margin-bottom: 24px;
+    }
+
+    .congrats-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
+      transition: var(--transition);
+    }
+
+    .congrats-btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      background: white;
+      margin-top: auto;
+    }
+
+    @media (max-width: 640px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tab-bar {
+        flex-direction: column;
+      }
+      .tab-btn {
+        max-width: 100%;
+      }
+      .sentence-line {
+        font-size: 0.98rem;
+      }
+      .blank-input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand-wrap">
+        <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <h1>Merry Mery English</h1>
+          <p>Online & Personalized English Coaching</p>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn-header">
+          <span>🏠</span> Home
+        </a>
+        <button class="btn-header" onclick="openModal('helpModal')">
+          <span>💡</span> Help & Scope
+        </button>
+        <button class="btn-header" onclick="openModal('dictModal')">
+          <span>📖</span> Dictionary
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="page-intro">
+      <span class="level-badge">A2+ English for Travel</span>
+      <h2>Travel Verbs & Vacation Essentials</h2>
+      <p>Interactive practice on essential travel vocabulary, the versatility of <em>get</em>, and natural holiday sentence construction.</p>
+    </div>
+
+    <!-- TAB SELECTOR -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(0)">
+        <span>✈️</span> 1. Travel Verbs
+      </button>
+      <button class="tab-btn" onclick="switchTab(1)">
+        <span>🔄</span> 2. Uses of "Get"
+      </button>
+      <button class="tab-btn" onclick="switchTab(2)">
+        <span>🧩</span> 3. Sentence Formation
+      </button>
+    </div>
+
+    <!-- ==================== EXERCISE 1: TRAVEL VERBS ==================== -->
+    <div class="tab-content active" id="tab-0">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 1: Travel Verbs in Context</h3>
+          <p>Complete each sentence with the correct travel verb from the word bank. Type your answer or tap a tag.</p>
+        </div>
+
+        <!-- Sticky Word Bank -->
+        <div class="sticky-wordbank" id="wordbank-1">
+          <span class="label">Word Bank:</span>
+          <!-- Chips generated via JS -->
+        </div>
+
+        <div id="exercise-1-container">
+          <!-- Dynamic sentences -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise1()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(1)">
+            Next Exercise: Uses of "Get" <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== EXERCISE 2: USES OF GET ==================== -->
+    <div class="tab-content" id="tab-1">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 2: Different Uses of "Get" on Vacation</h3>
+          <p>Identify the exact meaning of <strong>get</strong> in each travel situation. Immediate feedback will verify your choice.</p>
+        </div>
+
+        <div id="exercise-2-container">
+          <!-- Dynamic quizzes -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise2()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(2)">
+            Next Exercise: Sentence Formation <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== EXERCISE 3: SENTENCE FORMATION ==================== -->
+    <div class="tab-content" id="tab-2">
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 3: Travel Sentence & Word Formation</h3>
+          <p>Tap the words in order to form grammatically sound travel sentences. Tap a placed word to return it.</p>
+        </div>
+
+        <div id="exercise-3-container">
+          <!-- Dynamic tiles -->
+        </div>
+
+        <div class="exercise-actions">
+          <button class="btn-reset-shuffle" onclick="resetExercise3()">
+            <span>🔄</span> Reset & Shuffle
+          </button>
+          <button class="btn-next-tab" onclick="switchTab(0)">
+            <span>↺</span> Back to First Exercise
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- HELP MODAL -->
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('helpModal')">✕</button>
+      <h3>Pedagogical Scope & Instructions</h3>
+      <p>This interactive worksheet focuses on practical holiday communication for A2+ learners.</p>
+      <ul style="padding-left: 20px; font-size: 0.9rem; color: #475569; line-height: 1.8; margin-bottom: 16px;">
+        <li><strong>Grammar included:</strong> Present & Past Simple, Present Perfect Simple, Past Perfect, Future Forms, Adverbs of Frequency, Time expressions, and Uses of <em>Get</em>.</li>
+        <li><strong>Immediate Verification:</strong> No "Check" button needed! Fill-in answers validate immediately as you finish typing or blur the field.</li>
+        <li><strong>Audio Pronunciation:</strong> Tap the <em>Listen</em> button anytime to hear the full sentence with native cadence (Play / Pause / Resume).</li>
+      </ul>
+      <button class="congrats-btn" style="width: 100%; justify-content: center;" onclick="closeModal('helpModal')">Understood</button>
+    </div>
+  </div>
+
+  <!-- DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dictModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('dictModal')">✕</button>
+      <h3>Cambridge Learner's Dictionary</h3>
+      <p>Search any word or travel term directly:</p>
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="dictSearchInput" placeholder="e.g., boarding pass, depart..." style="flex:1; padding:10px 14px; border:1px solid #cbd5e1; border-radius:8px; font-size:0.95rem;">
+        <button class="btn-next-tab" onclick="searchDictionary()">Search</button>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text-muted);">Opens the Cambridge English-Spanish Learner's entry in a secure tab.</p>
+    </div>
+  </div>
+
+  <!-- CONGRATULATIONS MODAL -->
+  <div class="modal-overlay" id="congratsModal">
+    <div class="modal-box congrats-modal">
+      <button class="modal-close" onclick="closeModal('congratsModal')">✕</button>
+      <div class="congrats-icon">🌟✈️🎉</div>
+      <h3 id="congratsTitle">Brilliant Work!</h3>
+      <p id="congratsMessage">You have completed all questions in this section with excellent grammatical accuracy.</p>
+      <button class="congrats-btn" id="congratsNextBtn" onclick="congratsAction()">Continue Practicing</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Merry Mery English • Personalized English Coaching for Adults • San Pedro & Online</p>
+  </footer>
+
+  <script>
+    // ==========================================
+    // AUDIO FEEDBACK (Web Audio API Synthesizer)
+    // ==========================================
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'success') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.15); // G5
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } else if (type === 'error') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now); // A3
+        osc.frequency.linearRampToValueAtTime(164.81, now + 0.2); // E3
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+        osc.start(now);
+        osc.stop(now + 0.28);
+      }
+    }
+
+    // ==========================================
+    // SPEECH SYNTHESIS CONTROLLER (Play/Pause/Resume)
+    // Strictly manual trigger: never auto-plays
+    // ==========================================
+    let currentSpeechUtterance = null;
+    let currentSpeechButton = null;
+
+    function handleListenToggle(text, btnElement) {
+      // If clicking on the same button currently speaking/paused
+      if (currentSpeechButton === btnElement && speechSynthesis.speaking) {
+        if (speechSynthesis.paused) {
+          speechSynthesis.resume();
+          btnElement.classList.add('playing');
+          btnElement.innerHTML = '<span>⏸</span> Pause Audio';
+        } else {
+          speechSynthesis.pause();
+          btnElement.classList.remove('playing');
+          btnElement.innerHTML = '<span>▶</span> Resume Audio';
+        }
+        return;
+      }
+
+      // Reset any active speech
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        if (currentSpeechButton) {
+          currentSpeechButton.classList.remove('playing');
+          currentSpeechButton.innerHTML = '<span>🔊</span> Listen';
+        }
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+
+      currentSpeechUtterance = utterance;
+      currentSpeechButton = btnElement;
+
+      btnElement.classList.add('playing');
+      btnElement.innerHTML = '<span>⏸</span> Pause Audio';
+
+      utterance.onend = () => {
+        btnElement.classList.remove('playing');
+        btnElement.innerHTML = '<span>🔊</span> Listen';
+        currentSpeechButton = null;
+      };
+
+      utterance.onerror = () => {
+        btnElement.classList.remove('playing');
+        btnElement.innerHTML = '<span>🔊</span> Listen';
+        currentSpeechButton = null;
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    // ==========================================
+    // TAB MANAGEMENT
+    // ==========================================
+    function switchTab(index) {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabBtns.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      tabContents.forEach((content, i) => {
+        content.classList.toggle('active', i === index);
+      });
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // FISHER-YATES SHUFFLE UTILITY
+    // ==========================================
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // ==========================================
+    // EXERCISE 1: TRAVEL VERBS
+    // ==========================================
+    const originalEx1Data = [
+      {
+        id: 1,
+        part1: "We always",
+        blank: "check in",
+        part2: "online at quarter to eight before heading to the airport terminal.",
+        full: "We always check in online at quarter to eight before heading to the airport terminal."
+      },
+      {
+        id: 2,
+        part1: "The passengers will",
+        blank: "board",
+        part2: "flight 402 as soon as gate number seven opens.",
+        full: "The passengers will board flight 402 as soon as gate number seven opens."
+      },
+      {
+        id: 3,
+        part1: "The airplane",
+        blank: "took off",
+        part2: "smoothly at half past nine yesterday morning.",
+        full: "The airplane took off smoothly at half past nine yesterday morning."
+      },
+      {
+        id: 4,
+        part1: "She has already",
+        blank: "booked",
+        part2: "a charming seaside hotel in Mar del Plata for January.",
+        full: "She has already booked a charming seaside hotel in Mar del Plata for January."
+      },
+      {
+        id: 5,
+        part1: "After they had",
+        blank: "unpacked",
+        part2: "their suitcases, they walked down to the sunny beach.",
+        full: "After they had unpacked their suitcases, they walked down to the sunny beach."
+      },
+      {
+        id: 6,
+        part1: "Have you ever",
+        blank: "taken",
+        part2: "a guided city tour on your first day in a foreign city?",
+        full: "Have you ever taken a guided city tour on your first day in a foreign city?"
+      }
+    ];
+
+    let ex1Data = [...originalEx1Data];
+    let ex1Completed = new Set();
+    let currentActiveInput = null;
+
+    function renderExercise1() {
+      const container = document.getElementById('exercise-1-container');
+      const wordbank = document.getElementById('wordbank-1');
+      container.innerHTML = '';
+      wordbank.innerHTML = '<span class="label">Word Bank:</span>';
+
+      // Collect word chips
+      const words = shuffle(ex1Data.map(d => d.blank));
+      words.forEach(w => {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = w;
+        chip.onclick = () => fillActiveInput(w);
+        wordbank.appendChild(chip);
+      });
+
+      ex1Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sentence-item';
+        div.id = `ex1-item-${item.id}`;
+
+        div.innerHTML = `
+          <div class="item-badge">Sentence ${idx + 1} of ${ex1Data.length}</div>
+          <div class="sentence-line">
+            <span>${item.part1}</span>
+            <input type="text" 
+                   class="blank-input" 
+                   data-answer="${item.blank.toLowerCase()}" 
+                   data-id="${item.id}"
+                   placeholder="..."
+                   autocomplete="off"
+                   onfocus="setActiveInput(this)"
+                   oninput="handleInputLive(this)"
+                   onblur="handleInputBlur(this)">
+            <span>${item.part2}</span>
+            <button class="listen-btn" style="display:none;" onclick="handleListenToggle('${item.full.replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function setActiveInput(input) {
+      currentActiveInput = input;
+    }
+
+    function fillActiveInput(word) {
+      if (!currentActiveInput) {
+        // Find first empty input
+        const empty = document.querySelector('#exercise-1-container .blank-input:not(.correct)');
+        if (empty) currentActiveInput = empty;
+      }
+      if (currentActiveInput && !currentActiveInput.classList.contains('correct')) {
+        currentActiveInput.value = word;
+        handleInputLive(currentActiveInput);
+      }
+    }
+
+    function handleInputLive(input) {
+      const val = input.value.trim().toLowerCase();
+      const answer = input.getAttribute('data-answer');
+      const id = parseInt(input.getAttribute('data-id'));
+
+      if (val === answer) {
+        input.classList.remove('incorrect');
+        input.classList.add('correct');
+        input.readOnly = true;
+        playSound('success');
+
+        // Show Listen button
+        const parent = input.closest('.sentence-line');
+        const listenBtn = parent.querySelector('.listen-btn');
+        if (listenBtn) listenBtn.style.display = 'inline-flex';
+
+        // Update word bank
+        updateWordBankUI();
+
+        ex1Completed.add(id);
+        checkExercise1Completion();
+      }
+    }
+
+    function handleInputBlur(input) {
+      const val = input.value.trim().toLowerCase();
+      const answer = input.getAttribute('data-answer');
+      if (val !== '' && val !== answer) {
+        input.classList.add('incorrect');
+        playSound('error');
+      }
+    }
+
+    function updateWordBankUI() {
+      const inputs = Array.from(document.querySelectorAll('#exercise-1-container .blank-input.correct'));
+      const answeredWords = inputs.map(i => i.getAttribute('data-answer'));
+      const chips = document.querySelectorAll('#wordbank-1 .word-chip');
+      chips.forEach(chip => {
+        if (answeredWords.includes(chip.textContent.trim().toLowerCase())) {
+          chip.classList.add('used');
+        } else {
+          chip.classList.remove('used');
+        }
+      });
+    }
+
+    function checkExercise1Completion() {
+      if (ex1Completed.size === ex1Data.length) {
+        showCongratulations(
+          "Outstanding Travel Vocabulary!",
+          "All travel verb collocations were completed flawlessly. You're ready to master the uses of 'Get' next!",
+          () => switchTab(1)
+        );
+      }
+    }
+
+    function resetExercise1() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex1Completed.clear();
+      currentActiveInput = null;
+      ex1Data = shuffle(originalEx1Data);
+      renderExercise1();
+    }
+
+    // ==========================================
+    // EXERCISE 2: USES OF "GET"
+    // ==========================================
+    const originalEx2Data = [
+      {
+        id: 1,
+        question: 'We usually get to the hotel at half past seven in the evening.',
+        highlight: 'get to the hotel',
+        meaning: 'Arrive / Reach',
+        options: ['Arrive / Reach', 'Buy / Obtain', 'Catch / Take transport', 'Become'],
+        explanation: 'In this context, "get to" specifically means to arrive at or reach a holiday destination.'
+      },
+      {
+        id: 2,
+        question: 'I had to get my boarding pass at the airport kiosk because the app failed.',
+        highlight: 'get my boarding pass',
+        meaning: 'Buy / Obtain',
+        options: ['Buy / Obtain', 'Arrive / Reach', 'Become', 'Catch / Take transport'],
+        explanation: '"Get" here expresses obtaining or picking up travel documents.'
+      },
+      {
+        id: 3,
+        question: 'Tomorrow morning we are going to get the scenic train to Córdoba.',
+        highlight: 'get the scenic train',
+        meaning: 'Catch / Take transport',
+        options: ['Catch / Take transport', 'Become', 'Arrive / Reach', 'Buy / Obtain'],
+        explanation: 'Here "get" means to board, catch, or take a mode of transportation.'
+      },
+      {
+        id: 4,
+        question: 'During our coastal vacation, it gets dark around quarter past eight.',
+        highlight: 'gets dark',
+        meaning: 'Become / Turn into',
+        options: ['Become / Turn into', 'Arrive / Reach', 'Catch / Take transport', 'Buy / Obtain'],
+        explanation: '"Get" combined with an adjective means to become or change state.'
+      },
+      {
+        id: 5,
+        question: 'Before our holiday last summer, my husband got cheap museum tickets online.',
+        highlight: 'got cheap museum tickets',
+        meaning: 'Buy / Obtain',
+        options: ['Buy / Obtain', 'Catch / Take transport', 'Arrive / Reach', 'Become / Turn into'],
+        explanation: '"Got" in this vacation context means purchased or obtained.'
+      },
+      {
+        id: 6,
+        question: 'What time did you finally get back home after your return flight?',
+        highlight: 'get back home',
+        meaning: 'Arrive / Reach',
+        options: ['Arrive / Reach', 'Buy / Obtain', 'Become / Turn into', 'Catch / Take transport'],
+        explanation: '"Get back" denotes returning to and reaching home.'
+      }
+    ];
+
+    let ex2Data = [...originalEx2Data];
+    let ex2Completed = new Set();
+
+    function renderExercise2() {
+      const container = document.getElementById('exercise-2-container');
+      container.innerHTML = '';
+
+      ex2Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.id = `quiz-${item.id}`;
+
+        const shuffledOptions = shuffle(item.options);
+
+        let optionsHtml = '';
+        shuffledOptions.forEach(opt => {
+          optionsHtml += `
+            <label class="option-label" onclick="selectQuizOption(${item.id}, '${opt.replace(/'/g, "\'")}', this)">
+              <span class="option-indicator"></span>
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+
+        div.innerHTML = `
+          <div class="item-badge">Question ${idx + 1} of ${ex2Data.length}</div>
+          <div class="quiz-question">"${item.question}"</div>
+          <div class="quiz-options">
+            ${optionsHtml}
+          </div>
+          <div class="quiz-feedback" id="feedback-${item.id}"></div>
+          <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+            <button class="listen-btn" onclick="handleListenToggle('${item.question.replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    function selectQuizOption(itemId, selectedOpt, labelElement) {
+      const item = ex2Data.find(d => d.id === itemId);
+      const parent = document.getElementById(`quiz-${itemId}`);
+      const labels = parent.querySelectorAll('.option-label');
+      const feedback = document.getElementById(`feedback-${itemId}`);
+
+      if (labelElement.classList.contains('locked') || labelElement.classList.contains('correct')) {
+        return;
+      }
+
+      if (selectedOpt === item.meaning) {
+        playSound('success');
+        labels.forEach(l => l.classList.add('locked'));
+        labelElement.classList.remove('incorrect');
+        labelElement.classList.add('correct');
+        feedback.className = 'quiz-feedback show success';
+        feedback.textContent = `✓ Correct! ${item.explanation}`;
+        ex2Completed.add(itemId);
+        checkExercise2Completion();
+      } else {
+        playSound('error');
+        labelElement.classList.add('incorrect');
+        feedback.className = 'quiz-feedback show error';
+        feedback.textContent = `✕ Not quite. Try analyzing whether 'get' refers to moving, buying, or changing.`;
+      }
+    }
+
+    function checkExercise2Completion() {
+      if (ex2Completed.size === ex2Data.length) {
+        showCongratulations(
+          "Mastery of 'Get' Achieved!",
+          "You clearly distinguished between arriving, buying, catching transport, and becoming. Onward to Sentence Formation!",
+          () => switchTab(2)
+        );
+      }
+    }
+
+    function resetExercise2() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex2Completed.clear();
+      ex2Data = shuffle(originalEx2Data);
+      renderExercise2();
+    }
+
+    // ==========================================
+    // EXERCISE 3: SENTENCE FORMATION
+    // ==========================================
+    const originalEx3Data = [
+      {
+        id: 1,
+        tokens: ["We", "have", "already", "packed", "our", "suitcases", "for", "the", "trip."],
+        full: "We have already packed our suitcases for the trip."
+      },
+      {
+        id: 2,
+        tokens: ["The", "flight", "departs", "at", "quarter", "to", "ten", "tomorrow."],
+        full: "The flight departs at quarter to ten tomorrow."
+      },
+      {
+        id: 3,
+        tokens: ["They", "had", "booked", "the", "hotel", "before", "they", "arrived."],
+        full: "They had booked the hotel before they arrived."
+      },
+      {
+        id: 4,
+        tokens: ["She", "is", "going", "to", "get", "a", "taxi", "outside."],
+        full: "She is going to get a taxi outside."
+      },
+      {
+        id: 5,
+        tokens: ["I", "always", "arrive", "at", "the", "airport", "early."],
+        full: "I always arrive at the airport early."
+      }
+    ];
+
+    let ex3Data = [...originalEx3Data];
+    let ex3Completed = new Set();
+    let currentSentenceStates = {};
+
+    function renderExercise3() {
+      const container = document.getElementById('exercise-3-container');
+      container.innerHTML = '';
+      currentSentenceStates = {};
+
+      ex3Data.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'unscramble-item';
+        div.id = `unscramble-${item.id}`;
+
+        const shuffledWords = shuffle(item.tokens);
+        currentSentenceStates[item.id] = {
+          pool: [...shuffledWords],
+          slots: []
+        };
+
+        div.innerHTML = `
+          <div class="item-badge">Sentence ${idx + 1} of ${ex3Data.length}</div>
+          <div class="target-slots" id="slots-${item.id}">
+            <span style="color:#94a3b8; font-size:0.85rem; font-style:italic;" id="placeholder-${item.id}">Tap words below to arrange the sentence...</span>
+          </div>
+          <div class="word-pool" id="pool-${item.id}">
+            <!-- Tokens rendered below -->
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            <span style="font-size:0.8rem; color:#64748b;">Tap a chosen word to send it back.</span>
+            <button class="listen-btn" id="listen-ex3-${item.id}" style="display:none;" onclick="handleListenToggle('${item.full.replace(/'/g, "\'")}', this)">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+        renderTiles(item.id);
+      });
+    }
+
+    function renderTiles(itemId) {
+      const state = currentSentenceStates[itemId];
+      const poolEl = document.getElementById(`pool-${itemId}`);
+      const slotsEl = document.getElementById(`slots-${itemId}`);
+      const placeholder = document.getElementById(`placeholder-${itemId}`);
+
+      poolEl.innerHTML = '';
+      slotsEl.innerHTML = '';
+
+      if (state.slots.length === 0) {
+        slotsEl.appendChild(placeholder);
+        placeholder.style.display = 'inline';
+      } else {
+        state.slots.forEach((word, slotIndex) => {
+          const tile = document.createElement('span');
+          tile.className = 'tile';
+          tile.textContent = word;
+          tile.onclick = () => removeTileFromSlot(itemId, slotIndex);
+          slotsEl.appendChild(tile);
+        });
+      }
+
+      state.pool.forEach((word, poolIndex) => {
+        const tile = document.createElement('span');
+        tile.className = 'tile';
+        tile.textContent = word;
+        tile.onclick = () => addTileToSlot(itemId, poolIndex);
+        poolEl.appendChild(tile);
+      });
+    }
+
+    function addTileToSlot(itemId, poolIndex) {
+      const state = currentSentenceStates[itemId];
+      const word = state.pool.splice(poolIndex, 1)[0];
+      state.slots.push(word);
+      renderTiles(itemId);
+      evaluateSentence(itemId);
+    }
+
+    function removeTileFromSlot(itemId, slotIndex) {
+      const state = currentSentenceStates[itemId];
+      const slotsEl = document.getElementById(`slots-${itemId}`);
+      if (slotsEl.classList.contains('correct')) return; // locked
+
+      const word = state.slots.splice(slotIndex, 1)[0];
+      state.pool.push(word);
+      renderTiles(itemId);
+    }
+
+    function evaluateSentence(itemId) {
+      const state = currentSentenceStates[itemId];
+      const item = ex3Data.find(d => d.id === itemId);
+
+      if (state.slots.length === item.tokens.length) {
+        const constructed = state.slots.join(' ');
+        const target = item.full;
+
+        const slotsEl = document.getElementById(`slots-${itemId}`);
+        const listenBtn = document.getElementById(`listen-ex3-${itemId}`);
+
+        if (constructed === target) {
+          playSound('success');
+          slotsEl.classList.add('correct');
+          if (listenBtn) listenBtn.style.display = 'inline-flex';
+          ex3Completed.add(itemId);
+          checkExercise3Completion();
+        } else {
+          playSound('error');
+          slotsEl.style.borderColor = 'var(--error)';
+          setTimeout(() => {
+            if (!slotsEl.classList.contains('correct')) {
+              slotsEl.style.borderColor = '#cbd5e1';
+            }
+          }, 800);
+        }
+      }
+    }
+
+    function checkExercise3Completion() {
+      if (ex3Completed.size === ex3Data.length) {
+        showCongratulations(
+          "Outstanding Achievement!",
+          "You have successfully reconstructed all travel and vacation sentences with impeccable syntax and word order. Excellent practice!",
+          () => switchTab(0)
+        );
+      }
+    }
+
+    function resetExercise3() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      ex3Completed.clear();
+      ex3Data = shuffle(originalEx3Data);
+      renderExercise3();
+    }
+
+    // ==========================================
+    // MODALS & CONGRATULATIONS
+    // ==========================================
+    let congratsCallback = null;
+
+    function showCongratulations(title, message, nextAction) {
+      document.getElementById('congratsTitle').textContent = title;
+      document.getElementById('congratsMessage').textContent = message;
+      congratsCallback = nextAction;
+      openModal('congratsModal');
+    }
+
+    function congratsAction() {
+      closeModal('congratsModal');
+      if (typeof congratsCallback === 'function') {
+        congratsCallback();
+      }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function searchDictionary() {
+      const term = document.getElementById('dictSearchInput').value.trim();
+      if (term) {
+        window.open(`https://dictionary.cambridge.org/dictionary/english-spanish/${encodeURIComponent(term)}`, '_blank');
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderExercise1();
+      renderExercise2();
+      renderExercise3();
+    });
+  </script>
+</body>
+</html>
