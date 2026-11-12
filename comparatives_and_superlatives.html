@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Circus: Superlatives & Comparatives - Merry Mery English</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        circus: {
+                            yellow: '#FBBF24',
+                            purple: '#8B5CF6',
+                            pink: '#EC4899',
+                            blue: '#3B82F6',
+                            teal: '#14B8A6',
+                            dark: '#1E1B4B'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+        .tab-btn.active {
+            background-color: #ffffff;
+            color: #4c1d95;
+            box-shadow: 0 4px 12px -2px rgba(139, 92, 246, 0.2);
+            border-bottom: 3px solid #8B5CF6;
+        }
+        .word-token {
+            display: inline-block;
+            padding: 2px 5px;
+            margin: 2px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .word-token:hover {
+            background-color: #e2e8f0;
+        }
+        .word-comparative {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+        .word-superlative {
+            background-color: #8b5cf6 !important;
+            color: #ffffff !important;
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+        .word-error {
+            animation: shake 0.35s ease-in-out;
+            background-color: #fca5a5 !important;
+            color: #7f1d1d !important;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-gradient-to-r from-circus-dark via-purple-900 to-indigo-950 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-400 to-pink-500 flex items-center justify-center text-white text-2xl shadow-md border-2 border-white/20">
+                    <i class="fa-solid fa-tent"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-yellow-400 text-slate-900 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider">Merry Mery English</span>
+                        <span class="text-xs text-purple-200"><i class="fa-solid fa-graduation-cap"></i> Reading & Grammar</span>
+                    </div>
+                    <h1 class="text-xl md:text-2xl font-bold font-heading text-white tracking-tight">
+                        The Circus: Superlatives & Comparatives
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Global Score Bar -->
+            <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 text-xs text-purple-100">
+                <div class="flex items-center space-x-1">
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <span>Score: <strong id="global-score-display" class="text-white text-sm">0</strong></span>
+                </div>
+                <span class="text-white/30">|</span>
+                <div class="flex items-center space-x-1">
+                    <i class="fa-solid fa-bullseye text-teal-400"></i>
+                    <span>Progress: <strong id="global-progress-display" class="text-white text-sm">0%</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABS BAR -->
+        <nav class="bg-indigo-950/60 border-t border-white/10 px-4">
+            <div class="max-w-6xl mx-auto flex space-x-1 overflow-x-auto py-1" id="tabs-header">
+                <button onclick="switchTab('explanation')" id="tab-btn-explanation" class="tab-btn active px-4 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center space-x-2 whitespace-nowrap text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-lightbulb text-yellow-400"></i>
+                    <span>1. Explanation</span>
+                </button>
+                <button onclick="switchTab('reading')" id="tab-btn-reading" class="tab-btn px-4 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center space-x-2 whitespace-nowrap text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-book-open text-blue-400"></i>
+                    <span>2. Reading Text</span>
+                </button>
+                <button onclick="switchTab('practice')" id="tab-btn-practice" class="tab-btn px-4 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center space-x-2 whitespace-nowrap text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-highlighter text-pink-400"></i>
+                    <span>3. Grammar Practice</span>
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="tab-btn px-4 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center space-x-2 whitespace-nowrap text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-circle-question text-teal-400"></i>
+                    <span>4. True or False Quiz</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- ================= TAB 1: EXPLANATION ================= -->
+        <section id="tab-explanation" class="tab-content block space-y-6">
+            
+            <div class="bg-gradient-to-r from-purple-700 to-indigo-800 text-white p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="bg-purple-500/30 text-purple-200 border border-purple-400/30 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Grammar Lesson</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold font-heading mt-2">Comparatives & Superlatives Rules</h2>
+                    <p class="text-purple-100 text-sm mt-1">Learn how adjectives change when comparing two items (Comparatives) or identifying the top degree (Superlatives)!</p>
+                </div>
+            </div>
+
+            <!-- REDESIGNED GRAMMAR CHART WITH BRAND PALETTE CATEGORY GROUPS -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex items-center space-x-3 border-b border-slate-100 pb-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-table-list"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-heading text-slate-900">Adjective Transformation Chart</h3>
+                        <p class="text-xs text-slate-500">Grammar categories grouped with distinctive background color palettes</p>
+                    </div>
+                </div>
+
+                <!-- Custom Table Grid -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-heading">
+                                <th class="p-3.5 rounded-tl-xl w-1/4">Rule Category</th>
+                                <th class="p-3.5 w-1/4">Base Adjective</th>
+                                <th class="p-3.5 w-1/4 bg-blue-600">Comparative (+ER / MORE)</th>
+                                <th class="p-3.5 rounded-tr-xl w-1/4 bg-purple-600">Superlative (THE -EST / MOST)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 border-x border-b border-slate-200">
+                            <!-- Category 1: 1 Syllable (Soft Blue Group Background) -->
+                            <tr class="hover:bg-blue-50/30 bg-blue-50/20">
+                                <td class="p-3.5 font-bold text-blue-900 border-r border-blue-100" rowspan="3">
+                                    <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 rounded-lg text-xs font-extrabold mb-1">1 Syllable</span>
+                                    <span class="block text-xs font-normal text-slate-600">Add <strong>-er</strong> / <strong>-est</strong></span>
+                                </td>
+                                <td class="p-3 font-semibold text-slate-800">old</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">old<span class="text-blue-600 uppercase font-extrabold">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the old<span class="text-purple-600 uppercase font-extrabold">est</span></td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/30 bg-blue-50/20">
+                                <td class="p-3 font-semibold text-slate-800">cheap</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">cheap<span class="text-blue-600 uppercase font-extrabold">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the cheap<span class="text-purple-600 uppercase font-extrabold">est</span></td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/30 bg-blue-50/20">
+                                <td class="p-3 font-semibold text-slate-800">high</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">high<span class="text-blue-600 uppercase font-extrabold">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the high<span class="text-purple-600 uppercase font-extrabold">est</span></td>
+                            </tr>
+
+                            <!-- Category 2: C-V-C (Soft Pink/Red Group Background) -->
+                            <tr class="hover:bg-pink-50/30 bg-pink-50/20">
+                                <td class="p-3.5 font-bold text-pink-900 border-r border-pink-100" rowspan="3">
+                                    <span class="inline-block px-2 py-1 bg-pink-100 text-pink-800 rounded-lg text-xs font-extrabold mb-1">1 Syllable C-V-C</span>
+                                    <span class="block text-xs font-normal text-slate-600">Double consonant + <strong>-er</strong> / <strong>-est</strong></span>
+                                </td>
+                                <td class="p-3 font-semibold text-slate-800">hot</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">hot<span class="text-pink-600 font-extrabold uppercase">t</span><span class="text-blue-600 uppercase">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the hot<span class="text-pink-600 font-extrabold uppercase">t</span><span class="text-purple-600 uppercase">est</span></td>
+                            </tr>
+                            <tr class="hover:bg-pink-50/30 bg-pink-50/20">
+                                <td class="p-3 font-semibold text-slate-800">big</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">big<span class="text-pink-600 font-extrabold uppercase">g</span><span class="text-blue-600 uppercase">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the big<span class="text-pink-600 font-extrabold uppercase">g</span><span class="text-purple-600 uppercase">est</span></td>
+                            </tr>
+                            <tr class="hover:bg-pink-50/30 bg-pink-50/20">
+                                <td class="p-3 font-semibold text-slate-800">thin</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">thin<span class="text-pink-600 font-extrabold uppercase">n</span><span class="text-blue-600 uppercase">er</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the thin<span class="text-pink-600 font-extrabold uppercase">n</span><span class="text-purple-600 uppercase">est</span></td>
+                            </tr>
+
+                            <!-- Category 3: Ending in Y (Soft Purple Group Background) -->
+                            <tr class="hover:bg-purple-50/30 bg-purple-50/20">
+                                <td class="p-3.5 font-bold text-purple-900 border-r border-purple-100" rowspan="3">
+                                    <span class="inline-block px-2 py-1 bg-purple-100 text-purple-800 rounded-lg text-xs font-extrabold mb-1">Ending in -Y</span>
+                                    <span class="block text-xs font-normal text-slate-600">-y &rarr; <strong>-ier</strong> / <strong>-iest</strong></span>
+                                </td>
+                                <td class="p-3 font-semibold text-slate-800">healthy</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">health<span class="text-purple-700 font-extrabold uppercase">ier</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the health<span class="text-purple-700 font-extrabold uppercase">iest</span></td>
+                            </tr>
+                            <tr class="hover:bg-purple-50/30 bg-purple-50/20">
+                                <td class="p-3 font-semibold text-slate-800">happy</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">happ<span class="text-purple-700 font-extrabold uppercase">ier</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the happ<span class="text-purple-700 font-extrabold uppercase">iest</span></td>
+                            </tr>
+                            <tr class="hover:bg-purple-50/30 bg-purple-50/20">
+                                <td class="p-3 font-semibold text-slate-800">noisy</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">nois<span class="text-purple-700 font-extrabold uppercase">ier</span></td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the nois<span class="text-purple-700 font-extrabold uppercase">iest</span></td>
+                            </tr>
+
+                            <!-- Category 4: 2+ Syllables (Soft Emerald/Teal Group Background) -->
+                            <tr class="hover:bg-emerald-50/30 bg-emerald-50/20">
+                                <td class="p-3.5 font-bold text-emerald-900 border-r border-emerald-100" rowspan="2">
+                                    <span class="inline-block px-2 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-extrabold mb-1">2+ Syllables</span>
+                                    <span class="block text-xs font-normal text-slate-600"><strong>More</strong> / <strong>Most</strong></span>
+                                </td>
+                                <td class="p-3 font-semibold text-slate-800">famous</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40"><span class="text-emerald-700 uppercase font-extrabold">more</span> famous</td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20"><span class="text-emerald-700 uppercase font-extrabold">the most</span> famous</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-50/30 bg-emerald-50/20">
+                                <td class="p-3 font-semibold text-slate-800">generous</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40"><span class="text-emerald-700 uppercase font-extrabold">more</span> generous</td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20"><span class="text-emerald-700 uppercase font-extrabold">the most</span> generous</td>
+                            </tr>
+
+                            <!-- Category 5: Irregular (Soft Yellow/Amber Group Background) -->
+                            <tr class="hover:bg-amber-50/30 bg-amber-50/20">
+                                <td class="p-3.5 font-bold text-amber-900 border-r border-amber-100" rowspan="3">
+                                    <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 rounded-lg text-xs font-extrabold mb-1">Irregular</span>
+                                    <span class="block text-xs font-normal text-slate-600">Special forms</span>
+                                </td>
+                                <td class="p-3 font-semibold text-slate-800">good</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">better</td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the best</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/30 bg-amber-50/20">
+                                <td class="p-3 font-semibold text-slate-800">bad</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">worse</td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the worst</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/30 bg-amber-50/20">
+                                <td class="p-3 font-semibold text-slate-800">far</td>
+                                <td class="p-3 text-blue-700 font-bold bg-blue-50/40">farther / further</td>
+                                <td class="p-3 text-purple-700 font-bold bg-purple-50/20">the farthest / furthest</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- EXAMPLES SECTION (Using totally NEW examples, NOT from the reading) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- COMPARATIVE EXAMPLES -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold font-heading text-slate-900">Comparative Examples</h3>
+                            <p class="text-xs text-slate-500">Comparing 2 items (A + verb + comparative + than + B)</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"A cheetah is <strong>faster than</strong> a lion."</p>
+                                <span class="text-[11px] text-slate-400">fast &rarr; faster</span>
+                            </div>
+                            <button onclick="speakText('A cheetah is faster than a lion.')" class="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"Gold is <strong>more expensive than</strong> silver."</p>
+                                <span class="text-[11px] text-slate-400">expensive &rarr; more expensive</span>
+                            </div>
+                            <button onclick="speakText('Gold is more expensive than silver.')" class="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"My new phone is <strong>better than</strong> my old one."</p>
+                                <span class="text-[11px] text-slate-400">good &rarr; better</span>
+                            </div>
+                            <button onclick="speakText('My new phone is better than my old one.')" class="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUPERLATIVE EXAMPLES -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold font-heading text-slate-900">Superlative Examples</h3>
+                            <p class="text-xs text-slate-500">Singling out 1 out of 3+ items (The + superlative)</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"Mount Everest is <strong>the highest</strong> mountain."</p>
+                                <span class="text-[11px] text-slate-400">high &rarr; the highest</span>
+                            </div>
+                            <button onclick="speakText('Mount Everest is the highest mountain.')" class="w-8 h-8 rounded-full bg-purple-100 hover:bg-purple-200 text-purple-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"Football is <strong>the most popular</strong> sport here."</p>
+                                <span class="text-[11px] text-slate-400">popular &rarr; the most popular</span>
+                            </div>
+                            <button onclick="speakText('Football is the most popular sport here.')" class="w-8 h-8 rounded-full bg-purple-100 hover:bg-purple-200 text-purple-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-800 text-sm font-medium">"She is <strong>the happiest</strong> person in the team."</p>
+                                <span class="text-[11px] text-slate-400">happy &rarr; the happiest</span>
+                            </div>
+                            <button onclick="speakText('She is the happiest person in the team.')" class="w-8 h-8 rounded-full bg-purple-100 hover:bg-purple-200 text-purple-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Go to next step button -->
+            <div class="flex justify-end pt-2">
+                <button onclick="switchTab('reading')" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition flex items-center space-x-2">
+                    <span>Continue to Reading Passage</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- ================= TAB 2: READING TEXT ================= -->
+        <section id="tab-reading" class="tab-content hidden space-y-6">
+            <!-- Audio Header Controls -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Reading Comprehension</span>
+                    <h2 class="text-2xl font-extrabold font-heading text-slate-900 mt-1">The Circus: Superlatives and Comparatives</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Read the text carefully or listen to the full text reading.</p>
+                </div>
+
+                <!-- Master Controls: LISTEN & PAUSE FULL TEXT -->
+                <div class="flex items-center space-x-3 bg-slate-900 p-2.5 rounded-2xl shadow">
+                    <button onclick="playFullReadingText()" id="btn-listen-text" class="px-4 py-2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 rounded-xl font-extrabold text-sm flex items-center space-x-2 transition shadow">
+                        <i id="icon-listen-full" class="fa-solid fa-play"></i>
+                        <span>Listen Text</span>
+                    </button>
+                    <button onclick="pauseSpeech()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold text-sm flex items-center space-x-2 transition">
+                        <i class="fa-solid fa-pause"></i>
+                        <span>Pause</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CLEAN READING PASSAGE (NO MARKS ON COMPARATIVES OR SUPERLATIVES) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-5 text-slate-700 text-base md:text-lg leading-relaxed font-normal">
+                
+                <p>The Rodriguez Brothers Circus is in town! Every year, the circus arrives and stays for a week. Then they go to the next town.</p>
+
+                <p>There are not many animals in the circus. People told the circus that they didn't like seeing animals performing. There is an elephant called Jacob and two old lions, Hattie and Meg.</p>
+
+                <p>Most of the performers are human! There is Leopold, The Strongest Man In The World. His father also worked in the circus, but Leopold is stronger than him, he has bigger arms and bigger legs too! Leopold performs his act every night for the town's people who come to watch.</p>
+
+                <p>Another performer is Clara. She says she has the longest hair in the world. It's about 4 metres long! She also has a daughter who works in the circus. Her name is Sue-Ellen. Her hair is a lot shorter, but she wants to grow it as long as her mother's. Sue-Ellen helps look after the animals and she's also learning how to juggle.</p>
+
+                <p>The highlight of the circus are the three clowns, Pit, Pot and Pat. They all wear long red shoes, but Pat's shoes are the longest and sometimes, he falls over because they're so long! They perform for about twenty minutes and they are always the most popular act with the audience, especially the children. Many people think Pit, Pot and Pat are three brothers, but Pat is older than the other two - he's their father! He's the oldest clown in the country, but he has a lot of energy.</p>
+
+                <p>Tomorrow will be the longest day because the circus is leaving town and everything must be packed away into big trucks.</p>
+
+            </div>
+
+            <!-- Navigation footer -->
+            <div class="flex justify-between items-center">
+                <button onclick="switchTab('explanation')" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold transition flex items-center space-x-2 text-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Explanation</span>
+                </button>
+
+                <button onclick="switchTab('practice')" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition flex items-center space-x-2 text-sm">
+                    <span>Start Grammar Practice</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 3: GRAMMAR PRACTICE ================= -->
+        <section id="tab-practice" class="tab-content hidden space-y-6">
+            <!-- Header Controls -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="bg-pink-100 text-pink-700 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Interactive Grammar Practice</span>
+                        <h2 class="text-2xl font-extrabold font-heading text-slate-900 mt-1">Find & Mark Grammar Words</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Select a category mode below, then click target words in the text!</p>
+                    </div>
+
+                    <!-- Category Selector Buttons -->
+                    <div class="flex items-center space-x-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+                        <button onclick="setToolMode('comparative')" id="tool-comparative-btn" class="px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-blue-600 text-white shadow">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span>Mark Comparatives (Blue)</span>
+                        </button>
+                        <button onclick="setToolMode('superlative')" id="tool-superlative-btn" class="px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-slate-200 text-slate-700 hover:bg-slate-300">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>Mark Superlatives (Purple)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Score Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-100 text-sm">
+                    <div class="flex items-center space-x-6">
+                        <div>Words Found: <span id="target-found-count" class="font-bold text-purple-700">0</span> / <span id="target-total-count" class="font-bold text-slate-700">11</span></div>
+                        <div>Errors: <span id="practice-error-count" class="font-bold text-red-500">0</span></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="giveGrammarHint()" class="px-3.5 py-1.5 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-lg text-xs font-bold transition flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb text-yellow-600"></i>
+                            <span>Hint</span>
+                        </button>
+                        <button onclick="resetPractice()" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold transition flex items-center space-x-1">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLICKABLE PARAGRAPH TEXT (Unmarked at start) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm leading-relaxed text-slate-800 text-base md:text-lg select-none space-y-4" id="practice-passage-container">
+                <!-- Dynamically generated word tokens -->
+            </div>
+
+            <!-- Footer navigation -->
+            <div class="flex justify-between items-center">
+                <button onclick="switchTab('reading')" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold transition flex items-center space-x-2 text-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Reading</span>
+                </button>
+
+                <button onclick="switchTab('quiz')" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition flex items-center space-x-2 text-sm">
+                    <span>Continue to True or False Quiz</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 4: TRUE OR FALSE QUIZ ================= -->
+        <section id="tab-quiz" class="tab-content hidden space-y-6">
+            <!-- Quiz Header -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Comprehension Quiz</span>
+                    <h2 class="text-2xl font-extrabold font-heading text-slate-900 mt-1">True or False Challenge</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Answer True or False for each statement. Use the Hint button if you need help!</p>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Quiz Score</div>
+                        <div class="text-xl font-extrabold text-teal-600"><span id="tf-score-val">0</span> / 10</div>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Reset Quiz</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUESTIONS CONTAINER -->
+            <div class="space-y-4" id="quiz-questions-container">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex justify-between items-center">
+                <button onclick="switchTab('practice')" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold transition flex items-center space-x-2 text-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Previous Activity</span>
+                </button>
+                <div id="quiz-status-msg" class="text-sm font-semibold text-slate-500">
+                    Complete all questions to finish!
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-12 py-6 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-bold text-white">Merry Mery English</span>
+                <span>&bull;</span>
+                <span>Interactive Learning Platform</span>
+            </div>
+            <div class="bg-slate-800 text-amber-300 px-4 py-2 rounded-lg border border-amber-500/20 font-bold text-sm">
+                Source: ELS Student Lounge
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- CONGRATULATIONS MODAL -->
+    <div id="congrats-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 text-center space-y-5 shadow-2xl border-4 border-yellow-400 animate-bounce-short">
+            <div class="w-20 h-20 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 class="text-3xl font-extrabold font-heading text-slate-900">Great Job!</h3>
+            <p class="text-slate-600 text-sm">You completed the exercises with flying colors!</p>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 grid grid-cols-2 gap-3 text-center">
+                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="text-xs text-slate-400 uppercase font-bold">Accuracy</div>
+                    <div id="modal-accuracy" class="text-2xl font-extrabold text-purple-600">100%</div>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="text-xs text-slate-400 uppercase font-bold">Total Score</div>
+                    <div id="modal-score" class="text-2xl font-extrabold text-teal-600">0 / 0</div>
+                </div>
+            </div>
+
+            <button onclick="closeModal()" class="w-full py-3 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-slate-900 font-extrabold rounded-xl shadow-lg transition">
+                Continue Learning
+            </button>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. AUDIO ENGINE (Speech Synthesis + Synthesized Web Audio Effects)
+           ========================================================================== */
+        let speechState = 'stopped';
+
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            utterance.lang = 'en-US';
+
+            utterance.onend = () => { speechState = 'stopped'; updatePlayIcon(); };
+            utterance.onerror = () => { speechState = 'stopped'; updatePlayIcon(); };
+
+            window.speechSynthesis.speak(utterance);
+            speechState = 'speaking';
+            updatePlayIcon();
+        }
+
+        function pauseSpeech() {
+            if (window.speechSynthesis && speechState === 'speaking') {
+                window.speechSynthesis.pause();
+                speechState = 'paused';
+                updatePlayIcon();
+            }
+        }
+
+        function playFullReadingText() {
+            if (speechState === 'paused') {
+                window.speechSynthesis.resume();
+                speechState = 'speaking';
+                updatePlayIcon();
+                return;
+            }
+
+            const fullReadingText = `
+                The Circus: Superlatives and Comparatives.
+                The Rodriguez Brothers Circus is in town! Every year, the circus arrives and stays for a week. Then they go to the next town.
+                There are not many animals in the circus. People told the circus that they didn't like seeing animals performing. There is an elephant called Jacob and two old lions, Hattie and Meg.
+                Most of the performers are human! There is Leopold, The Strongest Man In The World. His father also worked in the circus, but Leopold is stronger than him, he has bigger arms and bigger legs too! Leopold performs his act every night for the town's people who come to watch.
+                Another performer is Clara. She says she has the longest hair in the world. It's about 4 metres long! She also has a daughter who works in the circus. Her name is Sue-Ellen. Her hair is a lot shorter, but she wants to grow it as long as her mother's. Sue-Ellen helps look after the animals and she's also learning how to juggle.
+                The highlight of the circus are the three clowns, Pit, Pot and Pat. They all wear long red shoes, but Pat's shoes are the longest and sometimes, he falls over because they're so long! They perform for about twenty minutes and they are always the most popular act with the audience, especially the children. Many people think Pit, Pot and Pat are three brothers, but Pat is older than the other two - he's their father! He's the oldest clown in the country, but he has a lot of energy.
+                Tomorrow will be the longest day because the circus is leaving town and everything must be packed away into big trucks.
+            `;
+            speakText(fullReadingText);
+        }
+
+        function stopSpeech() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                speechState = 'stopped';
+                updatePlayIcon();
+            }
+        }
+
+        function updatePlayIcon() {
+            const icon = document.getElementById('icon-listen-full');
+            if (!icon) return;
+            if (speechState === 'speaking') {
+                icon.className = 'fa-solid fa-spinner fa-spin';
+            } else {
+                icon.className = 'fa-solid fa-play';
+            }
+        }
+
+        // Web Audio Synthesizer for Audio Feedback
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playCorrectSound() {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.35);
+            } catch(e){}
+        }
+
+        function playWrongSound() {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(130, audioCtx.currentTime + 0.25);
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } catch(e){}
+        }
+
+        /* ==========================================================================
+           2. TAB NAVIGATION
+           ========================================================================== */
+        function switchTab(tabId) {
+            stopSpeech();
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const targetSection = document.getElementById(`tab-${tabId}`);
+            const targetBtn = document.getElementById(`tab-btn-${tabId}`);
+
+            if (targetSection) targetSection.classList.remove('hidden');
+            if (targetBtn) targetBtn.classList.add('active');
+        }
+
+        /* ==========================================================================
+           3. GRAMMAR PRACTICE LOGIC (SMART AUTO-MATCH & BULLETPROOF CLICKS)
+           ========================================================================== */
+        let currentToolMode = 'comparative'; // 'comparative' or 'superlative'
+        let practiceFound = new Set();
+        let practiceErrors = 0;
+
+        const practiceParagraphs = [
+            "The Rodriguez Brothers Circus is in town! Every year, the circus arrives and stays for a week. Then they go to the next town.",
+            "There are not many animals in the circus. People told the circus that they didn't like seeing animals performing. There is an elephant called Jacob and two old lions, Hattie and Meg.",
+            "Most of the performers are human! There is Leopold, The Strongest Man In The World. His father also worked in the circus, but Leopold is stronger than him, he has bigger arms and bigger legs too! Leopold performs his act every night for the town's people who come to watch.",
+            "Another performer is Clara. She says she has the longest hair in the world. It's about 4 metres long! She also has a daughter who works in the circus. Her name is Sue-Ellen. Her hair is a lot shorter, but she wants to grow it as long as her mother's. Sue-Ellen helps look after the animals and she's also learning how to juggle.",
+            "The highlight of the circus are the three clowns, Pit, Pot and Pat. They all wear long red shoes, but Pat's shoes are the longest and sometimes, he falls over because they're so long! They perform for about twenty minutes and they are always the most popular act with the audience, especially the children. Many people think Pit, Pot and Pat are three brothers, but Pat is older than the other two - he's their father! He's the oldest clown in the country, but he has a lot of energy.",
+            "Tomorrow will be the longest day because the circus is leaving town and everything must be packed away into big trucks."
+        ];
+
+        // Authoritative mapping of target words by normalized lower-case token and their exact grammatical type
+        const targetWordsMap = {
+            'strongest': 'superlative',
+            'stronger': 'comparative',
+            'bigger': 'comparative',
+            'longest': 'superlative',
+            'shorter': 'comparative',
+            'most': 'superlative',
+            'older': 'comparative',
+            'oldest': 'superlative'
+        };
+
+        function setToolMode(mode) {
+            currentToolMode = mode;
+            const compBtn = document.getElementById('tool-comparative-btn');
+            const supBtn = document.getElementById('tool-superlative-btn');
+
+            if (mode === 'comparative') {
+                compBtn.className = "px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-blue-600 text-white shadow";
+                supBtn.className = "px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-slate-200 text-slate-700 hover:bg-slate-300";
+            } else {
+                supBtn.className = "px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-purple-600 text-white shadow";
+                compBtn.className = "px-4 py-2 rounded-lg font-bold text-xs transition flex items-center space-x-2 bg-slate-200 text-slate-700 hover:bg-slate-300";
+            }
+        }
+
+        function renderPracticePassage() {
+            const container = document.getElementById('practice-passage-container');
+            container.innerHTML = '';
+
+            practiceParagraphs.forEach((paragraph, pIdx) => {
+                const pEl = document.createElement('p');
+                const words = paragraph.split(' ');
+
+                words.forEach((w, wIdx) => {
+                    const tokenKey = `tok-${pIdx}-${wIdx}`;
+                    const token = document.createElement('span');
+                    token.id = tokenKey;
+                    token.className = 'word-token';
+                    token.innerText = w + ' ';
+                    
+                    const cleanW = w.toLowerCase().replace(/[^a-z]/g, '');
+                    const wordType = targetWordsMap[cleanW];
+
+                    token.onclick = () => handleWordClick(tokenKey, cleanW, wordType);
+                    pEl.appendChild(token);
+                });
+
+                container.appendChild(pEl);
+            });
+        }
+
+        function handleWordClick(tokenKey, cleanW, wordType) {
+            if (practiceFound.has(tokenKey)) return; // already correctly marked
+
+            const tokenEl = document.getElementById(tokenKey);
+
+            if (wordType) {
+                // If it's a valid target word, we accept it and apply the correct color automatically (Comparative -> Blue, Superlative -> Purple)
+                practiceFound.add(tokenKey);
+                tokenEl.className = `word-token ${wordType === 'comparative' ? 'word-comparative' : 'word-superlative'}`;
+                playCorrectSound();
+                updatePracticeStats();
+
+                if (practiceFound.size === 11) {
+                    setTimeout(() => triggerCompletionModal(11, 11 - practiceErrors), 400);
+                }
+            } else {
+                // Not a comparative or superlative word -> Error!
+                practiceErrors++;
+                playWrongSound();
+                tokenEl.classList.add('word-error');
+                setTimeout(() => {
+                    tokenEl.classList.remove('word-error');
+                }, 350);
+                updatePracticeStats();
+            }
+        }
+
+        function giveGrammarHint() {
+            const allTokens = document.querySelectorAll('.word-token');
+            for (let el of allTokens) {
+                if (!practiceFound.has(el.id)) {
+                    const text = el.innerText.trim().toLowerCase().replace(/[^a-z]/g, '');
+                    if (targetWordsMap[text]) {
+                        el.classList.add('ring-2', 'ring-yellow-400', 'bg-yellow-100');
+                        setTimeout(() => {
+                            el.classList.remove('ring-2', 'ring-yellow-400', 'bg-yellow-100');
+                        }, 1800);
+                        setToolMode(targetWordsMap[text]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function updatePracticeStats() {
+            document.getElementById('target-found-count').innerText = practiceFound.size;
+            document.getElementById('practice-error-count').innerText = practiceErrors;
+            updateGlobalStats();
+        }
+
+        function resetPractice() {
+            practiceFound.clear();
+            practiceErrors = 0;
+            renderPracticePassage();
+            updatePracticeStats();
+        }
+
+        /* ==========================================================================
+           4. TRUE OR FALSE QUIZ WITH HINTS
+           ========================================================================== */
+        const quizData = [
+            {
+                id: 1,
+                statement: "The circus comes to the town twice a year.",
+                answer: false,
+                hint: "Check Paragraph 1: How often does the circus arrive?",
+                evidence: "Text says: 'Every year, the circus arrives...' (Once a year)."
+            },
+            {
+                id: 2,
+                statement: "There are not many animals in the circus.",
+                answer: true,
+                hint: "Check Paragraph 2: Read about the elephant and lions.",
+                evidence: "Text says: 'There are not many animals in the circus.'"
+            },
+            {
+                id: 3,
+                statement: "People love seeing animals performing in this circus.",
+                answer: false,
+                hint: "Check Paragraph 2: What did people tell the circus?",
+                evidence: "Text says: 'People told the circus that they didn't like seeing animals performing.'"
+            },
+            {
+                id: 4,
+                statement: "Leopold's father also worked in the circus.",
+                answer: true,
+                hint: "Check Paragraph 3: Read about Leopold's father.",
+                evidence: "Text says: 'His father also worked in the circus...'"
+            },
+            {
+                id: 5,
+                statement: "Leopold's father is stronger than Leopold.",
+                answer: false,
+                hint: "Check Paragraph 3: Compare Leopold's strength to his father's.",
+                evidence: "Text says: '...but Leopold is stronger than him.'"
+            },
+            {
+                id: 6,
+                statement: "Clara's hair is longer than her daughter's hair.",
+                answer: true,
+                hint: "Check Paragraph 4: Compare Clara's hair (4m) to Sue-Ellen's hair.",
+                evidence: "Text says Sue-Ellen's hair is 'a lot shorter'."
+            },
+            {
+                id: 7,
+                statement: "Sue-Ellen helps look after the animals in the circus.",
+                answer: true,
+                hint: "Check Paragraph 4: What are Sue-Ellen's jobs?",
+                evidence: "Text says: 'Sue-Ellen helps look after the animals and she's also learning how to juggle.'"
+            },
+            {
+                id: 8,
+                statement: "Pit, Pot and Pat are three brothers.",
+                answer: false,
+                hint: "Check Paragraph 5: What is Pat's relationship to the other two clowns?",
+                evidence: "Text says: '...but Pat is older than the other two - he's their father!'"
+            },
+            {
+                id: 9,
+                statement: "The clowns wear long red shoes.",
+                answer: true,
+                hint: "Check Paragraph 5: Look for the color and size of the clowns' shoes.",
+                evidence: "Text says: 'They all wear long red shoes...'"
+            },
+            {
+                id: 10,
+                statement: "Pat has the longest shoes of all three clowns.",
+                answer: true,
+                hint: "Check Paragraph 5: Whose shoes are the longest?",
+                evidence: "Text says: '...but Pat's shoes are the longest...'"
+            }
+        ];
+
+        let quizUserAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-questions-container');
+            container.innerHTML = quizData.map((q, idx) => `
+                <div id="q-card-${q.id}" class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center flex-shrink-0 border border-slate-200">
+                                ${idx + 1}
+                            </span>
+                            <p class="font-semibold text-slate-800 text-base md:text-lg">${q.statement}</p>
+                        </div>
+                        <button onclick="speakText('${q.statement.replace(/'/g, "\'")}')" class="w-9 h-9 rounded-full bg-teal-100 hover:bg-teal-200 text-teal-700 flex items-center justify-center flex-shrink-0 transition" title="Listen">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Action Row: True/False + Hint Button -->
+                    <div class="flex items-center space-x-3 pt-1">
+                        <button onclick="answerQuizQuestion(${q.id}, true)" id="btn-q${q.id}-true" class="flex-1 py-2.5 px-4 rounded-xl font-bold text-sm border-2 border-slate-200 hover:border-teal-500 hover:bg-teal-50 transition text-slate-700">
+                            <i class="fa-solid fa-check mr-1 text-teal-600"></i> True
+                        </button>
+                        <button onclick="answerQuizQuestion(${q.id}, false)" id="btn-q${q.id}-false" class="flex-1 py-2.5 px-4 rounded-xl font-bold text-sm border-2 border-slate-200 hover:border-red-500 hover:bg-red-50 transition text-slate-700">
+                            <i class="fa-solid fa-xmark mr-1 text-red-500"></i> False
+                        </button>
+                        <button onclick="toggleQuizHint(${q.id})" class="py-2.5 px-3.5 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-xl font-bold text-xs transition flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb text-yellow-600"></i>
+                            <span>Hint</span>
+                        </button>
+                    </div>
+
+                    <!-- Hint Box -->
+                    <div id="hint-q${q.id}" class="hidden p-3 rounded-xl bg-yellow-50 border border-yellow-200 text-xs font-semibold text-yellow-900 flex items-center space-x-2">
+                        <i class="fa-solid fa-lightbulb text-yellow-600"></i>
+                        <span>${q.hint}</span>
+                    </div>
+
+                    <!-- Answer Feedback Box -->
+                    <div id="fb-q${q.id}" class="hidden p-3 rounded-xl text-xs font-semibold space-y-1">
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleQuizHint(id) {
+            const hintBox = document.getElementById(`hint-q${id}`);
+            if (hintBox) {
+                hintBox.classList.toggle('hidden');
+            }
+        }
+
+        function answerQuizQuestion(id, userChoice) {
+            if (quizUserAnswers[id] !== undefined) return;
+            const q = quizData.find(item => item.id === id);
+            quizUserAnswers[id] = userChoice;
+
+            const isCorrect = (userChoice === q.answer);
+            const btnTrue = document.getElementById(`btn-q${id}-true`);
+            const btnFalse = document.getElementById(`btn-q${id}-false`);
+            const fbBox = document.getElementById(`fb-q${id}`);
+            const card = document.getElementById(`q-card-${id}`);
+
+            btnTrue.disabled = true;
+            btnFalse.disabled = true;
+
+            if (isCorrect) {
+                playCorrectSound();
+                card.classList.add('border-emerald-400', 'bg-emerald-50/20');
+                if (userChoice) {
+                    btnTrue.className = "flex-1 py-2.5 px-4 rounded-xl font-bold text-sm bg-emerald-600 text-white border-2 border-emerald-600 shadow-sm";
+                } else {
+                    btnFalse.className = "flex-1 py-2.5 px-4 rounded-xl font-bold text-sm bg-emerald-600 text-white border-2 border-emerald-600 shadow-sm";
+                }
+                fbBox.className = "p-3 rounded-xl text-xs font-medium bg-emerald-100 text-emerald-900 border border-emerald-200 block";
+                fbBox.innerHTML = `<div class="font-bold flex items-center space-x-1"><i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i> <span>Correct!</span></div><div>${q.evidence}</div>`;
+            } else {
+                playWrongSound();
+                card.classList.add('border-red-400', 'bg-red-50/20');
+                if (userChoice) {
+                    btnTrue.className = "flex-1 py-2.5 px-4 rounded-xl font-bold text-sm bg-red-500 text-white border-2 border-red-500";
+                } else {
+                    btnFalse.className = "flex-1 py-2.5 px-4 rounded-xl font-bold text-sm bg-red-500 text-white border-2 border-red-500";
+                }
+                fbBox.className = "p-3 rounded-xl text-xs font-medium bg-red-100 text-red-900 border border-red-200 block";
+                fbBox.innerHTML = `<div class="font-bold flex items-center space-x-1 text-red-700"><i class="fa-solid fa-circle-xmark text-red-600 text-sm"></i> <span>Incorrect. Correct answer is: ${q.answer ? 'True' : 'False'}</span></div><div>Evidence: ${q.evidence}</div>`;
+            }
+
+            updateQuizStats();
+        }
+
+        function updateQuizStats() {
+            const answeredCount = Object.keys(quizUserAnswers).length;
+            let correctCount = 0;
+            quizData.forEach(q => {
+                if (quizUserAnswers[q.id] === q.answer) correctCount++;
+            });
+
+            document.getElementById('tf-score-val').innerText = correctCount;
+            updateGlobalStats();
+
+            if (answeredCount === quizData.length) {
+                document.getElementById('quiz-status-msg').innerHTML = `<span class="text-teal-600 font-bold"><i class="fa-solid fa-check-double"></i> Quiz Complete!</span>`;
+                setTimeout(() => triggerCompletionModal(10, correctCount), 500);
+            }
+        }
+
+        function resetQuiz() {
+            quizUserAnswers = {};
+            renderQuiz();
+            document.getElementById('tf-score-val').innerText = '0';
+            document.getElementById('quiz-status-msg').innerText = 'Complete all questions to finish!<\/span>';
+            updateGlobalStats();
+        }
+
+        /* ==========================================================================
+           5. GLOBAL PROGRESS & MODAL
+           ========================================================================== */
+        function updateGlobalStats() {
+            let totalPossible = 11 + quizData.length; // 11 + 10 = 21
+            let practiceScore = practiceFound.size;
+            let quizScore = 0;
+            quizData.forEach(q => {
+                if (quizUserAnswers[q.id] === q.answer) quizScore++;
+            });
+
+            let currentTotalScore = practiceScore + quizScore;
+            let percentage = Math.round((currentTotalScore / totalPossible) * 100);
+
+            document.getElementById('global-score-display').innerText = `${currentTotalScore}/${totalPossible}`;
+            document.getElementById('global-progress-display').innerText = `${percentage}%`;
+        }
+
+        function triggerCompletionModal(total, score) {
+            const percentage = Math.round((score / total) * 100);
+            document.getElementById('modal-accuracy').innerText = `${percentage}%`;
+            document.getElementById('modal-score').innerText = `${score} / ${total}`;
+
+            document.getElementById('congrats-modal').classList.remove('hidden');
+
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('congrats-modal').classList.add('hidden');
+        }
+
+        /* ==========================================================================
+           INITIALIZATION
+           ========================================================================== */
+        window.onload = function() {
+            renderPracticePassage();
+            renderQuiz();
+            updateGlobalStats();
+        };
+    </script>
+</body>
+</html>
