@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Mery English — Edinburgh: A Traveller's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-dark: #006680;
+    --teal-mid: #008891;
+    --teal-bright: #00a896;
+    --teal-light: #e6f7f8;
+    --teal-border: #b8e6ea;
+    --blue-accent: #0284c7;
+    --blue-soft: #e0f2fe;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --amber-text: #92400e;
+    --success: #059669;
+    --success-bg: #d1fae5;
+    --error: #dc2626;
+    --error-bg: #fee2e2;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding-bottom: 60px;
+  }
+
+  /* Header */
+  header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--teal-bright);
+    background: #ffffff;
+  }
+  .brand-text h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .brand-text span {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--teal-bright);
+    display: block;
+    margin-top: 2px;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .voice-selector-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal-border);
+    color: var(--text);
+    padding: 7px 14px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+  .voice-selector-wrap select {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    cursor: pointer;
+    outline: none;
+  }
+  .header-pill-btn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-dict {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    color: var(--amber-text);
+  }
+  .btn-dict:hover { background: #fef3c7; transform: translateY(-1px); }
+  .btn-home {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-border);
+    color: var(--teal-dark);
+  }
+  .btn-home:hover { background: #d1f2f5; transform: translateY(-1px); }
+  .btn-help-hdr {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+  }
+  .btn-help-hdr:hover { background: #e2e8f0; }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 26px auto;
+    padding: 0 20px;
+  }
+
+  /* Tabs Bar (5 Tabs) */
+  .tabs-bar {
+    display: flex;
+    gap: 8px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 155px;
+    padding: 11px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: #f1f5f9; color: var(--teal-dark); }
+  .tab-btn.active {
+    background: var(--blue-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  }
+
+  .tab-panel { display: none; animation: fadeIn 0.28s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card & Typography */
+  .card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+  }
+  .page-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .section-title-teal {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+  .section-sub-teal {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0f2fe;
+  }
+  .instruction-banner {
+    background: #f1f5f9;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    color: #334155;
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+  }
+
+  /* TAB 1: READING PASSAGE */
+  .recitation-bar {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .btn-recite-play {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+  }
+  .btn-recite-play:hover { background: #047857; }
+  .btn-recite-stop {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+  }
+  .btn-recite-stop:hover { background: #dc2626; }
+  .recite-status {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #065f46;
+  }
+
+  .reading-article {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 28px;
+    font-size: 1.03rem;
+    line-height: 1.85;
+    color: #1e293b;
+  }
+  .reading-article p {
+    margin-bottom: 16px;
+  }
+  .reading-article p:last-child {
+    margin-bottom: 0;
+  }
+  .hl-vocab {
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 5px;
+    border-bottom: 2px solid #f59e0b;
+    cursor: pointer;
+  }
+  .hl-vocab:hover { background: #fde68a; }
+
+  /* TAB 2: MULTIPLE CHOICE QUIZ */
+  .quiz-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .quiz-card.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .badge-num-soft {
+    background: #e0f2fe;
+    color: #0284c7;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 8px;
+  }
+  .btn-tool-clean {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s;
+  }
+  .btn-tool-clean:hover { background: #f8fafc; border-color: #94a3b8; }
+
+  .quiz-question-text {
+    font-size: 1.04rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 14px;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .quiz-option-btn {
+    text-align: left;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 11px 15px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .quiz-option-btn:hover:not(:disabled) {
+    background: #f0f9ff;
+    border-color: var(--blue-accent);
+  }
+  .quiz-option-btn.correct {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #065f46;
+  }
+  .quiz-option-btn.incorrect {
+    background: var(--error-bg);
+    border-color: var(--error);
+    color: #991b1b;
+    animation: shake 0.3s;
+  }
+  .quiz-option-btn:disabled { cursor: default; }
+
+  /* TAB 3: VOCABULARY PART 1 (MATCHING) & PART 2 (STICKY WORD BANK FILL-IN) */
+  .sub-section-heading {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin: 10px 0 6px 0;
+  }
+  .sub-section-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .match-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .match-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .match-card.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+  .match-word-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .match-word-label {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+  }
+  .match-select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    background: #f8fafc;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .match-select:focus { border-color: var(--blue-accent); background: #ffffff; }
+  .match-select.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: #065f46;
+  }
+  .match-select.incorrect {
+    border-color: var(--error);
+    background: var(--error-bg);
+    color: #991b1b;
+    animation: shake 0.3s;
+  }
+
+  /* Sticky Word Bank */
+  .sticky-wordbank {
+    position: sticky;
+    top: 82px;
+    z-index: 80;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border: 2px solid #38bdf8;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.1);
+  }
+  .wb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+  }
+  .wb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .word-chip {
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.15s;
+  }
+  .word-chip:hover {
+    background: #0284c7;
+    color: white;
+    transform: translateY(-1px);
+  }
+  .word-chip.used {
+    opacity: 0.36;
+    text-decoration: line-through;
+    cursor: default;
+    background: #e2e8f0;
+    color: #64748b;
+    border-color: #cbd5e1;
+  }
+
+  .exercise-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .exercise-item.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+  .sentence-line {
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .blank-input {
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    width: 155px;
+    text-align: center;
+    transition: all 0.2s;
+    background: #f8fafc;
+  }
+  .blank-input:focus {
+    outline: none;
+    border-color: #0284c7;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  }
+  .blank-input.correct {
+    border-color: var(--success) !important;
+    background: var(--success-bg) !important;
+    color: #065f46 !important;
+  }
+  .blank-input.incorrect {
+    border-color: var(--error) !important;
+    background: var(--error-bg) !important;
+    color: #991b1b !important;
+    animation: shake 0.3s;
+  }
+
+  .hint-box {
+    display: none;
+    margin-top: 10px;
+    padding: 9px 14px;
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: #78350f;
+  }
+  .hint-box.visible { display: block; }
+
+  /* TAB 4: PUT THE TEXT IN ORDER */
+  .order-item-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .order-item-card.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+  .order-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+    min-width: 260px;
+  }
+  .letter-badge {
+    background: var(--teal-dark);
+    color: white;
+    font-weight: 800;
+    font-size: 0.95rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .order-paragraph-text {
+    font-size: 0.97rem;
+    color: #1e293b;
+    line-height: 1.6;
+  }
+  .order-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .order-select {
+    padding: 9px 14px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    background: #f8fafc;
+    cursor: pointer;
+    outline: none;
+    min-width: 145px;
+  }
+  .order-select.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: #065f46;
+  }
+  .order-select.incorrect {
+    border-color: var(--error);
+    background: var(--error-bg);
+    color: #991b1b;
+    animation: shake 0.3s;
+  }
+
+  /* TAB 5: RECALL & DICTATION PRACTICE */
+  .dictation-input {
+    width: 100%;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    background: #ffffff;
+    transition: all 0.2s;
+  }
+  .dictation-input::placeholder { color: #94a3b8; font-weight: 500; }
+  .dictation-input:focus {
+    outline: none;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+  }
+  .dictation-input.correct {
+    border-color: var(--success) !important;
+    background: var(--success-bg) !important;
+    color: #065f46 !important;
+  }
+  .dictation-input.incorrect {
+    border-color: var(--error) !important;
+    background: var(--error-bg) !important;
+    color: #991b1b !important;
+    animation: shake 0.3s;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  /* Footer Navigation */
+  .tab-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-reset {
+    background: #f1f5f9;
+    color: var(--text);
+    border: 1px solid #cbd5e1;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-reset:hover { background: #e2e8f0; }
+  .btn-next {
+    background: var(--blue-accent);
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
+    transition: all 0.2s;
+  }
+  .btn-next:hover { background: #0369a1; transform: translateY(-1px); }
+
+  /* Modals */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: white;
+    border-radius: 18px;
+    max-width: 540px;
+    width: 100%;
+    padding: 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    position: relative;
+    animation: popIn 0.25s ease;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .modal-close:hover { background: #e2e8f0; color: var(--text); }
+  .modal-box h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-bottom: 12px;
+  }
+  .modal-box ul {
+    padding-left: 20px;
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+  .modal-box li { margin-bottom: 8px; }
+  .score-pill {
+    display: inline-block;
+    background: var(--success-bg);
+    color: #065f46;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 1.05rem;
+    margin: 12px 0;
+  }
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 300;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <h1>Merry Mery English</h1>
+        <span>Interactive Learning • Reading & Culture Series</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="voice-selector-wrap">
+        <span>🗣️ Voice:</span>
+        <select id="voicePresetSelect" aria-label="Select English Voice Accent and Gender">
+          <option value="uk-female">British Female</option>
+          <option value="uk-male">British Male</option>
+          <option value="us-female">American Female</option>
+          <option value="us-male">American Male</option>
+        </select>
+      </div>
+      <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="header-pill-btn btn-dict">📖 Dictionary</a>
+      <button class="header-pill-btn btn-help-hdr" onclick="openModal('helpModal')">❓ Help</button>
+      <a href="index.html" class="header-pill-btn btn-home">🏠 Home</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- NAVIGATION TABS (5 TABS) -->
+  <div class="tabs-bar" role="tablist">
+    <button class="tab-btn active" onclick="switchTab(0)" id="tabBtn0">📖 1. Reading Guide</button>
+    <button class="tab-btn" onclick="switchTab(1)" id="tabBtn1">✅ 2. Comprehension Quiz</button>
+    <button class="tab-btn" onclick="switchTab(2)" id="tabBtn2">💡 3. Vocabulary Practice</button>
+    <button class="tab-btn" onclick="switchTab(3)" id="tabBtn3">🧩 4. Put Text in Order</button>
+    <button class="tab-btn" onclick="switchTab(4)" id="tabBtn4">🎧 5. Listening Dictation</button>
+  </div>
+
+  <!-- TAB 1: READING PASSAGE -->
+  <section class="tab-panel active" id="panel0">
+    <div class="card">
+      <h2 class="page-title">Edinburgh: A Traveller’s Guide</h2>
+
+      <div class="instruction-banner">
+        Read the travel guide carefully. Highlighted words appear in the Vocabulary tab. Use the <strong>Listen</strong> button to hear the full passage read aloud in your selected UK or US voice.
+      </div>
+
+      <div class="recitation-bar">
+        <button class="btn-recite-play" id="btnRecitePlay" onclick="toggleReadingAudio()">▶ Listen</button>
+        <button class="btn-recite-stop" onclick="stopSpeech()">■ Stop</button>
+        <span class="recite-status" id="reciteStatus">Ready to play</span>
+      </div>
+
+      <article class="reading-article" id="readingPassageText">
+        <p>
+          Edinburgh is the capital of Scotland and one of the most beautiful cities in Europe. It is famous for its long history, its old buildings and its friendly <span class="hl-vocab" onclick="switchTab(2)">atmosphere</span>. The city is quite small, so you can visit most of the main places on foot. Many travellers say that Edinburgh feels like a storybook. The airport is about 30 minutes from the centre by tram, and the city also has good bus services.
+        </p>
+        <p>
+          The best place to start is Edinburgh Castle. It stands on top of an old volcano, and you can see it from almost everywhere in the city. Inside, you can see the Scottish Crown Jewels and the Stone of Destiny, which was used in the <span class="hl-vocab" onclick="switchTab(2)">coronations</span> of Scottish kings. The views from the castle are also wonderful, so bring your camera.
+        </p>
+        <p>
+          From the castle, walk down the Royal Mile. This famous street connects the castle with the Palace of Holyroodhouse, where the King stays when he visits Scotland. On the way, you will find small shops, traditional pubs and interesting museums. It is a good place to buy <span class="hl-vocab" onclick="switchTab(2)">souvenirs</span>, such as tartan scarves or Scottish chocolate. Try to visit St Giles’ Cathedral too. It is beautiful inside, and you can enter for free, although they ask for a small <span class="hl-vocab" onclick="switchTab(2)">donation</span>.
+        </p>
+        <p>
+          If you like nature, climb Arthur’s Seat. It is a big hill in Holyrood Park, and the walk takes about one hour. The path is not difficult, but wear good shoes because it can be windy and wet. At the top, you will have a great view of the city and the sea. Many people go there at <span class="hl-vocab" onclick="switchTab(2)">sunrise</span> or sunset.
+        </p>
+        <p>
+          Edinburgh has two main areas. The Old Town has <span class="hl-vocab" onclick="switchTab(2)">narrow</span> streets and <span class="hl-vocab" onclick="switchTab(2)">medieval</span> houses, and some people say it is a little <span class="hl-vocab" onclick="switchTab(2)">mysterious</span>. You can join a ghost tour in the underground streets to learn about the dark stories of the past. The New Town is different. It was built in the eighteenth century, and it has wide streets, <span class="hl-vocab" onclick="switchTab(2)">elegant</span> houses and nice gardens. Princes Street Gardens is a calm place to relax between visits.
+        </p>
+        <p>
+          Edinburgh is also a city of culture and ideas. It was the home of writers like Walter Scott and J.K. Rowling, who wrote part of the first Harry Potter book in local cafés. Fans can walk around Victoria Street and Greyfriars Kirkyard, which inspired some parts of the stories. The Writers’ Museum and the National Museum of Scotland are also great options, and the National Museum is free.
+        </p>
+        <p>
+          Finally, think about the best time to travel. Summer is warm and busy, with the famous Edinburgh <span class="hl-vocab" onclick="switchTab(2)">Festival</span> in August. In winter, the weather is cold, but the Christmas markets and Hogmanay, the New Year celebration, are very special. Remember that it can rain at any time, so take a raincoat and an umbrella. Do not forget to try traditional food, like haggis or fish and chips.
+        </p>
+        <p>
+          Edinburgh is a city with something for everyone: history, nature, food and culture. Whatever the season, it will stay in your memory.
+        </p>
+      </article>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="resetTab1()">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(1)">Next Exercise: Comprehension Quiz ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: MULTIPLE CHOICE QUIZ -->
+  <section class="tab-panel" id="panel1">
+    <div class="card">
+      <h2 class="section-title-teal">Edinburgh: Reading Comprehension Quiz</h2>
+      <p class="section-sub-teal">Select the correct answer for each question based on the guide. Instant verification is active!</p>
+
+      <div id="quizContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initQuiz(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(2)">Next Exercise: Vocabulary Practice ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: VOCABULARY EXERCISE (PART 1 & PART 2) -->
+  <section class="tab-panel" id="panel2">
+    <div class="card">
+      <h2 class="section-title-teal">Edinburgh: Vocabulary Exercise</h2>
+      <p class="section-sub-teal">Master the key vocabulary from the text in two steps: first match each word with its definition, then complete the sentences using the sticky Word Bank.</p>
+
+      <h3 class="sub-section-heading">Part 1. Match Each Word (1–10) with Its Definition (A–J)</h3>
+      <p class="sub-section-desc">Listen to each word and choose its matching definition from the dropdown menu.</p>
+      <div class="match-grid" id="vocabMatchContainer"></div>
+
+      <h3 class="sub-section-heading">Part 2. Complete the Sentences</h3>
+      <p class="sub-section-desc">Drag a word from the sticky Word Bank into each blank (or click a chip to fill the active box). Remember to use the plural form where required.</p>
+
+      <div class="sticky-wordbank">
+        <div class="wb-header">
+          <span>🧲 Drag & Drop Word Bank (Part 2)</span>
+          <span id="vocabPart2Counter">Solved: 0 / 6</span>
+        </div>
+        <div class="wb-chips" id="vocabWordBankChips"></div>
+      </div>
+
+      <div id="vocabFillContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initVocabTab(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(3)">Next Exercise: Put Text in Order ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: PUT THE TEXT IN ORDER -->
+  <section class="tab-panel" id="panel3">
+    <div class="card">
+      <h2 class="section-title-teal">Edinburgh: Put the Text in Order</h2>
+      <p class="section-sub-teal">The six summary paragraphs below (A–F) are mixed up. Select the correct position (1st to 6th) for each paragraph to rebuild the guide in logical order.</p>
+
+      <div id="orderContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initOrderTab(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(4)">Next Exercise: Listening Dictation ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: LISTENING DICTATION PRACTICE -->
+  <section class="tab-panel" id="panel4">
+    <div class="card">
+      <h2 class="page-title" style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span>🎧</span> Listening Dictation Practice
+      </h2>
+      <p class="section-sub-teal" style="border-bottom:none; padding-bottom:4px; margin-bottom:18px;">
+        Listen carefully to each travel sentence about Edinburgh and type exactly what you hear. Use <strong>💡 Hint</strong> for a clue or <strong>+1 Letter</strong> to reveal the next character.
+      </p>
+
+      <div id="dictationContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initDictationTab(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(0)">Back to Start: Reading Guide ➔</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HELP MODAL -->
+<div class="modal-overlay" id="helpModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('helpModal')">✕</button>
+    <h3>How to Use This Lesson</h3>
+    <ul>
+      <li><strong>Voice Selector (Top Bar):</strong> Choose between <em>British Female, British Male, American Female,</em> and <em>American Male</em>. All audio buttons use your selected voice.</li>
+      <li><strong>Tab 1 (Reading Guide):</strong> Read <em>Edinburgh: A Traveller’s Guide</em> and press <strong>▶ Listen</strong> to hear the full text read aloud.</li>
+      <li><strong>Tab 2 (Comprehension Quiz):</strong> Answer 8 multiple-choice questions with instant verification and audio support.</li>
+      <li><strong>Tab 3 (Vocabulary Practice):</strong> Match all 10 words to their definitions in Part 1, then drag or type the 6 target words in Part 2.</li>
+      <li><strong>Tab 4 (Put Text in Order):</strong> Reconstruct the 6 mixed-up paragraphs (A–F) in their logical sequence from 1st to 6th.</li>
+      <li><strong>Tab 5 (Listening Dictation):</strong> Listen to 8 sentences about Edinburgh and type what you hear using <strong>💡 Hint</strong> or <strong>+1 Letter</strong> if needed.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONGRATULATIONS MODAL -->
+<div class="modal-overlay" id="congratsModal">
+  <div class="modal-box" style="text-align: center;">
+    <button class="modal-close" onclick="closeModal('congratsModal')">✕</button>
+    <div style="font-size: 3rem; margin-bottom: 6px;">🎉</div>
+    <h3 id="congratsTitle">Outstanding Work!</h3>
+    <p id="congratsSubtitle" style="color: var(--muted); margin-bottom: 8px;">You completed every item in this section.</p>
+    <div class="score-pill" id="finalScoreText">Accuracy: 100%</div>
+    <p id="finalDetailText" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 20px;"></p>
+    <button class="btn-next" onclick="closeModal('congratsModal')">Review My Answers</button>
+  </div>
+</div>
+
+<script>
+  // --- WEB AUDIO FEEDBACK ---
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playSound(type) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+
+    if (type === 'success') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.09);
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+      osc.start(now);
+      osc.stop(now + 0.32);
+    } else {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.linearRampToValueAtTime(175, now + 0.22);
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    }
+  }
+
+  // --- VOICE SELECTION ENGINE (UK/US FEMALE & MALE) ---
+  let availableVoices = [];
+  function loadVoices() {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+  loadVoices();
+  if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  function getSelectedVoiceConfig() {
+    const preset = document.getElementById('voicePresetSelect').value;
+    const isUK = preset.startsWith('uk');
+    const isFemale = preset.endsWith('female');
+    const targetLang = isUK ? 'en-GB' : 'en-US';
+
+    if (!availableVoices.length) availableVoices = window.speechSynthesis.getVoices();
+
+    const langVoices = availableVoices.filter(v =>
+      v.lang.toLowerCase().replace('_', '-').startsWith(targetLang.toLowerCase())
+    );
+
+    const femaleHints = ['female', 'hazel', 'sonia', 'libby', 'kate', 'serena', 'samantha', 'victoria', 'zira', 'jenny', 'aria', 'ava', 'sara', 'google uk english female'];
+    const maleHints = ['male', 'daniel', 'ryan', 'george', 'arthur', 'oliver', 'david', 'mark', 'guy', 'alex', 'matthew', 'google uk english male'];
+
+    let chosen = null;
+    if (langVoices.length > 0) {
+      const hints = isFemale ? femaleHints : maleHints;
+      chosen = langVoices.find(v => hints.some(h => v.name.toLowerCase().includes(h)));
+      if (!chosen) chosen = isFemale ? langVoices[0] : (langVoices[1] || langVoices[0]);
+    } else {
+      chosen = availableVoices.find(v => v.lang.toLowerCase().startsWith('en')) || null;
+    }
+
+    let pitch = 1.0;
+    if (chosen) {
+      const lowerName = chosen.name.toLowerCase();
+      const looksFemale = femaleHints.some(h => lowerName.includes(h));
+      const looksMale = maleHints.some(h => lowerName.includes(h));
+      if (!isFemale && looksFemale && !looksMale) pitch = 0.82;
+      if (isFemale && looksMale && !looksFemale) pitch = 1.16;
+    } else {
+      pitch = isFemale ? 1.12 : 0.85;
+    }
+
+    return { voice: chosen, lang: targetLang, pitch };
+  }
+
+  function applyVoiceToUtterance(utterance, rate = 0.94) {
+    const cfg = getSelectedVoiceConfig();
+    if (cfg.voice) utterance.voice = cfg.voice;
+    utterance.lang = cfg.lang;
+    utterance.pitch = cfg.pitch;
+    utterance.rate = rate;
+  }
+
+  // --- SPEECH CONTROLS ---
+  let isPlayingReading = false;
+  let isPausedReading = false;
+
+  function speakText(text) {
+    window.speechSynthesis.cancel();
+    isPlayingReading = false;
+    isPausedReading = false;
+    updateReadingBtn();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    applyVoiceToUtterance(utterance, 0.94);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function toggleReadingAudio() {
+    if (!isPlayingReading) {
+      window.speechSynthesis.cancel();
+      const text = document.getElementById('readingPassageText').innerText.trim();
+      const utterance = new SpeechSynthesisUtterance(text);
+      applyVoiceToUtterance(utterance, 0.93);
+      utterance.onend = () => {
+        isPlayingReading = false;
+        isPausedReading = false;
+        updateReadingBtn();
+      };
+      window.speechSynthesis.speak(utterance);
+      isPlayingReading = true;
+      isPausedReading = false;
+      updateReadingBtn();
+    } else if (!isPausedReading) {
+      window.speechSynthesis.pause();
+      isPausedReading = true;
+      updateReadingBtn();
+    } else {
+      window.speechSynthesis.resume();
+      isPausedReading = false;
+      updateReadingBtn();
+    }
+  }
+
+  function stopSpeech() {
+    window.speechSynthesis.cancel();
+    isPlayingReading = false;
+    isPausedReading = false;
+    updateReadingBtn();
+  }
+
+  function updateReadingBtn() {
+    const btn = document.getElementById('btnRecitePlay');
+    const status = document.getElementById('reciteStatus');
+    if (!btn || !status) return;
+    if (isPlayingReading && !isPausedReading) {
+      btn.innerHTML = '⏸ Pause';
+      status.textContent = 'Reading passage aloud...';
+    } else if (isPlayingReading && isPausedReading) {
+      btn.innerHTML = '▶ Resume';
+      status.textContent = 'Paused';
+    } else {
+      btn.innerHTML = '▶ Listen';
+      status.textContent = 'Ready to play';
+    }
+  }
+
+  // --- TABS & MODALS ---
+  function switchTab(index) {
+    stopSpeech();
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
+    document.querySelectorAll('.tab-panel').forEach((panel, i) => panel.classList.toggle('active', i === index));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function openModal(id) { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  function resetTab1() { stopSpeech(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  // --- TAB 2: MULTIPLE CHOICE QUIZ (8 QUESTIONS) ---
+  const quizData = [
+    {
+      q: "What is special about the place where Edinburgh Castle stands?",
+      options: [
+        "a) It is on a rocky island in the sea",
+        "b) It is on top of an old volcano",
+        "c) It is on the highest mountain in Scotland",
+        "d) It is on a hill next to a river"
+      ],
+      correctIndex: 1
+    },
+    {
+      q: "What was the Stone of Destiny used for?",
+      options: [
+        "a) To sign important treaties with England",
+        "b) To mark the entrance to the Royal Mile",
+        "c) For the coronations of Scottish kings",
+        "d) To protect the Crown Jewels"
+      ],
+      correctIndex: 2
+    },
+    {
+      q: "Which two places does the Royal Mile connect?",
+      options: [
+        "a) The castle and St Giles' Cathedral",
+        "b) Princes Street Gardens and Holyrood Park",
+        "c) The castle and the Palace of Holyroodhouse",
+        "d) Arthur's Seat and the castle"
+      ],
+      correctIndex: 2
+    },
+    {
+      q: "Which statement about St Giles' Cathedral is true?",
+      options: [
+        "a) You can enter for free, but they ask for a small donation",
+        "b) You need to buy a ticket online before you go",
+        "c) You can only visit it with a guide",
+        "d) It is only open during the summer festival"
+      ],
+      correctIndex: 0
+    },
+    {
+      q: "Why does the text recommend wearing good shoes on Arthur's Seat?",
+      options: [
+        "a) The path is very difficult and steep",
+        "b) The walk takes the whole day",
+        "c) The ground is full of sharp rocks",
+        "d) It can be windy and wet"
+      ],
+      correctIndex: 3
+    },
+    {
+      q: "Which description fits the New Town?",
+      options: [
+        "a) Narrow streets and medieval houses",
+        "b) Underground streets with ghost tours",
+        "c) A modern area built in the twentieth century",
+        "d) Wide streets and elegant houses from the eighteenth century"
+      ],
+      correctIndex: 3
+    },
+    {
+      q: "Which museum is free, according to the text?",
+      options: [
+        "a) The Writers' Museum",
+        "b) The National Museum of Scotland",
+        "c) Both of them",
+        "d) Neither of them"
+      ],
+      correctIndex: 1
+    },
+    {
+      q: "What is Hogmanay?",
+      options: [
+        "a) A traditional Scottish dish",
+        "b) The big festival in August",
+        "c) The New Year celebration",
+        "d) A famous Christmas market"
+      ],
+      correctIndex: 2
+    }
+  ];
+
+  let quizState = { items: [], solved: 0, wrong: 0, congrats: false };
+
+  function initQuiz(shuffle = false) {
+    quizState = { items: [...quizData], solved: 0, wrong: 0, congrats: false };
+    if (shuffle) quizState.items.sort(() => Math.random() - 0.5);
+
+    const container = document.getElementById('quizContainer');
+    container.innerHTML = quizState.items.map((item, qIdx) => `
+      <div class="quiz-card" id="quiz-card-${qIdx}">
+        <div class="item-top">
+          <span class="badge-num-soft">Question ${qIdx + 1} of ${quizState.items.length}</span>
+          <button class="btn-tool-clean" onclick="speakText(\`${item.q.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+        </div>
+        <div class="quiz-question-text">${item.q}</div>
+        <div class="quiz-options">
+          ${item.options.map((opt, oIdx) => `
+            <button
+              class="quiz-option-btn"
+              id="qopt-${qIdx}-${oIdx}"
+              onclick="checkQuizOption(${qIdx}, ${oIdx}, this)"
+            >${opt}</button>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function checkQuizOption(qIdx, oIdx, btnEl) {
+    const item = quizState.items[qIdx];
+    const card = document.getElementById(`quiz-card-${qIdx}`);
+    if (card.classList.contains('solved')) return;
+
+    if (oIdx === item.correctIndex) {
+      btnEl.classList.add('correct');
+      card.classList.add('solved');
+      card.querySelectorAll('.quiz-option-btn').forEach(b => b.disabled = true);
+      playSound('success');
+      quizState.solved++;
+
+      if (quizState.solved === quizState.items.length && !quizState.congrats) {
+        quizState.congrats = true;
+        setTimeout(() => showCongratulations(quizState.items.length, quizState.wrong, "Comprehension Quiz Completed!"), 450);
+      }
+    } else {
+      if (!btnEl.classList.contains('incorrect')) quizState.wrong++;
+      btnEl.classList.remove('incorrect');
+      void btnEl.offsetWidth;
+      btnEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  // --- TAB 3: VOCABULARY PART 1 (MATCHING) & PART 2 (WORD BANK FILL-IN) ---
+  const definitionsList = [
+    { letter: "A", text: "A. Not wide" },
+    { letter: "B", text: "B. A ceremony where a king or queen receives the crown" },
+    { letter: "C", text: "C. The feeling of a place" },
+    { letter: "D", text: "D. Money or a gift that you give to help an organisation" },
+    { letter: "E", text: "E. Beautiful in a simple and stylish way" },
+    { letter: "F", text: "F. From the Middle Ages, a very long time ago" },
+    { letter: "G", text: "G. Strange and difficult to understand or explain" },
+    { letter: "H", text: "H. An object you buy to remember a trip" },
+    { letter: "I", text: "I. The time in the morning when the sun first appears" },
+    { letter: "J", text: "J. A special event with music, theatre or food, often lasting several days" }
+  ];
+
+  const vocabMatchData = [
+    { num: 1, word: "medieval", answer: "F" },
+    { num: 2, word: "souvenir", answer: "H" },
+    { num: 3, word: "donation", answer: "D" },
+    { num: 4, word: "mysterious", answer: "G" },
+    { num: 5, word: "elegant", answer: "E" },
+    { num: 6, word: "coronation", answer: "B" },
+    { num: 7, word: "sunrise", answer: "I" },
+    { num: 8, word: "narrow", answer: "A" },
+    { num: 9, word: "festival", answer: "J" },
+    { num: 10, word: "atmosphere", answer: "C" }
+  ];
+
+  const vocabFillData = [
+    {
+      before: "We bought some",
+      answer: "souvenirs",
+      chip: "souvenirs",
+      after: "for our friends: a scarf and some chocolate.",
+      fullAudio: "We bought some souvenirs for our friends: a scarf and some chocolate.",
+      hint: "Objects you buy to remember a trip (plural form needed after 'some')."
+    },
+    {
+      before: "The church asks visitors for a small",
+      answer: "donation",
+      chip: "donation",
+      after: ", but the entrance is free.",
+      fullAudio: "The church asks visitors for a small donation, but the entrance is free.",
+      hint: "Money or a gift given to help an organisation."
+    },
+    {
+      before: "We woke up very early to see the",
+      answer: "sunrise",
+      chip: "sunrise",
+      after: "from the top of the hill.",
+      fullAudio: "We woke up very early to see the sunrise from the top of the hill.",
+      hint: "The time in the morning when the sun first appears."
+    },
+    {
+      before: "The streets in the old town are very",
+      answer: "narrow",
+      chip: "narrow",
+      after: ", so cars cannot go through.",
+      fullAudio: "The streets in the old town are very narrow, so cars cannot go through.",
+      hint: "Adjective meaning 'not wide'."
+    },
+    {
+      before: "The",
+      answer: "festival",
+      chip: "festival",
+      after: "lasts three weeks, and there are shows everywhere.",
+      fullAudio: "The festival lasts three weeks, and there are shows everywhere.",
+      hint: "A special event with music, theatre, or food lasting several days."
+    },
+    {
+      before: "She wore an",
+      answer: "elegant",
+      chip: "elegant",
+      after: "black dress to the party.",
+      fullAudio: "She wore an elegant black dress to the party.",
+      hint: "Adjective meaning 'beautiful in a simple and stylish way'."
+    }
+  ];
+
+  let vocabState = {
+    matchItems: [],
+    fillItems: [],
+    activeInput: null,
+    matchSolved: 0,
+    fillSolved: 0,
+    wrong: 0,
+    congrats: false
+  };
+
+  function initVocabTab(shuffle = false) {
+    vocabState = {
+      matchItems: [...vocabMatchData],
+      fillItems: [...vocabFillData],
+      activeInput: null,
+      matchSolved: 0,
+      fillSolved: 0,
+      wrong: 0,
+      congrats: false
+    };
+
+    if (shuffle) {
+      vocabState.matchItems.sort(() => Math.random() - 0.5);
+      vocabState.fillItems.sort(() => Math.random() - 0.5);
+    }
+
+    renderVocabMatch();
+    renderVocabWordBank();
+    renderVocabFill();
+    document.getElementById('vocabPart2Counter').textContent = `Solved: 0 / ${vocabState.fillItems.length}`;
+  }
+
+  function renderVocabMatch() {
+    const container = document.getElementById('vocabMatchContainer');
+    container.innerHTML = vocabState.matchItems.map((item, idx) => `
+      <div class="match-card" id="match-card-${idx}">
+        <div class="match-word-row">
+          <span class="match-word-label">${item.num}. ${item.word}</span>
+          <button class="btn-tool-clean" onclick="speakText('${item.word}')">🔊 Listen</button>
+        </div>
+        <select
+          class="match-select"
+          id="match-sel-${idx}"
+          data-answer="${item.answer}"
+          onchange="evaluateMatchSelect(this, ${idx})"
+        >
+          <option value="">-- Choose definition (A–J) --</option>
+          ${definitionsList.map(d => `<option value="${d.letter}">${d.text}</option>`).join('')}
+        </select>
+      </div>
+    `).join('');
+  }
+
+  function evaluateMatchSelect(selectEl, idx) {
+    if (selectEl.disabled) return;
+    const val = selectEl.value;
+    const expected = selectEl.dataset.answer;
+    if (!val) {
+      selectEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (val === expected) {
+      selectEl.classList.remove('incorrect');
+      selectEl.classList.add('correct');
+      selectEl.disabled = true;
+      document.getElementById(`match-card-${idx}`).classList.add('solved');
+      playSound('success');
+      vocabState.matchSolved++;
+      checkVocabComplete();
+    } else {
+      vocabState.wrong++;
+      selectEl.classList.remove('incorrect');
+      void selectEl.offsetWidth;
+      selectEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  function renderVocabWordBank() {
+    const wb = document.getElementById('vocabWordBankChips');
+    const chips = vocabState.fillItems.map(i => i.chip);
+    chips.sort(() => Math.random() - 0.5);
+
+    wb.innerHTML = chips.map((word, idx) => `
+      <span
+        class="word-chip"
+        draggable="true"
+        id="vchip-${idx}"
+        data-word="${word}"
+        ondragstart="handleVocabDragStart(event)"
+        onclick="handleVocabChipClick(this)"
+      >${word}</span>
+    `).join('');
+  }
+
+  function renderVocabFill() {
+    const container = document.getElementById('vocabFillContainer');
+    container.innerHTML = vocabState.fillItems.map((ex, index) => `
+      <div class="exercise-item" id="vfill-card-${index}">
+        <div class="item-top">
+          <span class="badge-num-soft">Sentence ${index + 1} of ${vocabState.fillItems.length}</span>
+          <div class="item-tools">
+            <button class="btn-tool-clean" onclick="speakText(\`${ex.fullAudio.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+            <button class="btn-tool-clean" onclick="toggleHint('v', ${index})">💡 Hint</button>
+          </div>
+        </div>
+        <div class="sentence-line">
+          <span>${ex.before}</span>
+          <input
+            type="text"
+            class="blank-input"
+            id="vinput-${index}"
+            data-answer="${ex.answer}"
+            data-index="${index}"
+            placeholder="drag or type..."
+            autocomplete="off"
+            onfocus="vocabState.activeInput = this"
+            oninput="evaluateVocabBlank(this, false)"
+            onblur="evaluateVocabBlank(this, true)"
+            ondragover="event.preventDefault()"
+            ondrop="handleVocabDrop(event, this)"
+          />
+          <span>${ex.after}</span>
+        </div>
+        <div class="hint-box" id="hint-v-${index}">
+          <strong>Clue:</strong> ${ex.hint}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleVocabDragStart(e) {
+    if (e.target.classList.contains('used')) { e.preventDefault(); return; }
+    e.dataTransfer.setData('text/plain', e.target.dataset.word);
+  }
+  function handleVocabDrop(e, inputEl) {
+    e.preventDefault();
+    if (inputEl.disabled) return;
+    const word = e.dataTransfer.getData('text/plain');
+    if (!word) return;
+    inputEl.value = word;
+    evaluateVocabBlank(inputEl, true);
+  }
+  function handleVocabChipClick(chipEl) {
+    if (chipEl.classList.contains('used')) return;
+    let target = vocabState.activeInput;
+    if (!target || target.disabled) {
+      target = document.querySelector('#vocabFillContainer .blank-input:not(:disabled)');
+    }
+    if (target) {
+      target.value = chipEl.dataset.word;
+      target.focus();
+      evaluateVocabBlank(target, true);
+    }
+  }
+  function markVocabChipUsed(word) {
+    const chips = Array.from(document.querySelectorAll('#vocabWordBankChips .word-chip:not(.used)'));
+    const match = chips.find(c => c.dataset.word.toLowerCase() === word.toLowerCase());
+    if (match) match.classList.add('used');
+  }
+
+  function evaluateVocabBlank(inputEl, isFinalAction) {
+    if (inputEl.disabled) return;
+    const userVal = inputEl.value.trim().toLowerCase().replace(/\s+/g, ' ');
+    const expected = inputEl.dataset.answer.trim().toLowerCase();
+    const index = inputEl.dataset.index;
+
+    if (!userVal) {
+      inputEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (userVal === expected) {
+      inputEl.value = inputEl.dataset.answer;
+      inputEl.classList.remove('incorrect');
+      inputEl.classList.add('correct');
+      inputEl.disabled = true;
+      document.getElementById(`vfill-card-${index}`).classList.add('solved');
+      markVocabChipUsed(inputEl.dataset.answer);
+      playSound('success');
+
+      vocabState.fillSolved++;
+      document.getElementById('vocabPart2Counter').textContent = `Solved: ${vocabState.fillSolved} / ${vocabState.fillItems.length}`;
+      checkVocabComplete();
+    } else if (isFinalAction || userVal.length >= expected.length) {
+      if (!inputEl.classList.contains('incorrect')) vocabState.wrong++;
+      inputEl.classList.remove('incorrect');
+      void inputEl.offsetWidth;
+      inputEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  function checkVocabComplete() {
+    const total = vocabState.matchItems.length + vocabState.fillItems.length;
+    if (vocabState.matchSolved + vocabState.fillSolved === total && !vocabState.congrats) {
+      vocabState.congrats = true;
+      setTimeout(() => showCongratulations(total, vocabState.wrong, "Vocabulary Mastery Achieved!"), 450);
+    }
+  }
+
+  // --- TAB 4: PUT THE TEXT IN ORDER (B, E, D, F, A, C) ---
+  const orderParagraphsData = [
+    {
+      letter: "A",
+      correctPos: "5",
+      text: "Edinburgh is also a city of culture. Writers like Walter Scott and J.K. Rowling lived here, and the National Museum of Scotland is free to visit."
+    },
+    {
+      letter: "B",
+      correctPos: "1",
+      text: "Edinburgh is the capital of Scotland and one of the most beautiful cities in Europe. It is famous for its long history and its friendly atmosphere. The city is small, so you can visit most places on foot."
+    },
+    {
+      letter: "C",
+      correctPos: "6",
+      text: "Finally, think about when to travel. Summer is warm and busy, while winter is cold but has the Christmas markets and Hogmanay."
+    },
+    {
+      letter: "D",
+      correctPos: "3",
+      text: "From the castle, walk down the Royal Mile. This famous street connects the castle with the Palace of Holyroodhouse, and on the way you can find shops, pubs and St Giles' Cathedral."
+    },
+    {
+      letter: "E",
+      correctPos: "2",
+      text: "The best place to start is Edinburgh Castle. It stands on top of an old volcano, and inside you can see the Scottish Crown Jewels and the Stone of Destiny."
+    },
+    {
+      letter: "F",
+      correctPos: "4",
+      text: "If you like nature, climb Arthur's Seat. The walk takes about one hour, and at the top you will have a great view of the city and the sea."
+    }
+  ];
+
+  let orderState = { items: [], solved: 0, wrong: 0, congrats: false };
+
+  function initOrderTab(shuffle = false) {
+    orderState = { items: [...orderParagraphsData], solved: 0, wrong: 0, congrats: false };
+    if (shuffle) orderState.items.sort(() => Math.random() - 0.5);
+
+    const container = document.getElementById('orderContainer');
+    container.innerHTML = orderState.items.map((item, idx) => `
+      <div class="order-item-card" id="order-card-${idx}">
+        <div class="order-left">
+          <div class="letter-badge">${item.letter}</div>
+          <p class="order-paragraph-text">${item.text}</p>
+        </div>
+        <div class="order-controls">
+          <button class="btn-tool-clean" onclick="speakText(\`${item.text.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+          <select
+            class="order-select"
+            id="order-sel-${idx}"
+            data-answer="${item.correctPos}"
+            onchange="evaluateOrderSelect(this, ${idx})"
+          >
+            <option value="">Position...</option>
+            <option value="1">1st Paragraph</option>
+            <option value="2">2nd Paragraph</option>
+            <option value="3">3rd Paragraph</option>
+            <option value="4">4th Paragraph</option>
+            <option value="5">5th Paragraph</option>
+            <option value="6">6th Paragraph</option>
+          </select>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function evaluateOrderSelect(selectEl, idx) {
+    if (selectEl.disabled) return;
+    const val = selectEl.value;
+    const expected = selectEl.dataset.answer;
+    if (!val) {
+      selectEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (val === expected) {
+      selectEl.classList.remove('incorrect');
+      selectEl.classList.add('correct');
+      selectEl.disabled = true;
+      document.getElementById(`order-card-${idx}`).classList.add('solved');
+      playSound('success');
+      orderState.solved++;
+
+      if (orderState.solved === orderState.items.length && !orderState.congrats) {
+        orderState.congrats = true;
+        setTimeout(() => showCongratulations(orderState.items.length, orderState.wrong, "Text Sequence Mastered!"), 450);
+      }
+    } else {
+      orderState.wrong++;
+      selectEl.classList.remove('incorrect');
+      void selectEl.offsetWidth;
+      selectEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  // --- TAB 5: LISTENING DICTATION PRACTICE ---
+  const dictationData = [
+    {
+      sentence: "Edinburgh Castle stands on top of an old volcano.",
+      hint: "9 words • Mentions where the famous castle is located."
+    },
+    {
+      sentence: "You can visit most of the main places on foot.",
+      hint: "10 words • Explains how easy it is to walk around the city."
+    },
+    {
+      sentence: "The Old Town has narrow streets and medieval houses.",
+      hint: "9 words • Uses two vocabulary adjectives from Part 1."
+    },
+    {
+      sentence: "We woke up early to watch the sunrise.",
+      hint: "8 words • Past Simple verb 'woke' + time of morning."
+    },
+    {
+      sentence: "Visitors can enter the cathedral for free.",
+      hint: "7 words • Talks about admission to St Giles' Cathedral."
+    },
+    {
+      sentence: "She bought two tartan scarves as souvenirs.",
+      hint: "7 words • Past Simple 'bought' + plural vocabulary word."
+    },
+    {
+      sentence: "The famous summer festival takes place in August.",
+      hint: "8 words • Mentions the major cultural event and month."
+    },
+    {
+      sentence: "Remember to take a raincoat and an umbrella.",
+      hint: "8 words • Weather advice for travellers to Scotland."
+    }
+  ];
+
+  let dictState = { items: [], solved: 0, wrong: 0, congrats: false };
+
+  function initDictationTab(shuffle = false) {
+    dictState = { items: [...dictationData], solved: 0, wrong: 0, congrats: false };
+    if (shuffle) dictState.items.sort(() => Math.random() - 0.5);
+
+    const container = document.getElementById('dictationContainer');
+    container.innerHTML = dictState.items.map((ex, index) => `
+      <div class="exercise-item" id="dict-card-${index}">
+        <div class="item-top">
+          <span class="badge-num-soft">Sentence ${index + 1} of ${dictState.items.length}</span>
+          <div class="item-tools">
+            <button class="btn-tool-clean" onclick="speakText(\`${ex.sentence.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+            <button class="btn-tool-clean" onclick="toggleHint('d', ${index})">💡 Hint</button>
+            <button class="btn-tool-clean" onclick="revealNextLetter(${index})">+1 Letter</button>
+          </div>
+        </div>
+        <div>
+          <input
+            type="text"
+            class="dictation-input"
+            id="dict-input-${index}"
+            data-answer="${ex.sentence}"
+            data-index="${index}"
+            placeholder="Type what you hear..."
+            autocomplete="off"
+            oninput="evaluateDictation(this, false)"
+            onblur="evaluateDictation(this, true)"
+          />
+        </div>
+        <div class="hint-box" id="hint-d-${index}">
+          <strong>Clue:</strong> ${ex.hint}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function toggleHint(prefix, index) {
+    const box = document.getElementById(`hint-${prefix}-${index}`);
+    if (box) box.classList.toggle('visible');
+  }
+
+  function normalizeText(str) {
+    return str
+      .toLowerCase()
+      .replace(/[.,!?;:"'’]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function revealNextLetter(index) {
+    const inputEl = document.getElementById(`dict-input-${index}`);
+    if (!inputEl || inputEl.disabled) return;
+
+    const target = inputEl.dataset.answer;
+    const current = inputEl.value;
+    let matchLen = 0;
+
+    while (
+      matchLen < current.length &&
+      matchLen < target.length &&
+      current[matchLen].toLowerCase() === target[matchLen].toLowerCase()
+    ) {
+      matchLen++;
+    }
+
+    if (matchLen < target.length) {
+      inputEl.value = target.slice(0, matchLen + 1);
+      inputEl.classList.remove('incorrect');
+      inputEl.focus();
+      evaluateDictation(inputEl, false);
+    }
+  }
+
+  function evaluateDictation(inputEl, isFinalAction) {
+    if (inputEl.disabled) return;
+    const userNorm = normalizeText(inputEl.value);
+    const targetRaw = inputEl.dataset.answer;
+    const targetNorm = normalizeText(targetRaw);
+    const index = inputEl.dataset.index;
+
+    if (!userNorm) {
+      inputEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (userNorm === targetNorm) {
+      inputEl.value = targetRaw;
+      inputEl.classList.remove('incorrect');
+      inputEl.classList.add('correct');
+      inputEl.disabled = true;
+      document.getElementById(`dict-card-${index}`).classList.add('solved');
+      playSound('success');
+
+      dictState.solved++;
+      if (dictState.solved === dictState.items.length && !dictState.congrats) {
+        dictState.congrats = true;
+        setTimeout(() => showCongratulations(dictState.items.length, dictState.wrong, "Listening Dictation Completed!"), 450);
+      }
+    } else if (isFinalAction || userNorm.length >= targetNorm.length) {
+      if (!inputEl.classList.contains('incorrect')) dictState.wrong++;
+      inputEl.classList.remove('incorrect');
+      void inputEl.offsetWidth;
+      inputEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  // --- CONGRATULATIONS MODAL & CONFETTI ---
+  function showCongratulations(total, wrong, title) {
+    const accuracy = Math.max(0, Math.round((total / Math.max(total, total + wrong)) * 100));
+    document.getElementById('congratsTitle').textContent = title;
+    document.getElementById('congratsSubtitle').textContent = `You completed all ${total} items in this section.`;
+
+    const scoreText = document.getElementById('finalScoreText');
+    const detailText = document.getElementById('finalDetailText');
+
+    if (wrong === 0) {
+      scoreText.textContent = "Accuracy: 100% — Flawless First Try!";
+      detailText.textContent = `You solved all ${total} items without a single mistake.`;
+    } else {
+      scoreText.textContent = `Accuracy: ${accuracy}% (${total} / ${total} Completed)`;
+      detailText.textContent = `You completed every item with ${wrong} correction${wrong === 1 ? '' : 's'} along the way.`;
+    }
+
+    openModal('congratsModal');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#006680', '#00a896', '#0284c7', '#f59e0b', '#10b981'];
+    const pieces = Array.from({ length: 130 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 9 + 5,
+      h: Math.random() * 5 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: Math.random() * 3.5 + 2,
+      vx: Math.random() * 2 - 1,
+      angle: Math.random() * 360,
+      spin: Math.random() * 6 - 3
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.angle += p.spin;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 160) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    animate();
+  }
+
+  // Initialize all tabs on load
+  initQuiz(false);
+  initVocabTab(false);
+  initOrderTab(false);
+  initDictationTab(false);
+</script>
+</body>
+</html>
