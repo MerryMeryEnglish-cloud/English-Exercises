@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Mery English — Coldplay: Paradise</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-dark: #006680;
+    --teal-mid: #008891;
+    --teal-bright: #00a896;
+    --teal-light: #e6f7f8;
+    --teal-border: #b8e6ea;
+    --blue-accent: #0284c7;
+    --blue-soft: #e0f2fe;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --amber-text: #92400e;
+    --success: #059669;
+    --success-bg: #d1fae5;
+    --error: #dc2626;
+    --error-bg: #fee2e2;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding-bottom: 60px;
+  }
+
+  /* Header matching image_6d9a51.png */
+  header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--teal-bright);
+    background: #ffffff;
+  }
+  .brand-text h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .brand-text span {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--teal-bright);
+    display: block;
+    margin-top: 2px;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .voice-selector-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal-border);
+    color: var(--text);
+    padding: 7px 14px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+  .voice-selector-wrap select {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    cursor: pointer;
+    outline: none;
+  }
+  .header-pill-btn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-dict {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    color: var(--amber-text);
+  }
+  .btn-dict:hover {
+    background: #fef3c7;
+    transform: translateY(-1px);
+  }
+  .btn-home {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-border);
+    color: var(--teal-dark);
+  }
+  .btn-home:hover {
+    background: #d1f2f5;
+    transform: translateY(-1px);
+  }
+  .btn-help-hdr {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+  }
+  .btn-help-hdr:hover {
+    background: #e2e8f0;
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1100px;
+    margin: 26px auto;
+    padding: 0 20px;
+  }
+
+  /* Tabs Bar (6 Tabs: Lyrics, Vocabulary, Sing Along, Exercise 1, Exercise 2, About the Group) */
+  .tabs-bar {
+    display: flex;
+    gap: 8px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 145px;
+    padding: 11px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover {
+    background: #f1f5f9;
+    color: var(--teal-dark);
+  }
+  .tab-btn.active {
+    background: var(--blue-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.28s ease;
+  }
+  .tab-panel.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Main White Card */
+  .card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+  }
+  .page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+
+  /* Banner instruction matching image_6d9f21.png */
+  .instruction-banner {
+    background: #f1f5f9;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    color: #334155;
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+  }
+
+  /* Lyrics Box matching image_6d9f21.png */
+  .lyrics-container-box {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    background: #ffffff;
+  }
+  .lyrics-song-heading {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    border-left: 4px solid var(--blue-accent);
+    padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  .recitation-bar {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .btn-recite-play {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+  }
+  .btn-recite-play:hover { background: #047857; }
+  .btn-recite-stop {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+  }
+  .btn-recite-stop:hover { background: #dc2626; }
+  .recite-status {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #065f46;
+  }
+
+  .lyrics-stanzas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: #1e293b;
+  }
+  .stanza {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    padding: 18px 20px;
+    border-radius: 12px;
+  }
+  .stanza p {
+    margin-bottom: 4px;
+  }
+  .hl-vocab {
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 5px;
+    border-bottom: 2px solid #f59e0b;
+    cursor: pointer;
+  }
+  .hl-vocab:hover {
+    background: #fde68a;
+  }
+
+  /* TAB 2: ANIMALS-STYLE VOCABULARY CARDS (image_6d887e.png) */
+  .section-title-teal {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+  .section-sub-teal {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0f2fe;
+  }
+  .vocab-grid-animals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .animals-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .animals-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 102, 128, 0.08);
+  }
+  .animals-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .animals-word {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    line-height: 1.25;
+  }
+  .animals-pill {
+    background: #ccfbf1;
+    color: #0f766e;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .animals-def {
+    color: #334155;
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .animals-example-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 13px 15px;
+    font-style: italic;
+    color: #334155;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+  .animals-card-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  .btn-listen-pair {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+  }
+  .btn-listen-pair:hover {
+    background: #f0f9ff;
+    border-color: var(--teal-dark);
+    color: var(--teal-dark);
+  }
+
+  /* TAB 3: SING ALONG VIDEO */
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    background: #000;
+    margin: 18px 0;
+  }
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* TAB 4: EXERCISE 1 - DRAG & DROP WORD BANK (SONG SENTENCES) */
+  .sticky-wordbank {
+    position: sticky;
+    top: 82px;
+    z-index: 80;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border: 2px solid #38bdf8;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.1);
+  }
+  .wb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+  }
+  .wb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .word-chip {
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.15s;
+  }
+  .word-chip:hover {
+    background: #0284c7;
+    color: white;
+    transform: translateY(-1px);
+  }
+  .word-chip.used {
+    opacity: 0.36;
+    text-decoration: line-through;
+    cursor: default;
+    background: #e2e8f0;
+    color: #64748b;
+    border-color: #cbd5e1;
+  }
+
+  .exercise-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .exercise-item.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .badge-num-soft {
+    background: #e0f2fe;
+    color: #0284c7;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 8px;
+  }
+  .item-tools {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-tool-clean {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s;
+  }
+  .btn-tool-clean:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+  }
+
+  .sentence-line {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .blank-input {
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    width: 195px;
+    text-align: center;
+    transition: all 0.2s;
+    background: #f8fafc;
+  }
+  .blank-input:focus {
+    outline: none;
+    border-color: #0284c7;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  }
+  .blank-input.correct, .dictation-input.correct {
+    border-color: var(--success) !important;
+    background: var(--success-bg) !important;
+    color: #065f46 !important;
+  }
+  .blank-input.incorrect, .dictation-input.incorrect {
+    border-color: var(--error) !important;
+    background: var(--error-bg) !important;
+    color: #991b1b !important;
+    animation: shake 0.3s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  /* TAB 5: DICTATION PRACTICE (image_6da24d.png) */
+  .dictation-input {
+    width: 100%;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    background: #ffffff;
+    transition: all 0.2s;
+  }
+  .dictation-input::placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+  }
+  .dictation-input:focus {
+    outline: none;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+  }
+
+  .hint-box {
+    display: none;
+    margin-top: 10px;
+    padding: 9px 14px;
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: #78350f;
+  }
+  .hint-box.visible {
+    display: block;
+  }
+
+  /* TAB 6: ABOUT THE GROUP (WIKIPEDIA SUMMARY + PHOTO) */
+  .band-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 768px) {
+    .band-hero { grid-template-columns: 1fr; }
+  }
+  .band-photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    background: #0f172a;
+  }
+  .band-photo-card img {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    display: block;
+  }
+  .band-photo-caption {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    background: #0f172a;
+  }
+  .band-bio-text h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-bottom: 10px;
+  }
+  .band-bio-text p {
+    color: #334155;
+    font-size: 0.96rem;
+    margin-bottom: 12px;
+  }
+  .band-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .band-fact-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px 17px;
+  }
+  .band-fact-box strong {
+    display: block;
+    color: var(--teal-dark);
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .band-fact-box span {
+    color: #1e293b;
+    font-size: 0.93rem;
+    font-weight: 600;
+  }
+
+  /* Footer Navigation inside Tabs */
+  .tab-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-reset {
+    background: #f1f5f9;
+    color: var(--text);
+    border: 1px solid #cbd5e1;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-reset:hover { background: #e2e8f0; }
+  .btn-next {
+    background: var(--blue-accent);
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
+    transition: all 0.2s;
+  }
+  .btn-next:hover {
+    background: #0369a1;
+    transform: translateY(-1px);
+  }
+
+  /* Modals */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open {
+    display: flex;
+  }
+  .modal-box {
+    background: white;
+    border-radius: 18px;
+    max-width: 540px;
+    width: 100%;
+    padding: 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    position: relative;
+    animation: popIn 0.25s ease;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .modal-close:hover { background: #e2e8f0; color: var(--text); }
+  .modal-box h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-bottom: 12px;
+  }
+  .modal-box ul {
+    padding-left: 20px;
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+  .modal-box li { margin-bottom: 8px; }
+
+  .score-pill {
+    display: inline-block;
+    background: var(--success-bg);
+    color: #065f46;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 1.05rem;
+    margin: 12px 0;
+  }
+
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 300;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- HEADER MATCHING IMAGE 1 (image_6d9a51.png) -->
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <h1>Merry Mery English</h1>
+        <span>Interactive Learning • Songs Series</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="voice-selector-wrap">
+        <span>🗣️ Voice:</span>
+        <select id="voicePresetSelect" aria-label="Select English Voice Accent and Gender">
+          <option value="uk-female">British Female</option>
+          <option value="uk-male">British Male</option>
+          <option value="us-female">American Female</option>
+          <option value="us-male">American Male</option>
+        </select>
+      </div>
+      <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="header-pill-btn btn-dict">📖 Dictionary</a>
+      <button class="header-pill-btn btn-help-hdr" onclick="openModal('helpModal')">❓ Help</button>
+      <a href="index.html" class="header-pill-btn btn-home">🏠 Home</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- NAVIGATION TABS -->
+  <div class="tabs-bar" role="tablist">
+    <button class="tab-btn active" onclick="switchTab(0)" id="tabBtn0">🎵 1. Lyrics</button>
+    <button class="tab-btn" onclick="switchTab(1)" id="tabBtn1">💡 2. Vocabulary</button>
+    <button class="tab-btn" onclick="switchTab(2)" id="tabBtn2">🎤 3. Sing Along</button>
+    <button class="tab-btn" onclick="switchTab(3)" id="tabBtn3">🧲 4. Song Drag & Drop</button>
+    <button class="tab-btn" onclick="switchTab(4)" id="tabBtn4">🎧 5. Dictation Practice</button>
+    <button class="tab-btn" onclick="switchTab(5)" id="tabBtn5">🎸 6. About the Group</button>
+  </div>
+
+  <!-- TAB 1: FULL LYRICS MATCHING IMAGE 2 (image_6d9f21.png) -->
+  <section class="tab-panel active" id="panel0">
+    <div class="card">
+      <h2 class="page-title">Paradise – Lyrics</h2>
+
+      <div class="instruction-banner">
+        Follow along with the lyrics of the song by Coldplay. Use the <strong>Listen</strong> button to listen to the full audio recitation in your chosen UK or US voice.
+      </div>
+
+      <div class="lyrics-container-box">
+        <div class="lyrics-song-heading">Paradise – Coldplay</div>
+
+        <div class="recitation-bar">
+          <button class="btn-recite-play" id="btnRecitePlay" onclick="toggleLyricsRecitation()">▶ Listen</button>
+          <button class="btn-recite-stop" onclick="stopSpeech()">■ Stop</button>
+          <span class="recite-status" id="reciteStatus">Ready to play</span>
+        </div>
+
+        <div class="lyrics-stanzas" id="fullLyricsText">
+          <div class="stanza">
+            <p>When she was just a girl, she <span class="hl-vocab" onclick="switchTab(1)">expected</span> the world</p>
+            <p>But it <span class="hl-vocab" onclick="switchTab(1)">flew away</span> from her reach</p>
+            <p>So she <span class="hl-vocab" onclick="switchTab(1)">ran away</span> in her sleep and <span class="hl-vocab" onclick="switchTab(1)">dreamed of</span></p>
+            <p>Para-para-paradise, para-para-paradise, para-para-paradise</p>
+            <p>Every time she closed her eyes</p>
+            <br>
+            <p>When she was just a girl, she <span class="hl-vocab" onclick="switchTab(1)">expected</span> the world</p>
+            <p>But it <span class="hl-vocab" onclick="switchTab(1)">flew away</span> from her reach and the bullets catch in her teeth</p>
+            <p>Life goes on, it gets so heavy</p>
+            <p><span class="hl-vocab" onclick="switchTab(1)">The wheel breaks the butterfly</span>, every tear a waterfall</p>
+          </div>
+
+          <div class="stanza">
+            <p>In the night, the stormy night, she'd close her eyes</p>
+            <p>In the night, the stormy night, away she'd fly</p>
+            <p>And <span class="hl-vocab" onclick="switchTab(1)">dream of</span> para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>She'd <span class="hl-vocab" onclick="switchTab(1)">dream of</span> para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>La-la-la-la-la-la-la</p>
+            <p>La-la-la-la-la-la-la-la-la-la</p>
+          </div>
+
+          <div class="stanza">
+            <p>And so lying underneath those stormy skies</p>
+            <p>She'd say, "oh</p>
+            <p>I know the sun must <span class="hl-vocab" onclick="switchTab(1)">set to rise</span>"</p>
+            <p>This could be para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>This could be para-para-paradise</p>
+            <p>(Oh-oh-oh-oh-oh, oh-oh-oh)</p>
+            <p>This could be para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>This could be para-para-paradise</p>
+            <p>(Oh-oh-oh-oh-oh, oh-oh)</p>
+            <p>This could be para-para-paradise</p>
+            <p>Para-para-paradise</p>
+            <p>This could be para-para-paradise</p>
+            <p>(Oh-oh-oh-oh-oh, oh-oh)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="resetTab1()">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(1)">Next Exercise: Vocabulary ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: ESSENTIAL & ATYPICAL VOCABULARY (ANIMALS STYLE) -->
+  <section class="tab-panel" id="panel1">
+    <div class="card">
+      <h2 class="section-title-teal">Essential & Atypical Vocabulary</h2>
+      <p class="section-sub-teal">Atypical terms and idiomatic phrases from the song. Listen will pronounce each word along with its example sentence.</p>
+
+      <div class="vocab-grid-animals" id="vocabContainer"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="renderVocabCards(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(2)">Next Exercise: Sing Along ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: SING ALONG VIDEO -->
+  <section class="tab-panel" id="panel2">
+    <div class="card">
+      <h2 class="section-title-teal">Sing Along — Coldplay "Paradise"</h2>
+      <p class="section-sub-teal">Watch and sing along with the synchronized lyrics video to master rhythm, Past Simple endings, and connected speech.</p>
+
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/wKi7vggFzjA?rel=0"
+          title="Coldplay - Paradise (Lyrics)"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="resetVideoTab()">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(3)">Next Exercise: Song Drag & Drop ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: EXERCISE 1 — DRAG & DROP WITH SONG SENTENCES -->
+  <section class="tab-panel" id="panel3">
+    <div class="card">
+      <h2 class="section-title-teal">Song Lyrics — Drag & Drop Practice</h2>
+      <p class="section-sub-teal">Drag each expression from the sticky Word Bank into the correct sentence from the song (or click a chip to fill the active box). Verification is automatic!</p>
+
+      <div class="sticky-wordbank">
+        <div class="wb-header">
+          <span>🧲 Drag & Drop Word Bank</span>
+          <span id="progressCounter4">Solved: 0 / 8</span>
+        </div>
+        <div class="wb-chips" id="wordBankChips"></div>
+      </div>
+
+      <div id="exercisesContainer4"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initTab4(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(4)">Next Exercise: Dictation Practice ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: EXERCISE 2 — DICTATION PRACTICE MATCHING IMAGE 3 (image_6da24d.png) -->
+  <section class="tab-panel" id="panel4">
+    <div class="card">
+      <h2 class="page-title" style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span>🎧</span> Dictation Practice
+      </h2>
+      <p class="section-sub-teal" style="border-bottom:none; padding-bottom:4px; margin-bottom:18px;">
+        Listen to each sentence carefully and type exactly what you hear. Use the <strong>Hint</strong> button if you need assistance, or <strong>+1 Letter</strong> to reveal a character.
+      </p>
+
+      <div id="exercisesContainer5"></div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="initTab5(true)">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(5)">Next: About the Group ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 6: ABOUT THE GROUP (WIKIPEDIA SUMMARY + BAND PHOTO) -->
+  <section class="tab-panel" id="panel5">
+    <div class="card">
+      <h2 class="section-title-teal">About the Group — Coldplay</h2>
+      <p class="section-sub-teal">Encyclopedic overview of the British rock band behind "Paradise".</p>
+
+      <div class="audio-bar" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:22px; padding:12px 16px; background:#f1f5f9; border-radius:12px;">
+        <button class="btn-recite-play" style="background:#006680;" id="btnPlayBio" onclick="toggleBioAudio()">▶ Listen to Band Biography</button>
+        <button class="btn-recite-stop" onclick="stopSpeech()">■ Stop</button>
+      </div>
+
+      <div class="band-hero">
+        <div class="band-photo-card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/ColdplayBBC071221_%28cropped%29.jpg/960px-ColdplayBBC071221_%28cropped%29.jpg"
+            alt="Coldplay performing live"
+            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/8b/Coldplay_-_Global_Citizen_Festival_Hamburg_02.jpg'">
+          <div class="band-photo-caption">
+            Coldplay (Chris Martin, Jonny Buckland, Guy Berryman, and Will Champion) • Source: Wikimedia Commons
+          </div>
+        </div>
+
+        <div class="band-bio-text" id="bandBioText">
+          <h3>Origins & Global Impact</h3>
+          <p>
+            <strong>Coldplay</strong> are a British rock band formed in London in 1997. The group consists of vocalist and pianist <strong>Chris Martin</strong>, guitarist <strong>Jonny Buckland</strong>, bassist <strong>Guy Berryman</strong>, and drummer and percussionist <strong>Will Champion</strong>, alongside manager Phil Harvey.
+          </p>
+          <p>
+            After meeting at University College London, they achieved worldwide fame with their 2000 debut album <em>Parachutes</em> and the breakthrough single <em>"Yellow"</em>. Over the past two decades, Coldplay have become one of the best-selling music acts of all time, known for stadium anthems, atmospheric piano melodies, and emotionally resonant storytelling.
+          </p>
+          <p>
+            Released in September 2011 as the second single from their fifth studio album <em>Mylo Xyloto</em>, <strong>"Paradise"</strong> topped charts across Europe and earned a Grammy nomination for Best Pop Duo/Group Performance.
+          </p>
+        </div>
+      </div>
+
+      <div class="band-facts-grid">
+        <div class="band-fact-box">
+          <strong>Origin</strong>
+          <span>London, England (1997)</span>
+        </div>
+        <div class="band-fact-box">
+          <strong>Core Members</strong>
+          <span>Chris Martin, Jonny Buckland, Guy Berryman, Will Champion</span>
+        </div>
+        <div class="band-fact-box">
+          <strong>Album ("Paradise")</strong>
+          <span>Mylo Xyloto (2011)</span>
+        </div>
+        <div class="band-fact-box">
+          <strong>Major Honors</strong>
+          <span>7 Grammy Awards & 9 Brit Awards</span>
+        </div>
+      </div>
+
+      <div class="tab-footer">
+        <button class="btn-reset" onclick="resetTab6()">🔄 Reset & Shuffle</button>
+        <button class="btn-next" onclick="switchTab(0)">Back to Start: Lyrics ➔</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HELP MODAL -->
+<div class="modal-overlay" id="helpModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('helpModal')">✕</button>
+    <h3>How to Use This Lesson</h3>
+    <ul>
+      <li><strong>Voice Selector (Top Bar):</strong> Switch between <em>British Female, British Male, American Female,</em> and <em>American Male</em> at any time. Every audio button across the lesson will use your chosen accent and voice.</li>
+      <li><strong>Tab 1 (Lyrics):</strong> Read the complete lyrics of <em>"Paradise"</em> and press <strong>▶ Listen</strong> for an audio recitation.</li>
+      <li><strong>Tab 2 (Vocabulary):</strong> Study each key phrase and press <strong>🔊 Listen Word & Example</strong> to hear the expression and an everyday example.</li>
+      <li><strong>Tab 3 (Sing Along):</strong> Watch the YouTube lyric video and sing along.</li>
+      <li><strong>Tab 4 (Song Drag & Drop):</strong> Drag phrases from the sticky Word Bank into the song lines. Answers verify automatically!</li>
+      <li><strong>Tab 5 (Dictation Practice):</strong> Listen to 10 short everyday sentences using the song's expressions and Past Simple verbs, then type exactly what you hear. Use <strong>💡 Hint</strong> or <strong>+1 Letter</strong> whenever you need help.</li>
+      <li><strong>Tab 6 (About the Group):</strong> Read and listen to Coldplay's biography.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONGRATULATIONS MODAL -->
+<div class="modal-overlay" id="congratsModal">
+  <div class="modal-box" style="text-align: center;">
+    <button class="modal-close" onclick="closeModal('congratsModal')">✕</button>
+    <div style="font-size: 3rem; margin-bottom: 6px;">🎉</div>
+    <h3 id="congratsTitle">Outstanding Work!</h3>
+    <p id="congratsSubtitle" style="color: var(--muted); margin-bottom: 8px;">You completed all sentences in this exercise.</p>
+    <div class="score-pill" id="finalScoreText">Accuracy: 100%</div>
+    <p id="finalDetailText" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 20px;"></p>
+    <button class="btn-next" onclick="closeModal('congratsModal')">Review My Answers</button>
+  </div>
+</div>
+
+<script>
+  // --- WEB AUDIO FEEDBACK ---
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playSound(type) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+
+    if (type === 'success') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.09);
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+      osc.start(now);
+      osc.stop(now + 0.32);
+    } else {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.linearRampToValueAtTime(175, now + 0.22);
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    }
+  }
+
+  // --- VOICE SELECTION ENGINE (UK/US FEMALE & MALE) ---
+  let availableVoices = [];
+  function loadVoices() {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+  loadVoices();
+  if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  function getSelectedVoiceConfig() {
+    const preset = document.getElementById('voicePresetSelect').value;
+    const isUK = preset.startsWith('uk');
+    const isFemale = preset.endsWith('female');
+    const targetLang = isUK ? 'en-GB' : 'en-US';
+
+    if (!availableVoices.length) availableVoices = window.speechSynthesis.getVoices();
+
+    const langVoices = availableVoices.filter(v =>
+      v.lang.toLowerCase().replace('_', '-').startsWith(targetLang.toLowerCase())
+    );
+
+    const femaleHints = ['female', 'hazel', 'sonia', 'libby', 'kate', 'serena', 'samantha', 'victoria', 'zira', 'jenny', 'aria', 'ava', 'sara', 'google uk english female'];
+    const maleHints = ['male', 'daniel', 'ryan', 'george', 'arthur', 'oliver', 'david', 'mark', 'guy', 'alex', 'matthew', 'google uk english male'];
+
+    let chosen = null;
+    if (langVoices.length > 0) {
+      const hints = isFemale ? femaleHints : maleHints;
+      chosen = langVoices.find(v => hints.some(h => v.name.toLowerCase().includes(h)));
+      if (!chosen) {
+        chosen = isFemale ? langVoices[0] : (langVoices[1] || langVoices[0]);
+      }
+    } else {
+      chosen = availableVoices.find(v => v.lang.toLowerCase().startsWith('en')) || null;
+    }
+
+    // Subtle pitch fallback when browser only exposes a single voice per locale
+    let pitch = 1.0;
+    if (chosen) {
+      const lowerName = chosen.name.toLowerCase();
+      const looksFemale = femaleHints.some(h => lowerName.includes(h));
+      const looksMale = maleHints.some(h => lowerName.includes(h));
+      if (!isFemale && looksFemale && !looksMale) pitch = 0.82;
+      if (isFemale && looksMale && !looksFemale) pitch = 1.16;
+    } else {
+      pitch = isFemale ? 1.12 : 0.85;
+    }
+
+    return { voice: chosen, lang: targetLang, pitch };
+  }
+
+  function applyVoiceToUtterance(utterance, rate = 0.94) {
+    const cfg = getSelectedVoiceConfig();
+    if (cfg.voice) utterance.voice = cfg.voice;
+    utterance.lang = cfg.lang;
+    utterance.pitch = cfg.pitch;
+    utterance.rate = rate;
+  }
+
+  // --- SPEECH CONTROLS ---
+  let activeLongAudio = null; // 'lyrics' | 'bio' | null
+  let isPausedAudio = false;
+
+  function speakText(text) {
+    window.speechSynthesis.cancel();
+    activeLongAudio = null;
+    isPausedAudio = false;
+    updateLongAudioButtons();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    applyVoiceToUtterance(utterance, 0.93);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakWordAndExample(word, example) {
+    window.speechSynthesis.cancel();
+    activeLongAudio = null;
+    isPausedAudio = false;
+    updateLongAudioButtons();
+
+    const uWord = new SpeechSynthesisUtterance(word);
+    applyVoiceToUtterance(uWord, 0.9);
+
+    const uExample = new SpeechSynthesisUtterance(example);
+    applyVoiceToUtterance(uExample, 0.94);
+
+    uWord.onend = () => {
+      setTimeout(() => {
+        window.speechSynthesis.speak(uExample);
+      }, 280);
+    };
+    window.speechSynthesis.speak(uWord);
+  }
+
+  function toggleLyricsRecitation() {
+    if (activeLongAudio !== 'lyrics') {
+      window.speechSynthesis.cancel();
+      const cleanLyrics = `
+        When she was just a girl, she expected the world.
+        But it flew away from her reach.
+        So she ran away in her sleep and dreamed of paradise.
+        Every time she closed her eyes.
+        When she was just a girl, she expected the world.
+        But it flew away from her reach and the bullets catch in her teeth.
+        Life goes on, it gets so heavy.
+        The wheel breaks the butterfly, every tear a waterfall.
+        In the night, the stormy night, she'd close her eyes.
+        In the night, the stormy night, away she'd fly.
+        And dream of paradise.
+        She'd dream of paradise.
+        And so lying underneath those stormy skies,
+        She'd say, oh, I know the sun must set to rise.
+        This could be paradise.
+      `;
+      const utterance = new SpeechSynthesisUtterance(cleanLyrics);
+      applyVoiceToUtterance(utterance, 0.92);
+      utterance.onend = () => {
+        activeLongAudio = null;
+        isPausedAudio = false;
+        updateLongAudioButtons();
+      };
+      window.speechSynthesis.speak(utterance);
+      activeLongAudio = 'lyrics';
+      isPausedAudio = false;
+      updateLongAudioButtons();
+    } else if (!isPausedAudio) {
+      window.speechSynthesis.pause();
+      isPausedAudio = true;
+      updateLongAudioButtons();
+    } else {
+      window.speechSynthesis.resume();
+      isPausedAudio = false;
+      updateLongAudioButtons();
+    }
+  }
+
+  function toggleBioAudio() {
+    if (activeLongAudio !== 'bio') {
+      window.speechSynthesis.cancel();
+      const text = document.getElementById('bandBioText').innerText.replace('Origins & Global Impact', '').trim();
+      const utterance = new SpeechSynthesisUtterance(text);
+      applyVoiceToUtterance(utterance, 0.94);
+      utterance.onend = () => {
+        activeLongAudio = null;
+        isPausedAudio = false;
+        updateLongAudioButtons();
+      };
+      window.speechSynthesis.speak(utterance);
+      activeLongAudio = 'bio';
+      isPausedAudio = false;
+      updateLongAudioButtons();
+    } else if (!isPausedAudio) {
+      window.speechSynthesis.pause();
+      isPausedAudio = true;
+      updateLongAudioButtons();
+    } else {
+      window.speechSynthesis.resume();
+      isPausedAudio = false;
+      updateLongAudioButtons();
+    }
+  }
+
+  function stopSpeech() {
+    window.speechSynthesis.cancel();
+    activeLongAudio = null;
+    isPausedAudio = false;
+    updateLongAudioButtons();
+  }
+
+  function updateLongAudioButtons() {
+    const btnRecite = document.getElementById('btnRecitePlay');
+    const statusRecite = document.getElementById('reciteStatus');
+    const btnBio = document.getElementById('btnPlayBio');
+
+    if (btnRecite && statusRecite) {
+      if (activeLongAudio === 'lyrics' && !isPausedAudio) {
+        btnRecite.innerHTML = '⏸ Pause';
+        statusRecite.textContent = 'Playing recitation...';
+      } else if (activeLongAudio === 'lyrics' && isPausedAudio) {
+        btnRecite.innerHTML = '▶ Resume';
+        statusRecite.textContent = 'Paused';
+      } else {
+        btnRecite.innerHTML = '▶ Listen';
+        statusRecite.textContent = 'Ready to play';
+      }
+    }
+
+    if (btnBio) {
+      if (activeLongAudio === 'bio' && !isPausedAudio) {
+        btnBio.innerHTML = '⏸ Pause Biography';
+      } else if (activeLongAudio === 'bio' && isPausedAudio) {
+        btnBio.innerHTML = '▶ Resume Biography';
+      } else {
+        btnBio.innerHTML = '▶ Listen to Band Biography';
+      }
+    }
+  }
+
+  // --- TAB NAVIGATION ---
+  function switchTab(index) {
+    stopSpeech();
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.tab-panel').forEach((panel, i) => {
+      panel.classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // --- MODALS ---
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  // --- TAB 2 DATA: ANIMALS-STYLE VOCABULARY CARDS ---
+  const vocabData = [
+    {
+      word: "Expected",
+      pos: "verb (past)",
+      definition: "Believed or anticipated that something would happen or arrive in a certain way.",
+      example: "We expected the morning train to arrive on time, so the delay surprised everyone."
+    },
+    {
+      word: "Run Away",
+      pos: "phrasal verb",
+      definition: "To escape from a place, person, or overwhelming emotional situation (past: ran away).",
+      example: "When the loud thunder started, the frightened puppy ran away and hid under the bed."
+    },
+    {
+      word: "Dream Of",
+      pos: "phrasal verb",
+      definition: "To imagine or deeply wish for something ideal in the future (past: dreamed of).",
+      example: "Ever since visiting Kyoto, Clara has dreamed of opening her own artisan tea house."
+    },
+    {
+      word: "Fly Away",
+      pos: "phrasal verb",
+      definition: "To disappear rapidly or move out of reach like a bird taking flight (past: flew away).",
+      example: "As soon as she opened the garden gate, the colorful butterfly flew away over the trees."
+    },
+    {
+      word: "The Wheel Breaks the Butterfly",
+      pos: "idiom",
+      definition: "A literary metaphor for using massive, harsh force to crush something fragile and innocent.",
+      example: "Imposing an enormous penalty for a tiny clerical mistake felt like using a wheel to break a butterfly."
+    },
+    {
+      word: "Set to Rise",
+      pos: "idiom",
+      definition: "Ready, positioned, or destined to ascend, improve, or shine after a dark period.",
+      example: "After years of quiet dedication, the young architect's career is finally set to rise."
+    }
+  ];
+
+  function renderVocabCards(shuffle = false) {
+    const container = document.getElementById('vocabContainer');
+    let list = [...vocabData];
+    if (shuffle) list.sort(() => Math.random() - 0.5);
+
+    container.innerHTML = list.map(item => `
+      <div class="animals-card">
+        <div>
+          <div class="animals-card-top">
+            <div class="animals-word">${item.word}</div>
+            <span class="animals-pill">${item.pos}</span>
+          </div>
+          <p class="animals-def">${item.definition}</p>
+          <div class="animals-example-box">"${item.example}"</div>
+        </div>
+        <div class="animals-card-footer">
+          <button class="btn-listen-pair" onclick="speakWordAndExample(\`${item.word.replace(/'/g, "\'")}\`, \`${item.example.replace(/'/g, "\'")}\`)">
+            🔊 Listen Word & Example
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function resetTab1() {
+    stopSpeech();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function resetVideoTab() {
+    const iframe = document.querySelector('#panel2 iframe');
+    if (iframe) iframe.src = iframe.src;
+  }
+
+  function resetTab6() {
+    stopSpeech();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // --- TAB 4 DATA: SONG SENTENCES DRAG & DROP ---
+  const tab4Bank = [
+    {
+      before: "When she was just a girl, she",
+      answer: "expected",
+      after: "the world.",
+      fullAudio: "When she was just a girl, she expected the world.",
+      hint: "Regular Past Simple of 'expect' (ends in -ed)."
+    },
+    {
+      before: "But it",
+      answer: "flew away",
+      after: "from her reach.",
+      fullAudio: "But it flew away from her reach.",
+      hint: "Irregular Past Simple of 'fly away' (fly → flew)."
+    },
+    {
+      before: "So she",
+      answer: "ran away",
+      after: "in her sleep.",
+      fullAudio: "So she ran away in her sleep.",
+      hint: "Irregular Past Simple of 'run away' (run → ran)."
+    },
+    {
+      before: "And",
+      answer: "dreamed of",
+      after: "para-para-paradise.",
+      fullAudio: "And dreamed of paradise.",
+      hint: "Past Simple of 'dream' + preposition 'of'."
+    },
+    {
+      before: "Every time she",
+      answer: "closed her eyes",
+      after: ".",
+      fullAudio: "Every time she closed her eyes.",
+      hint: "Regular Past Simple of 'close' + 'her eyes'."
+    },
+    {
+      before: "Life goes on, it",
+      answer: "gets so heavy",
+      after: ".",
+      fullAudio: "Life goes on, it gets so heavy.",
+      hint: "Three-word phrase describing overwhelming difficulty."
+    },
+    {
+      before: "In the song's metaphor,",
+      answer: "the wheel breaks the butterfly",
+      after: ", every tear a waterfall.",
+      fullAudio: "The wheel breaks the butterfly, every tear a waterfall.",
+      hint: "Five-word poetic expression from the second verse."
+    },
+    {
+      before: "I know the sun must",
+      answer: "set to rise",
+      after: ".",
+      fullAudio: "I know the sun must set to rise.",
+      hint: "Three-word idiom meaning 'go down in order to come up again'."
+    }
+  ];
+
+  let tab4State = { items: [], activeInput: null, wrong: 0, solved: 0, congrats: false };
+
+  function initTab4(shuffle = false) {
+    tab4State = { items: [...tab4Bank], activeInput: null, wrong: 0, solved: 0, congrats: false };
+    if (shuffle) tab4State.items.sort(() => Math.random() - 0.5);
+
+    document.getElementById('progressCounter4').textContent = `Solved: 0 / ${tab4State.items.length}`;
+    renderWordBank();
+    renderTab4List();
+  }
+
+  function renderWordBank() {
+    const wb = document.getElementById('wordBankChips');
+    const answers = tab4State.items.map(ex => ex.answer);
+    answers.sort(() => Math.random() - 0.5);
+
+    wb.innerHTML = answers.map((word, idx) => `
+      <span
+        class="word-chip"
+        draggable="true"
+        id="chip-${idx}"
+        data-word="${word}"
+        ondragstart="handleDragStart(event)"
+        onclick="handleChipClick(this)"
+      >${word}</span>
+    `).join('');
+  }
+
+  function renderTab4List() {
+    const container = document.getElementById('exercisesContainer4');
+    const list = tab4State.items;
+
+    container.innerHTML = list.map((ex, index) => `
+      <div class="exercise-item" id="ex-card-4-${index}">
+        <div class="item-top">
+          <span class="badge-num-soft">Sentence ${index + 1} of ${list.length}</span>
+          <div class="item-tools">
+            <button class="btn-tool-clean" onclick="speakText(\`${ex.fullAudio.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+            <button class="btn-tool-clean" onclick="toggleHint(4, ${index})">💡 Hint</button>
+          </div>
+        </div>
+        <div class="sentence-line">
+          <span>${ex.before}</span>
+          <input
+            type="text"
+            class="blank-input"
+            id="input-4-${index}"
+            data-answer="${ex.answer}"
+            data-index="${index}"
+            placeholder="drag or type..."
+            autocomplete="off"
+            onfocus="tab4State.activeInput = this"
+            oninput="evaluateBlankInput(this, false)"
+            onblur="evaluateBlankInput(this, true)"
+            ondragover="event.preventDefault()"
+            ondrop="handleDrop(event, this)"
+          />
+          <span>${ex.after}</span>
+        </div>
+        <div class="hint-box" id="hint-4-${index}">
+          <strong>Clue:</strong> ${ex.hint}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleDragStart(e) {
+    if (e.target.classList.contains('used')) {
+      e.preventDefault();
+      return;
+    }
+    e.dataTransfer.setData('text/plain', e.target.dataset.word);
+  }
+
+  function handleDrop(e, inputEl) {
+    e.preventDefault();
+    if (inputEl.disabled) return;
+    const word = e.dataTransfer.getData('text/plain');
+    if (!word) return;
+    inputEl.value = word;
+    evaluateBlankInput(inputEl, true);
+  }
+
+  function handleChipClick(chipEl) {
+    if (chipEl.classList.contains('used')) return;
+    let target = tab4State.activeInput;
+    if (!target || target.disabled) {
+      target = document.querySelector('#exercisesContainer4 .blank-input:not(:disabled)');
+    }
+    if (target) {
+      target.value = chipEl.dataset.word;
+      target.focus();
+      evaluateBlankInput(target, true);
+    }
+  }
+
+  function markChipUsed(word) {
+    const chips = Array.from(document.querySelectorAll('#wordBankChips .word-chip:not(.used)'));
+    const match = chips.find(c => c.dataset.word.toLowerCase() === word.toLowerCase());
+    if (match) match.classList.add('used');
+  }
+
+  function evaluateBlankInput(inputEl, isFinalAction) {
+    if (inputEl.disabled) return;
+    const userVal = inputEl.value.trim().toLowerCase().replace(/\s+/g, ' ');
+    const expected = inputEl.dataset.answer.trim().toLowerCase();
+    const index = inputEl.dataset.index;
+
+    if (!userVal) {
+      inputEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (userVal === expected) {
+      inputEl.value = inputEl.dataset.answer;
+      inputEl.classList.remove('incorrect');
+      inputEl.classList.add('correct');
+      inputEl.disabled = true;
+      document.getElementById(`ex-card-4-${index}`).classList.add('solved');
+      markChipUsed(inputEl.dataset.answer);
+      playSound('success');
+
+      tab4State.solved++;
+      document.getElementById('progressCounter4').textContent = `Solved: ${tab4State.solved} / ${tab4State.items.length}`;
+
+      if (tab4State.solved === tab4State.items.length && !tab4State.congrats) {
+        tab4State.congrats = true;
+        setTimeout(() => showCongratulations(tab4State.items.length, tab4State.wrong, "Song Lyrics Completed!"), 450);
+      }
+    } else if (isFinalAction || userVal.length >= expected.length) {
+      if (!inputEl.classList.contains('incorrect')) tab4State.wrong++;
+      inputEl.classList.remove('incorrect');
+      void inputEl.offsetWidth;
+      inputEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  // --- TAB 5 DATA: 10 SHORT DICTATION SENTENCES (IMAGE 3: image_6da24d.png) ---
+  // Uses song expressions & classic irregular past verbs in short, natural sentences different from the song
+  const tab5Bank = [
+    {
+      sentence: "The scared dog ran away into the park.",
+      hint: "7 words • Past Simple of 'run away' (ran away)."
+    },
+    {
+      sentence: "We expected the train to arrive early.",
+      hint: "7 words • Regular Past Simple of 'expect' (expected)."
+    },
+    {
+      sentence: "She dreamed of living near the ocean.",
+      hint: "7 words • Past Simple expression 'dreamed of' + -ing verb."
+    },
+    {
+      sentence: "Two yellow birds flew away over the trees.",
+      hint: "8 words • Irregular Past Simple of 'fly away' (flew away)."
+    },
+    {
+      sentence: "The sun is set to rise at six.",
+      hint: "8 words • Song idiom 'set to rise' + time."
+    },
+    {
+      sentence: "He closed his eyes and fell asleep.",
+      hint: "7 words • Regular Past 'closed' + irregular Past 'fell'."
+    },
+    {
+      sentence: "Yesterday we went to a great concert.",
+      hint: "7 words • Classic irregular Past Simple of 'go' (went)."
+    },
+    {
+      sentence: "She caught the last bus home last night.",
+      hint: "8 words • Irregular Past Simple of 'catch' (caught)."
+    },
+    {
+      sentence: "My brother broke his phone on Monday.",
+      hint: "7 words • Irregular Past Simple of 'break' (broke)."
+    },
+    {
+      sentence: "They said the weather got very cold.",
+      hint: "7 words • Irregular Past Simple of 'say' (said) and 'get' (got)."
+    }
+  ];
+
+  let tab5State = { items: [], wrong: 0, solved: 0, congrats: false };
+
+  function initTab5(shuffle = false) {
+    tab5State = { items: [...tab5Bank], wrong: 0, solved: 0, congrats: false };
+    if (shuffle) tab5State.items.sort(() => Math.random() - 0.5);
+    renderTab5List();
+  }
+
+  function renderTab5List() {
+    const container = document.getElementById('exercisesContainer5');
+    const list = tab5State.items;
+
+    container.innerHTML = list.map((ex, index) => `
+      <div class="exercise-item" id="ex-card-5-${index}">
+        <div class="item-top">
+          <span class="badge-num-soft">Sentence ${index + 1} of ${list.length}</span>
+          <div class="item-tools">
+            <button class="btn-tool-clean" onclick="speakText(\`${ex.sentence.replace(/'/g, "\'")}\`)">🔊 Listen</button>
+            <button class="btn-tool-clean" onclick="toggleHint(5, ${index})">💡 Hint</button>
+            <button class="btn-tool-clean" onclick="revealNextLetter(${index})">+1 Letter</button>
+          </div>
+        </div>
+        <div>
+          <input
+            type="text"
+            class="dictation-input"
+            id="dict-input-${index}"
+            data-answer="${ex.sentence}"
+            data-index="${index}"
+            placeholder="Type what you hear..."
+            autocomplete="off"
+            oninput="evaluateDictation(this, false)"
+            onblur="evaluateDictation(this, true)"
+          />
+        </div>
+        <div class="hint-box" id="hint-5-${index}">
+          <strong>Clue:</strong> ${ex.hint}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function toggleHint(tabNum, index) {
+    const box = document.getElementById(`hint-${tabNum}-${index}`);
+    box.classList.toggle('visible');
+  }
+
+  function normalizeText(str) {
+    return str
+      .toLowerCase()
+      .replace(/[.,!?;:"'’]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function revealNextLetter(index) {
+    const inputEl = document.getElementById(`dict-input-${index}`);
+    if (!inputEl || inputEl.disabled) return;
+
+    const target = inputEl.dataset.answer;
+    const current = inputEl.value;
+    let matchLen = 0;
+
+    while (
+      matchLen < current.length &&
+      matchLen < target.length &&
+      current[matchLen].toLowerCase() === target[matchLen].toLowerCase()
+    ) {
+      matchLen++;
+    }
+
+    if (matchLen < target.length) {
+      inputEl.value = target.slice(0, matchLen + 1);
+      inputEl.classList.remove('incorrect');
+      inputEl.focus();
+      evaluateDictation(inputEl, false);
+    }
+  }
+
+  function evaluateDictation(inputEl, isFinalAction) {
+    if (inputEl.disabled) return;
+    const userNorm = normalizeText(inputEl.value);
+    const targetRaw = inputEl.dataset.answer;
+    const targetNorm = normalizeText(targetRaw);
+    const index = inputEl.dataset.index;
+
+    if (!userNorm) {
+      inputEl.classList.remove('incorrect');
+      return;
+    }
+
+    if (userNorm === targetNorm) {
+      inputEl.value = targetRaw;
+      inputEl.classList.remove('incorrect');
+      inputEl.classList.add('correct');
+      inputEl.disabled = true;
+      document.getElementById(`ex-card-5-${index}`).classList.add('solved');
+      playSound('success');
+
+      tab5State.solved++;
+      if (tab5State.solved === tab5State.items.length && !tab5State.congrats) {
+        tab5State.congrats = true;
+        setTimeout(() => showCongratulations(tab5State.items.length, tab5State.wrong, "Dictation Practice Mastered!"), 450);
+      }
+    } else if (isFinalAction || userNorm.length >= targetNorm.length) {
+      if (!inputEl.classList.contains('incorrect')) tab5State.wrong++;
+      inputEl.classList.remove('incorrect');
+      void inputEl.offsetWidth;
+      inputEl.classList.add('incorrect');
+      playSound('error');
+    }
+  }
+
+  // --- CONGRATULATIONS MODAL & CONFETTI ---
+  function showCongratulations(total, wrong, title) {
+    const accuracy = Math.max(0, Math.round((total / Math.max(total, total + wrong)) * 100));
+    document.getElementById('congratsTitle').textContent = title;
+    document.getElementById('congratsSubtitle').textContent = `You completed all ${total} sentences in this section.`;
+
+    const scoreText = document.getElementById('finalScoreText');
+    const detailText = document.getElementById('finalDetailText');
+
+    if (wrong === 0) {
+      scoreText.textContent = "Accuracy: 100% — Flawless First Try!";
+      detailText.textContent = `You solved all ${total} sentences without a single mistake.`;
+    } else {
+      scoreText.textContent = `Accuracy: ${accuracy}% (${total} / ${total} Completed)`;
+      detailText.textContent = `You completed every sentence with ${wrong} correction${wrong === 1 ? '' : 's'} along the way.`;
+    }
+
+    openModal('congratsModal');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#006680', '#00a896', '#0284c7', '#f59e0b', '#10b981'];
+    const pieces = Array.from({ length: 130 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 9 + 5,
+      h: Math.random() * 5 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: Math.random() * 3.5 + 2,
+      vx: Math.random() * 2 - 1,
+      angle: Math.random() * 360,
+      spin: Math.random() * 6 - 3
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.angle += p.spin;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 160) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    animate();
+  }
+
+  // Initialize on load
+  renderVocabCards(false);
+  initTab4(false);
+  initTab5(false);
+</script>
+</body>
+</html>
