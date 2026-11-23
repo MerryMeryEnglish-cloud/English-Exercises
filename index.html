@@ -88,6 +88,21 @@
       letter-spacing: -0.5px;
     }
 
+    .brand-logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #0d9488;
+      box-shadow: 0 3px 10px rgba(13, 148, 136, 0.18);
+      background: #ffffff;
+    }
+
+    .brand-logo-img.topbar-logo {
+      width: 42px;
+      height: 42px;
+    }
+
     .logo-text {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
@@ -96,13 +111,13 @@
     }
 
     .logo-text span {
-      color: var(--primary);
+      color: #0d9488;
     }
 
     .login-title {
       font-size: 1.65rem;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 22px;
     }
 
     .login-subtitle {
@@ -778,12 +793,11 @@
   <section id="login-screen">
     <div class="login-card">
       <div class="logo-badge">
-        <div class="logo-icon">MM</div>
+        <img src="logo.png" alt="Merry Mery English" class="brand-logo-img" />
         <div class="logo-text">Merry Mery <span>English</span></div>
       </div>
 
       <h1 class="login-title">Welcome back!</h1>
-      <p class="login-subtitle">Ingresá para ver tu progreso, nivel CEFR y actividades personalizadas.</p>
 
       <form id="login-form">
         <div class="form-group">
@@ -815,7 +829,7 @@
     <header class="topbar">
       <div class="topbar-inner">
         <div class="logo-badge" style="margin-bottom:0;">
-          <div class="logo-icon">MM</div>
+          <img src="logo.png" alt="Merry Mery English" class="brand-logo-img topbar-logo" />
           <div class="logo-text">Merry Mery <span>English</span></div>
         </div>
 
