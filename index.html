@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merry Mery English | Student & Coach Portal</title>
+  <title>Merry Mery English | Ejercicios Interactivos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
       --primary-light: #eef2ff;
       --primary-dark: #3730a3;
       --accent: #ec4899;
-      --accent-light: #fdf2f8;
       --teal: #0d9488;
       --amber: #d97706;
       --amber-light: #fffbeb;
@@ -45,158 +44,7 @@
       font-family: 'Outfit', sans-serif;
     }
 
-    /* ================= LOGIN SCREEN ================= */
-    #login-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: radial-gradient(circle at top right, #e0e7ff 0%, #f8fafc 45%, #fce7f3 100%);
-    }
-
-    .login-card {
-      background: var(--card);
-      width: 100%;
-      max-width: 440px;
-      padding: 40px 36px;
-      border-radius: 24px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
-    }
-
-    .logo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .brand-logo-img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--teal);
-      background: #ffffff;
-    }
-
-    .brand-logo-img.topbar-logo {
-      width: 42px;
-      height: 42px;
-    }
-
-    .logo-text {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--text-main);
-    }
-
-    .logo-text span {
-      color: var(--teal);
-    }
-
-    .login-title {
-      font-size: 1.65rem;
-      font-weight: 700;
-      margin-bottom: 22px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      background: #f8fafc;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: #fff;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 0.98rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      width: 100%;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-google {
-      background: white;
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      width: 100%;
-      margin-top: 12px;
-    }
-
-    .demo-divider {
-      margin: 22px 0 12px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    .demo-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .btn-demo {
-      padding: 10px 12px;
-      font-size: 0.85rem;
-      border-radius: 10px;
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid #c7d2fe;
-    }
-
-    .btn-demo.coach {
-      background: var(--accent-light);
-      color: #9d174d;
-      border-color: #fbcfe8;
-    }
-
-    /* ================= APP SHELL ================= */
-    #app-shell {
-      display: none;
-    }
-
+    /* ================= HEADER ================= */
     .topbar {
       background: var(--card);
       border-bottom: 1px solid var(--border);
@@ -214,6 +62,33 @@
       justify-content: space-between;
       gap: 16px;
       flex-wrap: wrap;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--teal);
+      background: #ffffff;
+    }
+
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+    }
+
+    .logo-text span {
+      color: var(--teal);
     }
 
     .nav-tabs {
@@ -243,45 +118,10 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .user-pill {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .btn-logout {
-      background: transparent;
-      border: 1px solid var(--border);
-      padding: 7px 13px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .btn-logout:hover {
-      background: #fee2e2;
-      color: #b91c1c;
-      border-color: #fecaca;
-    }
-
     .container {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 28px 24px 100px;
+      padding: 28px 24px 104px;
     }
 
     .home-banner {
@@ -345,7 +185,122 @@
       box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.45);
     }
 
-    /* ================= CEFR LEVEL LINE ================= */
+    /* ================= FILTERS & EXERCISES ================= */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .filter-chip {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .exercise-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+
+    .exercise-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ex-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .ex-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      text-transform: uppercase;
+    }
+
+    .ex-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+    }
+
+    .ex-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .status-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+    }
+
+    .status-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .btn-open-ex {
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--primary-light);
+    }
+
+    .btn-open-ex:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ================= PROGRESS & CEFR ================= */
     .level-card {
       background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4c1d95 100%);
       color: white;
@@ -414,7 +369,7 @@
       border-radius: 999px;
       background: linear-gradient(90deg, #38bdf8, #34d399, #facc15, #fb7185);
       width: 0%;
-      transition: width 0.5s ease;
+      transition: width 0.4s ease;
     }
 
     .cefr-milestones {
@@ -444,18 +399,6 @@
       font-size: 0.7rem;
       opacity: 0.65;
       display: block;
-    }
-
-    /* ================= SKILLS & EXERCISES ================= */
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
     }
 
     .skills-grid {
@@ -523,7 +466,7 @@
       font-size: 1.25rem;
     }
 
-    .skill-score.empty, .skill-score.pending {
+    .skill-score.empty {
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--text-muted);
@@ -539,175 +482,6 @@
     .progress-bar-fill {
       height: 100%;
       border-radius: 999px;
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .filter-chip {
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: white;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .filter-chip.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .exercise-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 16px;
-    }
-
-    .exercise-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .ex-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .ex-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      text-transform: uppercase;
-    }
-
-    .ex-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    .ex-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .status-pill {
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 8px;
-      background: #f1f5f9;
-      color: var(--text-muted);
-    }
-
-    .status-done {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .status-review {
-      background: var(--amber-light);
-      color: var(--amber);
-    }
-
-    .btn-open-ex {
-      text-decoration: none;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--primary);
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: var(--primary-light);
-    }
-
-    .btn-open-ex:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    /* ================= COACH PANEL ================= */
-    .coach-grid {
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    @media (max-width: 860px) {
-      .coach-grid { grid-template-columns: 1fr; }
-    }
-
-    .student-list-card, .coach-detail-card {
-      background: white;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .student-item {
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      margin-bottom: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .student-item.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .new-student-box {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .writing-grade-box {
-      background: var(--amber-light);
-      border: 1px solid #fcd34d;
-      border-radius: 16px;
-      padding: 18px;
-      margin-top: 20px;
-    }
-
-    .writing-form-row {
-      display: grid;
-      grid-template-columns: 1.4fr 0.7fr 1.5fr auto;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    @media (max-width: 760px) {
-      .writing-form-row { grid-template-columns: 1fr; }
     }
 
     .toast {
@@ -733,175 +507,97 @@
 </head>
 <body>
 
-  <!-- ==================== 1. LOGIN SCREEN ==================== -->
-  <section id="login-screen">
-    <div class="login-card">
-      <div class="logo-badge">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="logo-badge" id="brand-home-link">
         <img src="logo.png" alt="Merry Mery English" class="brand-logo-img" />
         <div class="logo-text">Merry Mery <span>English</span></div>
-      </div>
+      </a>
 
-      <h1 class="login-title">Welcome back!</h1>
-
-      <form id="login-form">
-        <div class="form-group">
-          <label for="student-name-input">Nombre (opcional para alumnos nuevos)</label>
-          <input type="text" id="student-name-input" class="form-control" placeholder="Ej: Camila" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="tuemail@ejemplo.com" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" class="form-control" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-      </form>
-
-      <button type="button" id="google-login-btn" class="btn btn-google">Continuar con Google</button>
-
-      <div class="demo-divider">Acceso rápido</div>
-      <div class="demo-buttons">
-        <button type="button" id="demo-student-btn" class="btn btn-demo">👩‍🎓 Entrar como Alumna</button>
-        <button type="button" id="demo-coach-btn" class="btn btn-demo coach">✨ Entrar como Coach (Maru)</button>
-      </div>
+      <nav class="nav-tabs" id="main-nav">
+        <button type="button" class="nav-tab active" data-view="home-view" id="nav-home-btn">Home</button>
+        <button type="button" class="nav-tab" data-view="progress-view" id="nav-progress-btn">My Progress</button>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- ==================== 2. APP SHELL ==================== -->
-  <div id="app-shell">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" id="brand-home-btn">
-          <img src="logo.png" alt="Merry Mery English" class="brand-logo-img topbar-logo" />
-          <div class="logo-text">Merry Mery <span>English</span></div>
-        </div>
-
-        <nav class="nav-tabs" id="main-nav">
-          <button type="button" class="nav-tab active" data-view="home-view" id="nav-home-btn">Home</button>
-          <button type="button" class="nav-tab" data-view="progress-view" id="nav-progress-btn">My Progress</button>
-          <button type="button" class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;">Panel Coach (Maru)</button>
-        </nav>
-
-        <div class="user-pill">
-          <div class="avatar" id="user-avatar">M</div>
-          <div>
-            <div style="font-weight:700; font-size:0.92rem;" id="user-display-name">Mery</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);" id="user-role-label">Student</div>
-          </div>
-          <button type="button" class="btn-logout" id="logout-btn">Salir</button>
-        </div>
+  <!-- ============ HOME VIEW (DEFAULT ENTRY) ============ -->
+  <main class="container" id="home-view">
+    <section class="home-banner">
+      <div>
+        <h1>Home • Ejercicios y Módulos</h1>
+        <p>Elegí un ejercicio para abrirlo y practicar.</p>
       </div>
-    </header>
+      <button type="button" class="btn-home-back" id="banner-progress-btn">📊 My Progress</button>
+    </section>
 
-    <!-- ============ HOME VIEW (EXERCISES CATALOG) ============ -->
-    <main class="container" id="home-view">
-      <section class="home-banner">
+    <div class="section-title">
+      <span>Ejercicios y Módulos</span>
+      <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Acceso directo</span>
+    </div>
+
+    <div class="filter-bar" id="filter-bar">
+      <button type="button" class="filter-chip active" data-skill="all">Todos</button>
+      <button type="button" class="filter-chip" data-skill="grammar">Grammar</button>
+      <button type="button" class="filter-chip" data-skill="gerunds">Gerunds & -ing</button>
+      <button type="button" class="filter-chip" data-skill="vocabulary">Vocabulary</button>
+      <button type="button" class="filter-chip" data-skill="collocations">Collocations</button>
+      <button type="button" class="filter-chip" data-skill="phrasal">Phrasal Verbs</button>
+      <button type="button" class="filter-chip" data-skill="idioms">Idioms</button>
+      <button type="button" class="filter-chip" data-skill="listening">Listening</button>
+      <button type="button" class="filter-chip" data-skill="reading">Reading</button>
+      <button type="button" class="filter-chip" data-skill="writing">Writing</button>
+    </div>
+
+    <section class="exercise-list" id="exercise-list"></section>
+  </main>
+
+  <!-- ============ MY PROGRESS VIEW ============ -->
+  <main class="container" id="progress-view" style="display:none;">
+    <div class="section-title">
+      <span>My Progress</span>
+      <button type="button" class="btn-home-back" id="progress-home-btn">🏠 Home</button>
+    </div>
+
+    <section class="level-card">
+      <div class="level-header">
         <div>
-          <h1 id="home-welcome-title">Home • Ejercicios y Módulos</h1>
-          <p id="home-welcome-subtitle">Elegí un ejercicio para abrirlo y practicar.</p>
+          <div class="level-badge-pill">🎯 Camino de Fluidez CEFR</div>
+          <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A1 (Beginner)</h2>
+          <p style="opacity:0.85; font-size:0.92rem; margin-top:4px;" id="cefr-subtext">
+            Completá módulos para avanzar en la escala CEFR.
+          </p>
         </div>
-        <button type="button" class="btn-home-back" id="banner-progress-btn">📊 My Progress</button>
-      </section>
-
-      <div class="section-title">
-        <span>Ejercicios y Módulos</span>
-        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
-      </div>
-
-      <div class="filter-bar" id="filter-bar">
-        <button type="button" class="filter-chip active" data-skill="all">Todos</button>
-        <button type="button" class="filter-chip" data-skill="grammar">Grammar</button>
-        <button type="button" class="filter-chip" data-skill="gerunds">Gerunds & -ing</button>
-        <button type="button" class="filter-chip" data-skill="vocabulary">Vocabulary</button>
-        <button type="button" class="filter-chip" data-skill="collocations">Collocations</button>
-        <button type="button" class="filter-chip" data-skill="phrasal">Phrasal Verbs</button>
-        <button type="button" class="filter-chip" data-skill="idioms">Idioms</button>
-        <button type="button" class="filter-chip" data-skill="listening">Listening</button>
-        <button type="button" class="filter-chip" data-skill="reading">Reading</button>
-        <button type="button" class="filter-chip" data-skill="writing">Writing</button>
-      </div>
-
-      <section class="exercise-list" id="exercise-list"></section>
-    </main>
-
-    <!-- ============ MY PROGRESS VIEW ============ -->
-    <main class="container" id="progress-view" style="display:none;">
-      <div class="section-title">
-        <span>My Progress</span>
-        <button type="button" class="btn-home-back" id="progress-home-btn">🏠 Home</button>
-      </div>
-
-      <section class="level-card">
-        <div class="level-header">
-          <div>
-            <div class="level-badge-pill">🎯 Camino de Fluidez CEFR</div>
-            <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A1 (Beginner)</h2>
-            <p style="opacity:0.85; font-size:0.92rem; margin-top:4px;" id="cefr-subtext">
-              Completá módulos para avanzar en la escala CEFR.
-            </p>
+        <div class="level-stats-box">
+          <div class="stat-mini">
+            <span>Promedio Global</span>
+            <strong id="global-avg-display">0%</strong>
           </div>
-          <div class="level-stats-box">
-            <div class="stat-mini">
-              <span>Promedio Global</span>
-              <strong id="global-avg-display">0%</strong>
-            </div>
-            <div class="stat-mini">
-              <span>Actividades</span>
-              <strong id="completed-count-display">0 / 13</strong>
-            </div>
+          <div class="stat-mini">
+            <span>Actividades</span>
+            <strong id="completed-count-display">0 / 13</strong>
           </div>
         </div>
-
-        <div class="cefr-track-bg">
-          <div class="cefr-track-fill" id="cefr-fill-bar"></div>
-        </div>
-        <div class="cefr-milestones" id="cefr-milestones"></div>
-      </section>
-
-      <div class="section-title">
-        <span>Mis 9 Áreas de Habilidad</span>
-      </div>
-      <section class="skills-grid" id="skills-grid"></section>
-    </main>
-
-    <!-- ============ COACH VIEW (MARU) ============ -->
-    <main class="container" id="coach-view" style="display:none;">
-      <div class="section-title">
-        <span>Panel Coach (Maru)</span>
-        <button type="button" class="btn-home-back" id="coach-home-btn">🏠 Home</button>
       </div>
 
-      <div class="coach-grid">
-        <div class="student-list-card">
-          <h3 style="font-size:1.05rem; margin-bottom:14px;">Mis Alumnos (1:1)</h3>
-          <div id="coach-student-list"></div>
-
-          <div class="new-student-box">
-            <h4 style="font-size:0.95rem; margin-bottom:8px;">+ Agregar alumno rápido</h4>
-            <form id="add-student-form" style="display:flex; flex-direction:column; gap:8px;">
-              <input type="text" id="new-student-name" class="form-control" placeholder="Nombre del alumno/a" required />
-              <input type="email" id="new-student-email" class="form-control" placeholder="Email (opcional)" />
-              <button type="submit" class="btn btn-primary" style="padding:9px 14px; font-size:0.88rem;">Guardar alumno</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="coach-detail-card" id="coach-student-detail"></div>
+      <div class="cefr-track-bg">
+        <div class="cefr-track-fill" id="cefr-fill-bar"></div>
       </div>
-    </main>
+      <div class="cefr-milestones" id="cefr-milestones"></div>
+    </section>
 
-    <button type="button" id="floating-progress-btn" class="floating-progress-btn">📊 My Progress</button>
-  </div>
+    <div class="section-title">
+      <span>Mis 9 Áreas de Habilidad</span>
+    </div>
+    <section class="skills-grid" id="skills-grid"></section>
+  </main>
 
+  <button type="button" id="floating-progress-btn" class="floating-progress-btn">📊 My Progress</button>
   <div class="toast" id="toast"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const COACH_EMAIL = "merrymeryenglish@gmail.com";
-      const STORAGE_DB_KEY = "mme_portal_students_v1";
-      const STORAGE_SESSION_KEY = "mme_portal_session_v1";
+    (function () {
+      const STORAGE_SCORES_KEY = "mme_portal_scores_v1";
 
       const SKILLS_META = [
         { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
@@ -938,128 +634,41 @@
         { id: "conditionals",                   title: "Conditionals 0, 1 & 2 in Context",          url: "conditionals.html",                       skills: ["grammar"] },
         { id: "song-lumineers",                 title: "Ho Hey - The Lumineers (Sing & Listen)",    url: "ho-hey.html",                             skills: ["listening", "vocabulary"] },
         { id: "idioms-daily",                   title: "Everyday English Idioms",                   url: "idioms.html",                             skills: ["idioms", "listening"] },
-        { id: "writing-email",                  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html",                          skills: ["writing"], isWriting: true },
-        { id: "writing-story",                  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html",                          skills: ["writing"], isWriting: true }
+        { id: "writing-email",                  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html",                          skills: ["writing"] },
+        { id: "writing-story",                  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html",                          skills: ["writing"] }
       ];
 
-      const DEFAULT_STUDENTS_DB = {
-        anika: {
-          id: "anika",
-          name: "Anika",
-          email: "anika@ejemplo.com",
-          scores: {
-            "learning-english-tips":          { reading: 86, vocabulary: 84, listening: 82 },
-            "simple-present-do-does":         { grammar: 88, listening: 85 },
-            "demonstratives":                 { grammar: 84, vocabulary: 80 },
-            "possessive-adjectives-pronouns": { grammar: 86, listening: 83 },
-            "little-prince":                  { reading: 88, vocabulary: 84 },
-            "gerund-inf":                     { gerunds: 80, grammar: 85 },
-            "collocations-biz":               { collocations: 78, vocabulary: 82 },
-            "phrasal-work":                   { phrasal: 76, vocabulary: 80 },
-            "conditionals":                   { grammar: 82 },
-            "song-lumineers":                 { listening: 90, vocabulary: 86 },
-            "idioms-daily":                   { idioms: 70, listening: 78 },
-            "writing-email":                  { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." }
-          }
-        },
-        lucas: {
-          id: "lucas",
-          name: "Lucas M.",
-          email: "lucas@ejemplo.com",
-          scores: {
-            "simple-present-do-does":         { grammar: 75, listening: 72 },
-            "demonstratives":                 { grammar: 70, vocabulary: 74 },
-            "possessive-adjectives-pronouns": { grammar: 76, listening: 71 }
-          }
-        }
-      };
-
-      function cloneDefaultDB() {
-        return JSON.parse(JSON.stringify(DEFAULT_STUDENTS_DB));
-      }
-
-      function loadStudentsDB() {
-        try {
-          const raw = localStorage.getItem(STORAGE_DB_KEY);
-          if (!raw) {
-            const fresh = cloneDefaultDB();
-            localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(fresh));
-            return fresh;
-          }
-          return JSON.parse(raw);
-        } catch (err) {
-          return cloneDefaultDB();
-        }
-      }
-
-      function saveStudentsDB() {
-        try {
-          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(studentsDB));
-        } catch (err) {}
-      }
-
-      function saveSession(user) {
-        try {
-          if (user) {
-            localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(user));
-          } else {
-            localStorage.removeItem(STORAGE_SESSION_KEY);
-          }
-        } catch (err) {}
-      }
-
-      function loadSession() {
-        try {
-          const raw = localStorage.getItem(STORAGE_SESSION_KEY);
-          return raw ? JSON.parse(raw) : null;
-        } catch (err) {
-          return null;
-        }
-      }
-
-      let studentsDB = loadStudentsDB();
-      let currentUser = null;
-      let selectedCoachStudentId = Object.keys(studentsDB)[0] || "anika";
       let currentFilter = "all";
+
+      function loadScores() {
+        try {
+          const raw = localStorage.getItem(STORAGE_SCORES_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      let scoresDB = loadScores();
 
       function showToast(msg) {
         const t = document.getElementById("toast");
         if (!t) return;
         t.textContent = msg;
         t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2600);
+        setTimeout(() => t.classList.remove("show"), 2400);
       }
 
-      function getActiveStudent() {
-        if (currentUser && currentUser.role === "coach") {
-          return studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0] || null;
-        }
-        if (currentUser && currentUser.studentId && studentsDB[currentUser.studentId]) {
-          return studentsDB[currentUser.studentId];
-        }
-        return {
-          id: "guest",
-          name: (currentUser && currentUser.name) || "Student",
-          email: (currentUser && currentUser.email) || "",
-          scores: {}
-        };
-      }
-
-      function calculateStudentMetrics(student) {
+      function calculateMetrics() {
         const skillBuckets = {
           grammar: [], gerunds: [], vocabulary: [], collocations: [],
           phrasal: [], idioms: [], listening: [], reading: [], writing: []
         };
 
-        let pendingWritingCount = 0;
         let completedExercises = 0;
 
-        Object.entries((student && student.scores) || {}).forEach(([exId, result]) => {
+        Object.entries(scoresDB || {}).forEach(([exId, result]) => {
           if (!result) return;
-          if (result.status === "pending_review") {
-            pendingWritingCount++;
-            return;
-          }
           completedExercises++;
           Object.keys(skillBuckets).forEach((skillKey) => {
             if (typeof result[skillKey] === "number") {
@@ -1075,12 +684,10 @@
           const arr = skillBuckets[s.id];
           if (arr.length > 0) {
             const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
-            skillAverages[s.id] = { avg, count: arr.length, status: "active" };
+            skillAverages[s.id] = { avg, count: arr.length };
             activeAverages.push(avg);
-          } else if (s.id === "writing" && pendingWritingCount > 0) {
-            skillAverages[s.id] = { avg: null, count: 0, status: "pending" };
           } else {
-            skillAverages[s.id] = { avg: null, count: 0, status: "empty" };
+            skillAverages[s.id] = { avg: null, count: 0 };
           }
         });
 
@@ -1111,7 +718,7 @@
         };
       }
 
-      function renderExercisesList(student) {
+      function renderExercisesList() {
         const listEl = document.getElementById("exercise-list");
         if (!listEl) return;
 
@@ -1120,17 +727,13 @@
         );
 
         listEl.innerHTML = filtered.map((ex) => {
-          const record = student && student.scores ? student.scores[ex.id] : null;
-          let statusHtml = `<span class="status-pill">Pendiente</span>`;
+          const record = scoresDB ? scoresDB[ex.id] : null;
+          let statusHtml = `<span class="status-pill">Disponible</span>`;
 
           if (record) {
-            if (record.status === "pending_review") {
-              statusHtml = `<span class="status-pill status-review">⏳ En revisión</span>`;
-            } else {
-              const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
-              const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
-              statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
-            }
+            const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
+            const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+            statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
           }
 
           const tagsHtml = ex.skills.map((sId) => {
@@ -1153,9 +756,8 @@
         }).join("");
       }
 
-      function renderProgressView(student) {
-        if (!student) return;
-        const metrics = calculateStudentMetrics(student);
+      function renderProgressView() {
+        const metrics = calculateMetrics();
 
         document.getElementById("cefr-headline").textContent =
           `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
@@ -1184,11 +786,9 @@
           let rightBadge = `<span class="skill-score empty">Sin datos</span>`;
           let barWidth = 0;
 
-          if (data.status === "active") {
+          if (data.avg !== null) {
             rightBadge = `<div class="skill-score" style="color:${skill.color}">${data.avg}%</div>`;
             barWidth = data.avg;
-          } else if (data.status === "pending") {
-            rightBadge = `<span class="skill-score pending">En revisión</span>`;
           }
 
           return `
@@ -1211,90 +811,11 @@
         }).join("");
       }
 
-      function renderCoachPanel() {
-        const listContainer = document.getElementById("coach-student-list");
-        const detailEl = document.getElementById("coach-student-detail");
-        if (!listContainer || !detailEl) return;
-
-        const students = Object.values(studentsDB);
-        if (!studentsDB[selectedCoachStudentId] && students.length > 0) {
-          selectedCoachStudentId = students[0].id;
-        }
-
-        listContainer.innerHTML = students.map((st) => {
-          const m = calculateStudentMetrics(st);
-          return `
-            <div class="student-item ${st.id === selectedCoachStudentId ? "active" : ""}" data-student-id="${st.id}">
-              <div>
-                <div style="font-weight:700;">${st.name}</div>
-                <div style="font-size:0.78rem; color:var(--text-muted);">
-                  Nivel ${m.currentLevel.code} • Promedio ${m.globalAvg}%
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("");
-
-        listContainer.querySelectorAll(".student-item").forEach((item) => {
-          item.addEventListener("click", () => {
-            selectedCoachStudentId = item.getAttribute("data-student-id");
-            renderCoachPanel();
-            renderExercisesList(getActiveStudent());
-            renderProgressView(getActiveStudent());
-          });
-        });
-
-        const student = studentsDB[selectedCoachStudentId];
-        if (!student) return;
-
-        const metrics = calculateStudentMetrics(student);
-        const writingExercises = EXERCISES_CATALOG.filter((e) => e.isWriting);
-
-        detailEl.innerHTML = `
-          <h3 style="font-size:1.4rem; margin-bottom:6px;">${student.name}</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">
-            Nivel: <strong>${metrics.currentLevel.code} (${metrics.currentLevel.label})</strong> • Promedio: <strong>${metrics.globalAvg}%</strong>
-          </p>
-
-          <div class="writing-grade-box">
-            <h4>✍️ Cargar nota de Writing</h4>
-            <form id="coach-writing-form" class="writing-form-row">
-              <select id="coach-writing-ex" class="form-control" required>
-                ${writingExercises.map((w) => `<option value="${w.id}">${w.title}</option>`).join("")}
-              </select>
-              <input type="number" id="coach-writing-score" class="form-control" min="0" max="100" placeholder="Nota %" required />
-              <input type="text" id="coach-writing-note" class="form-control" placeholder="Comentario (opcional)" />
-              <button type="submit" class="btn btn-primary" style="width:auto;">Guardar</button>
-            </form>
-          </div>
-        `;
-
-        const writingForm = document.getElementById("coach-writing-form");
-        if (writingForm) {
-          writingForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const exId = document.getElementById("coach-writing-ex").value;
-            const score = Number(document.getElementById("coach-writing-score").value);
-            const note = document.getElementById("coach-writing-note").value;
-
-            student.scores[exId] = {
-              writing: score,
-              status: "graded",
-              feedback: note || "Corregido por Maru"
-            };
-            saveStudentsDB();
-            renderCoachPanel();
-            renderExercisesList(getActiveStudent());
-            renderProgressView(getActiveStudent());
-            showToast(`✓ Nota (${score}%) guardada para ${student.name}`);
-          });
-        }
-      }
-
-      function switchView(viewId, notify = false) {
-        document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
-        document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
-        document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
+      function switchView(viewId, notify) {
+        const homeEl = document.getElementById("home-view");
+        const progressEl = document.getElementById("progress-view");
+        if (homeEl) homeEl.style.display = viewId === "home-view" ? "block" : "none";
+        if (progressEl) progressEl.style.display = viewId === "progress-view" ? "block" : "none";
 
         document.querySelectorAll(".nav-tab").forEach((btn) => {
           btn.classList.toggle("active", btn.getAttribute("data-view") === viewId);
@@ -1306,159 +827,47 @@
         }
       }
 
-      function applySessionUI(user) {
-        currentUser = user;
-        saveSession(user);
-
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("app-shell").style.display = "block";
-
-        const activeStudent = getActiveStudent();
-
-        if (user.role === "coach") {
-          document.getElementById("user-avatar").textContent = "M";
-          document.getElementById("user-display-name").textContent = "Maru";
-          document.getElementById("user-role-label").textContent = "English Coach";
-          document.getElementById("coach-tab-btn").style.display = "inline-block";
-          document.getElementById("home-welcome-title").textContent = "Home • Ejercicios y Módulos";
-          renderCoachPanel();
-        } else {
-          document.getElementById("user-avatar").textContent = (activeStudent.name[0] || "M").toUpperCase();
-          document.getElementById("user-display-name").textContent = activeStudent.name;
-          document.getElementById("user-role-label").textContent = "Student";
-          document.getElementById("coach-tab-btn").style.display = "none";
-          document.getElementById("home-welcome-title").textContent = `Home • Ejercicios de ${activeStudent.name}`;
-        }
-
-        renderExercisesList(activeStudent);
-        renderProgressView(activeStudent);
+      function init() {
+        renderExercisesList();
+        renderProgressView();
         switchView("home-view", false);
-      }
 
-      function getOrCreateStudentByEmail(email, customName = "") {
-        const normalized = (email || "").trim().toLowerCase();
-        const existing = Object.values(studentsDB).find(
-          (s) => (s.email || "").trim().toLowerCase() === normalized
-        );
-        if (existing) return existing;
-
-        const baseName = (customName || "").trim() || (normalized.split("@")[0] || "Alumno");
-        const formattedName = baseName.charAt(0).toUpperCase() + baseName.slice(1);
-        const newId = "student_" + normalized.replace(/[^a-z0-9]/g, "_");
-
-        studentsDB[newId] = {
-          id: newId,
-          name: formattedName,
-          email: normalized,
-          scores: {}
+        const goHomeHandler = (e) => {
+          if (e) e.preventDefault();
+          currentFilter = "all";
+          document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
+          renderExercisesList();
+          switchView("home-view", true);
         };
-        saveStudentsDB();
-        return studentsDB[newId];
-      }
 
-      function logout() {
-        currentUser = null;
-        saveSession(null);
-        document.getElementById("app-shell").style.display = "none";
-        document.getElementById("login-screen").style.display = "flex";
-      }
+        const goProgressHandler = (e) => {
+          if (e) e.preventDefault();
+          renderProgressView();
+          switchView("progress-view", true);
+        };
 
-      // Eventos de navegación y botones
-      document.getElementById("nav-home-btn").addEventListener("click", () => {
-        currentFilter = "all";
-        document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
-        renderExercisesList(getActiveStudent());
-        switchView("home-view", true);
-      });
+        document.getElementById("nav-home-btn").addEventListener("click", goHomeHandler);
+        document.getElementById("progress-home-btn").addEventListener("click", goHomeHandler);
+        document.getElementById("nav-progress-btn").addEventListener("click", goProgressHandler);
+        document.getElementById("banner-progress-btn").addEventListener("click", goProgressHandler);
+        document.getElementById("floating-progress-btn").addEventListener("click", goProgressHandler);
 
-      document.getElementById("brand-home-btn").addEventListener("click", () => {
-        currentFilter = "all";
-        document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
-        renderExercisesList(getActiveStudent());
-        switchView("home-view", true);
-      });
-
-      document.getElementById("progress-home-btn").addEventListener("click", () => switchView("home-view", true));
-      document.getElementById("coach-home-btn").addEventListener("click", () => switchView("home-view", true));
-
-      document.getElementById("nav-progress-btn").addEventListener("click", () => switchView("progress-view", true));
-      document.getElementById("banner-progress-btn").addEventListener("click", () => switchView("progress-view", true));
-      document.getElementById("floating-progress-btn").addEventListener("click", () => switchView("progress-view", true));
-      document.getElementById("coach-tab-btn").addEventListener("click", () => switchView("coach-view", false));
-      document.getElementById("logout-btn").addEventListener("click", logout);
-
-      document.querySelectorAll(".filter-chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          currentFilter = chip.getAttribute("data-skill") || "all";
-          document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
-          chip.classList.add("active");
-          renderExercisesList(getActiveStudent());
+        document.querySelectorAll(".filter-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            currentFilter = chip.getAttribute("data-skill") || "all";
+            document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
+            chip.classList.add("active");
+            renderExercisesList();
+          });
         });
-      });
-
-      document.getElementById("add-student-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById("new-student-name");
-        const emailInput = document.getElementById("new-student-email");
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim().toLowerCase() || `${name.toLowerCase().replace(/[^a-z0-9]/g, "")}@merrymery.local`;
-        if (!name) return;
-
-        const id = "student_" + Date.now();
-        studentsDB[id] = { id, name, email, scores: {} };
-        selectedCoachStudentId = id;
-        saveStudentsDB();
-        renderCoachPanel();
-        renderExercisesList(getActiveStudent());
-        renderProgressView(getActiveStudent());
-        nameInput.value = "";
-        emailInput.value = "";
-        showToast(`✓ Alumno/a ${name} agregado/a`);
-      });
-
-      document.getElementById("login-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const email = document.getElementById("email").value.trim().toLowerCase();
-        const customName = document.getElementById("student-name-input").value.trim();
-
-        if (email === COACH_EMAIL) {
-          applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
-        } else {
-          const student = getOrCreateStudentByEmail(email, customName);
-          applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
-        }
-      });
-
-      document.getElementById("google-login-btn").addEventListener("click", () => {
-        const emailInput = document.getElementById("email").value.trim().toLowerCase();
-        const customName = document.getElementById("student-name-input").value.trim();
-        const fallbackEmail = emailInput || "alumno.google@ejemplo.com";
-
-        if (fallbackEmail === COACH_EMAIL) {
-          applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
-        } else {
-          const student = getOrCreateStudentByEmail(fallbackEmail, customName);
-          applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
-        }
-      });
-
-      document.getElementById("demo-student-btn").addEventListener("click", () => {
-        const student = studentsDB.anika || Object.values(studentsDB)[0];
-        applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
-      });
-
-      document.getElementById("demo-coach-btn").addEventListener("click", () => {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
-      });
-
-      // Render inicial seguro para que el catálogo de ejercicios siempre exista en el DOM
-      renderExercisesList(getActiveStudent());
-
-      const savedSession = loadSession();
-      if (savedSession) {
-        applySessionUI(savedSession);
       }
-    });
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
   </script>
 </body>
 </html>
