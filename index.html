@@ -73,21 +73,6 @@
       margin-bottom: 24px;
     }
 
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.5px;
-    }
-
     .brand-logo-img {
       width: 52px;
       height: 52px;
@@ -118,12 +103,6 @@
       font-size: 1.65rem;
       font-weight: 700;
       margin-bottom: 22px;
-    }
-
-    .login-subtitle {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
     }
 
     .form-group {
@@ -482,6 +461,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .skills-grid {
@@ -701,7 +682,7 @@
     /* ================= COACH PANEL ================= */
     .coach-grid {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 310px 1fr;
       gap: 24px;
       align-items: start;
     }
@@ -735,6 +716,12 @@
     .student-item:hover, .student-item.active {
       border-color: var(--primary);
       background: var(--primary-light);
+    }
+
+    .new-student-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
     }
 
     .writing-grade-box {
@@ -801,6 +788,10 @@
 
       <form id="login-form">
         <div class="form-group">
+          <label for="student-name-input">Nombre (opcional para alumnos nuevos)</label>
+          <input type="text" id="student-name-input" class="form-control" placeholder="Ej: Camila" />
+        </div>
+        <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" class="form-control" placeholder="tuemail@ejemplo.com" required />
         </div>
@@ -816,7 +807,7 @@
         Continuar con Google
       </button>
 
-      <div class="demo-divider"><span>Vista previa rápida (Demo)</span></div>
+      <div class="demo-divider"><span>Vista previa rápida (Local)</span></div>
       <div class="demo-buttons">
         <button type="button" class="btn btn-demo" onclick="loginAsDemo('student')">👩‍🎓 Entrar como Alumna</button>
         <button type="button" class="btn btn-demo coach" onclick="loginAsDemo('coach')">✨ Entrar como Coach (Maru)</button>
@@ -868,7 +859,7 @@
             </div>
             <div class="stat-mini">
               <span>Actividades</span>
-              <strong id="completed-count-display">9 / 12</strong>
+              <strong id="completed-count-display">9 / 13</strong>
             </div>
           </div>
         </div>
@@ -879,16 +870,14 @@
               <div class="cefr-pointer"></div>
             </div>
           </div>
-          <div class="cefr-milestones" id="cefr-milestones">
-            <!-- Generado por JS: A1, A2, A2+, B1, B1+, B2, C1, C2 -->
-          </div>
+          <div class="cefr-milestones" id="cefr-milestones"></div>
         </div>
       </section>
 
       <!-- 9 SKILLS GRID (3x3) -->
       <div class="section-title">
         <span>Mis 9 Áreas de Habilidad</span>
-        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Actualizado automáticamente</span>
+        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
       </div>
       <section class="skills-grid" id="skills-grid"></section>
 
@@ -922,23 +911,30 @@
         <div class="student-list-card">
           <h3 style="font-size:1.05rem; margin-bottom:14px;">Mis Alumnos (1:1)</h3>
           <div id="coach-student-list"></div>
+
+          <div class="new-student-box">
+            <h4 style="font-size:0.95rem; margin-bottom:8px;">+ Agregar alumno rápido</h4>
+            <form onsubmit="addNewStudent(event)" style="display:flex; flex-direction:column; gap:8px;">
+              <input type="text" id="new-student-name" class="form-control" placeholder="Nombre del alumno/a" required />
+              <input type="email" id="new-student-email" class="form-control" placeholder="Email (opcional)" />
+              <button type="submit" class="btn btn-primary" style="padding:9px 14px; font-size:0.88rem;">Guardar alumno</button>
+            </form>
+          </div>
         </div>
 
         <!-- Detalle del Alumno Seleccionado -->
-        <div class="coach-detail-card" id="coach-student-detail">
-          <!-- Se completa dinámicamente -->
-        </div>
+        <div class="coach-detail-card" id="coach-student-detail"></div>
       </div>
     </main>
   </div>
 
   <div class="toast" id="toast"></div>
 
-  <!-- ==================== FIREBASE + APP LOGIC ==================== -->
+  <!-- ==================== LOCAL STORAGE + FIREBASE READY LOGIC ==================== -->
   <script type="module">
     /* =====================================================================
-       CONFIGURACIÓN DE FIREBASE (Pegar acá tus claves cuando crees el proyecto)
-       Mientras USE_DEMO_MODE = true, funciona 100% local para que lo pruebes.
+       CONFIGURACIÓN DE FIREBASE (Preparada para activar cuando estés lista)
+       Mientras USE_DEMO_MODE = true, guarda sesión y cambios en localStorage.
        ===================================================================== */
     const USE_DEMO_MODE = true;
 
@@ -952,8 +948,9 @@
     };
 
     const COACH_EMAIL = "merrymeryenglish@gmail.com"; // Tu mail de Coach
+    const STORAGE_DB_KEY = "mme_portal_students_v1";
+    const STORAGE_SESSION_KEY = "mme_portal_session_v1";
 
-    /* Definición de las 9 habilidades (Grilla simétrica 3x3) */
     const SKILLS_META = [
       { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
       { id: "gerunds",      name: "Gerunds & -ing Forms",  icon: "⚡", color: "#0284c7", bg: "#e0f2fe" },
@@ -966,7 +963,6 @@
       { id: "writing",      name: "Writing",               icon: "✍️", color: "#d97706", bg: "#fffbeb" }
     ];
 
-    /* Escala CEFR completa A1 -> C2 */
     const CEFR_LEVELS = [
       { code: "A1",  label: "Beginner",           minPoints: 0 },
       { code: "A2",  label: "Elementary",         minPoints: 15 },
@@ -978,7 +974,6 @@
       { code: "C2",  label: "Proficiency",        minPoints: 96 }
     ];
 
-    /* Catálogo de ejercicios (conectables a tus HTML en GitHub) */
     const EXERCISES_CATALOG = [
       { id: "learning-english-tips",              title: "Learning English Tips",                        url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
       { id: "simple-present-do-does",             title: "Simple Present: Do & Does",                    url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
@@ -995,8 +990,7 @@
       { id: "writing-story",                      title: "Writing 2: A Memorable Trip (Past Tenses)",    url: "writing-2.html",                          skills: ["writing"], isWriting: true }
     ];
 
-    /* Datos de prueba (Demo) */
-    let demoStudentsDB = {
+    const DEFAULT_STUDENTS_DB = {
       "anika": {
         id: "anika",
         name: "Anika",
@@ -1033,11 +1027,53 @@
       }
     };
 
+    function loadStudentsDB() {
+      try {
+        const raw = localStorage.getItem(STORAGE_DB_KEY);
+        if (!raw) {
+          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(DEFAULT_STUDENTS_DB));
+          return structuredClone(DEFAULT_STUDENTS_DB);
+        }
+        return JSON.parse(raw);
+      } catch {
+        return structuredClone(DEFAULT_STUDENTS_DB);
+      }
+    }
+
+    function saveStudentsDB() {
+      try {
+        localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(studentsDB));
+      } catch (err) {
+        console.warn("No se pudo guardar en localStorage:", err);
+      }
+    }
+
+    function saveSession(user) {
+      try {
+        if (user) {
+          localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(user));
+        } else {
+          localStorage.removeItem(STORAGE_SESSION_KEY);
+        }
+      } catch (err) {
+        console.warn("No se pudo guardar la sesión:", err);
+      }
+    }
+
+    function loadSession() {
+      try {
+        const raw = localStorage.getItem(STORAGE_SESSION_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    }
+
+    let studentsDB = loadStudentsDB();
     let currentUser = null;
-    let selectedCoachStudentId = "anika";
+    let selectedCoachStudentId = Object.keys(studentsDB)[0] || "anika";
     let currentFilter = "all";
 
-    /* ================= CÁLCULO DE PROMEDIOS Y NIVEL CEFR ================= */
     function calculateStudentMetrics(student) {
       const skillBuckets = {
         grammar: [], gerunds: [], vocabulary: [], collocations: [],
@@ -1080,7 +1116,6 @@
         ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
         : 0;
 
-      // Combinación de promedio global + volumen de práctica para ubicar en A1 -> C2
       const practiceFactor = Math.min(1, completedExercises / EXERCISES_CATALOG.length);
       const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
 
@@ -1104,11 +1139,9 @@
       };
     }
 
-    /* ================= RENDER STUDENT DASHBOARD ================= */
     function renderStudentDashboard(student) {
       const metrics = calculateStudentMetrics(student);
 
-      // Header CEFR
       document.getElementById("cefr-headline").textContent =
         `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
 
@@ -1120,7 +1153,6 @@
       document.getElementById("completed-count-display").textContent =
         `${metrics.completedExercises} / ${EXERCISES_CATALOG.length}`;
 
-      // Barra de nivel A1 -> C2
       const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
       document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
 
@@ -1136,7 +1168,6 @@
         `;
       }).join("");
 
-      // Grilla de 9 habilidades (3x3)
       const skillsGrid = document.getElementById("skills-grid");
       skillsGrid.innerHTML = SKILLS_META.map(skill => {
         const data = metrics.skillAverages[skill.id];
@@ -1185,7 +1216,7 @@
       );
 
       listEl.innerHTML = filtered.map(ex => {
-        const record = student.scores[ex.id];
+        const record = student.scores?.[ex.id];
         let statusHtml = `<span class="status-pill status-todo">Pendiente</span>`;
 
         if (record) {
@@ -1218,14 +1249,17 @@
       }).join("");
     }
 
-    /* ================= RENDER COACH PANEL ================= */
     function renderCoachPanel() {
       const listContainer = document.getElementById("coach-student-list");
-      const students = Object.values(demoStudentsDB);
+      const students = Object.values(studentsDB);
+
+      if (!studentsDB[selectedCoachStudentId] && students.length > 0) {
+        selectedCoachStudentId = students[0].id;
+      }
 
       listContainer.innerHTML = students.map(st => {
         const m = calculateStudentMetrics(st);
-        const hasPending = Object.values(st.scores).some(r => r.status === "pending_review");
+        const hasPending = Object.values(st.scores || {}).some(r => r.status === "pending_review");
         return `
           <div class="student-item ${st.id === selectedCoachStudentId ? "active" : ""}"
                onclick="selectCoachStudent('${st.id}')">
@@ -1240,10 +1274,11 @@
         `;
       }).join("");
 
-      const student = demoStudentsDB[selectedCoachStudentId];
-      const metrics = calculateStudentMetrics(student);
+      const student = studentsDB[selectedCoachStudentId];
       const detailEl = document.getElementById("coach-student-detail");
+      if (!student) return;
 
+      const metrics = calculateStudentMetrics(student);
       const writingExercises = EXERCISES_CATALOG.filter(e => e.isWriting);
 
       detailEl.innerHTML = `
@@ -1271,7 +1306,6 @@
           }).join("")}
         </div>
 
-        <!-- CARGA MANUAL DE WRITING -->
         <div class="writing-grade-box">
           <h4>✍️ Cargar o actualizar nota de Writing</h4>
           <p style="font-size:0.85rem; color:#78350f;">
@@ -1292,33 +1326,69 @@
       `;
     }
 
-    /* ================= INTERACCIONES GLOBALES ================= */
-    window.loginAsDemo = function(role) {
+    function applySessionUI(user, targetView = null) {
+      currentUser = user;
+      saveSession(user);
+
       document.getElementById("login-screen").style.display = "none";
       document.getElementById("app-shell").style.display = "block";
 
-      if (role === "coach") {
-        currentUser = { name: "Maru", email: COACH_EMAIL, role: "coach" };
+      if (user.role === "coach") {
         document.getElementById("user-avatar").textContent = "M";
         document.getElementById("user-display-name").textContent = "Maru";
         document.getElementById("user-role-label").textContent = "English Coach";
         document.getElementById("coach-tab-btn").style.display = "inline-block";
-        renderStudentDashboard(demoStudentsDB["anika"]);
+        const activeStudent = studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0];
+        renderStudentDashboard(activeStudent);
         renderCoachPanel();
-        switchView("coach-view");
+        switchView(targetView || "coach-view");
       } else {
-        currentUser = { name: "Anika", email: "anika@ejemplo.com", role: "student", studentId: "anika" };
-        document.getElementById("user-avatar").textContent = "A";
-        document.getElementById("user-display-name").textContent = "Anika";
+        const student = studentsDB[user.studentId] || studentsDB["anika"];
+        document.getElementById("user-avatar").textContent = (student.name[0] || "A").toUpperCase();
+        document.getElementById("user-display-name").textContent = student.name;
         document.getElementById("user-role-label").textContent = "Student";
         document.getElementById("coach-tab-btn").style.display = "none";
-        renderStudentDashboard(demoStudentsDB["anika"]);
-        switchView("student-view");
+        renderStudentDashboard(student);
+        switchView(targetView || "student-view");
+      }
+    }
+
+    function getOrCreateStudentByEmail(email, customName = "") {
+      const normalized = (email || "").trim().toLowerCase();
+      const existing = Object.values(studentsDB).find(
+        s => (s.email || "").trim().toLowerCase() === normalized
+      );
+      if (existing) return existing;
+
+      const baseName = (customName || "").trim() || (normalized.split("@")[0] || "Alumno");
+      const formattedName = baseName.charAt(0).toUpperCase() + baseName.slice(1);
+      const newId = "student_" + normalized.replace(/[^a-z0-9]/g, "_");
+
+      studentsDB[newId] = {
+        id: newId,
+        name: formattedName,
+        email: normalized,
+        scores: {}
+      };
+      saveStudentsDB();
+      return studentsDB[newId];
+    }
+
+    window.loginAsDemo = function(role) {
+      if (role === "coach") {
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
+      } else {
+        const student = studentsDB["anika"] || Object.values(studentsDB)[0];
+        applySessionUI(
+          { name: student.name, email: student.email, role: "student", studentId: student.id },
+          "student-view"
+        );
       }
     };
 
     window.logout = function() {
       currentUser = null;
+      saveSession(null);
       document.getElementById("app-shell").style.display = "none";
       document.getElementById("login-screen").style.display = "flex";
     };
@@ -1335,13 +1405,41 @@
       currentFilter = skill;
       document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
       btnEl.classList.add("active");
-      const st = demoStudentsDB[currentUser?.studentId || "anika"];
+      const st = studentsDB[currentUser?.studentId] || studentsDB["anika"] || Object.values(studentsDB)[0];
       renderExercisesList(st);
     };
 
     window.selectCoachStudent = function(studentId) {
       selectedCoachStudentId = studentId;
       renderCoachPanel();
+      if (studentsDB[studentId]) {
+        renderStudentDashboard(studentsDB[studentId]);
+      }
+    };
+
+    window.addNewStudent = function(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById("new-student-name");
+      const emailInput = document.getElementById("new-student-email");
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim().toLowerCase() || `${name.toLowerCase().replace(/[^a-z0-9]/g, "")}@merrymery.local`;
+
+      if (!name) return;
+
+      const id = "student_" + Date.now();
+      studentsDB[id] = {
+        id,
+        name,
+        email,
+        scores: {}
+      };
+      selectedCoachStudentId = id;
+      saveStudentsDB();
+      renderCoachPanel();
+      renderStudentDashboard(studentsDB[id]);
+      nameInput.value = "";
+      emailInput.value = "";
+      showToast(`✓ Alumno/a ${name} agregado/a localmente`);
     };
 
     window.saveWritingGrade = function(e) {
@@ -1350,13 +1448,16 @@
       const score = Number(document.getElementById("coach-writing-score").value);
       const note = document.getElementById("coach-writing-note").value;
 
-      const student = demoStudentsDB[selectedCoachStudentId];
+      const student = studentsDB[selectedCoachStudentId];
+      if (!student) return;
+
       student.scores[exId] = {
         writing: score,
         status: "graded",
         feedback: note || "Corregido por Maru"
       };
 
+      saveStudentsDB();
       renderCoachPanel();
       renderStudentDashboard(student);
       showToast(`✓ Nota de Writing (${score}%) guardada para ${student.name}`);
@@ -1372,16 +1473,39 @@
     document.getElementById("login-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value.trim().toLowerCase();
+      const customName = document.getElementById("student-name-input").value.trim();
+
       if (email === COACH_EMAIL) {
-        loginAsDemo("coach");
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
       } else {
-        loginAsDemo("student");
+        const student = getOrCreateStudentByEmail(email, customName);
+        applySessionUI(
+          { name: student.name, email: student.email, role: "student", studentId: student.id },
+          "student-view"
+        );
       }
     });
 
     document.getElementById("google-login-btn").addEventListener("click", () => {
-      loginAsDemo("student");
+      const emailInput = document.getElementById("email").value.trim().toLowerCase();
+      const customName = document.getElementById("student-name-input").value.trim();
+      const fallbackEmail = emailInput || "alumno.google@ejemplo.com";
+
+      if (fallbackEmail === COACH_EMAIL) {
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
+      } else {
+        const student = getOrCreateStudentByEmail(fallbackEmail, customName);
+        applySessionUI(
+          { name: student.name, email: student.email, role: "student", studentId: student.id },
+          "student-view"
+        );
+      }
     });
+
+    const savedSession = loadSession();
+    if (savedSession) {
+      applySessionUI(savedSession);
+    }
   </script>
 </body>
 </html>
