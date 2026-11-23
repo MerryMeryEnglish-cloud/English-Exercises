@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Mery English – Possessive Adjectives & Subject Pronouns</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f4c5c;
+      --primary-light: #1b6b80;
+      --primary-soft: #e6f2f5;
+      --accent: #e36414;
+      --accent-soft: #fdf0e6;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --bg: #f4f7f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --shadow-sm: 0 2px 6px rgba(15, 76, 92, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 76, 92, 0.10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #165f73 100%);
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
+
+    .brand-text h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 0.85rem;
+      color: #cbe4eb;
+      font-weight: 500;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .voice-control {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .voice-control label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e0f2fe;
+      white-space: nowrap;
+    }
+
+    .voice-control select {
+      background: #ffffff;
+      color: var(--primary);
+      border: none;
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: #ffffff;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1120px;
+      width: 100%;
+      margin: 1.75rem auto 3rem;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    /* Tabs Navigation */
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      background: var(--card);
+      padding: 0.6rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 210px;
+      padding: 0.8rem 1.1rem;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(15, 76, 92, 0.22);
+    }
+
+    .tab-badge {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      color: inherit;
+    }
+
+    .tab-btn:not(.active) .tab-badge {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Banner & Audio Bar */
+    .section-header-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid var(--primary);
+    }
+
+    .section-header-card h2 {
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-header-card p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .audio-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn-audio {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-play {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-play:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-stop {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .btn-stop:hover {
+      background: #cbd5e1;
+    }
+
+    .audio-status {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    /* Grammar Summary Grid & Table */
+    .grammar-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 880px) {
+      .grammar-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    .grammar-table th {
+      background: var(--primary);
+      color: #ffffff;
+      text-align: left;
+      padding: 0.7rem 0.85rem;
+      font-weight: 700;
+    }
+
+    .grammar-table th:first-child { border-top-left-radius: 8px; }
+    .grammar-table th:last-child { border-top-right-radius: 8px; }
+
+    .grammar-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .grammar-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .pill-subj {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .pill-poss {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: #c2410c;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .mini-listen {
+      background: none;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.22rem 0.5rem;
+      font-size: 0.78rem;
+      cursor: pointer;
+      color: var(--primary);
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+
+    .mini-listen:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+    }
+
+    .rules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .rule-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+    }
+
+    .rule-box h4 {
+      color: var(--primary);
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .rule-box p {
+      font-size: 0.91rem;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+    }
+
+    .example-quote {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #334155;
+      background: #ffffff;
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .warning-chip {
+      display: inline-block;
+      background: var(--error-bg);
+      color: var(--error);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+      text-decoration: line-through;
+    }
+
+    .correct-chip {
+      display: inline-block;
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    /* Progress Bar */
+    .progress-wrapper {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .progress-info {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+    }
+
+    .progress-track {
+      flex: 1;
+      min-width: 200px;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary) 0%, #16a34a 100%);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    /* Multiple Choice Cards */
+    .mc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .exercise-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid #e2e8f0;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .exercise-card.solved {
+      border-color: var(--success-border);
+      background: #f6fef9;
+    }
+
+    .card-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .question-badge {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-sm {
+      padding: 0.32rem 0.72rem;
+      border-radius: 7px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-sm:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-hint {
+      border-color: #fed7aa;
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .btn-hint:hover {
+      background: #ffedd5;
+      border-color: #fb923c;
+    }
+
+    .listen-after-correct {
+      display: none;
+      align-items: center;
+      gap: 0.3rem;
+      border-color: var(--success-border);
+      background: var(--success-bg);
+      color: var(--success);
+      animation: popIn 0.22s ease;
+    }
+
+    .listen-after-correct.revealed {
+      display: inline-flex;
+    }
+
+    .listen-after-correct:hover {
+      background: #bbf7d0;
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .sentence-text {
+      font-size: 1.06rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+    }
+
+    .mc-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .mc-option-btn {
+      padding: 0.55rem 1.15rem;
+      border-radius: 9px;
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .mc-option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .mc-option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+      cursor: default;
+    }
+
+    .mc-option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+      animation: shake 0.32s ease;
+    }
+
+    .hint-box {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: #92400e;
+    }
+
+    .hint-box.visible {
+      display: block;
+    }
+
+    .feedback-line {
+      margin-top: 0.65rem;
+      font-size: 0.87rem;
+      font-weight: 600;
+      min-height: 1.25rem;
+    }
+
+    .feedback-line.ok { color: var(--success); }
+    .feedback-line.err { color: var(--error); }
+
+    /* Sticky Word Bank for Fill in the Gaps */
+    .sticky-word-bank {
+      position: sticky;
+      top: 84px;
+      z-index: 80;
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(15, 76, 92, 0.14);
+    }
+
+    .word-bank-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .word-bank-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .word-bank-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .word-chip {
+      padding: 0.42rem 0.9rem;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1.5px solid #99c7d4;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: grab;
+      user-select: none;
+      transition: all 0.16s ease;
+    }
+
+    .word-chip:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .word-chip:active {
+      cursor: grabbing;
+    }
+
+    /* Gap Input Styling */
+    .gap-input {
+      width: 118px;
+      padding: 0.32rem 0.6rem;
+      margin: 0 0.25rem;
+      border: 2px solid #94a3b8;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.98rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--primary);
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .gap-input:focus, .gap-input.active-target {
+      border-color: var(--accent);
+      background: #fffaf5;
+      box-shadow: 0 0 0 3px rgba(227, 100, 20, 0.18);
+    }
+
+    .gap-input.drag-over {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      transform: scale(1.04);
+    }
+
+    .gap-input.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+      cursor: default;
+    }
+
+    .gap-input.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.32s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Footer Actions inside each tab */
+    .tab-footer-actions {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #cbd5e1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn-reset {
+      padding: 0.7rem 1.3rem;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      background: #f1f5f9;
+      border-color: var(--text-muted);
+    }
+
+    .btn-next {
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(227, 100, 20, 0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-next:hover {
+      background: #c8530d;
+      transform: translateY(-1px);
+    }
+
+    /* Modals */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 520px;
+      width: 100%;
+      padding: 1.85rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+      position: relative;
+      z-index: 202;
+    }
+
+    .modal-card h3 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-card p, .modal-card li {
+      font-size: 0.94rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-card ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-close-btn {
+      margin-top: 0.85rem;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--primary-light);
+    }
+
+    .celebration-score-box {
+      background: var(--primary-soft);
+      border: 1.5px solid #99c7d4;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .celebration-score-box .big-metric {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+    }
+
+    .celebration-score-box .sub-metric {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 201;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230f4c5c%22/><text x=%2250%22 y=%2260%22 font-family=%22Arial%22 font-size=%2234%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>MME</text></svg>'">
+        <div class="brand-text">
+          <h1>Merry Mery English</h1>
+          <p>Interactive Learning • Grammar Foundations (A1)</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="voice-control">
+          <label for="voiceSelect">🎙️ Voice:</label>
+          <select id="voiceSelect" aria-label="Select accent and voice">
+            <option value="uk-female">British Female</option>
+            <option value="uk-male">British Male</option>
+            <option value="us-female" selected>American Female</option>
+            <option value="us-male">American Male</option>
+          </select>
+        </div>
+
+        <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          📖 Dictionary
+        </a>
+        <button type="button" class="nav-btn" onclick="openModal('helpModal')">
+          ❓ Help
+        </button>
+        <a href="index.html" class="nav-btn">
+          🏠 Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Navigation Tabs -->
+    <nav class="tabs-bar" role="tablist" aria-label="Lesson sections">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-guide" onclick="switchTab('tab-guide')">
+        📘 Grammar Guide <span class="tab-badge">Summary</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-mc" onclick="switchTab('tab-mc')">
+        ✅ Multiple Choice <span class="tab-badge" id="badge-mc">0/10</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-gaps" onclick="switchTab('tab-gaps')">
+        ✍️ Fill in the Gaps <span class="tab-badge" id="badge-gaps">0/10</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: PRACTICAL GRAMMAR SUMMARY -->
+    <section id="tab-guide" class="tab-panel active" role="tabpanel">
+      <div class="section-header-card">
+        <h2>Possessive Adjectives & Subject Pronouns</h2>
+        <p>A clear, practical guide to distinguishing who performs the action (<strong>subject pronouns</strong>) from who owns or relates to something (<strong>possessive adjectives</strong>).</p>
+        <div class="audio-bar">
+          <button type="button" class="btn-audio btn-play" id="guidePlayBtn" onclick="toggleGuideAudio()">▶ Listen</button>
+          <button type="button" class="btn-audio btn-stop" onclick="stopAudio()">■ Stop</button>
+          <span class="audio-status" id="guideAudioStatus">Ready to play</span>
+        </div>
+      </div>
+
+      <div class="grammar-grid">
+        <!-- Reference Chart -->
+        <div class="card">
+          <h3>📊 Quick Reference Chart</h3>
+          <table class="grammar-table">
+            <thead>
+              <tr>
+                <th>Subject Pronoun<br><small style="font-weight:400; opacity:0.9;">(+ Verb)</small></th>
+                <th>Possessive Adjective<br><small style="font-weight:400; opacity:0.9;">(+ Noun)</small></th>
+                <th>Listen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill-subj">I</span> am a teacher.</td>
+                <td>This is <span class="pill-poss">my</span> classroom.</td>
+                <td><button class="mini-listen" onclick="speakText('I am a teacher. This is my classroom.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">You</span> are very kind.</td>
+                <td>I love <span class="pill-poss">your</span> energy.</td>
+                <td><button class="mini-listen" onclick="speakText('You are very kind. I love your energy.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">He</span> works in London.</td>
+                <td><span class="pill-poss">His</span> office is near the river.</td>
+                <td><button class="mini-listen" onclick="speakText('He works in London. His office is near the river.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">She</span> plays the piano.</td>
+                <td><span class="pill-poss">Her</span> music is wonderful.</td>
+                <td><button class="mini-listen" onclick="speakText('She plays the piano. Her music is wonderful.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">It</span> is a cozy café.</td>
+                <td><span class="pill-poss">Its</span> coffee is famous.</td>
+                <td><button class="mini-listen" onclick="speakText('It is a cozy café. Its coffee is famous.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">We</span> study together.</td>
+                <td><span class="pill-poss">Our</span> notebooks are ready.</td>
+                <td><button class="mini-listen" onclick="speakText('We study together. Our notebooks are ready.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">You</span> (pl.) are early.</td>
+                <td>Leave <span class="pill-poss">your</span> bags here.</td>
+                <td><button class="mini-listen" onclick="speakText('You are early. Leave your bags here.')">🔊</button></td>
+              </tr>
+              <tr>
+                <td><span class="pill-subj">They</span> live in Madrid.</td>
+                <td><span class="pill-poss">Their</span> apartment is sunny.</td>
+                <td><button class="mini-listen" onclick="speakText('They live in Madrid. Their apartment is sunny.')">🔊</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Golden Rules -->
+        <div class="card">
+          <h3>🔑 4 Golden Rules to Remember</h3>
+          <div class="rules-list">
+            <div class="rule-box">
+              <h4>1. Subject Pronoun + Verb vs. Possessive Adjective + Noun</h4>
+              <p>A <strong>subject pronoun</strong> replaces the person or thing doing the action and goes before a verb. A <strong>possessive adjective</strong> always accompanies a noun to show ownership.</p>
+              <div class="example-quote">
+                <span>"<strong>They</strong> are from Ohio, and that is <strong>their</strong> house."</span>
+                <button class="mini-listen" onclick="speakText('They are from Ohio, and that is their house.')">🔊</button>
+              </div>
+            </div>
+
+            <div class="rule-box">
+              <h4>2. Possessive Adjectives Never Take "-s"</h4>
+              <p>In English, adjectives do not change for plural nouns. Use the exact same form whether the noun is singular or plural.</p>
+              <div class="example-quote">
+                <span><span class="correct-chip">✓ their suitcases</span> &nbsp; <span class="warning-chip">✗ theirs suitcases</span></span>
+                <button class="mini-listen" onclick="speakText('These are their suitcases.')">🔊</button>
+              </div>
+            </div>
+
+            <div class="rule-box">
+              <h4>3. People vs. Things (Singular & Plural)</h4>
+              <p>Use <strong>he/his</strong> and <strong>she/her</strong> for people, and <strong>it/its</strong> for a single thing, place, or animal. In the plural, use <strong>they/their</strong> for <em>both</em> people and things.</p>
+              <div class="example-quote">
+                <span>"I like those chairs, but <strong>their</strong> legs are very tall."</span>
+                <button class="mini-listen" onclick="speakText('I like those chairs, but their legs are very tall.')">🔊</button>
+              </div>
+            </div>
+
+            <div class="rule-box">
+              <h4>4. Watch Out: "Its" vs. "It's"</h4>
+              <p><strong>Its</strong> (no apostrophe) = possessive adjective. <strong>It's</strong> (with apostrophe) = contraction of <em>it is</em> (also used for weather and time).</p>
+              <div class="example-quote">
+                <span>"Look at that dog. <strong>It's</strong> cute, and I love <strong>its</strong> fur."</span>
+                <button class="mini-listen" onclick="speakText('Look at that dog. It is cute, and I love its fur.')">🔊</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-footer-actions" style="justify-content: flex-end;">
+        <button type="button" class="btn-next" onclick="switchTab('tab-mc')">
+          Next: Multiple Choice Practice ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: MULTIPLE CHOICE EXERCISE -->
+    <section id="tab-mc" class="tab-panel" role="tabpanel">
+      <div class="section-header-card">
+        <h2>Exercise 1: Multiple Choice</h2>
+        <p>Read each sentence carefully and click the correct <strong>subject pronoun</strong> or <strong>possessive adjective</strong>. Once you select the right option, the <strong>🔊 Listen</strong> button appears so you can hear the completed sentence.</p>
+      </div>
+
+      <div class="progress-wrapper">
+        <span class="progress-info" id="mcProgressText">Completed: 0 of 10</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="mcProgressBar"></div>
+        </div>
+      </div>
+
+      <div class="mc-list" id="mcContainer"></div>
+
+      <div class="tab-footer-actions">
+        <button type="button" class="btn-reset" onclick="resetAndShuffleMC()">🔄 Reset & Shuffle</button>
+        <button type="button" class="btn-next" onclick="switchTab('tab-gaps')">Next: Fill in the Gaps ➔</button>
+      </div>
+    </section>
+
+    <!-- TAB 3: FILL IN THE GAPS EXERCISE -->
+    <section id="tab-gaps" class="tab-panel" role="tabpanel">
+      <div class="section-header-card">
+        <h2>Exercise 2: Fill in the Gaps</h2>
+        <p>Complete each sentence with the right word from the sticky Word Bank. You can <strong>drag and drop</strong> a chip into a blank, <strong>click</strong> a chip to fill the active blank, or <strong>type</strong> your answer directly. The <strong>🔊 Listen</strong> button appears right after you get the correct answer.</p>
+      </div>
+
+      <div class="progress-wrapper">
+        <span class="progress-info" id="gapsProgressText">Completed: 0 of 10</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="gapsProgressBar"></div>
+        </div>
+      </div>
+
+      <!-- Sticky Word Bank -->
+      <div class="sticky-word-bank" id="stickyWordBank">
+        <div class="word-bank-header">
+          <span class="word-bank-title">🧩 Word Bank</span>
+          <span class="word-bank-sub">Drag onto a gap or click a gap first, then click a word</span>
+        </div>
+        <div class="word-chips" id="wordBankChips"></div>
+      </div>
+
+      <div class="mc-list" id="gapsContainer"></div>
+
+      <div class="tab-footer-actions">
+        <button type="button" class="btn-reset" onclick="resetAndShuffleGaps()">🔄 Reset & Shuffle</button>
+        <button type="button" class="btn-next" onclick="switchTab('tab-guide')">Back to Grammar Guide ➔</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Merry Mery English • Interactive Grammar Practice • Built for Self-Paced Learning
+  </footer>
+
+  <!-- Help Modal -->
+  <div class="modal-overlay" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
+    <div class="modal-card">
+      <h3 id="helpModalTitle">How to Use This Lesson</h3>
+      <ul>
+        <li><strong>Voice Selector:</strong> Choose between British or American English (Female or Male) in the top bar. Every 🔊 button will use your chosen voice.</li>
+        <li><strong>Grammar Guide:</strong> Review the chart and four core rules, and listen to natural example sentences.</li>
+        <li><strong>Listen After Correct Answer:</strong> In <em>Multiple Choice</em> and <em>Fill in the Gaps</em>, the <strong>🔊 Listen</strong> button appears once you select or enter the correct answer so you can practice listening to the complete sentence.</li>
+        <li><strong>Instant Verification:</strong> There is no "Check" button. Answers are checked immediately with visual and audio feedback.</li>
+        <li><strong>Hints & Reset:</strong> Use <strong>💡 Hint</strong> whenever you need a grammatical clue, and <strong>🔄 Reset & Shuffle</strong> at the bottom of any exercise to practice again in a new order.</li>
+      </ul>
+      <button type="button" class="modal-close-btn" onclick="closeModal('helpModal')">Got it!</button>
+    </div>
+  </div>
+
+  <!-- Celebration Modal -->
+  <div class="modal-overlay" id="celebrationModal" role="dialog" aria-modal="true" aria-labelledby="celTitle">
+    <div class="modal-card" style="text-align: center;">
+      <div style="font-size: 2.6rem; margin-bottom: 0.4rem;">🎉</div>
+      <h3 id="celTitle">Exercise Completed!</h3>
+      <p id="celSubtitle">Wonderful work mastering subject pronouns and possessive adjectives.</p>
+      <div class="celebration-score-box">
+        <span class="big-metric" id="celAccuracy">100%</span>
+        <span class="sub-metric" id="celDetails">Flawless performance!</span>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeCelebrationModal()">Continue Learning</button>
+    </div>
+  </div>
+
+  <script>
+    /* ========================
+       1. SPEECH SYNTHESIS & SFX
+       ======================== */
+    let availableVoices = [];
+    let guideUtterance = null;
+    let isGuidePlaying = false;
+    let isGuidePaused = false;
+
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        availableVoices = window.speechSynthesis.getVoices();
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function getSelectedVoiceConfig() {
+      const val = document.getElementById('voiceSelect').value;
+      const isUK = val.startsWith('uk');
+      const isFemale = val.endsWith('female');
+      const targetLang = isUK ? 'en-GB' : 'en-US';
+
+      if (!availableVoices.length) loadVoices();
+
+      const langVoices = availableVoices.filter(v =>
+        v.lang.toLowerCase().replace('_', '-').startsWith(targetLang.toLowerCase())
+      );
+
+      const femaleHints = ['female', 'hazel', 'susan', 'libby', 'sonia', 'serena', 'kate', 'zira', 'aria', 'jenny', 'samantha', 'victoria', 'google uk english female'];
+      const maleHints = ['male', 'george', 'ryan', 'daniel', 'arthur', 'oliver', 'david', 'mark', 'guy', 'alex', 'fred', 'google uk english male'];
+
+      let chosen = null;
+      const hints = isFemale ? femaleHints : maleHints;
+
+      for (const hint of hints) {
+        chosen = langVoices.find(v => v.name.toLowerCase().includes(hint));
+        if (chosen) break;
+      }
+
+      if (!chosen && langVoices.length > 0) {
+        chosen = isFemale ? langVoices[0] : (langVoices[1] || langVoices[0]);
+      }
+
+      if (!chosen) {
+        chosen = availableVoices.find(v => v.lang.toLowerCase().startsWith('en')) || null;
+      }
+
+      return {
+        voice: chosen,
+        lang: targetLang,
+        pitch: isFemale ? 1.08 : 0.92,
+        rate: 0.96
+      };
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      stopAudio();
+      const cfg = getSelectedVoiceConfig();
+      const utter = new SpeechSynthesisUtterance(text);
+      if (cfg.voice) utter.voice = cfg.voice;
+      utter.lang = cfg.lang;
+      utter.pitch = cfg.pitch;
+      utter.rate = cfg.rate;
+      window.speechSynthesis.speak(utter);
+    }
+
+    const guideSummaryScript = "Welcome to the grammar summary on Possessive Adjectives and Subject Pronouns. Rule one: Use a subject pronoun before a verb, like 'They are from Ohio', and use a possessive adjective before a noun, like 'That is their house'. Rule two: Possessive adjectives never take a plural S. We say 'their suitcases', never 'theirs suitcases'. Rule three: Use he or his and she or her for people, and it or its for a single thing or animal. In the plural, use they or their for both people and things. Rule four: Remember the difference between 'its' without an apostrophe for possession, and 'it's' with an apostrophe for 'it is'.";
+
+    function toggleGuideAudio() {
+      if (!('speechSynthesis' in window)) return;
+      const btn = document.getElementById('guidePlayBtn');
+      const status = document.getElementById('guideAudioStatus');
+
+      if (isGuidePlaying && !isGuidePaused) {
+        window.speechSynthesis.pause();
+        isGuidePaused = true;
+        btn.textContent = '▶ Resume';
+        status.textContent = 'Paused';
+        return;
+      }
+
+      if (isGuidePlaying && isGuidePaused) {
+        window.speechSynthesis.resume();
+        isGuidePaused = false;
+        btn.textContent = '⏸ Pause';
+        status.textContent = 'Reading summary aloud...';
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const cfg = getSelectedVoiceConfig();
+      guideUtterance = new SpeechSynthesisUtterance(guideSummaryScript);
+      if (cfg.voice) guideUtterance.voice = cfg.voice;
+      guideUtterance.lang = cfg.lang;
+      guideUtterance.pitch = cfg.pitch;
+      guideUtterance.rate = 0.95;
+
+      guideUtterance.onstart = () => {
+        isGuidePlaying = true;
+        isGuidePaused = false;
+        btn.textContent = '⏸ Pause';
+        status.textContent = 'Reading summary aloud...';
+      };
+
+      guideUtterance.onend = () => {
+        isGuidePlaying = false;
+        isGuidePaused = false;
+        btn.textContent = '▶ Listen';
+        status.textContent = 'Ready to play';
+      };
+
+      guideUtterance.onerror = () => {
+        isGuidePlaying = false;
+        isGuidePaused = false;
+        btn.textContent = '▶ Listen';
+        status.textContent = 'Ready to play';
+      };
+
+      window.speechSynthesis.speak(guideUtterance);
+    }
+
+    function stopAudio() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isGuidePlaying = false;
+      isGuidePaused = false;
+      const btn = document.getElementById('guidePlayBtn');
+      const status = document.getElementById('guideAudioStatus');
+      if (btn) btn.textContent = '▶ Listen';
+      if (status) status.textContent = 'Ready to play';
+    }
+
+    // Web Audio API Sound Effects
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playSound(type) {
+      try {
+        if (!audioCtx) audioCtx = new AudioCtx();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'success') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.09);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.start(now);
+          osc.stop(now + 0.28);
+        } else {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(210, now);
+          osc.frequency.setValueAtTime(175, now + 0.11);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+          osc.start(now);
+          osc.stop(now + 0.26);
+        }
+      } catch (e) {}
+    }
+
+    /* ========================
+       2. TABS & MODALS
+       ======================== */
+    function switchTab(tabId) {
+      stopAudio();
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-selected', 'true');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    /* ========================
+       3. EXERCISE 1: MULTIPLE CHOICE
+       ======================== */
+    const mcBaseData = [
+      {
+        id: 'mc1',
+        before: 'Harry is ',
+        after: ' best friend from university.',
+        options: ['my', 'I', 'me'],
+        answer: 'my',
+        fullSentence: 'Harry is my best friend from university.',
+        hint: 'There is a noun phrase ("best friend") right after the blank, so you need a possessive adjective.'
+      },
+      {
+        id: 'mc2',
+        before: '',
+        after: ' lives in a quiet neighborhood near the park.',
+        options: ['He', 'His', 'Him'],
+        answer: 'He',
+        fullSentence: 'He lives in a quiet neighborhood near the park.',
+        hint: 'The blank comes before the verb "lives", so you need a subject pronoun.'
+      },
+      {
+        id: 'mc3',
+        before: 'Scotland is famous for ',
+        after: ' green hills and rainy weather.',
+        options: ['its', "it's", 'their'],
+        answer: 'its',
+        fullSentence: 'Scotland is famous for its green hills and rainy weather.',
+        hint: 'Scotland is one country (singular thing). Use the possessive form without an apostrophe.'
+      },
+      {
+        id: 'mc4',
+        before: 'We love ',
+        after: ' new golden retriever puppy.',
+        options: ['our', 'we', 'ours'],
+        answer: 'our',
+        fullSentence: 'We love our new golden retriever puppy.',
+        hint: 'The subject is "We", and the blank describes ownership before the noun "puppy".'
+      },
+      {
+        id: 'mc5',
+        before: 'Susan works on my street. ',
+        after: ' office is on the third floor.',
+        options: ['Her', 'She', 'His'],
+        answer: 'Her',
+        fullSentence: 'Susan works on my street. Her office is on the third floor.',
+        hint: 'The office belongs to Susan (a woman), and "office" is a noun.'
+      },
+      {
+        id: 'mc6',
+        before: '"What are those in the box?" — "',
+        after: ' vintage postcards from Rome."',
+        options: ['They are', 'It is', 'Their'],
+        answer: 'They are',
+        fullSentence: 'What are those in the box? They are vintage postcards from Rome.',
+        hint: '"Postcards" is plural. Remember: use "they" for both plural people and plural things.'
+      },
+      {
+        id: 'mc7',
+        before: 'Look at those wooden chairs. ',
+        after: ' legs are painted dark blue.',
+        options: ['Their', 'They', 'Its'],
+        answer: 'Their',
+        fullSentence: 'Look at those wooden chairs. Their legs are painted dark blue.',
+        hint: 'The chairs are plural things, and "legs" is a noun following the blank.'
+      },
+      {
+        id: 'mc8',
+        before: 'I really like this café because ',
+        after: ' atmosphere is so peaceful.',
+        options: ['its', "it's", 'it'],
+        answer: 'its',
+        fullSentence: 'I really like this café because its atmosphere is so peaceful.',
+        hint: 'Do you mean "it is atmosphere" or the atmosphere belonging to the café?'
+      },
+      {
+        id: 'mc9',
+        before: 'Take an umbrella with you. ',
+        after: ' very windy and cold today.',
+        options: ["It's", 'Its', 'Is'],
+        answer: "It's",
+        fullSentence: "Take an umbrella with you. It's very windy and cold today.",
+        hint: 'For weather and time, we use the contraction of "It is".'
+      },
+      {
+        id: 'mc10',
+        before: 'The students packed ',
+        after: ' suitcases before boarding the train.',
+        options: ['their', 'theirs', 'they'],
+        answer: 'their',
+        fullSentence: 'The students packed their suitcases before boarding the train.',
+        hint: 'Possessive adjectives never take an "-s", even before a plural noun like "suitcases".'
+      }
+    ];
+
+    let mcItems = [];
+    let mcSolvedCount = 0;
+    let mcMistakes = 0;
+    let mcCelebrated = false;
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function renderMC() {
+      const container = document.getElementById('mcContainer');
+      container.innerHTML = '';
+      mcSolvedCount = 0;
+      mcMistakes = 0;
+      mcCelebrated = false;
+      updateMCProgress();
+
+      mcItems.forEach((item, index) => {
+        const shuffledOptions = shuffleArray(item.options);
+        const card = document.createElement('div');
+        card.className = 'exercise-card';
+        card.id = `card-${item.id}`;
+
+        const optionsHTML = shuffledOptions.map(opt =>
+          `<button type="button" class="mc-option-btn" onclick="checkMCOption('${item.id}', '${opt.replace(/'/g, "\'")}', this)">${opt}</button>`
+        ).join('');
+
+        card.innerHTML = `
+          <div class="card-top-row">
+            <span class="question-badge">Question ${index + 1} of ${mcItems.length}</span>
+            <div class="item-actions">
+              <button type="button" class="btn-sm listen-after-correct" id="listen-${item.id}" onclick="speakText('${item.fullSentence.replace(/'/g, "\'")}')">🔊 Listen</button>
+              <button type="button" class="btn-sm btn-hint" onclick="toggleHint('hint-${item.id}')">💡 Hint</button>
+            </div>
+          </div>
+          <div class="sentence-text">
+            ${item.before}<span id="slot-${item.id}" style="font-weight:800; color:var(--primary); border-bottom:2px dashed #94a3b8; padding:0 10px;">______</span>${item.after}
+          </div>
+          <div class="mc-options" id="opts-${item.id}">
+            ${optionsHTML}
+          </div>
+          <div class="hint-box" id="hint-${item.id}">💡 ${item.hint}</div>
+          <div class="feedback-line" id="fb-${item.id}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleHint(hintId) {
+      const el = document.getElementById(hintId);
+      if (el) el.classList.toggle('visible');
+    }
+
+    function revealListenButton(itemId) {
+      const listenBtn = document.getElementById(`listen-${itemId}`);
+      if (listenBtn) listenBtn.classList.add('revealed');
+    }
+
+    function checkMCOption(itemId, chosen, btnEl) {
+      const card = document.getElementById(`card-${itemId}`);
+      if (card.classList.contains('solved')) return;
+
+      const item = mcItems.find(x => x.id === itemId);
+      const fb = document.getElementById(`fb-${itemId}`);
+      const slot = document.getElementById(`slot-${itemId}`);
+
+      if (chosen === item.answer) {
+        playSound('success');
+        card.classList.add('solved');
+        btnEl.classList.add('correct');
+        slot.textContent = chosen;
+        slot.style.color = 'var(--success)';
+        slot.style.borderBottom = '2px solid var(--success)';
+        fb.textContent = '✓ Correct! Click Listen above to hear the sentence.';
+        fb.className = 'feedback-line ok';
+        revealListenButton(itemId);
+
+        document.querySelectorAll(`#opts-${itemId} .mc-option-btn`).forEach(b => {
+          b.disabled = true;
+        });
+
+        mcSolvedCount++;
+        updateMCProgress();
+
+        if (mcSolvedCount === mcItems.length && !mcCelebrated) {
+          mcCelebrated = true;
+          setTimeout(() => showCelebration('Multiple Choice', mcItems.length, mcMistakes), 400);
+        }
+      } else {
+        playSound('error');
+        mcMistakes++;
+        btnEl.classList.remove('wrong');
+        void btnEl.offsetWidth;
+        btnEl.classList.add('wrong');
+        fb.textContent = '✗ Not quite — check whether a verb or a noun follows the gap.';
+        fb.className = 'feedback-line err';
+      }
+    }
+
+    function updateMCProgress() {
+      const total = mcItems.length;
+      const pct = Math.round((mcSolvedCount / total) * 100);
+      document.getElementById('mcProgressText').textContent = `Completed: ${mcSolvedCount} of ${total}`;
+      document.getElementById('mcProgressBar').style.width = `${pct}%`;
+      document.getElementById('badge-mc').textContent = `${mcSolvedCount}/${total}`;
+    }
+
+    function resetAndShuffleMC() {
+      stopAudio();
+      mcItems = shuffleArray(mcBaseData);
+      renderMC();
+    }
+
+    /* ========================
+       4. EXERCISE 2: FILL IN THE GAPS (STICKY WORD BANK + DRAG & DROP)
+       ======================== */
+    const gapsBaseData = [
+      {
+        id: 'gap1',
+        before: 'My brother is an architect. ',
+        after: ' designs modern bridges.',
+        answer: 'He',
+        fullSentence: 'My brother is an architect. He designs modern bridges.',
+        hint: 'Replace "My brother" before the verb "designs" with a singular male subject pronoun.'
+      },
+      {
+        id: 'gap2',
+        before: 'Elena forgot ',
+        after: ' notebook on the desk after class.',
+        answer: 'her',
+        fullSentence: 'Elena forgot her notebook on the desk after class.',
+        hint: 'The notebook belongs to Elena. Place a possessive adjective before "notebook".'
+      },
+      {
+        id: 'gap3',
+        before: 'We are staying at a boutique hotel. ',
+        after: ' garden is full of lemon trees.',
+        answer: 'Its',
+        fullSentence: 'We are staying at a boutique hotel. Its garden is full of lemon trees.',
+        hint: 'The garden belongs to the hotel (a singular thing). Start with a capital letter.'
+      },
+      {
+        id: 'gap4',
+        before: 'Mark and Julia are excited because ',
+        after: ' are moving to Canada next month.',
+        answer: 'they',
+        fullSentence: 'Mark and Julia are excited because they are moving to Canada next month.',
+        hint: 'Use a plural subject pronoun before the verb "are moving".'
+      },
+      {
+        id: 'gap5',
+        before: 'Could you please pass me ',
+        after: ' keys? They are next to your cup.',
+        answer: 'my',
+        fullSentence: 'Could you please pass me my keys? They are next to your cup.',
+        hint: 'The speaker ("me") owns the keys. Use the first-person singular possessive adjective.'
+      },
+      {
+        id: 'gap6',
+        before: 'David and I love cooking, and ',
+        after: ' favorite dish is homemade pasta.',
+        answer: 'our',
+        fullSentence: 'David and I love cooking, and our favorite dish is homemade pasta.',
+        hint: '"David and I" = we. Which possessive adjective goes before "favorite dish"?'
+      },
+      {
+        id: 'gap7',
+        before: 'Excuse me, sir, is this ',
+        after: ' boarding pass on the floor?',
+        answer: 'your',
+        fullSentence: 'Excuse me, sir, is this your boarding pass on the floor?',
+        hint: 'Speaking directly to "you", before the noun phrase "boarding pass".'
+      },
+      {
+        id: 'gap8',
+        before: 'The children are tired after ',
+        after: ' swimming lesson.',
+        answer: 'their',
+        fullSentence: 'The children are tired after their swimming lesson.',
+        hint: '"The children" is plural. Use the third-person plural possessive adjective.'
+      },
+      {
+        id: 'gap9',
+        before: 'Claire is a talented photographer. ',
+        after: ' takes portraits in natural light.',
+        answer: 'She',
+        fullSentence: 'Claire is a talented photographer. She takes portraits in natural light.',
+        hint: 'Use a singular female subject pronoun before the verb "takes".'
+      },
+      {
+        id: 'gap10',
+        before: 'Check the clock on the wall. ',
+        after: ' already half past six.',
+        answer: "It's",
+        fullSentence: "Check the clock on the wall. It's already half past six.",
+        hint: 'When telling the time, use the contraction of "It is".'
+      }
+    ];
+
+    let gapItems = [];
+    let gapSolvedCount = 0;
+    let gapMistakes = 0;
+    let gapCelebrated = false;
+    let activeGapInput = null;
+
+    function renderGaps() {
+      const container = document.getElementById('gapsContainer');
+      const bankContainer = document.getElementById('wordBankChips');
+      container.innerHTML = '';
+      bankContainer.innerHTML = '';
+      gapSolvedCount = 0;
+      gapMistakes = 0;
+      gapCelebrated = false;
+      activeGapInput = null;
+      updateGapsProgress();
+
+      // Render shuffled Word Bank chips
+      const bankWords = shuffleArray(gapItems.map(i => i.answer));
+      bankWords.forEach((word, idx) => {
+        const chip = document.createElement('div');
+        chip.className = 'word-chip';
+        chip.textContent = word;
+        chip.draggable = true;
+        chip.id = `chip-${idx}`;
+
+        chip.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', word);
+        });
+
+        chip.addEventListener('click', () => {
+          let target = activeGapInput;
+          if (!target || target.disabled) {
+            target = document.querySelector('.gap-input:not(:disabled)');
+          }
+          if (target) {
+            target.value = word;
+            validateGapInput(target);
+          }
+        });
+
+        bankContainer.appendChild(chip);
+      });
+
+      // Render Sentence Cards
+      gapItems.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'exercise-card';
+        card.id = `card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="card-top-row">
+            <span class="question-badge">Sentence ${index + 1} of ${gapItems.length}</span>
+            <div class="item-actions">
+              <button type="button" class="btn-sm listen-after-correct" id="listen-${item.id}" onclick="speakText('${item.fullSentence.replace(/'/g, "\'")}')">🔊 Listen</button>
+              <button type="button" class="btn-sm btn-hint" onclick="toggleHint('hint-${item.id}')">💡 Hint</button>
+            </div>
+          </div>
+          <div class="sentence-text">
+            ${item.before}<input type="text" class="gap-input" id="input-${item.id}" data-answer="${item.answer}" data-card="${item.id}" autocomplete="off" spellcheck="false" aria-label="Blank for sentence ${index + 1}" />${item.after}
+          </div>
+          <div class="hint-box" id="hint-${item.id}">💡 ${item.hint}</div>
+          <div class="feedback-line" id="fb-${item.id}"></div>
+        `;
+        container.appendChild(card);
+
+        const input = card.querySelector('.gap-input');
+
+        input.addEventListener('focus', () => {
+          document.querySelectorAll('.gap-input').forEach(el => el.classList.remove('active-target'));
+          input.classList.add('active-target');
+          activeGapInput = input;
+        });
+
+        input.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          if (!input.disabled) input.classList.add('drag-over');
+        });
+
+        input.addEventListener('dragleave', () => {
+          input.classList.remove('drag-over');
+        });
+
+        input.addEventListener('drop', (e) => {
+          e.preventDefault();
+          input.classList.remove('drag-over');
+          if (input.disabled) return;
+          const droppedWord = e.dataTransfer.getData('text/plain');
+          if (droppedWord) {
+            input.value = droppedWord;
+            validateGapInput(input, true);
+          }
+        });
+
+        input.addEventListener('input', () => {
+          const expected = input.dataset.answer.trim();
+          const typed = input.value.trim();
+          if (typed.toLowerCase() === expected.toLowerCase()) {
+            validateGapInput(input, true);
+          } else {
+            input.classList.remove('wrong');
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          if (input.value.trim() !== '' && !input.disabled) {
+            validateGapInput(input, true);
+          }
+        });
+      });
+
+      const firstInput = document.querySelector('.gap-input');
+      if (firstInput) {
+        firstInput.classList.add('active-target');
+        activeGapInput = firstInput;
+      }
+    }
+
+    function validateGapInput(input, penalizeError = true) {
+      if (input.disabled) return;
+      const expected = input.dataset.answer.trim();
+      const userVal = input.value.trim();
+      const cardId = input.dataset.card;
+      const card = document.getElementById(`card-${cardId}`);
+      const fb = document.getElementById(`fb-${cardId}`);
+
+      if (userVal === '') return;
+
+      if (userVal.toLowerCase() === expected.toLowerCase()) {
+        input.value = expected;
+        input.disabled = true;
+        input.classList.remove('wrong', 'active-target');
+        input.classList.add('correct');
+        card.classList.add('solved');
+        fb.textContent = '✓ Correct! Click Listen above to hear the sentence.';
+        fb.className = 'feedback-line ok';
+        revealListenButton(cardId);
+        playSound('success');
+
+        gapSolvedCount++;
+        updateGapsProgress();
+
+        // Advance active target to next available blank
+        const nextBlank = document.querySelector('.gap-input:not(:disabled)');
+        if (nextBlank) {
+          nextBlank.classList.add('active-target');
+          activeGapInput = nextBlank;
+        } else {
+          activeGapInput = null;
+        }
+
+        if (gapSolvedCount === gapItems.length && !gapCelebrated) {
+          gapCelebrated = true;
+          setTimeout(() => showCelebration('Fill in the Gaps', gapItems.length, gapMistakes), 400);
+        }
+      } else if (penalizeError) {
+        gapMistakes++;
+        input.classList.remove('wrong');
+        void input.offsetWidth;
+        input.classList.add('wrong');
+        fb.textContent = '✗ Try again — check if the sentence needs a subject pronoun or a possessive adjective.';
+        fb.className = 'feedback-line err';
+        playSound('error');
+      }
+    }
+
+    function updateGapsProgress() {
+      const total = gapItems.length;
+      const pct = Math.round((gapSolvedCount / total) * 100);
+      document.getElementById('gapsProgressText').textContent = `Completed: ${gapSolvedCount} of ${total}`;
+      document.getElementById('gapsProgressBar').style.width = `${pct}%`;
+      document.getElementById('badge-gaps').textContent = `${gapSolvedCount}/${total}`;
+    }
+
+    function resetAndShuffleGaps() {
+      stopAudio();
+      gapItems = shuffleArray(gapsBaseData);
+      renderGaps();
+    }
+
+    /* ========================
+       5. CELEBRATION & CONFETTI
+       ======================== */
+    let confettiAnimId = null;
+
+    function showCelebration(exerciseName, totalItems, mistakes) {
+      playSound('success');
+      const totalAttempts = totalItems + mistakes;
+      const accuracy = Math.max(0, Math.round((totalItems / totalAttempts) * 100));
+
+      document.getElementById('celTitle').textContent = `${exerciseName} Completed!`;
+      document.getElementById('celAccuracy').textContent = `${accuracy}% Accuracy`;
+      document.getElementById('celDetails').textContent = mistakes === 0
+        ? `Flawless first try! ${totalItems} out of ${totalItems} with 0 mistakes.`
+        : `Completed all ${totalItems} items (${mistakes} ${mistakes === 1 ? 'correction' : 'corrections'} made).`;
+
+      openModal('celebrationModal');
+      startConfetti();
+    }
+
+    function closeCelebrationModal() {
+      closeModal('celebrationModal');
+      stopConfetti();
+    }
+
+    function startConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#0f4c5c', '#e36414', '#16a34a', '#eab308', '#0284c7', '#ec4899'];
+      const particles = Array.from({ length: 130 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 9 + 5,
+        h: Math.random() * 5 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedY: Math.random() * 3.2 + 2.2,
+        speedX: Math.random() * 2 - 1,
+        angle: Math.random() * 360,
+        spin: Math.random() * 6 - 3
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.angle += p.spin;
+          if (p.y > canvas.height) {
+            p.y = -10;
+            p.x = Math.random() * canvas.width;
+          }
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.angle * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        confettiAnimId = requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    function stopConfetti() {
+      if (confettiAnimId) {
+        cancelAnimationFrame(confettiAnimId);
+        confettiAnimId = null;
+      }
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      mcItems = shuffleArray(mcBaseData);
+      gapItems = shuffleArray(gapsBaseData);
+      renderMC();
+      renderGaps();
+    });
+  </script>
+</body>
+</html>

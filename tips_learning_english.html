@@ -1,0 +1,3353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practical Tips for Learning English as an Adult | Merry Mery English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f4c5c;
+      --primary-light: #1b6ca8;
+      --primary-soft: #e6f2f5;
+      --accent: #e36414;
+      --accent-soft: #fff1e6;
+      --gold: #f4a261;
+      --bg: #f4f7f9;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --shadow-sm: 0 2px 6px rgba(15, 76, 92, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 76, 92, 0.10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding-bottom: 60px;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #165b6d 100%);
+      color: #ffffff;
+      padding: 16px 24px;
+      box-shadow: 0 4px 14px rgba(15, 76, 92, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid #ffffff;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      line-height: 1.15;
+    }
+
+    .brand-text p {
+      font-size: 0.85rem;
+      color: #cbe4ea;
+      font-weight: 600;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .voice-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .voice-control label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #e0f2fe;
+      white-space: nowrap;
+    }
+
+    .voice-control select {
+      background: #ffffff;
+      color: var(--primary);
+      border: none;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: #ffffff;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1180px;
+      margin: 26px auto 0;
+      padding: 0 18px;
+    }
+
+    /* Tabs Navigation */
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      flex: 1 1 170px;
+      padding: 11px 14px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(15, 76, 92, 0.25);
+    }
+
+    .tab-badge {
+      background: rgba(255, 255, 255, 0.22);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+    }
+
+    .tab-btn:not(.active) .tab-badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* Tab Content */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.28s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Banners */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--primary-soft);
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      color: var(--primary);
+    }
+
+    .level-pill {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #fdba74;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .instruction-banner {
+      background: var(--primary-soft);
+      border-left: 4px solid var(--primary);
+      padding: 13px 18px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.96rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Audio Bar */
+    .audio-player-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 22px;
+    }
+
+    .btn-audio {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-audio:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-stop {
+      background: #e2e8f0;
+      color: var(--text-main);
+      border: none;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-stop:hover {
+      background: #cbd5e1;
+    }
+
+    .audio-status {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-left: auto;
+      background: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    /* Reading Text Styling */
+    .reading-article {
+      font-size: 1.06rem;
+      line-height: 1.82;
+      color: #1e293b;
+    }
+
+    .reading-article p {
+      margin-bottom: 16px;
+    }
+
+    .reading-tip-block {
+      background: #fbfdfe;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .reading-tip-block h3 {
+      color: var(--primary);
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .reading-tip-block p {
+      margin-bottom: 0;
+    }
+
+    .vocab-highlight {
+      background-color: var(--accent-soft);
+      color: #9a3412;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 5px;
+      border-bottom: 2px solid var(--gold);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .vocab-highlight:hover {
+      background-color: #fed7aa;
+    }
+
+    /* Glossary Grid (Cards) */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .vocab-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .vocab-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+
+    .vocab-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .vocab-term {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .pos-pill {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .vocab-spanish {
+      display: inline-block;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .vocab-def {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .vocab-example-box {
+      background: #f8fafc;
+      border-left: 3px solid var(--gold);
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .btn-listen-card {
+      width: 100%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #bae6fd;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-listen-card:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Progress Bar */
+    .progress-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #f8fafc;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary) 0%, #10b981 100%);
+      transition: width 0.35s ease;
+    }
+
+    .progress-label {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Question Items (Quiz) */
+    .question-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.25s ease;
+    }
+
+    .question-card.solved {
+      border-color: var(--success-border);
+      background: #f6fef9;
+    }
+
+    .item-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .item-badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+
+    .btn-mini {
+      background: #f1f5f9;
+      color: var(--primary);
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+
+    .btn-mini:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .btn-hint {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #fcd34d;
+    }
+
+    .btn-hint:hover {
+      background: #f59e0b;
+      color: #ffffff;
+      border-color: #f59e0b;
+    }
+
+    .btn-letter {
+      background: #e0e7ff;
+      color: #3730a3;
+      border-color: #c7d2fe;
+    }
+
+    .btn-letter:hover {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .options-list.tf-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      flex: 1 1 200px;
+      text-align: left;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+      animation: shake 0.35s ease;
+    }
+
+    .feedback-note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .feedback-note.show {
+      display: block;
+    }
+
+    .feedback-note.ok { color: var(--success); }
+    .feedback-note.err { color: var(--error); }
+
+    /* Matching Grid */
+    .matching-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .match-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .match-card.solved {
+      background: var(--success-bg);
+      border-color: var(--success);
+    }
+
+    .match-card.wrong-shake {
+      border-color: var(--error);
+      background: var(--error-bg);
+      animation: shake 0.35s ease;
+    }
+
+    .match-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .match-word {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .match-select {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .match-select:disabled {
+      background: #ecfdf5;
+      color: var(--success);
+      font-weight: 700;
+      border-color: var(--success);
+      cursor: default;
+    }
+
+    /* Sticky Word Bank */
+    .sticky-bank {
+      position: sticky;
+      top: 86px;
+      z-index: 800;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(6px);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .sticky-bank-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-chip {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1.5px solid #93c5fd;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: grab;
+      user-select: none;
+      transition: all 0.18s ease;
+    }
+
+    .word-chip:hover:not(.used) {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .word-chip.used {
+      opacity: 0.38;
+      text-decoration: line-through;
+      cursor: default;
+      background: #e2e8f0;
+      color: #64748b;
+      border-color: #cbd5e1;
+    }
+
+    /* Gap Fill Sentences */
+    .gap-item {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .gap-item.solved {
+      background: #f6fef9;
+      border-color: var(--success-border);
+    }
+
+    .gap-sentence {
+      font-size: 1.04rem;
+      line-height: 1.9;
+      color: var(--text-main);
+    }
+
+    .blank-input {
+      width: 175px;
+      padding: 4px 10px;
+      margin: 0 5px;
+      border: 2px dashed var(--primary-light);
+      border-radius: 8px;
+      background: #f8fafc;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .blank-input:focus, .blank-input.active-target {
+      border-style: solid;
+      border-color: var(--accent);
+      background: #fffbeb;
+    }
+
+    .blank-input.drag-over {
+      background: #dbeafe;
+      border-color: var(--primary);
+      transform: scale(1.03);
+    }
+
+    .blank-input.correct {
+      border-style: solid;
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .blank-input.wrong {
+      border-style: solid;
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    .hint-box {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: #92400e;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .hint-box.show {
+      display: block;
+    }
+
+    /* =========================================================
+       CROSSWORD PUZZLE STYLES
+       ========================================================= */
+    .cw-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+
+    .cw-active-clue-banner {
+      flex: 1 1 320px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .cw-active-clue-banner span.dir-pill {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.78rem;
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-right: 6px;
+      text-transform: uppercase;
+    }
+
+    .cw-tools-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cw-layout {
+      display: grid;
+      grid-template-columns: minmax(340px, 1.15fr) minmax(300px, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 920px) {
+      .cw-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cw-grid-wrapper {
+      background: #eef4f7;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .cw-grid {
+      display: grid;
+      grid-template-columns: repeat(15, 34px);
+      grid-template-rows: repeat(18, 34px);
+      gap: 2px;
+      background: #1e293b;
+      padding: 4px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 600px) {
+      .cw-grid {
+        grid-template-columns: repeat(15, 26px);
+        grid-template-rows: repeat(18, 26px);
+      }
+    }
+
+    .cw-cell-block {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+
+    .cw-cell {
+      position: relative;
+      background: #ffffff;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .cw-cell.in-active-word {
+      background: #dbeafe;
+    }
+
+    .cw-cell.is-cursor {
+      background: #fef08a;
+      box-shadow: inset 0 0 0 2.5px var(--accent);
+    }
+
+    .cw-cell.solved-cell {
+      background: var(--success-bg);
+    }
+
+    .cw-cell.solved-cell.is-cursor {
+      background: #bbf7d0;
+      box-shadow: inset 0 0 0 2.5px var(--success);
+    }
+
+    .cw-cell.wrong-cell {
+      background: var(--error-bg);
+      animation: shake 0.3s ease;
+    }
+
+    .cw-num {
+      position: absolute;
+      top: 1px;
+      left: 3px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .cw-input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-transform: uppercase;
+      caret-color: transparent;
+      cursor: pointer;
+      outline: none;
+      padding-top: 4px;
+    }
+
+    .cw-cell.solved-cell .cw-input {
+      color: var(--success);
+    }
+
+    .cw-cell.wrong-cell .cw-input {
+      color: var(--error);
+    }
+
+    .cw-clues-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cw-clue-group {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .cw-clue-group h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary-soft);
+    }
+
+    .cw-clue-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .cw-clue-item {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .cw-clue-item:hover {
+      background: var(--primary-soft);
+    }
+
+    .cw-clue-item.active {
+      background: #e0f2fe;
+      border-color: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .cw-clue-item.solved {
+      background: var(--success-bg);
+      color: var(--success);
+      text-decoration: line-through;
+      opacity: 0.85;
+    }
+
+    /* Dictation Practice */
+    .dictation-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .dictation-card.solved {
+      background: #f6fef9;
+      border-color: var(--success);
+    }
+
+    .dictation-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dictation-input {
+      width: 100%;
+      margin-top: 12px;
+      padding: 11px 15px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .dictation-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.12);
+    }
+
+    .dictation-input.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .dictation-input.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    /* Reflection Cards */
+    .reflection-card {
+      background: #fbfdfe;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .reflection-textarea {
+      width: 100%;
+      min-height: 76px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.96rem;
+      resize: vertical;
+    }
+
+    .sample-answer-box {
+      margin-top: 10px;
+      background: var(--primary-soft);
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.93rem;
+      color: var(--primary);
+      display: none;
+    }
+
+    .sample-answer-box.show {
+      display: block;
+    }
+
+    /* Footer Navigation per Tab */
+    .tab-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border);
+    }
+
+    .btn-reset {
+      background: #ffffff;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reset:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-next {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 76, 92, 0.22);
+      transition: all 0.2s ease;
+      margin-left: auto;
+    }
+
+    .btn-next:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9500;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 550px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      position: relative;
+      text-align: left;
+    }
+
+    .modal-box.celebration {
+      text-align: center;
+      border-top: 6px solid #10b981;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: #f1f5f9;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .modal-box ul {
+      padding-left: 20px;
+      margin-bottom: 18px;
+    }
+
+    .modal-box li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .trophy-icon {
+      font-size: 3.4rem;
+      margin-bottom: 8px;
+    }
+
+    .stats-pill-box {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-3px); }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .audio-status { margin-left: 0; }
+      .sticky-bank { top: 128px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23ffffff%22/><text x=%2250%22 y=%2262%22 font-family=%22Georgia,serif%22 font-size=%2236%22 font-weight=%22bold%22 fill=%22%230f4c5c%22 text-anchor=%22middle%22>MM</text></svg>';">
+      <div class="brand-text">
+        <h1>Merry Mery English</h1>
+        <p>Interactive Learning &bull; Reading &amp; Study Skills Series (B1–B2)</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="voice-control">
+        <label for="voice-select">🎙️ Voice:</label>
+        <select id="voice-select" aria-label="Select Accent and Voice">
+          <option value="uk-female">British Female (UK)</option>
+          <option value="uk-male">British Male (UK)</option>
+          <option value="us-female">American Female (US)</option>
+          <option value="us-male">American Male (US)</option>
+        </select>
+      </div>
+
+      <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="nav-btn">📖 Dictionary</a>
+      <button type="button" class="nav-btn" id="btn-help-open">❓ Help</button>
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Navigation Tabs -->
+  <nav class="tabs-bar" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="tab-reading">
+      📘 Reading &amp; Glossary
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-quiz">
+      ✅ Comprehension Quiz <span class="tab-badge" id="badge-quiz">0/8</span>
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-vocab">
+      🧩 Vocabulary Practice <span class="tab-badge" id="badge-vocab">0/20</span>
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-crossword">
+      🔠 Vocabulary Crossword <span class="tab-badge" id="badge-cw">0/10</span>
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-dictation">
+      🎧 Dictation &amp; Reflection <span class="tab-badge" id="badge-dictation">0/8</span>
+    </button>
+  </nav>
+
+  <!-- TAB 1: READING PASSAGE & GLOSSARY -->
+  <section id="tab-reading" class="tab-panel active">
+    <div class="card">
+      <div class="section-header">
+        <h2>Practical Tips for Learning English as an Adult</h2>
+        <span class="level-pill">Upper-Intermediate &bull; B1–B2</span>
+      </div>
+
+      <div class="instruction-banner">
+        Read the article carefully and pay attention to the highlighted expressions. Use the audio bar below whenever you wish to listen to the full passage aloud.
+      </div>
+
+      <div class="audio-player-bar">
+        <button type="button" class="btn-audio" id="btn-passage-play">▶ Listen</button>
+        <button type="button" class="btn-stop" id="btn-passage-stop">■ Stop</button>
+        <span class="audio-status" id="passage-audio-status">Ready to play</span>
+      </div>
+
+      <article class="reading-article" id="reading-article-content">
+        <p>
+          Learning English in your thirties or beyond is a different experience from learning at school. You probably have a job, family <span class="vocab-highlight" data-gloss="commitment">commitments</span> and limited free time. The good news is that adults have real advantages: you are disciplined, you know exactly why you are learning, and you can choose methods that suit your lifestyle. Here are some practical tips to help you make steady progress.
+        </p>
+
+        <div class="reading-tip-block">
+          <h3>1. Set clear, realistic goals</h3>
+          <p>
+            <span class="vocab-highlight" data-gloss="vague">Vague</span> aims such as "I want to improve my English" rarely work. Instead, set specific <span class="vocab-highlight" data-gloss="target">targets</span>, for example leading a meeting in English within six months or passing a B2 or C1 exam. Break each goal into small weekly tasks. Your progress becomes visible, which keeps you motivated when life gets busy.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>2. Study little and often</h3>
+          <p>
+            Thirty minutes every day is far more effective than a three-hour session once a week. Use the <span class="vocab-highlight" data-gloss="gap">gaps</span> in your day: listen to a podcast on your <span class="vocab-highlight" data-gloss="commute">commute</span>, review vocabulary during your lunch break, or read an article before bed. Consistency matters more than intensity.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>3. Surround yourself with English</h3>
+          <p>
+            Change the language on your phone, watch films and series with English subtitles, and follow the news on the BBC or The Guardian. Choose topics you genuinely enjoy, such as football, technology, cars or cooking. When the content interests you, learning stops feeling like a <span class="vocab-highlight" data-gloss="chore">chore</span>.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>4. Learn vocabulary in context</h3>
+          <p>
+            Memorising long word lists is rarely useful. Learn words in phrases and <span class="vocab-highlight" data-gloss="collocation">collocations</span>, such as "meet a deadline" or "make a decision". Keep a notebook or use an app, and review your words regularly so they move into your <span class="vocab-highlight" data-gloss="long-term memory">long-term memory</span>.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>5. Speak from day one</h3>
+          <p>
+            Many adults feel <span class="vocab-highlight" data-gloss="embarrassed">embarrassed</span> about making mistakes, but speaking is the only way to become fluent. Find a conversation partner, join a language exchange or book regular lessons. Remember that mistakes are not failures; they are proof that you are learning. You could also record yourself speaking and listen back to notice what to improve.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>6. Focus on your own needs</h3>
+          <p>
+            Think about when you actually use English. If you write emails at work, practise formal and semi-formal writing. If you travel often, learn useful phrases for airports and hotels. Targeted practice saves time and gives you results you can use straight away.
+          </p>
+        </div>
+
+        <div class="reading-tip-block">
+          <h3>7. Be patient with yourself</h3>
+          <p>
+            Language learning is not a <span class="vocab-highlight" data-gloss="straight line">straight line</span>. Some weeks you will feel you have made no progress, and then suddenly you will understand an entire conversation. Celebrate these small victories and do not compare yourself with others.
+          </p>
+        </div>
+
+        <p>
+          <strong>Final thoughts:</strong> There is no secret method, but there is a reliable formula: clear goals, regular practice, interesting content and plenty of speaking. Start with one or two of these tips this week, and add more as they become habits. Before long, you will notice the difference.
+        </p>
+      </article>
+    </div>
+
+    <!-- Interactive Glossary Cards -->
+    <div class="card" id="glossary-section">
+      <div class="section-header">
+        <h2>Key Vocabulary &amp; Glossary</h2>
+        <span class="level-pill">10 Essential Terms</span>
+      </div>
+      <div class="instruction-banner">
+        Explore the B2 definitions, Spanish equivalents, and context examples below. Click <strong>Listen Word &amp; Example</strong> on any card to hear natural pronunciation.
+      </div>
+      <div class="vocab-grid" id="glossary-grid"></div>
+
+      <div class="tab-footer">
+        <button type="button" class="btn-next" data-goto="tab-quiz">Next: Comprehension Quiz ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: COMPREHENSION QUIZ -->
+  <section id="tab-quiz" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2>Reading Comprehension Quiz</h2>
+        <span class="level-pill">True/False &amp; Multiple Choice</span>
+      </div>
+
+      <div class="instruction-banner">
+        Select an answer for each question below. Your response is evaluated immediately with instant feedback.
+      </div>
+
+      <div class="progress-strip">
+        <div class="progress-track"><div class="progress-fill" id="progress-quiz"></div></div>
+        <span class="progress-label" id="label-quiz">0 of 8 completed</span>
+      </div>
+
+      <div id="quiz-container"></div>
+
+      <div class="tab-footer">
+        <button type="button" class="btn-reset" id="btn-reset-quiz">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" data-goto="tab-vocab">Next: Vocabulary Practice ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: VOCABULARY PRACTICE -->
+  <section id="tab-vocab" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2>Vocabulary Practice</h2>
+        <span class="level-pill">Matching &amp; Context Gaps</span>
+      </div>
+
+      <div class="instruction-banner">
+        <strong>Part 1:</strong> Match each word with its correct B2 definition. &nbsp;|&nbsp; <strong>Part 2:</strong> Drag and drop (or click) words from the sticky Word Bank into the sentences below.
+      </div>
+
+      <div class="progress-strip">
+        <div class="progress-track"><div class="progress-fill" id="progress-vocab"></div></div>
+        <span class="progress-label" id="label-vocab">0 of 20 completed</span>
+      </div>
+
+      <h3 style="color: var(--primary); margin-bottom: 14px; font-size: 1.25rem;">Part 1: Word-Definition Matching</h3>
+      <div class="matching-grid" id="matching-container"></div>
+
+      <hr style="border: none; border-top: 2px solid var(--primary-soft); margin: 28px 0;">
+
+      <h3 style="color: var(--primary); margin-bottom: 14px; font-size: 1.25rem;">Part 2: Vocabulary in Context</h3>
+
+      <div class="sticky-bank" id="sticky-word-bank">
+        <div class="sticky-bank-title">
+          <span>🧲 Sticky Word Bank (Drag to a blank or click a blank first, then click a word)</span>
+        </div>
+        <div class="word-chips" id="word-chips-container"></div>
+      </div>
+
+      <div id="gaps-container"></div>
+
+      <div class="tab-footer">
+        <button type="button" class="btn-reset" id="btn-reset-vocab">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" data-goto="tab-crossword">Next: Vocabulary Crossword ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: VOCABULARY CROSSWORD -->
+  <section id="tab-crossword" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2>Glossary Crossword Puzzle</h2>
+        <span class="level-pill">10 Intersecting Terms</span>
+      </div>
+
+      <div class="instruction-banner">
+        Click any square or clue to select a word, then type the letters on your keyboard. Use <strong>💡 Hint</strong> for a clue without giving away the answer, or <strong>+1 Letter</strong> to place the exact letter at your selected square!
+      </div>
+
+      <div class="progress-strip">
+        <div class="progress-track"><div class="progress-fill" id="progress-cw"></div></div>
+        <span class="progress-label" id="label-cw">0 of 10 words completed</span>
+      </div>
+
+      <!-- Active Clue & Tools Toolbar -->
+      <div class="cw-toolbar">
+        <div class="cw-active-clue-banner" id="cw-active-clue-text">
+          <span class="dir-pill">1 Down</span> Something you have promised or must do
+        </div>
+        <div class="cw-tools-group">
+          <button type="button" class="btn-mini" id="btn-cw-listen">🔊 Listen Clue</button>
+          <button type="button" class="btn-mini btn-hint" id="btn-cw-hint">💡 Hint</button>
+          <button type="button" class="btn-mini btn-letter" id="btn-cw-letter">+1 Letter (at cursor)</button>
+          <button type="button" class="btn-mini" id="btn-cw-help">❓ Crossword Help</button>
+        </div>
+      </div>
+
+      <div class="hint-box" id="cw-hint-box" style="margin-bottom: 18px;"></div>
+
+      <div class="cw-layout">
+        <!-- Crossword Grid -->
+        <div class="cw-grid-wrapper">
+          <div class="cw-grid" id="cw-grid" role="grid" aria-label="Glossary Crossword Grid"></div>
+        </div>
+
+        <!-- Across & Down Clues -->
+        <div class="cw-clues-panel">
+          <div class="cw-clue-group">
+            <h3>➡️ Across</h3>
+            <ul class="cw-clue-list" id="cw-across-list"></ul>
+          </div>
+          <div class="cw-clue-group">
+            <h3>⬇️ Down</h3>
+            <ul class="cw-clue-list" id="cw-down-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-footer">
+        <button type="button" class="btn-reset" id="btn-reset-cw">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" data-goto="tab-dictation">Next: Dictation &amp; Reflection ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: DICTATION & GUIDED REFLECTION -->
+  <section id="tab-dictation" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2>Listening Dictation &amp; Active Recall</h2>
+        <span class="level-pill">Listen &amp; Type</span>
+      </div>
+
+      <div class="instruction-banner">
+        Click <strong>🔊 Listen</strong> on each item and type the exact sentence you hear. Need assistance? Use <strong>💡 Hint</strong> for a grammar/vocabulary clue or <strong>+1 Letter</strong> to reveal the next character.
+      </div>
+
+      <div class="progress-strip">
+        <div class="progress-track"><div class="progress-fill" id="progress-dictation"></div></div>
+        <span class="progress-label" id="label-dictation">0 of 8 completed</span>
+      </div>
+
+      <div id="dictation-container"></div>
+
+      <hr style="border: none; border-top: 2px solid var(--primary-soft); margin: 30px 0 22px;">
+
+      <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 1.3rem;">Speaking &amp; Writing Reflection (Optional Extension)</h3>
+      <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 0.95rem;">
+        Practise expressing the ideas from the passage in your own words. Write your response first, then reveal the suggested model answer to compare.
+      </p>
+
+      <div id="reflection-container"></div>
+
+      <div class="tab-footer">
+        <button type="button" class="btn-reset" id="btn-reset-dictation">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" data-goto="tab-reading">Back to Reading Passage ➔</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- GENERAL HELP MODAL -->
+<div class="modal-backdrop" id="help-modal">
+  <div class="modal-box">
+    <button type="button" class="modal-close" data-close-modal="help-modal">&times;</button>
+    <h3>How to Use This Interactive Lesson</h3>
+    <ul>
+      <li><strong>Global Voice Selector:</strong> Choose between <em>British (UK)</em> or <em>American (US)</em> Female and Male voices in the top bar. All audio buttons adapt immediately.</li>
+      <li><strong>Instant Automatic Feedback:</strong> There are no "Check" buttons. As soon as you select an option, drop a word, or complete a crossword word, your answer turns <strong>green</strong> automatically.</li>
+      <li><strong>Vocabulary Crossword:</strong> Click any square with your mouse to place the cursor, type letters directly, or click <strong>+1 Letter (at cursor)</strong> to reveal the letter in the exact square you clicked.</li>
+      <li><strong>Hints &amp; +1 Letter:</strong> Click <strong>💡 Hint</strong> in any exercise for a helpful clue without revealing the full answer.</li>
+    </ul>
+    <button type="button" class="btn-audio" style="width:100%; justify-content:center;" data-close-modal="help-modal">Got it, let's start!</button>
+  </div>
+</div>
+
+<!-- CROSSWORD SPECIFIC HELP MODAL -->
+<div class="modal-backdrop" id="cw-help-modal">
+  <div class="modal-box">
+    <button type="button" class="modal-close" data-close-modal="cw-help-modal">&times;</button>
+    <h3>Crossword Puzzle Instructions</h3>
+    <ul>
+      <li><strong>Selecting a Word &amp; Square:</strong> Click any white cell with your mouse to position the yellow cursor. Clicking the same intersecting square twice switches between <em>Across</em> and <em>Down</em>.</li>
+      <li><strong>Two-Word &amp; Hyphenated Terms:</strong> Write compound terms continuously without spaces or hyphens (for example, <em>long-term memory</em> fills 14 consecutive squares).</li>
+      <li><strong>Shared Intersections:</strong> Every crossing letter is verified automatically so shared intersections always match between Across and Down words.</li>
+      <li><strong>💡 Hint &amp; +1 Letter (at cursor):</strong> Use <strong>💡 Hint</strong> for a structural clue (letter count and spelling pattern) without giving away the answer, or click any square with your mouse and press <strong>+1 Letter (at cursor)</strong> to unlock that exact square.</li>
+    </ul>
+    <button type="button" class="btn-audio" style="width:100%; justify-content:center;" data-close-modal="cw-help-modal">Back to Crossword</button>
+  </div>
+</div>
+
+<!-- CELEBRATION MODAL -->
+<div class="modal-backdrop" id="celebration-modal">
+  <div class="modal-box celebration">
+    <button type="button" class="modal-close" data-close-modal="celebration-modal">&times;</button>
+    <div class="trophy-icon">🏆</div>
+    <h3 id="celeb-title">Outstanding Work!</h3>
+    <p id="celeb-message" style="color: var(--text-muted); font-size: 1rem;"></p>
+    <div class="stats-pill-box">
+      <div class="stat-badge" id="celeb-accuracy">Accuracy: 100%</div>
+      <div class="stat-badge" id="celeb-mistakes">Corrections: 0</div>
+    </div>
+    <button type="button" class="btn-audio" style="width:100%; justify-content:center;" data-close-modal="celebration-modal">Continue Learning</button>
+  </div>
+</div>
+
+<script>
+  /* =========================================================
+     DATA DEFINITIONS
+     ========================================================= */
+  const GLOSSARY_DATA = [
+    {
+      id: "commitment",
+      term: "commitment",
+      pos: "noun",
+      spanish: "compromiso, obligación",
+      meaning: "Something you have promised or must do.",
+      example: "Balancing work and family commitments requires good time management."
+    },
+    {
+      id: "vague",
+      term: "vague",
+      pos: "adjective",
+      spanish: "vago, impreciso",
+      meaning: "Not clear or specific.",
+      example: "A vague plan like 'study more' is much harder to follow than a weekly schedule."
+    },
+    {
+      id: "target",
+      term: "target",
+      pos: "noun",
+      spanish: "objetivo, meta",
+      meaning: "A specific goal you want to achieve.",
+      example: "Her main target is to pass the Cambridge B2 First exam before December."
+    },
+    {
+      id: "gap",
+      term: "gap",
+      pos: "noun",
+      spanish: "hueco, espacio",
+      meaning: "A short period of free time or an empty space.",
+      example: "I always review flashcards during a ten-minute gap between meetings."
+    },
+    {
+      id: "commute",
+      term: "commute",
+      pos: "noun / verb",
+      spanish: "trayecto al trabajo",
+      meaning: "The regular journey to and from work.",
+      example: "Listening to English podcasts makes my morning commute feel productive."
+    },
+    {
+      id: "chore",
+      term: "chore",
+      pos: "noun",
+      spanish: "tarea tediosa",
+      meaning: "A boring task you have to do.",
+      example: "When you watch series you love, learning stops feeling like a chore."
+    },
+    {
+      id: "collocation",
+      term: "collocation",
+      pos: "noun",
+      spanish: "colocación",
+      meaning: "Words that are often used together, e.g. 'make a decision'.",
+      example: "Learning 'meet a deadline' as a single collocation sounds far more natural."
+    },
+    {
+      id: "long-term memory",
+      term: "long-term memory",
+      pos: "noun phrase",
+      spanish: "memoria a largo plazo",
+      meaning: "The part of your memory that keeps information for a long time.",
+      example: "Regular revision helps transfer new expressions into your long-term memory."
+    },
+    {
+      id: "embarrassed",
+      term: "embarrassed",
+      pos: "adjective",
+      spanish: "avergonzado",
+      meaning: "Feeling uncomfortable or ashamed in front of others.",
+      example: "Do not feel embarrassed about making mistakes when speaking a new language."
+    },
+    {
+      id: "straight line",
+      term: "straight line",
+      pos: "noun phrase",
+      spanish: "línea recta",
+      meaning: "A path with no ups and downs (here: steady progress).",
+      example: "Progress in language learning is rarely a straight line; patience is essential."
+    }
+  ];
+
+  const CROSSWORD_CONFIG = {"rows": 18, "cols": 15, "words": [{"word_idx": 4, "id": "commitment", "clean": "COMMITMENT", "clue": "Something you have promised or must do", "hint": "10 letters: starts with COM-, double M, ends with -MENT.", "row": 0, "col": 9, "dir": "V", "num": 1}, {"word_idx": 8, "id": "chore", "clean": "CHORE", "clue": "A boring task you have to do", "hint": "5 letters: starts with CH- and rhymes with 'more'.", "row": 1, "col": 7, "dir": "H", "num": 2}, {"word_idx": 5, "id": "commute", "clean": "COMMUTE", "clue": "The regular journey to and from work", "hint": "7 letters: starts with COM- and rhymes with 'mute'.", "row": 5, "col": 4, "dir": "H", "num": 3}, {"word_idx": 1, "id": "collocation", "clean": "COLLOCATION", "clue": "Words that are often used together, e.g. 'make a decision'", "hint": "11 letters: starts with C, double L, ends with -ATION.", "row": 6, "col": 1, "dir": "V", "num": 4}, {"word_idx": 0, "id": "long-term memory", "clean": "LONGTERMMEMORY", "clue": "The part of your memory that keeps information for a long time (2 words, hyphenated)", "hint": "14 letters total: starts with LONG- and ends with MEMORY.", "row": 7, "col": 0, "dir": "H", "num": 5}, {"word_idx": 9, "id": "gap", "clean": "GAP", "clue": "A short period of free time or an empty space", "hint": "3 letters: G - A - P.", "row": 7, "col": 3, "dir": "V", "num": 6}, {"word_idx": 2, "id": "embarrassed", "clean": "EMBARRASSED", "clue": "Feeling uncomfortable or ashamed in front of others", "hint": "11 letters: starts with EM-, double R, double S.", "row": 7, "col": 5, "dir": "V", "num": 7}, {"word_idx": 6, "id": "target", "clean": "TARGET", "clue": "A specific goal you want to achieve", "hint": "6 letters: starts with T and ends with -GET.", "row": 9, "col": 9, "dir": "H", "num": 8}, {"word_idx": 3, "id": "straight line", "clean": "STRAIGHTLINE", "clue": "A path with no ups and downs; steady progress (2 words)", "hint": "12 letters total: STRAIGHT (8) + LINE (4).", "row": 11, "col": 3, "dir": "H", "num": 9}, {"word_idx": 7, "id": "vague", "clean": "VAGUE", "clue": "Not clear or specific", "hint": "5 letters: starts with V and ends with -GUE.", "row": 13, "col": 4, "dir": "H", "num": 10}]};
+
+  const QUIZ_DATA = [
+    {
+      id: "q1",
+      type: "tf",
+      question: "Adults have no advantages when learning a language.",
+      options: ["True", "False"],
+      answer: "False",
+      explanation: "The text states that adults have real advantages: discipline, clear motivation, and the ability to choose suitable methods."
+    },
+    {
+      id: "q2",
+      type: "tf",
+      question: "Studying for thirty minutes a day is better than studying for three hours once a week.",
+      options: ["True", "False"],
+      answer: "True",
+      explanation: "Tip 2 highlights that consistency matters more than intensity: 30 minutes daily is far more effective."
+    },
+    {
+      id: "q3",
+      type: "tf",
+      question: "The text recommends memorising long lists of isolated words.",
+      options: ["True", "False"],
+      answer: "False",
+      explanation: "Tip 4 explicitly notes that memorising long word lists is rarely useful; learners should study phrases and collocations in context."
+    },
+    {
+      id: "q4",
+      type: "tf",
+      question: "You should wait until your English is perfect before you start speaking.",
+      options: ["True", "False"],
+      answer: "False",
+      explanation: "Tip 5 advises speaking from day one, because mistakes are proof that you are learning."
+    },
+    {
+      id: "q5",
+      type: "tf",
+      question: "Language learning always progresses steadily, without ups and downs.",
+      options: ["True", "False"],
+      answer: "False",
+      explanation: "Tip 7 reminds learners that language learning is not a straight line and includes weeks that feel slower."
+    },
+    {
+      id: "q6",
+      type: "mc",
+      question: "According to the text, why are vague goals a problem?",
+      options: [
+        "a) They are too difficult.",
+        "b) They rarely work.",
+        "c) They take too much time."
+      ],
+      answer: "b) They rarely work.",
+      explanation: "Tip 1 opens by stating that vague aims such as 'I want to improve my English' rarely work."
+    },
+    {
+      id: "q7",
+      type: "mc",
+      question: "What does the text suggest for learning vocabulary?",
+      options: [
+        "a) Learning words in phrases and collocations.",
+        "b) Using only a dictionary.",
+        "c) Avoiding apps and notebooks."
+      ],
+      answer: "a) Learning words in phrases and collocations.",
+      explanation: "Tip 4 recommends learning words in phrases and collocations, and reviewing them in a notebook or app."
+    },
+    {
+      id: "q8",
+      type: "mc",
+      question: "Why should you choose content you enjoy?",
+      options: [
+        "a) It is cheaper.",
+        "b) It is shorter.",
+        "c) Learning stops feeling like a chore."
+      ],
+      answer: "c) Learning stops feeling like a chore.",
+      explanation: "Tip 3 explains that when the content genuinely interests you, learning stops feeling like a boring obligation."
+    }
+  ];
+
+  const GAPS_DATA = [
+    {
+      id: "g1",
+      before: "My",
+      after: "to the office takes forty minutes, so I listen to podcasts.",
+      answer: "commute",
+      hint: "Noun meaning your regular journey to and from work."
+    },
+    {
+      id: "g2",
+      before: '"Make a decision" is a common',
+      after: "in English.",
+      answer: "collocation",
+      hint: "A natural combination of words that frequently appear together."
+    },
+    {
+      id: "g3",
+      before: "I felt",
+      after: "when I made a mistake in front of my colleagues.",
+      answer: "embarrassed",
+      hint: "Adjective describing feeling uncomfortable or self-conscious."
+    },
+    {
+      id: "g4",
+      before: "Setting a clear",
+      after: "helps you stay motivated.",
+      answer: "target",
+      hint: "A specific goal or milestone you aim to reach."
+    },
+    {
+      id: "g5",
+      before: "Because of work and family",
+      after: ", adults often have limited free time to study.",
+      answer: "commitments",
+      hint: "Plural form of a noun meaning promises or responsibilities."
+    },
+    {
+      id: "g6",
+      before: 'Saying "I want to get better" is too',
+      after: "; try setting a six-month deadline instead.",
+      answer: "vague",
+      hint: "Adjective meaning unclear or lacking specific detail."
+    },
+    {
+      id: "g7",
+      before: "You can review five new words during a short",
+      after: "between meetings.",
+      answer: "gap",
+      hint: "A brief empty space or free interval in your schedule."
+    },
+    {
+      id: "g8",
+      before: "Reading articles about your favourite hobbies prevents English from feeling like a",
+      after: ".",
+      answer: "chore",
+      hint: "A tedious, boring task that feels like an obligation."
+    },
+    {
+      id: "g9",
+      before: "Spaced repetition moves useful expressions into your",
+      after: ".",
+      answer: "long-term memory",
+      hint: "Two-word noun phrase (with hyphen) for storing knowledge permanently."
+    },
+    {
+      id: "g10",
+      before: "Progress is never a",
+      after: ", so celebrate small victories along the way.",
+      answer: "straight line",
+      hint: "Two-word phrase contrasting steady progress with natural ups and downs."
+    }
+  ];
+
+  const DICTATION_DATA = [
+    {
+      id: "d1",
+      sentence: "Consistency matters more than intensity.",
+      hint: "5 words. Starts with a noun meaning regular, steady habit ('C...')."
+    },
+    {
+      id: "d2",
+      sentence: "Mistakes are proof that you are learning.",
+      hint: "7 words. Plural subject + 'are proof that...'"
+    },
+    {
+      id: "d3",
+      sentence: "Thirty minutes every day is very effective.",
+      hint: "7 words. Spell out the number 'Thirty' at the beginning."
+    },
+    {
+      id: "d4",
+      sentence: "Adults can choose methods that suit their lifestyle.",
+      hint: "8 words. Includes the verb 'suit' and ends with 'lifestyle'."
+    },
+    {
+      id: "d5",
+      sentence: "Targeted practice saves time and gives quick results.",
+      hint: "8 words. Begins with the adjective 'Targeted'."
+    },
+    {
+      id: "d6",
+      sentence: "Break each goal into small weekly tasks.",
+      hint: "7 words. Imperative sentence starting with 'Break each goal...'."
+    },
+    {
+      id: "d7",
+      sentence: "Celebrate small victories and do not compare yourself.",
+      hint: "8 words. Use the full uncontracted negative 'do not'."
+    },
+    {
+      id: "d8",
+      sentence: "Before long, you will notice the difference.",
+      hint: "7 words. Time expression 'Before long,' followed by future 'will notice'."
+    }
+  ];
+
+  const REFLECTION_DATA = [
+    {
+      id: "r1",
+      question: "1. Give two ways to use the gaps in your day to practise English.",
+      sample: "Suggested answer: You can listen to an English podcast during your daily commute, review vocabulary flashcards on your lunch break, or read a short article before going to bed."
+    },
+    {
+      id: "r2",
+      question: '2. Why does the text say that mistakes are "proof that you are learning"?',
+      sample: "Suggested answer: Because making mistakes means you are actively trying to communicate and use new structures, which is the only real way to improve and become fluent."
+    },
+    {
+      id: "r3",
+      question: "3. Which of the seven tips is the most useful for you? Why? What will you do this week to put it into practice?",
+      sample: "Model response: Tip 2 ('Study little and often') is the most useful for me because my work schedule is very busy. This week, I will listen to a 15-minute English podcast every morning on my commute."
+    }
+  ];
+
+  /* =========================================================
+     AUDIO & SPEECH SYNTHESIS (ROBUST CROSS-BROWSER ENGINE)
+     ========================================================= */
+  let availableVoices = [];
+  let passagePlaying = false;
+  let passagePaused = false;
+  let passageChunks = [];
+  let passageChunkIndex = 0;
+  let currentUtterance = null;
+
+  function loadVoices() {
+    if ('speechSynthesis' in window) {
+      availableVoices = window.speechSynthesis.getVoices();
+    }
+  }
+
+  if ('speechSynthesis' in window) {
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  function getSelectedVoiceConfig() {
+    const mode = document.getElementById('voice-select').value;
+    const isUK = mode.startsWith('uk');
+    const isFemale = mode.endsWith('female');
+    const langTarget = isUK ? 'en-GB' : 'en-US';
+
+    if (!availableVoices.length) loadVoices();
+
+    const langVoices = availableVoices.filter(v =>
+      v.lang.toLowerCase().replace('_', '-').startsWith(langTarget.toLowerCase())
+    );
+    const pool = langVoices.length ? langVoices : availableVoices.filter(v => v.lang.toLowerCase().startsWith('en'));
+
+    const femaleHints = ['female', 'woman', 'samantha', 'victoria', 'karen', 'moira', 'kate', 'serena', 'hazel', 'susan', 'libby', 'sonia', 'jenny', 'aria', 'zira', 'google uk english female'];
+    const maleHints = ['male', 'man', 'daniel', 'arthur', 'oliver', 'george', 'ryan', 'alex', 'fred', 'tom', 'david', 'mark', 'guy', 'christopher', 'google uk english male'];
+
+    let chosen = null;
+    if (isFemale) {
+      chosen = pool.find(v => femaleHints.some(h => v.name.toLowerCase().includes(h)));
+    } else {
+      chosen = pool.find(v => maleHints.some(h => v.name.toLowerCase().includes(h)));
+    }
+
+    if (!chosen && pool.length) {
+      chosen = isFemale ? pool[0] : (pool[1] || pool[0]);
+    }
+
+    let pitch = 1.0;
+    if (chosen) {
+      const lower = chosen.name.toLowerCase();
+      if (!isFemale && femaleHints.some(h => lower.includes(h))) pitch = 0.82;
+      if (isFemale && maleHints.some(h => lower.includes(h))) pitch = 1.15;
+    } else {
+      pitch = isFemale ? 1.08 : 0.86;
+    }
+
+    return { voice: chosen, lang: langTarget, pitch };
+  }
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    passagePlaying = false;
+    passagePaused = false;
+    updatePassageUI('Ready to play', '▶ Listen');
+
+    const utter = new SpeechSynthesisUtterance(text);
+    currentUtterance = utter;
+    const cfg = getSelectedVoiceConfig();
+    if (cfg.voice) utter.voice = cfg.voice;
+    utter.lang = cfg.lang;
+    utter.pitch = cfg.pitch;
+    utter.rate = 0.96;
+
+    utter.onend = () => { currentUtterance = null; };
+    utter.onerror = () => { currentUtterance = null; };
+
+    setTimeout(() => {
+      window.speechSynthesis.speak(utter);
+    }, 30);
+  }
+
+  function stopSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    passagePlaying = false;
+    passagePaused = false;
+    passageChunkIndex = 0;
+    currentUtterance = null;
+    updatePassageUI('Ready to play', '▶ Listen');
+  }
+
+  function updatePassageUI(statusText, btnText) {
+    const statusEl = document.getElementById('passage-audio-status');
+    const btnEl = document.getElementById('btn-passage-play');
+    if (statusEl) statusEl.textContent = statusText;
+    if (btnEl) btnEl.textContent = btnText;
+  }
+
+  function speakNextPassageChunk() {
+    if (!passagePlaying || passagePaused) return;
+    if (passageChunkIndex >= passageChunks.length) {
+      passagePlaying = false;
+      passagePaused = false;
+      passageChunkIndex = 0;
+      currentUtterance = null;
+      updatePassageUI('Finished reading', '▶ Listen');
+      return;
+    }
+
+    const chunkText = passageChunks[passageChunkIndex];
+    const utter = new SpeechSynthesisUtterance(chunkText);
+    currentUtterance = utter;
+    const cfg = getSelectedVoiceConfig();
+    if (cfg.voice) utter.voice = cfg.voice;
+    utter.lang = cfg.lang;
+    utter.pitch = cfg.pitch;
+    utter.rate = 0.95;
+
+    utter.onend = () => {
+      if (passagePlaying && !passagePaused) {
+        passageChunkIndex++;
+        speakNextPassageChunk();
+      }
+    };
+    utter.onerror = () => {
+      passagePlaying = false;
+      passagePaused = false;
+      updatePassageUI('Ready to play', '▶ Listen');
+    };
+
+    window.speechSynthesis.speak(utter);
+  }
+
+  function togglePassageAudio() {
+    if (!('speechSynthesis' in window)) return;
+
+    if (passagePlaying && !passagePaused) {
+      window.speechSynthesis.pause();
+      passagePaused = true;
+      updatePassageUI('Paused', '▶ Resume');
+      return;
+    }
+
+    if (passagePlaying && passagePaused) {
+      window.speechSynthesis.resume();
+      passagePaused = false;
+      updatePassageUI('Reading passage aloud...', '⏸ Pause');
+      return;
+    }
+
+    const articleEl = document.getElementById('reading-article-content');
+    const blocks = Array.from(articleEl.querySelectorAll('p, h3'));
+    passageChunks = blocks
+      .map(el => el.innerText.replace(/\s+/g, ' ').trim())
+      .filter(t => t.length > 0);
+
+    window.speechSynthesis.cancel();
+    passagePlaying = true;
+    passagePaused = false;
+    passageChunkIndex = 0;
+    updatePassageUI('Reading passage aloud...', '⏸ Pause');
+
+    setTimeout(() => {
+      speakNextPassageChunk();
+    }, 30);
+  }
+
+  /* =========================================================
+     SOUND EFFECTS (WEB AUDIO API)
+     ========================================================= */
+  let audioCtx = null;
+  function playSound(type) {
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'success') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.setValueAtTime(659.25, now + 0.09);
+        osc.frequency.setValueAtTime(783.99, now + 0.18);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+        osc.start(now);
+        osc.stop(now + 0.42);
+      } else {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(175, now + 0.22);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+        osc.start(now);
+        osc.stop(now + 0.26);
+      }
+    } catch (e) {}
+  }
+
+  /* =========================================================
+     UTILITIES & TABS
+     ========================================================= */
+  function shuffleArray(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function normalizeText(str) {
+    return str
+      .toLowerCase()
+      .replace(/[.,!?;:'"“”‘’()\-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function switchTab(tabId) {
+    stopSpeech();
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function scrollToGlossary(termId) {
+    const card = document.getElementById('gloss-card-' + termId);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.style.boxShadow = '0 0 0 3px #e36414';
+      setTimeout(() => { card.style.boxShadow = ''; }, 1600);
+    }
+  }
+
+  /* =========================================================
+     TAB 1: RENDER GLOSSARY
+     ========================================================= */
+  function renderGlossary() {
+    const grid = document.getElementById('glossary-grid');
+    grid.innerHTML = '';
+
+    GLOSSARY_DATA.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'vocab-card';
+      card.id = 'gloss-card-' + item.id;
+
+      const topWrapper = document.createElement('div');
+
+      const cardTop = document.createElement('div');
+      cardTop.className = 'vocab-card-top';
+      const termSpan = document.createElement('span');
+      termSpan.className = 'vocab-term';
+      termSpan.textContent = item.term;
+      const posSpan = document.createElement('span');
+      posSpan.className = 'pos-pill';
+      posSpan.textContent = item.pos;
+      cardTop.appendChild(termSpan);
+      cardTop.appendChild(posSpan);
+
+      const esSpan = document.createElement('span');
+      esSpan.className = 'vocab-spanish';
+      esSpan.textContent = '🇪🇸 ' + item.spanish;
+
+      const defP = document.createElement('p');
+      defP.className = 'vocab-def';
+      defP.textContent = item.meaning;
+
+      const exBox = document.createElement('div');
+      exBox.className = 'vocab-example-box';
+      exBox.textContent = '“' + item.example + '”';
+
+      topWrapper.appendChild(cardTop);
+      topWrapper.appendChild(esSpan);
+      topWrapper.appendChild(defP);
+      topWrapper.appendChild(exBox);
+
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-listen-card';
+      listenBtn.textContent = '🔊 Listen Word & Example';
+      listenBtn.addEventListener('click', () => {
+        speakText(`${item.term}. ${item.example}`);
+      });
+
+      card.appendChild(topWrapper);
+      card.appendChild(listenBtn);
+      grid.appendChild(card);
+    });
+  }
+
+  /* =========================================================
+     TAB 2: COMPREHENSION QUIZ
+     ========================================================= */
+  let quizState = { solved: {}, mistakes: 0, celebrated: false };
+
+  function renderQuiz() {
+    quizState = { solved: {}, mistakes: 0, celebrated: false };
+    updateQuizProgress();
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+    const total = QUIZ_DATA.length;
+
+    QUIZ_DATA.forEach((q, idx) => {
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.id = 'qcard-' + q.id;
+
+      const topRow = document.createElement('div');
+      topRow.className = 'item-top-row';
+      const badge = document.createElement('span');
+      badge.className = 'item-badge';
+      badge.textContent = `Question ${idx + 1} of ${total}`;
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-mini';
+      listenBtn.textContent = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(q.question));
+      topRow.appendChild(badge);
+      topRow.appendChild(listenBtn);
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = q.question;
+
+      const optsDiv = document.createElement('div');
+      optsDiv.className = 'options-list' + (q.type === 'tf' ? ' tf-row' : '');
+
+      const fb = document.createElement('div');
+      fb.className = 'feedback-note';
+      fb.id = 'qfb-' + q.id;
+
+      const opts = q.type === 'mc' ? shuffleArray(q.options) : q.options;
+      opts.forEach(opt => {
+        const optBtn = document.createElement('button');
+        optBtn.type = 'button';
+        optBtn.className = 'option-btn';
+        optBtn.textContent = opt;
+        optBtn.addEventListener('click', () => {
+          if (quizState.solved[q.id]) return;
+          if (opt === q.answer) {
+            quizState.solved[q.id] = true;
+            optBtn.classList.add('correct');
+            card.classList.add('solved');
+            optsDiv.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+            fb.textContent = '✓ Correct! ' + q.explanation;
+            fb.className = 'feedback-note show ok';
+            playSound('success');
+            updateQuizProgress();
+          } else {
+            quizState.mistakes++;
+            optBtn.classList.add('wrong');
+            fb.textContent = '✕ Not quite. Try another option!';
+            fb.className = 'feedback-note show err';
+            playSound('error');
+            setTimeout(() => optBtn.classList.remove('wrong'), 500);
+          }
+        });
+        optsDiv.appendChild(optBtn);
+      });
+
+      card.appendChild(topRow);
+      card.appendChild(qText);
+      card.appendChild(optsDiv);
+      card.appendChild(fb);
+      container.appendChild(card);
+    });
+  }
+
+  function updateQuizProgress() {
+    const solvedCount = Object.keys(quizState.solved).length;
+    const total = QUIZ_DATA.length;
+    document.getElementById('badge-quiz').textContent = `${solvedCount}/${total}`;
+    document.getElementById('label-quiz').textContent = `${solvedCount} of ${total} completed`;
+    document.getElementById('progress-quiz').style.width = `${(solvedCount / total) * 100}%`;
+
+    if (solvedCount === total && !quizState.celebrated) {
+      quizState.celebrated = true;
+      triggerCelebration('Comprehension Quiz Complete!', total, quizState.mistakes);
+    }
+  }
+
+  /* =========================================================
+     TAB 3: VOCABULARY PRACTICE (MATCHING + STICKY WORD BANK)
+     ========================================================= */
+  let vocabState = {
+    matched: {},
+    gapsSolved: {},
+    mistakes: 0,
+    celebrated: false,
+    activeBlankId: null
+  };
+
+  function renderVocab() {
+    vocabState = {
+      matched: {},
+      gapsSolved: {},
+      mistakes: 0,
+      celebrated: false,
+      activeBlankId: 'g1'
+    };
+    updateVocabProgress();
+
+    const shuffledWords = shuffleArray(GLOSSARY_DATA);
+    const shuffledDefs = shuffleArray(GLOSSARY_DATA);
+    const letters = 'ABCDEFGHIJ'.split('');
+    const matchContainer = document.getElementById('matching-container');
+    matchContainer.innerHTML = '';
+
+    shuffledWords.forEach(w => {
+      const card = document.createElement('div');
+      card.className = 'match-card';
+      card.id = 'mcard-' + w.id;
+
+      const header = document.createElement('div');
+      header.className = 'match-header';
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'match-word';
+      wordSpan.textContent = w.term;
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-mini';
+      listenBtn.textContent = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(w.term));
+      header.appendChild(wordSpan);
+      header.appendChild(listenBtn);
+
+      const select = document.createElement('select');
+      select.className = 'match-select';
+      select.setAttribute('aria-label', 'Select definition for ' + w.term);
+
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = '-- Choose definition (A–J) --';
+      select.appendChild(defaultOpt);
+
+      shuffledDefs.forEach((d, i) => {
+        const opt = document.createElement('option');
+        opt.value = d.id;
+        opt.textContent = `${letters[i]}. ${d.meaning}`;
+        select.appendChild(opt);
+      });
+
+      select.addEventListener('change', () => {
+        if (vocabState.matched[w.id] || !select.value) return;
+        if (select.value === w.id) {
+          vocabState.matched[w.id] = true;
+          select.disabled = true;
+          card.classList.remove('wrong-shake');
+          card.classList.add('solved');
+          playSound('success');
+          updateVocabProgress();
+        } else {
+          vocabState.mistakes++;
+          card.classList.add('wrong-shake');
+          playSound('error');
+          setTimeout(() => {
+            card.classList.remove('wrong-shake');
+            select.value = '';
+          }, 550);
+        }
+      });
+
+      card.appendChild(header);
+      card.appendChild(select);
+      matchContainer.appendChild(card);
+    });
+
+    const chipsContainer = document.getElementById('word-chips-container');
+    chipsContainer.innerHTML = '';
+    const bankWords = shuffleArray(GAPS_DATA.map(g => g.answer));
+
+    bankWords.forEach(word => {
+      const chip = document.createElement('span');
+      chip.className = 'word-chip';
+      chip.draggable = true;
+      chip.dataset.word = word;
+      chip.textContent = word;
+
+      chip.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', word);
+      });
+
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('used')) return;
+        let targetId = vocabState.activeBlankId;
+        let targetEl = targetId ? document.getElementById('ginput-' + targetId) : null;
+        if (!targetEl || targetEl.disabled) {
+          const nextUnsolved = GAPS_DATA.find(g => !vocabState.gapsSolved[g.id]);
+          if (!nextUnsolved) return;
+          targetId = nextUnsolved.id;
+          targetEl = document.getElementById('ginput-' + targetId);
+        }
+        targetEl.value = word;
+        evaluateGapInput(targetId, true);
+      });
+
+      chipsContainer.appendChild(chip);
+    });
+
+    const gapsContainer = document.getElementById('gaps-container');
+    gapsContainer.innerHTML = '';
+    const totalGaps = GAPS_DATA.length;
+
+    GAPS_DATA.forEach((g, idx) => {
+      const fullSentence = `${g.before} ${g.answer} ${g.after}`.replace(/\s+/g, ' ');
+      const card = document.createElement('div');
+      card.className = 'gap-item';
+      card.id = 'gcard-' + g.id;
+
+      const topRow = document.createElement('div');
+      topRow.className = 'item-top-row';
+      const badge = document.createElement('span');
+      badge.className = 'item-badge';
+      badge.textContent = `Sentence ${idx + 1} of ${totalGaps}`;
+
+      const btnGroup = document.createElement('div');
+      btnGroup.style.display = 'flex';
+      btnGroup.style.gap = '6px';
+
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-mini';
+      listenBtn.textContent = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(fullSentence));
+
+      const hintBtn = document.createElement('button');
+      hintBtn.type = 'button';
+      hintBtn.className = 'btn-mini btn-hint';
+      hintBtn.textContent = '💡 Hint';
+
+      btnGroup.appendChild(listenBtn);
+      btnGroup.appendChild(hintBtn);
+      topRow.appendChild(badge);
+      topRow.appendChild(btnGroup);
+
+      const sentenceDiv = document.createElement('div');
+      sentenceDiv.className = 'gap-sentence';
+
+      const beforeSpan = document.createElement('span');
+      beforeSpan.textContent = g.before + ' ';
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'blank-input' + (idx === 0 ? ' active-target' : '');
+      input.id = 'ginput-' + g.id;
+      input.autocomplete = 'off';
+      input.spellcheck = false;
+      input.placeholder = 'type or drop...';
+
+      input.addEventListener('focus', () => setActiveBlank(g.id));
+      input.addEventListener('input', () => evaluateGapInput(g.id, false));
+      input.addEventListener('blur', () => evaluateGapInput(g.id, true));
+      input.addEventListener('dragover', e => {
+        e.preventDefault();
+        if (!input.disabled) input.classList.add('drag-over');
+      });
+      input.addEventListener('dragleave', () => input.classList.remove('drag-over'));
+      input.addEventListener('drop', e => {
+        e.preventDefault();
+        input.classList.remove('drag-over');
+        if (input.disabled) return;
+        const droppedWord = e.dataTransfer.getData('text/plain');
+        if (droppedWord) {
+          input.value = droppedWord;
+          evaluateGapInput(g.id, true);
+        }
+      });
+
+      const afterSpan = document.createElement('span');
+      afterSpan.textContent = (g.after.startsWith(',') || g.after.startsWith('.') || g.after.startsWith(';') ? '' : ' ') + g.after;
+
+      sentenceDiv.appendChild(beforeSpan);
+      sentenceDiv.appendChild(input);
+      sentenceDiv.appendChild(afterSpan);
+
+      const hintBox = document.createElement('div');
+      hintBox.className = 'hint-box';
+      hintBox.innerHTML = `💡 <strong>Hint:</strong> ${g.hint}`;
+      hintBtn.addEventListener('click', () => hintBox.classList.toggle('show'));
+
+      card.appendChild(topRow);
+      card.appendChild(sentenceDiv);
+      card.appendChild(hintBox);
+      gapsContainer.appendChild(card);
+    });
+  }
+
+  function setActiveBlank(gId) {
+    vocabState.activeBlankId = gId;
+    document.querySelectorAll('.blank-input').forEach(inp => inp.classList.remove('active-target'));
+    const el = document.getElementById('ginput-' + gId);
+    if (el && !el.disabled) el.classList.add('active-target');
+  }
+
+  function evaluateGapInput(gId, isFinalCheck) {
+    if (vocabState.gapsSolved[gId]) return;
+    const item = GAPS_DATA.find(g => g.id === gId);
+    const input = document.getElementById('ginput-' + gId);
+    const card = document.getElementById('gcard-' + gId);
+    const userVal = input.value.trim().toLowerCase();
+    const targetVal = item.answer.toLowerCase();
+
+    if (!userVal) {
+      input.classList.remove('wrong');
+      return;
+    }
+
+    if (userVal === targetVal) {
+      vocabState.gapsSolved[gId] = true;
+      input.value = item.answer;
+      input.disabled = true;
+      input.classList.remove('wrong', 'active-target');
+      input.classList.add('correct');
+      card.classList.add('solved');
+
+      const chip = Array.from(document.querySelectorAll('.word-chip')).find(
+        c => c.dataset.word === item.answer && !c.classList.contains('used')
+      );
+      if (chip) chip.classList.add('used');
+
+      const nextOpen = GAPS_DATA.find(g => !vocabState.gapsSolved[g.id]);
+      if (nextOpen) setActiveBlank(nextOpen.id);
+
+      playSound('success');
+      updateVocabProgress();
+    } else if (isFinalCheck) {
+      vocabState.mistakes++;
+      input.classList.add('wrong');
+      playSound('error');
+    } else {
+      input.classList.remove('wrong');
+    }
+  }
+
+  function updateVocabProgress() {
+    const matchedCount = Object.keys(vocabState.matched).length;
+    const gapsCount = Object.keys(vocabState.gapsSolved).length;
+    const done = matchedCount + gapsCount;
+    const total = GLOSSARY_DATA.length + GAPS_DATA.length;
+
+    document.getElementById('badge-vocab').textContent = `${done}/${total}`;
+    document.getElementById('label-vocab').textContent = `${done} of ${total} completed`;
+    document.getElementById('progress-vocab').style.width = `${(done / total) * 100}%`;
+
+    if (done === total && !vocabState.celebrated) {
+      vocabState.celebrated = true;
+      triggerCelebration('Vocabulary Mastery Achieved!', total, vocabState.mistakes);
+    }
+  }
+
+  /* =========================================================
+     TAB 4: INTERACTIVE GLOSSARY CROSSWORD
+     ========================================================= */
+  let cwState = {
+    cellMap: {},
+    solvedWords: {},
+    activeWordKey: null,
+    cursorCoord: null,
+    mistakes: 0,
+    celebrated: false
+  };
+
+  function getWordKey(w) {
+    return `${w.num}-${w.dir}`;
+  }
+
+  function getWordCoords(w) {
+    const coords = [];
+    for (let i = 0; i < w.clean.length; i++) {
+      const r = w.row + (w.dir === 'V' ? i : 0);
+      const c = w.col + (w.dir === 'H' ? i : 0);
+      coords.push({ r, c, expected: w.clean[i] });
+    }
+    return coords;
+  }
+
+  function renderCrossword() {
+    cwState = {
+      cellMap: {},
+      solvedWords: {},
+      activeWordKey: null,
+      cursorCoord: null,
+      mistakes: 0,
+      celebrated: false
+    };
+
+    const { rows, cols, words } = CROSSWORD_CONFIG;
+
+    words.forEach(w => {
+      const coords = getWordCoords(w);
+      coords.forEach((pt, idx) => {
+        const key = `${pt.r},${pt.c}`;
+        if (!cwState.cellMap[key]) {
+          cwState.cellMap[key] = {
+            r: pt.r,
+            c: pt.c,
+            letter: pt.expected,
+            words: [],
+            num: null,
+            inputEl: null,
+            cellEl: null
+          };
+        }
+        cwState.cellMap[key].words.push(w);
+        if (idx === 0) {
+          cwState.cellMap[key].num = w.num;
+        }
+      });
+    });
+
+    const gridEl = document.getElementById('cw-grid');
+    gridEl.innerHTML = '';
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const key = `${r},${c}`;
+        const cellInfo = cwState.cellMap[key];
+        if (!cellInfo) {
+          const block = document.createElement('div');
+          block.className = 'cw-cell-block';
+          gridEl.appendChild(block);
+          continue;
+        }
+
+        const cellDiv = document.createElement('div');
+        cellDiv.className = 'cw-cell';
+
+        if (cellInfo.num !== null) {
+          const numSpan = document.createElement('span');
+          numSpan.className = 'cw-num';
+          numSpan.textContent = cellInfo.num;
+          cellDiv.appendChild(numSpan);
+        }
+
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.maxLength = 1;
+        inp.className = 'cw-input';
+        inp.autocomplete = 'off';
+        inp.spellcheck = false;
+        inp.setAttribute('aria-label', `Row ${r + 1}, Column ${c + 1}`);
+
+        inp.addEventListener('mousedown', e => {
+          e.preventDefault();
+          handleCellMouseSelect(r, c);
+        });
+
+        inp.addEventListener('keydown', e => handleCrosswordKeydown(e, r, c));
+
+        inp.addEventListener('input', () => {
+          const val = (inp.value || '').replace(/[^a-zA-Z]/g, '').toUpperCase();
+          if (val) {
+            placeLetterAt(r, c, val.slice(-1), true);
+          } else {
+            inp.value = '';
+          }
+        });
+
+        cellInfo.cellEl = cellDiv;
+        cellInfo.inputEl = inp;
+        cellDiv.appendChild(inp);
+        gridEl.appendChild(cellDiv);
+      }
+    }
+
+    const acrossList = document.getElementById('cw-across-list');
+    const downList = document.getElementById('cw-down-list');
+    acrossList.innerHTML = '';
+    downList.innerHTML = '';
+
+    words.forEach(w => {
+      const li = document.createElement('li');
+      li.className = 'cw-clue-item';
+      li.id = 'cw-clue-' + getWordKey(w);
+
+      const textSpan = document.createElement('span');
+      textSpan.innerHTML = `<strong>${w.num}.</strong> ${w.clue}`;
+
+      const lenBadge = document.createElement('span');
+      lenBadge.style.fontSize = '0.78rem';
+      lenBadge.style.fontWeight = '800';
+      lenBadge.style.color = 'var(--primary)';
+      lenBadge.style.whiteSpace = 'nowrap';
+      lenBadge.textContent = `(${w.clean.length})`;
+
+      li.appendChild(textSpan);
+      li.appendChild(lenBadge);
+
+      li.addEventListener('click', () => {
+        selectWordFromClue(w);
+      });
+
+      if (w.dir === 'H') acrossList.appendChild(li);
+      else downList.appendChild(li);
+    });
+
+    updateCrosswordProgress();
+    if (words.length > 0) {
+      selectWordFromClue(words[0], false);
+    }
+  }
+
+  function handleCellMouseSelect(r, c) {
+    const key = `${r},${c}`;
+    const cellInfo = cwState.cellMap[key];
+    if (!cellInfo) return;
+
+    const isSameCell = cwState.cursorCoord && cwState.cursorCoord.r === r && cwState.cursorCoord.c === c;
+    let chosenWord = null;
+
+    if (cellInfo.words.length > 1 && isSameCell) {
+      const other = cellInfo.words.find(w => getWordKey(w) !== cwState.activeWordKey);
+      chosenWord = other || cellInfo.words[0];
+    } else {
+      const currentMatch = cellInfo.words.find(w => getWordKey(w) === cwState.activeWordKey);
+      if (currentMatch) {
+        chosenWord = currentMatch;
+      } else {
+        chosenWord = cellInfo.words.find(w => !cwState.solvedWords[getWordKey(w)]) || cellInfo.words[0];
+      }
+    }
+
+    cwState.activeWordKey = getWordKey(chosenWord);
+    cwState.cursorCoord = { r, c };
+    document.getElementById('cw-hint-box').classList.remove('show');
+    refreshCrosswordHighlight(true);
+  }
+
+  function selectWordFromClue(wordObj, focusGrid = true) {
+    cwState.activeWordKey = getWordKey(wordObj);
+    const coords = getWordCoords(wordObj);
+    const firstEmpty = coords.find(pt => {
+      const cell = cwState.cellMap[`${pt.r},${pt.c}`];
+      return !cell.inputEl.value;
+    }) || coords[0];
+
+    cwState.cursorCoord = { r: firstEmpty.r, c: firstEmpty.c };
+    document.getElementById('cw-hint-box').classList.remove('show');
+    refreshCrosswordHighlight(focusGrid);
+  }
+
+  function refreshCrosswordHighlight(focusInput) {
+    const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+    const activeCoordsSet = new Set();
+
+    if (activeWord) {
+      getWordCoords(activeWord).forEach(pt => activeCoordsSet.add(`${pt.r},${pt.c}`));
+      const dirLabel = activeWord.dir === 'H' ? 'Across' : 'Down';
+      document.getElementById('cw-active-clue-text').innerHTML =
+        `<span class="dir-pill">${activeWord.num} ${dirLabel}</span> ${activeWord.clue}`;
+    }
+
+    document.querySelectorAll('.cw-clue-item').forEach(el => el.classList.remove('active'));
+    if (cwState.activeWordKey) {
+      const clueEl = document.getElementById('cw-clue-' + cwState.activeWordKey);
+      if (clueEl) clueEl.classList.add('active');
+    }
+
+    Object.entries(cwState.cellMap).forEach(([coordKey, info]) => {
+      info.cellEl.classList.toggle('in-active-word', activeCoordsSet.has(coordKey));
+      const isCursor = cwState.cursorCoord && `${cwState.cursorCoord.r},${cwState.cursorCoord.c}` === coordKey;
+      info.cellEl.classList.toggle('is-cursor', Boolean(isCursor));
+      if (isCursor && focusInput) {
+        info.inputEl.focus();
+      }
+    });
+  }
+
+  function isCellLockedBySolvedWord(r, c) {
+    const cellInfo = cwState.cellMap[`${r},${c}`];
+    if (!cellInfo) return false;
+    return cellInfo.words.some(w => cwState.solvedWords[getWordKey(w)]);
+  }
+
+  function placeLetterAt(r, c, letter, advanceCursor) {
+    const key = `${r},${c}`;
+    const cellInfo = cwState.cellMap[key];
+    if (!cellInfo) return;
+
+    if (!isCellLockedBySolvedWord(r, c)) {
+      cellInfo.inputEl.value = letter.toUpperCase();
+      cellInfo.cellEl.classList.remove('wrong-cell');
+    }
+
+    evaluateWordsAtCell(r, c);
+
+    if (advanceCursor) {
+      moveCursorInActiveWord(1);
+    }
+  }
+
+  function moveCursorInActiveWord(step) {
+    const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+    if (!activeWord || !cwState.cursorCoord) return;
+    const coords = getWordCoords(activeWord);
+    const idx = coords.findIndex(pt => pt.r === cwState.cursorCoord.r && pt.c === cwState.cursorCoord.c);
+    if (idx === -1) return;
+
+    const nextIdx = idx + step;
+    if (nextIdx >= 0 && nextIdx < coords.length) {
+      cwState.cursorCoord = { r: coords[nextIdx].r, c: coords[nextIdx].c };
+      refreshCrosswordHighlight(true);
+    }
+  }
+
+  function handleCrosswordKeydown(e, r, c) {
+    const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+    if (!activeWord) return;
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveCursorInActiveWord(1);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveCursorInActiveWord(-1);
+      return;
+    }
+    if (e.key === 'Backspace' || e.key === 'Delete') {
+      e.preventDefault();
+      const cellInfo = cwState.cellMap[`${r},${c}`];
+      if (cellInfo && !isCellLockedBySolvedWord(r, c)) {
+        if (cellInfo.inputEl.value) {
+          cellInfo.inputEl.value = '';
+          cellInfo.cellEl.classList.remove('wrong-cell');
+        } else {
+          moveCursorInActiveWord(-1);
+          const prev = cwState.cellMap[`${cwState.cursorCoord.r},${cwState.cursorCoord.c}`];
+          if (prev && !isCellLockedBySolvedWord(prev.r, prev.c)) {
+            prev.inputEl.value = '';
+            prev.cellEl.classList.remove('wrong-cell');
+          }
+        }
+      } else {
+        moveCursorInActiveWord(-1);
+      }
+      return;
+    }
+
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      e.preventDefault();
+      placeLetterAt(r, c, e.key.toUpperCase(), true);
+    }
+  }
+
+  function evaluateWordsAtCell(r, c) {
+    const cellInfo = cwState.cellMap[`${r},${c}`];
+    if (!cellInfo) return;
+
+    cellInfo.words.forEach(w => {
+      const wKey = getWordKey(w);
+      if (cwState.solvedWords[wKey]) return;
+
+      const coords = getWordCoords(w);
+      const entered = coords.map(pt => cwState.cellMap[`${pt.r},${pt.c}`].inputEl.value.toUpperCase());
+
+      if (entered.every(ch => ch.length === 1)) {
+        const formed = entered.join('');
+        if (formed === w.clean) {
+          cwState.solvedWords[wKey] = true;
+          coords.forEach(pt => {
+            const ci = cwState.cellMap[`${pt.r},${pt.c}`];
+            ci.inputEl.value = pt.expected;
+            ci.cellEl.classList.remove('wrong-cell');
+            ci.cellEl.classList.add('solved-cell');
+          });
+          const clueEl = document.getElementById('cw-clue-' + wKey);
+          if (clueEl) clueEl.classList.add('solved');
+          playSound('success');
+          updateCrosswordProgress();
+        } else {
+          cwState.mistakes++;
+          coords.forEach(pt => {
+            const ci = cwState.cellMap[`${pt.r},${pt.c}`];
+            if (!isCellLockedBySolvedWord(pt.r, pt.c) && ci.inputEl.value.toUpperCase() !== pt.expected) {
+              ci.cellEl.classList.add('wrong-cell');
+            }
+          });
+          playSound('error');
+        }
+      }
+    });
+  }
+
+  function revealCrosswordLetterAtCursor() {
+    if (!cwState.cursorCoord) return;
+    const { r, c } = cwState.cursorCoord;
+    const cellInfo = cwState.cellMap[`${r},${c}`];
+    if (!cellInfo) return;
+
+    cellInfo.inputEl.value = cellInfo.letter;
+    cellInfo.cellEl.classList.remove('wrong-cell');
+    evaluateWordsAtCell(r, c);
+
+    const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+    if (activeWord) {
+      const coords = getWordCoords(activeWord);
+      const nextUnsolved = coords.find(pt => {
+        const ci = cwState.cellMap[`${pt.r},${pt.c}`];
+        return ci.inputEl.value.toUpperCase() !== pt.expected;
+      });
+      if (nextUnsolved) {
+        cwState.cursorCoord = { r: nextUnsolved.r, c: nextUnsolved.c };
+      }
+    }
+    refreshCrosswordHighlight(true);
+  }
+
+  function showCrosswordHint() {
+    const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+    if (!activeWord) return;
+    const hintBox = document.getElementById('cw-hint-box');
+    const dirLabel = activeWord.dir === 'H' ? 'Across' : 'Down';
+    hintBox.innerHTML = `💡 <strong>Hint for ${activeWord.num} ${dirLabel}:</strong> ${activeWord.hint}`;
+    hintBox.classList.add('show');
+  }
+
+  function updateCrosswordProgress() {
+    const done = Object.keys(cwState.solvedWords).length;
+    const total = CROSSWORD_CONFIG.words.length;
+    document.getElementById('badge-cw').textContent = `${done}/${total}`;
+    document.getElementById('label-cw').textContent = `${done} of ${total} words completed`;
+    document.getElementById('progress-cw').style.width = `${(done / total) * 100}%`;
+
+    if (done === total && !cwState.celebrated) {
+      cwState.celebrated = true;
+      triggerCelebration('Glossary Crossword Complete!', total, cwState.mistakes);
+    }
+  }
+
+  /* =========================================================
+     TAB 5: DICTATION PRACTICE & REFLECTION
+     ========================================================= */
+  let dictState = { solved: {}, mistakes: 0, celebrated: false };
+
+  function renderDictation() {
+    dictState = { solved: {}, mistakes: 0, celebrated: false };
+    updateDictationProgress();
+    const items = shuffleArray(DICTATION_DATA);
+    const total = items.length;
+    const container = document.getElementById('dictation-container');
+    container.innerHTML = '';
+
+    items.forEach((d, idx) => {
+      const card = document.createElement('div');
+      card.className = 'dictation-card';
+      card.id = 'dcard-' + d.id;
+
+      const topRow = document.createElement('div');
+      topRow.className = 'item-top-row';
+      const badge = document.createElement('span');
+      badge.className = 'item-badge';
+      badge.textContent = `Sentence ${idx + 1} of ${total}`;
+
+      const actions = document.createElement('div');
+      actions.className = 'dictation-actions';
+
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-mini';
+      listenBtn.textContent = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(d.sentence));
+
+      const hintBtn = document.createElement('button');
+      hintBtn.type = 'button';
+      hintBtn.className = 'btn-mini btn-hint';
+      hintBtn.textContent = '💡 Hint';
+
+      const letterBtn = document.createElement('button');
+      letterBtn.type = 'button';
+      letterBtn.className = 'btn-mini btn-letter';
+      letterBtn.textContent = '+1 Letter';
+      letterBtn.addEventListener('click', () => revealNextLetter(d.id));
+
+      actions.appendChild(listenBtn);
+      actions.appendChild(hintBtn);
+      actions.appendChild(letterBtn);
+      topRow.appendChild(badge);
+      topRow.appendChild(actions);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'dictation-input';
+      input.id = 'dinput-' + d.id;
+      input.placeholder = 'Type what you hear...';
+      input.autocomplete = 'off';
+      input.spellcheck = false;
+      input.addEventListener('input', () => evaluateDictation(d.id, false));
+      input.addEventListener('blur', () => evaluateDictation(d.id, true));
+
+      const hintBox = document.createElement('div');
+      hintBox.className = 'hint-box';
+      hintBox.innerHTML = `💡 <strong>Hint:</strong> ${d.hint}`;
+      hintBtn.addEventListener('click', () => hintBox.classList.toggle('show'));
+
+      card.appendChild(topRow);
+      card.appendChild(input);
+      card.appendChild(hintBox);
+      container.appendChild(card);
+    });
+
+    const refContainer = document.getElementById('reflection-container');
+    refContainer.innerHTML = '';
+
+    REFLECTION_DATA.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'reflection-card';
+
+      const topRow = document.createElement('div');
+      topRow.className = 'item-top-row';
+      const qStrong = document.createElement('strong');
+      qStrong.style.color = 'var(--primary)';
+      qStrong.style.fontSize = '1.02rem';
+      qStrong.textContent = r.question;
+
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'btn-mini';
+      listenBtn.textContent = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(r.question));
+
+      topRow.appendChild(qStrong);
+      topRow.appendChild(listenBtn);
+
+      const textarea = document.createElement('textarea');
+      textarea.className = 'reflection-textarea';
+      textarea.placeholder = 'Write your answer in your own words here...';
+
+      const toggleDiv = document.createElement('div');
+      toggleDiv.style.marginTop = '10px';
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+      toggleBtn.className = 'btn-mini btn-hint';
+      toggleBtn.textContent = '👁️ Show / Hide Suggested Answer';
+      toggleDiv.appendChild(toggleBtn);
+
+      const sampleBox = document.createElement('div');
+      sampleBox.className = 'sample-answer-box';
+      sampleBox.textContent = r.sample;
+      toggleBtn.addEventListener('click', () => sampleBox.classList.toggle('show'));
+
+      card.appendChild(topRow);
+      card.appendChild(textarea);
+      card.appendChild(toggleDiv);
+      card.appendChild(sampleBox);
+      refContainer.appendChild(card);
+    });
+  }
+
+  function revealNextLetter(dId) {
+    if (dictState.solved[dId]) return;
+    const item = DICTATION_DATA.find(d => d.id === dId);
+    const input = document.getElementById('dinput-' + dId);
+    const target = item.sentence;
+    const current = input.value;
+
+    let matchLen = 0;
+    while (
+      matchLen < current.length &&
+      matchLen < target.length &&
+      current[matchLen].toLowerCase() === target[matchLen].toLowerCase()
+    ) {
+      matchLen++;
+    }
+
+    if (matchLen < target.length) {
+      let nextPos = matchLen + 1;
+      while (nextPos < target.length && /[ ,.'!?]/.test(target[nextPos - 1])) {
+        nextPos++;
+      }
+      input.value = target.slice(0, nextPos);
+      input.focus();
+      evaluateDictation(dId, false);
+    }
+  }
+
+  function evaluateDictation(dId, isBlur) {
+    if (dictState.solved[dId]) return;
+    const item = DICTATION_DATA.find(d => d.id === dId);
+    const input = document.getElementById('dinput-' + dId);
+    const card = document.getElementById('dcard-' + dId);
+    const raw = input.value.trim();
+
+    if (!raw) {
+      input.classList.remove('wrong');
+      return;
+    }
+
+    if (normalizeText(raw) === normalizeText(item.sentence)) {
+      dictState.solved[dId] = true;
+      input.value = item.sentence;
+      input.disabled = true;
+      input.classList.remove('wrong');
+      input.classList.add('correct');
+      card.classList.add('solved');
+      playSound('success');
+      updateDictationProgress();
+    } else if (isBlur) {
+      dictState.mistakes++;
+      input.classList.add('wrong');
+      playSound('error');
+    } else {
+      input.classList.remove('wrong');
+    }
+  }
+
+  function updateDictationProgress() {
+    const done = Object.keys(dictState.solved).length;
+    const total = DICTATION_DATA.length;
+    document.getElementById('badge-dictation').textContent = `${done}/${total}`;
+    document.getElementById('label-dictation').textContent = `${done} of ${total} completed`;
+    document.getElementById('progress-dictation').style.width = `${(done / total) * 100}%`;
+
+    if (done === total && !dictState.celebrated) {
+      dictState.celebrated = true;
+      triggerCelebration('Listening Dictation Complete!', total, dictState.mistakes);
+    }
+  }
+
+  /* =========================================================
+     MODALS & CONFETTI ANIMATION
+     ========================================================= */
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  function triggerCelebration(title, totalItems, mistakes) {
+    const totalAttempts = totalItems + mistakes;
+    const accuracy = Math.max(0, Math.round((totalItems / totalAttempts) * 100));
+
+    document.getElementById('celeb-title').textContent = title;
+    document.getElementById('celeb-accuracy').textContent = `Accuracy: ${accuracy}%`;
+    document.getElementById('celeb-mistakes').textContent = `Corrections: ${mistakes}`;
+
+    if (mistakes === 0) {
+      document.getElementById('celeb-message').textContent =
+        '100% Flawless First Try! You completed every single item with zero mistakes.';
+    } else {
+      document.getElementById('celeb-message').textContent =
+        `Congratulations! You completed all ${totalItems} items with ${accuracy}% accuracy (${mistakes} correction${mistakes === 1 ? '' : 's'}).`;
+    }
+
+    openModal('celebration-modal');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#0f4c5c', '#e36414', '#f4a261', '#10b981', '#3b82f6', '#facc15'];
+    const particles = Array.from({ length: 135 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 10 + 6,
+      h: Math.random() * 6 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 4 + 2.5,
+      rot: Math.random() * 360,
+      vrot: (Math.random() - 0.5) * 8
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vrot;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 165) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  /* =========================================================
+     INITIALIZATION & EVENT LISTENERS
+     ========================================================= */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    document.querySelectorAll('.btn-next[data-goto]').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.goto));
+    });
+
+    document.querySelectorAll('.vocab-highlight[data-gloss]').forEach(span => {
+      span.addEventListener('click', () => scrollToGlossary(span.dataset.gloss));
+    });
+
+    document.getElementById('btn-passage-play').addEventListener('click', togglePassageAudio);
+    document.getElementById('btn-passage-stop').addEventListener('click', stopSpeech);
+
+    document.getElementById('btn-cw-listen').addEventListener('click', () => {
+      const activeWord = CROSSWORD_CONFIG.words.find(w => getWordKey(w) === cwState.activeWordKey);
+      if (activeWord) speakText(activeWord.clue);
+    });
+    document.getElementById('btn-cw-hint').addEventListener('click', showCrosswordHint);
+    document.getElementById('btn-cw-letter').addEventListener('click', revealCrosswordLetterAtCursor);
+    document.getElementById('btn-cw-help').addEventListener('click', () => openModal('cw-help-modal'));
+
+    document.getElementById('btn-reset-quiz').addEventListener('click', renderQuiz);
+    document.getElementById('btn-reset-vocab').addEventListener('click', renderVocab);
+    document.getElementById('btn-reset-cw').addEventListener('click', renderCrossword);
+    document.getElementById('btn-reset-dictation').addEventListener('click', renderDictation);
+
+    document.getElementById('btn-help-open').addEventListener('click', () => openModal('help-modal'));
+    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.dataset.closeModal));
+    });
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+      backdrop.addEventListener('click', e => {
+        if (e.target === backdrop) closeModal(backdrop.id);
+      });
+    });
+
+    renderGlossary();
+    renderQuiz();
+    renderVocab();
+    renderCrossword();
+    renderDictation();
+  });
+</script>
+</body>
+</html>

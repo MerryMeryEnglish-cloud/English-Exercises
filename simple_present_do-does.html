@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Present Simple: Do & Does – Merry Mery English</title>
+  <style>
+    :root {
+      --primary: #0f4c5c;
+      --primary-light: #1c6e8c;
+      --accent: #e36414;
+      --accent-soft: #fff3eb;
+      --bg: #f6f8fa;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      --does-color: #7c3aed;
+      --does-bg: #f3e8ff;
+      --do-color: #0284c7;
+      --do-bg: #e0f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #165b6d 100%);
+      color: white;
+      padding: 16px 24px;
+      box-shadow: 0 4px 12px rgba(15, 76, 92, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      background: #fff;
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-text span {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      display: block;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .voice-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .voice-control label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+
+    .voice-control select {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .voice-control select option {
+      color: var(--text);
+      background: white;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1100px;
+      margin: 26px auto;
+      padding: 0 20px;
+    }
+
+    .lesson-banner {
+      background: white;
+      border-radius: 16px;
+      padding: 22px 26px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lesson-banner h2 {
+      color: var(--primary);
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .lesson-banner p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: 14px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 170px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Visual Pronoun Split */
+    .visual-split-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .pronoun-diagram-card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      border: 2px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pronoun-diagram-card.does-card {
+      border-color: #d8b4fe;
+      background: linear-gradient(to right, #ffffff, #faf5ff);
+    }
+
+    .pronoun-diagram-card.do-card {
+      border-color: #bae6fd;
+      background: linear-gradient(to right, #ffffff, #f0f9ff);
+    }
+
+    .pronoun-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pronoun-pill {
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .does-card .pronoun-pill {
+      background: var(--does-bg);
+      color: var(--does-color);
+    }
+
+    .do-card .pronoun-pill {
+      background: var(--do-bg);
+      color: var(--do-color);
+    }
+
+    .brace-symbol {
+      font-size: 4.5rem;
+      font-weight: 200;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .does-card .brace-symbol { color: var(--does-color); }
+    .do-card .brace-symbol { color: var(--do-color); }
+
+    .aux-badge-box {
+      text-align: center;
+      flex: 1;
+    }
+
+    .aux-main {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: block;
+    }
+
+    .does-card .aux-main { color: var(--does-color); }
+    .do-card .aux-main { color: var(--do-color); }
+
+    .aux-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin: 26px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Example Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .grammar-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .grammar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 76, 92, 0.08);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .tag-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    .tag-does { background: var(--does-bg); color: var(--does-color); }
+    .tag-do { background: var(--do-bg); color: var(--do-color); }
+    .tag-rule { background: var(--accent-soft); color: var(--accent); }
+
+    .card-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary-light);
+      padding: 12px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 14px;
+    }
+
+    .example-box p {
+      font-style: italic;
+      color: var(--text);
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .example-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-verb {
+      font-weight: 700;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .highlight-aux {
+      font-weight: 700;
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .listen-card-btn {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .listen-card-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Q&A Short & Full Answers Grid */
+    .qa-pair {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .qa-q {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .qa-ans-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.94rem;
+    }
+
+    .ans-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .ans-short { background: #e0e7ff; color: #3730a3; }
+    .ans-full { background: #dcfce7; color: #166534; }
+
+    /* Exercise Cards */
+    .progress-bar-wrap {
+      background: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-light), var(--success));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .rule-reminder {
+      background: #eff6ff;
+      border-left: 4px solid var(--do-color);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #1e3a8a;
+      margin-bottom: 18px;
+    }
+
+    .exercise-item {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .exercise-item.completed {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .item-badge {
+      background: #e2e8f0;
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .exercise-item.completed .item-badge {
+      background: var(--success);
+      color: white;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .small-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .small-btn.listen-reveal {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .small-btn.listen-reveal:hover {
+      background: var(--primary-light);
+    }
+
+    .sentence-text {
+      font-size: 1.08rem;
+      font-weight: 500;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    /* Multiple Choice Options */
+    .mc-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .mc-btn {
+      padding: 11px 14px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--text);
+    }
+
+    .mc-btn:hover:not(:disabled) {
+      border-color: var(--primary-light);
+      background: #f0f9ff;
+    }
+
+    .mc-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+    }
+
+    .mc-btn.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: #7f1d1d;
+      animation: shake 0.3s;
+    }
+
+    /* Gap Filling Inputs */
+    .gap-line {
+      font-size: 1.1rem;
+      line-height: 2.2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gap-input {
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      width: 145px;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .gap-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(28, 110, 140, 0.15);
+    }
+
+    .gap-input.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+    }
+
+    .gap-input.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: #7f1d1d;
+    }
+
+    .verb-cue {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* Dictation Practice */
+    .dictation-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .dictation-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(28, 110, 140, 0.15);
+    }
+
+    .dictation-input.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .dictation-input.wrong-word {
+      border-color: var(--error);
+      background: #fff5f5;
+    }
+
+    .word-feedback-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      min-height: 28px;
+    }
+
+    .word-chip {
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .word-chip.ok {
+      background: var(--success-bg);
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .word-chip.bad {
+      background: var(--error-bg);
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .hint-box {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #fefce8;
+      border-left: 3px solid #eab308;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #854d0e;
+      display: none;
+    }
+
+    /* Footer Controls */
+    .tab-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 2px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-reset {
+      background: white;
+      color: var(--text);
+      border: 2px solid #cbd5e1;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-next {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-next:hover {
+      background: var(--primary-light);
+      transform: translateX(2px);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      text-align: center;
+      animation: popIn 0.25s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .modal-box h3 {
+      color: var(--primary);
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-box p, .modal-box ul {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .modal-box ul {
+      padding-left: 20px;
+    }
+
+    .modal-box li {
+      margin-bottom: 8px;
+    }
+
+    .stats-pill {
+      display: inline-block;
+      background: var(--success-bg);
+      color: #166534;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 8px 18px;
+      border-radius: 999px;
+      margin: 10px 0 18px;
+    }
+
+    .modal-close-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1500;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <div class="header-container">
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <h1>Merry Mery English</h1>
+        <span>Interactive Learning • Grammar Foundations Series</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="voice-control">
+        <label for="voiceSelect">🎙️ Voice:</label>
+        <select id="voiceSelect" aria-label="Select English Voice">
+          <option value="en-GB-female">British Female</option>
+          <option value="en-GB-male">British Male</option>
+          <option value="en-US-female" selected>American Female</option>
+          <option value="en-US-male">American Male</option>
+        </select>
+      </div>
+      <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener" class="nav-btn">📖 Dictionary</a>
+      <button type="button" class="nav-btn" onclick="openHelpModal()">❓ Help</button>
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="lesson-banner">
+    <div>
+      <h2>Present Simple: Do &amp; Does</h2>
+      <p>Master affirmative statements, negatives, questions, and short &amp; full answers across all subjects.</p>
+    </div>
+  </div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="tab-explanation" onclick="switchTab('tab-explanation')">📘 1. Explanation</button>
+    <button class="tab-btn" data-tab="tab-mc" onclick="switchTab('tab-mc')">☑️ 2. Multiple Choice</button>
+    <button class="tab-btn" data-tab="tab-gaps" onclick="switchTab('tab-gaps')">✍️ 3. Fill in the Gaps</button>
+    <button class="tab-btn" data-tab="tab-dictation" onclick="switchTab('tab-dictation')">🎧 4. Listening Dictation</button>
+  </nav>
+
+  <!-- TAB 1: VISUAL EXPLANATION -->
+  <section id="tab-explanation" class="tab-panel active">
+    <h3 class="section-title">🧩 Subject Pronouns &amp; Auxiliary Split</h3>
+
+    <div class="visual-split-grid">
+      <!-- DOES Group -->
+      <div class="pronoun-diagram-card does-card">
+        <div class="pronoun-list">
+          <span class="pronoun-pill">He</span>
+          <span class="pronoun-pill">She</span>
+          <span class="pronoun-pill">It</span>
+        </div>
+        <div class="brace-symbol">}</div>
+        <div class="aux-badge-box">
+          <span class="aux-main">DOES</span>
+          <span class="aux-sub">3rd Person Singular<br>(People, animals &amp; things)</span>
+        </div>
+      </div>
+
+      <!-- DO Group -->
+      <div class="pronoun-diagram-card do-card">
+        <div class="pronoun-list">
+          <span class="pronoun-pill">I</span>
+          <span class="pronoun-pill">You</span>
+          <span class="pronoun-pill">We</span>
+          <span class="pronoun-pill">They</span>
+        </div>
+        <div class="brace-symbol">}</div>
+        <div class="aux-badge-box">
+          <span class="aux-main">DO</span>
+          <span class="aux-sub">1st, 2nd &amp; Plural<br>(Singular &amp; plural subjects)</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title">📌 Affirmative, Negative &amp; Questions</h3>
+
+    <div class="cards-grid">
+      <!-- Card 1: Affirmative -->
+      <div class="grammar-card">
+        <div>
+          <div class="card-top">
+            <span class="card-title">Affirmative</span>
+            <span class="tag-pill tag-rule">No Do / Does Needed</span>
+          </div>
+          <p class="card-note">Add <strong>-s / -es</strong> to the main verb with <strong>He, She, It</strong>. Keep the base verb with <strong>I, You, We, They</strong>.</p>
+          <div class="example-box">
+            <p>She <span class="highlight-verb">works</span> from 9 to 5.</p>
+            <p>I <span class="highlight-verb">do</span> exercise every day.</p>
+          </div>
+        </div>
+        <button type="button" class="listen-card-btn" data-audio="She works from 9 to 5. I do exercise every day." onclick="speakFromBtn(this)">🔊 Listen Examples</button>
+      </div>
+
+      <!-- Card 2: Negative -->
+      <div class="grammar-card">
+        <div>
+          <div class="card-top">
+            <span class="card-title">Negative</span>
+            <span class="tag-pill tag-does">Doesn't / Don't</span>
+          </div>
+          <p class="card-note">Use <strong>doesn't</strong> (he/she/it) or <strong>don't</strong> (I/you/we/they) + the <strong>base verb</strong> (no <em>-s</em> on the verb).</p>
+          <div class="example-box">
+            <p>He <span class="highlight-aux">doesn't</span> <span class="highlight-verb">like</span> heavy metal.</p>
+            <p>They <span class="highlight-aux">don't</span> <span class="highlight-verb">eat</span> meat.</p>
+          </div>
+        </div>
+        <button type="button" class="listen-card-btn" data-audio="He doesn't like heavy metal. They don't eat meat." onclick="speakFromBtn(this)">🔊 Listen Examples</button>
+      </div>
+
+      <!-- Card 3: Questions -->
+      <div class="grammar-card">
+        <div>
+          <div class="card-top">
+            <span class="card-title">Questions</span>
+            <span class="tag-pill tag-do">Does / Do + Subject</span>
+          </div>
+          <p class="card-note">Place <strong>Does</strong> or <strong>Do</strong> before the subject, followed by the <strong>base verb</strong>.</p>
+          <div class="example-box">
+            <p><span class="highlight-aux">Does</span> your mother <span class="highlight-verb">know</span>?</p>
+            <p><span class="highlight-aux">Do</span> you <span class="highlight-verb">like</span> dancing?</p>
+          </div>
+        </div>
+        <button type="button" class="listen-card-btn" data-audio="Does your mother know? Do you like dancing?" onclick="speakFromBtn(this)">🔊 Listen Examples</button>
+      </div>
+    </div>
+
+    <h3 class="section-title">💬 Short Answers &amp; Full Answers</h3>
+
+    <div class="cards-grid">
+      <!-- Q&A Card 1 -->
+      <div class="grammar-card">
+        <div>
+          <div class="card-top">
+            <span class="card-title">Questions with DOES</span>
+            <span class="tag-pill tag-does">He / She / It</span>
+          </div>
+          <div class="qa-pair">
+            <div class="qa-q">Does your mother know?</div>
+            <div class="qa-ans-row">
+              <div><span class="ans-badge ans-short">Short</span> <em>Yes, she does. / No, she doesn't.</em></div>
+              <div><span class="ans-badge ans-full">Full</span> <em>Yes, she knows. / No, she doesn't know.</em></div>
+            </div>
+          </div>
+          <div class="qa-pair">
+            <div class="qa-q">Does the train arrive on time?</div>
+            <div class="qa-ans-row">
+              <div><span class="ans-badge ans-short">Short</span> <em>Yes, it does. / No, it doesn't.</em></div>
+              <div><span class="ans-badge ans-full">Full</span> <em>Yes, it arrives on time. / No, it doesn't arrive on time.</em></div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="listen-card-btn" data-audio="Does your mother know? Yes, she does. No, she doesn't. Yes, she knows. No, she doesn't know." onclick="speakFromBtn(this)">🔊 Listen Q&amp;A</button>
+      </div>
+
+      <!-- Q&A Card 2 -->
+      <div class="grammar-card">
+        <div>
+          <div class="card-top">
+            <span class="card-title">Questions with DO</span>
+            <span class="tag-pill tag-do">I / You / We / They</span>
+          </div>
+          <div class="qa-pair">
+            <div class="qa-q">Do you like dancing?</div>
+            <div class="qa-ans-row">
+              <div><span class="ans-badge ans-short">Short</span> <em>Yes, I do. / No, I don't.</em></div>
+              <div><span class="ans-badge ans-full">Full</span> <em>Yes, I like dancing. / No, I don't like dancing.</em></div>
+            </div>
+          </div>
+          <div class="qa-pair">
+            <div class="qa-q">Do they live near the park?</div>
+            <div class="qa-ans-row">
+              <div><span class="ans-badge ans-short">Short</span> <em>Yes, they do. / No, they don't.</em></div>
+              <div><span class="ans-badge ans-full">Full</span> <em>Yes, they live near the park. / No, they don't live near the park.</em></div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="listen-card-btn" data-audio="Do you like dancing? Yes, I do. No, I don't. Yes, I like dancing. No, I don't like dancing." onclick="speakFromBtn(this)">🔊 Listen Q&amp;A</button>
+      </div>
+    </div>
+
+    <div class="tab-footer" style="justify-content: flex-end;">
+      <button type="button" class="btn-next" onclick="switchTab('tab-mc')">Next: Multiple Choice ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 2: MULTIPLE CHOICE -->
+  <section id="tab-mc" class="tab-panel">
+    <div class="progress-bar-wrap">
+      <div class="progress-track"><div id="mc-progress-fill" class="progress-fill"></div></div>
+      <span id="mc-progress-text" class="progress-label">0 / 10 Completed</span>
+    </div>
+
+    <div id="mc-container"></div>
+
+    <div class="tab-footer">
+      <button type="button" class="btn-reset" onclick="resetMC()">🔄 Reset &amp; Shuffle</button>
+      <button type="button" class="btn-next" onclick="switchTab('tab-gaps')">Next: Fill in the Gaps ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 3: FILL IN THE GAPS -->
+  <section id="tab-gaps" class="tab-panel">
+    <div class="progress-bar-wrap">
+      <div class="progress-track"><div id="gaps-progress-fill" class="progress-fill"></div></div>
+      <span id="gaps-progress-text" class="progress-label">0 / 10 Completed</span>
+    </div>
+
+    <div class="rule-reminder">
+      <strong>💡 Capitalization Rule:</strong> When a question starts at the beginning of the sentence, remember to start with a capital letter (<strong>Do</strong> / <strong>Does</strong>). Lowercase at the beginning of a question counts as an error!
+    </div>
+
+    <div id="gaps-container"></div>
+
+    <div class="tab-footer">
+      <button type="button" class="btn-reset" onclick="resetGaps()">🔄 Reset &amp; Shuffle</button>
+      <button type="button" class="btn-next" onclick="switchTab('tab-dictation')">Next: Listening Dictation ➔</button>
+    </div>
+  </section>
+
+  <!-- TAB 4: LISTENING DICTATION -->
+  <section id="tab-dictation" class="tab-panel">
+    <div class="progress-bar-wrap">
+      <div class="progress-track"><div id="dict-progress-fill" class="progress-fill"></div></div>
+      <span id="dict-progress-text" class="progress-label">0 / 10 Completed</span>
+    </div>
+
+    <div id="dictation-container"></div>
+
+    <div class="tab-footer">
+      <button type="button" class="btn-reset" onclick="resetDictation()">🔄 Reset &amp; Shuffle</button>
+      <button type="button" class="btn-next" onclick="switchTab('tab-explanation')">Back to Explanation ↺</button>
+    </div>
+  </section>
+</main>
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal-backdrop" onclick="if(event.target===this) closeHelpModal()">
+  <div class="modal-box">
+    <h3>📘 How to Use This Lesson</h3>
+    <ul>
+      <li><strong>Voice Selector:</strong> Choose between British or American English (Female or Male) in the top bar for all audio buttons.</li>
+      <li><strong>1. Explanation:</strong> Study the visual split between <em>Does</em> (He/She/It) and <em>Do</em> (I/You/We/They), including short and full answers.</li>
+      <li><strong>2. Multiple Choice:</strong> Select the correct option. Feedback and sound effects trigger immediately.</li>
+      <li><strong>3. Fill in the Gaps:</strong> Type the auxiliary and/or main verb using the cue in parentheses. Questions starting at the beginning must use a capital letter (<em>Do</em> / <em>Does</em>). Once completed, the <strong>🔊 Listen</strong> button appears!</li>
+      <li><strong>4. Listening Dictation:</strong> Press <strong>🔊 Listen</strong> and type each short sentence. Every word is checked live as you type, with <strong>💡 Hint</strong> and <strong>+1 Letter</strong> support.</li>
+    </ul>
+    <button type="button" class="modal-close-btn" onclick="closeHelpModal()">Got it!</button>
+  </div>
+</div>
+
+<!-- Celebration Modal -->
+<div id="celebModal" class="modal-backdrop" onclick="if(event.target===this) closeCelebModal()">
+  <div class="modal-box">
+    <div style="font-size: 3rem; margin-bottom: 8px;">🎉</div>
+    <h3 id="celebTitle">Section Completed!</h3>
+    <div id="celebStats" class="stats-pill">100% Accuracy</div>
+    <p id="celebMsg" style="text-align: center;"></p>
+    <button type="button" class="modal-close-btn" onclick="closeCelebModal()">Continue</button>
+  </div>
+</div>
+
+<script>
+  /* ---------------- AUDIO & SPEECH SYNTHESIS ---------------- */
+  let availableVoices = [];
+  let activeUtterance = null; // Prevents garbage collection cutoff in Chrome
+
+  function loadVoices() {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+  loadVoices();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  function speakFromBtn(btn) {
+    const text = btn.getAttribute('data-audio');
+    if (text) speakText(text);
+  }
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    if (availableVoices.length === 0) {
+      availableVoices = window.speechSynthesis.getVoices();
+    }
+
+    const utter = new SpeechSynthesisUtterance(text);
+    activeUtterance = utter;
+
+    const pref = document.getElementById('voiceSelect').value;
+    const [lang, gender] = pref.split('-').length === 3
+      ? [pref.slice(0, 5), pref.slice(6)]
+      : ['en-US', 'female'];
+
+    utter.lang = lang;
+    const langVoices = availableVoices.filter(v => v.lang.replace('_', '-').startsWith(lang));
+    const femaleHints = ['female', 'samantha', 'victoria', 'karen', 'moira', 'tessa', 'fiona', 'hazel', 'susan', 'zira', 'google uk english female', 'libby', 'sonia', 'jenny', 'aria'];
+    const maleHints = ['male', 'daniel', 'alex', 'fred', 'oliver', 'arthur', 'george', 'david', 'mark', 'google uk english male', 'ryan', 'guy'];
+
+    let chosen = null;
+    if (gender === 'female') {
+      chosen = langVoices.find(v => femaleHints.some(h => v.name.toLowerCase().includes(h)));
+    } else {
+      chosen = langVoices.find(v => maleHints.some(h => v.name.toLowerCase().includes(h)));
+    }
+    if (!chosen && langVoices.length > 0) chosen = langVoices[0];
+    if (chosen) utter.voice = chosen;
+
+    if (!chosen || (gender === 'male' && !maleHints.some(h => chosen.name.toLowerCase().includes(h)))) {
+      utter.pitch = gender === 'male' ? 0.85 : 1.08;
+    }
+    utter.rate = 0.92;
+    utter.onend = () => { activeUtterance = null; };
+    utter.onerror = () => { activeUtterance = null; };
+
+    setTimeout(() => {
+      window.speechSynthesis.speak(utter);
+    }, 30);
+  }
+
+  /* Web Audio API Sound Effects */
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playSound(type) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+
+    if (type === 'success') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.08);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } else if (type === 'error') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.setValueAtTime(175, now + 0.1);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+      osc.start(now);
+      osc.stop(now + 0.26);
+    }
+  }
+
+  /* ---------------- TABS ---------------- */
+  function switchTab(tabId) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function shuffleArray(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  /* ---------------- EXERCISE 1: MULTIPLE CHOICE (10 ITEMS) ---------------- */
+  const mcDataRaw = [
+    {
+      q: "______ your sister work in a hospital?",
+      options: ["Do", "Does", "Is", "Are"],
+      answer: "Does",
+      hint: "'Your sister' is singular (she), so we use Does."
+    },
+    {
+      q: "My cats ______ like loud thunderstorms.",
+      options: ["doesn't", "don't", "aren't", "not"],
+      answer: "don't",
+      hint: "'My cats' is plural (they), so we use don't."
+    },
+    {
+      q: "______ this laptop have a Spanish keyboard?",
+      options: ["Do", "Has", "Does", "Is"],
+      answer: "Does",
+      hint: "'This laptop' is a singular object (it), so we use Does."
+    },
+    {
+      q: "We ______ need extra sugar for this cake.",
+      options: ["doesn't", "aren't", "not", "don't"],
+      answer: "don't",
+      hint: "With 'We', the negative auxiliary is don't."
+    },
+    {
+      q: "Does David ______ coffee without milk?",
+      options: ["drinks", "drink", "drinking", "drank"],
+      answer: "drink",
+      hint: "After 'Does', the main verb stays in its base form (no -s)."
+    },
+    {
+      q: "______ your parents travel abroad every summer?",
+      options: ["Does", "Do", "Are", "Is"],
+      answer: "Do",
+      hint: "'Your parents' is plural (they), so we start the question with Do."
+    },
+    {
+      q: "The museum ______ open on Mondays.",
+      options: ["don't", "isn't", "doesn't", "not"],
+      answer: "doesn't",
+      hint: "'The museum' is singular (it) and 'open' is an action verb here, so use doesn't."
+    },
+    {
+      q: "A: Does she speak French? — B: No, she ______.",
+      options: ["don't", "isn't", "doesn't", "does"],
+      answer: "doesn't",
+      hint: "Negative short answers with 'she' end with doesn't."
+    },
+    {
+      q: "What time ______ the concert start tonight?",
+      options: ["do", "does", "is", "are"],
+      answer: "does",
+      hint: "'The concert' is singular (it), so use does."
+    },
+    {
+      q: "I ______ understand the instructions on this box.",
+      options: ["doesn't", "am not", "not", "don't"],
+      answer: "don't",
+      hint: "With the pronoun 'I', use don't + base verb."
+    }
+  ];
+
+  let mcItems = [];
+  let mcState = { solved: new Set(), mistakes: 0 };
+
+  function initMC() {
+    mcItems = shuffleArray(mcDataRaw);
+    mcState = { solved: new Set(), mistakes: 0 };
+    updateProgress('mc', 0, mcItems.length);
+    const container = document.getElementById('mc-container');
+    container.innerHTML = '';
+
+    mcItems.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'exercise-item';
+      card.id = `mc-card-${idx}`;
+
+      const header = document.createElement('div');
+      header.className = 'item-header';
+      header.innerHTML = `
+        <span class="item-badge">Question ${idx + 1} of ${mcItems.length}</span>
+        <div class="item-actions">
+          <button type="button" class="small-btn" onclick="toggleHint('mc-hint-${idx}')">💡 Hint</button>
+        </div>
+      `;
+
+      const sentenceDiv = document.createElement('div');
+      sentenceDiv.className = 'sentence-text';
+      sentenceDiv.textContent = item.q;
+
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'mc-options';
+
+      item.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'mc-btn';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => checkMC(idx, btn, opt));
+        optionsDiv.appendChild(btn);
+      });
+
+      const hintDiv = document.createElement('div');
+      hintDiv.id = `mc-hint-${idx}`;
+      hintDiv.className = 'hint-box';
+      hintDiv.textContent = item.hint;
+
+      card.appendChild(header);
+      card.appendChild(sentenceDiv);
+      card.appendChild(optionsDiv);
+      card.appendChild(hintDiv);
+      container.appendChild(card);
+    });
+  }
+
+  function checkMC(idx, btn, selected) {
+    if (mcState.solved.has(idx)) return;
+    const item = mcItems[idx];
+    const card = document.getElementById(`mc-card-${idx}`);
+
+    if (selected === item.answer) {
+      playSound('success');
+      btn.classList.add('correct');
+      card.classList.add('completed');
+      card.querySelectorAll('.mc-btn').forEach(b => b.disabled = true);
+      mcState.solved.add(idx);
+      updateProgress('mc', mcState.solved.size, mcItems.length);
+
+      // Reveal Listen button with full sentence
+      const fullSentence = item.q.replace('______', item.answer);
+      const actions = card.querySelector('.item-actions');
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'small-btn listen-reveal';
+      listenBtn.innerHTML = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(fullSentence));
+      actions.prepend(listenBtn);
+
+      if (mcState.solved.size === mcItems.length) {
+        triggerCelebration('Multiple Choice', mcItems.length, mcState.mistakes);
+      }
+    } else {
+      playSound('error');
+      mcState.mistakes++;
+      btn.classList.add('wrong');
+      btn.disabled = true;
+    }
+  }
+
+  function resetMC() {
+    initMC();
+  }
+
+  /* ---------------- EXERCISE 2: FILL IN THE GAPS (10 ITEMS) ---------------- */
+  const gapsDataRaw = [
+    {
+      parts: ["", " your brother ", " the guitar?"],
+      cue: "(play)",
+      answers: [["Does"], ["play"]],
+      requireCap0: true,
+      full: "Does your brother play the guitar?",
+      hint: "Question at the start of the sentence with 'your brother' (he): use capital 'Does' + base verb."
+    },
+    {
+      parts: ["This phone ", " ", " very well in the rain."],
+      cue: "(not / work)",
+      answers: [["doesn't", "does not"], ["work"]],
+      requireCap0: false,
+      full: "This phone doesn't work very well in the rain.",
+      hint: "Negative with 'This phone' (it): doesn't + base verb."
+    },
+    {
+      parts: ["", " you and your friends ", " online on weekends?"],
+      cue: "(study)",
+      answers: [["Do"], ["study"]],
+      requireCap0: true,
+      full: "Do you and your friends study online on weekends?",
+      hint: "Question at the start of the sentence with plural subject: use capital 'Do' + base verb."
+    },
+    {
+      parts: ["My neighbors ", " ", " their car in the street."],
+      cue: "(not / park)",
+      answers: [["don't", "do not"], ["park"]],
+      requireCap0: false,
+      full: "My neighbors don't park their car in the street.",
+      hint: "Plural subject 'My neighbors' (they): don't + base verb."
+    },
+    {
+      parts: ["Where ", " Sofia ", " her fresh vegetables?"],
+      cue: "(buy)",
+      answers: [["does"], ["buy"]],
+      requireCap0: false,
+      full: "Where does Sofia buy her fresh vegetables?",
+      hint: "Wh-question with 'Sofia' (she): Where + does + subject + base verb."
+    },
+    {
+      parts: ["Our dog ", " ", " at strangers during the day."],
+      cue: "(not / bark)",
+      answers: [["doesn't", "does not"], ["bark"]],
+      requireCap0: false,
+      full: "Our dog doesn't bark at strangers during the day.",
+      hint: "'Our dog' is singular (it): doesn't + base verb."
+    },
+    {
+      parts: ["", " these buses ", " directly to the airport?"],
+      cue: "(go)",
+      answers: [["Do"], ["go"]],
+      requireCap0: true,
+      full: "Do these buses go directly to the airport?",
+      hint: "Question at the start of the sentence with 'These buses' (they): use capital 'Do' + base verb."
+    },
+    {
+      parts: ["I ", " ", " spicy food late at night."],
+      cue: "(not / eat)",
+      answers: [["don't", "do not"], ["eat"]],
+      requireCap0: false,
+      full: "I don't eat spicy food late at night.",
+      hint: "With 'I', use don't + base verb."
+    },
+    {
+      parts: ["Why ", " the clock ", " five minutes early?"],
+      cue: "(ring)",
+      answers: [["does"], ["ring"]],
+      requireCap0: false,
+      full: "Why does the clock ring five minutes early?",
+      hint: "'The clock' is singular (it): Why + does + subject + base verb."
+    },
+    {
+      parts: ["She ", " ", " television before going to sleep."],
+      cue: "(not / watch)",
+      answers: [["doesn't", "does not"], ["watch"]],
+      requireCap0: false,
+      full: "She doesn't watch television before going to sleep.",
+      hint: "Negative with 'She': doesn't + base verb (no -es)."
+    }
+  ];
+
+  let gapsItems = [];
+  let gapsState = { solved: new Set(), mistakes: 0, wrongTracker: new Set() };
+
+  function initGaps() {
+    gapsItems = shuffleArray(gapsDataRaw);
+    gapsState = { solved: new Set(), mistakes: 0, wrongTracker: new Set() };
+    updateProgress('gaps', 0, gapsItems.length);
+    const container = document.getElementById('gaps-container');
+    container.innerHTML = '';
+
+    gapsItems.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'exercise-item';
+      card.id = `gap-card-${idx}`;
+
+      card.innerHTML = `
+        <div class="item-header">
+          <span class="item-badge">Sentence ${idx + 1} of ${gapsItems.length}</span>
+          <div class="item-actions" id="gap-actions-${idx}">
+            <button type="button" class="small-btn" onclick="toggleHint('gap-hint-${idx}')">💡 Hint</button>
+          </div>
+        </div>
+        <div class="gap-line">
+          <span>${item.parts[0]}</span>
+          <input type="text" class="gap-input" id="gap-${idx}-0" placeholder="do / does..." autocomplete="off" autocapitalize="off" oninput="evaluateGap(${idx}, false)" onblur="evaluateGap(${idx}, true)" />
+          <span>${item.parts[1]}</span>
+          <input type="text" class="gap-input" id="gap-${idx}-1" placeholder="verb..." autocomplete="off" autocapitalize="off" oninput="evaluateGap(${idx}, false)" onblur="evaluateGap(${idx}, true)" />
+          <span>${item.parts[2]}</span>
+          <span class="verb-cue">${item.cue}</span>
+        </div>
+        <div id="gap-hint-${idx}" class="hint-box">${item.hint}</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function cleanGapStr(str, preserveCase) {
+    let s = str.trim().replace(/’/g, "'").replace(/\s+/g, ' ');
+    return preserveCase ? s : s.toLowerCase();
+  }
+
+  function evaluateGap(idx, isBlur) {
+    if (gapsState.solved.has(idx)) return;
+    const item = gapsItems[idx];
+    const in0 = document.getElementById(`gap-${idx}-0`);
+    const in1 = document.getElementById(`gap-${idx}-1`);
+
+    const val0 = cleanGapStr(in0.value, item.requireCap0);
+    const val1 = cleanGapStr(in1.value, false);
+
+    const ok0 = item.answers[0].includes(val0);
+    const ok1 = item.answers[1].includes(val1);
+
+    // Check if user wrote lowercase "do" or "does" when capital is required
+    const lowercaseStartError = item.requireCap0 && (val0 === 'do' || val0 === 'does');
+
+    if (ok0) {
+      in0.classList.remove('wrong');
+      in0.classList.add('correct');
+    } else if (lowercaseStartError || (isBlur && val0.length > 0)) {
+      in0.classList.remove('correct');
+      in0.classList.add('wrong');
+      const key = `${idx}-0-${val0}`;
+      if (!gapsState.wrongTracker.has(key)) {
+        gapsState.wrongTracker.add(key);
+        gapsState.mistakes++;
+        playSound('error');
+      }
+    } else {
+      in0.classList.remove('wrong', 'correct');
+    }
+
+    if (ok1) {
+      in1.classList.remove('wrong');
+      in1.classList.add('correct');
+    } else if (isBlur && val1.length > 0) {
+      in1.classList.remove('correct');
+      in1.classList.add('wrong');
+      const key = `${idx}-1-${val1}`;
+      if (!gapsState.wrongTracker.has(key)) {
+        gapsState.wrongTracker.add(key);
+        gapsState.mistakes++;
+        playSound('error');
+      }
+    } else {
+      in1.classList.remove('wrong', 'correct');
+    }
+
+    if (ok0 && ok1) {
+      playSound('success');
+      in0.disabled = true;
+      in1.disabled = true;
+      const card = document.getElementById(`gap-card-${idx}`);
+      card.classList.add('completed');
+      gapsState.solved.add(idx);
+      updateProgress('gaps', gapsState.solved.size, gapsItems.length);
+
+      // Reveal Listen button once completed
+      const actions = document.getElementById(`gap-actions-${idx}`);
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'small-btn listen-reveal';
+      listenBtn.innerHTML = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(item.full));
+      actions.prepend(listenBtn);
+
+      if (gapsState.solved.size === gapsItems.length) {
+        triggerCelebration('Fill in the Gaps', gapsItems.length, gapsState.mistakes);
+      }
+    }
+  }
+
+  function resetGaps() {
+    initGaps();
+  }
+
+  /* ---------------- EXERCISE 3: LISTENING DICTATION (10 SHORT MIXED ITEMS) ---------------- */
+  // Strictly short sentences (4 to 6 words) mixing affirmative, negative, and questions across pronouns
+  const dictationDataRaw = [
+    {
+      text: "She works from home.",
+      hint: "Affirmative with 'She': add -s to the verb 'work'."
+    },
+    {
+      text: "He doesn't like coffee.",
+      hint: "Negative with 'He': contraction doesn't + base verb."
+    },
+    {
+      text: "Do you speak English?",
+      hint: "Question with 'you': Do + you + base verb."
+    },
+    {
+      text: "They don't eat meat.",
+      hint: "Negative with 'They': contraction don't + eat."
+    },
+    {
+      text: "Does it rain here?",
+      hint: "Question with 'it': Does + it + base verb."
+    },
+    {
+      text: "I do exercise daily.",
+      hint: "Affirmative with 'I': base verb 'do' + noun."
+    },
+    {
+      text: "The cat doesn't swim.",
+      hint: "Negative with 'The cat' (it): doesn't + base verb."
+    },
+    {
+      text: "Do they live nearby?",
+      hint: "Question with 'they': Do + they + base verb."
+    },
+    {
+      text: "We don't watch TV.",
+      hint: "Negative with 'We': contraction don't + watch."
+    },
+    {
+      text: "Does your mother drive?",
+      hint: "Question with 'your mother' (she): Does + subject + base verb."
+    }
+  ];
+
+  let dictItems = [];
+  let dictState = { solved: new Set(), mistakes: 0, evaluatedWords: new Set() };
+
+  function initDictation() {
+    // Keep the first couple gentle and short, shuffle the rest so the student never feels overwhelmed on #1
+    const firstTwo = dictationDataRaw.slice(0, 2);
+    const restShuffled = shuffleArray(dictationDataRaw.slice(2));
+    dictItems = [...firstTwo, ...restShuffled];
+
+    dictState = { solved: new Set(), mistakes: 0, evaluatedWords: new Set() };
+    updateProgress('dict', 0, dictItems.length);
+    const container = document.getElementById('dictation-container');
+    container.innerHTML = '';
+
+    dictItems.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'exercise-item';
+      card.id = `dict-card-${idx}`;
+
+      const header = document.createElement('div');
+      header.className = 'item-header';
+
+      const badge = document.createElement('span');
+      badge.className = 'item-badge';
+      badge.textContent = `Sentence ${idx + 1} of ${dictItems.length}`;
+
+      const actions = document.createElement('div');
+      actions.className = 'item-actions';
+
+      const listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'small-btn listen-reveal';
+      listenBtn.innerHTML = '🔊 Listen';
+      listenBtn.addEventListener('click', () => speakText(item.text));
+
+      const hintBtn = document.createElement('button');
+      hintBtn.type = 'button';
+      hintBtn.className = 'small-btn';
+      hintBtn.innerHTML = '💡 Hint';
+      hintBtn.addEventListener('click', () => toggleHint(`dict-hint-${idx}`));
+
+      const letterBtn = document.createElement('button');
+      letterBtn.type = 'button';
+      letterBtn.className = 'small-btn';
+      letterBtn.innerHTML = '➕ +1 Letter';
+      letterBtn.addEventListener('click', () => revealNextLetter(idx));
+
+      actions.appendChild(listenBtn);
+      actions.appendChild(hintBtn);
+      actions.appendChild(letterBtn);
+
+      header.appendChild(badge);
+      header.appendChild(actions);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'dictation-input';
+      input.id = `dict-input-${idx}`;
+      input.placeholder = 'Type what you hear...';
+      input.autocomplete = 'off';
+      input.addEventListener('input', () => evaluateDictation(idx));
+
+      const strip = document.createElement('div');
+      strip.className = 'word-feedback-strip';
+      strip.id = `dict-words-${idx}`;
+
+      const hintBox = document.createElement('div');
+      hintBox.id = `dict-hint-${idx}`;
+      hintBox.className = 'hint-box';
+      hintBox.textContent = item.hint;
+
+      card.appendChild(header);
+      card.appendChild(input);
+      card.appendChild(strip);
+      card.appendChild(hintBox);
+      container.appendChild(card);
+    });
+  }
+
+  function cleanWord(w) {
+    return w.toLowerCase().replace(/’/g, "'").replace(/[.,?!]/g, '').trim();
+  }
+
+  function evaluateDictation(idx) {
+    if (dictState.solved.has(idx)) return;
+    const item = dictItems[idx];
+    const input = document.getElementById(`dict-input-${idx}`);
+    const strip = document.getElementById(`dict-words-${idx}`);
+    const rawVal = input.value.replace(/’/g, "'");
+
+    const targetWords = item.text.split(' ');
+    const targetClean = targetWords.map(cleanWord);
+
+    const endsWithSpace = /\s$/.test(rawVal);
+    const userTokens = rawVal.trim().length ? rawVal.trim().split(/\s+/) : [];
+
+    strip.innerHTML = '';
+    let hasWrongWord = false;
+
+    userTokens.forEach((tok, wIdx) => {
+      const isWordFinished = endsWithSpace || wIdx < userTokens.length - 1 || cleanWord(tok) === targetClean[wIdx];
+      if (!isWordFinished) return;
+
+      const chip = document.createElement('span');
+      const expected = targetClean[wIdx];
+      const actual = cleanWord(tok);
+
+      if (expected && actual === expected) {
+        chip.className = 'word-chip ok';
+        chip.textContent = `✓ ${tok}`;
+        const key = `${idx}-${wIdx}-ok`;
+        if (!dictState.evaluatedWords.has(key)) {
+          dictState.evaluatedWords.add(key);
+          playSound('success');
+        }
+      } else {
+        chip.className = 'word-chip bad';
+        chip.textContent = `✗ ${tok}`;
+        hasWrongWord = true;
+        const key = `${idx}-${wIdx}-bad-${actual}`;
+        if (!dictState.evaluatedWords.has(key)) {
+          dictState.evaluatedWords.add(key);
+          dictState.mistakes++;
+          playSound('error');
+        }
+      }
+      strip.appendChild(chip);
+    });
+
+    input.classList.toggle('wrong-word', hasWrongWord);
+
+    const fullUserClean = userTokens.map(cleanWord).join(' ');
+    const fullTargetClean = targetClean.join(' ');
+
+    if (fullUserClean === fullTargetClean) {
+      input.value = item.text;
+      input.disabled = true;
+      input.classList.remove('wrong-word');
+      input.classList.add('correct');
+      document.getElementById(`dict-card-${idx}`).classList.add('completed');
+      dictState.solved.add(idx);
+      updateProgress('dict', dictState.solved.size, dictItems.length);
+
+      if (dictState.solved.size === dictItems.length) {
+        triggerCelebration('Listening Dictation', dictItems.length, dictState.mistakes);
+      }
+    }
+  }
+
+  function revealNextLetter(idx) {
+    if (dictState.solved.has(idx)) return;
+    const target = dictItems[idx].text;
+    const input = document.getElementById(`dict-input-${idx}`);
+    const current = input.value;
+
+    let matchLen = 0;
+    while (matchLen < current.length && matchLen < target.length &&
+           current[matchLen].toLowerCase() === target[matchLen].toLowerCase()) {
+      matchLen++;
+    }
+
+    if (matchLen < target.length) {
+      let nextChunk = target.slice(0, matchLen + 1);
+      if (target[matchLen] === ' ' && matchLen + 1 < target.length) {
+        nextChunk = target.slice(0, matchLen + 2);
+      }
+      input.value = nextChunk;
+      input.focus();
+      evaluateDictation(idx);
+    }
+  }
+
+  function resetDictation() {
+    initDictation();
+  }
+
+  /* ---------------- SHARED HELPERS & CONFETTI ---------------- */
+  function toggleHint(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function updateProgress(prefix, done, total) {
+    const pct = Math.round((done / total) * 100);
+    document.getElementById(`${prefix}-progress-fill`).style.width = `${pct}%`;
+    document.getElementById(`${prefix}-progress-text`).textContent = `${done} / ${total} Completed`;
+  }
+
+  function openHelpModal() {
+    document.getElementById('helpModal').classList.add('open');
+  }
+  function closeHelpModal() {
+    document.getElementById('helpModal').classList.remove('open');
+  }
+  function closeCelebModal() {
+    document.getElementById('celebModal').classList.remove('open');
+  }
+
+  function triggerCelebration(sectionName, totalItems, mistakes) {
+    const totalAttempts = totalItems + mistakes;
+    const accuracy = Math.max(0, Math.round((totalItems / totalAttempts) * 100));
+    document.getElementById('celebTitle').textContent = `${sectionName} Completed!`;
+    document.getElementById('celebStats').textContent =
+      mistakes === 0 ? '100% Flawless First Try!' : `${accuracy}% Accuracy (${mistakes} correction${mistakes > 1 ? 's' : ''})`;
+    document.getElementById('celebMsg').textContent =
+      mistakes === 0
+        ? 'Outstanding work! You mastered every single item without any mistakes.'
+        : 'Great job completing the entire section! Feel free to review or move on to the next activity.';
+
+    document.getElementById('celebModal').classList.add('open');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#0f4c5c', '#e36414', '#16a34a', '#7c3aed', '#0284c7', '#eab308'];
+    const particles = Array.from({ length: 130 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 9 + 5,
+      h: Math.random() * 5 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: Math.random() * 3.5 + 2,
+      vx: Math.random() * 2 - 1,
+      rot: Math.random() * 360,
+      vRot: Math.random() * 6 - 3
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.rot += p.vRot;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 160) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    animate();
+  }
+
+  // Initialize all exercises on load
+  initMC();
+  initGaps();
+  initDictation();
+</script>
+</body>
+</html>
