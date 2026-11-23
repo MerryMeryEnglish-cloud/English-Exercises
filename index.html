@@ -893,15 +893,15 @@
   <div id="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
-        <div class="logo-badge" style="margin-bottom:0;">
+        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" onclick="switchView('home-view')">
           <img src="logo.png" alt="Merry Mery English" class="brand-logo-img topbar-logo" />
           <div class="logo-text">Merry Mery <span>English</span></div>
         </div>
 
         <nav class="nav-tabs" id="main-nav">
-          <button class="nav-tab active" data-view="home-view" onclick="switchView('home-view')">Home</button>
-          <button class="nav-tab" data-view="progress-view" onclick="switchView('progress-view')">My Progress</button>
-          <button class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
+          <button type="button" class="nav-tab active" data-view="home-view" onclick="switchView('home-view')">Home</button>
+          <button type="button" class="nav-tab" data-view="progress-view" onclick="switchView('progress-view')">My Progress</button>
+          <button type="button" class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
         </nav>
 
         <div class="user-pill">
@@ -910,7 +910,7 @@
             <div style="font-weight:700; font-size:0.92rem;" id="user-display-name">Anika</div>
             <div style="font-size:0.75rem; color:var(--text-muted);" id="user-role-label">Student</div>
           </div>
-          <button class="btn-logout" onclick="logout()">Salir</button>
+          <button type="button" class="btn-logout" onclick="logout()">Salir</button>
         </div>
       </div>
     </header>
@@ -932,16 +932,16 @@
         <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
       </div>
       <div class="filter-bar" id="filter-bar">
-        <button class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
-        <button class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
-        <button class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
-        <button class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
-        <button class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
-        <button class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
-        <button class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
-        <button class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
-        <button class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
-        <button class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
+        <button type="button" class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
+        <button type="button" class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
       </div>
       <section class="exercise-list" id="exercise-list"></section>
     </main>
@@ -1034,7 +1034,7 @@
   <div class="toast" id="toast"></div>
 
   <!-- ==================== LOCAL STORAGE + FIREBASE READY LOGIC ==================== -->
-  <script type="module">
+  <script>
     const USE_DEMO_MODE = true;
 
     const firebaseConfig = {
@@ -1139,7 +1139,7 @@
           return fresh;
         }
         return JSON.parse(raw);
-      } catch {
+      } catch (e) {
         return cloneDefaultDB();
       }
     }
@@ -1168,7 +1168,7 @@
       try {
         const raw = localStorage.getItem(STORAGE_SESSION_KEY);
         return raw ? JSON.parse(raw) : null;
-      } catch {
+      } catch (e) {
         return null;
       }
     }
@@ -1318,7 +1318,7 @@
       );
 
       listEl.innerHTML = filtered.map(ex => {
-        const record = student?.scores?.[ex.id];
+        const record = student && student.scores ? student.scores[ex.id] : null;
         let statusHtml = `<span class="status-pill status-todo">Pendiente</span>`;
 
         if (record) {
@@ -1482,7 +1482,7 @@
       return studentsDB[newId];
     }
 
-    window.loginAsDemo = function(role) {
+    function loginAsDemo(role) {
       if (role === "coach") {
         applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
       } else {
@@ -1492,16 +1492,16 @@
           "home-view"
         );
       }
-    };
+    }
 
-    window.logout = function() {
+    function logout() {
       currentUser = null;
       saveSession(null);
       document.getElementById("app-shell").style.display = "none";
       document.getElementById("login-screen").style.display = "flex";
-    };
+    }
 
-    window.switchView = function(viewId, notify = true) {
+    function switchView(viewId, notify = true) {
       document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
       document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
       document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
@@ -1522,26 +1522,26 @@
       } else if (notify && viewId === "progress-view") {
         showToast("📊 My Progress");
       }
-    };
+    }
 
-    window.filterExercises = function(skill, btnEl) {
+    function filterExercises(skill, btnEl) {
       currentFilter = skill;
       document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
       btnEl.classList.add("active");
-      const st = studentsDB[currentUser?.studentId] || studentsDB["anika"] || Object.values(studentsDB)[0];
+      const st = studentsDB[currentUser && currentUser.studentId] || studentsDB["anika"] || Object.values(studentsDB)[0];
       renderExercisesList(st);
-    };
+    }
 
-    window.selectCoachStudent = function(studentId) {
+    function selectCoachStudent(studentId) {
       selectedCoachStudentId = studentId;
       renderCoachPanel();
       if (studentsDB[studentId]) {
         renderProgressView(studentsDB[studentId]);
         renderExercisesList(studentsDB[studentId]);
       }
-    };
+    }
 
-    window.addNewStudent = function(e) {
+    function addNewStudent(e) {
       e.preventDefault();
       const nameInput = document.getElementById("new-student-name");
       const emailInput = document.getElementById("new-student-email");
@@ -1565,9 +1565,9 @@
       nameInput.value = "";
       emailInput.value = "";
       showToast(`✓ Alumno/a ${name} agregado/a localmente`);
-    };
+    }
 
-    window.saveWritingGrade = function(e) {
+    function saveWritingGrade(e) {
       e.preventDefault();
       const exId = document.getElementById("coach-writing-ex").value;
       const score = Number(document.getElementById("coach-writing-score").value);
@@ -1587,7 +1587,7 @@
       renderProgressView(student);
       renderExercisesList(student);
       showToast(`✓ Nota de Writing (${score}%) guardada para ${student.name}`);
-    };
+    }
 
     function showToast(msg) {
       const t = document.getElementById("toast");
