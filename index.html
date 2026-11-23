@@ -893,13 +893,13 @@
   <div id="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
-        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" onclick="switchView('home-view')">
+        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" onclick="goHome()">
           <img src="logo.png" alt="Merry Mery English" class="brand-logo-img topbar-logo" />
           <div class="logo-text">Merry Mery <span>English</span></div>
         </div>
 
         <nav class="nav-tabs" id="main-nav">
-          <button type="button" class="nav-tab active" data-view="home-view" onclick="switchView('home-view')">Home</button>
+          <button type="button" class="nav-tab active" data-view="home-view" onclick="goHome()">Home</button>
           <button type="button" class="nav-tab" data-view="progress-view" onclick="switchView('progress-view')">My Progress</button>
           <button type="button" class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
         </nav>
@@ -915,12 +915,12 @@
       </div>
     </header>
 
-    <!-- ============ HOME VIEW (DEFAULT ENTRY) ============ -->
+    <!-- ============ HOME VIEW (EXERCISES CATALOG) ============ -->
     <main class="container" id="home-view">
       <section class="home-banner">
         <div>
-          <h1 id="home-welcome-title">Welcome to Merry Mery English</h1>
-          <p id="home-welcome-subtitle">Elegí un ejercicio o módulo interactivo para empezar a practicar hoy.</p>
+          <h1 id="home-welcome-title">Home • Ejercicios y Módulos</h1>
+          <p id="home-welcome-subtitle">Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.</p>
         </div>
         <button type="button" class="btn-home-back" onclick="switchView('progress-view')">
           📊 Ver My Progress
@@ -950,7 +950,7 @@
     <main class="container" id="progress-view" style="display:none;">
       <div class="section-title">
         <span>My Progress</span>
-        <button type="button" class="btn-home-back" onclick="switchView('home-view')">
+        <button type="button" class="btn-home-back" onclick="goHome()">
           🏠 Home
         </button>
       </div>
@@ -999,7 +999,7 @@
     <main class="container" id="coach-view" style="display:none;">
       <div class="section-title">
         <span>Seguimiento de Alumnos & Corrección de Writing</span>
-        <button type="button" class="btn-home-back" onclick="switchView('home-view')">
+        <button type="button" class="btn-home-back" onclick="goHome()">
           🏠 Home
         </button>
       </div>
@@ -1177,6 +1177,21 @@
     let currentUser = null;
     let selectedCoachStudentId = Object.keys(studentsDB)[0] || "anika";
     let currentFilter = "all";
+
+    function getActiveStudent() {
+      if (currentUser && currentUser.role === "coach") {
+        return studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0] || null;
+      }
+      if (currentUser && currentUser.studentId && studentsDB[currentUser.studentId]) {
+        return studentsDB[currentUser.studentId];
+      }
+      return {
+        id: "guest",
+        name: (currentUser && currentUser.name) || "Student",
+        email: (currentUser && currentUser.email) || "",
+        scores: {}
+      };
+    }
 
     function calculateStudentMetrics(student) {
       const skillBuckets = {
@@ -1435,28 +1450,28 @@
       document.getElementById("login-screen").style.display = "none";
       document.getElementById("app-shell").style.display = "block";
 
+      const activeStudent = getActiveStudent();
+
       if (user.role === "coach") {
         document.getElementById("user-avatar").textContent = "M";
         document.getElementById("user-display-name").textContent = "Maru";
         document.getElementById("user-role-label").textContent = "English Coach";
         document.getElementById("coach-tab-btn").style.display = "inline-block";
-        document.getElementById("home-welcome-title").textContent = "Home • Ejercicios Merry Mery English";
-        document.getElementById("home-welcome-subtitle").textContent = "Abrí cualquier ejercicio o alterná entre My Progress y Panel Coach.";
-        const activeStudent = studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0];
+        document.getElementById("home-welcome-title").textContent = "Home • Ejercicios y Módulos";
+        document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para abrir o alterná entre My Progress y Panel Coach.";
         renderExercisesList(activeStudent);
-        renderProgressView(activeStudent);
+        if (activeStudent) renderProgressView(activeStudent);
         renderCoachPanel();
         switchView(targetView, false);
       } else {
-        const student = studentsDB[user.studentId] || { id: "guest", name: user.name || "Student", email: user.email || "", scores: {} };
-        document.getElementById("user-avatar").textContent = (student.name[0] || "A").toUpperCase();
-        document.getElementById("user-display-name").textContent = student.name;
+        document.getElementById("user-avatar").textContent = (activeStudent.name[0] || "A").toUpperCase();
+        document.getElementById("user-display-name").textContent = activeStudent.name;
         document.getElementById("user-role-label").textContent = "Student";
         document.getElementById("coach-tab-btn").style.display = "none";
-        document.getElementById("home-welcome-title").textContent = `Welcome, ${student.name}!`;
+        document.getElementById("home-welcome-title").textContent = `Home • Ejercicios de ${activeStudent.name}`;
         document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.";
-        renderExercisesList(student);
-        renderProgressView(student);
+        renderExercisesList(activeStudent);
+        renderProgressView(activeStudent);
         switchView(targetView, false);
       }
     }
@@ -1501,6 +1516,15 @@
       document.getElementById("login-screen").style.display = "flex";
     }
 
+    function goHome() {
+      currentFilter = "all";
+      document.querySelectorAll(".filter-chip").forEach((chip, idx) => {
+        chip.classList.toggle("active", idx === 0);
+      });
+      renderExercisesList(getActiveStudent());
+      switchView("home-view", true);
+    }
+
     function switchView(viewId, notify = true) {
       document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
       document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
@@ -1518,7 +1542,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
 
       if (notify && viewId === "home-view") {
-        showToast("🏠 Home • Ejercicios disponibles");
+        showToast("🏠 Home • Ejercicios y Módulos");
       } else if (notify && viewId === "progress-view") {
         showToast("📊 My Progress");
       }
@@ -1527,9 +1551,8 @@
     function filterExercises(skill, btnEl) {
       currentFilter = skill;
       document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
-      btnEl.classList.add("active");
-      const st = studentsDB[currentUser && currentUser.studentId] || studentsDB["anika"] || Object.values(studentsDB)[0];
-      renderExercisesList(st);
+      if (btnEl) btnEl.classList.add("active");
+      renderExercisesList(getActiveStudent());
     }
 
     function selectCoachStudent(studentId) {
