@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merry Mery English | Ejercicios Interactivos</title>
+  <title>Merry Mery English | Interactive Exercises</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4f46e5;
-      --primary-light: #eef2ff;
-      --primary-dark: #3730a3;
-      --accent: #ec4899;
       --teal: #0d9488;
+      --teal-dark: #0f766e;
+      --teal-light: #f0fdfa;
+      --teal-border: #99f6e4;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
       --bg: #f8fafc;
       --card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
-      --radius: 16px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.07);
     }
 
     * {
@@ -37,26 +36,27 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
-      color: var(--text-main);
+      color: var(--slate-900);
       line-height: 1.5;
       min-height: 100vh;
     }
 
-    h1, h2, h3, h4, .brand-font {
+    h1, h2, h3, .brand-font {
       font-family: 'Outfit', sans-serif;
     }
 
+    /* ================= HEADER ================= */
     .topbar {
       background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
+      border-bottom: 1px solid var(--slate-200);
+      padding: 16px 24px;
       position: sticky;
       top: 0;
       z-index: 30;
     }
 
     .topbar-inner {
-      max-width: 1240px;
+      max-width: 1020px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -65,854 +65,574 @@
       flex-wrap: wrap;
     }
 
-    .logo-badge {
+    .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
-      color: var(--text-main);
+      color: var(--slate-900);
     }
 
-    .brand-logo-img {
-      width: 44px;
-      height: 44px;
+    .brand-logo {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--teal);
       background: #ffffff;
-      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.16);
     }
 
-    .logo-text {
+    .brand-title {
       font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--slate-900);
     }
 
-    .logo-text span {
+    .brand-title span {
       color: var(--teal);
     }
 
-    .nav-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
+    .brand-subtitle {
+      font-size: 0.82rem;
+      color: var(--slate-500);
+      font-weight: 500;
     }
 
-    .btn-nav {
+    .btn-progress-top {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      border: 1px solid var(--teal-border);
       padding: 9px 16px;
       border-radius: 10px;
-      border: 1px solid var(--border);
-      background: white;
       font-family: 'Outfit', sans-serif;
       font-weight: 600;
-      font-size: 0.92rem;
-      color: var(--text-main);
+      font-size: 0.9rem;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      text-decoration: none;
+      transition: all 0.15s ease;
     }
 
-    .btn-nav:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-nav.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 28px 24px 104px;
-    }
-
-    .home-banner {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+    .btn-progress-top:hover {
+      background: var(--teal);
       color: #ffffff;
-      border-radius: 22px;
-      padding: 26px 30px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      border-color: var(--teal);
     }
 
-    .home-banner h1 {
+    /* ================= MAIN CONTAINER ================= */
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 32px 24px 96px;
+    }
+
+    .intro-banner {
+      background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+      color: #ffffff;
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .intro-banner h1 {
       font-size: 1.75rem;
       font-weight: 800;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    .home-banner p {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 0.94rem;
+    .intro-banner p {
+      font-size: 0.96rem;
+      color: rgba(255, 255, 255, 0.9);
     }
 
-    .btn-banner {
-      background: white;
-      color: var(--primary-dark);
-      border: none;
-      padding: 10px 18px;
-      border-radius: 12px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .floating-progress-btn {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 45;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: 999px;
-      padding: 13px 20px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.45);
-    }
-
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
+    /* ================= CATEGORY BUTTONS (NO ICONS/EMOJIS) ================= */
+    .category-bar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
+      margin-bottom: 28px;
     }
 
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .filter-chip {
-      padding: 7px 14px;
+    .category-btn {
+      padding: 10px 18px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: white;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .filter-chip.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .division-group {
-      margin-bottom: 32px;
-    }
-
-    .division-header {
+      border: 1px solid var(--slate-200);
+      background: #ffffff;
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      padding-bottom: 8px;
-      margin-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .category-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    .category-btn.active {
+      background: var(--teal);
+      color: #ffffff;
+      border-color: var(--teal);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.22);
+    }
+
+    /* ================= CATEGORY SECTIONS & VERTICAL LISTS ================= */
+    .category-section {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 18px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .category-section-header {
+      padding: 18px 24px;
+      background: var(--teal-light);
+      border-bottom: 1px solid var(--teal-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    .category-section-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+
+    .category-count {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background: #ffffff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--teal-border);
     }
 
     .exercise-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 16px;
+      list-style: none;
     }
 
-    .exercise-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
+    .exercise-item {
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .exercise-item:last-child {
+      border-bottom: none;
+    }
+
+    .exercise-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--slate-900);
+      transition: background-color 0.15s ease;
+    }
+
+    .exercise-link:hover {
+      background-color: #f8fafc;
+    }
+
+    .exercise-link:hover .exercise-title {
+      color: var(--teal-dark);
+    }
+
+    .exercise-info {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .ex-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .ex-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      text-transform: uppercase;
-    }
-
-    .ex-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
-      font-weight: 700;
-    }
-
-    .ex-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .status-pill {
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 8px;
-      background: #f1f5f9;
-      color: var(--text-muted);
-    }
-
-    .status-done {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .btn-open-ex {
-      text-decoration: none;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--primary);
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: var(--primary-light);
-    }
-
-    .btn-open-ex:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    #progress-section {
-      padding-top: 20px;
-      border-top: 2px dashed var(--border);
-    }
-
-    .level-card {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4c1d95 100%);
-      color: white;
-      border-radius: 22px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .level-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .level-badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.14);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .level-big-title {
-      font-size: 1.75rem;
-      font-weight: 800;
-    }
-
-    .level-stats-box {
-      display: flex;
-      gap: 20px;
-      background: rgba(255, 255, 255, 0.12);
-      padding: 12px 20px;
-      border-radius: 16px;
-    }
-
-    .stat-mini span {
-      display: block;
-      font-size: 0.78rem;
-      opacity: 0.85;
-    }
-
-    .stat-mini strong {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .cefr-track-bg {
-      height: 12px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-
-    .cefr-track-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #38bdf8, #34d399, #facc15, #fb7185);
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-
-    .cefr-milestones {
-      display: flex;
-      justify-content: space-between;
       gap: 4px;
     }
 
-    .cefr-step {
-      text-align: center;
-      flex: 1;
-    }
-
-    .cefr-step-label {
+    .exercise-title {
       font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
-      font-size: 0.9rem;
-      opacity: 0.75;
+      color: var(--slate-900);
+      transition: color 0.15s ease;
     }
 
-    .cefr-step.reached .cefr-step-label {
-      opacity: 1;
-      color: #6ee7b7;
+    .exercise-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
     }
 
-    .cefr-step-desc {
-      font-size: 0.7rem;
-      opacity: 0.65;
-      display: block;
+    .skill-pill {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      background: #f1f5f9;
+      padding: 2px 9px;
+      border-radius: 6px;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .exercise-action {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      white-space: nowrap;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--teal-light);
+      border: 1px solid var(--teal-border);
     }
 
-    @media (max-width: 960px) {
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .exercise-link:hover .exercise-action {
+      background: var(--teal);
+      color: #ffffff;
+      border-color: var(--teal);
     }
 
-    @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: 1fr; }
-    }
-
-    .skill-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 18px;
-      border: 1px solid var(--border);
+    /* ================= PROGRESS PANEL ================= */
+    #progress-panel {
+      margin-top: 36px;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 18px;
+      padding: 26px;
       box-shadow: var(--shadow-sm);
     }
 
-    .skill-top {
+    .progress-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--slate-200);
     }
 
-    .skill-name-wrap {
+    .progress-header h2 {
+      font-size: 1.25rem;
+      color: var(--slate-900);
+    }
+
+    .progress-summary {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background: var(--teal-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--teal-border);
+    }
+
+    .skills-list-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 820px) {
+      .skills-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .skills-list-grid {
+        grid-template-columns: 1fr;
+      }
+      .exercise-link {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .skill-row-card {
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #f8fafc;
+    }
+
+    .skill-row-top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-    }
-
-    .skill-icon {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-    }
-
-    .skill-title {
+      margin-bottom: 8px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
-    .skill-count {
-      font-size: 0.76rem;
-      color: var(--text-muted);
+    .skill-row-top span:last-child {
+      color: var(--teal-dark);
     }
 
-    .skill-score {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-    }
-
-    .skill-score.empty {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .progress-bar-bg {
-      height: 8px;
-      background: #f1f5f9;
+    .bar-bg {
+      height: 7px;
+      background: var(--slate-200);
       border-radius: 999px;
       overflow: hidden;
     }
 
-    .progress-bar-fill {
+    .bar-fill {
       height: 100%;
+      background: var(--teal);
       border-radius: 999px;
+      width: 0%;
     }
 
-    .toast {
+    .floating-progress {
       position: fixed;
-      bottom: 84px;
       right: 24px;
-      background: #0f172a;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 100;
+      bottom: 24px;
+      z-index: 40;
+      background: var(--teal-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: 0 10px 22px rgba(15, 118, 110, 0.32);
     }
 
-    .toast.show {
-      opacity: 1;
+    .floating-progress:hover {
+      background: var(--teal);
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar" id="top-header">
+  <header class="topbar" id="top">
     <div class="topbar-inner">
-      <a href="index.html" class="logo-badge" id="brand-home-link">
-        <img src="logo.png" alt="Merry Mery English Logo" class="brand-logo-img" />
-        <div class="logo-text">Merry Mery <span>English</span></div>
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Merry Mery English" class="brand-logo" />
+        <div>
+          <div class="brand-title">Merry Mery <span>English</span></div>
+          <div class="brand-subtitle">Interactive Practice Portal</div>
+        </div>
       </a>
 
-      <div class="nav-actions">
-        <button type="button" class="btn-nav active" id="nav-home-btn">🏠 Home</button>
-        <button type="button" class="btn-nav" id="nav-progress-btn">📊 My Progress</button>
-      </div>
+      <a href="#progress-panel" class="btn-progress-top">My Progress</a>
     </div>
   </header>
 
-  <main class="container" id="home-view">
-    <section class="home-banner">
-      <div>
-        <h1>Home • Ejercicios y Módulos</h1>
-        <p>Elegí un ejercicio para abrirlo y practicar.</p>
-      </div>
-      <button type="button" class="btn-banner" id="banner-progress-btn">📊 Ir a My Progress</button>
+  <main class="container">
+    <section class="intro-banner">
+      <h1>Interactive Exercises</h1>
+      <p>Select a category or click directly on any activity below to start practicing.</p>
     </section>
 
-    <div class="section-title" id="exercises-heading">
-      <span>Ejercicios y Módulos</span>
-      <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Divididos por tema</span>
-    </div>
+    <nav class="category-bar" aria-label="Exercise Categories" id="category-bar">
+      <button type="button" class="category-btn active" data-category="all">All Exercises</button>
+      <button type="button" class="category-btn" data-category="grammar">Grammar</button>
+      <button type="button" class="category-btn" data-category="vocabulary">Vocabulary</button>
+      <button type="button" class="category-btn" data-category="reading">Reading</button>
+      <button type="button" class="category-btn" data-category="listening">Listening &amp; Songs</button>
+      <button type="button" class="category-btn" data-category="writing">Writing</button>
+    </nav>
 
-    <div class="filter-bar" id="filter-bar">
-      <button type="button" class="filter-chip active" data-skill="all">Todos</button>
-      <button type="button" class="filter-chip" data-skill="grammar">Grammar</button>
-      <button type="button" class="filter-chip" data-skill="gerunds">Gerunds & -ing</button>
-      <button type="button" class="filter-chip" data-skill="vocabulary">Vocabulary</button>
-      <button type="button" class="filter-chip" data-skill="collocations">Collocations</button>
-      <button type="button" class="filter-chip" data-skill="phrasal">Phrasal Verbs</button>
-      <button type="button" class="filter-chip" data-skill="idioms">Idioms</button>
-      <button type="button" class="filter-chip" data-skill="listening">Listening</button>
-      <button type="button" class="filter-chip" data-skill="reading">Reading</button>
-      <button type="button" class="filter-chip" data-skill="writing">Writing</button>
-    </div>
+    <div id="catalog-container"></div>
 
-    <div id="exercises-divisions"></div>
-
-    <section id="progress-section">
-      <div class="section-title">
-        <span>My Progress</span>
-        <button type="button" class="btn-nav" id="progress-top-btn">🏠 Volver arriba al Home</button>
+    <section id="progress-panel">
+      <div class="progress-header">
+        <h2>My Progress</h2>
+        <div class="progress-summary" id="progress-summary">Completed: 0 / 15</div>
       </div>
-
-      <div class="level-card">
-        <div class="level-header">
-          <div>
-            <div class="level-badge-pill">🎯 Camino de Fluidez CEFR</div>
-            <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A1 (Beginner)</h2>
-            <p style="opacity:0.85; font-size:0.92rem; margin-top:4px;" id="cefr-subtext">
-              Completá módulos para avanzar en la escala CEFR.
-            </p>
-          </div>
-          <div class="level-stats-box">
-            <div class="stat-mini">
-              <span>Promedio Global</span>
-              <strong id="global-avg-display">0%</strong>
-            </div>
-            <div class="stat-mini">
-              <span>Actividades</span>
-              <strong id="completed-count-display">0 / 13</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="cefr-track-bg">
-          <div class="cefr-track-fill" id="cefr-fill-bar"></div>
-        </div>
-        <div class="cefr-milestones" id="cefr-milestones"></div>
-      </div>
-
-      <div class="section-title">
-        <span>Mis 9 Áreas de Habilidad</span>
-      </div>
-      <section class="skills-grid" id="skills-grid"></section>
+      <div class="skills-list-grid" id="skills-grid"></div>
     </section>
   </main>
 
-  <button type="button" id="floating-progress-btn" class="floating-progress-btn">📊 My Progress</button>
-  <div class="toast" id="toast"></div>
+  <a href="#progress-panel" class="floating-progress">My Progress</a>
 
   <script>
     (function () {
-      const STORAGE_SCORES_KEY = "mme_portal_scores_v1";
+      const STORAGE_KEY = "mme_portal_scores_v1";
 
-      const SKILLS_META = [
-        { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
-        { id: "gerunds",      name: "Gerunds & -ing Forms",  icon: "⚡", color: "#0284c7", bg: "#e0f2fe" },
-        { id: "vocabulary",   name: "Vocabulary",            icon: "🧠", color: "#0d9488", bg: "#f0fdfa" },
-        { id: "collocations", name: "Collocations",          icon: "🔗", color: "#6366f1", bg: "#eef2ff" },
-        { id: "phrasal",      name: "Phrasal Verbs",         icon: "🚀", color: "#7c3aed", bg: "#f5f3ff" },
-        { id: "idioms",       name: "Idioms",                icon: "💬", color: "#db2777", bg: "#fdf2f8" },
-        { id: "listening",    name: "Listening",             icon: "🎧", color: "#2563eb", bg: "#eff6ff" },
-        { id: "reading",      name: "Reading Comprehension", icon: "📖", color: "#059669", bg: "#ecfdf5" },
-        { id: "writing",      name: "Writing",               icon: "✍️", color: "#d97706", bg: "#fffbeb" }
-      ];
-
-      const CEFR_LEVELS = [
-        { code: "A1",  label: "Beginner",           minPoints: 0 },
-        { code: "A2",  label: "Elementary",         minPoints: 15 },
-        { code: "A2+", label: "Elementary+",        minPoints: 30 },
-        { code: "B1",  label: "Intermediate",       minPoints: 45 },
-        { code: "B1+", label: "Intermediate+",      minPoints: 60 },
-        { code: "B2",  label: "Upper Intermediate", minPoints: 74 },
-        { code: "C1",  label: "Advanced",           minPoints: 88 },
-        { code: "C2",  label: "Proficiency",        minPoints: 96 }
-      ];
-
-      const DIVISIONS_CATALOG = [
+      const CATEGORIES = [
         {
-          id: "foundations",
-          title: "📘 Foundations & Grammar",
-          items: [
-            { id: "learning-english-tips",          title: "Learning English Tips",                     url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
-            { id: "simple-present-do-does",         title: "Simple Present: Do & Does",                 url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
-            { id: "demonstratives",                 title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
-            { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns",  url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
-            { id: "conditionals",                   title: "Conditionals 0, 1 & 2 in Context",          url: "conditionals.html",                       skills: ["grammar"] },
-            { id: "gerund-inf",                     title: "Gerunds vs. Infinitives & -ing Forms",      url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] }
+          id: "grammar",
+          name: "Grammar",
+          exercises: [
+            { id: "simple-present-do-does", title: "Simple Present: Do & Does", url: "simple_present_do-does.html", tags: ["Grammar", "Listening"] },
+            { id: "demonstratives", title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html", tags: ["Grammar", "Vocabulary"] },
+            { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns", url: "possessive_adjectives_subject_pronouns.html", tags: ["Grammar", "Listening"] },
+            { id: "conditionals", title: "Conditionals 0, 1 & 2 in Context", url: "conditionals.html", tags: ["Grammar"] },
+            { id: "gerund-inf", title: "Gerunds vs. Infinitives & -ing Forms", url: "gerunds-ing.html", tags: ["Grammar", "Gerunds & -ing"] }
           ]
         },
         {
-          id: "reading-vocab",
-          title: "📖 Reading & Vocabulary Builders",
-          items: [
-            { id: "little-prince",    title: "The Little Prince - Chapter I",        url: "little-prince.html",    skills: ["reading", "vocabulary"] },
-            { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html",     skills: ["collocations", "vocabulary"] },
-            { id: "phrasal-work",     title: "Phrasal Verbs for Work & Meetings",  url: "phrasal-verbs.html",    skills: ["phrasal", "vocabulary"] },
-            { id: "idioms-daily",     title: "Everyday English Idioms",            url: "idioms.html",           skills: ["idioms", "listening"] }
+          id: "vocabulary",
+          name: "Vocabulary",
+          exercises: [
+            { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html", tags: ["Vocabulary", "Collocations"] },
+            { id: "phrasal-work", title: "Phrasal Verbs for Work & Meetings", url: "phrasal-verbs.html", tags: ["Vocabulary", "Phrasal Verbs"] },
+            { id: "idioms-daily", title: "Everyday English Idioms", url: "idioms.html", tags: ["Vocabulary", "Idioms"] }
           ]
         },
         {
-          id: "songs-writing",
-          title: "🎵 Songs & Writing Practice",
-          items: [
-            { id: "song-lumineers", title: "Ho Hey - The Lumineers (Sing & Listen)",    url: "ho-hey.html",    skills: ["listening", "vocabulary"] },
-            { id: "writing-email",  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html", skills: ["writing"] },
-            { id: "writing-story",  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html", skills: ["writing"] }
+          id: "reading",
+          name: "Reading",
+          exercises: [
+            { id: "learning-english-tips", title: "Learning English Tips", url: "learning_english_tips.html", tags: ["Reading", "Vocabulary", "Listening"] },
+            { id: "airport-notice", title: "Airport Notice Reading", url: "airport_notice_reading.html", tags: ["Reading", "Vocabulary"] },
+            { id: "little-prince", title: "The Little Prince - Chapter I", url: "little-prince.html", tags: ["Reading", "Vocabulary"] }
+          ]
+        },
+        {
+          id: "listening",
+          name: "Listening & Songs",
+          exercises: [
+            { id: "animals-maroon", title: "Animals - Maroon 5", url: "animals_maroon.html", tags: ["Listening", "Vocabulary"] },
+            { id: "somebody-used-to-know", title: "Somebody That I Used to Know", url: "CancionSomebodyusedtoknow.html", tags: ["Listening", "Vocabulary"] },
+            { id: "i-gonna-be", title: "I'm Gonna Be (500 Miles)", url: "I_gonna_be.html", tags: ["Listening", "Vocabulary"] },
+            { id: "song-lumineers", title: "Ho Hey - The Lumineers", url: "ho-hey.html", tags: ["Listening", "Vocabulary"] }
+          ]
+        },
+        {
+          id: "writing",
+          name: "Writing",
+          exercises: [
+            { id: "balanced-essay", title: "Balanced Essay Practice", url: "Balanced_Essay.html", tags: ["Writing"] },
+            { id: "writing-email", title: "Writing 1: Professional Follow-up Email", url: "writing-1.html", tags: ["Writing"] },
+            { id: "writing-story", title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html", tags: ["Writing"] }
           ]
         }
       ];
 
-      const ALL_EXERCISES = DIVISIONS_CATALOG.flatMap((d) => d.items);
+      const SKILLS = [
+        { id: "grammar", label: "Grammar" },
+        { id: "gerunds", label: "Gerunds & -ing Forms" },
+        { id: "vocabulary", label: "Vocabulary" },
+        { id: "collocations", label: "Collocations" },
+        { id: "phrasal", label: "Phrasal Verbs" },
+        { id: "idioms", label: "Idioms" },
+        { id: "listening", label: "Listening" },
+        { id: "reading", label: "Reading Comprehension" },
+        { id: "writing", label: "Writing" }
+      ];
 
-      let currentFilter = "all";
+      let activeCategory = "all";
 
       function loadScores() {
         try {
-          const raw = localStorage.getItem(STORAGE_SCORES_KEY);
+          const raw = localStorage.getItem(STORAGE_KEY);
           return raw ? JSON.parse(raw) : {};
-        } catch (err) {
+        } catch (e) {
           return {};
         }
       }
 
-      const scoresDB = loadScores();
+      const scores = loadScores();
 
-      function showToast(msg) {
-        const t = document.getElementById("toast");
-        if (!t) return;
-        t.textContent = msg;
-        t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2400);
-      }
-
-      function calculateMetrics() {
-        const skillBuckets = {
-          grammar: [], gerunds: [], vocabulary: [], collocations: [],
-          phrasal: [], idioms: [], listening: [], reading: [], writing: []
-        };
-
-        let completedExercises = 0;
-
-        Object.entries(scoresDB || {}).forEach(([exId, result]) => {
-          if (!result) return;
-          completedExercises++;
-          Object.keys(skillBuckets).forEach((skillKey) => {
-            if (typeof result[skillKey] === "number") {
-              skillBuckets[skillKey].push(result[skillKey]);
-            }
-          });
-        });
-
-        const skillAverages = {};
-        const activeAverages = [];
-
-        SKILLS_META.forEach((s) => {
-          const arr = skillBuckets[s.id];
-          if (arr.length > 0) {
-            const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
-            skillAverages[s.id] = { avg, count: arr.length };
-            activeAverages.push(avg);
-          } else {
-            skillAverages[s.id] = { avg: null, count: 0 };
-          }
-        });
-
-        const globalAvg = activeAverages.length
-          ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
-          : 0;
-
-        const practiceFactor = Math.min(1, completedExercises / ALL_EXERCISES.length);
-        const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
-
-        let currentLevel = CEFR_LEVELS[0];
-        let nextLevel = CEFR_LEVELS[1];
-
-        for (let i = 0; i < CEFR_LEVELS.length; i++) {
-          if (cefrIndexScore >= CEFR_LEVELS[i].minPoints) {
-            currentLevel = CEFR_LEVELS[i];
-            nextLevel = CEFR_LEVELS[i + 1] || null;
-          }
-        }
-
-        return {
-          skillAverages,
-          globalAvg,
-          completedExercises,
-          cefrIndexScore,
-          currentLevel,
-          nextLevel
-        };
-      }
-
-      function renderDivisionsList() {
-        const container = document.getElementById("exercises-divisions");
+      function renderCatalog() {
+        const container = document.getElementById("catalog-container");
         if (!container) return;
 
-        const html = DIVISIONS_CATALOG.map((div) => {
-          const filteredItems = div.items.filter(
-            (ex) => currentFilter === "all" || ex.skills.includes(currentFilter)
-          );
+        const visibleCategories = CATEGORIES.filter(
+          (cat) => activeCategory === "all" || cat.id === activeCategory
+        );
 
-          if (filteredItems.length === 0) return "";
+        container.innerHTML = visibleCategories.map((cat) => {
+          const itemsHtml = cat.exercises.map((ex) => {
+            const tagsHtml = ex.tags.map((t) => `<span class="skill-pill">${t}</span>`).join("");
+            const rec = scores[ex.id];
+            let actionText = "Open Exercise";
 
-          const cardsHtml = filteredItems.map((ex) => {
-            const record = scoresDB ? scoresDB[ex.id] : null;
-            let statusHtml = `<span class="status-pill">Disponible</span>`;
-
-            if (record) {
-              const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
-              const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
-              statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
+            if (rec) {
+              const vals = Object.values(rec).filter((v) => typeof v === "number");
+              if (vals.length) {
+                const avg = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+                actionText = `Completed (${avg}%)`;
+              }
             }
 
-            const tagsHtml = ex.skills.map((sId) => {
-              const meta = SKILLS_META.find((m) => m.id === sId);
-              return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
-            }).join("");
-
             return `
-              <article class="exercise-card">
-                <div>
-                  <div class="ex-tags">${tagsHtml}</div>
-                  <div class="ex-title">${ex.title}</div>
-                </div>
-                <div class="ex-footer">
-                  ${statusHtml}
-                  <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
-                </div>
-              </article>
+              <li class="exercise-item">
+                <a href="${ex.url}" class="exercise-link">
+                  <div class="exercise-info">
+                    <span class="exercise-title">${ex.title}</span>
+                    <div class="exercise-meta">${tagsHtml}</div>
+                  </div>
+                  <span class="exercise-action">${actionText}</span>
+                </a>
+              </li>
             `;
           }).join("");
 
           return `
-            <section class="division-group">
-              <div class="division-header">
-                <span>${div.title}</span>
-                <span style="font-size:0.82rem; color:var(--text-muted);">${filteredItems.length}</span>
+            <section class="category-section">
+              <div class="category-section-header">
+                <h2>${cat.name}</h2>
+                <span class="category-count">${cat.exercises.length} ${cat.exercises.length === 1 ? "exercise" : "exercises"}</span>
               </div>
-              <div class="exercise-list">
-                ${cardsHtml}
-              </div>
+              <ul class="exercise-list">
+                ${itemsHtml}
+              </ul>
             </section>
           `;
         }).join("");
-
-        container.innerHTML = html || `<p style="color:var(--text-muted);">No hay ejercicios para este filtro.</p>`;
       }
 
-      function renderProgressView() {
-        const metrics = calculateMetrics();
+      function renderProgress() {
+        const allExercises = CATEGORIES.flatMap((c) => c.exercises);
+        let completed = 0;
+        const buckets = {};
+        SKILLS.forEach((s) => { buckets[s.id] = []; });
 
-        document.getElementById("cefr-headline").textContent =
-          `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
-        document.getElementById("cefr-subtext").textContent = metrics.nextLevel
-          ? `En camino hacia el nivel ${metrics.nextLevel.code} (${metrics.nextLevel.label}).`
-          : "¡Nivel máximo C2 Proficiency!";
-        document.getElementById("global-avg-display").textContent = `${metrics.globalAvg}%`;
-        document.getElementById("completed-count-display").textContent =
-          `${metrics.completedExercises} / ${ALL_EXERCISES.length}`;
+        Object.entries(scores).forEach(([exId, data]) => {
+          if (!data) return;
+          completed++;
+          SKILLS.forEach((s) => {
+            if (typeof data[s.id] === "number") {
+              buckets[s.id].push(data[s.id]);
+            }
+          });
+        });
 
-        const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
-        document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
-
-        document.getElementById("cefr-milestones").innerHTML = CEFR_LEVELS.map((lvl) => {
-          const reached = metrics.cefrIndexScore >= lvl.minPoints;
-          return `
-            <div class="cefr-step ${reached ? "reached" : ""}">
-              <div class="cefr-step-label">${lvl.code}</div>
-              <span class="cefr-step-desc">${lvl.label}</span>
-            </div>
-          `;
-        }).join("");
-
-        document.getElementById("skills-grid").innerHTML = SKILLS_META.map((skill) => {
-          const data = metrics.skillAverages[skill.id];
-          let rightBadge = `<span class="skill-score empty">Sin datos</span>`;
-          let barWidth = 0;
-
-          if (data.avg !== null) {
-            rightBadge = `<div class="skill-score" style="color:${skill.color}">${data.avg}%</div>`;
-            barWidth = data.avg;
-          }
-
-          return `
-            <div class="skill-card">
-              <div class="skill-top">
-                <div class="skill-name-wrap">
-                  <div class="skill-icon" style="background:${skill.bg}; color:${skill.color}">${skill.icon}</div>
-                  <div>
-                    <div class="skill-title">${skill.name}</div>
-                    <div class="skill-count">${data.count} ${data.count === 1 ? "actividad" : "actividades"}</div>
-                  </div>
-                </div>
-                ${rightBadge}
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width:${barWidth}%; background:${skill.color}"></div>
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      function setActiveNav(which) {
-        document.getElementById("nav-home-btn").classList.toggle("active", which === "home");
-        document.getElementById("nav-progress-btn").classList.toggle("active", which === "progress");
-      }
-
-      function goHome() {
-        currentFilter = "all";
-        document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
-        renderDivisionsList();
-        setActiveNav("home");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        showToast("🏠 Home • Todos los ejercicios");
-      }
-
-      function goProgress() {
-        renderProgressView();
-        setActiveNav("progress");
-        const sec = document.getElementById("progress-section");
-        if (sec) {
-          sec.scrollIntoView({ behavior: "smooth" });
+        const summaryEl = document.getElementById("progress-summary");
+        if (summaryEl) {
+          summaryEl.textContent = `Completed: ${completed} / ${allExercises.length}`;
         }
-        showToast("📊 My Progress");
+
+        const gridEl = document.getElementById("skills-grid");
+        if (!gridEl) return;
+
+        gridEl.innerHTML = SKILLS.map((s) => {
+          const arr = buckets[s.id];
+          const avg = arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+          const labelRight = arr.length ? `${avg}%` : "No data";
+          return `
+            <div class="skill-row-card">
+              <div class="skill-row-top">
+                <span>${s.label}</span>
+                <span>${labelRight}</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width:${avg}%"></div>
+              </div>
+            </div>
+          `;
+        }).join("");
       }
 
       function init() {
-        renderDivisionsList();
-        renderProgressView();
-        setActiveNav("home");
+        renderCatalog();
+        renderProgress();
 
-        document.getElementById("nav-home-btn").addEventListener("click", goHome);
-        document.getElementById("progress-top-btn").addEventListener("click", goHome);
-        document.getElementById("nav-progress-btn").addEventListener("click", goProgress);
-        document.getElementById("banner-progress-btn").addEventListener("click", goProgress);
-        document.getElementById("floating-progress-btn").addEventListener("click", goProgress);
-
-        document.querySelectorAll(".filter-chip").forEach((chip) => {
-          chip.addEventListener("click", () => {
-            currentFilter = chip.getAttribute("data-skill") || "all";
-            document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
-            chip.classList.add("active");
-            renderDivisionsList();
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeCategory = btn.getAttribute("data-category") || "all";
+            document.querySelectorAll(".category-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderCatalog();
           });
         });
       }
