@@ -1446,7 +1446,7 @@
         renderExercisesList(activeStudent);
         renderProgressView(activeStudent);
         renderCoachPanel();
-        switchView(targetView);
+        switchView(targetView, false);
       } else {
         const student = studentsDB[user.studentId] || { id: "guest", name: user.name || "Student", email: user.email || "", scores: {} };
         document.getElementById("user-avatar").textContent = (student.name[0] || "A").toUpperCase();
@@ -1457,7 +1457,7 @@
         document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.";
         renderExercisesList(student);
         renderProgressView(student);
-        switchView(targetView);
+        switchView(targetView, false);
       }
     }
 
@@ -1501,7 +1501,7 @@
       document.getElementById("login-screen").style.display = "flex";
     };
 
-    window.switchView = function(viewId) {
+    window.switchView = function(viewId, notify = true) {
       document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
       document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
       document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
@@ -1514,6 +1514,14 @@
       document.querySelectorAll(".nav-tab").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.view === viewId);
       });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (notify && viewId === "home-view") {
+        showToast("🏠 Home • Ejercicios disponibles");
+      } else if (notify && viewId === "progress-view") {
+        showToast("📊 My Progress");
+      }
     };
 
     window.filterExercises = function(skill, btnEl) {
