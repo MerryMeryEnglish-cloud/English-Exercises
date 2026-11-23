@@ -978,17 +978,21 @@
       { code: "C2",  label: "Proficiency",        minPoints: 96 }
     ];
 
-    /* Catálogo de ejercicios ejemplo (conectables a tus HTML en GitHub) */
+    /* Catálogo de ejercicios (conectables a tus HTML en GitHub) */
     const EXERCISES_CATALOG = [
-      { id: "little-prince",    title: "The Little Prince - Chapter I", url: "little-prince.html", skills: ["reading", "vocabulary"] },
-      { id: "gerund-inf",       title: "Gerunds vs. Infinitives & -ing Forms", url: "gerunds-ing.html", skills: ["gerunds", "grammar"] },
-      { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html", skills: ["collocations", "vocabulary"] },
-      { id: "phrasal-work",     title: "Phrasal Verbs for Work & Meetings", url: "phrasal-verbs.html", skills: ["phrasal", "vocabulary"] },
-      { id: "conditionals",     title: "Conditionals 0, 1 & 2 in Context", url: "conditionals.html", skills: ["grammar"] },
-      { id: "song-lumineers",   title: "Ho Hey - The Lumineers (Sing & Listen)", url: "ho-hey.html", skills: ["listening", "vocabulary"] },
-      { id: "idioms-daily",     title: "Everyday English Idioms", url: "idioms.html", skills: ["idioms", "listening"] },
-      { id: "writing-email",    title: "Writing 1: Professional Follow-up Email", url: "writing-1.html", skills: ["writing"], isWriting: true },
-      { id: "writing-story",    title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html", skills: ["writing"], isWriting: true }
+      { id: "learning-english-tips",              title: "Learning English Tips",                        url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
+      { id: "simple-present-do-does",             title: "Simple Present: Do & Does",                    url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
+      { id: "demonstratives",                     title: "Demonstratives (This, That, These, Those)",    url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
+      { id: "possessive-adjectives-pronouns",     title: "Possessive Adjectives & Subject Pronouns",     url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
+      { id: "little-prince",                      title: "The Little Prince - Chapter I",                url: "little-prince.html",                      skills: ["reading", "vocabulary"] },
+      { id: "gerund-inf",                         title: "Gerunds vs. Infinitives & -ing Forms",         url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] },
+      { id: "collocations-biz",                   title: "Make, Do, Take & Have Collocations",           url: "collocations.html",                       skills: ["collocations", "vocabulary"] },
+      { id: "phrasal-work",                       title: "Phrasal Verbs for Work & Meetings",            url: "phrasal-verbs.html",                       skills: ["phrasal", "vocabulary"] },
+      { id: "conditionals",                       title: "Conditionals 0, 1 & 2 in Context",             url: "conditionals.html",                       skills: ["grammar"] },
+      { id: "song-lumineers",                     title: "Ho Hey - The Lumineers (Sing & Listen)",       url: "ho-hey.html",                             skills: ["listening", "vocabulary"] },
+      { id: "idioms-daily",                       title: "Everyday English Idioms",                      url: "idioms.html",                             skills: ["idioms", "listening"] },
+      { id: "writing-email",                      title: "Writing 1: Professional Follow-up Email",      url: "writing-1.html",                          skills: ["writing"], isWriting: true },
+      { id: "writing-story",                      title: "Writing 2: A Memorable Trip (Past Tenses)",    url: "writing-2.html",                          skills: ["writing"], isWriting: true }
     ];
 
     /* Datos de prueba (Demo) */
@@ -998,15 +1002,19 @@
         name: "Anika",
         email: "anika@ejemplo.com",
         scores: {
-          "little-prince":    { reading: 88, vocabulary: 84 },
-          "gerund-inf":       { gerunds: 80, grammar: 85 },
-          "collocations-biz": { collocations: 78, vocabulary: 82 },
-          "phrasal-work":     { phrasal: 76, vocabulary: 80 },
-          "conditionals":     { grammar: 82 },
-          "song-lumineers":   { listening: 90, vocabulary: 86 },
-          "idioms-daily":     { idioms: 70, listening: 78 },
-          "writing-email":    { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." },
-          "writing-story":    { writing: null, status: "pending_review", feedback: "Enviado vía Gemini - esperando revisión de Maru." }
+          "learning-english-tips":          { reading: 86, vocabulary: 84, listening: 82 },
+          "simple-present-do-does":         { grammar: 88, listening: 85 },
+          "demonstratives":                 { grammar: 84, vocabulary: 80 },
+          "possessive-adjectives-pronouns": { grammar: 86, listening: 83 },
+          "little-prince":                  { reading: 88, vocabulary: 84 },
+          "gerund-inf":                     { gerunds: 80, grammar: 85 },
+          "collocations-biz":               { collocations: 78, vocabulary: 82 },
+          "phrasal-work":                   { phrasal: 76, vocabulary: 80 },
+          "conditionals":                   { grammar: 82 },
+          "song-lumineers":                 { listening: 90, vocabulary: 86 },
+          "idioms-daily":                   { idioms: 70, listening: 78 },
+          "writing-email":                  { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." },
+          "writing-story":                  { writing: null, status: "pending_review", feedback: "Enviado vía Gemini - esperando revisión de Maru." }
         }
       },
       "lucas": {
@@ -1014,10 +1022,13 @@
         name: "Lucas M.",
         email: "lucas@ejemplo.com",
         scores: {
-          "conditionals":     { grammar: 65 },
-          "gerund-inf":       { gerunds: 72, grammar: 68 },
-          "song-lumineers":   { listening: 74, vocabulary: 70 },
-          "writing-email":    { writing: null, status: "pending_review", feedback: "Borrador listo." }
+          "simple-present-do-does":         { grammar: 75, listening: 72 },
+          "demonstratives":                 { grammar: 70, vocabulary: 74 },
+          "possessive-adjectives-pronouns": { grammar: 76, listening: 71 },
+          "conditionals":                   { grammar: 65 },
+          "gerund-inf":                     { gerunds: 72, grammar: 68 },
+          "song-lumineers":                 { listening: 74, vocabulary: 70 },
+          "writing-email":                  { writing: null, status: "pending_review", feedback: "Borrador listo." }
         }
       }
     };
@@ -1070,7 +1081,7 @@
         : 0;
 
       // Combinación de promedio global + volumen de práctica para ubicar en A1 -> C2
-      const practiceFactor = Math.min(1, completedExercises / 9);
+      const practiceFactor = Math.min(1, completedExercises / EXERCISES_CATALOG.length);
       const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
 
       let currentLevel = CEFR_LEVELS[0];
