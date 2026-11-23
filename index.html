@@ -789,28 +789,28 @@
           id: "grammar",
           name: "Grammar",
           exercises: [
-            { id: "simple-present-do-does", title: "Simple Present: Do & Does", url: "simple_present_do-does.html", tags: ["Grammar", "Listening"] },
-            { id: "demonstratives", title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html", tags: ["Grammar", "Vocabulary"] },
-            { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns", url: "possessive_adjectives_subject_pronouns.html", tags: ["Grammar", "Listening"] },
             { id: "conditionals", title: "Conditionals 0, 1 & 2 in Context", url: "conditionals.html", tags: ["Grammar"] },
-            { id: "gerund-inf", title: "Gerunds vs. Infinitives & -ing Forms", url: "gerunds-ing.html", tags: ["Grammar", "Gerunds & -ing"] }
+            { id: "demonstratives", title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html", tags: ["Grammar", "Vocabulary"] },
+            { id: "gerund-inf", title: "Gerunds vs. Infinitives & -ing Forms", url: "gerunds-ing.html", tags: ["Grammar", "Gerunds & -ing"] },
+            { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns", url: "possessive_adjectives_subject_pronouns.html", tags: ["Grammar", "Listening"] },
+            { id: "simple-present-do-does", title: "Simple Present: Do & Does", url: "simple_present_do-does.html", tags: ["Grammar", "Listening"] }
           ]
         },
         {
           id: "vocabulary",
           name: "Vocabulary",
           exercises: [
+            { id: "idioms-daily", title: "Everyday English Idioms", url: "idioms.html", tags: ["Vocabulary", "Idioms"] },
             { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html", tags: ["Vocabulary", "Collocations"] },
-            { id: "phrasal-work", title: "Phrasal Verbs for Work & Meetings", url: "phrasal-verbs.html", tags: ["Vocabulary", "Phrasal Verbs"] },
-            { id: "idioms-daily", title: "Everyday English Idioms", url: "idioms.html", tags: ["Vocabulary", "Idioms"] }
+            { id: "phrasal-work", title: "Phrasal Verbs for Work & Meetings", url: "phrasal-verbs.html", tags: ["Vocabulary", "Phrasal Verbs"] }
           ]
         },
         {
           id: "reading",
           name: "Reading",
           exercises: [
-            { id: "learning-english-tips", title: "Learning English Tips", url: "learning_english_tips.html", tags: ["Reading", "Vocabulary", "Listening"] },
             { id: "airport-notice", title: "Airport Notice Reading", url: "airport_notice_reading.html", tags: ["Reading", "Vocabulary"] },
+            { id: "learning-english-tips", title: "Learning English Tips", url: "learning_english_tips.html", tags: ["Reading", "Vocabulary", "Listening"] },
             { id: "little-prince", title: "The Little Prince - Chapter I", url: "little-prince.html", tags: ["Reading", "Vocabulary"] }
           ]
         },
@@ -819,9 +819,9 @@
           name: "Listening & Songs",
           exercises: [
             { id: "animals-maroon", title: "Animals - Maroon 5", url: "animals_maroon.html", tags: ["Listening", "Vocabulary"] },
-            { id: "somebody-used-to-know", title: "Somebody That I Used to Know", url: "CancionSomebodyusedtoknow.html", tags: ["Listening", "Vocabulary"] },
+            { id: "song-lumineers", title: "Ho Hey - The Lumineers", url: "ho-hey.html", tags: ["Listening", "Vocabulary"] },
             { id: "i-gonna-be", title: "I'm Gonna Be (500 Miles)", url: "I_gonna_be.html", tags: ["Listening", "Vocabulary"] },
-            { id: "song-lumineers", title: "Ho Hey - The Lumineers", url: "ho-hey.html", tags: ["Listening", "Vocabulary"] }
+            { id: "somebody-used-to-know", title: "Somebody That I Used to Know", url: "CancionSomebodyusedtoknow.html", tags: ["Listening", "Vocabulary"] }
           ]
         },
         {
@@ -880,7 +880,11 @@
         );
 
         container.innerHTML = visibleCategories.map((cat) => {
-          const itemsHtml = cat.exercises.map((ex) => {
+          const sortedExercises = [...cat.exercises].sort((a, b) =>
+            a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
+          );
+
+          const itemsHtml = sortedExercises.map((ex) => {
             const tagsHtml = ex.tags.map((t) => `<span class="skill-pill">${t}</span>`).join("");
             const rec = scores[ex.id];
             let actionText = "Open Exercise";
@@ -915,7 +919,7 @@
             <section class="category-section">
               <div class="category-section-header">
                 <h2>${cat.name}</h2>
-                <span class="category-count">${cat.exercises.length} ${cat.exercises.length === 1 ? "exercise" : "exercises"}</span>
+                <span class="category-count">${sortedExercises.length} ${sortedExercises.length === 1 ? "exercise" : "exercises"}</span>
               </div>
               <ul class="exercise-list">
                 ${itemsHtml}
