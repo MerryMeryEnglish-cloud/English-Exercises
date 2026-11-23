@@ -1025,7 +1025,7 @@
       </div>
     </main>
 
-    <!-- Botón fijo My Progress visible desde Home -->
+    <!-- Botón fijo My Progress visible desde Home y Panel Coach -->
     <button type="button" id="floating-progress-btn" class="floating-progress-btn" onclick="switchView('progress-view')">
       📊 My Progress
     </button>
@@ -1035,10 +1035,6 @@
 
   <!-- ==================== LOCAL STORAGE + FIREBASE READY LOGIC ==================== -->
   <script type="module">
-    /* =====================================================================
-       CONFIGURACIÓN DE FIREBASE (Preparada para activar cuando estés lista)
-       Mientras USE_DEMO_MODE = true, guarda sesión y cambios en localStorage.
-       ===================================================================== */
     const USE_DEMO_MODE = true;
 
     const firebaseConfig = {
@@ -1050,7 +1046,7 @@
       appId: "1:000000000000:web:abcdef123456"
     };
 
-    const COACH_EMAIL = "merrymeryenglish@gmail.com"; // Tu mail de Coach
+    const COACH_EMAIL = "merrymeryenglish@gmail.com";
     const STORAGE_DB_KEY = "mme_portal_students_v1";
     const STORAGE_SESSION_KEY = "mme_portal_session_v1";
 
@@ -1130,16 +1126,21 @@
       }
     };
 
+    function cloneDefaultDB() {
+      return JSON.parse(JSON.stringify(DEFAULT_STUDENTS_DB));
+    }
+
     function loadStudentsDB() {
       try {
         const raw = localStorage.getItem(STORAGE_DB_KEY);
         if (!raw) {
-          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(DEFAULT_STUDENTS_DB));
-          return structuredClone(DEFAULT_STUDENTS_DB);
+          const fresh = cloneDefaultDB();
+          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(fresh));
+          return fresh;
         }
         return JSON.parse(raw);
       } catch {
-        return structuredClone(DEFAULT_STUDENTS_DB);
+        return cloneDefaultDB();
       }
     }
 
@@ -1317,7 +1318,7 @@
       );
 
       listEl.innerHTML = filtered.map(ex => {
-        const record = student.scores?.[ex.id];
+        const record = student?.scores?.[ex.id];
         let statusHtml = `<span class="status-pill status-todo">Pendiente</span>`;
 
         if (record) {
@@ -1439,21 +1440,21 @@
         document.getElementById("user-display-name").textContent = "Maru";
         document.getElementById("user-role-label").textContent = "English Coach";
         document.getElementById("coach-tab-btn").style.display = "inline-block";
-        document.getElementById("home-welcome-title").textContent = "Home • Merry Mery English";
-        document.getElementById("home-welcome-subtitle").textContent = "Accedé a los ejercicios o consultá My Progress y el Panel Coach.";
+        document.getElementById("home-welcome-title").textContent = "Home • Ejercicios Merry Mery English";
+        document.getElementById("home-welcome-subtitle").textContent = "Abrí cualquier ejercicio o alterná entre My Progress y Panel Coach.";
         const activeStudent = studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0];
         renderExercisesList(activeStudent);
         renderProgressView(activeStudent);
         renderCoachPanel();
         switchView(targetView);
       } else {
-        const student = studentsDB[user.studentId] || studentsDB["anika"];
+        const student = studentsDB[user.studentId] || { id: "guest", name: user.name || "Student", email: user.email || "", scores: {} };
         document.getElementById("user-avatar").textContent = (student.name[0] || "A").toUpperCase();
         document.getElementById("user-display-name").textContent = student.name;
         document.getElementById("user-role-label").textContent = "Student";
         document.getElementById("coach-tab-btn").style.display = "none";
         document.getElementById("home-welcome-title").textContent = `Welcome, ${student.name}!`;
-        document.getElementById("home-welcome-subtitle").textContent = "Elegí un módulo para practicar o tocá My Progress cuando quieras ver tu nivel.";
+        document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.";
         renderExercisesList(student);
         renderProgressView(student);
         switchView(targetView);
