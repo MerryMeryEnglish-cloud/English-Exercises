@@ -15,7 +15,6 @@
       --accent: #ec4899;
       --accent-light: #fdf2f8;
       --teal: #0d9488;
-      --teal-light: #f0fdfa;
       --amber: #d97706;
       --amber-light: #fffbeb;
       --bg: #f8fafc;
@@ -63,7 +62,7 @@
       padding: 40px 36px;
       border-radius: 24px;
       box-shadow: var(--shadow-md);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border);
     }
 
     .logo-badge {
@@ -78,8 +77,7 @@
       height: 52px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #0d9488;
-      box-shadow: 0 3px 10px rgba(13, 148, 136, 0.18);
+      border: 2px solid var(--teal);
       background: #ffffff;
     }
 
@@ -96,7 +94,7 @@
     }
 
     .logo-text span {
-      color: #0d9488;
+      color: var(--teal);
     }
 
     .login-title {
@@ -114,7 +112,6 @@
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 6px;
-      color: var(--text-main);
     }
 
     .form-control {
@@ -124,7 +121,6 @@
       border-radius: 12px;
       font-family: inherit;
       font-size: 0.95rem;
-      transition: all 0.2s;
       background: #f8fafc;
     }
 
@@ -132,7 +128,6 @@
       outline: none;
       border-color: var(--primary);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
     }
 
     .btn {
@@ -147,7 +142,7 @@
       font-size: 0.98rem;
       cursor: pointer;
       border: none;
-      transition: all 0.2s;
+      transition: all 0.15s ease;
     }
 
     .btn-primary {
@@ -158,7 +153,6 @@
 
     .btn-primary:hover {
       background: var(--primary-dark);
-      transform: translateY(-1px);
     }
 
     .btn-google {
@@ -169,36 +163,12 @@
       margin-top: 12px;
     }
 
-    .btn-google:hover {
-      background: #f8fafc;
-    }
-
     .demo-divider {
-      margin: 24px 0 14px;
+      margin: 22px 0 12px;
       text-align: center;
-      position: relative;
       font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .demo-divider::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      z-index: 0;
-    }
-
-    .demo-divider span {
-      background: white;
-      padding: 0 12px;
-      position: relative;
-      z-index: 1;
     }
 
     .demo-buttons {
@@ -222,7 +192,7 @@
       border-color: #fbcfe8;
     }
 
-    /* ================= MAIN APP SHELL ================= */
+    /* ================= APP SHELL ================= */
     #app-shell {
       display: none;
     }
@@ -265,7 +235,6 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.2s;
     }
 
     .nav-tab.active {
@@ -312,7 +281,7 @@
     .container {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 28px 24px 96px;
+      padding: 28px 24px 100px;
     }
 
     .home-banner {
@@ -336,7 +305,7 @@
     }
 
     .home-banner p {
-      color: rgba(255, 255, 255, 0.84);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 0.94rem;
     }
 
@@ -353,13 +322,6 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s;
-    }
-
-    .btn-home-back:hover {
-      background: var(--primary-light);
-      transform: translateY(-1px);
     }
 
     /* ================= FIXED MY PROGRESS BUTTON ================= */
@@ -381,15 +343,9 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.45);
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .floating-progress-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 28px -6px rgba(79, 70, 229, 0.55);
-    }
-
-    /* ================= CEFR LEVEL LINE (A1 -> C2) ================= */
+    /* ================= CEFR LEVEL LINE ================= */
     .level-card {
       background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4c1d95 100%);
       color: white;
@@ -397,8 +353,6 @@
       padding: 28px 32px;
       margin-bottom: 28px;
       box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
     }
 
     .level-header {
@@ -407,7 +361,7 @@
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .level-badge-pill {
@@ -415,7 +369,6 @@
       align-items: center;
       gap: 8px;
       background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(6px);
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 0.85rem;
@@ -424,15 +377,14 @@
     }
 
     .level-big-title {
-      font-size: 1.85rem;
+      font-size: 1.8rem;
       font-weight: 800;
-      letter-spacing: -0.5px;
     }
 
     .level-stats-box {
       display: flex;
       gap: 20px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       padding: 12px 20px;
       border-radius: 16px;
     }
@@ -440,7 +392,7 @@
     .stat-mini span {
       display: block;
       font-size: 0.78rem;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .stat-mini strong {
@@ -449,17 +401,12 @@
       font-weight: 700;
     }
 
-    /* CEFR TRACK */
-    .cefr-wrapper {
-      position: relative;
-      padding: 18px 8px 8px;
-    }
-
     .cefr-track-bg {
       height: 12px;
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 999px;
-      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
     }
 
     .cefr-track-fill {
@@ -467,53 +414,25 @@
       border-radius: 999px;
       background: linear-gradient(90deg, #38bdf8, #34d399, #facc15, #fb7185);
       width: 0%;
-      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-    }
-
-    .cefr-pointer {
-      position: absolute;
-      right: -12px;
-      top: -8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: white;
-      border: 4px solid #34d399;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      transition: width 0.5s ease;
     }
 
     .cefr-milestones {
       display: flex;
       justify-content: space-between;
-      margin-top: 14px;
-      position: relative;
+      gap: 4px;
     }
 
     .cefr-step {
       text-align: center;
       flex: 1;
-      position: relative;
-    }
-
-    .cefr-step-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.35);
-      margin: 0 auto 6px;
-    }
-
-    .cefr-step.reached .cefr-step-dot {
-      background: #34d399;
-      box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.25);
     }
 
     .cefr-step-label {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 0.92rem;
-      opacity: 0.7;
+      font-size: 0.9rem;
+      opacity: 0.75;
     }
 
     .cefr-step.reached .cefr-step-label {
@@ -522,12 +441,12 @@
     }
 
     .cefr-step-desc {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       opacity: 0.65;
       display: block;
     }
 
-    /* ================= 9 SKILLS GRID (3x3) ================= */
+    /* ================= SKILLS & EXERCISES ================= */
     .section-title {
       font-size: 1.3rem;
       font-weight: 700;
@@ -543,40 +462,30 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     @media (max-width: 960px) {
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
+      .skills-grid { grid-template-columns: 1fr; }
     }
 
     .skill-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 18px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
     }
 
     .skill-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       gap: 8px;
     }
 
@@ -587,54 +496,41 @@
     }
 
     .skill-icon {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .skill-title {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 1.02rem;
-      line-height: 1.25;
+      font-size: 1rem;
     }
 
     .skill-count {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
-      margin-top: 2px;
     }
 
     .skill-score {
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
     }
 
-    .skill-score.pending {
+    .skill-score.empty, .skill-score.pending {
       font-size: 0.78rem;
       font-weight: 600;
-      background: var(--amber-light);
-      color: var(--amber);
-      padding: 4px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .skill-score.empty {
-      font-size: 0.82rem;
-      font-weight: 600;
       color: var(--text-muted);
-      white-space: nowrap;
     }
 
     .progress-bar-bg {
-      height: 9px;
+      height: 8px;
       background: #f1f5f9;
       border-radius: 999px;
       overflow: hidden;
@@ -643,10 +539,8 @@
     .progress-bar-fill {
       height: 100%;
       border-radius: 999px;
-      transition: width 0.6s ease;
     }
 
-    /* ================= EXERCISES LIST ================= */
     .filter-bar {
       display: flex;
       gap: 8px;
@@ -673,7 +567,7 @@
 
     .exercise-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
       gap: 16px;
     }
 
@@ -686,6 +580,7 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 14px;
+      box-shadow: var(--shadow-sm);
     }
 
     .ex-tags {
@@ -709,7 +604,6 @@
       font-family: 'Outfit', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 4px;
     }
 
     .ex-footer {
@@ -725,6 +619,8 @@
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 8px;
+      background: #f1f5f9;
+      color: var(--text-muted);
     }
 
     .status-done {
@@ -737,20 +633,20 @@
       color: var(--amber);
     }
 
-    .status-todo {
-      background: #f1f5f9;
-      color: var(--text-muted);
-    }
-
     .btn-open-ex {
       text-decoration: none;
       font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 0.88rem;
+      font-weight: 700;
+      font-size: 0.9rem;
       color: var(--primary);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--primary-light);
+    }
+
+    .btn-open-ex:hover {
+      background: var(--primary);
+      color: white;
     }
 
     /* ================= COACH PANEL ================= */
@@ -762,9 +658,7 @@
     }
 
     @media (max-width: 860px) {
-      .coach-grid {
-        grid-template-columns: 1fr;
-      }
+      .coach-grid { grid-template-columns: 1fr; }
     }
 
     .student-list-card, .coach-detail-card {
@@ -776,18 +670,17 @@
     }
 
     .student-item {
-      padding: 14px;
+      padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid var(--border);
       margin-bottom: 10px;
       cursor: pointer;
-      transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .student-item:hover, .student-item.active {
+    .student-item.active {
       border-color: var(--primary);
       background: var(--primary-light);
     }
@@ -799,30 +692,22 @@
     }
 
     .writing-grade-box {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      background: var(--amber-light);
       border: 1px solid #fcd34d;
       border-radius: 16px;
-      padding: 20px;
-      margin-top: 24px;
-    }
-
-    .writing-grade-box h4 {
-      color: #92400e;
-      margin-bottom: 6px;
-      font-size: 1.05rem;
+      padding: 18px;
+      margin-top: 20px;
     }
 
     .writing-form-row {
       display: grid;
       grid-template-columns: 1.4fr 0.7fr 1.5fr auto;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     @media (max-width: 760px) {
-      .writing-form-row {
-        grid-template-columns: 1fr;
-      }
+      .writing-form-row { grid-template-columns: 1fr; }
     }
 
     .toast {
@@ -831,19 +716,17 @@
       right: 24px;
       background: #0f172a;
       color: white;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-radius: 12px;
       font-size: 0.9rem;
       font-weight: 600;
-      box-shadow: var(--shadow-md);
-      transform: translateY(120px);
       opacity: 0;
-      transition: all 0.3s ease;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
       z-index: 100;
     }
 
     .toast.show {
-      transform: translateY(0);
       opacity: 1;
     }
   </style>
@@ -876,15 +759,12 @@
         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
       </form>
 
-      <button type="button" id="google-login-btn" class="btn btn-google">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.8C6.2 7.2 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6l3.7 2.9c2.2-2 3.7-5 3.7-8.7z"/><path fill="#FBBC05" d="M5.3 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.6 7.4C.6 9.4 0 11.6 0 14s.6 4.6 1.6 6.6l3.7-2.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.1-6.7-5l-3.7 2.8C3.5 21.4 7.4 24 12 24z"/></svg>
-        Continuar con Google
-      </button>
+      <button type="button" id="google-login-btn" class="btn btn-google">Continuar con Google</button>
 
-      <div class="demo-divider"><span>Vista previa rápida (Local)</span></div>
+      <div class="demo-divider">Acceso rápido</div>
       <div class="demo-buttons">
-        <button type="button" class="btn btn-demo" onclick="loginAsDemo('student')">👩‍🎓 Entrar como Alumna</button>
-        <button type="button" class="btn btn-demo coach" onclick="loginAsDemo('coach')">✨ Entrar como Coach (Maru)</button>
+        <button type="button" id="demo-student-btn" class="btn btn-demo">👩‍🎓 Entrar como Alumna</button>
+        <button type="button" id="demo-coach-btn" class="btn btn-demo coach">✨ Entrar como Coach (Maru)</button>
       </div>
     </div>
   </section>
@@ -893,24 +773,24 @@
   <div id="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
-        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" onclick="goHome()">
+        <div class="logo-badge" style="margin-bottom:0; cursor:pointer;" id="brand-home-btn">
           <img src="logo.png" alt="Merry Mery English" class="brand-logo-img topbar-logo" />
           <div class="logo-text">Merry Mery <span>English</span></div>
         </div>
 
         <nav class="nav-tabs" id="main-nav">
-          <button type="button" class="nav-tab active" data-view="home-view" onclick="goHome()">Home</button>
-          <button type="button" class="nav-tab" data-view="progress-view" onclick="switchView('progress-view')">My Progress</button>
-          <button type="button" class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
+          <button type="button" class="nav-tab active" data-view="home-view" id="nav-home-btn">Home</button>
+          <button type="button" class="nav-tab" data-view="progress-view" id="nav-progress-btn">My Progress</button>
+          <button type="button" class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;">Panel Coach (Maru)</button>
         </nav>
 
         <div class="user-pill">
-          <div class="avatar" id="user-avatar">A</div>
+          <div class="avatar" id="user-avatar">M</div>
           <div>
-            <div style="font-weight:700; font-size:0.92rem;" id="user-display-name">Anika</div>
+            <div style="font-weight:700; font-size:0.92rem;" id="user-display-name">Mery</div>
             <div style="font-size:0.75rem; color:var(--text-muted);" id="user-role-label">Student</div>
           </div>
-          <button type="button" class="btn-logout" onclick="logout()">Salir</button>
+          <button type="button" class="btn-logout" id="logout-btn">Salir</button>
         </div>
       </div>
     </header>
@@ -920,29 +800,29 @@
       <section class="home-banner">
         <div>
           <h1 id="home-welcome-title">Home • Ejercicios y Módulos</h1>
-          <p id="home-welcome-subtitle">Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.</p>
+          <p id="home-welcome-subtitle">Elegí un ejercicio para abrirlo y practicar.</p>
         </div>
-        <button type="button" class="btn-home-back" onclick="switchView('progress-view')">
-          📊 Ver My Progress
-        </button>
+        <button type="button" class="btn-home-back" id="banner-progress-btn">📊 My Progress</button>
       </section>
 
       <div class="section-title">
         <span>Ejercicios y Módulos</span>
         <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
       </div>
+
       <div class="filter-bar" id="filter-bar">
-        <button type="button" class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
-        <button type="button" class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
+        <button type="button" class="filter-chip active" data-skill="all">Todos</button>
+        <button type="button" class="filter-chip" data-skill="grammar">Grammar</button>
+        <button type="button" class="filter-chip" data-skill="gerunds">Gerunds & -ing</button>
+        <button type="button" class="filter-chip" data-skill="vocabulary">Vocabulary</button>
+        <button type="button" class="filter-chip" data-skill="collocations">Collocations</button>
+        <button type="button" class="filter-chip" data-skill="phrasal">Phrasal Verbs</button>
+        <button type="button" class="filter-chip" data-skill="idioms">Idioms</button>
+        <button type="button" class="filter-chip" data-skill="listening">Listening</button>
+        <button type="button" class="filter-chip" data-skill="reading">Reading</button>
+        <button type="button" class="filter-chip" data-skill="writing">Writing</button>
       </div>
+
       <section class="exercise-list" id="exercise-list"></section>
     </main>
 
@@ -950,47 +830,38 @@
     <main class="container" id="progress-view" style="display:none;">
       <div class="section-title">
         <span>My Progress</span>
-        <button type="button" class="btn-home-back" onclick="goHome()">
-          🏠 Home
-        </button>
+        <button type="button" class="btn-home-back" id="progress-home-btn">🏠 Home</button>
       </div>
 
-      <!-- CEFR LEVEL LINE -->
       <section class="level-card">
         <div class="level-header">
           <div>
             <div class="level-badge-pill">🎯 Camino de Fluidez CEFR</div>
-            <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A2+ (Elementary Plus)</h2>
+            <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A1 (Beginner)</h2>
             <p style="opacity:0.85; font-size:0.92rem; margin-top:4px;" id="cefr-subtext">
-              Seguí completando módulos en tus 9 habilidades para alcanzar el nivel B1.
+              Completá módulos para avanzar en la escala CEFR.
             </p>
           </div>
           <div class="level-stats-box">
             <div class="stat-mini">
               <span>Promedio Global</span>
-              <strong id="global-avg-display">78%</strong>
+              <strong id="global-avg-display">0%</strong>
             </div>
             <div class="stat-mini">
               <span>Actividades</span>
-              <strong id="completed-count-display">9 / 13</strong>
+              <strong id="completed-count-display">0 / 13</strong>
             </div>
           </div>
         </div>
 
-        <div class="cefr-wrapper">
-          <div class="cefr-track-bg">
-            <div class="cefr-track-fill" id="cefr-fill-bar">
-              <div class="cefr-pointer"></div>
-            </div>
-          </div>
-          <div class="cefr-milestones" id="cefr-milestones"></div>
+        <div class="cefr-track-bg">
+          <div class="cefr-track-fill" id="cefr-fill-bar"></div>
         </div>
+        <div class="cefr-milestones" id="cefr-milestones"></div>
       </section>
 
-      <!-- 9 SKILLS GRID (3x3) -->
       <div class="section-title">
         <span>Mis 9 Áreas de Habilidad</span>
-        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Actualizado automáticamente</span>
       </div>
       <section class="skills-grid" id="skills-grid"></section>
     </main>
@@ -998,21 +869,18 @@
     <!-- ============ COACH VIEW (MARU) ============ -->
     <main class="container" id="coach-view" style="display:none;">
       <div class="section-title">
-        <span>Seguimiento de Alumnos & Corrección de Writing</span>
-        <button type="button" class="btn-home-back" onclick="goHome()">
-          🏠 Home
-        </button>
+        <span>Panel Coach (Maru)</span>
+        <button type="button" class="btn-home-back" id="coach-home-btn">🏠 Home</button>
       </div>
 
       <div class="coach-grid">
-        <!-- Lista de Alumnos -->
         <div class="student-list-card">
           <h3 style="font-size:1.05rem; margin-bottom:14px;">Mis Alumnos (1:1)</h3>
           <div id="coach-student-list"></div>
 
           <div class="new-student-box">
             <h4 style="font-size:0.95rem; margin-bottom:8px;">+ Agregar alumno rápido</h4>
-            <form onsubmit="addNewStudent(event)" style="display:flex; flex-direction:column; gap:8px;">
+            <form id="add-student-form" style="display:flex; flex-direction:column; gap:8px;">
               <input type="text" id="new-student-name" class="form-control" placeholder="Nombre del alumno/a" required />
               <input type="email" id="new-student-email" class="form-control" placeholder="Email (opcional)" />
               <button type="submit" class="btn btn-primary" style="padding:9px 14px; font-size:0.88rem;">Guardar alumno</button>
@@ -1020,641 +888,577 @@
           </div>
         </div>
 
-        <!-- Detalle del Alumno Seleccionado -->
         <div class="coach-detail-card" id="coach-student-detail"></div>
       </div>
     </main>
 
-    <!-- Botón fijo My Progress visible desde Home y Panel Coach -->
-    <button type="button" id="floating-progress-btn" class="floating-progress-btn" onclick="switchView('progress-view')">
-      📊 My Progress
-    </button>
+    <button type="button" id="floating-progress-btn" class="floating-progress-btn">📊 My Progress</button>
   </div>
 
   <div class="toast" id="toast"></div>
 
-  <!-- ==================== LOCAL STORAGE + FIREBASE READY LOGIC ==================== -->
   <script>
-    const USE_DEMO_MODE = true;
+    document.addEventListener("DOMContentLoaded", function () {
+      const COACH_EMAIL = "merrymeryenglish@gmail.com";
+      const STORAGE_DB_KEY = "mme_portal_students_v1";
+      const STORAGE_SESSION_KEY = "mme_portal_session_v1";
 
-    const firebaseConfig = {
-      apiKey: "TU_API_KEY",
-      authDomain: "tu-proyecto.firebaseapp.com",
-      projectId: "tu-proyecto",
-      storageBucket: "tu-proyecto.appspot.com",
-      messagingSenderId: "000000000000",
-      appId: "1:000000000000:web:abcdef123456"
-    };
+      const SKILLS_META = [
+        { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
+        { id: "gerunds",      name: "Gerunds & -ing Forms",  icon: "⚡", color: "#0284c7", bg: "#e0f2fe" },
+        { id: "vocabulary",   name: "Vocabulary",            icon: "🧠", color: "#0d9488", bg: "#f0fdfa" },
+        { id: "collocations", name: "Collocations",          icon: "🔗", color: "#6366f1", bg: "#eef2ff" },
+        { id: "phrasal",      name: "Phrasal Verbs",         icon: "🚀", color: "#7c3aed", bg: "#f5f3ff" },
+        { id: "idioms",       name: "Idioms",                icon: "💬", color: "#db2777", bg: "#fdf2f8" },
+        { id: "listening",    name: "Listening",             icon: "🎧", color: "#2563eb", bg: "#eff6ff" },
+        { id: "reading",      name: "Reading Comprehension", icon: "📖", color: "#059669", bg: "#ecfdf5" },
+        { id: "writing",      name: "Writing",               icon: "✍️", color: "#d97706", bg: "#fffbeb" }
+      ];
 
-    const COACH_EMAIL = "merrymeryenglish@gmail.com";
-    const STORAGE_DB_KEY = "mme_portal_students_v1";
-    const STORAGE_SESSION_KEY = "mme_portal_session_v1";
+      const CEFR_LEVELS = [
+        { code: "A1",  label: "Beginner",           minPoints: 0 },
+        { code: "A2",  label: "Elementary",         minPoints: 15 },
+        { code: "A2+", label: "Elementary+",        minPoints: 30 },
+        { code: "B1",  label: "Intermediate",       minPoints: 45 },
+        { code: "B1+", label: "Intermediate+",      minPoints: 60 },
+        { code: "B2",  label: "Upper Intermediate", minPoints: 74 },
+        { code: "C1",  label: "Advanced",           minPoints: 88 },
+        { code: "C2",  label: "Proficiency",        minPoints: 96 }
+      ];
 
-    const SKILLS_META = [
-      { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
-      { id: "gerunds",      name: "Gerunds & -ing Forms",  icon: "⚡", color: "#0284c7", bg: "#e0f2fe" },
-      { id: "vocabulary",   name: "Vocabulary",            icon: "🧠", color: "#0d9488", bg: "#f0fdfa" },
-      { id: "collocations", name: "Collocations",          icon: "🔗", color: "#6366f1", bg: "#eef2ff" },
-      { id: "phrasal",      name: "Phrasal Verbs",         icon: "🚀", color: "#7c3aed", bg: "#f5f3ff" },
-      { id: "idioms",       name: "Idioms",                icon: "💬", color: "#db2777", bg: "#fdf2f8" },
-      { id: "listening",    name: "Listening",             icon: "🎧", color: "#2563eb", bg: "#eff6ff" },
-      { id: "reading",      name: "Reading Comprehension", icon: "📖", color: "#059669", bg: "#ecfdf5" },
-      { id: "writing",      name: "Writing",               icon: "✍️", color: "#d97706", bg: "#fffbeb" }
-    ];
+      const EXERCISES_CATALOG = [
+        { id: "learning-english-tips",          title: "Learning English Tips",                     url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
+        { id: "simple-present-do-does",         title: "Simple Present: Do & Does",                 url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
+        { id: "demonstratives",                 title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
+        { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns",  url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
+        { id: "little-prince",                  title: "The Little Prince - Chapter I",             url: "little-prince.html",                      skills: ["reading", "vocabulary"] },
+        { id: "gerund-inf",                     title: "Gerunds vs. Infinitives & -ing Forms",      url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] },
+        { id: "collocations-biz",               title: "Make, Do, Take & Have Collocations",        url: "collocations.html",                       skills: ["collocations", "vocabulary"] },
+        { id: "phrasal-work",                   title: "Phrasal Verbs for Work & Meetings",         url: "phrasal-verbs.html",                       skills: ["phrasal", "vocabulary"] },
+        { id: "conditionals",                   title: "Conditionals 0, 1 & 2 in Context",          url: "conditionals.html",                       skills: ["grammar"] },
+        { id: "song-lumineers",                 title: "Ho Hey - The Lumineers (Sing & Listen)",    url: "ho-hey.html",                             skills: ["listening", "vocabulary"] },
+        { id: "idioms-daily",                   title: "Everyday English Idioms",                   url: "idioms.html",                             skills: ["idioms", "listening"] },
+        { id: "writing-email",                  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html",                          skills: ["writing"], isWriting: true },
+        { id: "writing-story",                  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html",                          skills: ["writing"], isWriting: true }
+      ];
 
-    const CEFR_LEVELS = [
-      { code: "A1",  label: "Beginner",           minPoints: 0 },
-      { code: "A2",  label: "Elementary",         minPoints: 15 },
-      { code: "A2+", label: "Elementary+",        minPoints: 30 },
-      { code: "B1",  label: "Intermediate",       minPoints: 45 },
-      { code: "B1+", label: "Intermediate+",      minPoints: 60 },
-      { code: "B2",  label: "Upper Intermediate", minPoints: 74 },
-      { code: "C1",  label: "Advanced",           minPoints: 88 },
-      { code: "C2",  label: "Proficiency",        minPoints: 96 }
-    ];
-
-    const EXERCISES_CATALOG = [
-      { id: "learning-english-tips",              title: "Learning English Tips",                        url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
-      { id: "simple-present-do-does",             title: "Simple Present: Do & Does",                    url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
-      { id: "demonstratives",                     title: "Demonstratives (This, That, These, Those)",    url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
-      { id: "possessive-adjectives-pronouns",     title: "Possessive Adjectives & Subject Pronouns",     url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
-      { id: "little-prince",                      title: "The Little Prince - Chapter I",                url: "little-prince.html",                      skills: ["reading", "vocabulary"] },
-      { id: "gerund-inf",                         title: "Gerunds vs. Infinitives & -ing Forms",         url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] },
-      { id: "collocations-biz",                   title: "Make, Do, Take & Have Collocations",           url: "collocations.html",                       skills: ["collocations", "vocabulary"] },
-      { id: "phrasal-work",                       title: "Phrasal Verbs for Work & Meetings",            url: "phrasal-verbs.html",                       skills: ["phrasal", "vocabulary"] },
-      { id: "conditionals",                       title: "Conditionals 0, 1 & 2 in Context",             url: "conditionals.html",                       skills: ["grammar"] },
-      { id: "song-lumineers",                     title: "Ho Hey - The Lumineers (Sing & Listen)",       url: "ho-hey.html",                             skills: ["listening", "vocabulary"] },
-      { id: "idioms-daily",                       title: "Everyday English Idioms",                      url: "idioms.html",                             skills: ["idioms", "listening"] },
-      { id: "writing-email",                      title: "Writing 1: Professional Follow-up Email",      url: "writing-1.html",                          skills: ["writing"], isWriting: true },
-      { id: "writing-story",                      title: "Writing 2: A Memorable Trip (Past Tenses)",    url: "writing-2.html",                          skills: ["writing"], isWriting: true }
-    ];
-
-    const DEFAULT_STUDENTS_DB = {
-      "anika": {
-        id: "anika",
-        name: "Anika",
-        email: "anika@ejemplo.com",
-        scores: {
-          "learning-english-tips":          { reading: 86, vocabulary: 84, listening: 82 },
-          "simple-present-do-does":         { grammar: 88, listening: 85 },
-          "demonstratives":                 { grammar: 84, vocabulary: 80 },
-          "possessive-adjectives-pronouns": { grammar: 86, listening: 83 },
-          "little-prince":                  { reading: 88, vocabulary: 84 },
-          "gerund-inf":                     { gerunds: 80, grammar: 85 },
-          "collocations-biz":               { collocations: 78, vocabulary: 82 },
-          "phrasal-work":                   { phrasal: 76, vocabulary: 80 },
-          "conditionals":                   { grammar: 82 },
-          "song-lumineers":                 { listening: 90, vocabulary: 86 },
-          "idioms-daily":                   { idioms: 70, listening: 78 },
-          "writing-email":                  { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." },
-          "writing-story":                  { writing: null, status: "pending_review", feedback: "Enviado vía Gemini - esperando revisión de Maru." }
-        }
-      },
-      "lucas": {
-        id: "lucas",
-        name: "Lucas M.",
-        email: "lucas@ejemplo.com",
-        scores: {
-          "simple-present-do-does":         { grammar: 75, listening: 72 },
-          "demonstratives":                 { grammar: 70, vocabulary: 74 },
-          "possessive-adjectives-pronouns": { grammar: 76, listening: 71 },
-          "conditionals":                   { grammar: 65 },
-          "gerund-inf":                     { gerunds: 72, grammar: 68 },
-          "song-lumineers":                 { listening: 74, vocabulary: 70 },
-          "writing-email":                  { writing: null, status: "pending_review", feedback: "Borrador listo." }
-        }
-      }
-    };
-
-    function cloneDefaultDB() {
-      return JSON.parse(JSON.stringify(DEFAULT_STUDENTS_DB));
-    }
-
-    function loadStudentsDB() {
-      try {
-        const raw = localStorage.getItem(STORAGE_DB_KEY);
-        if (!raw) {
-          const fresh = cloneDefaultDB();
-          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(fresh));
-          return fresh;
-        }
-        return JSON.parse(raw);
-      } catch (e) {
-        return cloneDefaultDB();
-      }
-    }
-
-    function saveStudentsDB() {
-      try {
-        localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(studentsDB));
-      } catch (err) {
-        console.warn("No se pudo guardar en localStorage:", err);
-      }
-    }
-
-    function saveSession(user) {
-      try {
-        if (user) {
-          localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(user));
-        } else {
-          localStorage.removeItem(STORAGE_SESSION_KEY);
-        }
-      } catch (err) {
-        console.warn("No se pudo guardar la sesión:", err);
-      }
-    }
-
-    function loadSession() {
-      try {
-        const raw = localStorage.getItem(STORAGE_SESSION_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch (e) {
-        return null;
-      }
-    }
-
-    let studentsDB = loadStudentsDB();
-    let currentUser = null;
-    let selectedCoachStudentId = Object.keys(studentsDB)[0] || "anika";
-    let currentFilter = "all";
-
-    function getActiveStudent() {
-      if (currentUser && currentUser.role === "coach") {
-        return studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0] || null;
-      }
-      if (currentUser && currentUser.studentId && studentsDB[currentUser.studentId]) {
-        return studentsDB[currentUser.studentId];
-      }
-      return {
-        id: "guest",
-        name: (currentUser && currentUser.name) || "Student",
-        email: (currentUser && currentUser.email) || "",
-        scores: {}
-      };
-    }
-
-    function calculateStudentMetrics(student) {
-      const skillBuckets = {
-        grammar: [], gerunds: [], vocabulary: [], collocations: [],
-        phrasal: [], idioms: [], listening: [], reading: [], writing: []
-      };
-
-      let pendingWritingCount = 0;
-      let completedExercises = 0;
-
-      Object.entries(student.scores || {}).forEach(([exId, result]) => {
-        if (result.status === "pending_review") {
-          pendingWritingCount++;
-          return;
-        }
-        completedExercises++;
-        Object.keys(skillBuckets).forEach(skillKey => {
-          if (typeof result[skillKey] === "number") {
-            skillBuckets[skillKey].push(result[skillKey]);
+      const DEFAULT_STUDENTS_DB = {
+        anika: {
+          id: "anika",
+          name: "Anika",
+          email: "anika@ejemplo.com",
+          scores: {
+            "learning-english-tips":          { reading: 86, vocabulary: 84, listening: 82 },
+            "simple-present-do-does":         { grammar: 88, listening: 85 },
+            "demonstratives":                 { grammar: 84, vocabulary: 80 },
+            "possessive-adjectives-pronouns": { grammar: 86, listening: 83 },
+            "little-prince":                  { reading: 88, vocabulary: 84 },
+            "gerund-inf":                     { gerunds: 80, grammar: 85 },
+            "collocations-biz":               { collocations: 78, vocabulary: 82 },
+            "phrasal-work":                   { phrasal: 76, vocabulary: 80 },
+            "conditionals":                   { grammar: 82 },
+            "song-lumineers":                 { listening: 90, vocabulary: 86 },
+            "idioms-daily":                   { idioms: 70, listening: 78 },
+            "writing-email":                  { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." }
           }
+        },
+        lucas: {
+          id: "lucas",
+          name: "Lucas M.",
+          email: "lucas@ejemplo.com",
+          scores: {
+            "simple-present-do-does":         { grammar: 75, listening: 72 },
+            "demonstratives":                 { grammar: 70, vocabulary: 74 },
+            "possessive-adjectives-pronouns": { grammar: 76, listening: 71 }
+          }
+        }
+      };
+
+      function cloneDefaultDB() {
+        return JSON.parse(JSON.stringify(DEFAULT_STUDENTS_DB));
+      }
+
+      function loadStudentsDB() {
+        try {
+          const raw = localStorage.getItem(STORAGE_DB_KEY);
+          if (!raw) {
+            const fresh = cloneDefaultDB();
+            localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(fresh));
+            return fresh;
+          }
+          return JSON.parse(raw);
+        } catch (err) {
+          return cloneDefaultDB();
+        }
+      }
+
+      function saveStudentsDB() {
+        try {
+          localStorage.setItem(STORAGE_DB_KEY, JSON.stringify(studentsDB));
+        } catch (err) {}
+      }
+
+      function saveSession(user) {
+        try {
+          if (user) {
+            localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(user));
+          } else {
+            localStorage.removeItem(STORAGE_SESSION_KEY);
+          }
+        } catch (err) {}
+      }
+
+      function loadSession() {
+        try {
+          const raw = localStorage.getItem(STORAGE_SESSION_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          return null;
+        }
+      }
+
+      let studentsDB = loadStudentsDB();
+      let currentUser = null;
+      let selectedCoachStudentId = Object.keys(studentsDB)[0] || "anika";
+      let currentFilter = "all";
+
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        if (!t) return;
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2600);
+      }
+
+      function getActiveStudent() {
+        if (currentUser && currentUser.role === "coach") {
+          return studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0] || null;
+        }
+        if (currentUser && currentUser.studentId && studentsDB[currentUser.studentId]) {
+          return studentsDB[currentUser.studentId];
+        }
+        return {
+          id: "guest",
+          name: (currentUser && currentUser.name) || "Student",
+          email: (currentUser && currentUser.email) || "",
+          scores: {}
+        };
+      }
+
+      function calculateStudentMetrics(student) {
+        const skillBuckets = {
+          grammar: [], gerunds: [], vocabulary: [], collocations: [],
+          phrasal: [], idioms: [], listening: [], reading: [], writing: []
+        };
+
+        let pendingWritingCount = 0;
+        let completedExercises = 0;
+
+        Object.entries((student && student.scores) || {}).forEach(([exId, result]) => {
+          if (!result) return;
+          if (result.status === "pending_review") {
+            pendingWritingCount++;
+            return;
+          }
+          completedExercises++;
+          Object.keys(skillBuckets).forEach((skillKey) => {
+            if (typeof result[skillKey] === "number") {
+              skillBuckets[skillKey].push(result[skillKey]);
+            }
+          });
+        });
+
+        const skillAverages = {};
+        const activeAverages = [];
+
+        SKILLS_META.forEach((s) => {
+          const arr = skillBuckets[s.id];
+          if (arr.length > 0) {
+            const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
+            skillAverages[s.id] = { avg, count: arr.length, status: "active" };
+            activeAverages.push(avg);
+          } else if (s.id === "writing" && pendingWritingCount > 0) {
+            skillAverages[s.id] = { avg: null, count: 0, status: "pending" };
+          } else {
+            skillAverages[s.id] = { avg: null, count: 0, status: "empty" };
+          }
+        });
+
+        const globalAvg = activeAverages.length
+          ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
+          : 0;
+
+        const practiceFactor = Math.min(1, completedExercises / EXERCISES_CATALOG.length);
+        const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
+
+        let currentLevel = CEFR_LEVELS[0];
+        let nextLevel = CEFR_LEVELS[1];
+
+        for (let i = 0; i < CEFR_LEVELS.length; i++) {
+          if (cefrIndexScore >= CEFR_LEVELS[i].minPoints) {
+            currentLevel = CEFR_LEVELS[i];
+            nextLevel = CEFR_LEVELS[i + 1] || null;
+          }
+        }
+
+        return {
+          skillAverages,
+          globalAvg,
+          completedExercises,
+          cefrIndexScore,
+          currentLevel,
+          nextLevel
+        };
+      }
+
+      function renderExercisesList(student) {
+        const listEl = document.getElementById("exercise-list");
+        if (!listEl) return;
+
+        const filtered = EXERCISES_CATALOG.filter(
+          (ex) => currentFilter === "all" || ex.skills.includes(currentFilter)
+        );
+
+        listEl.innerHTML = filtered.map((ex) => {
+          const record = student && student.scores ? student.scores[ex.id] : null;
+          let statusHtml = `<span class="status-pill">Pendiente</span>`;
+
+          if (record) {
+            if (record.status === "pending_review") {
+              statusHtml = `<span class="status-pill status-review">⏳ En revisión</span>`;
+            } else {
+              const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
+              const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+              statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
+            }
+          }
+
+          const tagsHtml = ex.skills.map((sId) => {
+            const meta = SKILLS_META.find((m) => m.id === sId);
+            return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
+          }).join("");
+
+          return `
+            <article class="exercise-card">
+              <div>
+                <div class="ex-tags">${tagsHtml}</div>
+                <div class="ex-title">${ex.title}</div>
+              </div>
+              <div class="ex-footer">
+                ${statusHtml}
+                <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function renderProgressView(student) {
+        if (!student) return;
+        const metrics = calculateStudentMetrics(student);
+
+        document.getElementById("cefr-headline").textContent =
+          `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
+        document.getElementById("cefr-subtext").textContent = metrics.nextLevel
+          ? `En camino hacia el nivel ${metrics.nextLevel.code} (${metrics.nextLevel.label}).`
+          : "¡Nivel máximo C2 Proficiency!";
+        document.getElementById("global-avg-display").textContent = `${metrics.globalAvg}%`;
+        document.getElementById("completed-count-display").textContent =
+          `${metrics.completedExercises} / ${EXERCISES_CATALOG.length}`;
+
+        const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
+        document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
+
+        document.getElementById("cefr-milestones").innerHTML = CEFR_LEVELS.map((lvl) => {
+          const reached = metrics.cefrIndexScore >= lvl.minPoints;
+          return `
+            <div class="cefr-step ${reached ? "reached" : ""}">
+              <div class="cefr-step-label">${lvl.code}</div>
+              <span class="cefr-step-desc">${lvl.label}</span>
+            </div>
+          `;
+        }).join("");
+
+        document.getElementById("skills-grid").innerHTML = SKILLS_META.map((skill) => {
+          const data = metrics.skillAverages[skill.id];
+          let rightBadge = `<span class="skill-score empty">Sin datos</span>`;
+          let barWidth = 0;
+
+          if (data.status === "active") {
+            rightBadge = `<div class="skill-score" style="color:${skill.color}">${data.avg}%</div>`;
+            barWidth = data.avg;
+          } else if (data.status === "pending") {
+            rightBadge = `<span class="skill-score pending">En revisión</span>`;
+          }
+
+          return `
+            <div class="skill-card">
+              <div class="skill-top">
+                <div class="skill-name-wrap">
+                  <div class="skill-icon" style="background:${skill.bg}; color:${skill.color}">${skill.icon}</div>
+                  <div>
+                    <div class="skill-title">${skill.name}</div>
+                    <div class="skill-count">${data.count} ${data.count === 1 ? "actividad" : "actividades"}</div>
+                  </div>
+                </div>
+                ${rightBadge}
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width:${barWidth}%; background:${skill.color}"></div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      function renderCoachPanel() {
+        const listContainer = document.getElementById("coach-student-list");
+        const detailEl = document.getElementById("coach-student-detail");
+        if (!listContainer || !detailEl) return;
+
+        const students = Object.values(studentsDB);
+        if (!studentsDB[selectedCoachStudentId] && students.length > 0) {
+          selectedCoachStudentId = students[0].id;
+        }
+
+        listContainer.innerHTML = students.map((st) => {
+          const m = calculateStudentMetrics(st);
+          return `
+            <div class="student-item ${st.id === selectedCoachStudentId ? "active" : ""}" data-student-id="${st.id}">
+              <div>
+                <div style="font-weight:700;">${st.name}</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">
+                  Nivel ${m.currentLevel.code} • Promedio ${m.globalAvg}%
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        listContainer.querySelectorAll(".student-item").forEach((item) => {
+          item.addEventListener("click", () => {
+            selectedCoachStudentId = item.getAttribute("data-student-id");
+            renderCoachPanel();
+            renderExercisesList(getActiveStudent());
+            renderProgressView(getActiveStudent());
+          });
+        });
+
+        const student = studentsDB[selectedCoachStudentId];
+        if (!student) return;
+
+        const metrics = calculateStudentMetrics(student);
+        const writingExercises = EXERCISES_CATALOG.filter((e) => e.isWriting);
+
+        detailEl.innerHTML = `
+          <h3 style="font-size:1.4rem; margin-bottom:6px;">${student.name}</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">
+            Nivel: <strong>${metrics.currentLevel.code} (${metrics.currentLevel.label})</strong> • Promedio: <strong>${metrics.globalAvg}%</strong>
+          </p>
+
+          <div class="writing-grade-box">
+            <h4>✍️ Cargar nota de Writing</h4>
+            <form id="coach-writing-form" class="writing-form-row">
+              <select id="coach-writing-ex" class="form-control" required>
+                ${writingExercises.map((w) => `<option value="${w.id}">${w.title}</option>`).join("")}
+              </select>
+              <input type="number" id="coach-writing-score" class="form-control" min="0" max="100" placeholder="Nota %" required />
+              <input type="text" id="coach-writing-note" class="form-control" placeholder="Comentario (opcional)" />
+              <button type="submit" class="btn btn-primary" style="width:auto;">Guardar</button>
+            </form>
+          </div>
+        `;
+
+        const writingForm = document.getElementById("coach-writing-form");
+        if (writingForm) {
+          writingForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const exId = document.getElementById("coach-writing-ex").value;
+            const score = Number(document.getElementById("coach-writing-score").value);
+            const note = document.getElementById("coach-writing-note").value;
+
+            student.scores[exId] = {
+              writing: score,
+              status: "graded",
+              feedback: note || "Corregido por Maru"
+            };
+            saveStudentsDB();
+            renderCoachPanel();
+            renderExercisesList(getActiveStudent());
+            renderProgressView(getActiveStudent());
+            showToast(`✓ Nota (${score}%) guardada para ${student.name}`);
+          });
+        }
+      }
+
+      function switchView(viewId, notify = false) {
+        document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
+        document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
+        document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
+
+        document.querySelectorAll(".nav-tab").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-view") === viewId);
+        });
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (notify) {
+          showToast(viewId === "home-view" ? "🏠 Home • Ejercicios" : "📊 My Progress");
+        }
+      }
+
+      function applySessionUI(user) {
+        currentUser = user;
+        saveSession(user);
+
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("app-shell").style.display = "block";
+
+        const activeStudent = getActiveStudent();
+
+        if (user.role === "coach") {
+          document.getElementById("user-avatar").textContent = "M";
+          document.getElementById("user-display-name").textContent = "Maru";
+          document.getElementById("user-role-label").textContent = "English Coach";
+          document.getElementById("coach-tab-btn").style.display = "inline-block";
+          document.getElementById("home-welcome-title").textContent = "Home • Ejercicios y Módulos";
+          renderCoachPanel();
+        } else {
+          document.getElementById("user-avatar").textContent = (activeStudent.name[0] || "M").toUpperCase();
+          document.getElementById("user-display-name").textContent = activeStudent.name;
+          document.getElementById("user-role-label").textContent = "Student";
+          document.getElementById("coach-tab-btn").style.display = "none";
+          document.getElementById("home-welcome-title").textContent = `Home • Ejercicios de ${activeStudent.name}`;
+        }
+
+        renderExercisesList(activeStudent);
+        renderProgressView(activeStudent);
+        switchView("home-view", false);
+      }
+
+      function getOrCreateStudentByEmail(email, customName = "") {
+        const normalized = (email || "").trim().toLowerCase();
+        const existing = Object.values(studentsDB).find(
+          (s) => (s.email || "").trim().toLowerCase() === normalized
+        );
+        if (existing) return existing;
+
+        const baseName = (customName || "").trim() || (normalized.split("@")[0] || "Alumno");
+        const formattedName = baseName.charAt(0).toUpperCase() + baseName.slice(1);
+        const newId = "student_" + normalized.replace(/[^a-z0-9]/g, "_");
+
+        studentsDB[newId] = {
+          id: newId,
+          name: formattedName,
+          email: normalized,
+          scores: {}
+        };
+        saveStudentsDB();
+        return studentsDB[newId];
+      }
+
+      function logout() {
+        currentUser = null;
+        saveSession(null);
+        document.getElementById("app-shell").style.display = "none";
+        document.getElementById("login-screen").style.display = "flex";
+      }
+
+      // Eventos de navegación y botones
+      document.getElementById("nav-home-btn").addEventListener("click", () => {
+        currentFilter = "all";
+        document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
+        renderExercisesList(getActiveStudent());
+        switchView("home-view", true);
+      });
+
+      document.getElementById("brand-home-btn").addEventListener("click", () => {
+        currentFilter = "all";
+        document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
+        renderExercisesList(getActiveStudent());
+        switchView("home-view", true);
+      });
+
+      document.getElementById("progress-home-btn").addEventListener("click", () => switchView("home-view", true));
+      document.getElementById("coach-home-btn").addEventListener("click", () => switchView("home-view", true));
+
+      document.getElementById("nav-progress-btn").addEventListener("click", () => switchView("progress-view", true));
+      document.getElementById("banner-progress-btn").addEventListener("click", () => switchView("progress-view", true));
+      document.getElementById("floating-progress-btn").addEventListener("click", () => switchView("progress-view", true));
+      document.getElementById("coach-tab-btn").addEventListener("click", () => switchView("coach-view", false));
+      document.getElementById("logout-btn").addEventListener("click", logout);
+
+      document.querySelectorAll(".filter-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          currentFilter = chip.getAttribute("data-skill") || "all";
+          document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          renderExercisesList(getActiveStudent());
         });
       });
 
-      const skillAverages = {};
-      const activeAverages = [];
+      document.getElementById("add-student-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById("new-student-name");
+        const emailInput = document.getElementById("new-student-email");
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase() || `${name.toLowerCase().replace(/[^a-z0-9]/g, "")}@merrymery.local`;
+        if (!name) return;
 
-      SKILLS_META.forEach(s => {
-        const arr = skillBuckets[s.id];
-        if (arr.length > 0) {
-          const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
-          skillAverages[s.id] = { avg, count: arr.length, status: "active" };
-          activeAverages.push(avg);
-        } else if (s.id === "writing" && pendingWritingCount > 0) {
-          skillAverages[s.id] = { avg: null, count: 0, status: "pending" };
-        } else {
-          skillAverages[s.id] = { avg: null, count: 0, status: "empty" };
-        }
-      });
-
-      const globalAvg = activeAverages.length
-        ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
-        : 0;
-
-      const practiceFactor = Math.min(1, completedExercises / EXERCISES_CATALOG.length);
-      const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
-
-      let currentLevel = CEFR_LEVELS[0];
-      let nextLevel = CEFR_LEVELS[1];
-
-      for (let i = 0; i < CEFR_LEVELS.length; i++) {
-        if (cefrIndexScore >= CEFR_LEVELS[i].minPoints) {
-          currentLevel = CEFR_LEVELS[i];
-          nextLevel = CEFR_LEVELS[i + 1] || null;
-        }
-      }
-
-      return {
-        skillAverages,
-        globalAvg,
-        completedExercises,
-        cefrIndexScore,
-        currentLevel,
-        nextLevel
-      };
-    }
-
-    function renderProgressView(student) {
-      const metrics = calculateStudentMetrics(student);
-
-      document.getElementById("cefr-headline").textContent =
-        `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
-
-      document.getElementById("cefr-subtext").textContent = metrics.nextLevel
-        ? `¡Excelente avance! Estás en camino hacia el nivel ${metrics.nextLevel.code} (${metrics.nextLevel.label}).`
-        : "¡Alcanzaste el nivel máximo C2 Proficiency!";
-
-      document.getElementById("global-avg-display").textContent = `${metrics.globalAvg}%`;
-      document.getElementById("completed-count-display").textContent =
-        `${metrics.completedExercises} / ${EXERCISES_CATALOG.length}`;
-
-      const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
-      document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
-
-      const milestonesContainer = document.getElementById("cefr-milestones");
-      milestonesContainer.innerHTML = CEFR_LEVELS.map(lvl => {
-        const reached = metrics.cefrIndexScore >= lvl.minPoints;
-        return `
-          <div class="cefr-step ${reached ? "reached" : ""}">
-            <div class="cefr-step-dot"></div>
-            <div class="cefr-step-label">${lvl.code}</div>
-            <span class="cefr-step-desc">${lvl.label}</span>
-          </div>
-        `;
-      }).join("");
-
-      const skillsGrid = document.getElementById("skills-grid");
-      skillsGrid.innerHTML = SKILLS_META.map(skill => {
-        const data = metrics.skillAverages[skill.id];
-        let rightBadge = "";
-        let barWidth = 0;
-
-        if (data.status === "active") {
-          rightBadge = `<div class="skill-score" style="color:${skill.color}">${data.avg}%</div>`;
-          barWidth = data.avg;
-        } else if (data.status === "pending") {
-          rightBadge = `<span class="skill-score pending">En revisión</span>`;
-        } else {
-          rightBadge = `<span class="skill-score empty">Sin datos</span>`;
-        }
-
-        const subLabel = data.status === "pending"
-          ? "Esperando nota de Maru"
-          : `${data.count} ${data.count === 1 ? "actividad" : "actividades"}`;
-
-        return `
-          <div class="skill-card">
-            <div class="skill-top">
-              <div class="skill-name-wrap">
-                <div class="skill-icon" style="background:${skill.bg}; color:${skill.color}">${skill.icon}</div>
-                <div>
-                  <div class="skill-title">${skill.name}</div>
-                  <div class="skill-count">${subLabel}</div>
-                </div>
-              </div>
-              ${rightBadge}
-            </div>
-            <div class="progress-bar-bg">
-              <div class="progress-bar-fill" style="width:${barWidth}%; background:${skill.color}"></div>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderExercisesList(student) {
-      const listEl = document.getElementById("exercise-list");
-      const filtered = EXERCISES_CATALOG.filter(ex =>
-        currentFilter === "all" || ex.skills.includes(currentFilter)
-      );
-
-      listEl.innerHTML = filtered.map(ex => {
-        const record = student && student.scores ? student.scores[ex.id] : null;
-        let statusHtml = `<span class="status-pill status-todo">Pendiente</span>`;
-
-        if (record) {
-          if (record.status === "pending_review") {
-            statusHtml = `<span class="status-pill status-review">⏳ En revisión por Maru</span>`;
-          } else {
-            const vals = ex.skills.map(s => record[s]).filter(v => typeof v === "number");
-            const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
-            statusHtml = `<span class="status-pill status-done">✓ Completado (${avg}%)</span>`;
-          }
-        }
-
-        const tagsHtml = ex.skills.map(sId => {
-          const meta = SKILLS_META.find(m => m.id === sId);
-          return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
-        }).join("");
-
-        return `
-          <div class="exercise-card">
-            <div>
-              <div class="ex-tags">${tagsHtml}</div>
-              <div class="ex-title">${ex.title}</div>
-            </div>
-            <div class="ex-footer">
-              ${statusHtml}
-              <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderCoachPanel() {
-      const listContainer = document.getElementById("coach-student-list");
-      const students = Object.values(studentsDB);
-
-      if (!studentsDB[selectedCoachStudentId] && students.length > 0) {
-        selectedCoachStudentId = students[0].id;
-      }
-
-      listContainer.innerHTML = students.map(st => {
-        const m = calculateStudentMetrics(st);
-        const hasPending = Object.values(st.scores || {}).some(r => r.status === "pending_review");
-        return `
-          <div class="student-item ${st.id === selectedCoachStudentId ? "active" : ""}"
-               onclick="selectCoachStudent('${st.id}')">
-            <div>
-              <div style="font-weight:700;">${st.name}</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">
-                Nivel ${m.currentLevel.code} • Promedio ${m.globalAvg}%
-              </div>
-            </div>
-            ${hasPending ? `<span title="Writing pendiente" style="font-size:1.1rem;">✍️</span>` : ""}
-          </div>
-        `;
-      }).join("");
-
-      const student = studentsDB[selectedCoachStudentId];
-      const detailEl = document.getElementById("coach-student-detail");
-      if (!student) return;
-
-      const metrics = calculateStudentMetrics(student);
-      const writingExercises = EXERCISES_CATALOG.filter(e => e.isWriting);
-
-      detailEl.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-          <div>
-            <h3 style="font-size:1.4rem;">${student.name}</h3>
-            <p style="color:var(--text-muted); font-size:0.9rem;">
-              Nivel estimado: <strong>${metrics.currentLevel.code} (${metrics.currentLevel.label})</strong> • Promedio general: <strong>${metrics.globalAvg}%</strong>
-            </p>
-          </div>
-        </div>
-
-        <div class="skills-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:16px;">
-          ${SKILLS_META.map(s => {
-            const d = metrics.skillAverages[s.id];
-            const val = d.status === "active" ? `${d.avg}%` : (d.status === "pending" ? "Pendiente" : "—");
-            return `
-              <div class="skill-card" style="padding:14px;">
-                <div style="font-size:0.82rem; color:var(--text-muted);">${s.icon} ${s.name}</div>
-                <div style="font-family:'Outfit',sans-serif; font-size:1.25rem; font-weight:700; color:${s.color}; margin-top:4px;">
-                  ${val}
-                </div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-
-        <div class="writing-grade-box">
-          <h4>✍️ Cargar o actualizar nota de Writing</h4>
-          <p style="font-size:0.85rem; color:#78350f;">
-            Seleccioná el ejercicio de Writing que revisaste (luego de que el alumno usó Copy & Open Gemini) y asignale su porcentaje final.
-          </p>
-
-          <form onsubmit="saveWritingGrade(event)">
-            <div class="writing-form-row">
-              <select id="coach-writing-ex" class="form-control" required>
-                ${writingExercises.map(w => `<option value="${w.id}">${w.title}</option>`).join("")}
-              </select>
-              <input type="number" id="coach-writing-score" class="form-control" min="0" max="100" placeholder="Nota %" required />
-              <input type="text" id="coach-writing-note" class="form-control" placeholder="Comentario breve (opcional)" />
-              <button type="submit" class="btn btn-primary" style="width:auto;">Guardar nota</button>
-            </div>
-          </form>
-        </div>
-      `;
-    }
-
-    function applySessionUI(user, targetView = "home-view") {
-      currentUser = user;
-      saveSession(user);
-
-      document.getElementById("login-screen").style.display = "none";
-      document.getElementById("app-shell").style.display = "block";
-
-      const activeStudent = getActiveStudent();
-
-      if (user.role === "coach") {
-        document.getElementById("user-avatar").textContent = "M";
-        document.getElementById("user-display-name").textContent = "Maru";
-        document.getElementById("user-role-label").textContent = "English Coach";
-        document.getElementById("coach-tab-btn").style.display = "inline-block";
-        document.getElementById("home-welcome-title").textContent = "Home • Ejercicios y Módulos";
-        document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para abrir o alterná entre My Progress y Panel Coach.";
-        renderExercisesList(activeStudent);
-        if (activeStudent) renderProgressView(activeStudent);
+        const id = "student_" + Date.now();
+        studentsDB[id] = { id, name, email, scores: {} };
+        selectedCoachStudentId = id;
+        saveStudentsDB();
         renderCoachPanel();
-        switchView(targetView, false);
-      } else {
-        document.getElementById("user-avatar").textContent = (activeStudent.name[0] || "A").toUpperCase();
-        document.getElementById("user-display-name").textContent = activeStudent.name;
-        document.getElementById("user-role-label").textContent = "Student";
-        document.getElementById("coach-tab-btn").style.display = "none";
-        document.getElementById("home-welcome-title").textContent = `Home • Ejercicios de ${activeStudent.name}`;
-        document.getElementById("home-welcome-subtitle").textContent = "Elegí un ejercicio para practicar o tocá My Progress cuando quieras ver tu nivel.";
-        renderExercisesList(activeStudent);
-        renderProgressView(activeStudent);
-        switchView(targetView, false);
-      }
-    }
-
-    function getOrCreateStudentByEmail(email, customName = "") {
-      const normalized = (email || "").trim().toLowerCase();
-      const existing = Object.values(studentsDB).find(
-        s => (s.email || "").trim().toLowerCase() === normalized
-      );
-      if (existing) return existing;
-
-      const baseName = (customName || "").trim() || (normalized.split("@")[0] || "Alumno");
-      const formattedName = baseName.charAt(0).toUpperCase() + baseName.slice(1);
-      const newId = "student_" + normalized.replace(/[^a-z0-9]/g, "_");
-
-      studentsDB[newId] = {
-        id: newId,
-        name: formattedName,
-        email: normalized,
-        scores: {}
-      };
-      saveStudentsDB();
-      return studentsDB[newId];
-    }
-
-    function loginAsDemo(role) {
-      if (role === "coach") {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
-      } else {
-        const student = studentsDB["anika"] || Object.values(studentsDB)[0];
-        applySessionUI(
-          { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "home-view"
-        );
-      }
-    }
-
-    function logout() {
-      currentUser = null;
-      saveSession(null);
-      document.getElementById("app-shell").style.display = "none";
-      document.getElementById("login-screen").style.display = "flex";
-    }
-
-    function goHome() {
-      currentFilter = "all";
-      document.querySelectorAll(".filter-chip").forEach((chip, idx) => {
-        chip.classList.toggle("active", idx === 0);
-      });
-      renderExercisesList(getActiveStudent());
-      switchView("home-view", true);
-    }
-
-    function switchView(viewId, notify = true) {
-      document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
-      document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
-      document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
-
-      const floatingBtn = document.getElementById("floating-progress-btn");
-      if (floatingBtn) {
-        floatingBtn.style.display = viewId === "progress-view" ? "none" : "inline-flex";
-      }
-
-      document.querySelectorAll(".nav-tab").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.view === viewId);
+        renderExercisesList(getActiveStudent());
+        renderProgressView(getActiveStudent());
+        nameInput.value = "";
+        emailInput.value = "";
+        showToast(`✓ Alumno/a ${name} agregado/a`);
       });
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const customName = document.getElementById("student-name-input").value.trim();
 
-      if (notify && viewId === "home-view") {
-        showToast("🏠 Home • Ejercicios y Módulos");
-      } else if (notify && viewId === "progress-view") {
-        showToast("📊 My Progress");
-      }
-    }
+        if (email === COACH_EMAIL) {
+          applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
+        } else {
+          const student = getOrCreateStudentByEmail(email, customName);
+          applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
+        }
+      });
 
-    function filterExercises(skill, btnEl) {
-      currentFilter = skill;
-      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
-      if (btnEl) btnEl.classList.add("active");
+      document.getElementById("google-login-btn").addEventListener("click", () => {
+        const emailInput = document.getElementById("email").value.trim().toLowerCase();
+        const customName = document.getElementById("student-name-input").value.trim();
+        const fallbackEmail = emailInput || "alumno.google@ejemplo.com";
+
+        if (fallbackEmail === COACH_EMAIL) {
+          applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
+        } else {
+          const student = getOrCreateStudentByEmail(fallbackEmail, customName);
+          applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
+        }
+      });
+
+      document.getElementById("demo-student-btn").addEventListener("click", () => {
+        const student = studentsDB.anika || Object.values(studentsDB)[0];
+        applySessionUI({ name: student.name, email: student.email, role: "student", studentId: student.id });
+      });
+
+      document.getElementById("demo-coach-btn").addEventListener("click", () => {
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" });
+      });
+
+      // Render inicial seguro para que el catálogo de ejercicios siempre exista en el DOM
       renderExercisesList(getActiveStudent());
-    }
 
-    function selectCoachStudent(studentId) {
-      selectedCoachStudentId = studentId;
-      renderCoachPanel();
-      if (studentsDB[studentId]) {
-        renderProgressView(studentsDB[studentId]);
-        renderExercisesList(studentsDB[studentId]);
-      }
-    }
-
-    function addNewStudent(e) {
-      e.preventDefault();
-      const nameInput = document.getElementById("new-student-name");
-      const emailInput = document.getElementById("new-student-email");
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim().toLowerCase() || `${name.toLowerCase().replace(/[^a-z0-9]/g, "")}@merrymery.local`;
-
-      if (!name) return;
-
-      const id = "student_" + Date.now();
-      studentsDB[id] = {
-        id,
-        name,
-        email,
-        scores: {}
-      };
-      selectedCoachStudentId = id;
-      saveStudentsDB();
-      renderCoachPanel();
-      renderProgressView(studentsDB[id]);
-      renderExercisesList(studentsDB[id]);
-      nameInput.value = "";
-      emailInput.value = "";
-      showToast(`✓ Alumno/a ${name} agregado/a localmente`);
-    }
-
-    function saveWritingGrade(e) {
-      e.preventDefault();
-      const exId = document.getElementById("coach-writing-ex").value;
-      const score = Number(document.getElementById("coach-writing-score").value);
-      const note = document.getElementById("coach-writing-note").value;
-
-      const student = studentsDB[selectedCoachStudentId];
-      if (!student) return;
-
-      student.scores[exId] = {
-        writing: score,
-        status: "graded",
-        feedback: note || "Corregido por Maru"
-      };
-
-      saveStudentsDB();
-      renderCoachPanel();
-      renderProgressView(student);
-      renderExercisesList(student);
-      showToast(`✓ Nota de Writing (${score}%) guardada para ${student.name}`);
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 3200);
-    }
-
-    document.getElementById("login-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      const customName = document.getElementById("student-name-input").value.trim();
-
-      if (email === COACH_EMAIL) {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
-      } else {
-        const student = getOrCreateStudentByEmail(email, customName);
-        applySessionUI(
-          { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "home-view"
-        );
+      const savedSession = loadSession();
+      if (savedSession) {
+        applySessionUI(savedSession);
       }
     });
-
-    document.getElementById("google-login-btn").addEventListener("click", () => {
-      const emailInput = document.getElementById("email").value.trim().toLowerCase();
-      const customName = document.getElementById("student-name-input").value.trim();
-      const fallbackEmail = emailInput || "alumno.google@ejemplo.com";
-
-      if (fallbackEmail === COACH_EMAIL) {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
-      } else {
-        const student = getOrCreateStudentByEmail(fallbackEmail, customName);
-        applySessionUI(
-          { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "home-view"
-        );
-      }
-    });
-
-    const savedSession = loadSession();
-    if (savedSession) {
-      applySessionUI(savedSession, "home-view");
-    }
   </script>
 </body>
 </html>
