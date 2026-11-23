@@ -312,7 +312,81 @@
     .container {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 28px 24px 60px;
+      padding: 28px 24px 96px;
+    }
+
+    .home-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .home-banner h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .home-banner p {
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 0.94rem;
+    }
+
+    .btn-home-back {
+      background: white;
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+
+    .btn-home-back:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* ================= FIXED MY PROGRESS BUTTON ================= */
+    .floating-progress-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 45;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .floating-progress-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px -6px rgba(79, 70, 229, 0.55);
     }
 
     /* ================= CEFR LEVEL LINE (A1 -> C2) ================= */
@@ -753,7 +827,7 @@
 
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 84px;
       right: 24px;
       background: #0f172a;
       color: white;
@@ -825,7 +899,8 @@
         </div>
 
         <nav class="nav-tabs" id="main-nav">
-          <button class="nav-tab active" data-view="student-view" onclick="switchView('student-view')">Mi Progreso</button>
+          <button class="nav-tab active" data-view="home-view" onclick="switchView('home-view')">Home</button>
+          <button class="nav-tab" data-view="progress-view" onclick="switchView('progress-view')">My Progress</button>
           <button class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
         </nav>
 
@@ -840,8 +915,46 @@
       </div>
     </header>
 
-    <!-- ============ STUDENT DASHBOARD VIEW ============ -->
-    <main class="container" id="student-view">
+    <!-- ============ HOME VIEW (DEFAULT ENTRY) ============ -->
+    <main class="container" id="home-view">
+      <section class="home-banner">
+        <div>
+          <h1 id="home-welcome-title">Welcome to Merry Mery English</h1>
+          <p id="home-welcome-subtitle">Elegí un ejercicio o módulo interactivo para empezar a practicar hoy.</p>
+        </div>
+        <button type="button" class="btn-home-back" onclick="switchView('progress-view')">
+          📊 Ver My Progress
+        </button>
+      </section>
+
+      <div class="section-title">
+        <span>Ejercicios y Módulos</span>
+        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
+      </div>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
+        <button class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
+        <button class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
+        <button class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
+        <button class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
+        <button class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
+        <button class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
+        <button class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
+        <button class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
+        <button class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
+      </div>
+      <section class="exercise-list" id="exercise-list"></section>
+    </main>
+
+    <!-- ============ MY PROGRESS VIEW ============ -->
+    <main class="container" id="progress-view" style="display:none;">
+      <div class="section-title">
+        <span>My Progress</span>
+        <button type="button" class="btn-home-back" onclick="switchView('home-view')">
+          🏠 Home
+        </button>
+      </div>
+
       <!-- CEFR LEVEL LINE -->
       <section class="level-card">
         <div class="level-header">
@@ -877,33 +990,18 @@
       <!-- 9 SKILLS GRID (3x3) -->
       <div class="section-title">
         <span>Mis 9 Áreas de Habilidad</span>
-        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Guardado local activo</span>
+        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Actualizado automáticamente</span>
       </div>
       <section class="skills-grid" id="skills-grid"></section>
-
-      <!-- EXERCISES CATALOG -->
-      <div class="section-title" style="margin-top:12px;">
-        <span>Mis Ejercicios y Módulos</span>
-      </div>
-      <div class="filter-bar" id="filter-bar">
-        <button class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
-        <button class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
-        <button class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
-        <button class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
-        <button class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
-        <button class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
-        <button class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
-        <button class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
-        <button class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
-        <button class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
-      </div>
-      <section class="exercise-list" id="exercise-list"></section>
     </main>
 
     <!-- ============ COACH VIEW (MARU) ============ -->
     <main class="container" id="coach-view" style="display:none;">
       <div class="section-title">
         <span>Seguimiento de Alumnos & Corrección de Writing</span>
+        <button type="button" class="btn-home-back" onclick="switchView('home-view')">
+          🏠 Home
+        </button>
       </div>
 
       <div class="coach-grid">
@@ -926,6 +1024,11 @@
         <div class="coach-detail-card" id="coach-student-detail"></div>
       </div>
     </main>
+
+    <!-- Botón fijo My Progress visible desde Home -->
+    <button type="button" id="floating-progress-btn" class="floating-progress-btn" onclick="switchView('progress-view')">
+      📊 My Progress
+    </button>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -1139,7 +1242,7 @@
       };
     }
 
-    function renderStudentDashboard(student) {
+    function renderProgressView(student) {
       const metrics = calculateStudentMetrics(student);
 
       document.getElementById("cefr-headline").textContent =
@@ -1205,8 +1308,6 @@
           </div>
         `;
       }).join("");
-
-      renderExercisesList(student);
     }
 
     function renderExercisesList(student) {
@@ -1326,7 +1427,7 @@
       `;
     }
 
-    function applySessionUI(user, targetView = null) {
+    function applySessionUI(user, targetView = "home-view") {
       currentUser = user;
       saveSession(user);
 
@@ -1338,18 +1439,24 @@
         document.getElementById("user-display-name").textContent = "Maru";
         document.getElementById("user-role-label").textContent = "English Coach";
         document.getElementById("coach-tab-btn").style.display = "inline-block";
+        document.getElementById("home-welcome-title").textContent = "Home • Merry Mery English";
+        document.getElementById("home-welcome-subtitle").textContent = "Accedé a los ejercicios o consultá My Progress y el Panel Coach.";
         const activeStudent = studentsDB[selectedCoachStudentId] || Object.values(studentsDB)[0];
-        renderStudentDashboard(activeStudent);
+        renderExercisesList(activeStudent);
+        renderProgressView(activeStudent);
         renderCoachPanel();
-        switchView(targetView || "coach-view");
+        switchView(targetView);
       } else {
         const student = studentsDB[user.studentId] || studentsDB["anika"];
         document.getElementById("user-avatar").textContent = (student.name[0] || "A").toUpperCase();
         document.getElementById("user-display-name").textContent = student.name;
         document.getElementById("user-role-label").textContent = "Student";
         document.getElementById("coach-tab-btn").style.display = "none";
-        renderStudentDashboard(student);
-        switchView(targetView || "student-view");
+        document.getElementById("home-welcome-title").textContent = `Welcome, ${student.name}!`;
+        document.getElementById("home-welcome-subtitle").textContent = "Elegí un módulo para practicar o tocá My Progress cuando quieras ver tu nivel.";
+        renderExercisesList(student);
+        renderProgressView(student);
+        switchView(targetView);
       }
     }
 
@@ -1376,12 +1483,12 @@
 
     window.loginAsDemo = function(role) {
       if (role === "coach") {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
       } else {
         const student = studentsDB["anika"] || Object.values(studentsDB)[0];
         applySessionUI(
           { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "student-view"
+          "home-view"
         );
       }
     };
@@ -1394,8 +1501,15 @@
     };
 
     window.switchView = function(viewId) {
-      document.getElementById("student-view").style.display = viewId === "student-view" ? "block" : "none";
+      document.getElementById("home-view").style.display = viewId === "home-view" ? "block" : "none";
+      document.getElementById("progress-view").style.display = viewId === "progress-view" ? "block" : "none";
       document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
+
+      const floatingBtn = document.getElementById("floating-progress-btn");
+      if (floatingBtn) {
+        floatingBtn.style.display = viewId === "progress-view" ? "none" : "inline-flex";
+      }
+
       document.querySelectorAll(".nav-tab").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.view === viewId);
       });
@@ -1413,7 +1527,8 @@
       selectedCoachStudentId = studentId;
       renderCoachPanel();
       if (studentsDB[studentId]) {
-        renderStudentDashboard(studentsDB[studentId]);
+        renderProgressView(studentsDB[studentId]);
+        renderExercisesList(studentsDB[studentId]);
       }
     };
 
@@ -1436,7 +1551,8 @@
       selectedCoachStudentId = id;
       saveStudentsDB();
       renderCoachPanel();
-      renderStudentDashboard(studentsDB[id]);
+      renderProgressView(studentsDB[id]);
+      renderExercisesList(studentsDB[id]);
       nameInput.value = "";
       emailInput.value = "";
       showToast(`✓ Alumno/a ${name} agregado/a localmente`);
@@ -1459,7 +1575,8 @@
 
       saveStudentsDB();
       renderCoachPanel();
-      renderStudentDashboard(student);
+      renderProgressView(student);
+      renderExercisesList(student);
       showToast(`✓ Nota de Writing (${score}%) guardada para ${student.name}`);
     };
 
@@ -1476,12 +1593,12 @@
       const customName = document.getElementById("student-name-input").value.trim();
 
       if (email === COACH_EMAIL) {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
       } else {
         const student = getOrCreateStudentByEmail(email, customName);
         applySessionUI(
           { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "student-view"
+          "home-view"
         );
       }
     });
@@ -1492,19 +1609,19 @@
       const fallbackEmail = emailInput || "alumno.google@ejemplo.com";
 
       if (fallbackEmail === COACH_EMAIL) {
-        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "coach-view");
+        applySessionUI({ name: "Maru", email: COACH_EMAIL, role: "coach" }, "home-view");
       } else {
         const student = getOrCreateStudentByEmail(fallbackEmail, customName);
         applySessionUI(
           { name: student.name, email: student.email, role: "student", studentId: student.id },
-          "student-view"
+          "home-view"
         );
       }
     });
 
     const savedSession = loadSession();
     if (savedSession) {
-      applySessionUI(savedSession);
+      applySessionUI(savedSession, "home-view");
     }
   </script>
 </body>
