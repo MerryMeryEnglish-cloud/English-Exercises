@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merry Mery English - Interactive Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Mery English | Student & Coach Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-dark: #0369a1;
-      --accent: #f59e0b;
+      --primary: #4f46e5;
+      --primary-light: #eef2ff;
+      --primary-dark: #3730a3;
+      --accent: #ec4899;
+      --accent-light: #fdf2f8;
+      --teal: #0d9488;
+      --teal-light: #f0fdfa;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
       --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #1e293b;
+      --card: #ffffff;
+      --text-main: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
     }
 
     * {
@@ -26,559 +35,1328 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      color: var(--text-main);
+      line-height: 1.5;
       min-height: 100vh;
     }
 
-    .container {
-      width: 100%;
-      max-width: 900px;
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Outfit', sans-serif;
     }
 
-    /* Header */
-    header {
-      text-align: center;
+    /* ================= LOGIN SCREEN ================= */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at top right, #e0e7ff 0%, #f8fafc 45%, #fce7f3 100%);
+    }
+
+    .login-card {
+      background: var(--card);
+      width: 100%;
+      max-width: 440px;
+      padding: 40px 36px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 24px;
     }
 
-    .brand-logo {
-      max-width: 110px;
-      height: auto;
-      margin-bottom: 10px;
-      border-radius: 50%;
-    }
-
-    .brand-title {
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--primary-dark);
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
       letter-spacing: -0.5px;
     }
 
-    .brand-subtitle {
-      font-size: 0.95rem;
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text-main);
+    }
+
+    .logo-text span {
+      color: var(--primary);
+    }
+
+    .login-title {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .login-subtitle {
       color: var(--text-muted);
-      margin-top: 4px;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
     }
 
-    /* Cambridge Dictionary Card */
-    .dict-card {
-      background: var(--card-bg);
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      background: #f8fafc;
     }
 
-    .dict-header {
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-google {
+      background: white;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .btn-google:hover {
+      background: #f8fafc;
+    }
+
+    .demo-divider {
+      margin: 24px 0 14px;
+      text-align: center;
+      position: relative;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .demo-divider::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .demo-divider span {
+      background: white;
+      padding: 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .demo-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-demo {
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #c7d2fe;
+    }
+
+    .btn-demo.coach {
+      background: var(--accent-light);
+      color: #9d174d;
+      border-color: #fbcfe8;
+    }
+
+    /* ================= MAIN APP SHELL ================= */
+    #app-shell {
+      display: none;
+    }
+
+    .topbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .dict-form {
-      display: flex;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    .dict-input {
-      flex: 1;
-      min-width: 200px;
-      padding: 10px 14px;
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--bg);
+      padding: 5px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
     }
 
-    .dict-input:focus {
-      border-color: var(--primary);
-    }
-
-    .dict-btn {
-      background: var(--primary);
-      color: white;
+    .nav-tab {
+      padding: 8px 16px;
+      border-radius: 9px;
       border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
+      background: transparent;
+      font-family: 'Outfit', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
+      color: var(--text-muted);
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
 
-    .dict-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .dictionary-link {
-      display: inline-block;
+    .nav-tab.active {
+      background: white;
       color: var(--primary);
-      text-decoration: none;
-      font-size: 0.88rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .btn-logout:hover {
+      background: #fee2e2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
+
+    /* ================= CEFR LEVEL LINE (A1 -> C2) ================= */
+    .level-card {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4c1d95 100%);
+      color: white;
+      border-radius: 22px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .level-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .level-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(6px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
       font-weight: 600;
-      margin-top: 10px;
+      margin-bottom: 8px;
     }
 
-    .dictionary-link:hover {
-      text-decoration: underline;
+    .level-big-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
-    /* Basic English Instructions Card */
-    .instructions-card {
-      background: #fffbeb;
-      border: 1px solid #fef3c7;
-      border-left: 5px solid #f59e0b;
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+    .level-stats-box {
+      display: flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 16px;
     }
 
-    .instructions-header {
+    .stat-mini span {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.8;
+    }
+
+    .stat-mini strong {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    /* CEFR TRACK */
+    .cefr-wrapper {
+      position: relative;
+      padding: 18px 8px 8px;
+    }
+
+    .cefr-track-bg {
+      height: 12px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .cefr-track-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #34d399, #facc15, #fb7185);
+      width: 0%;
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .cefr-pointer {
+      position: absolute;
+      right: -12px;
+      top: -8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid #34d399;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .cefr-milestones {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .cefr-step {
+      text-align: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .cefr-step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      margin: 0 auto 6px;
+    }
+
+    .cefr-step.reached .cefr-step-dot {
+      background: #34d399;
+      box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.25);
+    }
+
+    .cefr-step-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      opacity: 0.7;
+    }
+
+    .cefr-step.reached .cefr-step-label {
+      opacity: 1;
+      color: #6ee7b7;
+    }
+
+    .cefr-step-desc {
+      font-size: 0.72rem;
+      opacity: 0.65;
+      display: block;
+    }
+
+    /* ================= 9 SKILLS GRID (3x3) ================= */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
-      user-select: none;
     }
 
-    .instructions-title {
-      color: #92400e;
-      font-size: 1.02rem;
-      font-weight: 700;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 960px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .skill-top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
       gap: 8px;
     }
 
-    .instructions-toggle-btn {
-      font-size: 0.82rem;
-      background: #fde68a;
-      color: #78350f;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: 600;
+    .skill-name-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .instructions-content {
-      margin-top: 14px;
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .skill-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .skill-count {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .skill-score {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+    }
+
+    .skill-score.pending {
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--amber-light);
+      color: var(--amber);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .skill-score.empty {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .progress-bar-bg {
+      height: 9px;
+      background: #f1f5f9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    /* ================= EXERCISES LIST ================= */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .filter-chip {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .exercise-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 16px;
+    }
+
+    .exercise-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: #78350f;
-      line-height: 1.5;
-    }
-
-    .instruction-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 8px 12px;
-      border-radius: 8px;
-    }
-
-    .instruction-step-icon {
-      font-size: 1.15rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* Section Styling */
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-      margin-top: 26px;
-    }
-
-    .section-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      padding-left: 2px;
-    }
-
-    .exercise-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 12px;
-    }
-
-    /* Exercise Buttons */
-    .btn-item {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      background-color: var(--primary);
-      color: white;
-      text-decoration: none;
-      padding: 13px 18px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      transition: transform 0.2s, background-color 0.2s;
-      box-shadow: 0 3px 6px rgba(2, 132, 199, 0.18);
-      cursor: pointer;
-      gap: 10px;
+      gap: 14px;
     }
 
-    .btn-item:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
+    .ex-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
-    .btn-content-with-thumb {
+    .ex-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      text-transform: uppercase;
+    }
+
+    .ex-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .ex-footer {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex: 1;
-    }
-
-    .item-thumb {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 1.5px solid rgba(255, 255, 255, 0.4);
-      background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .btn-badge {
-      font-size: 0.72rem;
-      background: rgba(255, 255, 255, 0.22);
-      color: #ffffff;
-      padding: 3px 9px;
-      border-radius: 12px;
-      white-space: nowrap;
-      letter-spacing: 0.3px;
-    }
-
-    footer {
-      margin-top: 45px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      justify-content: space-between;
+      padding-top: 12px;
       border-top: 1px solid var(--border);
-      padding-top: 18px;
-      width: 100%;
+    }
+
+    .status-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .status-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-review {
+      background: var(--amber-light);
+      color: var(--amber);
+    }
+
+    .status-todo {
+      background: #f1f5f9;
+      color: var(--text-muted);
+    }
+
+    .btn-open-ex {
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ================= COACH PANEL ================= */
+    .coach-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .coach-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .student-list-card, .coach-detail-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .student-item {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .student-item:hover, .student-item.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .writing-grade-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fcd34d;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .writing-grade-box h4 {
+      color: #92400e;
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+    }
+
+    .writing-form-row {
+      display: grid;
+      grid-template-columns: 1.4fr 0.7fr 1.5fr auto;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .writing-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <img src="logo.png" alt="Merry Mery English Logo" class="brand-logo" onerror="this.style.display='none'">
-      <h1 class="brand-title">Merry Mery English</h1>
-      <p class="brand-subtitle">Interactive Practice Hub & Learning Studio</p>
+  <!-- ==================== 1. LOGIN SCREEN ==================== -->
+  <section id="login-screen">
+    <div class="login-card">
+      <div class="logo-badge">
+        <div class="logo-icon">MM</div>
+        <div class="logo-text">Merry Mery <span>English</span></div>
+      </div>
+
+      <h1 class="login-title">Welcome back!</h1>
+      <p class="login-subtitle">Ingresá para ver tu progreso, nivel CEFR y actividades personalizadas.</p>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="tuemail@ejemplo.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" class="form-control" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+      </form>
+
+      <button type="button" id="google-login-btn" class="btn btn-google">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.8C6.2 7.2 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6l3.7 2.9c2.2-2 3.7-5 3.7-8.7z"/><path fill="#FBBC05" d="M5.3 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.6 7.4C.6 9.4 0 11.6 0 14s.6 4.6 1.6 6.6l3.7-2.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.1-6.7-5l-3.7 2.8C3.5 21.4 7.4 24 12 24z"/></svg>
+        Continuar con Google
+      </button>
+
+      <div class="demo-divider"><span>Vista previa rápida (Demo)</span></div>
+      <div class="demo-buttons">
+        <button type="button" class="btn btn-demo" onclick="loginAsDemo('student')">👩‍🎓 Entrar como Alumna</button>
+        <button type="button" class="btn btn-demo coach" onclick="loginAsDemo('coach')">✨ Entrar como Coach (Maru)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. APP SHELL ==================== -->
+  <div id="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-badge" style="margin-bottom:0;">
+          <div class="logo-icon">MM</div>
+          <div class="logo-text">Merry Mery <span>English</span></div>
+        </div>
+
+        <nav class="nav-tabs" id="main-nav">
+          <button class="nav-tab active" data-view="student-view" onclick="switchView('student-view')">Mi Progreso</button>
+          <button class="nav-tab" data-view="coach-view" id="coach-tab-btn" style="display:none;" onclick="switchView('coach-view')">Panel Coach (Maru)</button>
+        </nav>
+
+        <div class="user-pill">
+          <div class="avatar" id="user-avatar">A</div>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;" id="user-display-name">Anika</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);" id="user-role-label">Student</div>
+          </div>
+          <button class="btn-logout" onclick="logout()">Salir</button>
+        </div>
+      </div>
     </header>
 
-    <!-- Cambridge Dictionary Integration -->
-    <div class="dict-card">
-      <div class="dict-header">
-        <span>📖</span> Cambridge Dictionary (English - Spanish)
+    <!-- ============ STUDENT DASHBOARD VIEW ============ -->
+    <main class="container" id="student-view">
+      <!-- CEFR LEVEL LINE -->
+      <section class="level-card">
+        <div class="level-header">
+          <div>
+            <div class="level-badge-pill">🎯 Camino de Fluidez CEFR</div>
+            <h2 class="level-big-title" id="cefr-headline">Nivel Actual: A2+ (Elementary Plus)</h2>
+            <p style="opacity:0.85; font-size:0.92rem; margin-top:4px;" id="cefr-subtext">
+              Seguí completando módulos en tus 9 habilidades para alcanzar el nivel B1.
+            </p>
+          </div>
+          <div class="level-stats-box">
+            <div class="stat-mini">
+              <span>Promedio Global</span>
+              <strong id="global-avg-display">78%</strong>
+            </div>
+            <div class="stat-mini">
+              <span>Actividades</span>
+              <strong id="completed-count-display">9 / 12</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="cefr-wrapper">
+          <div class="cefr-track-bg">
+            <div class="cefr-track-fill" id="cefr-fill-bar">
+              <div class="cefr-pointer"></div>
+            </div>
+          </div>
+          <div class="cefr-milestones" id="cefr-milestones">
+            <!-- Generado por JS: A1, A2, A2+, B1, B1+, B2, C1, C2 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 SKILLS GRID (3x3) -->
+      <div class="section-title">
+        <span>Mis 9 Áreas de Habilidad</span>
+        <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Actualizado automáticamente</span>
       </div>
-      <form class="dict-form" onsubmit="searchDict(event)">
-        <input 
-          type="text" 
-          id="dictWord" 
-          class="dict-input" 
-          placeholder="Type a word in English..." 
-          required
-        >
-        <button type="submit" class="dict-btn">Search</button>
-      </form>
-      <a 
-        class="dictionary-link" 
-        href="https://dictionary.cambridge.org/dictionary/english-spanish/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        Open Cambridge Dictionary ↗
-      </a>
-    </div>
+      <section class="skills-grid" id="skills-grid"></section>
 
-    <!-- Basic Instructions Card -->
-    <div class="instructions-card">
-      <div class="instructions-header" onclick="toggleInstructions()">
-        <span class="instructions-title">📌 Simple Study Guide</span>
-        <span class="instructions-toggle-btn" id="toggleLabel">Hide ▲</span>
+      <!-- EXERCISES CATALOG -->
+      <div class="section-title" style="margin-top:12px;">
+        <span>Mis Ejercicios y Módulos</span>
       </div>
-      <div class="instructions-content" id="instructionsContent" style="display: block;">
-        <div class="instruction-step">
-          <span class="instruction-step-icon">🎧</span>
-          <div><strong>1. Listen:</strong> Click the audio button to hear clear British pronunciation.</div>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-chip active" onclick="filterExercises('all', this)">Todos</button>
+        <button class="filter-chip" onclick="filterExercises('grammar', this)">Grammar</button>
+        <button class="filter-chip" onclick="filterExercises('gerunds', this)">Gerunds & -ing</button>
+        <button class="filter-chip" onclick="filterExercises('vocabulary', this)">Vocabulary</button>
+        <button class="filter-chip" onclick="filterExercises('collocations', this)">Collocations</button>
+        <button class="filter-chip" onclick="filterExercises('phrasal', this)">Phrasal Verbs</button>
+        <button class="filter-chip" onclick="filterExercises('idioms', this)">Idioms</button>
+        <button class="filter-chip" onclick="filterExercises('listening', this)">Listening</button>
+        <button class="filter-chip" onclick="filterExercises('reading', this)">Reading</button>
+        <button class="filter-chip" onclick="filterExercises('writing', this)">Writing</button>
+      </div>
+      <section class="exercise-list" id="exercise-list"></section>
+    </main>
+
+    <!-- ============ COACH VIEW (MARU) ============ -->
+    <main class="container" id="coach-view" style="display:none;">
+      <div class="section-title">
+        <span>Seguimiento de Alumnos & Corrección de Writing</span>
+      </div>
+
+      <div class="coach-grid">
+        <!-- Lista de Alumnos -->
+        <div class="student-list-card">
+          <h3 style="font-size:1.05rem; margin-bottom:14px;">Mis Alumnos (1:1)</h3>
+          <div id="coach-student-list"></div>
         </div>
-        <div class="instruction-step">
-          <span class="instruction-step-icon">📖</span>
-          <div><strong>2. Dictionary:</strong> Search any difficult word in the search box above.</div>
-        </div>
-        <div class="instruction-step">
-          <span class="instruction-step-icon">✍️</span>
-          <div><strong>3. Practice:</strong> Write your answers and click Check. Try again if you make a mistake.</div>
-        </div>
-        <div class="instruction-step">
-          <span class="instruction-step-icon">🔁</span>
-          <div><strong>4. Repeat:</strong> Reset and repeat any activity until you get 100%.</div>
+
+        <!-- Detalle del Alumno Seleccionado -->
+        <div class="coach-detail-card" id="coach-student-detail">
+          <!-- Se completa dinámicamente -->
         </div>
       </div>
-    </div>
-
-    <!-- 1. Grammar Masterclasses -->
-    <h2 class="section-title">Grammar Masterclasses</h2>
-    <p class="section-desc">Key grammar rules, verb tenses, and sentence structures.</p>
-    <div class="exercise-grid">
-      <a href="comparatives_and_superlatives.html" class="btn-item">
-        <span class="btn-text">Comparatives & Superlatives (The Circus)</span>
-        <span class="btn-badge">New</span>
-      </a>
-      <a href="past_and_participle.html" class="btn-item">
-        <span class="btn-text">Past Simple vs. Past Participle Mastery</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="sentence_word_formation_b2.html" class="btn-item">
-        <span class="btn-text">Sentence & Word Formation (B2/B2+)</span>
-        <span class="btn-badge">B2+ Mastery</span>
-      </a>
-      <a href="english_practice_a2.html" class="btn-item">
-        <span class="btn-text">A2 English Practice: Spanglish & Travel</span>
-        <span class="btn-badge">A2 Level</span>
-      </a>
-      <a href="pastsimple_exercises.html" class="btn-item">
-        <span class="btn-text">Past Simple Practice & Exercises</span>
-        <span class="btn-badge">Grammar</span>
-      </a>
-      <a href="conditionals.html" class="btn-item">
-        <span class="btn-text">Conditionals Review (0 to 3rd)</span>
-        <span class="btn-badge">Grammar</span>
-      </a>
-      <a href="merry_mery_english_reported_speech_quiz.html" class="btn-item">
-        <span class="btn-text">Reported Speech Practice</span>
-        <span class="btn-badge">Quiz</span>
-      </a>
-      <a href="direct_speech_overview.html" class="btn-item">
-        <span class="btn-text">Direct Speech Overview</span>
-        <span class="btn-badge">Grammar</span>
-      </a>
-      <a href="simplepastandpresentperfect.html" class="btn-item">
-        <span class="btn-text">Simple Past vs Present Perfect</span>
-        <span class="btn-badge">Practice</span>
-      </a>
-      <a href="pastsimpleandpastperfect.html" class="btn-item">
-        <span class="btn-text">Past Simple vs Past Perfect (B2)</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="ing_infinitive_exercises.html" class="btn-item">
-        <span class="btn-text">Gerund (-ing) vs Infinitive</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="verb_get_masterclass.html" class="btn-item">
-        <span class="btn-text">Verb 'Get' Masterclass</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="verb_mean_masterclass.html" class="btn-item">
-        <span class="btn-text">Verb 'Mean' Masterclass</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="verbs_prepositions.html" class="btn-item">
-        <span class="btn-text">Dependent Prepositions (Verbs & Nouns)</span>
-        <span class="btn-badge">Mastery</span>
-      </a>
-      <a href="verbs_of_perception.html" class="btn-item">
-        <span class="btn-text">Verbs of Perception Masterclass</span>
-        <span class="btn-badge">Grammar</span>
-      </a>
-    </div>
-
-    <!-- 2. Vocabulary & Expressions -->
-    <h2 class="section-title">Vocabulary & Phrasal Verbs</h2>
-    <p class="section-desc">Essential words, phrasal verbs, idioms, and modern digital terms.</p>
-    <div class="exercise-grid">
-      <a href="merry_mery_english_daily_routine.html" class="btn-item">
-        <span class="btn-text">Daily Routine: Vocabulary & Practice</span>
-        <span class="btn-badge">New</span>
-      </a>
-      <a href="prepositions_city_places.html" class="btn-item">
-        <span class="btn-text">Where Is It? Prepositions & City Places</span>
-        <span class="btn-badge">Beginner</span>
-      </a>
-      <a href="travel_english.html" class="btn-item">
-        <span class="btn-text">Travel English: Spot & Edit Zone (B1)</span>
-        <span class="btn-badge">Vocabulary</span>
-      </a>
-      <a href="ways_of_looking.html" class="btn-item">
-        <span class="btn-text">34 Ways of Looking</span>
-        <span class="btn-badge">Vocabulary</span>
-      </a>
-      <a href="ways_of_speaking.html" class="btn-item">
-        <span class="btn-text">Ways of Speaking</span>
-        <span class="btn-badge">Vocabulary</span>
-      </a>
-      <a href="dynamic_english_phrasal_verbs_master_game%20(1).html" class="btn-item">
-        <span class="btn-text">Phrasal Verbs Master Game</span>
-        <span class="btn-badge">Game</span>
-      </a>
-      <a href="business_acronyms.html" class="btn-item">
-        <span class="btn-text">Business English Acronyms</span>
-        <span class="btn-badge">Business</span>
-      </a>
-      <a href="whatsapp_accronyms.html" class="btn-item">
-        <span class="btn-text">WhatsApp & Digital Slang</span>
-        <span class="btn-badge">Slang</span>
-      </a>
-      <a href="baking_english_lesson.html" class="btn-item">
-        <span class="btn-text">Baking & Cooking Vocabulary</span>
-        <span class="btn-badge">Vocabulary</span>
-      </a>
-    </div>
-
-    <!-- 3. Writing Studios -->
-    <h2 class="section-title">Writing Studios</h2>
-    <p class="section-desc">Organize arguments, write essays, and practice sentence building.</p>
-    <div class="exercise-grid">
-      <a href="writing_studio.html" class="btn-item">
-        <span class="btn-text">Opinion Writing Studio</span>
-        <span class="btn-badge">Studio</span>
-      </a>
-      <a href="Balanced_Essay.html" class="btn-item">
-        <span class="btn-text">Balanced Essay Builder</span>
-        <span class="btn-badge">Essay</span>
-      </a>
-    </div>
-
-    <!-- 4. Reading Comprehension -->
-    <h2 class="section-title">Reading Comprehension</h2>
-    <p class="section-desc">Short stories, cultural guides, and classic literature with questions.</p>
-    <div class="exercise-grid">
-      <a href="edinburgh_travellers_guide.html" class="btn-item">
-        <span class="btn-text">Edinburgh: A Traveller’s Guide</span>
-        <span class="btn-badge">New</span>
-      </a>
-      <a href="airport_notice_reading.html" class="btn-item">
-        <span class="btn-text">Airport Notice Reading Comprehension</span>
-        <span class="btn-badge">Reading</span>
-      </a>
-      <a href="must_visit_argentina.html" class="btn-item">
-        <span class="btn-text">Must-Visit Wonders of Argentina</span>
-        <span class="btn-badge">Reading</span>
-      </a>
-      <a href="merry_mery_english_the_little_prince_reading_comp.html" class="btn-item">
-        <span class="btn-text">The Little Prince</span>
-        <span class="btn-badge">Literature</span>
-      </a>
-      <a href="snow-white-and-rose-red.html" class="btn-item">
-        <span class="btn-text">Snow-White and Rose-Red</span>
-        <span class="btn-badge">Story</span>
-      </a>
-    </div>
-
-    <!-- 5. Real-Life Scenarios -->
-    <h2 class="section-title">Real-Life Scenarios & Travel</h2>
-    <p class="section-desc">Practical English for travel, airports, flights, and hotels.</p>
-    <div class="exercise-grid">
-      <a href="travel_verbs_practice.html" class="btn-item">
-        <span class="btn-text">Travel Verbs & Vacation Essentials</span>
-        <span class="btn-badge">Travel</span>
-      </a>
-      <a href="attheairport.html" class="btn-item">
-        <span class="btn-text">At the Airport Simulator</span>
-        <span class="btn-badge">Travel</span>
-      </a>
-      <a href="flight-attendant.html" class="btn-item">
-        <span class="btn-text">Flight Attendant Dialogues</span>
-        <span class="btn-badge">Aviation</span>
-      </a>
-      <a href="hotel_exercises.html" class="btn-item">
-        <span class="btn-text">Hotel Check-in & Requests</span>
-        <span class="btn-badge">Hospitality</span>
-      </a>
-    </div>
-
-    <!-- 6. Music & Songs -->
-    <h2 class="section-title">Music & Listening</h2>
-    <p class="section-desc">Train your ear with popular music and fill-in-the-gap lyrics.</p>
-    <div class="exercise-grid">
-      <a href="coldplay_paradise_exercise.html" class="btn-item">
-        <span class="btn-text">Paradise - Coldplay</span>
-        <span class="btn-badge">New</span>
-      </a>
-      <a href="animals_maroon.html" class="btn-item">
-        <div class="btn-content-with-thumb">
-          <img src="marron_5.jpg" alt="Maroon 5" class="item-thumb" onerror="this.style.display='none'">
-          <span class="btn-text">Animals - Maroon 5</span>
-        </div>
-        <span class="btn-badge">Song</span>
-      </a>
-      <a href="CancionSomebodyusedtoknow.html" class="btn-item">
-        <span class="btn-text">Somebody That I Used to Know</span>
-        <span class="btn-badge">Song</span>
-      </a>
-      <a href="lose_control_teddy_swims.html" class="btn-item">
-        <span class="btn-text">Lose Control - Teddy Swims</span>
-        <span class="btn-badge">Song</span>
-      </a>
-      <a href="I_gonna_be.html" class="btn-item">
-        <div class="btn-content-with-thumb">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/The_Proclaimers_by_Gage_%28cropped%29.jpg/640px-The_Proclaimers_by_Gage_%28cropped%29.jpg" alt="The Proclaimers" class="item-thumb" onerror="this.style.display='none'">
-          <span class="btn-text">I'm Gonna Be (500 Miles) - The Proclaimers</span>
-        </div>
-        <span class="btn-badge">Song</span>
-      </a>
-    </div>
-
-    <footer>
-      Merry Mery English © Interactive Educational Resources
-    </footer>
+    </main>
   </div>
 
-  <script>
-    function searchDict(event) {
-      event.preventDefault();
-      const input = document.getElementById('dictWord');
-      const query = input.value.trim();
-      if (query) {
-        const url = 'https://dictionary.cambridge.org/dictionary/english-spanish/' + encodeURIComponent(query);
-        window.open(url, '_blank');
+  <div class="toast" id="toast"></div>
+
+  <!-- ==================== FIREBASE + APP LOGIC ==================== -->
+  <script type="module">
+    /* =====================================================================
+       CONFIGURACIÓN DE FIREBASE (Pegar acá tus claves cuando crees el proyecto)
+       Mientras USE_DEMO_MODE = true, funciona 100% local para que lo pruebes.
+       ===================================================================== */
+    const USE_DEMO_MODE = true;
+
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "tu-proyecto.firebaseapp.com",
+      projectId: "tu-proyecto",
+      storageBucket: "tu-proyecto.appspot.com",
+      messagingSenderId: "000000000000",
+      appId: "1:000000000000:web:abcdef123456"
+    };
+
+    const COACH_EMAIL = "merrymeryenglish@gmail.com"; // Tu mail de Coach
+
+    /* Definición de las 9 habilidades (Grilla simétrica 3x3) */
+    const SKILLS_META = [
+      { id: "grammar",      name: "Grammar",               icon: "📐", color: "#4f46e5", bg: "#eef2ff" },
+      { id: "gerunds",      name: "Gerunds & -ing Forms",  icon: "⚡", color: "#0284c7", bg: "#e0f2fe" },
+      { id: "vocabulary",   name: "Vocabulary",            icon: "🧠", color: "#0d9488", bg: "#f0fdfa" },
+      { id: "collocations", name: "Collocations",          icon: "🔗", color: "#6366f1", bg: "#eef2ff" },
+      { id: "phrasal",      name: "Phrasal Verbs",         icon: "🚀", color: "#7c3aed", bg: "#f5f3ff" },
+      { id: "idioms",       name: "Idioms",                icon: "💬", color: "#db2777", bg: "#fdf2f8" },
+      { id: "listening",    name: "Listening",             icon: "🎧", color: "#2563eb", bg: "#eff6ff" },
+      { id: "reading",      name: "Reading Comprehension", icon: "📖", color: "#059669", bg: "#ecfdf5" },
+      { id: "writing",      name: "Writing",               icon: "✍️", color: "#d97706", bg: "#fffbeb" }
+    ];
+
+    /* Escala CEFR completa A1 -> C2 */
+    const CEFR_LEVELS = [
+      { code: "A1",  label: "Beginner",           minPoints: 0 },
+      { code: "A2",  label: "Elementary",         minPoints: 15 },
+      { code: "A2+", label: "Elementary+",        minPoints: 30 },
+      { code: "B1",  label: "Intermediate",       minPoints: 45 },
+      { code: "B1+", label: "Intermediate+",      minPoints: 60 },
+      { code: "B2",  label: "Upper Intermediate", minPoints: 74 },
+      { code: "C1",  label: "Advanced",           minPoints: 88 },
+      { code: "C2",  label: "Proficiency",        minPoints: 96 }
+    ];
+
+    /* Catálogo de ejercicios ejemplo (conectables a tus HTML en GitHub) */
+    const EXERCISES_CATALOG = [
+      { id: "little-prince",    title: "The Little Prince - Chapter I", url: "little-prince.html", skills: ["reading", "vocabulary"] },
+      { id: "gerund-inf",       title: "Gerunds vs. Infinitives & -ing Forms", url: "gerunds-ing.html", skills: ["gerunds", "grammar"] },
+      { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html", skills: ["collocations", "vocabulary"] },
+      { id: "phrasal-work",     title: "Phrasal Verbs for Work & Meetings", url: "phrasal-verbs.html", skills: ["phrasal", "vocabulary"] },
+      { id: "conditionals",     title: "Conditionals 0, 1 & 2 in Context", url: "conditionals.html", skills: ["grammar"] },
+      { id: "song-lumineers",   title: "Ho Hey - The Lumineers (Sing & Listen)", url: "ho-hey.html", skills: ["listening", "vocabulary"] },
+      { id: "idioms-daily",     title: "Everyday English Idioms", url: "idioms.html", skills: ["idioms", "listening"] },
+      { id: "writing-email",    title: "Writing 1: Professional Follow-up Email", url: "writing-1.html", skills: ["writing"], isWriting: true },
+      { id: "writing-story",    title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html", skills: ["writing"], isWriting: true }
+    ];
+
+    /* Datos de prueba (Demo) */
+    let demoStudentsDB = {
+      "anika": {
+        id: "anika",
+        name: "Anika",
+        email: "anika@ejemplo.com",
+        scores: {
+          "little-prince":    { reading: 88, vocabulary: 84 },
+          "gerund-inf":       { gerunds: 80, grammar: 85 },
+          "collocations-biz": { collocations: 78, vocabulary: 82 },
+          "phrasal-work":     { phrasal: 76, vocabulary: 80 },
+          "conditionals":     { grammar: 82 },
+          "song-lumineers":   { listening: 90, vocabulary: 86 },
+          "idioms-daily":     { idioms: 70, listening: 78 },
+          "writing-email":    { writing: 85, status: "graded", feedback: "Muy buen uso de conectores formales." },
+          "writing-story":    { writing: null, status: "pending_review", feedback: "Enviado vía Gemini - esperando revisión de Maru." }
+        }
+      },
+      "lucas": {
+        id: "lucas",
+        name: "Lucas M.",
+        email: "lucas@ejemplo.com",
+        scores: {
+          "conditionals":     { grammar: 65 },
+          "gerund-inf":       { gerunds: 72, grammar: 68 },
+          "song-lumineers":   { listening: 74, vocabulary: 70 },
+          "writing-email":    { writing: null, status: "pending_review", feedback: "Borrador listo." }
+        }
       }
+    };
+
+    let currentUser = null;
+    let selectedCoachStudentId = "anika";
+    let currentFilter = "all";
+
+    /* ================= CÁLCULO DE PROMEDIOS Y NIVEL CEFR ================= */
+    function calculateStudentMetrics(student) {
+      const skillBuckets = {
+        grammar: [], gerunds: [], vocabulary: [], collocations: [],
+        phrasal: [], idioms: [], listening: [], reading: [], writing: []
+      };
+
+      let pendingWritingCount = 0;
+      let completedExercises = 0;
+
+      Object.entries(student.scores || {}).forEach(([exId, result]) => {
+        if (result.status === "pending_review") {
+          pendingWritingCount++;
+          return;
+        }
+        completedExercises++;
+        Object.keys(skillBuckets).forEach(skillKey => {
+          if (typeof result[skillKey] === "number") {
+            skillBuckets[skillKey].push(result[skillKey]);
+          }
+        });
+      });
+
+      const skillAverages = {};
+      const activeAverages = [];
+
+      SKILLS_META.forEach(s => {
+        const arr = skillBuckets[s.id];
+        if (arr.length > 0) {
+          const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
+          skillAverages[s.id] = { avg, count: arr.length, status: "active" };
+          activeAverages.push(avg);
+        } else if (s.id === "writing" && pendingWritingCount > 0) {
+          skillAverages[s.id] = { avg: null, count: 0, status: "pending" };
+        } else {
+          skillAverages[s.id] = { avg: null, count: 0, status: "empty" };
+        }
+      });
+
+      const globalAvg = activeAverages.length
+        ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
+        : 0;
+
+      // Combinación de promedio global + volumen de práctica para ubicar en A1 -> C2
+      const practiceFactor = Math.min(1, completedExercises / 9);
+      const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
+
+      let currentLevel = CEFR_LEVELS[0];
+      let nextLevel = CEFR_LEVELS[1];
+
+      for (let i = 0; i < CEFR_LEVELS.length; i++) {
+        if (cefrIndexScore >= CEFR_LEVELS[i].minPoints) {
+          currentLevel = CEFR_LEVELS[i];
+          nextLevel = CEFR_LEVELS[i + 1] || null;
+        }
+      }
+
+      return {
+        skillAverages,
+        globalAvg,
+        completedExercises,
+        cefrIndexScore,
+        currentLevel,
+        nextLevel
+      };
     }
 
-    function toggleInstructions() {
-      const content = document.getElementById('instructionsContent');
-      const label = document.getElementById('toggleLabel');
-      if (content.style.display === 'none') {
-        content.style.display = 'block';
-        label.textContent = 'Hide ▲';
-      } else {
-        content.style.display = 'none';
-        label.textContent = 'Show Tips ▾';
-      }
+    /* ================= RENDER STUDENT DASHBOARD ================= */
+    function renderStudentDashboard(student) {
+      const metrics = calculateStudentMetrics(student);
+
+      // Header CEFR
+      document.getElementById("cefr-headline").textContent =
+        `Nivel Actual: ${metrics.currentLevel.code} (${metrics.currentLevel.label})`;
+
+      document.getElementById("cefr-subtext").textContent = metrics.nextLevel
+        ? `¡Excelente avance! Estás en camino hacia el nivel ${metrics.nextLevel.code} (${metrics.nextLevel.label}).`
+        : "¡Alcanzaste el nivel máximo C2 Proficiency!";
+
+      document.getElementById("global-avg-display").textContent = `${metrics.globalAvg}%`;
+      document.getElementById("completed-count-display").textContent =
+        `${metrics.completedExercises} / ${EXERCISES_CATALOG.length}`;
+
+      // Barra de nivel A1 -> C2
+      const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
+      document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
+
+      const milestonesContainer = document.getElementById("cefr-milestones");
+      milestonesContainer.innerHTML = CEFR_LEVELS.map(lvl => {
+        const reached = metrics.cefrIndexScore >= lvl.minPoints;
+        return `
+          <div class="cefr-step ${reached ? "reached" : ""}">
+            <div class="cefr-step-dot"></div>
+            <div class="cefr-step-label">${lvl.code}</div>
+            <span class="cefr-step-desc">${lvl.label}</span>
+          </div>
+        `;
+      }).join("");
+
+      // Grilla de 9 habilidades (3x3)
+      const skillsGrid = document.getElementById("skills-grid");
+      skillsGrid.innerHTML = SKILLS_META.map(skill => {
+        const data = metrics.skillAverages[skill.id];
+        let rightBadge = "";
+        let barWidth = 0;
+
+        if (data.status === "active") {
+          rightBadge = `<div class="skill-score" style="color:${skill.color}">${data.avg}%</div>`;
+          barWidth = data.avg;
+        } else if (data.status === "pending") {
+          rightBadge = `<span class="skill-score pending">En revisión</span>`;
+        } else {
+          rightBadge = `<span class="skill-score empty">Sin datos</span>`;
+        }
+
+        const subLabel = data.status === "pending"
+          ? "Esperando nota de Maru"
+          : `${data.count} ${data.count === 1 ? "actividad" : "actividades"}`;
+
+        return `
+          <div class="skill-card">
+            <div class="skill-top">
+              <div class="skill-name-wrap">
+                <div class="skill-icon" style="background:${skill.bg}; color:${skill.color}">${skill.icon}</div>
+                <div>
+                  <div class="skill-title">${skill.name}</div>
+                  <div class="skill-count">${subLabel}</div>
+                </div>
+              </div>
+              ${rightBadge}
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width:${barWidth}%; background:${skill.color}"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      renderExercisesList(student);
     }
+
+    function renderExercisesList(student) {
+      const listEl = document.getElementById("exercise-list");
+      const filtered = EXERCISES_CATALOG.filter(ex =>
+        currentFilter === "all" || ex.skills.includes(currentFilter)
+      );
+
+      listEl.innerHTML = filtered.map(ex => {
+        const record = student.scores[ex.id];
+        let statusHtml = `<span class="status-pill status-todo">Pendiente</span>`;
+
+        if (record) {
+          if (record.status === "pending_review") {
+            statusHtml = `<span class="status-pill status-review">⏳ En revisión por Maru</span>`;
+          } else {
+            const vals = ex.skills.map(s => record[s]).filter(v => typeof v === "number");
+            const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+            statusHtml = `<span class="status-pill status-done">✓ Completado (${avg}%)</span>`;
+          }
+        }
+
+        const tagsHtml = ex.skills.map(sId => {
+          const meta = SKILLS_META.find(m => m.id === sId);
+          return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
+        }).join("");
+
+        return `
+          <div class="exercise-card">
+            <div>
+              <div class="ex-tags">${tagsHtml}</div>
+              <div class="ex-title">${ex.title}</div>
+            </div>
+            <div class="ex-footer">
+              ${statusHtml}
+              <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    /* ================= RENDER COACH PANEL ================= */
+    function renderCoachPanel() {
+      const listContainer = document.getElementById("coach-student-list");
+      const students = Object.values(demoStudentsDB);
+
+      listContainer.innerHTML = students.map(st => {
+        const m = calculateStudentMetrics(st);
+        const hasPending = Object.values(st.scores).some(r => r.status === "pending_review");
+        return `
+          <div class="student-item ${st.id === selectedCoachStudentId ? "active" : ""}"
+               onclick="selectCoachStudent('${st.id}')">
+            <div>
+              <div style="font-weight:700;">${st.name}</div>
+              <div style="font-size:0.78rem; color:var(--text-muted);">
+                Nivel ${m.currentLevel.code} • Promedio ${m.globalAvg}%
+              </div>
+            </div>
+            ${hasPending ? `<span title="Writing pendiente" style="font-size:1.1rem;">✍️</span>` : ""}
+          </div>
+        `;
+      }).join("");
+
+      const student = demoStudentsDB[selectedCoachStudentId];
+      const metrics = calculateStudentMetrics(student);
+      const detailEl = document.getElementById("coach-student-detail");
+
+      const writingExercises = EXERCISES_CATALOG.filter(e => e.isWriting);
+
+      detailEl.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+          <div>
+            <h3 style="font-size:1.4rem;">${student.name}</h3>
+            <p style="color:var(--text-muted); font-size:0.9rem;">
+              Nivel estimado: <strong>${metrics.currentLevel.code} (${metrics.currentLevel.label})</strong> • Promedio general: <strong>${metrics.globalAvg}%</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:16px;">
+          ${SKILLS_META.map(s => {
+            const d = metrics.skillAverages[s.id];
+            const val = d.status === "active" ? `${d.avg}%` : (d.status === "pending" ? "Pendiente" : "—");
+            return `
+              <div class="skill-card" style="padding:14px;">
+                <div style="font-size:0.82rem; color:var(--text-muted);">${s.icon} ${s.name}</div>
+                <div style="font-family:'Outfit',sans-serif; font-size:1.25rem; font-weight:700; color:${s.color}; margin-top:4px;">
+                  ${val}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+
+        <!-- CARGA MANUAL DE WRITING -->
+        <div class="writing-grade-box">
+          <h4>✍️ Cargar o actualizar nota de Writing</h4>
+          <p style="font-size:0.85rem; color:#78350f;">
+            Seleccioná el ejercicio de Writing que revisaste (luego de que el alumno usó Copy & Open Gemini) y asignale su porcentaje final.
+          </p>
+
+          <form onsubmit="saveWritingGrade(event)">
+            <div class="writing-form-row">
+              <select id="coach-writing-ex" class="form-control" required>
+                ${writingExercises.map(w => `<option value="${w.id}">${w.title}</option>`).join("")}
+              </select>
+              <input type="number" id="coach-writing-score" class="form-control" min="0" max="100" placeholder="Nota %" required />
+              <input type="text" id="coach-writing-note" class="form-control" placeholder="Comentario breve (opcional)" />
+              <button type="submit" class="btn btn-primary" style="width:auto;">Guardar nota</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    /* ================= INTERACCIONES GLOBALES ================= */
+    window.loginAsDemo = function(role) {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("app-shell").style.display = "block";
+
+      if (role === "coach") {
+        currentUser = { name: "Maru", email: COACH_EMAIL, role: "coach" };
+        document.getElementById("user-avatar").textContent = "M";
+        document.getElementById("user-display-name").textContent = "Maru";
+        document.getElementById("user-role-label").textContent = "English Coach";
+        document.getElementById("coach-tab-btn").style.display = "inline-block";
+        renderStudentDashboard(demoStudentsDB["anika"]);
+        renderCoachPanel();
+        switchView("coach-view");
+      } else {
+        currentUser = { name: "Anika", email: "anika@ejemplo.com", role: "student", studentId: "anika" };
+        document.getElementById("user-avatar").textContent = "A";
+        document.getElementById("user-display-name").textContent = "Anika";
+        document.getElementById("user-role-label").textContent = "Student";
+        document.getElementById("coach-tab-btn").style.display = "none";
+        renderStudentDashboard(demoStudentsDB["anika"]);
+        switchView("student-view");
+      }
+    };
+
+    window.logout = function() {
+      currentUser = null;
+      document.getElementById("app-shell").style.display = "none";
+      document.getElementById("login-screen").style.display = "flex";
+    };
+
+    window.switchView = function(viewId) {
+      document.getElementById("student-view").style.display = viewId === "student-view" ? "block" : "none";
+      document.getElementById("coach-view").style.display = viewId === "coach-view" ? "block" : "none";
+      document.querySelectorAll(".nav-tab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.view === viewId);
+      });
+    };
+
+    window.filterExercises = function(skill, btnEl) {
+      currentFilter = skill;
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      btnEl.classList.add("active");
+      const st = demoStudentsDB[currentUser?.studentId || "anika"];
+      renderExercisesList(st);
+    };
+
+    window.selectCoachStudent = function(studentId) {
+      selectedCoachStudentId = studentId;
+      renderCoachPanel();
+    };
+
+    window.saveWritingGrade = function(e) {
+      e.preventDefault();
+      const exId = document.getElementById("coach-writing-ex").value;
+      const score = Number(document.getElementById("coach-writing-score").value);
+      const note = document.getElementById("coach-writing-note").value;
+
+      const student = demoStudentsDB[selectedCoachStudentId];
+      student.scores[exId] = {
+        writing: score,
+        status: "graded",
+        feedback: note || "Corregido por Maru"
+      };
+
+      renderCoachPanel();
+      renderStudentDashboard(student);
+      showToast(`✓ Nota de Writing (${score}%) guardada para ${student.name}`);
+    };
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3200);
+    }
+
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      if (email === COACH_EMAIL) {
+        loginAsDemo("coach");
+      } else {
+        loginAsDemo("student");
+      }
+    });
+
+    document.getElementById("google-login-btn").addEventListener("click", () => {
+      loginAsDemo("student");
+    });
   </script>
 </body>
 </html>
