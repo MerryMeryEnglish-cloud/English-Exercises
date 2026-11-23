@@ -46,6 +46,7 @@
       font-family: 'Outfit', sans-serif;
     }
 
+    /* ================= HEADER ================= */
     .topbar {
       background: var(--card);
       border-bottom: 1px solid var(--border);
@@ -68,18 +69,19 @@
     .logo-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       color: var(--text-main);
     }
 
     .brand-logo-img {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--teal);
       background: #ffffff;
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.16);
     }
 
     .logo-text {
@@ -108,7 +110,6 @@
       font-size: 0.92rem;
       color: var(--text-main);
       cursor: pointer;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -125,6 +126,7 @@
       border-color: var(--primary);
     }
 
+    /* ================= CONTAINER & BANNER ================= */
     .container {
       max-width: 1240px;
       margin: 0 auto;
@@ -171,6 +173,7 @@
       gap: 6px;
     }
 
+    /* ================= FIXED MY PROGRESS BUTTON ================= */
     .floating-progress-btn {
       position: fixed;
       right: 24px;
@@ -191,6 +194,7 @@
       box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.45);
     }
 
+    /* ================= DIVISION & EXERCISES ================= */
     .section-title {
       font-size: 1.3rem;
       font-weight: 700;
@@ -206,7 +210,7 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .filter-chip {
@@ -226,11 +230,27 @@
       border-color: var(--primary);
     }
 
+    .division-group {
+      margin-bottom: 32px;
+    }
+
+    .division-header {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .exercise-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
       gap: 16px;
-      margin-bottom: 40px;
     }
 
     .exercise-card {
@@ -308,7 +328,7 @@
 
     /* ================= PROGRESS SECTION ================= */
     #progress-section {
-      padding-top: 16px;
+      padding-top: 20px;
       border-top: 2px dashed var(--border);
     }
 
@@ -520,7 +540,7 @@
   <header class="topbar" id="top-header">
     <div class="topbar-inner">
       <a href="index.html" class="logo-badge" id="brand-home-link">
-        <img src="logo.png" alt="Merry Mery English" class="brand-logo-img" />
+        <img src="logo.png" alt="Merry Mery English Logo" class="brand-logo-img" />
         <div class="logo-text">Merry Mery <span>English</span></div>
       </a>
 
@@ -542,7 +562,7 @@
 
     <div class="section-title" id="exercises-heading">
       <span>Ejercicios y Módulos</span>
-      <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Acceso directo</span>
+      <span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">Divididos por tema</span>
     </div>
 
     <div class="filter-bar" id="filter-bar">
@@ -558,7 +578,7 @@
       <button type="button" class="filter-chip" data-skill="writing">Writing</button>
     </div>
 
-    <section class="exercise-list" id="exercise-list"></section>
+    <div id="exercises-divisions"></div>
 
     <section id="progress-section">
       <div class="section-title">
@@ -630,21 +650,41 @@
         { code: "C2",  label: "Proficiency",        minPoints: 96 }
       ];
 
-      const EXERCISES_CATALOG = [
-        { id: "learning-english-tips",          title: "Learning English Tips",                     url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
-        { id: "simple-present-do-does",         title: "Simple Present: Do & Does",                 url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
-        { id: "demonstratives",                 title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
-        { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns",  url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
-        { id: "little-prince",                  title: "The Little Prince - Chapter I",             url: "little-prince.html",                      skills: ["reading", "vocabulary"] },
-        { id: "gerund-inf",                     title: "Gerunds vs. Infinitives & -ing Forms",      url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] },
-        { id: "collocations-biz",               title: "Make, Do, Take & Have Collocations",        url: "collocations.html",                       skills: ["collocations", "vocabulary"] },
-        { id: "phrasal-work",                   title: "Phrasal Verbs for Work & Meetings",         url: "phrasal-verbs.html",                       skills: ["phrasal", "vocabulary"] },
-        { id: "conditionals",                   title: "Conditionals 0, 1 & 2 in Context",          url: "conditionals.html",                       skills: ["grammar"] },
-        { id: "song-lumineers",                 title: "Ho Hey - The Lumineers (Sing & Listen)",    url: "ho-hey.html",                             skills: ["listening", "vocabulary"] },
-        { id: "idioms-daily",                   title: "Everyday English Idioms",                   url: "idioms.html",                             skills: ["idioms", "listening"] },
-        { id: "writing-email",                  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html",                          skills: ["writing"] },
-        { id: "writing-story",                  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html",                          skills: ["writing"] }
+      const DIVISIONS_CATALOG = [
+        {
+          id: "foundations",
+          title: "📘 Foundations & Grammar",
+          items: [
+            { id: "learning-english-tips",          title: "Learning English Tips",                     url: "learning_english_tips.html",              skills: ["reading", "vocabulary", "listening"] },
+            { id: "simple-present-do-does",         title: "Simple Present: Do & Does",                 url: "simple_present_do-does.html",             skills: ["grammar", "listening"] },
+            { id: "demonstratives",                 title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html",                     skills: ["grammar", "vocabulary"] },
+            { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns",  url: "possessive_adjectives_subject_pronouns.html", skills: ["grammar", "listening"] },
+            { id: "conditionals",                   title: "Conditionals 0, 1 & 2 in Context",          url: "conditionals.html",                       skills: ["grammar"] },
+            { id: "gerund-inf",                     title: "Gerunds vs. Infinitives & -ing Forms",      url: "gerunds-ing.html",                         skills: ["gerunds", "grammar"] }
+          ]
+        },
+        {
+          id: "reading-vocab",
+          title: "📖 Reading & Vocabulary Builders",
+          items: [
+            { id: "little-prince",    title: "The Little Prince - Chapter I",        url: "little-prince.html",    skills: ["reading", "vocabulary"] },
+            { id: "collocations-biz", title: "Make, Do, Take & Have Collocations", url: "collocations.html",     skills: ["collocations", "vocabulary"] },
+            { id: "phrasal-work",     title: "Phrasal Verbs for Work & Meetings",  url: "phrasal-verbs.html",    skills: ["phrasal", "vocabulary"] },
+            { id: "idioms-daily",     title: "Everyday English Idioms",            url: "idioms.html",           skills: ["idioms", "listening"] }
+          ]
+        },
+        {
+          id: "songs-writing",
+          title: "🎵 Songs & Writing Practice",
+          items: [
+            { id: "song-lumineers", title: "Ho Hey - The Lumineers (Sing & Listen)",    url: "ho-hey.html",    skills: ["listening", "vocabulary"] },
+            { id: "writing-email",  title: "Writing 1: Professional Follow-up Email",   url: "writing-1.html", skills: ["writing"] },
+            { id: "writing-story",  title: "Writing 2: A Memorable Trip (Past Tenses)", url: "writing-2.html", skills: ["writing"] }
+          ]
+        }
       ];
+
+      const ALL_EXERCISES = DIVISIONS_CATALOG.flatMap((d) => d.items);
 
       let currentFilter = "all";
 
@@ -703,7 +743,7 @@
           ? Math.round(activeAverages.reduce((a, b) => a + b, 0) / activeAverages.length)
           : 0;
 
-        const practiceFactor = Math.min(1, completedExercises / EXERCISES_CATALOG.length);
+        const practiceFactor = Math.min(1, completedExercises / ALL_EXERCISES.length);
         const cefrIndexScore = Math.round(globalAvg * (0.55 + 0.45 * practiceFactor));
 
         let currentLevel = CEFR_LEVELS[0];
@@ -726,42 +766,60 @@
         };
       }
 
-      function renderExercisesList() {
-        const listEl = document.getElementById("exercise-list");
-        if (!listEl) return;
+      function renderDivisionsList() {
+        const container = document.getElementById("exercises-divisions");
+        if (!container) return;
 
-        const filtered = EXERCISES_CATALOG.filter(
-          (ex) => currentFilter === "all" || ex.skills.includes(currentFilter)
-        );
+        const html = DIVISIONS_CATALOG.map((div) => {
+          const filteredItems = div.items.filter(
+            (ex) => currentFilter === "all" || ex.skills.includes(currentFilter)
+          );
 
-        listEl.innerHTML = filtered.map((ex) => {
-          const record = scoresDB ? scoresDB[ex.id] : null;
-          let statusHtml = `<span class="status-pill">Disponible</span>`;
+          if (filteredItems.length === 0) return "";
 
-          if (record) {
-            const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
-            const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
-            statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
-          }
+          const cardsHtml = filteredItems.map((ex) => {
+            const record = scoresDB ? scoresDB[ex.id] : null;
+            let statusHtml = `<span class="status-pill">Disponible</span>`;
 
-          const tagsHtml = ex.skills.map((sId) => {
-            const meta = SKILLS_META.find((m) => m.id === sId);
-            return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
+            if (record) {
+              const vals = ex.skills.map((s) => record[s]).filter((v) => typeof v === "number");
+              const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+              statusHtml = `<span class="status-pill status-done">✓ ${avg}%</span>`;
+            }
+
+            const tagsHtml = ex.skills.map((sId) => {
+              const meta = SKILLS_META.find((m) => m.id === sId);
+              return `<span class="ex-tag">${meta ? meta.name : sId}</span>`;
+            }).join("");
+
+            return `
+              <article class="exercise-card">
+                <div>
+                  <div class="ex-tags">${tagsHtml}</div>
+                  <div class="ex-title">${ex.title}</div>
+                </div>
+                <div class="ex-footer">
+                  ${statusHtml}
+                  <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
+                </div>
+              </article>
+            `;
           }).join("");
 
           return `
-            <article class="exercise-card">
-              <div>
-                <div class="ex-tags">${tagsHtml}</div>
-                <div class="ex-title">${ex.title}</div>
+            <section class="division-group">
+              <div class="division-header">
+                <span>${div.title}</span>
+                <span style="font-size:0.82rem; color:var(--text-muted);">${filteredItems.length}</span>
               </div>
-              <div class="ex-footer">
-                ${statusHtml}
-                <a href="${ex.url}" class="btn-open-ex">Abrir actividad →</a>
+              <div class="exercise-list">
+                ${cardsHtml}
               </div>
-            </article>
+            </section>
           `;
         }).join("");
+
+        container.innerHTML = html || `<p style="color:var(--text-muted);">No hay ejercicios para este filtro.</p>`;
       }
 
       function renderProgressView() {
@@ -774,7 +832,7 @@
           : "¡Nivel máximo C2 Proficiency!";
         document.getElementById("global-avg-display").textContent = `${metrics.globalAvg}%`;
         document.getElementById("completed-count-display").textContent =
-          `${metrics.completedExercises} / ${EXERCISES_CATALOG.length}`;
+          `${metrics.completedExercises} / ${ALL_EXERCISES.length}`;
 
         const fillPercent = Math.min(100, Math.max(4, metrics.cefrIndexScore));
         document.getElementById("cefr-fill-bar").style.width = `${fillPercent}%`;
@@ -827,7 +885,7 @@
       function goHome() {
         currentFilter = "all";
         document.querySelectorAll(".filter-chip").forEach((c, idx) => c.classList.toggle("active", idx === 0));
-        renderExercisesList();
+        renderDivisionsList();
         setActiveNav("home");
         window.scrollTo({ top: 0, behavior: "smooth" });
         showToast("🏠 Home • Todos los ejercicios");
@@ -844,7 +902,7 @@
       }
 
       function init() {
-        renderExercisesList();
+        renderDivisionsList();
         renderProgressView();
         setActiveNav("home");
 
@@ -859,7 +917,7 @@
             currentFilter = chip.getAttribute("data-skill") || "all";
             document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
             chip.classList.add("active");
-            renderExercisesList();
+            renderDivisionsList();
           });
         });
       }
