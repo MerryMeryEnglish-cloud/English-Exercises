@@ -679,7 +679,7 @@
       </div>
       <div class="hero-counters">
         <div class="counter-box">
-          <strong id="total-ex-stat">45</strong>
+          <strong id="total-ex-stat">46</strong>
           <span>Exercises</span>
         </div>
         <div class="counter-box">
@@ -701,7 +701,7 @@
               <div class="cat-card-sub">View the complete collection across every skill area</div>
             </div>
           </div>
-          <span class="cat-card-badge" id="badge-all">45 Activities</span>
+          <span class="cat-card-badge" id="badge-all">46 Activities</span>
         </button>
       </div>
 
@@ -715,7 +715,7 @@
               <div class="cat-card-sub">Tenses, pronouns, demonstratives & structures</div>
             </div>
           </div>
-          <span class="cat-card-badge" id="badge-grammar">17</span>
+          <span class="cat-card-badge" id="badge-grammar">18</span>
         </button>
 
         <button type="button" class="cat-card-btn" data-category="vocabulary">
@@ -772,7 +772,7 @@
     <section id="progress-panel">
       <div class="progress-header">
         <h2>My Progress</h2>
-        <div class="progress-summary" id="progress-summary">Completed: 0 / 45</div>
+        <div class="progress-summary" id="progress-summary">Completed: 0 / 46</div>
       </div>
       <div class="skills-list-grid" id="skills-grid"></div>
     </section>
@@ -792,6 +792,7 @@
             { id: "articles-and-nouns", title: "Articles & Nouns", url: "articles_and_nouns.html", tags: ["Grammar", "Vocabulary"] },
             { id: "conditionals", title: "Conditionals 0, 1 & 2 in Context", url: "conditionals.html", tags: ["Grammar"] },
             { id: "demonstratives", title: "Demonstratives (This, That, These, Those)", url: "demonstratives.html", tags: ["Grammar", "Vocabulary"] },
+            { id: "english-practice-a2", title: "English Practice A2", url: "english_practice_A2.html", tags: ["Grammar", "Vocabulary"] },
             { id: "possessive-adjectives-pronouns", title: "Possessive Adjectives & Subject Pronouns", url: "possessive_adjectives_subject_pronouns.html", tags: ["Grammar", "Listening"] },
             { id: "simple-present-do-does", title: "Simple Present: Do & Does", url: "simple_present_do-does.html", tags: ["Grammar", "Listening"] },
             { id: "comparatives-superlatives", title: "Comparatives & Superlatives", url: "comparatives_and_superlatives.html", tags: ["Grammar"] },
@@ -836,7 +837,7 @@
             { id: "learning-english-tips", title: "Learning English Tips", url: "learning_english_tips.html", tags: ["Reading", "Vocabulary", "Listening"] },
             { id: "little-prince-reading-comp", title: "The Little Prince – Reading Comprehension", url: "merry_mery_english_the_little_prince_reading_comprehension.html", tags: ["Reading", "Vocabulary"] },
             { id: "edinburgh-travellers-guide", title: "Edinburgh Traveller's Guide", url: "edinburgh_travellers_guide.html", tags: ["Reading", "Vocabulary"] },
-            { id: "english-practice-a2", title: "English Practice A2", url: "english_practice_a2.html", tags: ["Reading", "Vocabulary"] },
+            { id: "my-home", title: "My Home – Reading & Vocabulary", url: "my_home.html", tags: ["Reading", "Vocabulary"] },
             { id: "must-visit-argentina", title: "Must Visit Argentina", url: "must_visit_argentina.html", tags: ["Reading", "Vocabulary"] },
             { id: "snow-white-and-rose-red", title: "Snow White and Rose Red", url: "snow-white-and-rose-red.html", tags: ["Reading", "Vocabulary"] }
           ]
@@ -861,15 +862,6 @@
           ]
         }
       ];
-
-      const totalCount = CATEGORIES.reduce((sum, c) => sum + c.exercises.length, 0);
-      document.getElementById("total-ex-stat").textContent = String(totalCount);
-      document.getElementById("badge-all").textContent = `${totalCount} Activities`;
-      document.getElementById("progress-summary").textContent = `Completed: 0 / ${totalCount}`;
-      CATEGORIES.forEach((cat) => {
-        const badge = document.getElementById(`badge-${cat.id}`);
-        if (badge) badge.textContent = String(cat.exercises.length);
-      });
 
       const SKILLS = [
         { id: "grammar", label: "Grammar" },
