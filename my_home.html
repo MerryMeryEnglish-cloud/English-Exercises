@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Home – Reading Comprehension & Vocabulary | Merry Mery English</title>
+<style>
+  :root {
+    --primary: #1b5e63;
+    --primary-dark: #124044;
+    --primary-light: #e6f2f3;
+    --accent: #e07a5f;
+    --accent-hover: #c96449;
+    --bg: #f6f8f9;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #cbd5e1;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --error: #dc2626;
+    --error-bg: #fee2e2;
+    --hint-bg: #fef9c3;
+    --hint-border: #eab308;
+    --shadow: 0 4px 14px rgba(0,0,0,0.06);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding-bottom: 60px;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    padding: 16px 24px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    background: #fff;
+  }
+
+  .brand-text h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .brand-text p {
+    font-size: 0.84rem;
+    opacity: 0.9;
+  }
+
+  .header-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .voice-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.14);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .voice-control label {
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .voice-control select {
+    background: #fff;
+    color: var(--text);
+    border: none;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .nav-btn {
+    background: rgba(255,255,255,0.16);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255,255,255,0.28);
+    transform: translateY(-1px);
+  }
+
+  /* TABS BAR */
+  .tabs-wrapper {
+    max-width: 1120px;
+    margin: 22px auto 0;
+    padding: 0 20px;
+  }
+
+  .tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .tab-btn {
+    background: var(--card-bg);
+    color: var(--text-muted);
+    border: 1.5px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .tab-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 3px 10px rgba(27,94,99,0.25);
+  }
+
+  /* MAIN CONTAINER */
+  main {
+    max-width: 1120px;
+    margin: 22px auto 0;
+    padding: 0 20px;
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 26px 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .section-title {
+    font-size: 1.45rem;
+    color: var(--primary-dark);
+    font-weight: 800;
+  }
+
+  .instruction-banner {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+  }
+
+  /* AUDIO PLAYER BAR */
+  .audio-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    background: #f1f5f9;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+  }
+
+  .btn-audio {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+
+  .btn-audio:hover { background: var(--primary-dark); }
+
+  .btn-stop {
+    background: #64748b;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-stop:hover { background: #475569; }
+
+  .audio-status {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-left: 4px;
+  }
+
+  /* READING PASSAGE */
+  .passage-text {
+    font-size: 1.12rem;
+    line-height: 1.9;
+    color: #1e293b;
+  }
+
+  .passage-text p {
+    margin-bottom: 18px;
+    text-align: justify;
+  }
+
+  .vocab-link {
+    background: #e6f2f3;
+    color: var(--primary-dark);
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+    border-bottom: 2px dashed var(--primary);
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-block;
+  }
+
+  .vocab-link:hover {
+    background: var(--primary);
+    color: #fff;
+    border-bottom-style: solid;
+    transform: translateY(-1px);
+  }
+
+  /* VOCABULARY REFERENCE LEGEND */
+  .vocab-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .vocab-group-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+
+  .vocab-group-box h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .mini-chip {
+    background: #fff;
+    border: 1px solid var(--primary);
+    color: var(--primary-dark);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mini-chip:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  /* MULTIPLE CHOICE QUIZ */
+  .quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--primary-dark);
+  }
+
+  .question-card {
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .question-card.solved {
+    border-color: var(--success);
+    background: #f0fdf4;
+  }
+
+  .q-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .q-badge {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 4px 11px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .btn-listen-sm {
+    background: #fff;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-listen-sm:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .q-text {
+    font-size: 1.08rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #0f172a;
+  }
+
+  .options-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .option-btn {
+    text-align: left;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.98rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+
+  .option-btn.correct {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #14532d;
+    font-weight: 700;
+  }
+
+  .option-btn.wrong {
+    background: var(--error-bg);
+    border-color: var(--error);
+    color: #7f1d1d;
+    animation: shake 0.3s;
+  }
+
+  .option-btn:disabled {
+    cursor: default;
+  }
+
+  .opt-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .option-btn.correct .opt-letter {
+    background: var(--success);
+    color: #fff;
+    border-color: var(--success);
+  }
+
+  .option-btn.wrong .opt-letter {
+    background: var(--error);
+    color: #fff;
+    border-color: var(--error);
+  }
+
+  .explanation-box {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #dcfce7;
+    border-left: 4px solid var(--success);
+    border-radius: 6px;
+    font-size: 0.92rem;
+    color: #14532d;
+  }
+
+  .explanation-box.visible {
+    display: block;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  /* WORD SEARCH TAB */
+  .ws-header-panel {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+
+  .ws-controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .ws-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--primary-dark);
+  }
+
+  .btn-hint {
+    background: var(--hint-bg);
+    border: 1.5px solid var(--hint-border);
+    color: #854d0e;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+
+  .btn-hint:hover {
+    background: #fef08a;
+    transform: translateY(-1px);
+  }
+
+  .ws-word-bank {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .ws-cat-card {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 12px 15px;
+  }
+
+  .ws-cat-card h4 {
+    font-size: 0.92rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .ws-words-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .ws-target {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .ws-target:hover {
+    border-color: var(--primary);
+  }
+
+  .ws-target.found {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #15803d;
+    text-decoration: line-through;
+    opacity: 0.85;
+  }
+
+  .ws-board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+
+  .ws-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 36px);
+    grid-template-rows: repeat(16, 36px);
+    gap: 3px;
+    background: #cbd5e1;
+    padding: 6px;
+    border-radius: 12px;
+    user-select: none;
+    touch-action: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .ws-cell {
+    background: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, transform 0.1s;
+    position: relative;
+  }
+
+  .ws-cell:hover {
+    background: #e2e8f0;
+  }
+
+  .ws-cell.selecting {
+    background: #38bdf8;
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .ws-cell.start-selected {
+    background: #0284c7;
+    color: #fff;
+    box-shadow: 0 0 0 2px #bae6fd;
+  }
+
+  .ws-cell.found {
+    background: var(--success);
+    color: #fff;
+  }
+
+  .ws-cell.wrong-flash {
+    background: var(--error) !important;
+    color: #fff !important;
+    animation: shake 0.3s;
+  }
+
+  .ws-cell.hint-pulse {
+    background: #facc15 !important;
+    color: #422006 !important;
+    box-shadow: 0 0 0 3px #fef08a;
+    animation: pulseHint 1.2s infinite;
+  }
+
+  @keyframes pulseHint {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  .ws-feedback-msg {
+    margin-top: 12px;
+    min-height: 24px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+    text-align: center;
+  }
+
+  /* FOOTER NAVIGATION IN TABS */
+  .tab-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1.5px solid #e2e8f0;
+  }
+
+  .btn-reset {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1.5px solid #94a3b8;
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-reset:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .btn-next {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(224,122,95,0.3);
+    transition: all 0.2s;
+  }
+
+  .btn-next:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  /* MODALS */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-backdrop.open {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .modal-box {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    padding: 26px 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.22);
+    position: relative;
+    border: 1px solid #e2e8f0;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: #475569;
+  }
+
+  .modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .vocab-modal-cat {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .vocab-modal-word {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+
+  .vocab-modal-es {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .vocab-modal-def {
+    font-size: 0.98rem;
+    color: #334155;
+    margin-bottom: 12px;
+  }
+
+  .vocab-modal-ex {
+    background: #f8fafc;
+    border-left: 3px solid var(--primary);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-style: italic;
+    font-size: 0.93rem;
+    color: #475569;
+    margin-bottom: 16px;
+  }
+
+  /* CONFETTI CANVAS */
+  #confettiCanvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1200;
+  }
+
+  .congrats-icon {
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .congrats-title {
+    text-align: center;
+    font-size: 1.55rem;
+    color: var(--primary-dark);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .congrats-stats {
+    background: #f0fdf4;
+    border: 1.5px solid var(--success);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    margin: 14px 0 18px;
+    color: #14532d;
+    font-weight: 700;
+  }
+
+  @media (max-width: 680px) {
+    .ws-grid {
+      grid-template-columns: repeat(16, 22px);
+      grid-template-rows: repeat(16, 22px);
+      gap: 2px;
+    }
+    .ws-cell {
+      font-size: 0.72rem;
+    }
+    .card {
+      padding: 18px 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <h1>Merry Mery English</h1>
+        <p>Interactive Learning &bull; Reading &amp; Vocabulary Series</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="voice-control">
+        <label for="voiceSelect">🎙️ Voice:</label>
+        <select id="voiceSelect" aria-label="Select voice accent and gender">
+          <option value="uk-f">British Female</option>
+          <option value="uk-m">British Male</option>
+          <option value="us-f">American Female</option>
+          <option value="us-m">American Male</option>
+        </select>
+      </div>
+      <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="nav-btn">📖 Dictionary</a>
+      <button type="button" class="nav-btn" onclick="openHelpModal()">❓ Help</button>
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrapper">
+  <nav class="tabs-bar" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="tab-reading" onclick="switchTab('tab-reading')">
+      📖 1. Reading &amp; Vocabulary
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-quiz" onclick="switchTab('tab-quiz')">
+      ✅ 2. Comprehension Questions
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-wordsearch" onclick="switchTab('tab-wordsearch')">
+      🔍 3. Vocabulary Word Search
+    </button>
+  </nav>
+</div>
+
+<main>
+  <!-- TAB 1: READING PASSAGE & INTERACTIVE POPUP VOCABULARY -->
+  <section id="tab-reading" class="tab-panel active">
+    <div class="card">
+      <div class="section-header">
+        <h2 class="section-title">My Home</h2>
+        <div class="audio-bar">
+          <button type="button" id="btnPlayPassage" class="btn-audio" onclick="togglePassageAudio()">▶ Listen</button>
+          <button type="button" class="btn-stop" onclick="stopAudio()">■ Stop</button>
+          <span id="passageAudioStatus" class="audio-status">Ready to play</span>
+        </div>
+      </div>
+
+      <div class="instruction-banner">
+        <strong>Interactive Vocabulary &amp; Reading:</strong> Read the passage carefully or listen to the audio. Click on any <span class="vocab-link" style="pointer-events:none;">highlighted word</span> in the text (or in the lists below) to open a pop-up with its meaning, pronunciation, and example sentence.
+      </div>
+
+      <div class="passage-text" id="passageContainer">
+        <p>
+          I live in a two-storey house on a quiet street in the suburbs. From the outside, it looks welcoming: it has a red-tiled <span class="vocab-link" data-word="roof">roof</span>, white <span class="vocab-link" data-word="walls">walls</span> and a wooden <span class="vocab-link" data-word="front door">front door</span> with a small <span class="vocab-link" data-word="porch">porch</span> where we keep a few potted plants. A paved <span class="vocab-link" data-word="driveway">driveway</span> leads to the <span class="vocab-link" data-word="garage">garage</span>, where my father parks his car. At the back, there is a spacious <span class="vocab-link" data-word="garden">garden</span> with a <span class="vocab-link" data-word="lawn">lawn</span>, a vegetable patch and a <span class="vocab-link" data-word="fence">fence</span> that keeps our dog, Max, from escaping. In summer, we often have barbecues on the <span class="vocab-link" data-word="patio">patio</span>, which is my favourite spot in the whole house.
+        </p>
+        <p>
+          When you walk in through the <span class="vocab-link" data-word="front door">front door</span>, you enter a <span class="vocab-link" data-word="hallway">hallway</span> with a <span class="vocab-link" data-word="staircase">staircase</span> leading upstairs. On the right, there is the <span class="vocab-link" data-word="living room">living room</span>, which is bright thanks to the large windows. It has a comfortable sofa, a <span class="vocab-link" data-word="fireplace">fireplace</span> and a bookshelf full of novels. Next to it is the <span class="vocab-link" data-word="kitchen">kitchen</span>, where my mother spends hours cooking. It's fully equipped, with a fridge, an oven and plenty of cupboards. The <span class="vocab-link" data-word="dining room">dining room</span> is connected to the <span class="vocab-link" data-word="kitchen">kitchen</span>, and we gather there every evening to have dinner and chat about our day.
+        </p>
+        <p>
+          Upstairs, there are three <span class="vocab-link" data-word="bedrooms">bedrooms</span> and two <span class="vocab-link" data-word="bathrooms">bathrooms</span>. My bedroom is at the end of the <span class="vocab-link" data-word="corridor">corridor</span>. It's not very big, but it's cosy: I have a single bed, a <span class="vocab-link" data-word="wardrobe">wardrobe</span> and a desk beneath the window, where I study. From there, I can see the treetops and, on clear days, the mountains in the distance. There is also a small <span class="vocab-link" data-word="attic">attic</span> above the <span class="vocab-link" data-word="bedrooms">bedrooms</span>, which we use for storage, and a <span class="vocab-link" data-word="basement">basement</span> downstairs where my brother keeps his drums.
+        </p>
+        <p>
+          Although it isn't a luxurious house, it is full of memories. For me, home is not just a building; it's the place where I feel safe, relaxed and truly myself.
+        </p>
+      </div>
+
+      <div class="vocab-groups">
+        <div class="vocab-group-box">
+          <h4>🏡 Outside Vocabulary (Click to inspect)</h4>
+          <div class="chip-list" id="outsideChips"></div>
+        </div>
+        <div class="vocab-group-box">
+          <h4>🛋️ Inside Vocabulary (Click to inspect)</h4>
+          <div class="chip-list" id="insideChips"></div>
+        </div>
+      </div>
+
+      <div class="tab-footer-actions" style="justify-content: flex-end;">
+        <button type="button" class="btn-next" onclick="switchTab('tab-quiz')">Next: Comprehension Questions ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: MULTIPLE CHOICE COMPREHENSION QUESTIONS -->
+  <section id="tab-quiz" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2 class="section-title">Comprehension Questions: "My Home"</h2>
+      </div>
+
+      <div class="instruction-banner">
+        <strong>Instructions:</strong> Choose the best answer for each question based on the reading passage. Your choice is checked automatically.
+      </div>
+
+      <div class="quiz-progress">
+        <span id="quizScoreText">Answered: 0 / 5</span>
+        <span id="quizMistakesText">Mistakes: 0</span>
+      </div>
+
+      <div id="quizContainer"></div>
+
+      <div class="tab-footer-actions">
+        <button type="button" class="btn-reset" onclick="resetQuiz(true)">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" onclick="switchTab('tab-wordsearch')">Next Exercise: Vocabulary Word Search ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: VOCABULARY WORD SEARCH -->
+  <section id="tab-wordsearch" class="tab-panel">
+    <div class="card">
+      <div class="section-header">
+        <h2 class="section-title">Vocabulary Word Search: Parts of a House</h2>
+      </div>
+
+      <div class="instruction-banner">
+        <strong>How to Play (Advanced Grid — Horizontal, Vertical &amp; Diagonal, Forward &amp; Backward):</strong><br>
+        Find all <strong>22 house vocabulary terms</strong> hidden in the 16&times;16 letter grid (note: multi-word items appear without spaces, e.g. <em>FRONTDOOR</em>, <em>LIVINGROOM</em>).<br>
+        &bull; <strong>Drag mode:</strong> Hold down the left mouse button on the first letter and drag across to the last letter.<br>
+        &bull; <strong>Click mode:</strong> Click the first letter of a word, then click its last letter.
+      </div>
+
+      <div class="ws-header-panel">
+        <div class="ws-controls-row">
+          <div class="ws-stats">
+            <span id="wsFoundCount">Found: 0 / 22</span>
+            <span id="wsMistakesCount">Mistakes: 0</span>
+          </div>
+          <button type="button" class="btn-hint" onclick="giveWordSearchHint()">💡 Hint (Highlight First Letter)</button>
+        </div>
+
+        <div class="ws-word-bank">
+          <div class="ws-cat-card">
+            <h4>🏡 Outside (10 words)</h4>
+            <div class="ws-words-grid" id="wsOutsideList"></div>
+          </div>
+          <div class="ws-cat-card">
+            <h4>🛋️ Inside (12 words)</h4>
+            <div class="ws-words-grid" id="wsInsideList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ws-board-container">
+        <div class="ws-grid" id="wsGrid" role="grid" aria-label="Word Search Puzzle Grid"></div>
+        <div class="ws-feedback-msg" id="wsFeedback">Select a word by dragging or clicking its first and last letters.</div>
+      </div>
+
+      <div class="tab-footer-actions">
+        <button type="button" class="btn-reset" onclick="initWordSearch()">🔄 Reset &amp; Shuffle</button>
+        <button type="button" class="btn-next" onclick="switchTab('tab-reading')">➔ Back to Reading Passage</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- VOCABULARY POPUP MODAL -->
+<div class="modal-backdrop" id="vocabModal" onclick="closeModalOnBackdrop(event, 'vocabModal')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="vmWord">
+    <button type="button" class="modal-close" onclick="closeModal('vocabModal')" aria-label="Close">&times;</button>
+    <span class="vocab-modal-cat" id="vmCategory">Outside</span>
+    <div class="vocab-modal-word" id="vmWord">roof</div>
+    <div class="vocab-modal-es" id="vmSpanish">techo / tejado</div>
+    <p class="vocab-modal-def" id="vmDefinition">The structure that covers the top of a building.</p>
+    <div class="vocab-modal-ex" id="vmExample">"The house has a bright red-tiled roof."</div>
+    <button type="button" class="btn-audio" onclick="speakCurrentVocab()">🔊 Listen Word &amp; Example</button>
+  </div>
+</div>
+
+<!-- HELP MODAL -->
+<div class="modal-backdrop" id="helpModal" onclick="closeModalOnBackdrop(event, 'helpModal')">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" onclick="closeModal('helpModal')" aria-label="Close">&times;</button>
+    <h3 style="color:var(--primary-dark); margin-bottom:12px; font-size:1.35rem;">❓ How to Use This Activity</h3>
+    <ul style="padding-left:20px; color:#334155; display:grid; gap:10px; font-size:0.95rem;">
+      <li><strong>Voice Selector:</strong> Choose between British or American English (Female or Male) in the top bar for all audio playback.</li>
+      <li><strong>Interactive Vocabulary (Tab 1):</strong> Click any highlighted word in the reading passage (or in the word lists) to inspect its Spanish translation, English definition, example sentence, and audio pronunciation.</li>
+      <li><strong>Comprehension Questions (Tab 2):</strong> Answer the 5 multiple-choice questions with instant verification and explanations.</li>
+      <li><strong>Word Search Controls (Tab 3):</strong> Words run horizontally, vertically, and diagonally (both forward and backward). Click the first and last letters, or hold the left mouse button and drag across the word. Use <strong>💡 Hint</strong> to highlight the starting letter of an unfound word.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONGRATULATIONS MODAL -->
+<div class="modal-backdrop" id="congratsModal" onclick="closeModalOnBackdrop(event, 'congratsModal')">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" onclick="closeModal('congratsModal')" aria-label="Close">&times;</button>
+    <div class="congrats-icon">🎉</div>
+    <h3 class="congrats-title" id="congratsTitle">Excellent Work!</h3>
+    <p style="text-align:center; color:#475569; font-size:0.98rem;" id="congratsSubtitle">You have completed this section.</p>
+    <div class="congrats-stats" id="congratsStats"></div>
+    <div style="text-align:center;">
+      <button type="button" class="btn-audio" onclick="closeModal('congratsModal')">Continue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== VOCABULARY DATA ====================
+const VOCAB_DATA = {
+  "roof": {
+    category: "Outside",
+    es: "techo / tejado",
+    def: "The outer covering on top of a house or building that protects it from rain, wind, and sun.",
+    ex: "It has a red-tiled roof and white walls."
+  },
+  "walls": {
+    category: "Outside",
+    es: "paredes / muros",
+    def: "Vertical structures made of brick, stone, or wood that enclose or divide a building.",
+    ex: "The exterior walls of the house are painted white."
+  },
+  "front door": {
+    category: "Outside",
+    es: "puerta principal / puerta de entrada",
+    def: "The main entrance door at the front of a house.",
+    ex: "When you walk in through the front door, you enter a hallway."
+  },
+  "porch": {
+    category: "Outside",
+    es: "porche / galería de entrada",
+    def: "A covered shelter projecting in front of the entrance of a house.",
+    ex: "We keep a few potted plants on the small porch."
+  },
+  "driveway": {
+    category: "Outside",
+    es: "entrada para el auto / camino de acceso",
+    def: "A short private road leading from the street to a house or garage.",
+    ex: "A paved driveway leads directly to the garage."
+  },
+  "garage": {
+    category: "Outside",
+    es: "garaje / cochera",
+    def: "A building or indoor space attached to a house where a car is kept.",
+    ex: "My father parks his car inside the garage every night."
+  },
+  "garden": {
+    category: "Outside",
+    es: "jardín / patio trasero",
+    def: "A piece of ground adjoining a house where grass, flowers, or vegetables are grown.",
+    ex: "At the back, there is a spacious garden with a vegetable patch."
+  },
+  "lawn": {
+    category: "Outside",
+    es: "césped / pasto cortado",
+    def: "An area of short, neatly mowed grass in a garden or yard.",
+    ex: "Our dog loves running across the green lawn."
+  },
+  "fence": {
+    category: "Outside",
+    es: "cerca / valla / alambrado",
+    def: "A barrier made of wood or wire enclosing an area of ground to mark a boundary or keep pets safe.",
+    ex: "The wooden fence keeps our dog, Max, from escaping."
+  },
+  "patio": {
+    category: "Outside",
+    es: "patio pavimentado / terraza",
+    def: "A paved outdoor area adjoining a house, used for dining or relaxing.",
+    ex: "In summer, we often have barbecues on the patio."
+  },
+  "hallway": {
+    category: "Inside",
+    es: "recibidor / vestíbulo / pasillo de entrada",
+    def: "An entrance passage inside the front door from which other rooms lead.",
+    ex: "You enter a bright hallway with a staircase leading upstairs."
+  },
+  "staircase": {
+    category: "Inside",
+    es: "escalera",
+    def: "A set of steps inside a building leading from one floor to another.",
+    ex: "The wooden staircase connects the ground floor to the bedrooms upstairs."
+  },
+  "living room": {
+    category: "Inside",
+    es: "sala de estar / living",
+    def: "A room in a house for general relaxation, reading, and entertaining guests.",
+    ex: "The living room has a comfortable sofa and a bookshelf full of novels."
+  },
+  "fireplace": {
+    category: "Inside",
+    es: "chimenea / hogar a leña",
+    def: "A framed opening at the base of a chimney where a fire is lit to warm a room.",
+    ex: "In winter, we light a fire in the living room fireplace."
+  },
+  "kitchen": {
+    category: "Inside",
+    es: "cocina",
+    def: "A room equipped for preparing and cooking food.",
+    ex: "The kitchen is fully equipped with a fridge, an oven, and plenty of cupboards."
+  },
+  "dining room": {
+    category: "Inside",
+    es: "comedor",
+    def: "A room in a house where meals are eaten.",
+    ex: "We gather in the dining room every evening to have dinner."
+  },
+  "bedrooms": {
+    category: "Inside",
+    es: "dormitorios / habitaciones",
+    def: "Rooms furnished with beds and used primarily for sleeping.",
+    ex: "Upstairs, there are three bedrooms and two bathrooms."
+  },
+  "bathrooms": {
+    category: "Inside",
+    es: "baños",
+    def: "Rooms containing a bath or shower, a washbasin, and a toilet.",
+    ex: "The house has two modern bathrooms on the upper floor."
+  },
+  "corridor": {
+    category: "Inside",
+    es: "pasillo",
+    def: "A long passage in a building into which rooms open.",
+    ex: "My bedroom is right at the end of the upstairs corridor."
+  },
+  "wardrobe": {
+    category: "Inside",
+    es: "armario / ropero / placard",
+    def: "A tall cupboard or cabinet in which clothes may be hung or stored.",
+    ex: "I keep all my jackets and shirts inside my wardrobe."
+  },
+  "attic": {
+    category: "Inside",
+    es: "ático / desván / altillo",
+    def: "A space or room directly under the roof of a house, often used for storage.",
+    ex: "There is a small attic above the bedrooms where we store old boxes."
+  },
+  "basement": {
+    category: "Inside",
+    es: "sótano",
+    def: "The floor of a building located partly or entirely below ground level.",
+    ex: "My brother practises his drums down in the basement."
+  }
+};
+
+const OUTSIDE_WORDS = ["roof", "walls", "front door", "porch", "driveway", "garage", "garden", "lawn", "fence", "patio"];
+const INSIDE_WORDS = ["hallway", "staircase", "living room", "fireplace", "kitchen", "dining room", "bedrooms", "bathrooms", "corridor", "wardrobe", "attic", "basement"];
+
+// ==================== WEB AUDIO SOUND EFFECTS ====================
+let audioCtx = null;
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) audioCtx = new AudioContextClass();
+  }
+  return audioCtx;
+}
+
+function playSound(type) {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+    if (type === 'success') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.09);
+      osc.frequency.setValueAtTime(783.99, now + 0.18);
+      gain.gain.setValueAtTime(0.16, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
+      osc.start(now);
+      osc.stop(now + 0.36);
+    } else if (type === 'error') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(190, now);
+      osc.frequency.linearRampToValueAtTime(140, now + 0.22);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } else if (type === 'hint') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.setValueAtTime(554.37, now + 0.1);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    }
+  } catch (e) {}
+}
+
+// ==================== SPEECH SYNTHESIS ====================
+let availableVoices = [];
+function loadVoices() {
+  if ('speechSynthesis' in window) {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+}
+loadVoices();
+if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function getSelectedVoiceConfig() {
+  const val = document.getElementById('voiceSelect').value;
+  const isUK = val.startsWith('uk');
+  const isFemale = val.endsWith('f');
+  const langPrefix = isUK ? 'en-GB' : 'en-US';
+
+  const langVoices = availableVoices.filter(v => v.lang.replace('_', '-').toLowerCase().startsWith(langPrefix.toLowerCase()));
+  const pool = langVoices.length ? langVoices : availableVoices.filter(v => v.lang.startsWith('en'));
+
+  const femaleHints = ['female', 'hazel', 'susan', 'libby', 'sonia', 'aria', 'jenny', 'samantha', 'victoria', 'karen', 'zira', 'google uk english female', 'google us english'];
+  const maleHints = ['male', 'george', 'ryan', 'daniel', 'arthur', 'guy', 'david', 'mark', 'alex', 'google uk english male'];
+
+  let chosen = null;
+  if (isFemale) {
+    chosen = pool.find(v => femaleHints.some(h => v.name.toLowerCase().includes(h)));
+  } else {
+    chosen = pool.find(v => maleHints.some(h => v.name.toLowerCase().includes(h)));
+  }
+  if (!chosen && pool.length) chosen = pool[0];
+
+  return {
+    voice: chosen,
+    lang: langPrefix,
+    pitch: isFemale ? 1.08 : 0.92,
+    rate: 0.94
+  };
+}
+
+function speakText(text, onEndCallback) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  const cfg = getSelectedVoiceConfig();
+  if (cfg.voice) utter.voice = cfg.voice;
+  utter.lang = cfg.lang;
+  utter.pitch = cfg.pitch;
+  utter.rate = cfg.rate;
+  if (onEndCallback) {
+    utter.onend = onEndCallback;
+    utter.onerror = onEndCallback;
+  }
+  window.speechSynthesis.speak(utter);
+}
+
+let passagePlaying = false;
+let passagePaused = false;
+
+function togglePassageAudio() {
+  const btn = document.getElementById('btnPlayPassage');
+  const status = document.getElementById('passageAudioStatus');
+
+  if (!passagePlaying) {
+    const rawText = document.getElementById('passageContainer').innerText;
+    passagePlaying = true;
+    passagePaused = false;
+    btn.textContent = '⏸ Pause';
+    status.textContent = 'Reading passage aloud...';
+    speakText(rawText, () => {
+      passagePlaying = false;
+      passagePaused = false;
+      btn.textContent = '▶ Listen';
+      status.textContent = 'Ready to play';
+    });
+  } else if (!passagePaused) {
+    window.speechSynthesis.pause();
+    passagePaused = true;
+    btn.textContent = '▶ Resume';
+    status.textContent = 'Paused';
+  } else {
+    window.speechSynthesis.resume();
+    passagePaused = false;
+    btn.textContent = '⏸ Pause';
+    status.textContent = 'Reading passage aloud...';
+  }
+}
+
+function stopAudio() {
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  passagePlaying = false;
+  passagePaused = false;
+  document.getElementById('btnPlayPassage').textContent = '▶ Listen';
+  document.getElementById('passageAudioStatus').textContent = 'Ready to play';
+}
+
+// ==================== TABS ====================
+function switchTab(tabId) {
+  stopAudio();
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabId);
+  });
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.id === tabId);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== VOCABULARY POPUP ====================
+let currentVocabWord = '';
+
+function openVocabModal(wordKey) {
+  const data = VOCAB_DATA[wordKey.toLowerCase()];
+  if (!data) return;
+  currentVocabWord = wordKey;
+  document.getElementById('vmCategory').textContent = data.category;
+  document.getElementById('vmWord').textContent = wordKey;
+  document.getElementById('vmSpanish').textContent = data.es;
+  document.getElementById('vmDefinition').textContent = data.def;
+  document.getElementById('vmExample').textContent = '"' + data.ex + '"';
+  document.getElementById('vocabModal').classList.add('open');
+}
+
+function speakCurrentVocab() {
+  const data = VOCAB_DATA[currentVocabWord.toLowerCase()];
+  if (!data) return;
+  speakText(currentVocabWord + '. ' + data.ex);
+}
+
+function openHelpModal() {
+  document.getElementById('helpModal').classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function closeModalOnBackdrop(e, id) {
+  if (e.target.id === id) closeModal(id);
+}
+
+function initVocabBindings() {
+  document.querySelectorAll('.vocab-link').forEach(el => {
+    el.addEventListener('click', () => openVocabModal(el.dataset.word));
+  });
+
+  const outContainer = document.getElementById('outsideChips');
+  outContainer.innerHTML = '';
+  OUTSIDE_WORDS.forEach(w => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'mini-chip';
+    chip.textContent = w;
+    chip.onclick = () => openVocabModal(w);
+    outContainer.appendChild(chip);
+  });
+
+  const inContainer = document.getElementById('insideChips');
+  inContainer.innerHTML = '';
+  INSIDE_WORDS.forEach(w => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'mini-chip';
+    chip.textContent = w;
+    chip.onclick = () => openVocabModal(w);
+    inContainer.appendChild(chip);
+  });
+}
+
+// ==================== QUIZ DATA & LOGIC ====================
+const BASE_QUESTIONS = [
+  {
+    id: 1,
+    question: "What can we infer about the writer's family from the text?",
+    options: [
+      "They rarely spend time together at home.",
+      "They value sharing time and talking together.",
+      "They prefer eating outside rather than inside.",
+      "They only cook on special occasions."
+    ],
+    correctIndex: 1,
+    explanation: "The family gathers every evening to have dinner and chat about their day. Although not stated directly, we can infer they value sharing time together."
+  },
+  {
+    id: 2,
+    question: "A visitor enters through the front door and wants to reach the dining room. Which route makes the most sense according to the text?",
+    options: [
+      "Hallway → staircase → kitchen → dining room",
+      "Hallway → living room → kitchen → dining room",
+      "Hallway → garage → patio → dining room",
+      "Hallway → basement → kitchen → dining room"
+    ],
+    correctIndex: 1,
+    explanation: "Walking through the front door leads to the hallway; on the right is the living room, next to it is the kitchen, and the dining room is connected to the kitchen."
+  },
+  {
+    id: 3,
+    question: "Why is the writer able to see the mountains from the bedroom?",
+    options: [
+      "Because the house is built on top of a hill.",
+      "Because the desk is placed in front of a large window.",
+      "Because the bedroom is upstairs and the weather is clear.",
+      "Because the attic is directly above the garden."
+    ],
+    correctIndex: 2,
+    explanation: "Two details in paragraph 3 explain this: the bedroom is upstairs (allowing a view over the treetops), and the mountains are visible 'on clear days'."
+  },
+  {
+    id: 4,
+    question: "Why does the last paragraph begin with 'Although'?",
+    options: [
+      "To compare the writer's house with a luxurious one.",
+      "To introduce a contrast between the house's simplicity and its emotional value.",
+      "To explain why the house is small.",
+      "To suggest that the writer would like to move."
+    ],
+    correctIndex: 1,
+    explanation: "'Although' introduces a contrast between the house not being luxurious ('isn't a luxurious house') and its rich emotional meaning ('full of memories')."
+  },
+  {
+    id: 5,
+    question: "Which two parts of the house are used for purposes other than everyday family life?",
+    options: [
+      "The attic and the basement",
+      "The porch and the hallway",
+      "The dining room and the kitchen",
+      "The garage and the living room"
+    ],
+    correctIndex: 0,
+    explanation: "The attic is used for storage and the basement is where the brother keeps his drums, whereas the garage is used daily for the father's car."
+  }
+];
+
+let quizQuestions = [];
+let quizSolvedCount = 0;
+let quizMistakes = 0;
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function resetQuiz(shouldShuffle = false) {
+  quizSolvedCount = 0;
+  quizMistakes = 0;
+  updateQuizProgress();
+
+  const source = shouldShuffle ? shuffleArray(BASE_QUESTIONS) : BASE_QUESTIONS;
+  quizQuestions = source.map(q => {
+    const indexedOpts = q.options.map((text, idx) => ({
+      text,
+      isCorrect: idx === q.correctIndex
+    }));
+    return {
+      ...q,
+      shuffledOptions: shouldShuffle ? shuffleArray(indexedOpts) : indexedOpts,
+      solved: false
+    };
+  });
+
+  renderQuiz();
+}
+
+function updateQuizProgress() {
+  document.getElementById('quizScoreText').textContent = `Answered: ${quizSolvedCount} / ${BASE_QUESTIONS.length}`;
+  document.getElementById('quizMistakesText').textContent = `Mistakes: ${quizMistakes}`;
+}
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  const letters = ['a', 'b', 'c', 'd'];
+
+  quizQuestions.forEach((q, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `q-card-${qIdx}`;
+
+    const top = document.createElement('div');
+    top.className = 'q-top';
+
+    const badge = document.createElement('span');
+    badge.className = 'q-badge';
+    badge.textContent = `Question ${qIdx + 1} of ${quizQuestions.length}`;
+
+    const listenBtn = document.createElement('button');
+    listenBtn.type = 'button';
+    listenBtn.className = 'btn-listen-sm';
+    listenBtn.textContent = '🔊 Listen';
+    listenBtn.onclick = () => speakText(q.question);
+
+    top.appendChild(badge);
+    top.appendChild(listenBtn);
+
+    const qText = document.createElement('div');
+    qText.className = 'q-text';
+    qText.textContent = q.question;
+
+    const optsList = document.createElement('div');
+    optsList.className = 'options-list';
+
+    q.shuffledOptions.forEach((opt, optIdx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'option-btn';
+      btn.innerHTML = `<span class="opt-letter">${letters[optIdx]}</span><span>${opt.text}</span>`;
+      btn.onclick = () => handleOptionClick(qIdx, optIdx, btn);
+      optsList.appendChild(btn);
+    });
+
+    const expBox = document.createElement('div');
+    expBox.className = 'explanation-box';
+    expBox.id = `q-exp-${qIdx}`;
+    expBox.innerHTML = `<strong>✓ Correct!</strong> ${q.explanation}`;
+
+    card.appendChild(top);
+    card.appendChild(qText);
+    card.appendChild(optsList);
+    card.appendChild(expBox);
+    container.appendChild(card);
+  });
+}
+
+function handleOptionClick(qIdx, optIdx, btnEl) {
+  const q = quizQuestions[qIdx];
+  if (q.solved) return;
+
+  const chosen = q.shuffledOptions[optIdx];
+  if (chosen.isCorrect) {
+    q.solved = true;
+    quizSolvedCount++;
+    btnEl.classList.add('correct');
+    playSound('success');
+
+    const card = document.getElementById(`q-card-${qIdx}`);
+    card.classList.add('solved');
+    card.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+    document.getElementById(`q-exp-${qIdx}`).classList.add('visible');
+
+    updateQuizProgress();
+
+    if (quizSolvedCount === quizQuestions.length) {
+      const totalAttempts = quizSolvedCount + quizMistakes;
+      const accuracy = Math.round((quizSolvedCount / totalAttempts) * 100);
+      setTimeout(() => {
+        showCongratsModal(
+          "Comprehension Quiz Completed!",
+          "You answered all 5 questions about 'My Home'.",
+          accuracy,
+          quizMistakes
+        );
+      }, 450);
+    }
+  } else {
+    if (!btnEl.classList.contains('wrong')) {
+      quizMistakes++;
+      updateQuizProgress();
+    }
+    btnEl.classList.add('wrong');
+    btnEl.disabled = true;
+    playSound('error');
+  }
+}
+
+// ==================== WORD SEARCH ENGINE (16x16 ADVANCED) ====================
+const GRID_SIZE = 16;
+const ALL_WS_WORDS = [...OUTSIDE_WORDS, ...INSIDE_WORDS].map(label => ({
+  label,
+  clean: label.replace(/\s+/g, '').toUpperCase(),
+  category: OUTSIDE_WORDS.includes(label) ? 'outside' : 'inside'
+}));
+
+const DIRECTIONS = [
+  [0, 1],   // right
+  [0, -1],  // left
+  [1, 0],   // down
+  [-1, 0],  // up
+  [1, 1],   // down-right
+  [-1, -1], // up-left
+  [1, -1],  // down-left
+  [-1, 1]   // up-right
+];
+
+let wsGridData = [];
+let wsPlacements = [];
+let wsMistakes = 0;
+let wsFoundCount = 0;
+
+let isDragging = false;
+let dragStartCell = null;
+let clickStartCell = null;
+let currentPreviewCells = [];
+
+function generateWordSearchBoard() {
+  const sortedWords = [...ALL_WS_WORDS].sort((a, b) => b.clean.length - a.clean.length);
+
+  for (let boardAttempt = 0; boardAttempt < 80; boardAttempt++) {
+    const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(''));
+    const placements = [];
+    let allPlaced = true;
+
+    for (const item of sortedWords) {
+      const word = item.clean;
+      let placed = false;
+      const dirs = shuffleArray(DIRECTIONS);
+
+      const starts = [];
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          starts.push([r, c]);
+        }
+      }
+      const shuffledStarts = shuffleArray(starts);
+
+      for (const [dr, dc] of dirs) {
+        if (placed) break;
+        for (const [sr, sc] of shuffledStarts) {
+          const er = sr + dr * (word.length - 1);
+          const ec = sc + dc * (word.length - 1);
+          if (er < 0 || er >= GRID_SIZE || ec < 0 || ec >= GRID_SIZE) continue;
+
+          let fits = true;
+          const coords = [];
+          for (let i = 0; i < word.length; i++) {
+            const nr = sr + dr * i;
+            const nc = sc + dc * i;
+            const existing = grid[nr][nc];
+            if (existing !== '' && existing !== word[i]) {
+              fits = false;
+              break;
+            }
+            coords.push({ r: nr, c: nc });
+          }
+
+          if (fits) {
+            coords.forEach((pos, idx) => {
+              grid[pos.r][pos.c] = word[idx];
+            });
+            placements.push({
+              label: item.label,
+              clean: word,
+              category: item.category,
+              coords,
+              found: false
+            });
+            placed = true;
+            break;
+          }
+        }
+      }
+
+      if (!placed) {
+        allPlaced = false;
+        break;
+      }
+    }
+
+    if (allPlaced) {
+      const decoyPool = "EEEEEEEEEEEEAAAAAAAARRRRRRIIIIIIOOOOOOTTTTTTNNNNNNSSSSSSLLLLCCCUUUDDDPPPMMMHHHGGBBFFYYWKVXZQ";
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          if (grid[r][c] === '') {
+            grid[r][c] = decoyPool[Math.floor(Math.random() * decoyPool.length)];
+          }
+        }
+      }
+      return { grid, placements };
+    }
+  }
+  return null;
+}
+
+function initWordSearch() {
+  const result = generateWordSearchBoard();
+  if (!result) return;
+
+  wsGridData = result.grid;
+  wsPlacements = result.placements;
+  wsMistakes = 0;
+  wsFoundCount = 0;
+  isDragging = false;
+  dragStartCell = null;
+  clickStartCell = null;
+  currentPreviewCells = [];
+
+  updateWsStats();
+  renderWsWordLists();
+  renderWsGrid();
+  document.getElementById('wsFeedback').textContent = "Select a word by dragging or clicking its first and last letters.";
+}
+
+function updateWsStats() {
+  document.getElementById('wsFoundCount').textContent = `Found: ${wsFoundCount} / ${ALL_WS_WORDS.length}`;
+  document.getElementById('wsMistakesCount').textContent = `Mistakes: ${wsMistakes}`;
+}
+
+function renderWsWordLists() {
+  const outEl = document.getElementById('wsOutsideList');
+  const inEl = document.getElementById('wsInsideList');
+  outEl.innerHTML = '';
+  inEl.innerHTML = '';
+
+  ALL_WS_WORDS.forEach(item => {
+    const placement = wsPlacements.find(p => p.clean === item.clean);
+    const tag = document.createElement('span');
+    tag.className = 'ws-target' + (placement && placement.found ? ' found' : '');
+    tag.id = `ws-tag-${item.clean}`;
+    tag.textContent = item.label;
+    tag.title = "Click to view definition";
+    tag.onclick = () => openVocabModal(item.label);
+
+    if (item.category === 'outside') outEl.appendChild(tag);
+    else inEl.appendChild(tag);
+  });
+}
+
+function renderWsGrid() {
+  const gridEl = document.getElementById('wsGrid');
+  gridEl.innerHTML = '';
+
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'ws-cell';
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+      cell.textContent = wsGridData[r][c];
+
+      cell.addEventListener('mousedown', (e) => handleCellMouseDown(e, r, c));
+      cell.addEventListener('mouseenter', () => handleCellMouseEnter(r, c));
+      cell.addEventListener('mouseup', () => handleCellMouseUp(r, c));
+
+      gridEl.appendChild(cell);
+    }
+  }
+}
+
+document.addEventListener('mouseup', () => {
+  if (isDragging) {
+    isDragging = false;
+    clearPreviewSelection();
+    dragStartCell = null;
+  }
+});
+
+function getCellEl(r, c) {
+  return document.querySelector(`.ws-cell[data-r="${r}"][data-c="${c}"]`);
+}
+
+function getLineCells(r1, c1, r2, c2) {
+  const dr = r2 - r1;
+  const dc = c2 - c1;
+  const absR = Math.abs(dr);
+  const absC = Math.abs(dc);
+
+  if (dr !== 0 && dc !== 0 && absR !== absC) return null;
+
+  const steps = Math.max(absR, absC);
+  const stepR = steps === 0 ? 0 : dr / steps;
+  const stepC = steps === 0 ? 0 : dc / steps;
+
+  const line = [];
+  for (let i = 0; i <= steps; i++) {
+    line.push({ r: r1 + stepR * i, c: c1 + stepC * i });
+  }
+  return line;
+}
+
+function clearPreviewSelection() {
+  currentPreviewCells.forEach(pos => {
+    const el = getCellEl(pos.r, pos.c);
+    if (el) el.classList.remove('selecting');
+  });
+  currentPreviewCells = [];
+}
+
+function clearClickStartHighlight() {
+  if (clickStartCell) {
+    const el = getCellEl(clickStartCell.r, clickStartCell.c);
+    if (el) el.classList.remove('start-selected');
+    clickStartCell = null;
+  }
+}
+
+function handleCellMouseDown(e, r, c) {
+  if (e.button !== 0) return;
+  e.preventDefault();
+  isDragging = true;
+  dragStartCell = { r, c };
+  clearPreviewSelection();
+  const el = getCellEl(r, c);
+  if (el) el.classList.add('selecting');
+  currentPreviewCells = [{ r, c }];
+}
+
+function handleCellMouseEnter(r, c) {
+  if (!isDragging || !dragStartCell) return;
+  clearPreviewSelection();
+  const line = getLineCells(dragStartCell.r, dragStartCell.c, r, c);
+  if (line) {
+    currentPreviewCells = line;
+    line.forEach(pos => {
+      const el = getCellEl(pos.r, pos.c);
+      if (el) el.classList.add('selecting');
+    });
+  }
+}
+
+function handleCellMouseUp(r, c) {
+  if (!isDragging || !dragStartCell) return;
+  isDragging = false;
+  const start = dragStartCell;
+  dragStartCell = null;
+  clearPreviewSelection();
+
+  if (start.r === r && start.c === c) {
+    if (!clickStartCell) {
+      clickStartCell = { r, c };
+      const el = getCellEl(r, c);
+      if (el) el.classList.add('start-selected');
+      document.getElementById('wsFeedback').textContent = `Starting letter "${wsGridData[r][c]}" selected. Now click the ending letter (or click it again to cancel).`;
+    } else if (clickStartCell.r === r && clickStartCell.c === c) {
+      clearClickStartHighlight();
+      document.getElementById('wsFeedback').textContent = "Selection cancelled.";
+    } else {
+      const first = clickStartCell;
+      clearClickStartHighlight();
+      evaluateWordSelection(first.r, first.c, r, c);
+    }
+    return;
+  }
+
+  clearClickStartHighlight();
+  evaluateWordSelection(start.r, start.c, r, c);
+}
+
+function evaluateWordSelection(r1, c1, r2, c2) {
+  const line = getLineCells(r1, c1, r2, c2);
+  const feedbackEl = document.getElementById('wsFeedback');
+
+  if (!line || line.length < 2) {
+    wsMistakes++;
+    updateWsStats();
+    playSound('error');
+    feedbackEl.textContent = "Invalid line! Words must be straight (horizontal, vertical, or diagonal).";
+    return;
+  }
+
+  const selectedString = line.map(pos => wsGridData[pos.r][pos.c]).join('');
+  const reversedString = selectedString.split('').reverse().join('');
+
+  const matched = wsPlacements.find(
+    p => !p.found && (p.clean === selectedString || p.clean === reversedString)
+  );
+
+  if (matched) {
+    matched.found = true;
+    wsFoundCount++;
+    updateWsStats();
+    playSound('success');
+
+    matched.coords.forEach(pos => {
+      const el = getCellEl(pos.r, pos.c);
+      if (el) {
+        el.classList.remove('hint-pulse', 'selecting', 'start-selected');
+        el.classList.add('found');
+      }
+    });
+
+    const tagEl = document.getElementById(`ws-tag-${matched.clean}`);
+    if (tagEl) tagEl.classList.add('found');
+
+    feedbackEl.textContent = `✓ Great! You found "${matched.label.toUpperCase()}"!`;
+
+    if (wsFoundCount === ALL_WS_WORDS.length) {
+      const totalAttempts = wsFoundCount + wsMistakes;
+      const accuracy = Math.round((wsFoundCount / totalAttempts) * 100);
+      setTimeout(() => {
+        showCongratsModal(
+          "Word Search Mastered!",
+          "You found all 22 house vocabulary words in the grid!",
+          accuracy,
+          wsMistakes
+        );
+      }, 450);
+    }
+  } else {
+    wsMistakes++;
+    updateWsStats();
+    playSound('error');
+
+    line.forEach(pos => {
+      const el = getCellEl(pos.r, pos.c);
+      if (el && !el.classList.contains('found')) {
+        el.classList.add('wrong-flash');
+        setTimeout(() => el.classList.remove('wrong-flash'), 420);
+      }
+    });
+
+    feedbackEl.textContent = `✗ "${selectedString}" is not on the target list. Keep trying!`;
+  }
+}
+
+function giveWordSearchHint() {
+  const unfound = wsPlacements.filter(p => !p.found);
+  if (unfound.length === 0) return;
+
+  document.querySelectorAll('.ws-cell.hint-pulse').forEach(el => el.classList.remove('hint-pulse'));
+
+  const target = unfound[Math.floor(Math.random() * unfound.length)];
+  const firstPos = target.coords[0];
+  const cellEl = getCellEl(firstPos.r, firstPos.c);
+  if (cellEl) {
+    cellEl.classList.add('hint-pulse');
+    playSound('hint');
+    document.getElementById('wsFeedback').textContent = `💡 Hint: Look for the starting letter of "${target.label.toUpperCase()}" highlighted in yellow!`;
+  }
+}
+
+// ==================== CONGRATULATIONS & CONFETTI ====================
+function showCongratsModal(title, subtitle, accuracy, mistakes) {
+  document.getElementById('congratsTitle').textContent = title;
+  document.getElementById('congratsSubtitle').textContent = subtitle;
+  const rating = mistakes === 0 ? "100% Flawless First Try!" : `${accuracy}% Accuracy (${mistakes} mistake${mistakes === 1 ? '' : 's'})`;
+  document.getElementById('congratsStats').innerHTML = `Score Summary: ${rating}`;
+  document.getElementById('congratsModal').classList.add('open');
+  playSound('success');
+  launchConfetti();
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#1b5e63', '#e07a5f', '#16a34a', '#facc15', '#38bdf8', '#a855f7'];
+  const pieces = Array.from({ length: 130 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    w: Math.random() * 10 + 5,
+    h: Math.random() * 6 + 4,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    vy: Math.random() * 3 + 2.2,
+    vx: Math.random() * 2 - 1,
+    rot: Math.random() * 360,
+    vrot: Math.random() * 6 - 3
+  }));
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.y += p.vy;
+      p.x += p.vx;
+      p.rot += p.vrot;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rot * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (frame < 170) {
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+  animate();
+}
+
+// ==================== INITIALIZE ====================
+window.addEventListener('DOMContentLoaded', () => {
+  initVocabBindings();
+  resetQuiz(false);
+  initWordSearch();
+});
+</script>
+</body>
+</html>
