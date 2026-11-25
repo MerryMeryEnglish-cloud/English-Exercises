@@ -290,6 +290,7 @@
       gap: 18px;
       cursor: pointer;
       text-align: left;
+      text-decoration: none;
       box-shadow: 0 10px 24px -8px rgba(15, 35, 66, 0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
@@ -410,257 +411,6 @@
       padding: 6px 14px;
       border-radius: 999px;
       white-space: nowrap;
-    }
-
-    /* ================= COMMANDMENTS GALLERY SECTION ================= */
-    .commandments-wrapper {
-      background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
-      border-radius: 26px;
-      padding: 32px;
-      margin-bottom: 32px;
-      color: #f8fafc;
-      box-shadow: 0 20px 40px -15px rgba(9, 21, 38, 0.45);
-    }
-
-    .commandments-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding-bottom: 24px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .commandments-hero-info {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .commandments-cover-large {
-      width: 96px;
-      height: 120px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 2px solid #f59e0b;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .commandments-top h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.75rem;
-      color: #fef3c7;
-      margin-bottom: 4px;
-    }
-
-    .commandments-top p {
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      max-width: 560px;
-    }
-
-    .btn-slideshow {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #0f172a;
-      border: none;
-      border-radius: 999px;
-      padding: 12px 22px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.92rem;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
-      transition: transform 0.16s ease;
-    }
-
-    .btn-slideshow:hover {
-      transform: translateY(-2px);
-    }
-
-    .commandments-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 22px;
-    }
-
-    .cmd-card {
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.22s ease, border-color 0.22s ease;
-    }
-
-    .cmd-card:hover {
-      transform: translateY(-5px);
-      border-color: #f59e0b;
-    }
-
-    .cmd-img-box {
-      position: relative;
-      cursor: zoom-in;
-      background: #090d16;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-    }
-
-    .cmd-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .cmd-card:hover .cmd-img-box img {
-      transform: scale(1.03);
-    }
-
-    .cmd-num-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(15, 23, 42, 0.88);
-      color: #fef3c7;
-      border: 1px solid #f59e0b;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 4px 12px;
-      border-radius: 999px;
-    }
-
-    .cmd-body {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .cmd-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
-      font-weight: 800;
-      color: #fbbf24;
-      margin-bottom: 6px;
-    }
-
-    .cmd-quote {
-      font-size: 0.9rem;
-      color: #e2e8f0;
-      margin-bottom: 14px;
-      flex-grow: 1;
-    }
-
-    .cmd-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .cmd-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #ffffff;
-      border-radius: 10px;
-      padding: 7px 12px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.16s ease, border-color 0.16s ease;
-    }
-
-    .cmd-btn:hover {
-      background: rgba(245, 158, 11, 0.25);
-      border-color: #f59e0b;
-    }
-
-    .cmd-tip {
-      display: none;
-      margin-top: 12px;
-      padding: 10px 12px;
-      background: rgba(15, 23, 42, 0.75);
-      border-left: 3px solid #14b8a6;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      color: #cbd5e1;
-    }
-
-    .cmd-tip.open {
-      display: block;
-    }
-
-    /* LIGHTBOX MODAL */
-    .cmd-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 8, 17, 0.92);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .cmd-modal.active {
-      display: flex;
-    }
-
-    .cmd-modal-box {
-      max-width: 920px;
-      width: 100%;
-      background: #1e293b;
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      border-radius: 22px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      color: #f8fafc;
-    }
-
-    .cmd-modal-box img {
-      width: 100%;
-      max-height: 82vh;
-      object-fit: contain;
-      background: #090d16;
-    }
-
-    .cmd-modal-info {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .cmd-modal-close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(0, 0, 0, 0.6);
-      color: #ffffff;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 780px) {
-      .cmd-modal-box {
-        grid-template-columns: 1fr;
-      }
-      .cmd-modal-box img {
-        max-height: 48vh;
-      }
     }
 
     /* ================= EXERCISE LIST SECTIONS ================= */
@@ -962,9 +712,9 @@
 
     <!-- PIRÁMIDE DE BOTONES -->
     <nav class="category-pyramid" aria-label="Exercise Categories" id="category-pyramid">
-      <!-- Fila 1A: The 10 Commandments (Banner destacado con imagen a la derecha) -->
+      <!-- Fila 1A: Enlace directo a the_10_commandments_of_learning_english.html -->
       <div class="pyramid-row-1">
-        <button type="button" class="cat-card-btn featured-all" data-category="commandments">
+        <a href="the_10_commandments_of_learning_english.html" class="cat-card-btn featured-all">
           <div class="cat-card-left">
             <span class="cat-circle" style="--circle-bg: #f59e0b; color: #091526;">10</span>
             <div>
@@ -976,7 +726,7 @@
             <span class="cat-card-badge">10 Rules • Audio</span>
             <img src="10_commandments.png" alt="The 10 Commandments of Learning English" class="commandments-thumb" />
           </div>
-        </button>
+        </a>
 
         <!-- Fila 1B: All Exercises -->
         <button type="button" class="cat-card-btn featured-all active" data-category="all">
@@ -1064,105 +814,11 @@
     </section>
   </main>
 
-  <!-- MODAL ZOOM & SLIDESHOW PARA LOS 10 MANDAMIENTOS -->
-  <div class="cmd-modal" id="cmd-modal" onclick="if(event.target===this) closeCmdModal()">
-    <div class="cmd-modal-box">
-      <button type="button" class="cmd-modal-close" onclick="closeCmdModal()">✕</button>
-      <img id="cmd-modal-img" src="" alt="" />
-      <div class="cmd-modal-info">
-        <span class="hero-pill" style="align-self:flex-start; margin:0;">The 10 Commandments</span>
-        <h3 id="cmd-modal-title" style="font-size:1.5rem; color:#fbbf24;"></h3>
-        <p id="cmd-modal-quote" style="font-size:1rem; color:#f8fafc;"></p>
-        <p id="cmd-modal-tip" style="font-size:0.9rem; color:#cbd5e1;"></p>
-        <div class="cmd-actions" style="margin-top:8px;">
-          <button type="button" class="btn-slideshow" id="cmd-modal-speak">🔊 Listen Out Loud</button>
-        </div>
-        <div class="cmd-actions" style="margin-top:10px;">
-          <button type="button" class="cmd-btn" onclick="stepCmdModal(-1)">← Previous</button>
-          <button type="button" class="cmd-btn" onclick="stepCmdModal(1)">Next →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <a href="#progress-panel" class="floating-progress">My Progress</a>
 
   <script>
     (function () {
       const STORAGE_KEY = "mme_portal_scores_v1";
-
-      const COMMANDMENTS = [
-        {
-          num: 1,
-          img: "mistakes.png",
-          title: "1. Don't be afraid of mistakes.",
-          quote: "Even native speakers write 'your welcome' and 'could of.' If they can fail this hard and still get paid, so can you.",
-          tip: "💡 Tip práctico: Equivocarse al hablar es señal de que estás probando estructuras nuevas. La fluidez llega antes que la perfección."
-        },
-        {
-          num: 2,
-          img: "netflix_homework.png",
-          title: "2. Watch your shows in English.",
-          quote: "Netflix is now officially 'homework.' Use English subtitles. Spanish subtitles are the gateway drug to laziness.",
-          tip: "💡 Tip práctico: Mirar con audio y subtítulos en inglés conecta cómo se escribe una palabra con cómo suena realmente en una charla rápida."
-        },
-        {
-          num: 3,
-          img: "translate.png",
-          title: "3. Don't translate word for word.",
-          quote: "'I have 30 years' is not how English works. You are 30, you don't have 30. Nobody wants to know how many years you're hoarding.",
-          tip: "💡 Tip práctico: Aprendé bloques completos (chunks) como 'I'm 30', 'I'm hungry' o 'It makes sense' en lugar de traducir palabra por palabra."
-        },
-        {
-          num: 4,
-          img: "caos.png",
-          title: "4. Accept that pronunciation makes no sense.",
-          quote: "Why is 'colonel' pronounced 'kernel'? Why do 'though,' 'through' and 'tough' all sound different? Nobody knows. Not even the English. Stop asking and memorize the chaos.",
-          tip: "💡 Tip práctico: No busques reglas lógicas en la ortografía inglesa; escuchá la palabra primero y repetila como si fuera una melodía."
-        },
-        {
-          num: 5,
-          img: "talk_cat.png",
-          title: "5. Speak out loud, even to your cat.",
-          quote: "Your cat won't judge your grammar. Your cat judges everything else, but not that.",
-          tip: "💡 Tip práctico: Hablar en voz alta entrena los músculos de la boca y te quita el miedo a escuchar tu propia voz en otro idioma."
-        },
-        {
-          num: 6,
-          img: "cry_a_little.png",
-          title: "6. Learn phrasal verbs, and cry a little.",
-          quote: "'Give up,' 'give in,' 'give out,' 'give away,' 'give back.' One word, five meanings, zero mercy.",
-          tip: "💡 Tip práctico: Un mismo verbo cambia según la partícula: give up (rendirse), give in (ceder), give out (repartir/agotarse), give away (regalar/revelar), give back (devolver)."
-        },
-        {
-          num: 7,
-          img: "accent.png",
-          title: "7. Don't envy someone else's accent.",
-          quote: "British, American, Australian: they're all valid. Pick one and stick with it, like a tattoo, but less painful.",
-          tip: "💡 Tip práctico: Tener acento propio demuestra que hablás más de un idioma. Enfocate en la claridad, no en borrar tu identidad."
-        },
-        {
-          num: 8,
-          img: "false_friends.png",
-          title: "8. Don't trust false friends.",
-          quote: "'Embarrassed' does not mean embarazada. 'Actually' does not mean actualmente. Learn this before you congratulate a coworker on an announcement she never made.",
-          tip: "💡 Tip práctico: 'Embarrassed' significa avergonzado/a y 'actually' significa en realidad. ¡Ojo con los falsos cognados en reuniones de trabajo!"
-        },
-        {
-          num: 9,
-          img: "gym_study.png",
-          title: "9. Practice every day, even for five minutes.",
-          quote: "Studying 8 hours on Sunday is like going to the gym once a month: you'll only hurt yourself.",
-          tip: "💡 Tip práctico: 10 minutos diarios de exposición constante rinden diez veces más que una maratón de estudio una vez por semana."
-        },
-        {
-          num: 10,
-          img: "give_up.png",
-          title: "10. Never give up.",
-          quote: "Not when you meet 'although.' Not when you meet 'thorough.' Not even when someone says 'it's raining cats and dogs' and you check the window for pets.",
-          tip: "💡 Tip práctico: Los modismos (idioms) parecen un jeroglífico al principio, pero cuando los incorporás, tu inglés suena natural y expresivo."
-        }
-      ];
 
       const CATEGORIES = [
         {
@@ -1256,42 +912,6 @@
       ];
 
       let activeCategory = "all";
-      let cmdModalIdx = 0;
-
-      window.speakCmd = function (text) {
-        if (!("speechSynthesis" in window)) return;
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = "en-US";
-        utter.rate = 0.95;
-        window.speechSynthesis.speak(utter);
-      };
-
-      window.toggleCmdTip = function (idx) {
-        const el = document.getElementById("cmd-tip-" + idx);
-        if (el) el.classList.toggle("open");
-      };
-
-      window.openCmdModal = function (idx) {
-        cmdModalIdx = idx;
-        const item = COMMANDMENTS[cmdModalIdx];
-        document.getElementById("cmd-modal-img").src = item.img;
-        document.getElementById("cmd-modal-title").textContent = item.title;
-        document.getElementById("cmd-modal-quote").textContent = item.quote;
-        document.getElementById("cmd-modal-tip").textContent = item.tip;
-        document.getElementById("cmd-modal-speak").onclick = () => window.speakCmd(item.title + " " + item.quote);
-        document.getElementById("cmd-modal").classList.add("active");
-      };
-
-      window.closeCmdModal = function () {
-        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-        document.getElementById("cmd-modal").classList.remove("active");
-      };
-
-      window.stepCmdModal = function (dir) {
-        cmdModalIdx = (cmdModalIdx + dir + COMMANDMENTS.length) % COMMANDMENTS.length;
-        window.openCmdModal(cmdModalIdx);
-      };
 
       function loadScores() {
         try {
@@ -1315,59 +935,9 @@
         });
       }
 
-      function renderCommandments() {
-        const container = document.getElementById("catalog-container");
-        if (!container) return;
-
-        const cardsHtml = COMMANDMENTS.map((item, idx) => {
-          const safeSpeech = (item.title + " " + item.quote).replace(/'/g, "\\'").replace(/"/g, """);
-          return `
-            <article class="cmd-card">
-              <div class="cmd-img-box" onclick="openCmdModal(${idx})">
-                <span class="cmd-num-badge">Rule #${item.num}</span>
-                <img src="${item.img}" alt="${item.title}" loading="lazy" />
-              </div>
-              <div class="cmd-body">
-                <h3 class="cmd-title">${item.title}</h3>
-                <p class="cmd-quote">${item.quote}</p>
-                <div class="cmd-actions">
-                  <button type="button" class="cmd-btn" onclick="speakCmd('${safeSpeech}')">🔊 Listen</button>
-                  <button type="button" class="cmd-btn" onclick="toggleCmdTip(${idx})">💡 Tip</button>
-                  <button type="button" class="cmd-btn" onclick="openCmdModal(${idx})">🔍 Zoom</button>
-                </div>
-                <div class="cmd-tip" id="cmd-tip-${idx}">${item.tip}</div>
-              </div>
-            </article>
-          `;
-        }).join("");
-
-        container.innerHTML = `
-          <section class="commandments-wrapper">
-            <div class="commandments-top">
-              <div class="commandments-hero-info">
-                <img src="10_commandments.png" alt="The 10 Commandments of Learning English" class="commandments-cover-large" />
-                <div>
-                  <h2>The 10 Commandments of Learning English</h2>
-                  <p>Click any artwork to zoom in, listen to the pronunciation out loud, or unlock a practical study tip.</p>
-                </div>
-              </div>
-              <button type="button" class="btn-slideshow" onclick="openCmdModal(0)">▶ Presentation Mode</button>
-            </div>
-            <div class="commandments-grid">
-              ${cardsHtml}
-            </div>
-          </section>
-        `;
-      }
-
       function renderCatalog() {
         const container = document.getElementById("catalog-container");
         if (!container) return;
-
-        if (activeCategory === "commandments") {
-          renderCommandments();
-          return;
-        }
 
         const visibleCategories = CATEGORIES.filter(
           (cat) => activeCategory === "all" || cat.id === activeCategory
@@ -1475,10 +1045,10 @@
         renderCatalog();
         renderProgress();
 
-        document.querySelectorAll(".cat-card-btn").forEach((btn) => {
+        document.querySelectorAll("button.cat-card-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             activeCategory = btn.getAttribute("data-category") || "all";
-            document.querySelectorAll(".cat-card-btn").forEach((b) => b.classList.remove("active"));
+            document.querySelectorAll("button.cat-card-btn").forEach((b) => b.classList.remove("active"));
             btn.classList.add("active");
             renderCatalog();
 
@@ -1487,14 +1057,6 @@
               catalogEl.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           });
-        });
-
-        document.addEventListener("keydown", (e) => {
-          const modal = document.getElementById("cmd-modal");
-          if (!modal || !modal.classList.contains("active")) return;
-          if (e.key === "Escape") window.closeCmdModal();
-          if (e.key === "ArrowRight") window.stepCmdModal(1);
-          if (e.key === "ArrowLeft") window.stepCmdModal(-1);
         });
       }
 
