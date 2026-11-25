@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The 10 Commandments of Learning English | Merry Mery English</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- Google Fonts: Cinzel, Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navyDeep: '#091526',
+            navyCard: '#16263d',
+            navyLight: '#17345e',
+            tealBrand: '#14b8a6',
+            goldBrand: '#f59e0b',
+            goldLight: '#fef3c7'
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            outfit: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="font-sans text-slate-50 min-h-screen antialiased selection:bg-amber-500 selection:text-navyDeep" style="background: radial-gradient(circle at top, #17345e 0%, #091526 65%, #050c16 100%);">
+
+  <!-- Top Navigation Bar -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-4 flex-wrap">
+    <a href="index.html" class="inline-flex items-center gap-3.5 group focus:outline-none">
+      <span class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-br from-tealBrand to-goldBrand flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-105">
+        <img
+          src="logo.png"
+          alt="Merry Mery English Logo"
+          onerror="this.onerror=null;this.src='https://placehold.co/112x112/14b8a6/091526?text=MME';"
+          class="w-full h-full rounded-full object-cover bg-white"
+        />
+      </span>
+      <div>
+        <span class="font-outfit font-extrabold text-xl text-white block leading-tight">Merry Mery English</span>
+        <span class="text-xs text-teal-300 font-semibold tracking-wider uppercase block">Golden Rules &amp; Humor</span>
+      </div>
+    </a>
+
+    <a
+      href="index.html"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-tealBrand text-slate-50 hover:text-navyDeep border border-white/20 hover:border-tealBrand font-outfit font-bold text-sm transition-all duration-200 shadow-sm"
+    >
+      <span>&larr; Back to Exercises</span>
+    </a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 pt-4 pb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <!-- Left Framed Artwork -->
+      <div class="lg:col-span-5 max-w-md mx-auto lg:max-w-none w-full">
+        <div class="rounded-3xl p-2.5 bg-gradient-to-br from-amber-500 via-amber-700 to-amber-200 shadow-2xl">
+          <img
+            src="10_commandments.png"
+            alt="The 10 Commandments of Learning English"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x1000/16263d/fef3c7?text=The+10+Commandments';"
+            class="w-full h-auto block rounded-2xl object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Right Editorial Copy -->
+      <div class="lg:col-span-7 text-center lg:text-left">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-tealBrand/20 border border-teal-300/40 text-teal-300 font-outfit text-xs font-bold tracking-widest uppercase mb-4">
+          Merry Mery English &bull; Visual Guide
+        </span>
+        <h1 class="font-cinzel font-extrabold text-3xl sm:text-4xl lg:text-5xl text-goldLight leading-tight mb-5">
+          The 10 Commandments of Learning English
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+          Ten humorous, art-inspired rules designed for adult learners to ditch perfectionism, embrace the chaos of pronunciation, and genuinely enjoy speaking English. Click any artwork to zoom in, listen to native pronunciation out loud, or reveal a practical study tip.
+        </p>
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <button
+            type="button"
+            onclick="openModal(0)"
+            class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-navyDeep font-outfit font-bold text-base shadow-lg shadow-amber-500/25 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+          >
+            &#9654; Presentation Mode
+          </button>
+          <a
+            href="#commandments-grid"
+            class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 font-outfit font-bold text-base transition-all duration-200 hover:-translate-y-0.5"
+          >
+            See All 10 &darr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Gallery Grid -->
+  <main id="commandments-grid" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </main>
+
+  <!-- Fullscreen Presentation & Zoom Modal -->
+  <div
+    id="modal"
+    onclick="if(event.target === this) closeModal()"
+    class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-sm items-center justify-center p-4 sm:p-6"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="m-title"
+  >
+    <div class="max-w-4xl w-full bg-navyCard border border-amber-500/40 rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-2 relative shadow-2xl max-h-[92vh]">
+      <button
+        type="button"
+        onclick="closeModal()"
+        aria-label="Close modal"
+        class="absolute top-3.5 right-3.5 z-10 w-10 h-10 rounded-full bg-black/70 hover:bg-amber-500 text-white hover:text-navyDeep flex items-center justify-center font-bold text-lg transition-colors cursor-pointer"
+      >
+        &#10005;
+      </button>
+
+      <!-- Modal Image -->
+      <div class="bg-slate-950 flex items-center justify-center overflow-hidden">
+        <img
+          id="m-img"
+          src=""
+          alt=""
+          class="w-full max-h-[44vh] md:max-h-[82vh] object-contain"
+        />
+      </div>
+
+      <!-- Modal Content -->
+      <div class="p-6 sm:p-8 flex flex-col justify-center gap-4 overflow-y-auto">
+        <span id="m-badge" class="self-start px-3.5 py-1 rounded-full bg-tealBrand/20 border border-teal-300/40 text-teal-300 font-outfit text-xs font-bold uppercase tracking-wider">
+          Commandment
+        </span>
+        <h2 id="m-title" class="font-outfit font-extrabold text-2xl sm:text-3xl text-goldBrand leading-snug"></h2>
+        <p id="m-quote" class="text-slate-100 text-base sm:text-lg leading-relaxed"></p>
+        <div id="m-tip" class="p-3.5 rounded-xl bg-navyDeep/80 border-l-4 border-tealBrand text-slate-300 text-sm leading-relaxed"></div>
+
+        <div class="pt-2 flex flex-wrap gap-3">
+          <button
+            type="button"
+            id="m-speak"
+            class="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-navyDeep font-outfit font-bold text-sm shadow-md transition-all cursor-pointer"
+          >
+            &#128266; Listen Out Loud
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2 border-t border-white/10">
+          <button
+            type="button"
+            onclick="changeSlide(-1)"
+            class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-outfit font-bold text-sm transition-colors cursor-pointer"
+          >
+            &larr; Previous
+          </button>
+          <button
+            type="button"
+            onclick="changeSlide(1)"
+            class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-outfit font-bold text-sm transition-colors cursor-pointer"
+          >
+            Next &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-10 px-4 text-center text-slate-400 text-sm flex flex-col items-center gap-3">
+    <img
+      src="logo.png"
+      alt="Merry Mery English"
+      onerror="this.onerror=null;this.src='https://placehold.co/112x112/14b8a6/091526?text=MME';"
+      class="w-14 h-14 rounded-full bg-white border-2 border-tealBrand object-cover shadow-md"
+    />
+    <p><strong class="text-slate-200">Merry Mery English</strong> &bull; Keep going, laugh often, and speak your mind.</p>
+  </footer>
+
+  <!-- Interactive Gallery & Speech Synthesis Logic -->
+  <script>
+    // Complete dataset for the 10 Commandments with exact image filenames
+    const commandments = [
+      {
+        num: 1,
+        img: "mistakes.png",
+        title: "1. Don't be afraid of mistakes.",
+        quote: "Even native speakers write 'your welcome' and 'could of.' If they can fail this hard and still get paid, so can you.",
+        tip: "💡 Tip práctico: Equivocarse al hablar es señal de que estás probando estructuras nuevas. La fluidez llega antes que la perfección."
+      },
+      {
+        num: 2,
+        img: "netflix_homework.png",
+        title: "2. Watch your shows in English.",
+        quote: "Netflix is now officially 'homework.' Use English subtitles. Spanish subtitles are the gateway drug to laziness.",
+        tip: "💡 Tip práctico: Mirar series con audio y subtítulos en inglés conecta la pronunciación real con la escritura de cada palabra."
+      },
+      {
+        num: 3,
+        img: "translate.png",
+        title: "3. Don't translate word for word.",
+        quote: "'I have 30 years' is not how English works. You are 30, you don't have 30. Nobody wants to know how many years you're hoarding.",
+        tip: "💡 Tip práctico: Aprendé bloques completos (chunks) como 'I'm 30', 'I'm hungry' o 'It makes sense' en lugar de traducir literal."
+      },
+      {
+        num: 4,
+        img: "caos.png",
+        title: "4. Accept that pronunciation makes no sense.",
+        quote: "Why is 'colonel' pronounced 'kernel'? Why do 'though,' 'through' and 'tough' all sound different? Nobody knows. Not even the English. Stop asking and memorize the chaos.",
+        tip: "💡 Tip práctico: En inglés la ortografía y el sonido no siempre coinciden; escuchá la palabra primero y repetila en voz alta."
+      },
+      {
+        num: 5,
+        img: "talk_cat.png",
+        title: "5. Speak out loud, even to your cat.",
+        quote: "Your cat won't judge your grammar. Your cat judges everything else, but not that.",
+        tip: "💡 Tip práctico: Hablar en voz alta todos los días suelta los músculos de la boca y te da confianza antes de conversar con otras personas."
+      },
+      {
+        num: 6,
+        img: "cry_a_little.png",
+        title: "6. Learn phrasal verbs, and cry a little.",
+        quote: "'Give up,' 'give in,' 'give out,' 'give away,' 'give back.' One word, five meanings, zero mercy.",
+        tip: "💡 Tip práctico: Incorporá 1 o 2 phrasal verbs por semana dentro de oraciones reales en vez de memorizar listas interminables de golpe."
+      },
+      {
+        num: 7,
+        img: "accent.png",
+        title: "7. Don't envy someone else's accent.",
+        quote: "British, American, Australian: they're all valid. Pick one and stick with it, like a tattoo, but less painful.",
+        tip: "💡 Tip práctico: Tener acento propio demuestra que hablás más de un idioma. Enfocate en la claridad, no en borrar tu identidad."
+      },
+      {
+        num: 8,
+        img: "false_friends.png",
+        title: "8. Don't trust false friends.",
+        quote: "'Embarrassed' does not mean embarazada. 'Actually' does not mean actualmente. Learn this before you congratulate a coworker on an announcement she never made.",
+        tip: "💡 Tip práctico: Revisá siempre los falsos cognados frecuentes (como embarrassed, actually, realize o library) para evitar malentendidos."
+      },
+      {
+        num: 9,
+        img: "gym_study.png",
+        title: "9. Practice every day, even for five minutes.",
+        quote: "Studying 8 hours on Sunday is like going to the gym once a month: you'll only hurt yourself.",
+        tip: "💡 Tip práctico: Diez minutos diarios de exposición constante rinden muchísimo más que una maratón de estudio una vez por semana."
+      },
+      {
+        num: 10,
+        img: "give_up.png",
+        title: "10. Never give up.",
+        quote: "Not when you meet 'although.' Not when you meet 'thorough.' Not even when someone says 'it's raining cats and dogs' and you check the window for pets.",
+        tip: "💡 Tip práctico: Cada expresión rara o idiom que incorporás hoy suma para que mañana tu inglés suene mucho más natural."
+      }
+    ];
+
+    const gridContainer = document.getElementById("grid");
+    let currentIndex = 0;
+
+    // Text-to-Speech handler using Web Speech API (en-US)
+    function speakRule(index) {
+      try {
+        if (!("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        const item = commandments[index];
+        if (!item) return;
+        const utterance = new SpeechSynthesisUtterance(item.title + " " + item.quote);
+        utterance.lang = "en-US";
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {
+        console.error("Speech synthesis error:", err);
+      }
+    }
+
+    // Toggle Spanish practical tip visibility per card
+    function toggleTip(index) {
+      const tipEl = document.getElementById("tip-" + index);
+      if (tipEl) {
+        tipEl.classList.toggle("open");
+        tipEl.classList.toggle("hidden");
+      }
+    }
+
+    // Render all 10 cards dynamically without inline quote escaping issues
+    function renderCards() {
+      gridContainer.innerHTML = "";
+      commandments.forEach((item, idx) => {
+        const card = document.createElement("article");
+        card.className = "bg-navyCard border border-white/10 hover:border-goldBrand rounded-3xl overflow-hidden flex flex-col shadow-xl transition-all duration-200 hover:-translate-y-1.5 group";
+
+        const fallbackUrl = "https://placehold.co/600x750/16263d/f59e0b?text=Commandment+%23" + item.num;
+
+        card.innerHTML = `
+          <div class="relative aspect-[4/5] bg-slate-950 overflow-hidden cursor-zoom-in" onclick="openModal(${idx})">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-navyDeep/90 text-goldLight border border-goldBrand font-outfit font-extrabold text-xs shadow">
+              #${item.num}
+            </span>
+            <img
+              src="${item.img}"
+              alt="${item.title}"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='${fallbackUrl}';"
+              class="w-full h-full object-cover block transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-5 flex flex-col flex-grow">
+            <h2 class="font-outfit font-extrabold text-lg sm:text-xl text-goldBrand mb-2 leading-snug">
+              ${item.title}
+            </h2>
+            <p class="text-slate-200 text-sm sm:text-base leading-relaxed mb-5 flex-grow">
+              ${item.quote}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onclick="speakRule(${idx})"
+                class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-amber-500/25 border border-white/15 hover:border-goldBrand text-white font-outfit font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                &#128266; Listen
+              </button>
+              <button
+                type="button"
+                onclick="toggleTip(${idx})"
+                class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-tealBrand/25 border border-white/15 hover:border-tealBrand text-white font-outfit font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                &#128161; Tip
+              </button>
+              <button
+                type="button"
+                onclick="openModal(${idx})"
+                class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-outfit font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                &#128269; Zoom
+              </button>
+            </div>
+            <div
+              id="tip-${idx}"
+              class="hidden mt-3.5 p-3 rounded-xl bg-navyDeep/80 border-l-4 border-tealBrand text-slate-300 text-xs sm:text-sm leading-relaxed"
+            >
+              ${item.tip}
+            </div>
+          </div>
+        `;
+        gridContainer.appendChild(card);
+      });
+    }
+
+    // Open fullscreen presentation modal
+    function openModal(index) {
+      currentIndex = index;
+      const item = commandments[currentIndex];
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("m-img");
+
+      modalImg.onerror = function () {
+        this.onerror = null;
+        this.src = "https://placehold.co/600x750/16263d/f59e0b?text=Commandment+%23" + item.num;
+      };
+      modalImg.src = item.img;
+      modalImg.alt = item.title;
+
+      document.getElementById("m-badge").textContent = "Commandment #" + item.num + " of 10";
+      document.getElementById("m-title").textContent = item.title;
+      document.getElementById("m-quote").textContent = item.quote;
+      document.getElementById("m-tip").textContent = item.tip;
+      document.getElementById("m-speak").onclick = function () {
+        speakRule(currentIndex);
+      };
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    // Close modal and stop speech
+    function closeModal() {
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      const modal = document.getElementById("modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    // Navigate previous/next slide in modal
+    function changeSlide(step) {
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      currentIndex = (currentIndex + step + commandments.length) % commandments.length;
+      openModal(currentIndex);
+    }
+
+    // Keyboard navigation support
+    document.addEventListener("keydown", function (event) {
+      const modal = document.getElementById("modal");
+      if (modal.classList.contains("hidden")) return;
+      if (event.key === "Escape") closeModal();
+      if (event.key === "ArrowRight") changeSlide(1);
+      if (event.key === "ArrowLeft") changeSlide(-1);
+    });
+
+    // Initialize gallery on load
+    window.addEventListener("DOMContentLoaded", renderCards);
+  </script>
+</body>
+</html>
