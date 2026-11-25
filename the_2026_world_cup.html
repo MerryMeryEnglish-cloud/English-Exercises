@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Mery English – The 2026 World Cup: Reading Comprehension</title>
+  <style>
+    :root {
+      --bg-page: #f4f7f9;
+      --bg-card: #ffffff;
+      --bg-soft: #eef4f7;
+      --primary: #145369;
+      --primary-dark: #0d3948;
+      --primary-light: #e3f0f5;
+      --accent: #d97706;
+      --accent-soft: #fef3c7;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.10);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .site-header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: #ffffff;
+      padding: 16px 24px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      background-color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.88rem;
+      color: #dbeafe;
+      margin-top: 2px;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .voice-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .voice-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    select.voice-select {
+      background: #ffffff;
+      color: var(--text-main);
+      border: none;
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1120px;
+      margin: 26px auto 50px;
+      padding: 0 20px;
+    }
+
+    /* Tabs */
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+      background: var(--bg-card);
+      padding: 10px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      flex: 1 1 auto;
+      min-width: 170px;
+      padding: 11px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-soft);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Banners */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .instruction-banner {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+      font-size: 0.96rem;
+    }
+
+    .audio-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-soft);
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .btn-audio {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-play {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-play:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-stop {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .btn-stop:hover {
+      background: #cbd5e1;
+    }
+
+    .audio-status {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* Reading Passage & Feature Image */
+    .article-header {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--bg-soft);
+      padding-bottom: 14px;
+    }
+
+    .article-kicker {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: #92400e;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .article-title {
+      font-size: 1.85rem;
+      color: var(--primary-dark);
+      line-height: 1.25;
+    }
+
+    .article-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .feature-figure {
+      margin: 0 0 22px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .feature-img {
+      display: block;
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+    }
+
+    .feature-caption {
+      padding: 10px 16px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-style: italic;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+    }
+
+    .passage-p {
+      font-size: 1.04rem;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .vocab-term {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 5px;
+      border-bottom: 2px solid #0284c7;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .vocab-term:hover {
+      background-color: #bae6fd;
+    }
+
+    /* Vocabulary Grid & Popup Card Styling */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .vocab-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .vocab-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vocab-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .vocab-word {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.25;
+    }
+
+    .pos-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+
+    .vocab-def {
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .vocab-example {
+      background: var(--bg-soft);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #334155;
+      border-left: 4px solid var(--primary);
+    }
+
+    .btn-mini-audio {
+      align-self: flex-start;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #bae6fd;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-mini-audio:hover {
+      background: #bae6fd;
+    }
+
+    /* Popup Vocab Card inside Modal */
+    .popup-vocab-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .popup-vocab-card .vocab-word {
+      font-size: 1.55rem;
+    }
+
+    .popup-vocab-card .vocab-def {
+      font-size: 1.04rem;
+    }
+
+    .popup-vocab-card .vocab-example {
+      font-size: 1rem;
+      padding: 14px 16px;
+    }
+
+    .popup-vocab-card .btn-mini-audio {
+      padding: 9px 16px;
+      font-size: 0.92rem;
+      margin-top: 2px;
+    }
+
+    /* Comprehension Quiz */
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .item-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .question-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .question-text {
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .option-btn {
+      text-align: left;
+      padding: 11px 15px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--bg-soft);
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+      font-weight: 700;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Sticky Word Bank & Drag and Drop */
+    .sticky-wordbank {
+      position: sticky;
+      top: 86px;
+      z-index: 40;
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .wordbank-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .wordbank-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-chip {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1.5px solid #7dd3fc;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: grab;
+      user-select: none;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .word-chip:hover {
+      background: #bae6fd;
+      transform: translateY(-1px);
+    }
+
+    .word-chip.used {
+      opacity: 0.42;
+      text-decoration: line-through;
+    }
+
+    .gap-input {
+      display: inline-block;
+      min-width: 145px;
+      padding: 5px 10px;
+      margin: 0 4px;
+      border: 2px solid #94a3b8;
+      border-radius: 7px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .gap-input.drag-over {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .gap-input.is-correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .gap-input.is-wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.3s ease;
+    }
+
+    .helper-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-hint, .btn-letter {
+      padding: 5px 11px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-hint:hover, .btn-letter:hover {
+      background: #e2e8f0;
+    }
+
+    .hint-box {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-soft);
+      color: #78350f;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .hint-box.visible {
+      display: block;
+    }
+
+    /* Dictation */
+    .dictation-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid #94a3b8;
+      border-radius: var(--radius-sm);
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .dictation-input.is-correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .dictation-input.is-wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    /* Let's Talk Discussion */
+    .talk-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .talk-q {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .talk-notes {
+      width: 100%;
+      min-height: 76px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.94rem;
+      background: #ffffff;
+      resize: vertical;
+    }
+
+    /* Footer Navigation */
+    .exercise-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 2px solid var(--bg-soft);
+    }
+
+    .btn-reset {
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #94a3b8;
+      background: #ffffff;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-reset:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-next {
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-next:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 18px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: var(--bg-soft);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .modal-close:hover {
+      background: #e2e8f0;
+    }
+
+    .modal-body p {
+      margin-bottom: 10px;
+      font-size: 0.96rem;
+    }
+
+    .modal-body ul {
+      margin: 10px 0 14px 20px;
+      font-size: 0.95rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 6px;
+    }
+
+    .congrats-metric {
+      background: var(--success-bg);
+      border: 1.5px solid var(--success-border);
+      color: var(--success);
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      margin: 14px 0 18px;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 250;
+      display: none;
+    }
+
+    #confettiCanvas.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-box">
+        <img src="logo.png" alt="Merry Mery English Logo" class="logo-img" onerror="this.style.display='none';" />
+        <div>
+          <div class="brand-title">Merry Mery English</div>
+          <div class="brand-subtitle">Interactive Learning • Reading &amp; Culture Series</div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="voice-group">
+          <label for="voiceSelect">Voice:</label>
+          <select id="voiceSelect" class="voice-select" aria-label="Select pronunciation voice">
+            <option value="en-GB|female" selected>British Female</option>
+            <option value="en-GB|male">British Male</option>
+            <option value="en-US|female">American Female</option>
+            <option value="en-US|male">American Male</option>
+          </select>
+        </div>
+
+        <button type="button" class="nav-btn" id="openDictBtn">📖 Dictionary</button>
+        <button type="button" class="nav-btn" id="openHelpBtn">❓ Help</button>
+        <a href="index.html" class="nav-btn">🏠 Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <nav class="tabs-bar" role="tablist" aria-label="Reading comprehension sections">
+      <button type="button" class="tab-btn active" data-tab="tab-reading" role="tab">1. Reading &amp; Vocabulary</button>
+      <button type="button" class="tab-btn" data-tab="tab-comprehension" role="tab">2. Comprehension Quiz</button>
+      <button type="button" class="tab-btn" data-tab="tab-gapfill" role="tab">3. Context Gap-Fill</button>
+      <button type="button" class="tab-btn" data-tab="tab-dictation" role="tab">4. Listening Dictation</button>
+      <button type="button" class="tab-btn" data-tab="tab-talk" role="tab">5. Let&apos;s Talk</button>
+    </nav>
+
+    <!-- TAB 1: READING & VOCABULARY -->
+    <section id="tab-reading" class="tab-panel active" role="tabpanel">
+      <div class="card">
+        <div class="instruction-banner">
+          Read the article about the 2026 men&apos;s World Cup. Click any highlighted <strong>blue vocabulary term</strong> in the text to open its definition card, or use the audio player below to listen to the entire passage.
+        </div>
+
+        <div class="audio-bar">
+          <button type="button" class="btn-audio btn-play" id="readingPlayBtn">▶ Listen</button>
+          <button type="button" class="btn-audio btn-stop" id="readingStopBtn">■ Stop</button>
+          <span class="audio-status" id="readingStatus">Ready to play</span>
+        </div>
+
+        <div class="article-header">
+          <span class="article-kicker">Football &amp; Global Sport</span>
+          <h1 class="article-title">The 2026 World Cup</h1>
+          <div class="article-subtitle">A Summer to Remember</div>
+        </div>
+
+        <figure class="feature-figure">
+          <img src="futbol_argentina.png" alt="Argentina national football squad illustration" class="feature-img" />
+          <figcaption class="feature-caption">Image reinterpreted from a photograph by Bryan Berlin / WikiPortraits, CC BY-SA 4.0.</figcaption>
+        </figure>
+
+        <p class="passage-p">
+          In the summer of 2026, the men&apos;s World Cup was bigger than ever before. For the first time, 48 national teams took part, and the tournament was hosted by three countries: the United States, Canada and Mexico. Some people feared that adding more teams would lead to many <span class="vocab-term" data-vocab="one-sided matches">one-sided matches</span>. Although there were some <span class="vocab-term" data-vocab="heavy defeats">heavy defeats</span>, several smaller nations proved that they deserved to be there.
+        </p>
+
+        <p class="passage-p">
+          The best example was Cape Verde, a small island country off the coast of West Africa. It was playing in its first World Cup, and its opening match was against Spain, the European champions. Very few people expected the <span class="vocab-term" data-vocab="newcomers">newcomers</span> to get anything from the game. However, they defended bravely and the match finished 0–0. It was not just luck. Cape Verde went on to draw with Uruguay and Saudi Arabia, finished second in their group and qualified for the <span class="vocab-term" data-vocab="knockout stage">knockout stage</span>.
+        </p>
+
+        <p class="passage-p">
+          Spain, meanwhile, recovered from that disappointing start. As the tournament progressed, they became extremely difficult to beat. Their success was not only based on attacking talent. Their defence was <span class="vocab-term" data-vocab="outstanding">outstanding</span>: in eight matches, they <span class="vocab-term" data-vocab="conceded">conceded</span> just one goal, against Belgium in the quarter-finals.
+        </p>
+
+        <p class="passage-p">
+          The final took place on 19 July at MetLife Stadium, near New York. Spain faced Argentina, the <span class="vocab-term" data-vocab="defending champions">defending champions</span>, led by Lionel Messi. Spain kept <span class="vocab-term" data-vocab="possession">possession</span> of the ball for long periods, so Messi&apos;s teammates found it hard to pass to him. Neither side managed to score in normal time. Argentina&apos;s situation became even more complicated when Enzo Fernández was <span class="vocab-term" data-vocab="sent off">sent off</span>, leaving them with only ten players.
+        </p>
+
+        <p class="passage-p">
+          The decisive moment arrived in the 106th minute, during <span class="vocab-term" data-vocab="extra time">extra time</span>. Pedro Porro sent a cross towards the far post, Nico Williams headed the ball down, and Ferran Torres struck it into the net with his left foot. The goal gave Spain a 1–0 victory and their second World Cup title, 16 years after their first one in 2010.
+        </p>
+
+        <p class="passage-p">
+          There were individual prizes too. Spain&apos;s midfielder Rodri won the Golden Ball for the best player of the tournament, while his teammate Unai Simón was named the best goalkeeper. Another Spaniard, defender Pau Cubarsí, received the award for the best young player. France&apos;s Kylian Mbappé finished as the <span class="vocab-term" data-vocab="top scorer">top scorer</span> with ten goals. His team, however, ended in fourth place after losing an incredible match against England 6–4. Bukayo Saka scored three of England&apos;s goals.
+        </p>
+
+        <p class="passage-p">
+          For many footballers, the tournament offered a valuable lesson. Famous names can attract attention, but organisation, patience and teamwork often make the difference. Cape Verde showed that an <span class="vocab-term" data-vocab="underdog">underdog</span> can compete with a giant, and Spain showed that a strong defence can be just as important as a brilliant attack.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 style="color: var(--primary-dark); margin-bottom: 16px;">Key Vocabulary Cards</h2>
+        <div class="vocab-grid" id="vocabGrid"></div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn-reset" onclick="stopSpeech()">■ Stop Audio</button>
+          <button type="button" class="btn-next" onclick="switchTab('tab-comprehension')">Next Exercise ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: COMPREHENSION QUIZ -->
+    <section id="tab-comprehension" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <div class="instruction-banner">
+          Choose the best option for each comprehension question. Answers are checked <strong>immediately</strong> when you click an option.
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn-reset" id="resetQuizBtn">🔄 Reset &amp; Shuffle</button>
+          <button type="button" class="btn-next" onclick="switchTab('tab-gapfill')">Next Exercise ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CONTEXT GAP-FILL -->
+    <section id="tab-gapfill" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <div class="instruction-banner">
+          Complete each sentence using a word or phrase from the <strong>sticky word bank</strong>. Drag a chip into a blank, or click a blank and click a chip. Verification is <strong>automatic</strong>.
+        </div>
+
+        <div class="sticky-wordbank">
+          <div class="wordbank-title">Word Bank (Drag or Click to Fill)</div>
+          <div class="wordbank-chips" id="wordbankChips"></div>
+        </div>
+
+        <div id="gapfillContainer"></div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn-reset" id="resetGapfillBtn">🔄 Reset &amp; Shuffle</button>
+          <button type="button" class="btn-next" onclick="switchTab('tab-dictation')">Next Exercise ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: LISTENING DICTATION -->
+    <section id="tab-dictation" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <div class="instruction-banner">
+          Listen to each new sentence and type what you hear. Use <strong>💡 Hint</strong> for a clue or <strong>+1 Letter</strong> to reveal the next character. Answers check <strong>automatically</strong>.
+        </div>
+
+        <div id="dictationContainer"></div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn-reset" id="resetDictationBtn">🔄 Reset &amp; Shuffle</button>
+          <button type="button" class="btn-next" onclick="switchTab('tab-talk')">Next: Let&apos;s Talk ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: LET'S TALK -->
+    <section id="tab-talk" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <div class="instruction-banner">
+          Use these conversation prompts to speak or jot down your thoughts in English. Click <strong>🔊 Listen</strong> to hear any question read aloud.
+        </div>
+
+        <div id="talkContainer"></div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn-reset" id="resetTalkBtn">🔄 Reset Notes</button>
+          <button type="button" class="btn-next" onclick="switchTab('tab-reading')">Back to Reading ➔</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- VOCAB POPUP MODAL -->
+  <div class="modal-backdrop" id="vocabPopupModal" role="dialog" aria-modal="true" aria-labelledby="vocabPopupWord">
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close="vocabPopupModal">✕</button>
+      <div class="popup-vocab-card">
+        <div>
+          <div class="vocab-word" id="vocabPopupWord">heavy defeats</div>
+          <span class="pos-badge" id="vocabPopupPos">noun phrase</span>
+        </div>
+        <p class="vocab-def" id="vocabPopupDef">Losses by a large margin of goals.</p>
+        <div class="vocab-example" id="vocabPopupExample">"A few teams suffered heavy defeats in the opening round."</div>
+        <button type="button" class="btn-mini-audio" id="vocabPopupAudioBtn">🔊 Listen Word &amp; Example</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HELP MODAL -->
+  <div class="modal-backdrop" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close="helpModal">✕</button>
+      <h2 class="modal-title" id="helpModalTitle">How to Use This Interactive Sheet</h2>
+      <div class="modal-body">
+        <p>This interactive worksheet accompanies <strong>The 2026 World Cup: A Summer to Remember</strong>.</p>
+        <ul>
+          <li><strong>Highlighted Words:</strong> Click any highlighted word or phrase in the reading passage to open a pop-up card with its part of speech, definition, example sentence, and audio button.</li>
+          <li><strong>Voice Selector:</strong> Choose between <em>British Female</em>, <em>British Male</em>, <em>American Female</em>, and <em>American Male</em> in the top bar for all audio playback.</li>
+          <li><strong>Instant Verification:</strong> There is no check button. Multiple-choice options, gap-fill blanks, and dictation sentences validate immediately with sound feedback.</li>
+          <li><strong>Active Recall Helpers:</strong> In Listening Dictation, click <strong>💡 Hint</strong> for a clue or <strong>+1 Letter</strong> to reveal the next letter when stuck.</li>
+          <li><strong>Completion Celebration:</strong> Finishing every item in an exercise unlocks a celebration modal with confetti and your accuracy metric.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICTIONARY MODAL -->
+  <div class="modal-backdrop" id="dictModal" role="dialog" aria-modal="true" aria-labelledby="dictModalTitle">
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close="dictModal">✕</button>
+      <h2 class="modal-title" id="dictModalTitle">Cambridge Dictionary Quick Lookup</h2>
+      <div class="modal-body">
+        <p>Look up any English word or phrase in the Cambridge English–Spanish Learner&apos;s Dictionary.</p>
+        <div style="display:flex; gap:8px; margin-top:12px;">
+          <input type="text" id="dictQueryInput" placeholder="Type a word (e.g., underdog, possession)..." style="flex:1; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:0.95rem;" />
+          <button type="button" class="btn-audio btn-play" id="dictSearchGoBtn">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONGRATS MODAL -->
+  <div class="modal-backdrop" id="congratsModal" role="dialog" aria-modal="true" aria-labelledby="congratsTitle">
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close="congratsModal">✕</button>
+      <h2 class="modal-title" id="congratsTitle">🎉 Well Done!</h2>
+      <div class="modal-body">
+        <p id="congratsMessage">You completed the entire exercise!</p>
+        <div class="congrats-metric" id="congratsMetric">Accuracy: 100%</div>
+        <button type="button" class="btn-audio btn-play" data-close="congratsModal">Continue Learning</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ================= VOCABULARY DATA ================= */
+    const VOCAB_DATA = [
+      {
+        word: 'one-sided matches',
+        pos: 'noun phrase',
+        def: 'Games in which one team is much stronger than the other and wins easily.',
+        example: 'Expanding the tournament did not turn every fixture into one-sided matches.'
+      },
+      {
+        word: 'heavy defeats',
+        pos: 'noun phrase',
+        def: 'Losses by a large margin of goals.',
+        example: 'A few teams suffered heavy defeats in the opening round.'
+      },
+      {
+        word: 'newcomers',
+        pos: 'noun (plural)',
+        def: 'Teams or players taking part in a competition for the first time.',
+        example: 'Nobody expected the newcomers to take points from the European champions.'
+      },
+      {
+        word: 'knockout stage',
+        pos: 'noun phrase',
+        def: 'The elimination phase of a tournament where losing teams go home.',
+        example: 'Cape Verde reached the knockout stage after finishing second in their group.'
+      },
+      {
+        word: 'outstanding',
+        pos: 'adjective',
+        def: 'Exceptionally good or impressive.',
+        example: 'Spain produced an outstanding defensive performance throughout the tournament.'
+      },
+      {
+        word: 'conceded',
+        pos: 'verb (past)',
+        def: 'Allowed an opponent to score a goal or point.',
+        example: 'Spain conceded only one goal across eight matches.'
+      },
+      {
+        word: 'defending champions',
+        pos: 'noun phrase',
+        def: 'The holders of the title from the previous edition of a competition.',
+        example: 'Argentina entered the final as the defending champions.'
+      },
+      {
+        word: 'possession',
+        pos: 'noun',
+        def: 'Control of the ball by a team during a match.',
+        example: 'Keeping possession helped Spain control the tempo of the final.'
+      },
+      {
+        word: 'sent off',
+        pos: 'phrasal verb',
+        def: 'Ordered to leave the field by the referee after receiving a red card.',
+        example: 'A player was sent off, leaving the team a man down.'
+      },
+      {
+        word: 'extra time',
+        pos: 'noun phrase',
+        def: 'Additional playing time added when a match is tied after normal time.',
+        example: 'The winning goal was scored in extra time.'
+      },
+      {
+        word: 'top scorer',
+        pos: 'noun phrase',
+        def: 'The player who scores the most goals in a tournament or league.',
+        example: 'Kylian Mbappé ended the competition as top scorer with ten goals.'
+      },
+      {
+        word: 'underdog',
+        pos: 'noun',
+        def: 'A competitor or team thought to have little chance of winning.',
+        example: 'The underdog surprised the stadium with a disciplined display.'
+      }
+    ];
+
+    /* ================= SPEECH & AUDIO FEEDBACK ================= */
+    const SpeechSynth = window.speechSynthesis;
+    let currentUtterance = null;
+    let isPausedState = false;
+    let activeSpeechTarget = null;
+
+    function getSelectedVoiceConfig() {
+      const val = document.getElementById('voiceSelect').value || 'en-GB|female';
+      const [lang, gender] = val.split('|');
+      return { lang, gender };
+    }
+
+    function pickBestVoice(lang, gender) {
+      if (!SpeechSynth) return null;
+      const voices = SpeechSynth.getVoices() || [];
+      const langVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(lang.toLowerCase()));
+      const pool = langVoices.length ? langVoices : voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+
+      const femaleHints = ['female', 'kate', 'serena', 'samantha', 'victoria', 'moira', 'fiona', 'google uk english female', 'google us english'];
+      const maleHints = ['male', 'daniel', 'oliver', 'arthur', 'george', 'alex', 'fred', 'google uk english male'];
+      const hints = gender === 'female' ? femaleHints : maleHints;
+
+      for (const hint of hints) {
+        const match = pool.find(v => v.name.toLowerCase().includes(hint));
+        if (match) return match;
+      }
+      return pool[0] || null;
+    }
+
+    function stopSpeech() {
+      if (SpeechSynth) {
+        SpeechSynth.cancel();
+      }
+      isPausedState = false;
+      activeSpeechTarget = null;
+      const playBtn = document.getElementById('readingPlayBtn');
+      const statusEl = document.getElementById('readingStatus');
+      if (playBtn) playBtn.textContent = '▶ Listen';
+      if (statusEl) statusEl.textContent = 'Ready to play';
+    }
+
+    function speakText(text, options = {}) {
+      if (!SpeechSynth) return;
+      const { lang, gender } = getSelectedVoiceConfig();
+      const rate = options.rate || 0.96;
+      const pitch = options.pitch || (gender === 'female' ? 1.08 : 0.92);
+
+      if (options.trackReading) {
+        if (activeSpeechTarget === 'reading' && SpeechSynth.speaking && !isPausedState) {
+          SpeechSynth.pause();
+          isPausedState = true;
+          document.getElementById('readingPlayBtn').textContent = '▶ Resume';
+          document.getElementById('readingStatus').textContent = 'Paused';
+          return;
+        }
+        if (activeSpeechTarget === 'reading' && isPausedState) {
+          SpeechSynth.resume();
+          isPausedState = false;
+          document.getElementById('readingPlayBtn').textContent = '⏸ Pause';
+          document.getElementById('readingStatus').textContent = 'Reading passage aloud...';
+          return;
+        }
+      }
+
+      SpeechSynth.cancel();
+      isPausedState = false;
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = lang;
+      utter.rate = rate;
+      utter.pitch = pitch;
+      const chosen = pickBestVoice(lang, gender);
+      if (chosen) utter.voice = chosen;
+
+      if (options.trackReading) {
+        activeSpeechTarget = 'reading';
+        document.getElementById('readingPlayBtn').textContent = '⏸ Pause';
+        document.getElementById('readingStatus').textContent = 'Reading passage aloud...';
+        utter.onend = () => {
+          activeSpeechTarget = null;
+          isPausedState = false;
+          document.getElementById('readingPlayBtn').textContent = '▶ Listen';
+          document.getElementById('readingStatus').textContent = 'Finished reading';
+        };
+        utter.onerror = () => stopSpeech();
+      }
+
+      currentUtterance = utter;
+      SpeechSynth.speak(utter);
+    }
+
+    if (SpeechSynth && SpeechSynth.onvoiceschanged !== undefined) {
+      SpeechSynth.onvoiceschanged = () => {};
+    }
+
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtxInstance = null;
+
+    function playSound(type) {
+      try {
+        if (!audioCtxInstance) audioCtxInstance = new AudioCtx();
+        if (audioCtxInstance.state === 'suspended') audioCtxInstance.resume();
+        const now = audioCtxInstance.currentTime;
+        const osc = audioCtxInstance.createOscillator();
+        const gain = audioCtxInstance.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtxInstance.destination);
+
+        if (type === 'success') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.09);
+          osc.frequency.setValueAtTime(783.99, now + 0.18);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.36);
+        } else {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.setValueAtTime(165, now + 0.11);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.26);
+        }
+      } catch (e) {}
+    }
+
+    /* ================= TABS & MODALS ================= */
+    function switchTab(tabId) {
+      stopSpeech();
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === tabId);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    document.getElementById('readingPlayBtn').addEventListener('click', () => {
+      const paragraphs = Array.from(document.querySelectorAll('#tab-reading .passage-p'))
+        .map(p => p.textContent.trim())
+        .join(' ');
+      const fullText = 'The 2026 World Cup. A Summer to Remember. ' + paragraphs;
+      speakText(fullText, { trackReading: true });
+    });
+
+    document.getElementById('readingStopBtn').addEventListener('click', stopSpeech);
+
+    let activePopupVocab = null;
+
+    function openVocabPopup(termKey) {
+      const entry = VOCAB_DATA.find(v => v.word.toLowerCase() === (termKey || '').toLowerCase());
+      if (!entry) return;
+      activePopupVocab = entry;
+      document.getElementById('vocabPopupWord').textContent = entry.word;
+      document.getElementById('vocabPopupPos').textContent = entry.pos;
+      document.getElementById('vocabPopupDef').textContent = entry.def;
+      document.getElementById('vocabPopupExample').textContent = `"${entry.example}"`;
+      openModal('vocabPopupModal');
+    }
+
+    document.getElementById('vocabPopupAudioBtn').addEventListener('click', () => {
+      if (activePopupVocab) {
+        speakText(`${activePopupVocab.word}. ${activePopupVocab.example}`);
+      }
+    });
+
+    document.querySelectorAll('.vocab-term').forEach(el => {
+      el.addEventListener('click', () => {
+        openVocabPopup(el.dataset.vocab || el.textContent.trim());
+      });
+    });
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      if (id === 'congratsModal') stopConfetti();
+      if (id === 'vocabPopupModal') stopSpeech();
+    }
+
+    document.getElementById('openHelpBtn').addEventListener('click', () => openModal('helpModal'));
+    document.getElementById('openDictBtn').addEventListener('click', () => openModal('dictModal'));
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.dataset.close));
+    });
+
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+      backdrop.addEventListener('click', e => {
+        if (e.target === backdrop) closeModal(backdrop.id);
+      });
+    });
+
+    document.getElementById('dictSearchGoBtn').addEventListener('click', () => {
+      const q = document.getElementById('dictQueryInput').value.trim();
+      const base = 'https://dictionary.cambridge.org/dictionary/english-spanish/';
+      const url = q ? base + encodeURIComponent(q.toLowerCase().replace(/\s+/g, '-')) : base;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
+    /* ================= CONFETTI & CELEBRATION ================= */
+    let confettiFrameId = null;
+    let confettiParticles = [];
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.classList.add('active');
+
+      const colors = ['#145369', '#d97706', '#15803d', '#0284c7', '#e11d48', '#eab308'];
+      confettiParticles = Array.from({ length: 120 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        w: 7 + Math.random() * 7,
+        h: 4 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vy: 2.5 + Math.random() * 4,
+        vx: -1.5 + Math.random() * 3,
+        rot: Math.random() * Math.PI * 2,
+        vRot: -0.08 + Math.random() * 0.16
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettiParticles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vRot;
+          if (p.y > canvas.height) {
+            p.y = -15;
+            p.x = Math.random() * canvas.width;
+          }
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        confettiFrameId = requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    function stopConfetti() {
+      if (confettiFrameId) cancelAnimationFrame(confettiFrameId);
+      const canvas = document.getElementById('confettiCanvas');
+      canvas.classList.remove('active');
+    }
+
+    function triggerCelebration(exerciseName, totalItems, mistakesCount) {
+      const attempts = totalItems + mistakesCount;
+      const pct = Math.max(1, Math.round((totalItems / attempts) * 100));
+      document.getElementById('congratsTitle').textContent = '🎉 Congratulations!';
+      document.getElementById('congratsMessage').textContent =
+        `You completed every item in ${exerciseName}!`;
+      document.getElementById('congratsMetric').textContent =
+        mistakesCount === 0
+          ? 'Accuracy: 100% • Flawless First Try with 0 mistakes!'
+          : `Accuracy: ${pct}% • Completed ${totalItems}/${totalItems} items with ${mistakesCount} ${mistakesCount === 1 ? 'mistake' : 'mistakes'}.`;
+      openModal('congratsModal');
+      launchConfetti();
+    }
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    /* ================= VOCABULARY CARDS ================= */
+    function renderVocabGrid() {
+      const grid = document.getElementById('vocabGrid');
+      grid.innerHTML = '';
+      VOCAB_DATA.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'vocab-card';
+        card.innerHTML = `
+          <div>
+            <div class="vocab-word">${item.word}</div>
+            <span class="pos-badge">${item.pos}</span>
+          </div>
+          <p class="vocab-def">${item.def}</p>
+          <div class="vocab-example">"${item.example}"</div>
+          <button type="button" class="btn-mini-audio">🔊 Listen Word &amp; Example</button>
+        `;
+        card.querySelector('.btn-mini-audio').addEventListener('click', () => {
+          speakText(`${item.word}. ${item.example}`);
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    /* ================= COMPREHENSION QUIZ ================= */
+    const QUIZ_DATA = [
+      {
+        q: 'How many national teams competed in the 2026 men&apos;s World Cup, and which countries hosted it?',
+        options: [
+          '48 teams hosted by the United States, Canada and Mexico',
+          '32 teams hosted by the United States and Mexico',
+          '48 teams hosted by Canada, Mexico and Brazil'
+        ],
+        correct: '48 teams hosted by the United States, Canada and Mexico'
+      },
+      {
+        q: 'What happened in Cape Verde&apos;s opening match against Spain?',
+        options: [
+          'Cape Verde lost narrowly in extra time',
+          'It finished in a 0–0 draw after Cape Verde defended bravely',
+          'Spain won comfortably by three goals'
+        ],
+        correct: 'It finished in a 0–0 draw after Cape Verde defended bravely'
+      },
+      {
+        q: 'How did Cape Verde advance to the knockout stage?',
+        options: [
+          'By winning all three group matches',
+          'By drawing with Uruguay and Saudi Arabia and finishing second in their group',
+          'By receiving a wildcard invitation from the hosts'
+        ],
+        correct: 'By drawing with Uruguay and Saudi Arabia and finishing second in their group'
+      },
+      {
+        q: 'How many goals did Spain concede across eight matches in the tournament?',
+        options: [
+          'Four goals',
+          'One goal, against Belgium in the quarter-finals',
+          'Zero goals in the entire tournament'
+        ],
+        correct: 'One goal, against Belgium in the quarter-finals'
+      },
+      {
+        q: 'Where and when was the 2026 World Cup final played?',
+        options: [
+          'On 19 July at MetLife Stadium, near New York',
+          'On 19 July at Azteca Stadium, in Mexico City',
+          'On 26 July at MetLife Stadium, near New York'
+        ],
+        correct: 'On 19 July at MetLife Stadium, near New York'
+      },
+      {
+        q: 'What made Argentina&apos;s situation even harder during the final?',
+        options: [
+          'Lionel Messi left the pitch in the first half',
+          'Enzo Fernández was sent off, leaving Argentina with ten players',
+          'Argentina had to play without a goalkeeper'
+        ],
+        correct: 'Enzo Fernández was sent off, leaving Argentina with ten players'
+      },
+      {
+        q: 'Who scored the winning goal for Spain in the 106th minute, and how was it created?',
+        options: [
+          'Ferran Torres scored with his left foot after Pedro Porro crossed and Nico Williams headed down',
+          'Nico Williams scored a penalty after Rodri was fouled',
+          'Rodri scored from outside the box in normal time'
+        ],
+        correct: 'Ferran Torres scored with his left foot after Pedro Porro crossed and Nico Williams headed down'
+      },
+      {
+        q: 'Which individual awards were won by Spanish players mentioned in the text?',
+        options: [
+          'Rodri (Golden Ball), Unai Simón (best goalkeeper), and Pau Cubarsí (best young player)',
+          'Rodri (top scorer), Ferran Torres (Golden Ball), and Unai Simón (best young player)',
+          'Pau Cubarsí (Golden Ball), Rodri (best goalkeeper), and Nico Williams (top scorer)'
+        ],
+        correct: 'Rodri (Golden Ball), Unai Simón (best goalkeeper), and Pau Cubarsí (best young player)'
+      },
+      {
+        q: 'Who finished as top scorer, and what happened in the fourth-place match?',
+        options: [
+          'Bukayo Saka with ten goals; England beat Argentina 6–4',
+          'Kylian Mbappé with ten goals; England defeated France 6–4 with three goals from Bukayo Saka',
+          'Kylian Mbappé with eight goals; France beat England 6–4'
+        ],
+        correct: 'Kylian Mbappé with ten goals; England defeated France 6–4 with three goals from Bukayo Saka'
+      },
+      {
+        q: 'What overall lesson does the final paragraph highlight?',
+        options: [
+          'Only famous stars win major international trophies',
+          'Organisation, patience and teamwork often make the difference alongside strong defence',
+          'Attacking talent is the only factor that matters in modern football'
+        ],
+        correct: 'Organisation, patience and teamwork often make the difference alongside strong defence'
+      }
+    ];
+
+    let quizMistakes = 0;
+    let quizSolvedSet = new Set();
+
+    function renderQuiz(shuffle = false) {
+      quizMistakes = 0;
+      quizSolvedSet = new Set();
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = '';
+      const list = shuffle ? shuffleArray(QUIZ_DATA) : QUIZ_DATA;
+
+      list.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        const opts = shuffle ? shuffleArray(item.options) : item.options;
+        const plainQ = item.q.replace(/&apos;/g, "'");
+
+        card.innerHTML = `
+          <span class="item-badge">Question ${idx + 1} of ${list.length}</span>
+          <div class="question-top-row">
+            <div class="question-text">${item.q}</div>
+            <button type="button" class="btn-mini-audio" aria-label="Listen to question">🔊 Listen</button>
+          </div>
+          <div class="options-list"></div>
+        `;
+
+        card.querySelector('.btn-mini-audio').addEventListener('click', () => {
+          speakText(plainQ);
+        });
+
+        const optBox = card.querySelector('.options-list');
+        let solved = false;
+
+        opts.forEach(optText => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'option-btn';
+          btn.textContent = optText;
+          btn.addEventListener('click', () => {
+            if (solved) return;
+            if (optText === item.correct) {
+              btn.classList.add('correct');
+              solved = true;
+              quizSolvedSet.add(idx);
+              optBox.querySelectorAll('.option-btn').forEach(b => (b.disabled = true));
+              playSound('success');
+              if (quizSolvedSet.size === list.length) {
+                setTimeout(() => triggerCelebration('Comprehension Quiz', list.length, quizMistakes), 350);
+              }
+            } else {
+              btn.classList.add('wrong');
+              btn.disabled = true;
+              quizMistakes++;
+              playSound('error');
+            }
+          });
+          optBox.appendChild(btn);
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('resetQuizBtn').addEventListener('click', () => renderQuiz(true));
+
+    /* ================= CONTEXT GAP-FILL (STICKY WORD BANK) ================= */
+    const GAPFILL_DATA = [
+      {
+        before: 'Some teams suffered ',
+        after: ' in the opening matches of the tournament.',
+        answer: 'heavy defeats',
+        hint: 'Noun phrase meaning losses by a large margin of goals.'
+      },
+      {
+        before: 'Cape Verde earned a 0–0 draw against the European champions and reached the ',
+        after: '.',
+        answer: 'knockout stage',
+        hint: 'Two-word football term for the elimination rounds after the group phase.'
+      },
+      {
+        before: 'Spain&apos;s defence was ',
+        after: ', allowing just one goal across eight matches.',
+        answer: 'outstanding',
+        hint: 'Adjective starting with "o" meaning remarkably good.'
+      },
+      {
+        before: 'Spain kept ',
+        after: ' of the ball for long stretches during the final.',
+        answer: 'possession',
+        hint: 'Noun starting with "p" referring to controlling the ball.'
+      },
+      {
+        before: 'Argentina went down to ten players after Enzo Fernández was ',
+        after: '.',
+        answer: 'sent off',
+        hint: 'Two-word phrasal verb meaning ordered off the pitch by the referee.'
+      },
+      {
+        before: 'Ferran Torres scored the winning goal in ',
+        after: ' in the 106th minute.',
+        answer: 'extra time',
+        hint: 'Additional period played when a match is level after 90 minutes.'
+      },
+      {
+        before: 'Kylian Mbappé finished as ',
+        after: ' with ten goals in the tournament.',
+        answer: 'top scorer',
+        hint: 'Compound noun for the player with the highest goal tally.'
+      },
+      {
+        before: 'Cape Verde proved that an ',
+        after: ' can stand up to a major football nation.',
+        answer: 'underdog',
+        hint: 'Single noun for a team not expected to win.'
+      }
+    ];
+
+    let activeGapInput = null;
+    let gapMistakes = 0;
+    let gapSolvedCount = 0;
+
+    function renderGapfill(shuffle = false) {
+      gapMistakes = 0;
+      gapSolvedCount = 0;
+      activeGapInput = null;
+
+      const list = shuffle ? shuffleArray(GAPFILL_DATA) : GAPFILL_DATA;
+      const bankWords = shuffleArray(list.map(d => d.answer));
+
+      const chipsContainer = document.getElementById('wordbankChips');
+      chipsContainer.innerHTML = '';
+
+      bankWords.forEach(word => {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = word;
+        chip.draggable = true;
+        chip.dataset.word = word;
+
+        chip.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', word);
+        });
+
+        chip.addEventListener('click', () => {
+          if (activeGapInput && !activeGapInput.disabled) {
+            activeGapInput.value = word;
+            validateGapInput(activeGapInput, list.length);
+          }
+        });
+
+        chipsContainer.appendChild(chip);
+      });
+
+      const container = document.getElementById('gapfillContainer');
+      container.innerHTML = '';
+
+      list.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        const spokenSentence = `${item.before.replace(/&apos;/g, "'")} ${item.answer} ${item.after.replace(/&apos;/g, "'")}`;
+
+        card.innerHTML = `
+          <span class="item-badge">Sentence ${idx + 1} of ${list.length}</span>
+          <div class="question-top-row">
+            <div class="question-text" style="font-weight:500;">
+              <span>${item.before}</span>
+              <input type="text" class="gap-input" aria-label="Blank ${idx + 1}" placeholder="Type or drop..." data-answer="${item.answer}" />
+              <span>${item.after}</span>
+            </div>
+            <button type="button" class="btn-mini-audio">🔊 Listen</button>
+          </div>
+          <div class="helper-actions">
+            <button type="button" class="btn-hint">💡 Hint</button>
+          </div>
+          <div class="hint-box">${item.hint}</div>
+        `;
+
+        const input = card.querySelector('.gap-input');
+        const hintBox = card.querySelector('.hint-box');
+
+        input.addEventListener('focus', () => {
+          activeGapInput = input;
+        });
+
+        input.addEventListener('dragover', e => {
+          e.preventDefault();
+          if (!input.disabled) input.classList.add('drag-over');
+        });
+
+        input.addEventListener('dragleave', () => {
+          input.classList.remove('drag-over');
+        });
+
+        input.addEventListener('drop', e => {
+          e.preventDefault();
+          input.classList.remove('drag-over');
+          if (input.disabled) return;
+          const dropped = e.dataTransfer.getData('text/plain');
+          if (dropped) {
+            input.value = dropped;
+            validateGapInput(input, list.length);
+          }
+        });
+
+        input.addEventListener('input', () => validateGapInput(input, list.length));
+        input.addEventListener('blur', () => {
+          if (input.value.trim() && !input.disabled) {
+            validateGapInput(input, list.length, true);
+          }
+        });
+
+        card.querySelector('.btn-mini-audio').addEventListener('click', () => speakText(spokenSentence));
+        card.querySelector('.btn-hint').addEventListener('click', () => hintBox.classList.toggle('visible'));
+
+        container.appendChild(card);
+      });
+    }
+
+    function syncWordbankUsedState() {
+      const usedValues = Array.from(document.querySelectorAll('.gap-input.is-correct'))
+        .map(inp => inp.dataset.answer.toLowerCase());
+      document.querySelectorAll('.word-chip').forEach(chip => {
+        const w = chip.dataset.word.toLowerCase();
+        chip.classList.toggle('used', usedValues.includes(w));
+      });
+    }
+
+    function validateGapInput(input, totalCount, fromBlur = false) {
+      if (input.disabled) return;
+      const expected = input.dataset.answer.toLowerCase().trim();
+      const val = input.value.toLowerCase().trim();
+
+      if (val === expected) {
+        input.classList.remove('is-wrong', 'drag-over');
+        input.classList.add('is-correct');
+        input.disabled = true;
+        gapSolvedCount++;
+        syncWordbankUsedState();
+        playSound('success');
+        if (gapSolvedCount === totalCount) {
+          setTimeout(() => triggerCelebration('Context Gap-Fill', totalCount, gapMistakes), 350);
+        }
+      } else if (val.length >= expected.length || fromBlur) {
+        input.classList.add('is-wrong');
+        gapMistakes++;
+        playSound('error');
+      } else {
+        input.classList.remove('is-wrong');
+      }
+    }
+
+    document.getElementById('resetGapfillBtn').addEventListener('click', () => renderGapfill(true));
+
+    /* ================= LISTENING DICTATION ================= */
+    const DICTATION_DATA = [
+      {
+        sentence: 'Forty-eight teams played in the 2026 World Cup.',
+        hint: 'Starts with "Forty-eight teams" and ends with "World Cup."'
+      },
+      {
+        sentence: 'Cape Verde drew their opening match against Spain.',
+        hint: 'Past tense of draw ("drew") + "their opening match against Spain."'
+      },
+      {
+        sentence: 'Spain had an outstanding defensive record.',
+        hint: 'Adjective meaning very impressive ("outstanding") before "defensive record."'
+      },
+      {
+        sentence: 'The final took place near New York.',
+        hint: '"took place" means happened, followed by "near New York."'
+      },
+      {
+        sentence: 'Argentina finished the final with ten players.',
+        hint: 'Starts with "Argentina finished the final" and ends with "ten players."'
+      },
+      {
+        sentence: 'Ferran Torres scored in extra time.',
+        hint: 'Short sentence: player name + "scored in extra time."'
+      },
+      {
+        sentence: 'Rodri won the Golden Ball award.',
+        hint: 'Midfielder name + "won the Golden Ball award."'
+      },
+      {
+        sentence: 'Good teamwork often makes the difference.',
+        hint: 'From the final lesson: "Good teamwork often makes the difference."'
+      }
+    ];
+
+    let dictMistakes = 0;
+    let dictSolvedCount = 0;
+
+    function normalizeDictText(str) {
+      return str
+        .toLowerCase()
+        .replace(/[.,!?;:"'-]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function renderDictation(shuffle = false) {
+      dictMistakes = 0;
+      dictSolvedCount = 0;
+      const container = document.getElementById('dictationContainer');
+      container.innerHTML = '';
+      const list = shuffle ? shuffleArray(DICTATION_DATA) : DICTATION_DATA;
+
+      list.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+          <span class="item-badge">Sentence ${idx + 1} of ${list.length}</span>
+          <div class="question-top-row">
+            <div class="question-text" style="font-size:0.96rem; color:var(--text-muted);">Listen carefully and type the full sentence:</div>
+            <button type="button" class="btn-mini-audio">🔊 Listen</button>
+          </div>
+          <input type="text" class="dictation-input" placeholder="Type what you hear..." aria-label="Dictation sentence ${idx + 1}" />
+          <div class="helper-actions">
+            <button type="button" class="btn-hint">💡 Hint</button>
+            <button type="button" class="btn-letter">+1 Letter</button>
+          </div>
+          <div class="hint-box">${item.hint}</div>
+        `;
+
+        const input = card.querySelector('.dictation-input');
+        const hintBox = card.querySelector('.hint-box');
+        let checkedWrongForCurrentText = false;
+
+        card.querySelector('.btn-mini-audio').addEventListener('click', () => {
+          speakText(item.sentence, { rate: 0.9 });
+        });
+
+        card.querySelector('.btn-hint').addEventListener('click', () => {
+          hintBox.classList.toggle('visible');
+        });
+
+        card.querySelector('.btn-letter').addEventListener('click', () => {
+          if (input.disabled) return;
+          const target = item.sentence;
+          const current = input.value;
+          let nextLen = current.length + 1;
+          if (nextLen > target.length) nextLen = target.length;
+          input.value = target.slice(0, nextLen);
+          checkDictInput();
+        });
+
+        function checkDictInput(fromBlur = false) {
+          if (input.disabled) return;
+          const normTyped = normalizeDictText(input.value);
+          const normTarget = normalizeDictText(item.sentence);
+
+          if (normTyped === normTarget) {
+            input.value = item.sentence;
+            input.classList.remove('is-wrong');
+            input.classList.add('is-correct');
+            input.disabled = true;
+            dictSolvedCount++;
+            playSound('success');
+            if (dictSolvedCount === list.length) {
+              setTimeout(() => triggerCelebration('Listening Dictation', list.length, dictMistakes), 350);
+            }
+          } else if (fromBlur && normTyped.length > 0) {
+            input.classList.add('is-wrong');
+            if (!checkedWrongForCurrentText) {
+              dictMistakes++;
+              checkedWrongForCurrentText = true;
+            }
+            playSound('error');
+          } else {
+            input.classList.remove('is-wrong');
+            checkedWrongForCurrentText = false;
+          }
+        }
+
+        input.addEventListener('input', () => checkDictInput(false));
+        input.addEventListener('blur', () => checkDictInput(true));
+
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('resetDictationBtn').addEventListener('click', () => renderDictation(true));
+
+    /* ================= LET'S TALK ================= */
+    const TALK_QUESTIONS = [
+      'As a footballer, which team&apos;s story do you find most inspiring? Why?',
+      'Cape Verde surprised many people. Have you ever played against a much stronger team? What happened?',
+      'In your opinion, which is more important for winning a tournament: a strong defence or a brilliant attack? Why?',
+      'Imagine your team has to play with only ten players, as Argentina did in the final. What would you do to help your teammates?',
+      'The text says that teamwork often makes the difference. What makes someone a good teammate, and which of those qualities do you have?'
+    ];
+
+    function renderTalkSection() {
+      const container = document.getElementById('talkContainer');
+      container.innerHTML = '';
+      TALK_QUESTIONS.forEach((q, idx) => {
+        const plain = q.replace(/&apos;/g, "'");
+        const card = document.createElement('div');
+        card.className = 'talk-card';
+        card.innerHTML = `
+          <div class="question-top-row">
+            <div class="talk-q">${idx + 1}. ${q}</div>
+            <button type="button" class="btn-mini-audio">🔊 Listen</button>
+          </div>
+          <textarea class="talk-notes" placeholder="Write key points or vocabulary you want to use in your answer..."></textarea>
+        `;
+        card.querySelector('.btn-mini-audio').addEventListener('click', () => speakText(plain));
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('resetTalkBtn').addEventListener('click', renderTalkSection);
+
+    /* ================= INITIALIZE ALL SECTIONS ================= */
+    renderVocabGrid();
+    renderQuiz(false);
+    renderGapfill(false);
+    renderDictation(false);
+    renderTalkSection();
+  </script>
+</body>
+</html>
