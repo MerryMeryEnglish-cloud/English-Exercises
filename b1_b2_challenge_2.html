@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Mery English | B1–B2 Social Life, Food &amp; Outdoors Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #0f4c5c;
+      --primary-dark: #09323d;
+      --primary-light: #e6f0f2;
+      --accent: #e36414;
+      --accent-hover: #c9530c;
+      --accent-light: #fdf0e8;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --surface: #ffffff;
+      --bg-page: #f4f7f8;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(15, 76, 92, 0.08);
+      --shadow-md: 0 8px 24px rgba(15, 76, 92, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .brand-font {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--primary-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-title {
+      color: var(--primary);
+    }
+    .brand-accent {
+      color: var(--accent);
+    }
+
+    /* Navigation Tabs */
+    .tab-btn {
+      position: relative;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1.5px solid var(--border-subtle);
+      background: var(--surface);
+      color: var(--text-muted);
+    }
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(15, 76, 92, 0.22);
+    }
+    .tab-badge {
+      background: rgba(15, 76, 92, 0.1);
+      color: var(--primary);
+    }
+    .tab-btn.active .tab-badge {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Question Cards */
+    .question-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+    .question-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+    .question-card.solved-card {
+      border-color: var(--success-border);
+      background: linear-gradient(to right, #ffffff, #f7fee7);
+    }
+
+    /* Multiple Choice Option Buttons */
+    .mc-option {
+      text-align: left;
+      border: 1.5px solid var(--border-subtle);
+      background: #f8fafc;
+      color: var(--text-main);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .mc-option:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .mc-option.wrong-flash {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.36s ease-in-out;
+    }
+    .mc-option.correct-locked {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+      font-weight: 700;
+      cursor: default;
+    }
+    .mc-option:disabled:not(.correct-locked) {
+      opacity: 0.52;
+      cursor: not-allowed;
+    }
+
+    /* Active Recall Inline Inputs */
+    .recall-input {
+      border: none;
+      border-bottom: 2.5px solid var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.45rem 0.45rem 0 0;
+      min-width: 155px;
+      max-width: 250px;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .recall-input:focus {
+      background: #ffffff;
+      border-bottom-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(227, 100, 20, 0.15);
+    }
+    .recall-input.input-error {
+      border-bottom-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.35s ease;
+    }
+    .recall-input.input-solved {
+      border-bottom-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+      cursor: default;
+    }
+
+    /* Dropdown Precision Select */
+    .precision-select {
+      appearance: none;
+      background-color: var(--primary-light);
+      border: 1.5px solid var(--primary);
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.35rem 2.1rem 0.35rem 0.75rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f4c5c'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.55rem center;
+      background-size: 1rem;
+    }
+    .precision-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(227, 100, 20, 0.18);
+    }
+    .precision-select.select-error {
+      border-color: var(--error);
+      background-color: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.35s ease;
+    }
+    .precision-select.select-solved {
+      border-color: var(--success);
+      background-color: var(--success-bg);
+      color: var(--success);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    /* Interactive Reading Vocabulary Highlight */
+    .vocab-term {
+      background: var(--accent-light);
+      color: var(--accent-hover);
+      font-weight: 700;
+      padding: 0.08rem 0.42rem;
+      border-radius: 0.4rem;
+      border-bottom: 2px dashed var(--accent);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-block;
+      line-height: 1.45;
+    }
+    .vocab-term:hover, .vocab-term.active-term {
+      background: var(--accent);
+      color: #ffffff;
+      border-bottom-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(15, 76, 92, 0.25);
+    }
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+      transition: all 0.2s ease;
+    }
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(227, 100, 20, 0.28);
+    }
+
+    .speak-btn {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+    .speak-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .speak-btn.speaking {
+      background: var(--accent);
+      color: #ffffff;
+      animation: pulseRing 1.2s infinite;
+    }
+
+    /* Level Badges */
+    .level-b1 {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .level-b2 {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(227, 100, 20, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(227, 100, 20, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(227, 100, 20, 0); }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fadeSlideUp 0.28s ease-out forwards;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Full-Screen Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ========================================================================
+       STICKY HEADER
+       ======================================================================== -->
+  <header class="sticky-header">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        
+        <!-- Left: Logo & Brand Title -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl overflow-hidden flex items-center justify-center shadow-sm border border-slate-200 bg-white shrink-0">
+              <img
+                src="logo.png"
+                alt="Merry Mery English Logo"
+                class="logo-img w-full h-full object-contain"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display:none; background: var(--primary);" class="w-full h-full items-center justify-center text-white font-extrabold text-lg tracking-tight">
+                MM
+              </div>
+            </div>
+            <div>
+              <h1 class="text-lg sm:text-xl font-extrabold tracking-tight brand-title leading-tight">
+                Merry Mery <span class="brand-accent">English</span>
+              </h1>
+              <p class="text-xs sm:text-sm font-medium text-slate-500">
+                Interactive Learning • B1–B2 Social Life, Food &amp; Outdoors
+              </p>
+            </div>
+          </div>
+
+          <!-- Mobile Quick Actions -->
+          <div class="flex lg:hidden items-center gap-1.5">
+            <button
+              type="button"
+              onclick="openHelpModal()"
+              class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 border border-slate-200 text-xs font-semibold"
+              title="Help & Instructions"
+            >
+              ❓ Help
+            </button>
+            <a
+              href="index.html"
+              class="p-2 rounded-lg text-white text-xs font-semibold"
+              style="background: var(--primary);"
+              title="Home"
+            >
+              🏠 Home
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Global Controls (Voice Selector, Cambridge Dictionary, Help, Home) -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+          <!-- Global Voice Selector -->
+          <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 shadow-2xs flex-1 sm:flex-initial">
+            <label for="globalVoiceSelect" class="text-xs font-bold uppercase tracking-wider" style="color: var(--primary);">🎙️ Voice:</label>
+            <select
+              id="globalVoiceSelect"
+              aria-label="Global Voice Accent Selector"
+              class="bg-transparent text-xs sm:text-sm font-semibold text-slate-700 outline-none cursor-pointer w-full sm:w-auto"
+            >
+              <option value="uk-female">British Female</option>
+              <option value="uk-male">British Male</option>
+              <option value="us-female">American Female</option>
+              <option value="us-male">American Male</option>
+            </select>
+          </div>
+
+          <!-- Cambridge English-Spanish Dictionary Link -->
+          <a
+            href="https://dictionary.cambridge.org/dictionary/english-spanish/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:border-[#0f4c5c] text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#0f4c5c] flex items-center gap-1.5 transition"
+          >
+            <span>📖</span>
+            <span>Cambridge Dictionary</span>
+          </a>
+
+          <!-- Help Modal Trigger (Desktop) -->
+          <button
+            type="button"
+            onclick="openHelpModal()"
+            class="hidden lg:inline-flex px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-sm font-semibold text-slate-700 items-center gap-1.5 transition"
+          >
+            <span>❓</span>
+            <span>Help</span>
+          </button>
+
+          <!-- Home Link to index.html (Desktop) -->
+          <a
+            href="index.html"
+            class="hidden lg:inline-flex px-3.5 py-1.5 rounded-xl text-sm font-semibold text-white items-center gap-1.5 shadow-xs transition btn-primary"
+          >
+            <span>🏠</span>
+            <span>Home</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN CHALLENGE CONTAINER
+       ======================================================================== -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- Progress & Status Dashboard Banner -->
+    <section class="bg-white rounded-2xl p-4 sm:p-5 mb-6 border border-slate-200 shadow-xs">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+        <div>
+          <span class="inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-1" style="background: var(--accent-light); color: var(--accent);">
+            CEFR B1–B2 Social Life, Food &amp; Outdoors
+          </span>
+          <h2 id="activeTabHeading" class="text-lg sm:text-xl font-extrabold text-slate-800">
+            1. Tricky Multiple Choice
+          </h2>
+        </div>
+        <div class="flex items-center gap-3 sm:gap-4 text-sm">
+          <div class="bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200">
+            <span class="text-slate-500 font-medium">Tab Progress:</span>
+            <strong id="tabProgressText" class="ml-1 font-extrabold" style="color: var(--primary);">0 / 10</strong>
+          </div>
+          <div class="bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200">
+            <span class="text-slate-500 font-medium">Total Mastery:</span>
+            <strong id="totalProgressText" class="ml-1 font-extrabold" style="color: var(--accent);">0 / 36</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Progress Bar -->
+      <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+        <div
+          id="tabProgressBar"
+          class="h-full rounded-full transition-all duration-500"
+          style="width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent));"
+        ></div>
+      </div>
+    </section>
+
+    <!-- 4-Tab Switcher -->
+    <nav aria-label="Exercise Tabs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-6">
+      <button
+        id="tabBtn-0"
+        type="button"
+        onclick="switchTab(0)"
+        class="tab-btn active rounded-xl px-3.5 py-3 text-left flex items-center justify-between font-bold text-xs sm:text-sm"
+      >
+        <span class="truncate pr-2">1. Tricky Multiple Choice</span>
+        <span id="badge-0" class="tab-badge text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0">0/10</span>
+      </button>
+
+      <button
+        id="tabBtn-1"
+        type="button"
+        onclick="switchTab(1)"
+        class="tab-btn rounded-xl px-3.5 py-3 text-left flex items-center justify-between font-bold text-xs sm:text-sm"
+      >
+        <span class="truncate pr-2">2. Active Recall Fill-in-the-Gaps</span>
+        <span id="badge-1" class="tab-badge text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0">0/10</span>
+      </button>
+
+      <button
+        id="tabBtn-2"
+        type="button"
+        onclick="switchTab(2)"
+        class="tab-btn rounded-xl px-3.5 py-3 text-left flex items-center justify-between font-bold text-xs sm:text-sm"
+      >
+        <span class="truncate pr-2">3. Dropdown Precision Gaps</span>
+        <span id="badge-2" class="tab-badge text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0">0/10</span>
+      </button>
+
+      <button
+        id="tabBtn-3"
+        type="button"
+        onclick="switchTab(3)"
+        class="tab-btn rounded-xl px-3.5 py-3 text-left flex items-center justify-between font-bold text-xs sm:text-sm"
+      >
+        <span class="truncate pr-2">4. Reading Comprehension</span>
+        <span id="badge-3" class="tab-badge text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0">0/6</span>
+      </button>
+    </nav>
+
+    <!-- Exercise Subtitle / Micro-Guidance -->
+    <div id="tabInstructionBanner" class="rounded-xl px-4 py-3 mb-6 text-sm flex items-center gap-3 border" style="background: var(--primary-light); border-color: #cbdde2; color: var(--primary-dark);">
+      <span class="text-lg">⚡</span>
+      <p id="tabInstructionText" class="font-medium m-0">
+        Select the most natural B1–B2 option for family gatherings, dining out, outdoor trips, and expressing opinions. Answers verify automatically!
+      </p>
+    </div>
+
+    <!-- Reading Passage Box (Visible only in Tab 4) -->
+    <section id="readingPassageSection" class="hidden mb-7 bg-white rounded-2xl border-2 p-5 sm:p-7 shadow-sm animate-fade-up" style="border-color: var(--primary-light);">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 mb-5 border-b border-slate-100">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="level-b2 text-xs font-extrabold px-2.5 py-0.5 rounded-md">B1–B2 Reading</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Lifestyle &amp; Social Culture</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold" style="color: var(--primary);">
+            Around the Fire: Why Slow Weekends Outdoors Bring Us Closer
+          </h3>
+        </div>
+
+        <!-- Manual Audio Recitation Controls -->
+        <div class="flex flex-wrap items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 shrink-0">
+          <button
+            id="readingPlayPauseBtn"
+            type="button"
+            onclick="toggleReadingAudio()"
+            class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-white flex items-center gap-1.5 transition btn-primary"
+          >
+            <span id="readingPlayIcon">▶</span>
+            <span id="readingPlayLabel">Listen</span>
+          </button>
+          <button
+            id="readingStopBtn"
+            type="button"
+            onclick="stopReadingAudio()"
+            class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 flex items-center gap-1 transition"
+          >
+            <span>■</span>
+            <span>Stop</span>
+          </button>
+          <span
+            id="readingAudioStatus"
+            class="text-xs font-bold px-2.5 py-1 rounded-md"
+            style="background: var(--primary-light); color: var(--primary);"
+          >
+            Ready to play
+          </span>
+        </div>
+      </div>
+
+      <!-- Interactive Vocabulary Definition Inspector Bar -->
+      <div id="vocabInspector" class="mb-5 p-3.5 rounded-xl border text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all" style="background: var(--accent-light); border-color: #f6cdb4; color: #7c2d12;">
+        <div id="vocabInspectorContent">
+          <span class="font-extrabold">✨ Interactive Vocabulary:</span> Click or hover over any <span class="underline font-bold">highlighted expression</span> in the text below to see its B1–B2 definition and usage example.
+        </div>
+        <button
+          id="vocabSpeakBtn"
+          type="button"
+          class="hidden px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 shrink-0 self-start sm:self-center"
+        >
+          🔊 Pronounce
+        </button>
+      </div>
+
+      <!-- Passage Paragraphs with Interactive Highlighted Terms -->
+      <div id="readingPassageBody" class="space-y-4 text-base sm:text-[1.05rem] text-slate-700 leading-relaxed">
+        <p>
+          For months, my extended family and our closest friends had been promising to organize a weekend getaway, yet busy work schedules kept getting in the way. Whenever we finally managed to
+          <span class="vocab-term" tabindex="0" data-term="catch up" data-def="To talk to someone you have not seen for some time and find out what they have been doing." data-ex="We grabbed a coffee to catch up after three months apart.">catch up</span>
+          at a noisy downtown bistro, the evening felt rushed, and we spent half the night shouting over loud music. So last Friday, instead of going out to an overpriced restaurant, we packed our backpacks and headed to a lakeside cabin surrounded by pine forests and rolling hills.
+        </p>
+        <p>
+          The moment we arrived, the pace of life slowed down dramatically. While my cousins set up the tents and gathered firewood, my uncle—who is passionate about outdoor cooking—began preparing fresh
+          <span class="vocab-term" tabindex="0" data-term="salmon" data-def="A large silver fish with pink flesh; an invariant noun whose singular and plural forms are identical (one salmon, three salmon)." data-ex="We grilled four wild salmon over cedar planks.">salmon</span>
+          and seasonal vegetables over an open grill. Meanwhile, we mixed a refreshing pitcher of homemade elderflower lemonade alongside a few bottles of local craft cider.
+          <span class="vocab-term" tabindex="0" data-term="As far as I'm concerned" data-def="A natural B1–B2 discourse marker used to introduce your personal opinion or viewpoint." data-ex="As far as I'm concerned, home-cooked meals beat fancy restaurants every time.">As far as I'm concerned</span>,
+          nothing compares to sharing a generous meal under the open sky after a five-hour hike.
+        </p>
+        <p>
+          Later that evening, while we were sitting around the campfire chatting about everything from childhood memories to travel plans, a lively debate broke out over whether living in the countryside is genuinely healthier than staying in a major metropolis. My sister argued that rural areas offer a far better quality of life,
+          <span class="vocab-term" tabindex="0" data-term="whereas" data-def="A formal linking conjunction used to contrast two opposing facts or opinions within one sentence." data-ex="City life offers endless cultural events, whereas countryside living brings peace and space.">whereas</span>
+          my best friend pointed out that she would miss the spontaneous cultural life and diverse food scene of the city.
+          <span class="vocab-term" tabindex="0" data-term="Despite" data-def="A preposition of contrast meaning 'without being affected by'; followed directly by a noun or -ing verb (never 'of')." data-ex="Despite feeling tired after the trail, everyone stayed awake stargazing.">Despite</span>
+          holding completely different viewpoints, nobody felt pressured to win the argument—we simply listened and enjoyed each other's company.
+        </p>
+        <p>
+          Early the next morning, before the mist had lifted from the water, we spotted a small herd of wild
+          <span class="vocab-term" tabindex="0" data-term="deer" data-def="A graceful woodland animal; another classic English invariant plural (one deer, several deer)." data-ex="Two young deer crossed the hiking trail quietly at sunrise.">deer</span>
+          grazing quietly near the riverbank. Seeing wildlife up close reminded all of us how easily we take nature for granted during the week. By Sunday afternoon, everyone agreed that our outdoor retreat had been the most restorative weekend of the year, and we are already planning a spring kayaking trip together.
+        </p>
+      </div>
+    </section>
+
+    <!-- Dynamic Questions Container -->
+    <div id="questionsContainer" class="space-y-4"></div>
+
+    <!-- Bottom Action Controls (Reset & Shuffle + Next Exercise) -->
+    <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <button
+        type="button"
+        onclick="resetAndShuffleCurrentTab()"
+        class="w-full sm:w-auto px-5 py-3 rounded-xl border-2 font-bold text-sm flex items-center justify-center gap-2 transition hover:bg-slate-100"
+        style="border-color: var(--primary); color: var(--primary);"
+      >
+        <span>🔄 Reset &amp; Shuffle</span>
+      </button>
+
+      <button
+        id="nextExerciseBtn"
+        type="button"
+        onclick="handleNextExercise()"
+        class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm btn-accent"
+      >
+        <span id="nextExerciseLabel">Next Exercise ➔</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="mt-12 py-6 border-t border-slate-200 bg-white text-center text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="font-semibold text-slate-700">Merry Mery English • B1–B2 Social Life, Food &amp; Outdoors Challenge</p>
+      <p class="mt-1">Instant Automatic Feedback • Web Audio Synthesis • Interactive Reading &amp; Pronunciation</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING VOCABULARY POP-UP CARD (READING PASSAGE)
+       ======================================================================== -->
+  <div
+    id="vocabPopupCard"
+    role="dialog"
+    aria-live="polite"
+    style="display:none; position:fixed; z-index:90; width:min(370px, calc(100vw - 24px)); border-color: var(--accent);"
+    class="bg-white rounded-2xl border-2 p-4 sm:p-5 shadow-2xl animate-fade-up"
+  >
+    <div class="flex items-start justify-between gap-2 mb-2">
+      <div>
+        <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md mb-1" style="background: var(--accent-light); color: var(--accent);">
+          B1–B2 Vocabulary
+        </span>
+        <h4 id="popupTermTitle" class="text-lg font-extrabold" style="color: var(--primary);"></h4>
+      </div>
+      <button
+        type="button"
+        onclick="closeVocabPopup()"
+        class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0"
+        aria-label="Close vocabulary pop-up"
+      >
+        ✕
+      </button>
+    </div>
+    <p id="popupTermDef" class="text-sm text-slate-700 font-medium mb-2.5 leading-snug"></p>
+    <div id="popupTermEx" class="text-xs italic text-slate-700 bg-slate-50 border-l-4 p-2.5 rounded-r-lg mb-3" style="border-color: var(--primary);"></div>
+    <button
+      id="popupSpeakBtn"
+      type="button"
+      class="speak-btn w-full py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5"
+    >
+      <span>🔊 Listen Term &amp; Example</span>
+    </button>
+  </div>
+
+  <!-- ========================================================================
+       HELP & INSTRUCTIONS MODAL
+       ======================================================================== -->
+  <div
+    id="helpModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="helpModalTitle"
+  >
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 animate-fade-up">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 id="helpModalTitle" class="text-lg font-extrabold" style="color: var(--primary);">
+          How to Use This Interactive Challenge
+        </h3>
+        <button
+          type="button"
+          onclick="closeHelpModal()"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 font-bold"
+          aria-label="Close Help Modal"
+        >
+          ✕
+        </button>
+      </div>
+      <div class="py-4 space-y-3 text-sm text-slate-600">
+        <div class="flex items-start gap-3">
+          <span class="font-extrabold px-2 py-0.5 rounded-md text-xs mt-0.5" style="background: var(--primary-light); color: var(--primary);">1</span>
+          <p><strong>Immediate Automatic Verification:</strong> There is no "Check" button. As soon as you select an option, pick a dropdown item, or type the exact target word, your answer is verified automatically.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="font-extrabold px-2 py-0.5 rounded-md text-xs mt-0.5" style="background: var(--accent-light); color: var(--accent);">2</span>
+          <p><strong>Active Recall Scaffolds (Tab 2):</strong> Click <em>💡 Hint</em> to reveal a grammar or context tip, or click <em>+1 Letter</em> to progressively reveal characters of the missing word.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="font-extrabold px-2 py-0.5 rounded-md text-xs mt-0.5" style="background: var(--primary-light); color: var(--primary);">3</span>
+          <p><strong>Reading Comprehension &amp; Audio (Tab 4):</strong> Use the <em>▶ Listen</em> and <em>■ Stop</em> controls to hear the entire story read aloud in your selected accent, click highlighted terms for definitions, and answer the 6 comprehension questions.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="font-extrabold px-2 py-0.5 rounded-md text-xs mt-0.5" style="background: var(--success-bg); color: var(--success);">4</span>
+          <p><strong>Reset &amp; Shuffle:</strong> Every tab includes a <em>🔄 Reset &amp; Shuffle</em> button so you can randomize the order of questions and options anytime.</p>
+        </div>
+      </div>
+      <div class="pt-3 border-t border-slate-100 flex justify-end">
+        <button
+          type="button"
+          onclick="closeHelpModal()"
+          class="px-5 py-2.5 rounded-xl font-bold text-sm btn-primary"
+        >
+          Got It, Let's Start!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CONGRATULATIONS & ACCURACY METRICS MODAL
+       ======================================================================== -->
+  <div
+    id="congratsModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/65 backdrop-blur-xs"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="congratsModalTitle"
+  >
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 text-center animate-fade-up" style="border-color: var(--primary);">
+      <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center text-3xl shadow-md" style="background: var(--accent-light);">
+        🏆
+      </div>
+      <span id="congratsBadge" class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-2" style="background: var(--success-bg); color: var(--success);">
+        Section Mastered!
+      </span>
+      <h3 id="congratsModalTitle" class="text-2xl font-extrabold text-slate-900 mb-2">
+        Fantastic Achievement!
+      </h3>
+      <p id="congratsSubtitle" class="text-sm text-slate-600 mb-6">
+        You completed every item in this section. Here is your real-time accuracy report:
+      </p>
+
+      <!-- Real Accuracy Metrics Grid -->
+      <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Accuracy</div>
+          <div id="metricAccuracy" class="text-xl sm:text-2xl font-extrabold mt-0.5" style="color: var(--success);">100%</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">First-Try Hits</div>
+          <div id="metricFirstTry" class="text-xl sm:text-2xl font-extrabold mt-0.5" style="color: var(--primary);">10/10</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Errors / Clues</div>
+          <div id="metricMistakes" class="text-xl sm:text-2xl font-extrabold mt-0.5" style="color: var(--accent);">0</div>
+        </div>
+      </div>
+
+      <!-- CEFR Feedback Banner -->
+      <div id="cefrFeedbackBox" class="p-3.5 rounded-xl text-xs sm:text-sm font-medium mb-6 text-left border" style="background: var(--primary-light); border-color: #cbdde2; color: var(--primary-dark);">
+        🌟 <strong>B2 Distinction:</strong> Your command of social idioms, invariant plurals, and nuanced opinion structures is spot-on!
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5 justify-center">
+        <button
+          type="button"
+          onclick="closeCongratsModal()"
+          class="px-5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm text-slate-700 hover:bg-slate-50 transition"
+        >
+          Review Answers
+        </button>
+        <button
+          id="congratsNextBtn"
+          type="button"
+          onclick="proceedFromCongrats()"
+          class="px-6 py-2.5 rounded-xl font-bold text-sm btn-accent shadow-sm"
+        >
+          Next Exercise ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       APPLICATION LOGIC (DATA, AUDIO, SPEECH, RENDERING, CONFETTI)
+       ======================================================================== -->
+  <script>
+    /**
+     * 1. CURRICULUM DATA BANK (36 B1-B2 SOCIAL LIFE, FOOD & OUTDOORS ITEMS)
+     */
+    const CHALLENGE_DATA = {
+      // TAB 1: 10 Tricky Multiple Choice Items
+      mc: [
+        {
+          id: 'mc1',
+          level: 'B2',
+          tag: 'Invariant Plurals (Food & Nature)',
+          sentenceBefore: 'During our coastal camping trip, we grilled four fresh ___ that a local fisherman had caught that morning.',
+          sentenceAfter: '',
+          options: ['salmon', 'salmons', 'salmones', 'piece of salmons'],
+          correct: 'salmon',
+          hint: '"Salmon" is an invariant plural noun—its singular and plural forms are identical (one salmon, four salmon).',
+          explanation: 'Fish names like "salmon" and "trout" normally take zero plural suffix in English.'
+        },
+        {
+          id: 'mc2',
+          level: 'B2',
+          tag: 'Reported Speech (Questions)',
+          sentenceBefore: 'After dinner, my cousin asked me what time ___ for the mountain trail the next morning.',
+          sentenceAfter: '',
+          options: ['we were setting off', 'were we setting off', 'are we setting off', 'will we set off'],
+          correct: 'we were setting off',
+          hint: 'In reported wh- questions, use affirmative word order (subject + verb) and shift the tense one step back.',
+          explanation: 'Reported questions remove subject-verb inversion ("we were setting off", not "were we setting off").'
+        },
+        {
+          id: 'mc3',
+          level: 'B2',
+          tag: 'Concessive Connectors',
+          sentenceBefore: '___ feeling exhausted after the steep climb, everyone stayed up chatting around the bonfire.',
+          sentenceAfter: '',
+          options: ['Despite', 'Although', 'Whereas', 'However'],
+          correct: 'Despite',
+          hint: 'Only one of these connectors can be followed directly by a gerund (-ing verb) without "of".',
+          explanation: '"Despite + -ing" ("Despite feeling exhausted") expresses contrast smoothly at B2 level.'
+        },
+        {
+          id: 'mc4',
+          level: 'B1',
+          tag: 'Phrasal Verbs (Going Out)',
+          sentenceBefore: 'Whenever old university friends visit town, we always ___ at our favourite tapas bar near the harbour.',
+          sentenceAfter: '',
+          options: ['catch up', 'put off', 'turn down', 'give away'],
+          correct: 'catch up',
+          hint: 'Choose the phrasal verb meaning "to talk and share news after being apart for a while".',
+          explanation: '"Catch up" is the everyday expression for reconnecting with friends and sharing recent updates.'
+        },
+        {
+          id: 'mc5',
+          level: 'B2',
+          tag: 'Comparatives & Nuance',
+          sentenceBefore: 'Making wood-fired pizza from scratch turned out to be ___ easier than we had expected.',
+          sentenceAfter: '',
+          options: ['far', 'very', 'more', 'too much'],
+          correct: 'far',
+          hint: 'Select the intensifier adverb that naturally modifies comparative adjectives like "easier".',
+          explanation: '"Far easier" (or "much easier") emphasizes a large difference in a comparative structure.'
+        },
+        {
+          id: 'mc6',
+          level: 'B2',
+          tag: 'Dependent Prepositions',
+          sentenceBefore: 'My sister is really keen ___ trying exotic street food whenever we travel abroad.',
+          sentenceAfter: '',
+          options: ['on', 'in', 'at', 'for'],
+          correct: 'on',
+          hint: 'Which preposition follows the adjective "keen" when expressing strong enthusiasm?',
+          explanation: 'The B1–B2 collocation is "be keen on + noun / -ing verb".'
+        },
+        {
+          id: 'mc7',
+          level: 'B2',
+          tag: 'Invariant Plurals (Wildlife)',
+          sentenceBefore: 'While hiking through the misty valley at dawn, we spotted a herd of wild ___ crossing the stream.',
+          sentenceAfter: '',
+          options: ['deer', 'deers', 'deeres', 'a deer'],
+          correct: 'deer',
+          hint: 'Just like "sheep", this woodland animal never adds -s in the plural.',
+          explanation: '"Deer" remains unchanged in both singular and plural ("a herd of wild deer").'
+        },
+        {
+          id: 'mc8',
+          level: 'B1',
+          tag: 'Narrative Tenses',
+          sentenceBefore: 'While we ___ sparkling lemonade on the patio, a sudden summer storm rolled in.',
+          sentenceAfter: '',
+          options: ['were sipping', 'sipped', 'have sipped', 'had sip'],
+          correct: 'were sipping',
+          hint: 'An ongoing background scene interrupted by a sudden past event requires Past Continuous.',
+          explanation: 'Past Continuous ("were sipping") sets the ongoing background action interrupted by "rolled in".'
+        },
+        {
+          id: 'mc9',
+          level: 'B2',
+          tag: 'Giving Opinions (Nuanced)',
+          sentenceBefore: '___, the new rooftop café has a wonderful view, though the desserts are slightly overpriced.',
+          sentenceAfter: '',
+          options: ['To be honest', 'According to me', 'In my opinion of', 'As I am concerned'],
+          correct: 'To be honest',
+          hint: 'Watch out for false-friend expressions like "according to me"—pick the natural English opinion marker.',
+          explanation: 'Native speakers say "To be honest" or "In my opinion", never "According to me".'
+        },
+        {
+          id: 'mc10',
+          level: 'B2',
+          tag: 'Contrast Connectors (Opinions)',
+          sentenceBefore: 'My brother loves energetic music festivals, ___ I much prefer quiet picnics by the lake.',
+          sentenceAfter: '',
+          options: ['whereas', 'despite', 'in addition', 'unless'],
+          correct: 'whereas',
+          hint: 'Use a conjunction that directly contrasts two people’s opposite preferences in one sentence.',
+          explanation: '"Whereas" contrasts two different facts or tastes across two clauses.'
+        }
+      ],
+
+      // TAB 2: 10 Active Recall Fill-in-the-Gaps
+      recall: [
+        {
+          id: 'rc1',
+          level: 'B2',
+          tag: 'Double Comparatives',
+          sentenceBefore: 'The spicier the curry is, the ',
+          cue: '(good)',
+          sentenceAfter: ' it tastes with cold mango lassi!',
+          answer: 'better',
+          hint: '6 letters (b _ _ _ _ _): Irregular comparative form of "good" in a "The..., the..." structure.',
+          explanation: '"The + comparative..., the + comparative..." uses "better" as the irregular comparative of "good".'
+        },
+        {
+          id: 'rc2',
+          level: 'B2',
+          tag: 'Invariant Plurals (Countryside)',
+          sentenceBefore: 'Our countryside walk was briefly delayed because dozens of ',
+          cue: '(sheep)',
+          sentenceAfter: ' were blocking the narrow stone bridge.',
+          answer: 'sheep',
+          hint: '5 letters (s _ _ _ _): Do not add -s; singular and plural are identical.',
+          explanation: '"Sheep" is a classic invariant plural noun (one sheep, dozens of sheep).'
+        },
+        {
+          id: 'rc3',
+          level: 'B2',
+          tag: 'Reported Speech (Commands/Advice)',
+          sentenceBefore: 'The waiter recommended ',
+          cue: '(order)',
+          sentenceAfter: ' the homemade berry cheesecake before it sold out.',
+          answer: 'ordering',
+          hint: '8 letters (o _ _ _ _ _ _ _): "Recommend" is followed directly by a gerund (-ing form).',
+          explanation: 'Use "recommend + -ing" ("recommended ordering") when suggesting a dish or activity.'
+        },
+        {
+          id: 'rc4',
+          level: 'B1',
+          tag: 'Present Perfect vs. Past Simple',
+          sentenceBefore: 'We ',
+          cue: '(not / eat)',
+          sentenceAfter: ' at that family-run trattoria since they renovated the garden terrace.',
+          answer: "haven't eaten",
+          hint: '13 letters (h _ _ _ _ \' _  e _ _ _ _): Negative Present Perfect before a "since" clause.',
+          explanation: 'An unfinished period anchored by "since + Past Simple" requires Present Perfect ("haven\'t eaten").'
+        },
+        {
+          id: 'rc5',
+          level: 'B2',
+          tag: 'Social Idioms (Going Out)',
+          sentenceBefore: 'Since it was my best friend’s birthday, I insisted on picking up the ',
+          cue: '(bill / tab)',
+          sentenceAfter: ' at the end of dinner.',
+          answer: 'bill',
+          hint: '4 letters (b _ _ _): "Pick up the ____" means to pay for everyone’s meal or drinks.',
+          explanation: '"Pick up the bill" (or "pick up the tab") is a natural B2 idiom for treating friends.'
+        },
+        {
+          id: 'rc6',
+          level: 'B2',
+          tag: 'Invariant Plurals (Nature)',
+          sentenceBefore: 'National park rangers protect more than sixty rare ',
+          cue: '(species)',
+          sentenceAfter: ' of wildflowers along this ridge.',
+          answer: 'species',
+          hint: '7 letters (s _ _ _ _ _ _): Ends in -s in both singular and plural forms.',
+          explanation: '"Species" is identical in singular and plural ("one species", "sixty rare species").'
+        },
+        {
+          id: 'rc7',
+          level: 'B1',
+          tag: 'Superlatives (Dining Out)',
+          sentenceBefore: 'Of all the cafés in the old quarter, this one serves the ',
+          cue: '(fresh)',
+          sentenceAfter: ' pastries on Sunday mornings.',
+          answer: 'freshest',
+          hint: '8 letters (f _ _ _ _ _ _ _): One-syllable superlative adjective ending in -est.',
+          explanation: 'One-syllable adjectives form the superlative with "the + -est" ("the freshest").'
+        },
+        {
+          id: 'rc8',
+          level: 'B2',
+          tag: 'Second Conditional (Hypotheticals)',
+          sentenceBefore: 'If we ',
+          cue: '(live)',
+          sentenceAfter: ' closer to the coast, we would go kayaking every single weekend.',
+          answer: 'lived',
+          hint: '5 letters (l _ _ _ _): Unreal present condition ("would go") takes Past Simple in the if-clause.',
+          explanation: 'Second Conditional pairs "If + Past Simple" ("lived") with "would + base verb".'
+        },
+        {
+          id: 'rc9',
+          level: 'B2',
+          tag: 'Word Formation (Socializing)',
+          sentenceBefore: 'A warm, welcoming atmosphere makes all the ',
+          cue: '(differ)',
+          sentenceAfter: ' when hosting a large family reunion.',
+          answer: 'difference',
+          hint: '10 letters (d _ _ _ _ _ _ _ _ _): Noun form of "differ" in the idiom "make all the ____".',
+          explanation: '"Make all the difference" means to have a very positive and noticeable effect.'
+        },
+        {
+          id: 'rc10',
+          level: 'B2',
+          tag: 'Giving Opinions (Prepositions)',
+          sentenceBefore: 'To my ',
+          cue: '(mind)',
+          sentenceAfter: ', sharing small plates is a much more sociable way to dine out than ordering single entrées.',
+          answer: 'mind',
+          hint: '4 letters (m _ _ _): "To my ____" is an idiomatic B2 phrase meaning "in my opinion".',
+          explanation: '"To my mind" is a polished, natural way to introduce a personal opinion in conversation.'
+        }
+      ],
+
+      // TAB 3: 10 Dropdown Precision Gaps
+      dropdown: [
+        {
+          id: 'dd1',
+          level: 'B2',
+          tag: 'Comparatives of Equality',
+          sentenceBefore: 'The store-bought iced tea wasn’t nearly ',
+          options: ['as refreshing as', 'so refreshing than', 'more refreshing as', 'the most refreshing than'],
+          correct: 'as refreshing as',
+          sentenceAfter: ' the mint and ginger infusion we brewed at home.',
+          hint: 'Use "as + adjective + as" after "not nearly" to express a big difference.',
+          explanation: '"Not nearly as + adjective + as" is a high-frequency B2 comparative structure.'
+        },
+        {
+          id: 'dd2',
+          level: 'B2',
+          tag: 'Reported Speech (Tense Backshift)',
+          sentenceBefore: 'When we chatted yesterday, Sarah mentioned that she ',
+          options: ['was planning', 'is planning', 'has planned', 'will plan'],
+          correct: 'was planning',
+          sentenceAfter: ' a surprise barbecue for her parents’ anniversary.',
+          hint: 'After a past reporting verb ("mentioned"), Present Continuous shifts back to Past Continuous.',
+          explanation: 'Reported speech backshift changes "is planning" to "was planning".'
+        },
+        {
+          id: 'dd3',
+          level: 'B1',
+          tag: 'Quantifiers (Food & Drinks)',
+          sentenceBefore: 'We only have ',
+          options: ['a little', 'a few', 'many', 'several'],
+          correct: 'a little',
+          sentenceAfter: ' sparkling water left in the cooler, so let’s pick up another bottle before the picnic.',
+          hint: '"Sparkling water" is an uncountable liquid, so pair it with an uncountable quantifier.',
+          explanation: '"A little" is used with uncountable nouns ("water"), whereas "a few" is used with countable plurals.'
+        },
+        {
+          id: 'dd4',
+          level: 'B2',
+          tag: 'Purpose Connectors',
+          sentenceBefore: 'We booked the riverside table a week in advance ',
+          options: ['so that', 'in order to', 'due to', 'despite'],
+          correct: 'so that',
+          sentenceAfter: ' the whole family could sit together at sunset.',
+          hint: 'Because a full clause with a subject and modal ("the whole family could sit...") follows, use a conjunction of purpose.',
+          explanation: '"So that + subject + could" introduces the intended purpose of an action.'
+        },
+        {
+          id: 'dd5',
+          level: 'B2',
+          tag: 'Phrasal Verbs (Social Plans)',
+          sentenceBefore: 'We had arranged to go hiking on Saturday, but we had to ',
+          options: ['call it off', 'look it up', 'take it after', 'run it out'],
+          correct: 'call it off',
+          sentenceAfter: ' because of heavy thunderstorms.',
+          hint: 'Select the separable phrasal verb meaning "to cancel a planned event".',
+          explanation: '"Call something off" means to cancel an outdoor activity, meeting, or event.'
+        },
+        {
+          id: 'dd6',
+          level: 'B1',
+          tag: 'Future Arrangements',
+          sentenceBefore: 'I can’t stay out late tonight because I ',
+          options: ['am meeting', 'will have met', 'met', 'used to meet'],
+          correct: 'am meeting',
+          sentenceAfter: ' my brother at 7:00 AM for a cycling session.',
+          hint: 'Use Present Continuous for fixed personal arrangements with a specific time.',
+          explanation: 'Present Continuous ("am meeting") expresses a confirmed diary arrangement.'
+        },
+        {
+          id: 'dd7',
+          level: 'B2',
+          tag: 'Prepositions (Time & Place)',
+          sentenceBefore: 'By the time we arrived ',
+          options: ['at', 'in', 'to', 'on'],
+          correct: 'at',
+          sentenceAfter: ' the botanical gardens, the outdoor jazz concert had already begun.',
+          hint: 'Use this preposition after "arrive" for specific venues, buildings, or events (never "arrive to").',
+          explanation: 'We "arrive at" a specific venue or event ("arrive at the botanical gardens") and "arrive in" a city/country.'
+        },
+        {
+          id: 'dd8',
+          level: 'B2',
+          tag: 'Giving Opinions & Agreement',
+          sentenceBefore: 'I couldn’t agree ',
+          options: ['more', 'better', 'much', 'so'],
+          correct: 'more',
+          sentenceAfter: '—eating outdoors always makes simple food taste extraordinary.',
+          hint: 'Complete the idiomatic expression meaning "I completely agree with you".',
+          explanation: '"I couldn’t agree more" is an essential B2 conversational phrase for strong agreement.'
+        },
+        {
+          id: 'dd9',
+          level: 'B2',
+          tag: 'Modal Deduction (Past)',
+          sentenceBefore: 'Everyone’s plates are completely empty—the homemade paella ',
+          options: ['must have been', 'should be', 'can’t have been', 'would be'],
+          correct: 'must have been',
+          sentenceAfter: ' absolutely delicious!',
+          hint: 'Make a strong logical deduction about the past based on the empty plates.',
+          explanation: '"Must have been" expresses near-certainty about a past situation based on clear evidence.'
+        },
+        {
+          id: 'dd10',
+          level: 'B1',
+          tag: 'Gerunds After Prepositions',
+          sentenceBefore: 'Instead of ',
+          options: ['ordering', 'order', 'to order', 'ordered'],
+          correct: 'ordering',
+          sentenceAfter: ' takeout again, let’s try cooking a Thai curry together tonight.',
+          hint: 'Prepositions like "instead of" are always followed by a verb in the -ing form.',
+          explanation: 'After any preposition ("instead of"), verbs take the gerund (-ing) form.'
+        }
+      ],
+
+      // TAB 4: 6 Reading Comprehension Questions
+      reading: [
+        {
+          id: 'rd1',
+          level: 'B1',
+          tag: 'Reading • Main Motivation',
+          sentenceBefore: 'Why did the narrator’s family and friends decide to rent a lakeside cabin instead of dining out in the city?',
+          sentenceAfter: '',
+          options: [
+            'Previous meetups at city restaurants felt hurried and too loud for real conversation.',
+            'None of them enjoyed restaurant food or urban cultural activities.',
+            'They wanted to celebrate a formal wedding anniversary outdoors.',
+            'All the restaurants in their neighbourhood were closed for renovations.'
+          ],
+          correct: 'Previous meetups at city restaurants felt hurried and too loud for real conversation.',
+          hint: 'Check the first paragraph where the narrator describes catching up at a downtown bistro.',
+          explanation: 'Paragraph 1 states that evenings at the downtown bistro "felt rushed, and we spent half the night shouting over loud music."'
+        },
+        {
+          id: 'rd2',
+          level: 'B2',
+          tag: 'Reading • Detail & Food',
+          sentenceBefore: 'What did the group prepare to eat and drink upon arriving at the cabin?',
+          sentenceAfter: '',
+          options: [
+            'Grilled salmon and seasonal vegetables with homemade elderflower lemonade and local craft cider.',
+            'Wood-fired pizza and imported sparkling wine.',
+            'Takeout sandwiches and hot chocolate around the campfire.',
+            'Freshly caught trout with spiced mango smoothies.'
+          ],
+          correct: 'Grilled salmon and seasonal vegetables with homemade elderflower lemonade and local craft cider.',
+          hint: 'Look closely at the second paragraph describing the uncle’s open-grill cooking.',
+          explanation: 'Paragraph 2 mentions fresh salmon and seasonal vegetables on the grill, plus elderflower lemonade and local craft cider.'
+        },
+        {
+          id: 'rd3',
+          level: 'B2',
+          tag: 'Reading • Contrasting Opinions',
+          sentenceBefore: 'How did the narrator’s sister and best friend differ during their campfire debate?',
+          sentenceAfter: '',
+          options: [
+            'The sister favoured rural quality of life, whereas the friend valued city culture and food diversity.',
+            'The sister wanted to move abroad, while the friend preferred camping every weekend.',
+            'Both agreed that city life is far healthier than living near the forest.',
+            'The friend disliked outdoor cooking, whereas the sister wanted to become a chef.'
+          ],
+          correct: 'The sister favoured rural quality of life, whereas the friend valued city culture and food diversity.',
+          hint: 'Re-read the middle of paragraph 3 where "whereas" contrasts their two opinions.',
+          explanation: 'Paragraph 3 explicitly contrasts the sister’s view on rural health/quality of life with the friend’s love for city culture and food.'
+        },
+        {
+          id: 'rd4',
+          level: 'B2',
+          tag: 'Reading • Inference & Tone',
+          sentenceBefore: 'What does the campfire conversation reveal about the group’s friendship?',
+          sentenceAfter: '',
+          options: [
+            'They respect differing opinions without feeling the need to prove each other wrong.',
+            'They avoid discussing serious topics so nobody gets offended.',
+            'They rarely agree on where to go for weekend holidays.',
+            'They prefer competing in debates rather than relaxing outdoors.'
+          ],
+          correct: 'They respect differing opinions without feeling the need to prove each other wrong.',
+          hint: 'Look at the final sentence of paragraph 3.',
+          explanation: 'The narrator notes that despite different viewpoints, "nobody felt pressured to win the argument—we simply listened and enjoyed each other\'s company."'
+        },
+        {
+          id: 'rd5',
+          level: 'B1',
+          tag: 'Reading • Wildlife & Reflection',
+          sentenceBefore: 'What realization did seeing wild deer early the next morning trigger for the group?',
+          sentenceAfter: '',
+          options: [
+            'How easily people take the natural world for granted during their busy weekdays.',
+            'That hiking near the riverbank before sunrise is too dangerous.',
+            'That they had forgotten to pack enough food for Sunday lunch.',
+            'That wild animals prefer staying close to busy city parks.'
+          ],
+          correct: 'How easily people take the natural world for granted during their busy weekdays.',
+          hint: 'Check the second sentence of the final paragraph.',
+          explanation: 'Paragraph 4 says seeing the deer "reminded all of us how easily we take nature for granted during the week."'
+        },
+        {
+          id: 'rd6',
+          level: 'B2',
+          tag: 'Reading • Vocabulary in Context',
+          sentenceBefore: 'In the final paragraph, the word "restorative" is closest in meaning to:',
+          sentenceAfter: '',
+          options: [
+            'refreshing and energy-renewing',
+            'exhausting and physically demanding',
+            'expensive and luxurious',
+            'unpredictable and chaotic'
+          ],
+          correct: 'refreshing and energy-renewing',
+          hint: 'Think about how the peaceful weekend helped everyone recover from their busy work schedules.',
+          explanation: 'Something "restorative" restores your energy, calm, and well-being.'
+        }
+      ]
+    };
+
+    const FULL_READING_SCRIPT = `Around the Fire: Why Slow Weekends Outdoors Bring Us Closer.
+    For months, my extended family and our closest friends had been promising to organize a weekend getaway, yet busy work schedules kept getting in the way. Whenever we finally managed to catch up at a noisy downtown bistro, the evening felt rushed, and we spent half the night shouting over loud music. So last Friday, instead of going out to an overpriced restaurant, we packed our backpacks and headed to a lakeside cabin surrounded by pine forests and rolling hills.
+    The moment we arrived, the pace of life slowed down dramatically. While my cousins set up the tents and gathered firewood, my uncle—who is passionate about outdoor cooking—began preparing fresh salmon and seasonal vegetables over an open grill. Meanwhile, we mixed a refreshing pitcher of homemade elderflower lemonade alongside a few bottles of local craft cider. As far as I'm concerned, nothing compares to sharing a generous meal under the open sky after a five-hour hike.
+    Later that evening, while we were sitting around the campfire chatting about everything from childhood memories to travel plans, a lively debate broke out over whether living in the countryside is genuinely healthier than staying in a major metropolis. My sister argued that rural areas offer a far better quality of life, whereas my best friend pointed out that she would miss the spontaneous cultural life and diverse food scene of the city. Despite holding completely different viewpoints, nobody felt pressured to win the argument—we simply listened and enjoyed each other's company.
+    Early the next morning, before the mist had lifted from the water, we spotted a small herd of wild deer grazing quietly near the riverbank. Seeing wildlife up close reminded all of us how easily we take nature for granted during the week. By Sunday afternoon, everyone agreed that our outdoor retreat had been the most restorative weekend of the year, and we are already planning a spring kayaking trip together.`;
+
+    /**
+     * 2. APPLICATION STATE
+     */
+    const state = {
+      activeTab: 0, // 0 = MC, 1 = Recall, 2 = Dropdown, 3 = Reading
+      items: { 0: [], 1: [], 2: [], 3: [] },
+      progress: { 0: {}, 1: {}, 2: {}, 3: {} },
+      tabCelebrated: { 0: false, 1: false, 2: false, 3: false },
+      readingAudioState: 'stopped' // 'stopped' | 'playing' | 'paused'
+    };
+
+    const TAB_META = [
+      {
+        title: '1. Tricky Multiple Choice',
+        instruction: 'Select the most natural B1–B2 option for family gatherings, dining out, outdoor trips, and expressing opinions. Answers verify automatically!',
+        key: 'mc'
+      },
+      {
+        title: '2. Active Recall Fill-in-the-Gaps',
+        instruction: 'Type the exact missing word, invariant plural, comparative, or verb tense directly into each gap. Use 💡 Hint or +1 Letter if you need a nudge!',
+        key: 'recall'
+      },
+      {
+        title: '3. Dropdown Precision Gaps',
+        instruction: 'Open each dropdown menu inside the sentence and select the precise grammatical form, connector, quantifier, or social idiom.',
+        key: 'dropdown'
+      },
+      {
+        title: '4. Reading Comprehension',
+        instruction: 'Listen to or read the story below, click highlighted B1–B2 expressions to inspect definitions, and answer the 6 comprehension questions.',
+        key: 'reading'
+      }
+    ];
+
+    /**
+     * 3. WEB AUDIO API SYNTHESIZER
+     */
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSuccessSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const notes = [523.25, 659.25, 783.99];
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.065);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.065);
+          gain.gain.exponentialRampToValueAtTime(0.14, now + idx * 0.065 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.065 + 0.28);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.065);
+          osc.stop(now + idx * 0.065 + 0.3);
+        });
+      } catch (e) {}
+    }
+
+    function playErrorSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(195, now);
+        osc.frequency.linearRampToValueAtTime(145, now + 0.22);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.11, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {}
+    }
+
+    function playFanfareSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const chord = [523.25, 659.25, 783.99, 1046.5];
+        chord.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.09);
+          gain.gain.setValueAtTime(0.001, now + i * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.15, now + i * 0.09 + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.09 + 0.55);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.09);
+          osc.stop(now + i * 0.09 + 0.6);
+        });
+      } catch (e) {}
+    }
+
+    /**
+     * 4. WEB SPEECH API (GLOBAL VOICE SELECTOR & READING RECITATION)
+     */
+    let availableVoices = [];
+
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        availableVoices = window.speechSynthesis.getVoices();
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function pickBestVoice(profile) {
+      if (!availableVoices.length) loadVoices();
+      const enVoices = availableVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      if (!enVoices.length) return null;
+
+      const isUK = profile.startsWith('uk');
+      const isFemale = profile.endsWith('female');
+
+      const regionVoices = enVoices.filter(v => {
+        const lang = v.lang.toLowerCase();
+        return isUK ? (lang.includes('gb') || lang.includes('uk')) : lang.includes('us');
+      });
+
+      const pool = regionVoices.length ? regionVoices : enVoices;
+      const femaleHints = ['female', 'woman', 'hazel', 'libby', 'sonia', 'serena', 'kate', 'susan', 'zira', 'samantha', 'victoria', 'jenny', 'aria', 'google uk english female'];
+      const maleHints = ['male', 'man', 'daniel', 'george', 'ryan', 'arthur', 'oliver', 'david', 'mark', 'guy', 'alex', 'google uk english male'];
+
+      const hints = isFemale ? femaleHints : maleHints;
+      const matched = pool.find(v => hints.some(h => v.name.toLowerCase().includes(h)));
+
+      return matched || pool[0];
+    }
+
+    function createConfiguredUtterance(text) {
+      const profile = document.getElementById('globalVoiceSelect').value;
+      const utterance = new SpeechSynthesisUtterance(text);
+      const chosenVoice = pickBestVoice(profile);
+      if (chosenVoice) {
+        utterance.voice = chosenVoice;
+      }
+      utterance.lang = profile.startsWith('uk') ? 'en-GB' : 'en-US';
+      utterance.rate = 0.96;
+      utterance.pitch = profile.endsWith('female') ? 1.07 : 0.93;
+      return utterance;
+    }
+
+    function speakSentence(text, btnEl) {
+      if (!('speechSynthesis' in window)) return;
+      stopReadingAudio(true);
+      window.speechSynthesis.cancel();
+
+      document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
+      const utterance = createConfiguredUtterance(text);
+
+      if (btnEl) {
+        btnEl.classList.add('speaking');
+        utterance.onend = () => btnEl.classList.remove('speaking');
+        utterance.onerror = () => btnEl.classList.remove('speaking');
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Manual Audio Recitation Controls for Tab 4 Reading Comprehension
+    function updateReadingAudioUI(status, badgeText, playIcon, playLabel) {
+      state.readingAudioState = status;
+      const statusEl = document.getElementById('readingAudioStatus');
+      const iconEl = document.getElementById('readingPlayIcon');
+      const labelEl = document.getElementById('readingPlayLabel');
+      if (statusEl) statusEl.textContent = badgeText;
+      if (iconEl) iconEl.textContent = playIcon;
+      if (labelEl) labelEl.textContent = playLabel;
+    }
+
+    function toggleReadingAudio() {
+      if (!('speechSynthesis' in window)) return;
+
+      if (state.readingAudioState === 'playing') {
+        window.speechSynthesis.pause();
+        updateReadingAudioUI('paused', 'Paused', '▶', 'Resume');
+        return;
+      }
+
+      if (state.readingAudioState === 'paused') {
+        window.speechSynthesis.resume();
+        updateReadingAudioUI('playing', 'Playing passage...', '⏸', 'Pause');
+        return;
+      }
+
+      // Start fresh recitation
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
+
+      const utterance = createConfiguredUtterance(FULL_READING_SCRIPT);
+      utterance.onstart = () => {
+        updateReadingAudioUI('playing', 'Playing passage...', '⏸', 'Pause');
+      };
+      utterance.onend = () => {
+        updateReadingAudioUI('stopped', 'Finished • Ready', '▶', 'Listen');
+      };
+      utterance.onerror = () => {
+        updateReadingAudioUI('stopped', 'Ready to play', '▶', 'Listen');
+      };
+
+      updateReadingAudioUI('playing', 'Playing passage...', '⏸', 'Pause');
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopReadingAudio(silent = false) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      updateReadingAudioUI('stopped', 'Ready to play', '▶', 'Listen');
+    }
+
+    /**
+     * 5. INTERACTIVE VOCABULARY POP-UP & INSPECTOR IN READING PASSAGE
+     */
+    function closeVocabPopup() {
+      const popup = document.getElementById('vocabPopupCard');
+      if (popup) popup.style.display = 'none';
+      document.querySelectorAll('.vocab-term').forEach(t => t.classList.remove('active-term'));
+    }
+
+    function openVocabPopup(termEl) {
+      const popup = document.getElementById('vocabPopupCard');
+      if (!popup || !termEl) return;
+
+      const word = termEl.getAttribute('data-term');
+      const def = termEl.getAttribute('data-def');
+      const ex = termEl.getAttribute('data-ex');
+
+      document.getElementById('popupTermTitle').textContent = word;
+      document.getElementById('popupTermDef').textContent = def;
+      document.getElementById('popupTermEx').textContent = `Example: "${ex}"`;
+
+      const popupSpeak = document.getElementById('popupSpeakBtn');
+      popupSpeak.onclick = () => speakSentence(`${word}. ${ex}`, popupSpeak);
+
+      popup.style.display = 'block';
+
+      const rect = termEl.getBoundingClientRect();
+      const popupRect = popup.getBoundingClientRect();
+      const margin = 12;
+
+      let top = rect.bottom + 8;
+      if (top + popupRect.height > window.innerHeight - margin) {
+        top = Math.max(76, rect.top - popupRect.height - 8);
+      }
+      let left = rect.left;
+      if (left + popupRect.width > window.innerWidth - margin) {
+        left = Math.max(margin, window.innerWidth - popupRect.width - margin);
+      }
+
+      popup.style.top = `${top}px`;
+      popup.style.left = `${left}px`;
+    }
+
+    function initReadingVocabListeners() {
+      const terms = document.querySelectorAll('.vocab-term');
+      const inspectorContent = document.getElementById('vocabInspectorContent');
+      const speakBtn = document.getElementById('vocabSpeakBtn');
+
+      terms.forEach(termEl => {
+        const activateTerm = (e, shouldOpenPopup = false) => {
+          if (e) e.stopPropagation();
+          terms.forEach(t => t.classList.remove('active-term'));
+          termEl.classList.add('active-term');
+
+          const word = termEl.getAttribute('data-term');
+          const def = termEl.getAttribute('data-def');
+          const ex = termEl.getAttribute('data-ex');
+
+          inspectorContent.innerHTML = `
+            <div>
+              <span class="font-extrabold uppercase tracking-wide text-xs px-2 py-0.5 rounded bg-white text-amber-900 border border-amber-300 mr-1.5">${word}</span>
+              <span class="font-semibold text-slate-800">${def}</span>
+              <div class="text-xs italic text-slate-600 mt-1">Example: "${ex}"</div>
+            </div>
+          `;
+
+          speakBtn.classList.remove('hidden');
+          speakBtn.onclick = () => speakSentence(`${word}. ${ex}`, speakBtn);
+
+          if (shouldOpenPopup) {
+            openVocabPopup(termEl);
+          }
+        };
+
+        termEl.addEventListener('click', (e) => activateTerm(e, true));
+        termEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activateTerm(e, true);
+          }
+        });
+        termEl.addEventListener('mouseenter', () => activateTerm(null, false));
+      });
+
+      document.addEventListener('click', (e) => {
+        const popup = document.getElementById('vocabPopupCard');
+        if (popup && popup.style.display === 'block') {
+          if (!popup.contains(e.target) && !e.target.classList.contains('vocab-term')) {
+            closeVocabPopup();
+          }
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeVocabPopup();
+      });
+    }
+
+    /**
+     * 6. SHUFFLE & STATE INITIALIZATION
+     */
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initTabState(tabIndex, shouldShuffle = false) {
+      const key = TAB_META[tabIndex].key;
+      const source = CHALLENGE_DATA[key];
+      const ordered = shouldShuffle ? shuffleArray(source) : [...source];
+
+      state.items[tabIndex] = ordered.map(item => {
+        if (item.options) {
+          return {
+            ...item,
+            shuffledOptions: shouldShuffle ? shuffleArray(item.options) : [...item.options]
+          };
+        }
+        return { ...item };
+      });
+
+      state.progress[tabIndex] = {};
+      state.items[tabIndex].forEach(item => {
+        state.progress[tabIndex][item.id] = {
+          solved: false,
+          wrongAttempts: 0,
+          hintsUsed: 0,
+          lettersRevealed: 0,
+          showHint: false,
+          currentTyped: '',
+          wrongOptions: []
+        };
+      });
+
+      state.tabCelebrated[tabIndex] = false;
+    }
+
+    function initAllTabs() {
+      [0, 1, 2, 3].forEach(idx => initTabState(idx, false));
+      initReadingVocabListeners();
+      renderActiveTab();
+      updateProgressUI();
+    }
+
+    /**
+     * 7. TAB SWITCHING & PROGRESS TRACKING
+     */
+    function switchTab(tabIndex) {
+      stopReadingAudio();
+      closeVocabPopup();
+      state.activeTab = tabIndex;
+
+      [0, 1, 2, 3].forEach(idx => {
+        const btn = document.getElementById(`tabBtn-${idx}`);
+        btn.classList.toggle('active', idx === tabIndex);
+      });
+
+      document.getElementById('activeTabHeading').textContent = TAB_META[tabIndex].title;
+      document.getElementById('tabInstructionText').textContent = TAB_META[tabIndex].instruction;
+
+      const readingSection = document.getElementById('readingPassageSection');
+      if (tabIndex === 3) {
+        readingSection.classList.remove('hidden');
+      } else {
+        readingSection.classList.add('hidden');
+      }
+
+      const nextBtnLabel = document.getElementById('nextExerciseLabel');
+      if (tabIndex < 3) {
+        nextBtnLabel.textContent = `Next Exercise (Tab ${tabIndex + 2}) ➔`;
+      } else {
+        nextBtnLabel.textContent = 'View Final Mastery Summary ➔';
+      }
+
+      renderActiveTab();
+      updateProgressUI();
+    }
+
+    function updateProgressUI() {
+      let totalSolved = 0;
+      let grandTotal = 0;
+
+      [0, 1, 2, 3].forEach(idx => {
+        const items = state.items[idx];
+        const progMap = state.progress[idx];
+        const solvedCount = items.filter(it => progMap[it.id]?.solved).length;
+        totalSolved += solvedCount;
+        grandTotal += items.length;
+
+        const badge = document.getElementById(`badge-${idx}`);
+        if (badge) {
+          badge.textContent = `${solvedCount}/${items.length}`;
+        }
+
+        if (idx === state.activeTab) {
+          document.getElementById('tabProgressText').textContent = `${solvedCount} / ${items.length}`;
+          const pct = Math.round((solvedCount / items.length) * 100);
+          document.getElementById('tabProgressBar').style.width = `${pct}%`;
+        }
+      });
+
+      document.getElementById('totalProgressText').textContent = `${totalSolved} / ${grandTotal}`;
+    }
+
+    function checkTabCompletion(tabIndex) {
+      const items = state.items[tabIndex];
+      const progMap = state.progress[tabIndex];
+      const allSolved = items.every(it => progMap[it.id]?.solved);
+
+      if (allSolved && !state.tabCelebrated[tabIndex]) {
+        state.tabCelebrated[tabIndex] = true;
+        setTimeout(() => {
+          openCongratsModal(tabIndex);
+        }, 420);
+      }
+    }
+
+    /**
+     * 8. RENDERING ENGINE FOR ALL FOUR TABS
+     */
+    function renderActiveTab() {
+      const container = document.getElementById('questionsContainer');
+      const tabIndex = state.activeTab;
+      const items = state.items[tabIndex];
+      const progMap = state.progress[tabIndex];
+
+      container.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const p = progMap[item.id];
+        const card = document.createElement('article');
+        card.className = `question-card p-4 sm:p-6 animate-fade-up ${p.solved ? 'solved-card' : ''}`;
+        card.id = `card-${item.id}`;
+
+        const levelClass = item.level === 'B2' ? 'level-b2' : 'level-b1';
+
+        if (tabIndex === 0 || tabIndex === 3) {
+          // TAB 1 (TRICKY MULTIPLE CHOICE) & TAB 4 (READING COMPREHENSION MC)
+          const speechText =
+            tabIndex === 0
+              ? `${item.sentenceBefore.replace('___', item.correct)}${item.sentenceAfter.replace('___', item.correct)}`
+              : `${item.sentenceBefore} ${item.correct}`;
+
+          const sentenceDisplay =
+            tabIndex === 0
+              ? `${item.sentenceBefore.replace('___', renderBlankPill(p.solved, item.correct))}${item.sentenceAfter.replace('___', renderBlankPill(p.solved, item.correct))}`
+              : item.sentenceBefore;
+
+          const questionLabel =
+            tabIndex === 0
+              ? `Question ${index + 1} of ${items.length}`
+              : `Question ${index + 1} of ${items.length}`;
+
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-extrabold text-white" style="background: ${p.solved ? 'var(--success)' : 'var(--primary)'};">
+                  ${p.solved ? '✓ ' + questionLabel : questionLabel}
+                </span>
+                <span class="level-tag ${levelClass} text-xs font-extrabold px-2 py-0.5 rounded-md">
+                  ${item.level}
+                </span>
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600">
+                  ${item.tag}
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                ${
+                  p.solved
+                    ? `<button
+                        type="button"
+                        onclick="speakSentence('${escapeQuotes(speechText)}', this)"
+                        class="speak-btn px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 animate-fade-up"
+                        title="Listen"
+                      >
+                        <span>🔊 Listen</span>
+                      </button>`
+                    : ''
+                }
+                ${
+                  !p.solved
+                    ? `<button
+                        type="button"
+                        onclick="toggleCardHint(${tabIndex}, '${item.id}')"
+                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition hover:bg-amber-50"
+                        style="border-color: var(--accent); color: var(--accent);"
+                      >
+                        💡 Hint
+                      </button>`
+                    : ''
+                }
+              </div>
+            </div>
+
+            <p class="text-base sm:text-lg font-medium text-slate-800 mb-4 leading-relaxed">
+              ${sentenceDisplay}
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${item.shuffledOptions
+                .map((opt, optIdx) => {
+                  const isWrong = p.wrongOptions.includes(opt);
+                  const isCorrect = p.solved && opt === item.correct;
+                  let extraClass = '';
+                  if (isCorrect) extraClass = 'correct-locked';
+                  else if (isWrong) extraClass = 'wrong-flash';
+
+                  const letterLabel = ['A', 'B', 'C', 'D'][optIdx];
+                  return `
+                    <button
+                      type="button"
+                      ${p.solved || isWrong ? 'disabled' : ''}
+                      onclick="handleMcSelect(${tabIndex}, '${item.id}', '${escapeQuotes(opt)}', this)"
+                      class="mc-option ${extraClass}"
+                    >
+                      <span class="w-6 h-6 rounded-md text-xs font-extrabold flex items-center justify-center shrink-0 border border-current opacity-80">
+                        ${letterLabel}
+                      </span>
+                      <span>${opt}</span>
+                    </button>
+                  `;
+                })
+                .join('')}
+            </div>
+
+            ${
+              p.showHint && !p.solved
+                ? `<div class="mt-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium animate-fade-up border" style="background: var(--accent-light); border-color: #f6cdb4; color: #7c2d12;">
+                    💡 <strong>Clue:</strong> ${item.hint}
+                  </div>`
+                : ''
+            }
+
+            ${
+              p.solved
+                ? `<div class="mt-4 p-3 rounded-xl text-xs sm:text-sm flex items-start gap-2.5 animate-fade-up" style="background: var(--success-bg); color: #14532d;">
+                    <span class="font-bold">✓ Explanation:</span>
+                    <span>${item.explanation}</span>
+                  </div>`
+                : ''
+            }
+          `;
+        } else if (tabIndex === 1) {
+          // TAB 2: ACTIVE RECALL FILL-IN-THE-GAPS
+          const fullSentenceForSpeech = `${item.sentenceBefore}${item.answer} ${item.sentenceAfter}`;
+
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-extrabold text-white" style="background: ${p.solved ? 'var(--success)' : 'var(--primary)'};">
+                  ${p.solved ? `✓ Sentence ${index + 1} of ${items.length}` : `Sentence ${index + 1} of ${items.length}`}
+                </span>
+                <span class="level-tag ${levelClass} text-xs font-extrabold px-2 py-0.5 rounded-md">
+                  ${item.level}
+                </span>
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600">
+                  ${item.tag}
+                </span>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-1.5">
+                ${
+                  p.solved
+                    ? `<button
+                        type="button"
+                        onclick="speakSentence('${escapeQuotes(fullSentenceForSpeech)}', this)"
+                        class="speak-btn px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 animate-fade-up"
+                        title="Listen to sentence"
+                      >
+                        <span>🔊 Listen</span>
+                      </button>`
+                    : ''
+                }
+                ${
+                  !p.solved
+                    ? `
+                    <button
+                      type="button"
+                      onclick="toggleCardHint(1, '${item.id}')"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition hover:bg-amber-50"
+                      style="border-color: var(--accent); color: var(--accent);"
+                    >
+                      💡 Hint
+                    </button>
+                    <button
+                      type="button"
+                      onclick="revealNextLetter('${item.id}')"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition hover:bg-slate-100"
+                      style="border-color: var(--primary); color: var(--primary);"
+                    >
+                      +1 Letter
+                    </button>
+                  `
+                    : ''
+                }
+              </div>
+            </div>
+
+            <div class="text-base sm:text-lg font-medium text-slate-800 leading-loose">
+              <span>${item.sentenceBefore}</span>
+              <input
+                id="input-${item.id}"
+                type="text"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                aria-label="Gap ${index + 1}"
+                value="${p.solved ? escapeHtml(item.answer) : escapeHtml(p.currentTyped)}"
+                ${p.solved ? 'disabled' : ''}
+                oninput="handleRecallInput('${item.id}', this, false)"
+                onblur="handleRecallInput('${item.id}', this, true)"
+                placeholder="Type here..."
+                class="recall-input mx-1 ${p.solved ? 'input-solved' : ''}"
+              />
+              <span class="inline-block text-xs font-bold px-2 py-0.5 rounded-md mr-1 align-baseline" style="background: var(--primary-light); color: var(--primary);">
+                ${item.cue}
+              </span>
+              <span>${item.sentenceAfter}</span>
+            </div>
+
+            ${
+              p.showHint && !p.solved
+                ? `<div class="mt-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium animate-fade-up border" style="background: var(--accent-light); border-color: #f6cdb4; color: #7c2d12;">
+                    💡 <strong>Grammar Tip:</strong> ${item.hint}
+                  </div>`
+                : ''
+            }
+
+            ${
+              p.solved
+                ? `<div class="mt-4 p-3 rounded-xl text-xs sm:text-sm flex items-start gap-2.5 animate-fade-up" style="background: var(--success-bg); color: #14532d;">
+                    <span class="font-bold">✓ Mastered:</span>
+                    <span>${item.explanation}</span>
+                  </div>`
+                : ''
+            }
+          `;
+        } else {
+          // TAB 3: DROPDOWN PRECISION GAPS
+          const fullSentenceForSpeech = `${item.sentenceBefore}${item.correct} ${item.sentenceAfter}`;
+
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-extrabold text-white" style="background: ${p.solved ? 'var(--success)' : 'var(--primary)'};">
+                  ${p.solved ? `✓ Sentence ${index + 1} of ${items.length}` : `Sentence ${index + 1} of ${items.length}`}
+                </span>
+                <span class="level-tag ${levelClass} text-xs font-extrabold px-2 py-0.5 rounded-md">
+                  ${item.level}
+                </span>
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600">
+                  ${item.tag}
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                ${
+                  p.solved
+                    ? `<button
+                        type="button"
+                        onclick="speakSentence('${escapeQuotes(fullSentenceForSpeech)}', this)"
+                        class="speak-btn px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 animate-fade-up"
+                        title="Listen to sentence"
+                      >
+                        <span>🔊 Listen</span>
+                      </button>`
+                    : ''
+                }
+                ${
+                  !p.solved
+                    ? `<button
+                        type="button"
+                        onclick="toggleCardHint(2, '${item.id}')"
+                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition hover:bg-amber-50"
+                        style="border-color: var(--accent); color: var(--accent);"
+                      >
+                        💡 Hint
+                      </button>`
+                    : ''
+                }
+              </div>
+            </div>
+
+            <div class="text-base sm:text-lg font-medium text-slate-800 leading-loose">
+              <span>${item.sentenceBefore}</span>
+              <select
+                id="select-${item.id}"
+                aria-label="Dropdown Gap ${index + 1}"
+                ${p.solved ? 'disabled' : ''}
+                onchange="handleDropdownChange('${item.id}', this)"
+                class="precision-select mx-1 my-1 ${p.solved ? 'select-solved' : ''}"
+              >
+                <option value="" disabled ${!p.solved ? 'selected' : ''}>— Choose option —</option>
+                ${item.shuffledOptions
+                  .map(opt => {
+                    const isSelected = p.solved && opt === item.correct;
+                    return `<option value="${escapeHtml(opt)}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
+                  })
+                  .join('')}
+              </select>
+              <span>${item.sentenceAfter}</span>
+            </div>
+
+            ${
+              p.showHint && !p.solved
+                ? `<div class="mt-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium animate-fade-up border" style="background: var(--accent-light); border-color: #f6cdb4; color: #7c2d12;">
+                    💡 <strong>Grammar Tip:</strong> ${item.hint}
+                  </div>`
+                : ''
+            }
+
+            ${
+              p.solved
+                ? `<div class="mt-4 p-3 rounded-xl text-xs sm:text-sm flex items-start gap-2.5 animate-fade-up" style="background: var(--success-bg); color: #14532d;">
+                    <span class="font-bold">✓ Precision Note:</span>
+                    <span>${item.explanation}</span>
+                  </div>`
+                : ''
+            }
+          `;
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function renderBlankPill(isSolved, correctText) {
+      return `<span class="inline-block px-3 py-0.5 mx-1 rounded-md font-extrabold border-b-2" style="${
+        isSolved
+          ? 'background: var(--success-bg); color: var(--success); border-color: var(--success);'
+          : 'background: var(--primary-light); color: var(--primary); border-color: var(--primary);'
+      }">${isSolved ? correctText : '________'}</span>`;
+    }
+
+    /**
+     * 9. INTERACTION HANDLERS (INSTANT AUTOMATIC VERIFICATION)
+     */
+    function handleMcSelect(tabIndex, itemId, chosenOption, btnEl) {
+      const item = state.items[tabIndex].find(i => i.id === itemId);
+      const p = state.progress[tabIndex][itemId];
+      if (!item || p.solved) return;
+
+      if (chosenOption === item.correct) {
+        p.solved = true;
+        playSuccessSound();
+        renderActiveTab();
+        updateProgressUI();
+        checkTabCompletion(tabIndex);
+      } else {
+        p.wrongAttempts += 1;
+        if (!p.wrongOptions.includes(chosenOption)) {
+          p.wrongOptions.push(chosenOption);
+        }
+        playErrorSound();
+        btnEl.classList.add('wrong-flash');
+        btnEl.disabled = true;
+      }
+    }
+
+    function normalizeAnswer(str) {
+      return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[’']/g, "'");
+    }
+
+    function handleRecallInput(itemId, inputEl, isBlur) {
+      const item = state.items[1].find(i => i.id === itemId);
+      const p = state.progress[1][itemId];
+      if (!item || p.solved) return;
+
+      const rawVal = inputEl.value;
+      p.currentTyped = rawVal;
+      const cleaned = normalizeAnswer(rawVal);
+      const target = normalizeAnswer(item.answer);
+
+      if (cleaned === target) {
+        p.solved = true;
+        playSuccessSound();
+        renderActiveTab();
+        updateProgressUI();
+        checkTabCompletion(1);
+        return;
+      }
+
+      if (isBlur && cleaned.length > 0 && cleaned !== target) {
+        p.wrongAttempts += 1;
+        playErrorSound();
+        inputEl.classList.remove('input-error');
+        void inputEl.offsetWidth;
+        inputEl.classList.add('input-error');
+      } else {
+        inputEl.classList.remove('input-error');
+      }
+    }
+
+    function toggleCardHint(tabIndex, itemId) {
+      const p = state.progress[tabIndex][itemId];
+      if (!p || p.solved) return;
+      if (!p.showHint) {
+        p.showHint = true;
+        p.hintsUsed += 1;
+      } else {
+        p.showHint = false;
+      }
+      renderActiveTab();
+      if (tabIndex === 1) {
+        const inputEl = document.getElementById(`input-${itemId}`);
+        if (inputEl) inputEl.focus();
+      }
+    }
+
+    function revealNextLetter(itemId) {
+      const item = state.items[1].find(i => i.id === itemId);
+      const p = state.progress[1][itemId];
+      if (!item || p.solved) return;
+
+      const target = item.answer;
+      const current = p.currentTyped;
+
+      let matchLen = 0;
+      while (
+        matchLen < current.length &&
+        matchLen < target.length &&
+        current[matchLen].toLowerCase() === target[matchLen].toLowerCase()
+      ) {
+        matchLen++;
+      }
+
+      const nextLen = Math.min(target.length, matchLen + 1);
+      p.currentTyped = target.slice(0, nextLen);
+      p.lettersRevealed += 1;
+
+      if (normalizeAnswer(p.currentTyped) === normalizeAnswer(target)) {
+        p.solved = true;
+        playSuccessSound();
+        renderActiveTab();
+        updateProgressUI();
+        checkTabCompletion(1);
+      } else {
+        renderActiveTab();
+        const inputEl = document.getElementById(`input-${itemId}`);
+        if (inputEl) {
+          inputEl.focus();
+          inputEl.setSelectionRange(nextLen, nextLen);
+        }
+      }
+    }
+
+    function handleDropdownChange(itemId, selectEl) {
+      const item = state.items[2].find(i => i.id === itemId);
+      const p = state.progress[2][itemId];
+      if (!item || p.solved) return;
+
+      const chosen = selectEl.value;
+      if (chosen === item.correct) {
+        p.solved = true;
+        playSuccessSound();
+        renderActiveTab();
+        updateProgressUI();
+        checkTabCompletion(2);
+      } else {
+        p.wrongAttempts += 1;
+        playErrorSound();
+        selectEl.classList.remove('select-error');
+        void selectEl.offsetWidth;
+        selectEl.classList.add('select-error');
+      }
+    }
+
+    /**
+     * 10. BOTTOM ACTION BAR HANDLERS (RESET & SHUFFLE / NEXT EXERCISE)
+     */
+    function resetAndShuffleCurrentTab() {
+      stopReadingAudio();
+      initTabState(state.activeTab, true);
+      renderActiveTab();
+      updateProgressUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleNextExercise() {
+      stopReadingAudio();
+      if (state.activeTab < 3) {
+        switchTab(state.activeTab + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        openCongratsModal(3, true);
+      }
+    }
+
+    /**
+     * 11. MODALS & REAL ACCURACY METRICS
+     */
+    function openHelpModal() {
+      const modal = document.getElementById('helpModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeHelpModal() {
+      const modal = document.getElementById('helpModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function calculateRealMetrics(tabIndex, overall = false) {
+      const indices = overall ? [0, 1, 2, 3] : [tabIndex];
+      let totalItems = 0;
+      let solvedItems = 0;
+      let firstTryHits = 0;
+      let totalPenalties = 0;
+
+      indices.forEach(idx => {
+        const items = state.items[idx];
+        const progMap = state.progress[idx];
+        items.forEach(item => {
+          totalItems++;
+          const p = progMap[item.id];
+          const penalties = (p.wrongAttempts || 0) + (p.hintsUsed || 0) + (p.lettersRevealed || 0);
+          totalPenalties += penalties;
+          if (p.solved) {
+            solvedItems++;
+            if (penalties === 0) {
+              firstTryHits++;
+            }
+          }
+        });
+      });
+
+      const denominator = Math.max(1, solvedItems + totalPenalties);
+      const accuracyPct = solvedItems === 0 ? 0 : Math.round((solvedItems / denominator) * 100);
+
+      return {
+        totalItems,
+        solvedItems,
+        firstTryHits,
+        totalPenalties,
+        accuracyPct
+      };
+    }
+
+    function openCongratsModal(tabIndex, forceOverall = false) {
+      const allFourDone = [0, 1, 2, 3].every(idx =>
+        state.items[idx].every(it => state.progress[idx][it.id]?.solved)
+      );
+      const isOverall = forceOverall || allFourDone;
+      const metrics = calculateRealMetrics(tabIndex, isOverall);
+
+      document.getElementById('congratsBadge').textContent = isOverall
+        ? 'Full 36-Item Challenge Summary'
+        : `Section ${tabIndex + 1} Mastered!`;
+
+      document.getElementById('congratsModalTitle').textContent = isOverall
+        ? 'B1–B2 Social Life & Outdoors Mastery! 🎉'
+        : `${TAB_META[tabIndex].title.replace(/^\d+\.\s*/, '')} Complete! 🎉`;
+
+      document.getElementById('congratsSubtitle').textContent = isOverall
+        ? `You solved ${metrics.solvedItems} of ${metrics.totalItems} integrated B1–B2 items. Here are your verified accuracy metrics:`
+        : 'Every question in this section is solved and locked in. Here is your real-time accuracy report:';
+
+      document.getElementById('metricAccuracy').textContent = `${metrics.accuracyPct}%`;
+      document.getElementById('metricFirstTry').textContent = `${metrics.firstTryHits}/${metrics.totalItems}`;
+      document.getElementById('metricMistakes').textContent = `${metrics.totalPenalties}`;
+
+      const feedbackBox = document.getElementById('cefrFeedbackBox');
+      if (metrics.accuracyPct >= 90) {
+        feedbackBox.innerHTML = '🌟 <strong>B2 Upper-Intermediate Distinction:</strong> Outstanding first-attempt precision across invariant plurals, social idioms, and reading inference!';
+      } else if (metrics.accuracyPct >= 75) {
+        feedbackBox.innerHTML = '🎯 <strong>Solid B1+ / B2 Fluency:</strong> Great instincts for natural conversation, food, and outdoor contexts. Try <em>🔄 Reset &amp; Shuffle</em> to aim for 95%+!';
+      } else {
+        feedbackBox.innerHTML = '📚 <strong>Active Learning Progress:</strong> Great persistence working through the grammar tips! Replay the section to sharpen first-try recall.';
+      }
+
+      const nextBtn = document.getElementById('congratsNextBtn');
+      if (tabIndex < 3 && !isOverall) {
+        nextBtn.textContent = `Next Exercise (Tab ${tabIndex + 2}) ➔`;
+        nextBtn.onclick = () => {
+          closeCongratsModal();
+          switchTab(tabIndex + 1);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+      } else {
+        nextBtn.textContent = '🔄 Reset & Shuffle All';
+        nextBtn.onclick = () => {
+          closeCongratsModal();
+          [0, 1, 2, 3].forEach(idx => initTabState(idx, true));
+          switchTab(0);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+      }
+
+      const modal = document.getElementById('congratsModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      playFanfareSound();
+      launchConfetti();
+    }
+
+    function closeCongratsModal() {
+      const modal = document.getElementById('congratsModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function proceedFromCongrats() {
+      closeCongratsModal();
+      if (state.activeTab < 3) {
+        switchTab(state.activeTab + 1);
+      }
+    }
+
+    /**
+     * 12. CANVAS CONFETTI ANIMATION ENGINE
+     */
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const palette = ['#0f4c5c', '#e36414', '#15803d', '#f59e0b', '#0ea5e9', '#fb7185'];
+      const particles = Array.from({ length: 140 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 10 + 6,
+        h: Math.random() * 6 + 4,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        vx: (Math.random() - 0.5) * 4,
+        vy: Math.random() * 4 + 2.5,
+        angle: Math.random() * 360,
+        spin: (Math.random() - 0.5) * 10
+      }));
+
+      let frame = 0;
+      const maxFrames = 190;
+
+      function animateConfetti() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.angle += p.spin;
+          p.vy += 0.04;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.angle * Math.PI) / 180);
+          ctx.globalAlpha = Math.max(0, 1 - frame / maxFrames);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+
+        if (frame < maxFrames) {
+          requestAnimationFrame(animateConfetti);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      requestAnimationFrame(animateConfetti);
+    }
+
+    window.addEventListener('resize', () => {
+      const canvas = document.getElementById('confettiCanvas');
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    });
+
+    /**
+     * 13. STRING ESCAPE HELPERS
+     */
+    function escapeQuotes(str) {
+      return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    window.addEventListener('DOMContentLoaded', initAllTabs);
+  </script>
+</body>
+</html>
