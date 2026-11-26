@@ -125,6 +125,36 @@
       text-transform: uppercase;
     }
 
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dictionary-top {
+      background: var(--teal-50);
+      color: var(--navy-900);
+      border: 1.5px solid var(--teal-500);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.14);
+      transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease;
+    }
+
+    .btn-dictionary-top:hover {
+      background: var(--teal-600);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
     .btn-progress-top {
       background: var(--navy-900);
       color: #ffffff;
@@ -687,7 +717,10 @@
         </div>
       </a>
 
-      <a href="#progress-panel" class="btn-progress-top">My Progress</a>
+      <div class="topbar-actions">
+        <a href="https://dictionary.cambridge.org/dictionary/english-spanish/" target="_blank" rel="noopener noreferrer" class="btn-dictionary-top">📖 Dictionary</a>
+        <a href="#progress-panel" class="btn-progress-top">My Progress</a>
+      </div>
     </div>
   </header>
 
